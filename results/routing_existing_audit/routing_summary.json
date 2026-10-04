@@ -1,0 +1,7 @@
+{
+  "rows": 242,
+  "questions": 242,
+  "strict_route_label_agreement": 0.7066115702479339,
+  "macro_f1": 0.5178197064989517,
+  "interpretation": "Agreement with category-derived route proxies, not optimal-action accuracy"
+}

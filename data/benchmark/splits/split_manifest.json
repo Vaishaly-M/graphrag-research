@@ -1,0 +1,30 @@
+{
+  "seed": 42,
+  "holdout_repo": "apache/airflow",
+  "holdout_templates_by_category": {
+    "developer_activity": "top_repository_contributors",
+    "dependency_analysis": "files_modified_by_commit",
+    "issue_pr_analysis": "lowest_numbered_open_issue",
+    "multi_hop": "developers_modifying_file"
+  },
+  "counts": {
+    "dev": 29,
+    "validation": 29,
+    "hidden_test": 242,
+    "hidden_test_from_repo_holdout": 136,
+    "hidden_test_from_template_holdout": 48,
+    "hidden_test_from_stratified_remainder": 58
+  },
+  "gold_fields_stripped_from_hidden_test_questions": [
+    "answerable",
+    "cypher",
+    "expected_answer",
+    "expected_entities",
+    "expected_path",
+    "expected_relations",
+    "gold_evidence",
+    "ground_truth",
+    "params",
+    "required_facts"
+  ]
+}

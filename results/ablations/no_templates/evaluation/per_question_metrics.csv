@@ -1,0 +1,254 @@
+system,source_file,question_id,question,category,difficulty_level,reasoning_hops,answer,expected_answer,error,has_answer,has_reference,is_error,successful,answer_accuracy,ground_truth_coverage,matched_reference_count,reference_count,entity_precision,entity_recall,entity_f1,required_fact_coverage,matched_fact_count,required_fact_count,relation_precision,relation_recall,relation_f1,path_accuracy,multi_hop_completion,supported_claim_rate,hallucination_rate,supported_claim_count,claim_count,evidence_precision_at_10,evidence_recall_at_10,mrr,retrieval_route_accuracy,token_precision,token_recall,token_f1,rouge_l,latency_s,token_usage,retrieved_context_tokens,ndcg_at_10,graph_source_recall,vector_source_recall,evidence_source_overlap,evidence_source_diversity,graph_query_attempted,graph_query_invalid,graph_query_empty_result,graph_hop_count,answerable,abstained,abstention_quality
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,developer_activity-006,Which commits were authored by developer email:choonghee.lee@hotmail.com in repository spring-projects/spring-petclinic?,developer_activity,medium,2,"{'repo': 'spring-projects/spring-petclinic', 'id': 'spring-projects/spring-petclinic:commit:11d0ed4358eebcc8d5d108748705843d8238af5a', 'message': 'update table id attribute in ownersList.html\n\n""vets"" to ""owners""', 'sha': '11d0ed4358eebcc8d5d108748705843d8238af5a', 'timestamp': '2019-05-18T10:24:08+09:00'}","[""spring-projects/spring-petclinic:commit:11d0ed4358eebcc8d5d108748705843d8238af5a""]",,1,1,0,1,1.0,1.0,1,1,0.0,0.0,0.0,0.0,0,1,,,,,,1.0,1.0,1,1,1.0,0.2,1.0,1.0,0.043478260869565216,1.0,0.08333333333333333,0.2926829268292683,5.187326,,,1.0,0.2,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,developer_activity-026,Which commits were authored by developer email:42500186+vbadipat@users.noreply.github.com in repository spring-projects/spring-petclinic?,developer_activity,medium,2,"{'repo': 'spring-projects/spring-petclinic', 'id': 'spring-projects/spring-petclinic:commit:5742ecd6ce5bd1fd88e04699e8e16c59cf1efd92', 'message': 'Use https for Maven XSD\n\nSee gh-522', 'sha': '5742ecd6ce5bd1fd88e04699e8e16c59cf1efd92', 'timestamp': '2020-01-31T06:30:24-05:00'}","[""spring-projects/spring-petclinic:commit:5742ecd6ce5bd1fd88e04699e8e16c59cf1efd92""]",,1,1,0,1,1.0,1.0,1,1,0.0,0.0,0.0,0.0,0,1,,,,,,1.0,1.0,1,1,1.0,0.2,1.0,1.0,0.05,1.0,0.09523809523809523,0.3157894736842105,13.498194,,,1.0,0.2,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,developer_activity-015,Which commits were authored by developer email:amaembo@gmail.com in repository spring-projects/spring-petclinic?,developer_activity,medium,2,"{'repo': 'spring-projects/spring-petclinic', 'id': 'spring-projects/spring-petclinic:commit:2a12048e784eae86e61a484ecb65eec8832b9b9a', 'message': ""Update javadoc: it incorrectly said to return 'true'"", 'sha': '2a12048e784eae86e61a484ecb65eec8832b9b9a', 'timestamp': '2022-06-15T11:09:14+02:00'}","[""spring-projects/spring-petclinic:commit:2a12048e784eae86e61a484ecb65eec8832b9b9a""]",,1,1,0,1,1.0,1.0,1,1,0.0,0.0,0.0,0.0,0,1,,,,,,1.0,1.0,1,1,1.0,0.2,1.0,1.0,0.047619047619047616,1.0,0.0909090909090909,0.3243243243243243,5.217881,,,1.0,0.2,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,developer_activity-018,Which commits were authored by developer email:david.andrew.matthews@gmail.com in repository mlflow/mlflow?,developer_activity,medium,2,"{'repo': 'mlflow/mlflow', 'id': 'mlflow/mlflow:commit:b218debe88010d783513e6ec970573678fa204b8', 'message': 'Added region name to the sagemaker cli. (#24)', 'sha': 'b218debe88010d783513e6ec970573678fa204b8', 'timestamp': '2018-06-16T19:18:29+01:00'}","[""mlflow/mlflow:commit:b218debe88010d783513e6ec970573678fa204b8""]",,1,1,0,1,1.0,1.0,1,1,0.0,0.0,0.0,0.0,0,1,,,,,,0.5,1.0,1,2,1.0,0.2,1.0,1.0,0.045454545454545456,1.0,0.08695652173913045,0.25806451612903225,7.525511,,,1.0,0.2,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,developer_activity-029,Which commits were authored by developer email:tingfan.wu@umbocv.com in repository mlflow/mlflow?,developer_activity,medium,2,"{'repo': 'mlflow/mlflow', 'id': 'mlflow/mlflow:commit:1040d425d41f1299e444cdd972d56a95971aee70', 'message': 'remove accidentially commit __pycache__ (#81)', 'sha': '1040d425d41f1299e444cdd972d56a95971aee70', 'timestamp': '2018-06-25T19:52:29-07:00'}
+{'repo': 'mlflow/mlflow', 'id': 'mlflow/mlflow:commit:cd2ba3f5be116976679a9e413d0327404bc56ca4', 'message': 'pyfunc should respect MLModel conda env file (#225)\n\n* pyfunc should respect MLModel conda env file\n\n[Why]\nMLModel ENV parameter specifies runtime conda env for the model. This was not handled in current code as in https://github.com/mlflow/mlflow/issues/194\nThis PR fixes it.\n\n[What]\n1. Split load_model_conf and load_model_env from load_pyfunc\n2. add --no-conda flag to pyfunc predict/serve\n3. add rerun_in_conda() function to handle conda env creation (from yaml) and activation.\n4. test cases added for MLModel with nontrivial ENV (install mlflow)\n\n* fixing lint errors\n\n* fix python2/3 compatiblity\n\n* fix python2/3 compatiblity -- skip py3 line in py2 code\n\n* code change as requested in PR225 review\n\n* privatize _load_model_env\n* _maybe_create_conda_env returns conda-env name\n* use _get_conda_bin_executable to obtain ""activate"" path\n* add util.cli_args.NO_CONDA\n* use run_id to obtain model_path in pyfunc predict/serve so it can run\nin the cloud as well.\n* add unit-tests for pyfunc serve\n* handle int/float in reconstruct_command_line\n\n* add eprint line\ncleanup for lint check error\n\n* tidy up\n\n* Fix _load_model_conf() run_id merge problem.\n\n* tidy up\n\n* Changes after https://github.com/mlflow/mlflow/pull/225#issuecomment-411581466\n\n* use sys.argv\n* remove deps on multiprocessing, psutil\n* recreate _get_conda_env_name, _maybe_create_conda_env\n\n* tidy up\n\n* Refactor _get_or_create_conda_env\n\n* Lint + shlex', 'sha': 'cd2ba3f5be116976679a9e413d0327404bc56ca4', 'timestamp': '2018-08-13T15:47:33-07:00'}","[""mlflow/mlflow:commit:cd2ba3f5be116976679a9e413d0327404bc56ca4"", ""mlflow/mlflow:commit:1040d425d41f1299e444cdd972d56a95971aee70""]",,1,1,0,1,1.0,1.0,2,2,0.0,0.0,0.0,0.0,0,2,,,,,,0.2857142857142857,1.0,2,7,1.0,0.16666666666666666,1.0,1.0,0.009615384615384616,1.0,0.01904761904761905,0.0364741641337386,27.662871,,,1.0,0.16666666666666666,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,issue_pr_analysis-015,What are the titles of the open issues in repository dotnet/eShop?,issue_pr_analysis,easy,1,"OpenAI, .net 10, database, demo?
+E-shop
+SSRF: webhook subscription issues an outbound request to a caller-controlled URL with no destination validation
+Insecure file-serving pattern: `GetItemPictureById` allows path traversal / arbitrary file read via `PictureFileName'
+Catalog API admin mutation endpoints have no authentication - unauthenticated item creation, update, and deletion
+Ordering API cross-user IDOR - any authenticated user can read, cancel, or ship another user's orders
+Credit Card Numbers are still an issue
+Update to latest Asp.Versioning package versions
+Can't run the code, it is coming with errors.
+Eshop
+Prerequisites installation docs are broken
+AddNewOrder in Ordering.FunctionalTests is not properly tested
+Referential integrity bugs related to catalog, basket, and order
+[Question] Why doesn’t Catalog decrement stock on validation, could this cause ""overselling""?
+Build fails for multi-target MAUI ClientApp due to inconsistent gRPC codegen for `basket.proto` — propose adding a shared `GrpcClients` project to centralize generated client types
+[test issue] Add documentation to CartPage.razor
+Standalone Remote Docker issue
+Update README to mention .NET 10
+اشتباه دستوری در پلتفرمهای اجرا کننده
+Eror code for ACC
+Could not load file or assembly 'Microsoft.Extensions.Configuration.Binder, Version=8.0.0.0 error
+## Enhancement: Validate and Handle Invalid Brand/Type Query Parameters in CatalogSearch.razor
+DevContainer Support Is Missing For All Services
+I still do not know how to login in using android App. Is there someone nice to give me some advice.?
+Serverless eShop sample with .net 8 isolated worker
+eShop on Mac + VS Code fails to pull redis, postgre and eventbus images
+Suggestion: Remove commercial 3rd party dependencies, use Aspire, update the supporting book
+Cannot log in to this site
+Deployment fails by default unless adminUserEnabled is manually set
+Potential SSL error with docker-compose
+[WebToolsE2E][Aspire] The button ""Log in to view or edit webhook registrations"" is grey and cannot be clicked
+[WebToolsE2E][Aspire] There is no log in button but a black bar when log in to cart
+First Time Setup on new Laptop
+The SSL connection could not be established, see inner exception.
+Explanation for when to handle domain events may be incorrect?
+Concurrency issue when item quantity is changed between order processing and payment
+unrecognized target framework identifier
+Live demo of eShop
+Why is there no simpler version of the reference application?
+Help wanted to idenfity why the android application crash with the following message: [libc] Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 3976 (mpanyname.eshop), pid 3976 (mpanyname.eshop)
+No service for type 'OpenAI.OpenAIClient' has been registered.
+[Suggestion] Organize and group related projects or modules into folders
+Remove assembly scan for all event types in the integration log
+Kubernetes Architecture with Aspire
+Full rebuild of eshop solution fails on ClientApp
+Do not know how to start App,Pls someone give me some advice?
+OpenIdConnectProtocolException: Message contains error: 'invalid_request', error_description: 'Invalid redirect_uri', error_uri: 'error_uri is null'.
+ERROR: failed registering service hooks, failed getting services: a project may only contain a single Aspire service and no other services at this time.
+Not obvious error with restoring the solution out of box with not latest sdk
+Clarify in the README which models need to be deployed to use the AI chat feature
+Solution still not able to run in Docker
+Share model classes between projects
+Initial database migration not working using `OrderingContext`
+Suggestion to Align Default Namespaces with eShop.* Pattern for Better VS Integration
+Configuration missing value for: IdentityUrl
+Remove DDD boilerplate
+[WebToolsE2E][Aspire] Deployment of eShop failed with error: error MSB4166: System.ArgumentNullException: Value cannot be null. (Parameter 'value')
+Upgrade EF to 9.0
+Reconsider when EF schema migrations are applied
+How vault is created?
+Add items to cart without logging in
+[WebToolsE2E][Aspire] Press F5 to run the eshop.web solution, click the webhooksclient endpoint and log in with the account. An exception is thrown: 'Microsoft.AspNetCore.Components.NavigationException'.
+missing dependencies in Rider
+Aspire deployment - An unhandled error has occurred. Reload
+Deleting item from shopping bag doesn't update shopping cart number.
+Exception handling for itemid
+Upgrading NuGet Packages
+Delete ""http"" launch profiles
+[WebToolsE2E][Aspire] Running the eShop.Web solution using `http` fails with error: The endpoint https is not allocated for the resource webhooksclient.
+Tracking message-id and delivertag in Rabbit EventBus implementation
+Apple ARM Processors Require Rosetta 2 to Build for gRPC Build Tools Support
+Add tracing / metrics for Semantic Kernel
+Questions about UnitWork
+Customizing IP Address for eShop sample
+RabbitMQ instrumentation
+Simplify Windows local dev environment setup using WinGet configuration files
+Question: Unit price is not validated in `CreateOrderCommandHandler`
+Failing when deploying with Open AI enabled with latest version of code.
+Leverage Semantic Kernel memory for embeddings
+how to register user
+Enable key rotation and non-developer signed credentials in eShop deployments
+Add Product URL to chat experience
+IdentifiedCommand<CreateOrderCommand, bool> don't return error of validate CreateOrderCommand
+[WebToolsE2E][Aspire] Building the eShop.Web solution gets some warnings: “Found conflicts between different versions of ""Microsoft.EntityFrameworkCore"" that could not be resolved.”
+rabbitmq problems
+[WebToolsE2E][Aspire] When running eShop.Web using http, the identity-api/webhooksclient project failed to start: Failed to apply configuration value 'WebhooksWebClient' / 'CallBackUrl'. A dependency may have failed to start.
+Assets file 'C:\Users\User\Downloads\eShop-main\src\WebApp\obj\project.assets.json' not found. Run a NuGet package restore to generate this file. WebApp C:\Program Files\dotnet\sdk\8.0.100\Sdks\Microsoft.NET.Sdk\targets\Microsoft.PackageDependencyResolution.targets 266
+Publishing of Events
+Make URLs pretty
+Can't deploy to Azure with AI support
+IdentifiedCommandHandler could be issue of behaviours (pipeline)
+Having the following issue of configurations
+how can we deploy the services and application to azure using azure devops?
+Shouldn't ResilentTransaction class recreate DbContext on retry?
+OrderStatusChangedToCancelledIntegrationEvent is not published to the EventBus
+Checkout process deletes the basket twice
+[WebToolsE2E][Aspire] Running the eshop.web solution throws an exception: Method not found: 'Void Npgsql.TypeMapping.INpgsqlTypeMapper.AddTypeInfoResolver(Npgsql.Internal.IPgTypeInfoResolver)'.
+Scalability/load tests
+Share integration events between projects","[""OpenAI, .net 10, database, demo?"", ""E-shop"", ""SSRF: webhook subscription issues an outbound request to a caller-controlled URL with no destination validation"", ""Insecure file-serving pattern: `GetItemPictureById` allows path traversal / arbitrary file read via `PictureFileName'"", ""Catalog API admin mutation endpoints have no authentication - unauthenticated item creation, update, and deletion"", ""Ordering API cross-user IDOR - any authenticated user can read, cancel, or ship another user's orders"", ""Update to latest Asp.Versioning package versions"", ""Credit Card Numbers are still an issue"", ""Eshop"", ""eshop"", ""Prerequisites installation docs are broken"", ""AddNewOrder in Ordering.FunctionalTests is not properly tested"", ""Referential integrity bugs related to catalog, basket, and order"", ""Build fails for multi-target MAUI ClientApp due to inconsistent gRPC codegen for `basket.proto` — propose adding a shared `GrpcClients` project to centralize generated client types"", ""[test issue] Add documentation to CartPage.razor"", ""Standalone Remote Docker issue"", ""Update README to mention .NET 10"", ""اشتباه دستوری در پلتفرمهای اجرا کننده"", ""Eror code for ACC""]",,1,1,0,1,1.0,1.0,18,18,0.0,0.0,0.0,0.0,0,18,,,,,,0.3113207547169811,0.6886792452830188,33,106,0.8,0.4,1.0,1.0,0.15714285714285714,1.0,0.271604938271605,0.25196850393700787,12.963181,,,0.9429942892150167,0.45,0.0,0.0,0.0,1.0,0.0,0.0,1.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,issue_pr_analysis-035,What is the title of issue #1044 in repository spring-projects/spring-petclinic?,issue_pr_analysis,easy,1,compile error due to incompatible dependency version,"[""compile error due to incompatible dependency version""]",,1,1,0,1,1.0,1.0,1,1,0.0,0.0,0.0,1.0,1,1,,,,,,1.0,0.0,1,1,1.0,0.25,1.0,1.0,1.0,1.0,1.0,1.0,5.043134,,,1.0,0.25,0.0,0.0,0.0,1.0,0.0,0.0,1.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,issue_pr_analysis-005,What is the state of issue #5 in repository synthetic-org/platform?,issue_pr_analysis,easy,1,open,"[""open""]",,1,1,0,1,1.0,1.0,1,1,0.0,0.0,0.0,1.0,1,1,,,,,,1.0,0.0,1,1,0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,27.839719,,,0.0,0.25,0.0,0.0,0.0,1.0,0.0,0.0,1.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,issue_pr_analysis-010,Which issues in repository spring-projects/spring-petclinic contain the term 'annotation' in their title?,issue_pr_analysis,medium,1,"1720
+1029
+761","[""Replace Explicit Getters and Setters with @Data Annotation in BaseEntity Class"", ""Adding @Aspect annotation results in NullPointerException at io.micrometer.core.instrument.MeterRegistry.getMappedId"", ""Unable to package, annotation problem""]",,1,1,0,1,0.0,0.0,0,3,0.0,0.0,0.0,0.0,0,3,,,,,,0.0,1.0,0,3,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,9.167854,,,0.0,0.0,0.0,,0.0,1.0,0.0,0.0,1.0,1,0,incorrect_confident_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,issue_pr_analysis-021,What are the title and state of issue #3 in repository synthetic-org/platform?,issue_pr_analysis,medium,1,"{'state': 'open', 'title': 'Issue in src/component_4/module_19.py'}","[""Issue in src/component_4/module_19.py | open""]",,1,1,0,1,0.0,0.0,0,1,0.0,0.0,0.0,0.0,0,1,,,,,,1.0,1.0,1,1,0.0,0.0,0.0,1.0,0.5,1.0,0.6666666666666666,0.7999999999999999,8.585004,,,0.0,0.0,0.0,,0.0,1.0,0.0,0.0,1.0,1,0,incorrect_confident_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,issue_pr_analysis-033,Which open issue has the highest issue number in repository dotnet/eShop? Return its number and title.,issue_pr_analysis,medium,1,"1005: OpenAI, .net 10, database, demo?","[""1005 | OpenAI, .net 10, database, demo?""]",,1,1,0,1,0.0,0.0,0,1,0.0,0.0,0.0,0.0,0,1,,,,,,1.0,0.0,1,1,0.0,0.0,0.0,1.0,0.8,0.6666666666666666,0.7272727272727272,1.0,16.849943,,,0.0,0.0,0.0,,0.0,1.0,0.0,0.0,1.0,1,0,incorrect_confident_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,issue_pr_analysis-039,Which repository contains issue #4522 titled '[BUG] SageMaker deployment fails when running inside scheduled Databricks Job'?,issue_pr_analysis,medium,1,mlflow/mlflow,"[""mlflow/mlflow""]",,1,1,0,1,1.0,1.0,1,1,1.0,1.0,1.0,1.0,1,1,,,,,,1.0,0.0,1,1,1.0,0.4,1.0,1.0,1.0,1.0,1.0,1.0,7.775308,,,1.0,0.4,0.0,0.0,0.0,1.0,0.0,0.0,1.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,issue_pr_analysis-014,What are the titles of the closed issues in repository dotnet/eShop?,issue_pr_analysis,easy,1,"I can't login to pgsql
+[Question] How architecture picture made?
+run-time error
+[WebToolsE2E][Aspire] Opening eShop solution and update Aspire package to 9.1.0 fails with error: Detected Package Downgrade: Polly.Core from 8.5.1 to Centrally Defined 8.5.0 in Multiple Projects even though the aspire9.1 feed has been added.
+Retries in the TransactionBehavior and use of the EntityFramework Core DbContext
+Refactor Catalog API
+Run Issue
+[WebToolsE2E][Aspire] When running the eshop.web solution, logging in to the user account will throw an exception: 'Microsoft.AspNetCore.Components.NavigationException' was thrown.
+[WebToolsE2E][Aspire] Opening eShop solution version 9.0.0 fails with error: Unable to find multiple packages for version (>= 9.0.0) even though the aspire9 feed has been added.
+where to find project guidance document
+Serious MAUI (ClientApp) memory leak problem
+Can't find API Getway project
+Update repo to .NET 9 RC 1
+test
+https://t.me/LosLacostee
+Make eShopSupport public
+Duende Version 7.0.5 breaks build
+BasketGrpcClient could not be found (after fixing Duende vulnerability)
+Update eshops to Aspire 8.1 candidate
+Could not start proxy error
+Duende.IdentityServer Has a known severity vulnerability
+Availability of eShopSupport Project from Steve Sanderson's Presentation
+How to implement AppInsights into eShop in one centralized location for all the microservices?
+fail: Aspire.Hosting.Dcp.dcpctrl.ServiceReconciler[0]
+Identity api SSL certificate issue
+Add the option to use Docker Compose or Aspire
+Update .NET MAUI app to use new endpoints
+Incorrect URL Redirection with "".internal"" in Azure Container App Service
+Unable to login to app when using Duende Identity Server
+Northern Mountains company name/logos not on CELA approved fictitious companies list
+[WebToolsE2E][Aspire] Opening eShop.web fails with error: ""Unable to find package Aspire.Azure.AI.OpenAI with version (>= 8.0.0).""
+[WebToolsE2E][Aspire] On VS 17.10 GA, opening eShop.web fails with error: ""Unable to find a stable package Microsoft.NET.ILLink.Tasks with version (>= 8.0.5)"", Even though I have applied the feed of sdk 8.0.300.
+[WebToolsE2E][Aspire] When deploying eShop.web solution, running 'azd up' failed with: Property 'containers.name' has an invalid value 'EventBus'.
+Use API versioning for HTTP-based services
+[WebToolsE2E] eShop.AppHost project should only contain http launch settings profile for now
+Storing credit card information in the clear is a problem
+Errors when trying to build the eShop project.
+eShop for .NET 8.0???
+How do I enable the AI Chat?
+Clarify prereqs / install steps in README.md
+Repo does not build under macOS via the command line
+Why is the property of OrderViewModel.cs lowercase
+Exception after login: Microsoft.AspNetCore.Components.NavigationException:“Exception_WasThrown”
+Azure OpenAI should use connection strings locally
+[code] MapView.xaml.cs contains unused initialization code
+Mobile BFF project doesn't register health check routes
+[WebToolsE2E][Aspire] Running ""azd init"" to initialize eShop.Web solution fails with error: ""unsupported resource type: azure.openai.account.v0"".
+Use new Polly.Core APIs
+Build fails with error on OpenTelemetry.Instrumentation security vulnerability
+'Context deadline exceeded' error from ContainerReconciler
+Azure OpenAI unsupported resource type
+Products on catalog page get smaller when there are fewer than three shown
+Chiroyli kod yozamiz bolalar
+Timed out after 00:01:00 while waiting for the dashboard to be responsive.
+catalog-api crashing after receiving request from webapp
+Wiki was not migrationed
+Problem with build - CSC : error CS8785: Generator 'RazorSourceGenerator' failed to generate source.
+NuGet packages not consistent.
+[WebToolsE2E][Aspire] Running ""azd init"" to initialize Metrics solution fails with error: ""unsupported resource type: executable.v0"".
+[WebToolsE2E][Aspire] Building the eShop solution fails with some errors: ""Unable to find package xxx with version. Versions from dotnet-tools were not considered.""
+win11 too many levels of symbolic links
+CS0234 Error after cloned the repo
+What purpose do backing fields serve in the PaymentMethod entity class?
+Best Practices for Modular monolith
+Why there is no documentation such as the old project?
+Add e2e tests with Playwright
+Consider removing global usings for namespaces within the eShop repo
+[WebToolsE2E][Aspire] The black area behind the shopping bag is too small, resulting in poor readability of the number of shopping bags.
+[WebToolsE2E][Aspire] Click the endpoint of the webapp in eshop dashboard and open the chatbot, the AI chat window is partially obscured.
+Migrate BFF From Http Redirection to Yarp Api Gateway in Mobile BFF
+How to expose shopping webpage instead of dashboard webpage?
+is there a way to run eshop without docker ?
+[WebToolsE2E][Aspire] After updating Aspire 8.0 P4, opening eShop.Web solution fails with error:""NpgsqlEntityFrameworkCorePostgreSQLSettings' does not contain a definition for 'DbContextPooling' and no accessible extension method 'DbContextPooling' accepting a first argument of type 'NpgsqlEntityFrameworkCorePostgreSQLSettings' could be found"".
+`kubeconfig` file creation failed is due to not resolving `localhost`
+How to connect to the Postgres instance ?
+Any more resources on learning this? (youtube, discord, ...)
+Explain the choice of Duende IdentityServer VS the new Identity APIs and Blazor Identity UI
+is there an explaination for why there is a repo for local vs a repo for deploying to azure and not the same thing ?
+fail: Aspire.Hosting.Dcp.dcpctrl.ExecutableReconciler[0] failed to start Executable {""Controller"": ""usvc-dev.developer.microsoft.com/executable-reconciler"", ""Executable"": {""name"":""webhooksclient-n8qh87o""}, ""Reconciliation"": 19, ""State"": """", ""ExecutionID"": """", ""error"": ""run session could not be started: failed to connect to IDE run session notification endpoint: read tcp [::1]:53737->[::1]:51055: i/o timeout""}
+What software should I use to draw designs like this?
+After updating Docker
+Fix GitHub CI build
+Accessibility pass
+Getting error from NavigationManager while logging in.
+Inject Kernel into ChatState via DI
+Using Records with Primary Constructors instead of Class for Commands / Queries
+How to deploy project on cloud
+Add tests for Ordering.FunctionalTests
+Improve coverage for Catalog.FunctionalTests
+Incorrect Platform value in Styles.xaml file in ClientApp (.NET MAUI). Seems like a typo error.
+ebook for eShop?
+azd init fails
+Technical documentation (Onboarding)
+Required Clarification on Catalog.API
+Login page header logo isn't a link to home
+[Big Rock] Fix tests in eShop repo
+It's not possible to run with not the .NET 8.0.100
+The build failed
+Mixed content warnings when running the web app
+Rename projects to match the diagram","[""[Question] How architecture picture made?"", ""I can't login to pgsql"", ""[WebToolsE2E][Aspire] Opening eShop solution and update Aspire package to 9.1.0 fails with error: Detected Package Downgrade: Polly.Core from 8.5.1 to Centrally Defined 8.5.0 in Multiple Projects even though the aspire9.1 feed has been added."", ""Run Issue"", ""[WebToolsE2E][Aspire] Opening eShop solution version 9.0.0 fails with error: Unable to find multiple packages for version (>= 9.0.0) even though the aspire9 feed has been added."", ""Refactor Catalog API"", ""test"", ""https://t.me/LosLacostee"", ""Make eShopSupport public"", ""Could not start proxy error"", ""BasketGrpcClient could not be found (after fixing Duende vulnerability)"", ""Availability of eShopSupport Project from Steve Sanderson's Presentation"", ""Duende.IdentityServer Has a known severity vulnerability"", ""Duende Version 7.0.5 breaks build"", ""Can't find API Getway project"", ""Update repo to .NET 9 RC 1"", ""How to implement AppInsights into eShop in one centralized location for all the microservices?"", ""fail: Aspire.Hosting.Dcp.dcpctrl.ServiceReconciler[0]"", ""Update eshops to Aspire 8.1 candidate"", ""Serious MAUI (ClientApp) memory leak problem""]",,1,1,0,1,1.0,1.0,20,20,0.0,0.0,0.0,0.0,0,20,,,,,,0.23300970873786409,0.7669902912621359,24,103,0.4,0.18181818181818182,0.5,1.0,0.16348195329087048,1.0,0.28102189781021897,0.22423742786479803,7.518185,,,0.7327711443782633,0.2727272727272727,0.0,0.0,0.0,1.0,0.0,0.0,1.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,issue_pr_analysis-028,Which issues in repository spring-projects/spring-petclinic contain the term 'fetch' in their title?,issue_pr_analysis,medium,1,2157,"[""Entity relationships should be modeled with fetch type LAZY""]",,1,1,0,1,0.0,0.0,0,1,0.0,0.0,0.0,0.0,0,1,,,,,,0.0,1.0,0,1,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,8.633051,,,0.0,0.0,0.0,,0.0,1.0,0.0,0.0,1.0,1,0,incorrect_confident_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,documentation_lookup-024,"Which documentation file in repository mlflow/mlflow contains the text ""For style conventions and code examples, see [.claude/rules/python.md](../../.claude/rules/python.md""?",documentation_lookup,medium,1,github/instructions/python.instructions.md,"[""github/instructions/python.instructions.md""]",,1,1,0,1,1.0,1.0,1,1,1.0,1.0,1.0,1.0,1,1,,,,,,1.0,0.0,1,1,1.0,0.5,1.0,1.0,1.0,1.0,1.0,1.0,11.620419,,,1.0,0.25,0.5,0.5,1.0,1.0,0.0,0.0,1.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,documentation_lookup-020,"Which documentation file in repository mlflow/mlflow contains the text ""Setting ``MLFLOW_TRACKING_URI`` to the URL of your desired tracking server is required for most of t""?",documentation_lookup,medium,1,docs/api_reference/source/cli.rst,"[""docs/api_reference/source/cli.rst""]",,1,1,0,1,1.0,1.0,1,1,1.0,1.0,1.0,1.0,1,1,,,,,,1.0,0.0,1,1,1.0,0.5,1.0,1.0,1.0,1.0,1.0,1.0,8.958314,,,1.0,0.25,0.5,0.5,1.0,1.0,0.0,0.0,1.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,multi_hop-029,Which files in repository openmrs/openmrs-core were modified through commits authored by developer email:tmdugan@iupui.edu?,multi_hop,hard,4,"src/api/org/openmrs/arden/MLMObject.java
+src/api/org/openmrs/arden/impl/ArdenServiceImpl.java
+src/web/org/openmrs/module/web/WebModuleUtil.java
+src/api/org/openmrs/arden/Call.java
+src/api/org/openmrs/logic/RuleClassLoader.java","[""src/api/org/openmrs/arden/Call.java"", ""src/api/org/openmrs/arden/MLMObject.java"", ""src/api/org/openmrs/arden/impl/ArdenServiceImpl.java"", ""src/api/org/openmrs/logic/RuleClassLoader.java"", ""src/web/org/openmrs/module/web/WebModuleUtil.java""]",,1,1,0,1,1.0,1.0,5,5,1.0,1.0,1.0,0.0,0,5,,,,,,1.0,0.0,5,5,1.0,0.6,1.0,1.0,1.0,1.0,1.0,0.6756756756756757,18.663307,,,1.0,0.5,0.1,0.0,1.0,1.0,0.0,0.0,3.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,multi_hop-043,Which files in repository dotnet/eShop were modified through commits authored by developer email:peterblazejewicz@users.noreply.github.com?,multi_hop,hard,4,src/ClientApp/Views/MapView.xaml.cs,"[""src/ClientApp/Views/MapView.xaml.cs""]",,1,1,0,1,1.0,1.0,1,1,1.0,1.0,1.0,1.0,1,1,,,,,,1.0,0.0,1,1,1.0,0.3333333333333333,1.0,1.0,1.0,1.0,1.0,1.0,7.187693,,,1.0,0.16666666666666666,0.16666666666666666,0.0,1.0,1.0,0.0,0.0,3.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,multi_hop-005,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:cordin@gmail.com?,multi_hop,hard,4,"mvn/wrapper/maven-wrapper.properties
+mvnw
+mvnw.cmd
+mvn/wrapper/MavenWrapperDownloader.java","[""mvn/wrapper/MavenWrapperDownloader.java"", ""mvn/wrapper/maven-wrapper.properties"", ""mvnw"", ""mvnw.cmd""]",,1,1,0,1,1.0,1.0,4,4,1.0,0.5,0.6666666666666666,0.0,0,4,,,,,,1.0,0.0,4,4,0.8,0.3333333333333333,1.0,1.0,1.0,1.0,1.0,0.6666666666666666,8.107595,,,0.8631997506525686,0.4444444444444444,0.1111111111111111,0.0,1.0,1.0,0.0,0.0,3.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,multi_hop-012,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:38105584+rognetta@users.noreply.github.com?,multi_hop,hard,4,src/main/resources/application-mysql.properties,"[""src/main/resources/application-mysql.properties""]",,1,1,0,1,1.0,1.0,1,1,1.0,1.0,1.0,1.0,1,1,,,,,,1.0,0.0,1,1,1.0,0.3333333333333333,1.0,1.0,1.0,1.0,1.0,1.0,7.285518,,,1.0,0.16666666666666666,0.16666666666666666,0.0,1.0,1.0,0.0,0.0,3.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,multi_hop-024,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:ameya@ccs.neu.edu?,multi_hop,hard,4,src/main/webapp/WEB-INF/jsp/vets/vetList.jsp,"[""src/main/webapp/WEB-INF/jsp/vets/vetList.jsp""]",,1,1,0,1,1.0,1.0,1,1,1.0,1.0,1.0,1.0,1,1,,,,,,1.0,0.0,1,1,1.0,0.3333333333333333,1.0,1.0,1.0,1.0,1.0,1.0,7.907208,,,1.0,0.16666666666666666,0.16666666666666666,0.0,1.0,1.0,0.0,0.0,3.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,multi_hop-004,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:1328032567@qq.com?,multi_hop,hard,4,"src/main/java/org/springframework/samples/petclinic/model/NamedEntity.java
+src/main/java/org/springframework/samples/petclinic/owner/Owner.java
+src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java
+src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java
+src/main/java/org/springframework/samples/petclinic/owner/Pet.java
+src/main/java/org/springframework/samples/petclinic/owner/PetController.java
+src/main/java/org/springframework/samples/petclinic/owner/VisitController.java
+src/main/java/org/springframework/samples/petclinic/vet/VetController.java
+src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java
+src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java
+src/test/java/org/springframework/samples/petclinic/owner/PetValidatorTests.java
+src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java
+src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java","[""src/main/java/org/springframework/samples/petclinic/model/NamedEntity.java"", ""src/main/java/org/springframework/samples/petclinic/owner/Owner.java"", ""src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java"", ""src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java"", ""src/main/java/org/springframework/samples/petclinic/owner/Pet.java"", ""src/main/java/org/springframework/samples/petclinic/owner/PetController.java"", ""src/main/java/org/springframework/samples/petclinic/owner/VisitController.java"", ""src/main/java/org/springframework/samples/petclinic/vet/VetController.java"", ""src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java"", ""src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java"", ""src/test/java/org/springframework/samples/petclinic/owner/PetValidatorTests.java"", ""src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java"", ""src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java""]",,1,1,0,1,1.0,1.0,13,13,1.0,1.0,1.0,0.0,0,13,,,,,,1.0,0.0,13,13,1.0,0.5555555555555556,1.0,1.0,1.0,1.0,1.0,1.0,7.445129,,,1.0,0.5555555555555556,0.05555555555555555,0.0,1.0,1.0,0.0,0.0,3.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,multi_hop-032,Which files in repository mlflow/mlflow were modified through commits authored by developer email:ben.epstein@wustl.edu?,multi_hop,hard,4,mlflow/azureml/__init__.py,"[""mlflow/azureml/__init__.py""]",,1,1,0,1,1.0,1.0,1,1,1.0,1.0,1.0,1.0,1,1,,,,,,1.0,0.0,1,1,1.0,0.3333333333333333,1.0,1.0,1.0,1.0,1.0,1.0,7.438293,,,1.0,0.16666666666666666,0.16666666666666666,0.0,1.0,1.0,0.0,0.0,3.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,multi_hop-031,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:joaobertholino964@gmail.com?,multi_hop,hard,4,src/main/resources/messages/messages_pt.properties,"[""src/main/resources/messages/messages_pt.properties""]",,1,1,0,1,1.0,1.0,1,1,1.0,1.0,1.0,1.0,1,1,,,,,,1.0,0.0,1,1,1.0,0.3333333333333333,1.0,1.0,1.0,1.0,1.0,1.0,7.111083,,,1.0,0.16666666666666666,0.16666666666666666,0.0,1.0,1.0,0.0,0.0,3.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,dependency_analysis-043,Which commits modified the file 'mlflow/java/src/main/java/org/mlflow/sagemaker/LeapFrameUtils.java' in repository mlflow/mlflow?,dependency_analysis,medium,2,"{'repo': 'mlflow/mlflow', 'id': 'mlflow/mlflow:commit:b74f58b4d46d3534300e01d7b6a70ba158bedfea', 'message': 'MLeap Flavor/Deployment #4: Java MLeap Predictor Implementation (#331)\n\n* Add SparkJava plugin\n\n* Change default port\n\n* Support multiple instances of SageMakerServer\n\n* Add SageMaker tests\n\n* Rename SageMakerServer >> ScoringServer and add new tests\n\n* New tests\n\n* Format code\n\n* Remove unused import\n\n* Format again\n\n* New test and artifact name update\n\n* LeapFrame utils\n\n* Java MLeap predictor progress\n\n* Sample model for MLeap testing\n\n* Move resources\n\n* Add sample input skeleton\n\n* Sample input text\n\n* Moves for package protection\n\n* New tests\n\n* More tests\n\n* LeapFrameUtils test\n\n* docs for leapframeschema\n\n* Add resource provider\n\n* Loadermoduletest use provider\n\n* Format tests\n\n* Format code\n\n* Using jetty scoring server\n\n* Select random port\n\n* Port fixes\n\n* Add port number to start method\n\n* Use apache http for tests\n\n* pom versioning\n\n* More tests\n\n* Code formatting\n\n* Line removal\n\n* Format again\n\n* Abstraction changes\n\n* Format code, address comments\n\n* Format code, docs\n\n* Add stream parsing test, fix other test asserts\n\n* Import fix\n\n* More effective leapframe representation\n\n* Address comments\n\n* Remove infra\n\n* Doc\n\n* Replace MissingSchemaFieldException with InvalidSchemaException\n\n* Test fixes\n\n* Address comments\n\n* Address comments\n\n* Add causes to predictorevaluationexception in unknown cases\n\n* Address some comments, format code\n\n* Address comments, format code', 'sha': 'b74f58b4d46d3534300e01d7b6a70ba158bedfea', 'timestamp': '2018-08-27T15:56:47-07:00'}","[""mlflow/mlflow:commit:b74f58b4d46d3534300e01d7b6a70ba158bedfea""]",,1,1,0,1,1.0,1.0,1,1,0.0,0.0,0.0,0.0,0,1,,,,,,1.0,1.0,1,1,1.0,0.2,1.0,1.0,0.005434782608695652,1.0,0.010810810810810811,0.02693602693602694,7.178659,,,1.0,0.2,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,dependency_analysis-028,Which commits modified the file 'src/ClientApp/Resources/Fonts/PlusJakartaSans-Light.ttf' in repository dotnet/eShop?,dependency_analysis,medium,2,"{'repo': 'dotnet/eShop', 'id': 'dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d', 'message': 'Initial commit of eShop.', 'sha': 'fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d', 'timestamp': '2023-10-30T15:22:04-07:00'}
+{'repo': 'dotnet/eShop', 'id': 'dotnet/eShop:commit:8da36bc56b5e34951d7a16f5ab6ef27a4f878fd6', 'message': 'Tweaks to get app working on windows and logo updates (#432)\n\n* Tweaks to get app working on windows and logo updates\n\n* more tweaks\n\n---------\n\nCo-authored-by: James Montemagno <jamont@microsoft.com>', 'sha': '8da36bc56b5e34951d7a16f5ab6ef27a4f878fd6', 'timestamp': '2024-06-20T09:34:12-07:00'}","[""dotnet/eShop:commit:8da36bc56b5e34951d7a16f5ab6ef27a4f878fd6"", ""dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d""]",,1,1,0,1,1.0,1.0,2,2,0.0,0.0,0.0,0.0,0,2,,,,,,1.0,1.0,2,2,1.0,0.16666666666666666,1.0,1.0,0.034482758620689655,1.0,0.06666666666666667,0.13636363636363635,7.369852,,,1.0,0.16666666666666666,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,dependency_analysis-003,Which commits modified the file 'mlflow/R/mlflow/inst/examples/r/lm/train.R' in repository mlflow/mlflow?,dependency_analysis,medium,2,"{'repo': 'mlflow/mlflow', 'id': 'mlflow/mlflow:commit:c3609a77e9705172845c652580b606b63a696d13', 'message': 'Move R sources to match Java client (#471)\n\n* move R folder location\n\n* fix relative paths\n\n* also fix R path in travis\n\n* fix couple lintr issues', 'sha': 'c3609a77e9705172845c652580b606b63a696d13', 'timestamp': '2018-09-12T11:35:21-07:00'}
+{'repo': 'mlflow/mlflow', 'id': 'mlflow/mlflow:commit:329a3f30820e09338aec30c07947179fc4d68e86', 'message': 'R fixes before submitting to R package CRAN (#564)\n\n* update description for cran submission\n\n* remove examples from package\n\n* add matei as maintainer and author\n\n* fix missing merge conflict resolutions\n\n* additional r cmd check fixes\n\n* quote mlflow in description file\n\n* comple more tweaks to description file\n\n* make easily available wine-quality.csv', 'sha': '329a3f30820e09338aec30c07947179fc4d68e86', 'timestamp': '2018-09-27T15:05:57-07:00'}","[""mlflow/mlflow:commit:329a3f30820e09338aec30c07947179fc4d68e86"", ""mlflow/mlflow:commit:c3609a77e9705172845c652580b606b63a696d13""]",,1,1,0,1,1.0,1.0,2,2,0.0,0.0,0.0,0.0,0,2,,,,,,1.0,1.0,2,2,1.0,0.16666666666666666,1.0,1.0,0.019230769230769232,1.0,0.03773584905660378,0.0821917808219178,7.655891,,,1.0,0.16666666666666666,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,dependency_analysis-025,Which commits modified the file 'tests/Ordering.UnitTests/Application/NewOrderCommandHandlerTest.cs' in repository dotnet/eShop?,dependency_analysis,medium,2,"{'repo': 'dotnet/eShop', 'id': 'dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d', 'message': 'Initial commit of eShop.', 'sha': 'fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d', 'timestamp': '2023-10-30T15:22:04-07:00'}
+{'repo': 'dotnet/eShop', 'id': 'dotnet/eShop:commit:1d76faf4dead37cc96347cd6b6eb8fc4596b6620', 'message': 'Migrated Basket and order unit test from xunit to MsTest (#421)\n\nCo-authored-by: Srushti Pasari94 <pasarisrushti@gmail.con>', 'sha': '1d76faf4dead37cc96347cd6b6eb8fc4596b6620', 'timestamp': '2024-06-11T22:24:39+05:30'}
+{'repo': 'dotnet/eShop', 'id': 'dotnet/eShop:commit:318e03744f3fab19a5bd44ed37411489bc8f4c1d', 'message': 'Upgrading eshop to .NET 10 and Aspire 9.4.2 (#890)\n\n* WIP\n\n* Update package versions and improve nullability handling in Catalog API\n\n* Migrate from deprecated FluentValidation.AspNetCore to core FluentValidation\n\n- Remove deprecated FluentValidation.AspNetCore package\n- Add FluentValidation and FluentValidation.DependencyInjectionExtensions packages\n- Update ValidatorBehavior to use async validation (ValidateAsync)\n- Replace manual validator registrations with assembly scanning\n- Maintain existing validation functionality and error handling\n\nResolves deprecated package warnings while following official FluentValidation guidance for manual validation approach.\n\n* Update OpenAPI options and add .aspire directory\n\n* Fixing trimming issues with ClientApp project\n\n* Update .NET setup in Playwright workflow to specify dotnet version and quality\n\n* Update package versions and SDK to latest release candidates\n\n* Trying to fix playwright tests by using our native tool for installing the certificate.\n\n* Update openapi docs\n\n---------\n\nCo-authored-by: Safia Abdalla <safia@safia.rocks>', 'sha': '318e03744f3fab19a5bd44ed37411489bc8f4c1d', 'timestamp': '2025-09-26T09:43:25-07:00'}","[""dotnet/eShop:commit:318e03744f3fab19a5bd44ed37411489bc8f4c1d"", ""dotnet/eShop:commit:1d76faf4dead37cc96347cd6b6eb8fc4596b6620"", ""dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d""]",,1,1,0,1,1.0,1.0,3,3,0.0,0.0,0.0,0.0,0,3,,,,,,1.0,1.0,3,3,1.0,0.14285714285714285,1.0,1.0,0.016304347826086956,1.0,0.03208556149732621,0.0784313725490196,7.744373,,,1.0,0.14285714285714285,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer
+adaptive_hybrid_graphrag,C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv,dependency_analysis-033,Which commits modified the file 'src/eShop.ServiceDefaults/AuthenticationExtensions.cs' in repository dotnet/eShop?,dependency_analysis,medium,2,"{'repo': 'dotnet/eShop', 'id': 'dotnet/eShop:commit:f4a7e5662200ce5ddc21331205b2ea017af8df82', 'message': 'Clean up service defaults (#39)\n\n- Make it look more like the default template.', 'sha': 'f4a7e5662200ce5ddc21331205b2ea017af8df82', 'timestamp': '2023-11-04T01:15:21-07:00'}
+{'repo': 'dotnet/eShop', 'id': 'dotnet/eShop:commit:909ee34ba5873a6c8aba54de30425d61e9061a7f', 'message': 'Updated service registration and network handling (#401)\n\nSignificant changes include:\n- Updated the way services are registered in MauiProgram.cs, with IRequestProvider and IIdentityService now using a factory method for instantiation.\n- Added debug-specific HttpMessageHandler registration to ignore SSL certificate validation during development.\n- Modified AndroidManifest.xml to include network security configuration and added corresponding XML file.\n- Created new WebAuthenticationCallbackActivity class for Android platform.\n- Adjusted IdentityService.cs and RequestProvider.cs to use an injected HttpMessageHandler, allowing more control over HTTP requests.\n- Updated SettingsViewModel.cs to dynamically set base address depending on the device platform. This is particularly useful when using an Android emulator locally.\n- Adjusted AuthenticationExtensions.cs to validate issuers based on whether the app is running in DEBUG mode or not.', 'sha': '909ee34ba5873a6c8aba54de30425d61e9061a7f', 'timestamp': '2024-05-30T13:43:51-05:00'}","[""dotnet/eShop:commit:909ee34ba5873a6c8aba54de30425d61e9061a7f"", ""dotnet/eShop:commit:f4a7e5662200ce5ddc21331205b2ea017af8df82""]",,1,1,0,1,1.0,1.0,2,2,0.0,0.0,0.0,0.0,0,2,,,,,,0.6666666666666666,1.0,2,3,1.0,0.16666666666666666,1.0,1.0,0.012903225806451613,1.0,0.025477707006369425,0.06349206349206349,7.300976,,,1.0,0.16666666666666666,0.0,0.0,0.0,1.0,0.0,0.0,2.0,1,0,correct_answer

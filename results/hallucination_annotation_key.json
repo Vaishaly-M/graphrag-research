@@ -1,0 +1,226 @@
+{
+  "A0001": {
+    "system": "llamaindex_graphrag",
+    "question_id": "dependency_analysis-002"
+  },
+  "A0002": {
+    "system": "langchain_graphrag",
+    "question_id": "dependency_analysis-002"
+  },
+  "A0003": {
+    "system": "vector_rag",
+    "question_id": "code_retrieval-026"
+  },
+  "A0004": {
+    "system": "fixed_graph_rag",
+    "question_id": "issue_pr_analysis-009"
+  },
+  "A0005": {
+    "system": "fixed_hybrid_rag",
+    "question_id": "dependency_analysis-002"
+  },
+  "A0006": {
+    "system": "fixed_hybrid_rag",
+    "question_id": "multi_hop-031"
+  },
+  "A0007": {
+    "system": "vector_rag",
+    "question_id": "dependency_analysis-002"
+  },
+  "A0008": {
+    "system": "vector_rag",
+    "question_id": "developer_activity-021"
+  },
+  "A0009": {
+    "system": "oracle_hybrid_rag",
+    "question_id": "structure-032"
+  },
+  "A0010": {
+    "system": "fixed_hybrid_rag",
+    "question_id": "developer_activity-021"
+  },
+  "A0011": {
+    "system": "fixed_graph_rag",
+    "question_id": "dependency_analysis-002"
+  },
+  "A0012": {
+    "system": "llamaindex_graphrag",
+    "question_id": "developer_activity-021"
+  },
+  "A0013": {
+    "system": "oracle_hybrid_rag",
+    "question_id": "multi_hop-031"
+  },
+  "A0014": {
+    "system": "plain_llm",
+    "question_id": "dependency_analysis-002"
+  },
+  "A0015": {
+    "system": "llamaindex_graphrag",
+    "question_id": "code_retrieval-026"
+  },
+  "A0016": {
+    "system": "vector_rag",
+    "question_id": "multi_hop-031"
+  },
+  "A0017": {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "documentation_lookup-027"
+  },
+  "A0018": {
+    "system": "langchain_graphrag",
+    "question_id": "structure-032"
+  },
+  "A0019": {
+    "system": "plain_llm",
+    "question_id": "issue_pr_analysis-009"
+  },
+  "A0020": {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "issue_pr_analysis-009"
+  },
+  "A0021": {
+    "system": "llamaindex_graphrag",
+    "question_id": "structure-032"
+  },
+  "A0022": {
+    "system": "fixed_graph_rag",
+    "question_id": "documentation_lookup-027"
+  },
+  "A0023": {
+    "system": "plain_llm",
+    "question_id": "structure-032"
+  },
+  "A0024": {
+    "system": "langchain_graphrag",
+    "question_id": "code_retrieval-026"
+  },
+  "A0025": {
+    "system": "oracle_hybrid_rag",
+    "question_id": "documentation_lookup-027"
+  },
+  "A0026": {
+    "system": "langchain_graphrag",
+    "question_id": "documentation_lookup-027"
+  },
+  "A0027": {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "structure-032"
+  },
+  "A0028": {
+    "system": "langchain_graphrag",
+    "question_id": "issue_pr_analysis-009"
+  },
+  "A0029": {
+    "system": "plain_llm",
+    "question_id": "multi_hop-031"
+  },
+  "A0030": {
+    "system": "fixed_hybrid_rag",
+    "question_id": "issue_pr_analysis-009"
+  },
+  "A0031": {
+    "system": "llamaindex_graphrag",
+    "question_id": "documentation_lookup-027"
+  },
+  "A0032": {
+    "system": "oracle_hybrid_rag",
+    "question_id": "code_retrieval-026"
+  },
+  "A0033": {
+    "system": "langchain_graphrag",
+    "question_id": "developer_activity-021"
+  },
+  "A0034": {
+    "system": "fixed_graph_rag",
+    "question_id": "developer_activity-021"
+  },
+  "A0035": {
+    "system": "oracle_hybrid_rag",
+    "question_id": "issue_pr_analysis-009"
+  },
+  "A0036": {
+    "system": "llamaindex_graphrag",
+    "question_id": "issue_pr_analysis-009"
+  },
+  "A0037": {
+    "system": "vector_rag",
+    "question_id": "structure-032"
+  },
+  "A0038": {
+    "system": "fixed_graph_rag",
+    "question_id": "multi_hop-031"
+  },
+  "A0039": {
+    "system": "plain_llm",
+    "question_id": "documentation_lookup-027"
+  },
+  "A0040": {
+    "system": "vector_rag",
+    "question_id": "issue_pr_analysis-009"
+  },
+  "A0041": {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "dependency_analysis-002"
+  },
+  "A0042": {
+    "system": "langchain_graphrag",
+    "question_id": "multi_hop-031"
+  },
+  "A0043": {
+    "system": "oracle_hybrid_rag",
+    "question_id": "dependency_analysis-002"
+  },
+  "A0044": {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "developer_activity-021"
+  },
+  "A0045": {
+    "system": "llamaindex_graphrag",
+    "question_id": "multi_hop-031"
+  },
+  "A0046": {
+    "system": "plain_llm",
+    "question_id": "code_retrieval-026"
+  },
+  "A0047": {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "multi_hop-031"
+  },
+  "A0048": {
+    "system": "vector_rag",
+    "question_id": "documentation_lookup-027"
+  },
+  "A0049": {
+    "system": "fixed_graph_rag",
+    "question_id": "code_retrieval-026"
+  },
+  "A0050": {
+    "system": "fixed_hybrid_rag",
+    "question_id": "structure-032"
+  },
+  "A0051": {
+    "system": "fixed_hybrid_rag",
+    "question_id": "code_retrieval-026"
+  },
+  "A0052": {
+    "system": "fixed_hybrid_rag",
+    "question_id": "documentation_lookup-027"
+  },
+  "A0053": {
+    "system": "plain_llm",
+    "question_id": "developer_activity-021"
+  },
+  "A0054": {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "code_retrieval-026"
+  },
+  "A0055": {
+    "system": "fixed_graph_rag",
+    "question_id": "structure-032"
+  },
+  "A0056": {
+    "system": "oracle_hybrid_rag",
+    "question_id": "developer_activity-021"
+  }
+}

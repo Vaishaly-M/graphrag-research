@@ -1,0 +1,243 @@
+id,question,expected_retrieval_route
+dependency_analysis-002,Which files were modified by commit apache/airflow:commit:fce0bf3cb2b181d0f826b74500cd94d8e6feabc6 in repository apache/airflow?,graph
+documentation_lookup-022,"Which documentation file in repository apache/airflow contains the text "":end-before: [END howto_operator_ftps_get]""?",vector
+code_retrieval-026,"Which source file in repository apache/airflow contains the code fragment ""const token = typeof callback === 'function' ? await callback(auth) : callback;""?",vector
+dependency_analysis-040,Which files were modified by commit openmrs/openmrs-core:commit:9b451fb6549852aa0f11a2362820a34f83427d18 in repository openmrs/openmrs-core?,graph
+dependency_analysis-027,Which files were modified by commit apache/airflow:commit:e6f5eed3ec9499aa1a91d5918ece2c9632526e73 in repository apache/airflow?,graph
+code_retrieval-024,"Which source file in repository apache/airflow contains the code fragment ""batch_op.add_column(sa.Column(""triggering_user_name"", sa.String(length=512), nullable=True))""?",vector
+dependency_analysis-012,Which files were modified by commit openmrs/openmrs-core:commit:742a5808659e72889e08eb719a0ef3d4f690f0bd in repository openmrs/openmrs-core?,graph
+issue_pr_analysis-004,What are the titles of the open issues in repository apache/airflow?,graph
+documentation_lookup-029,"Which documentation file in repository apache/airflow contains the text ""``dag_processing.last_run.seconds_ago.{dag_file}`` is now a legacy metric. The new metric ``dag_proc""?",vector
+code_retrieval-012,"Which source file in repository apache/airflow contains the code fragment ""// single line of inline content (bold, inline code) leaves scrollHeight a few px above""?",vector
+code_retrieval-001,"Which source file in repository apache/airflow contains the code fragment ""{translate(""dags:runAndTaskActions.options.runOnLatestVersion"")}""?",vector
+multi_hop-056,Which developers authored commits that modified the file 'flux/www/templates/admin/chart.html' in repository apache/airflow?,hybrid
+developer_activity-004,Which commits were authored by developer email:maximebeauchemin@gmail.com in repository apache/airflow?,graph
+issue_pr_analysis-038,Which repository contains issue #69935 titled 'Remove duplicated dag_id and run_id fields from Execution API DagRun schema'?,graph
+structure-009,Which .py files are located under the 'airflow-core/tests/unit/api_fastapi/execution_api/versions/head/' directory in repository apache/airflow?,graph
+developer_activity-025,Who are the top commit authors in repository apache/airflow? Return each developer identifier with the number of commits.,graph
+documentation_lookup-009,"Which documentation file in repository apache/airflow contains the text ""- **Footer format is now a wire format the SDK has to keep stable.**""?",vector
+multi_hop-034,Which developers authored commits that modified the file 'src/HybridApp/Components/Pages/Catalog/Catalog.razor.css' in repository dotnet/eShop?,hybrid
+issue_pr_analysis-001,Which issues in repository apache/airflow contain the term 'graceful' in their title?,graph
+structure-025,Which .tsx files are located under the 'airflow-core/src/airflow/ui/src/pages/Dag/Calendar/' directory in repository apache/airflow?,graph
+code_retrieval-002,"Which source file in repository apache/airflow contains the code fragment """"description"": ""ทริกเกอร์ Dag ต้นทางของ Asset นี้"",""?",vector
+multi_hop-054,Which developers authored commits that modified the file 'mlflow/R/mlflow/inst/examples/python/simple/simple.py' in repository mlflow/mlflow?,hybrid
+code_retrieval-004,"Which source file in repository apache/airflow contains the code fragment ""# very easily cause import cycles in the conf init/validate code (since downstream code from""?",vector
+structure-002,Which .rst files are located under the 'airflow-core/docs/core-concepts/' directory in repository apache/airflow?,graph
+issue_pr_analysis-031,Which open issue has the highest issue number in repository apache/airflow? Return its number and title.,graph
+code_retrieval-003,"Which source file in repository apache/airflow contains the code fragment ""test_app = client(apps=""all"").app""?",vector
+structure-006,Which .ts files are located under the 'airflow-core/src/airflow/api_fastapi/auth/managers/simple/ui/openapi-gen/queries/' directory in repository apache/airflow?,graph
+code_retrieval-028,"Which source file in repository apache/airflow contains the code fragment ""readonly latestRuns: Array<DAGRunLightResponse>;""?",vector
+documentation_lookup-025,"Which documentation file in repository apache/airflow contains the text "":alt: airflowctl Backfills Command""?",vector
+structure-018,Which .ts files are located under the 'airflow-core/src/airflow/ui/src/mocks/handlers/' directory in repository apache/airflow?,graph
+code_retrieval-034,"Which source file in repository apache/airflow contains the code fragment ""mockParamsDict.cutoff_time = {""?",vector
+developer_activity-002,Who are the top commit authors in repository mlflow/mlflow? Return each developer identifier with the number of commits.,graph
+code_retrieval-005,"Which source file in repository apache/airflow contains the code fragment ""icon={hideIcon ? undefined : <FiTag data-testid=""dag-tag"" />}""?",vector
+multi_hop-021,Which developers authored commits that modified the file 'metadata/api/sqlmap/maps/FieldType.xml' in repository openmrs/openmrs-core?,hybrid
+multi_hop-026,Which developers authored commits that modified the file 'tests/ClientApp.UnitTests/Mocks/MockSettingsService.cs' in repository dotnet/eShop?,hybrid
+multi_hop-058,Which developers authored commits that modified the file 'R/mlflow/R/connection.R' in repository mlflow/mlflow?,hybrid
+code_retrieval-029,"Which source file in repository apache/airflow contains the code fragment """"title"": ""{{type}} を {{state}} とマーク""""?",vector
+code_retrieval-011,"Which source file in repository apache/airflow contains the code fragment """"producingTasks"": ""المهام المنتجة"",""?",vector
+multi_hop-030,Which developers authored commits that modified the file 'tests/Basket.UnitTests/Basket.UnitTests.csproj' in repository dotnet/eShop?,hybrid
+dependency_analysis-016,Which files were modified by commit mlflow/mlflow:commit:e853dcd5dd0a1366785ba2cc13651fda9af22bcf in repository mlflow/mlflow?,graph
+structure-035,Which .py files are located under the 'airflow-core/src/airflow/api_fastapi/auth/managers/simple/routes/' directory in repository apache/airflow?,graph
+structure-020,Which .tsx files are located under the 'airflow-core/src/airflow/ui/src/pages/TaskInstance/Logs/' directory in repository apache/airflow?,graph
+structure-015,Which .rst files are located under the 'docker-stack-docs/' directory in repository apache/airflow?,graph
+multi_hop-055,Which developers authored commits that modified the file 'mlflow/R/mlflow/man/mlflow_connect.Rd' in repository mlflow/mlflow?,hybrid
+dependency_analysis-017,Which files were modified by commit mlflow/mlflow:commit:245381adb36f6c3c1a97586065e42daeadc63ecf in repository mlflow/mlflow?,graph
+dependency_analysis-010,Which files were modified by commit apache/airflow:commit:e8ba17bba606084f428d6eda222db7ea8358aea5 in repository apache/airflow?,graph
+dependency_analysis-026,Which commits modified the file 'flux/www/templates/admin/code.html' in repository apache/airflow?,graph
+structure-037,Which .json files are located under the 'airflow-core/src/airflow/ui/public/i18n/locales/zh-TW/' directory in repository apache/airflow?,graph
+structure-038,Which .json files are located under the 'airflow-core/src/airflow/ui/public/i18n/locales/ja/' directory in repository apache/airflow?,graph
+code_retrieval-021,"Which source file in repository apache/airflow contains the code fragment ""def remove_non_pytest_log_handlers(logger, *classes):""?",vector
+multi_hop-042,Which developers authored commits that modified the file 'SECURITY.md' in repository dotnet/eShop?,hybrid
+structure-001,Which .py files are located under the 'airflow-core/tests/unit/timetables/' directory in repository apache/airflow?,graph
+dependency_analysis-014,Which files were modified by commit dotnet/eShop:commit:d98a2d83a8da0421d3ac52dad4b0aa5e9c1ba381 in repository dotnet/eShop?,graph
+structure-010,Which .ts files are located under the 'airflow-core/src/airflow/ui/src/pages/Dag/Calendar/' directory in repository apache/airflow?,graph
+multi_hop-041,Which developers authored commits that modified the file 'tests/__init__.py' in repository mlflow/mlflow?,hybrid
+issue_pr_analysis-016,Which open issue has the lowest issue number in repository synthetic-org/platform? Return its number and title.,graph
+structure-021,Which .py files are located under the 'airflow-core/src/airflow/utils/' directory in repository apache/airflow?,graph
+structure-011,Which .rst files are located under the 'airflow-core/newsfragments/' directory in repository apache/airflow?,graph
+structure-034,Which .py files are located under the 'airflow-core/src/airflow/example_dags/' directory in repository apache/airflow?,graph
+structure-028,Which .py files are located under the 'airflow-core/tests/unit/always/' directory in repository apache/airflow?,graph
+developer_activity-001,Who are the top commit authors in repository openmrs/openmrs-core? Return each developer identifier with the number of commits.,graph
+documentation_lookup-023,"Which documentation file in repository apache/airflow contains the text ""For example when using MsSQL through ODBC instead of the native ``MsSqlHook``, you won't have the me""?",vector
+issue_pr_analysis-011,What is the title of issue #64827 in repository apache/airflow?,graph
+structure-013,Which .ts files are located under the 'airflow-core/src/airflow/ui/src/queries/' directory in repository apache/airflow?,graph
+multi_hop-019,Which developers authored commits that modified the file 'src/Catalog.API/Pics/32.webp' in repository dotnet/eShop?,hybrid
+structure-040,Which .py files are located under the 'airflow-core/src/airflow/api_fastapi/execution_api/routes/' directory in repository apache/airflow?,graph
+issue_pr_analysis-003,What is the state of issue #21900 in repository apache/airflow?,graph
+dependency_analysis-031,Which files were modified by commit dotnet/eShop:commit:285ca9b4f68a52749ee4ebcfdfcf34d657573138 in repository dotnet/eShop?,graph
+documentation_lookup-005,"Which documentation file in repository apache/airflow contains the text ""This package is for the ``common.dataquality`` provider.""?",vector
+code_retrieval-018,"Which source file in repository apache/airflow contains the code fragment ""const count = parseInt(text?.split("" "")[0] ?? ""0"", 10);""?",vector
+multi_hop-036,Which developers authored commits that modified the file 'src/WebApp/Services/IBasketState.cs' in repository dotnet/eShop?,hybrid
+structure-029,Which .py files are located under the 'airflow-core/src/airflow/example_dags/plugins/' directory in repository apache/airflow?,graph
+code_retrieval-040,"Which source file in repository apache/airflow contains the code fragment ""render(<HITLTaskInstances />, { wrapper: Wrapper });""?",vector
+multi_hop-045,Which developers authored commits that modified the file 'src/ClientApp/Resources/Images/fake_campaign_02.png' in repository dotnet/eShop?,hybrid
+code_retrieval-037,"Which source file in repository apache/airflow contains the code fragment ""raise ConnectionNotUnique(f""Found multiple values for {key} in {file_path}."")""?",vector
+documentation_lookup-004,"Which documentation file in repository apache/airflow contains the text ""More details: :doc:`docker-stack:index`""?",vector
+code_retrieval-014,"Which source file in repository apache/airflow contains the code fragment """"""""Connection test workload schema for executor communication.""""""""?",vector
+multi_hop-001,Which developers authored commits that modified the file 'src/ClientApp/Views/CheckoutView.xaml.cs' in repository dotnet/eShop?,hybrid
+structure-016,Which .js files are located under the 'airflow-core/src/airflow/api_fastapi/auth/managers/simple/ui/rules/' directory in repository apache/airflow?,graph
+structure-032,Which .py files are located under the 'airflow-core/tests/unit/serialization/serializers/' directory in repository apache/airflow?,graph
+documentation_lookup-034,"Which documentation file in repository apache/airflow contains the text ""Specify the account url for Azure Blob Storage. Strictly needed for Active Directory (token) and Def""?",vector
+documentation_lookup-006,"Which documentation file in repository apache/airflow contains the text ""This is why you should learn how to build your own ``Docker`` (or more properly ``Container``) image""?",vector
+documentation_lookup-015,"Which documentation file in repository apache/airflow contains the text ""- Translate variable names or placeholders inside `{{...}}`""?",vector
+structure-019,Which .py files are located under the 'airflow-core/tests/unit/dags/' directory in repository apache/airflow?,graph
+multi_hop-013,Which developers authored commits that modified the file 'src/HybridApp/Platforms/MacCatalyst/Info.plist' in repository dotnet/eShop?,hybrid
+dependency_analysis-023,Which commits modified the file 'flux' in repository apache/airflow?,graph
+structure-017,Which .py files are located under the 'airflow-core/src/airflow/api_fastapi/core_api/datamodels/' directory in repository apache/airflow?,graph
+structure-030,Which .md files are located under the 'apache-magpie-overrides/' directory in repository apache/airflow?,graph
+documentation_lookup-019,"Which documentation file in repository apache/airflow contains the text ""* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.""?",vector
+dependency_analysis-041,Which files were modified by commit apache/airflow:commit:25d9fbeccf3af7f7d29fc871fc5ff1219a7f3b96 in repository apache/airflow?,graph
+documentation_lookup-033,"Which documentation file in repository apache/airflow contains the text ""building a production-grade environment requires a bit more work!""?",vector
+structure-027,Which .tsx files are located under the 'airflow-core/src/airflow/ui/src/components/FlexibleForm/' directory in repository apache/airflow?,graph
+issue_pr_analysis-047,What is the title of issue #65870 in repository apache/airflow?,graph
+documentation_lookup-031,"Which documentation file in repository apache/airflow contains the text ""higher weight and will be scheduled more aggressively when""?",vector
+code_retrieval-035,"Which source file in repository apache/airflow contains the code fragment ""export type UseNavigationProps = {""?",vector
+multi_hop-059,Which developers authored commits that modified the file 'src/Catalog.API/Pics/6.webp' in repository dotnet/eShop?,hybrid
+structure-012,Which .py files are located under the 'airflow-core/tests/unit/api_fastapi/' directory in repository apache/airflow?,graph
+structure-033,Which .json files are located under the 'airflow-core/src/airflow/ui/public/i18n/locales/en/' directory in repository apache/airflow?,graph
+documentation_lookup-012,"Which documentation file in repository apache/airflow contains the text ""You can also configure a fernet key using environment variables. This will overwrite the value from""?",vector
+structure-004,Which .py files are located under the 'airflow-core/src/airflow/cli/commands/' directory in repository apache/airflow?,graph
+code_retrieval-038,"Which source file in repository apache/airflow contains the code fragment ""useAssetStateStoreServiceDeleteAssetStateStore,""?",vector
+code_retrieval-006,"Which source file in repository apache/airflow contains the code fragment ""export const useConnectionTypeMeta = () => {""?",vector
+multi_hop-053,Which developers authored commits that modified the file 'tests/Basket.FunctionalTests/Base/AutoAuthorizeMiddleware.cs' in repository dotnet/eShop?,hybrid
+issue_pr_analysis-013,What is the title of issue #53748 in repository apache/airflow?,graph
+structure-026,Which .tsx files are located under the 'airflow-core/src/airflow/api_fastapi/auth/managers/simple/ui/src/' directory in repository apache/airflow?,graph
+code_retrieval-033,"Which source file in repository apache/airflow contains the code fragment ""assert result.conn_id == ""target_conn""""?",vector
+documentation_lookup-010,"Which documentation file in repository apache/airflow contains the text ""This is needed for *token credentials* authentication mechanism.""?",vector
+documentation_lookup-026,"Which documentation file in repository apache/airflow contains the text ""as ``wheel`` or ``sdist`` line parameter, breeze will automatically install the packages found there""?",vector
+multi_hop-018,Which developers authored commits that modified the file 'src/ClientApp/Services/Order/OrderMockService.cs' in repository dotnet/eShop?,hybrid
+dependency_analysis-044,Which files were modified by commit apache/airflow:commit:61092601f2a800dd9523f84e84e42bc48404ac90 in repository apache/airflow?,graph
+code_retrieval-008,"Which source file in repository apache/airflow contains the code fragment ""setSearchParams(searchParams, { replace: true });""?",vector
+code_retrieval-010,"Which source file in repository apache/airflow contains the code fragment ""{""table"": ""task_map"", ""fk"": ""task_map_task_instance_fkey""},""?",vector
+structure-031,Which .py files are located under the 'airflow-core/src/airflow/hooks/' directory in repository apache/airflow?,graph
+code_retrieval-020,"Which source file in repository apache/airflow contains the code fragment ""import { DownloadButton } from ""src/components/Graph/DownloadButton"";""?",vector
+code_retrieval-025,"Which source file in repository apache/airflow contains the code fragment """"alertName"": ""Nom de l'alerta"",""?",vector
+issue_pr_analysis-037,Which open issue has the lowest issue number in repository mlflow/mlflow? Return its number and title.,graph
+code_retrieval-030,"Which source file in repository apache/airflow contains the code fragment ""RESOURCE_DAG_RUN: ResourceDetails(""?",vector
+dependency_analysis-037,Which files were modified by commit openmrs/openmrs-core:commit:3f5a5af6bcde6f6c9d00e38803fa1651ed2706af in repository openmrs/openmrs-core?,graph
+documentation_lookup-016,"Which documentation file in repository apache/airflow contains the text ""Each story must include **open design questions** that probe:""?",vector
+dependency_analysis-029,Which files were modified by commit dotnet/eShop:commit:713da840f84c8ae0b1a2830a9bdb900e67d7ebf2 in repository dotnet/eShop?,graph
+documentation_lookup-011,"Which documentation file in repository apache/airflow contains the text ""The ``Asset`` abstracts the external entity, the IBM MQ queue in this example.""?",vector
+code_retrieval-017,"Which source file in repository apache/airflow contains the code fragment ""_drop_fkey_if_exists(""task_outlet_dataset_reference"", ""todr_dataset_fkey"")""?",vector
+code_retrieval-036,"Which source file in repository apache/airflow contains the code fragment ""TaskStateStoreModel.task_id == task_id,""?",vector
+structure-024,Which .py files are located under the 'airflow-core/tests/unit/ti_deps/deps/' directory in repository apache/airflow?,graph
+structure-005,Which .py files are located under the 'airflow-core/src/airflow/api_fastapi/core_api/routes/public/' directory in repository apache/airflow?,graph
+dependency_analysis-035,Which files were modified by commit mlflow/mlflow:commit:505e81cb52101ce7b3ad78df79461eedfb9563fa in repository mlflow/mlflow?,graph
+developer_activity-005,Which commits were authored by developer email:smardenfeld@stripe.com in repository apache/airflow?,graph
+issue_pr_analysis-023,What is the issue number for 'Get Java SDK documentation ready for publish' in repository apache/airflow?,graph
+documentation_lookup-001,"Which documentation file in repository apache/airflow contains the text ""Airflow scheduler CLI command have a new ``--only-idle`` flag to only count runs when the scheduler""?",vector
+multi_hop-040,Which developers authored commits that modified the file 'R/mlflow/R/install.R' in repository mlflow/mlflow?,hybrid
+multi_hop-039,Which developers authored commits that modified the file 'mlflow/R/mlflow/man-roxygen/roxlate-client.R' in repository mlflow/mlflow?,hybrid
+code_retrieval-009,"Which source file in repository apache/airflow contains the code fragment ""for middleware_dict in root_middlewares:""?",vector
+documentation_lookup-008,"Which documentation file in repository apache/airflow contains the text ""normal review and mentoring (see""?",vector
+structure-003,Which .md files are located under the 'dev/' directory in repository apache/airflow?,graph
+code_retrieval-031,"Which source file in repository apache/airflow contains the code fragment ""{ label: ""common:states.awaiting_input"", value: ""awaiting_input"" },""?",vector
+issue_pr_analysis-020,Which issues in repository apache/airflow contain the term 'Multi-lang' in their title?,graph
+documentation_lookup-028,"Which documentation file in repository apache/airflow contains the text ""Due to reasons explained in the previous chapter, some potential security vulnerabilities""?",vector
+multi_hop-010,Which developers authored commits that modified the file 'R/mlflow/man/mlflow_snapshot.Rd' in repository mlflow/mlflow?,hybrid
+code_retrieval-027,"Which source file in repository apache/airflow contains the code fragment ""const emptyImportErrorsQuery = {""?",vector
+multi_hop-022,Which developers authored commits that modified the file 'airflow/www/static/airflow.gif' in repository apache/airflow?,hybrid
+multi_hop-028,Which developers authored commits that modified the file 'examples/pytorch/conda.yaml' in repository mlflow/mlflow?,hybrid
+code_retrieval-007,"Which source file in repository apache/airflow contains the code fragment ""# On `pull_request` and `push` we only scan the languages whose files actually changed.""?",vector
+multi_hop-052,Which developers authored commits that modified the file 'mlflow/store/artifact/sftp_artifact_repo.py' in repository mlflow/mlflow?,hybrid
+structure-008,Which .rst files are located under the 'airflow-core/docs/administration-and-deployment/' directory in repository apache/airflow?,graph
+dependency_analysis-007,Which commits modified the file 'airflow/www/templates/airflow/chart/create.html' in repository apache/airflow?,graph
+dependency_analysis-018,Which files were modified by commit apache/airflow:commit:b9fc46ca5ce9f5f3c501b7a1d0b66ca3db343915 in repository apache/airflow?,graph
+documentation_lookup-032,"Which documentation file in repository apache/airflow contains the text ""Weaviate hook points to ``weaviate_default`` connection by default.""?",vector
+documentation_lookup-021,"Which documentation file in repository apache/airflow contains the text ""We decided to use Docker Images to provide such a development environment. Docker images are perfect""?",vector
+dependency_analysis-039,Which commits modified the file 'airflow/example_dags/example1.py' in repository apache/airflow?,graph
+multi_hop-047,Which developers authored commits that modified the file 'tests/integration/__init__.py' in repository mlflow/mlflow?,hybrid
+dependency_analysis-036,Which files were modified by commit mlflow/mlflow:commit:25dcf038e6a6a6c4e26ff3f55391eaedeeb25293 in repository mlflow/mlflow?,graph
+developer_activity-016,Who are the top commit authors in repository spring-projects/spring-petclinic? Return each developer identifier with the number of commits.,graph
+code_retrieval-032,"Which source file in repository apache/airflow contains the code fragment """"error"": ""Erro ao excluir {{type}}"",""?",vector
+structure-023,Which .py files are located under the 'airflow-core/tests/unit/utils/' directory in repository apache/airflow?,graph
+developer_activity-030,Which commits were authored by developer email:arthur_wiedmer@arthur-wiedmer.local in repository apache/airflow?,graph
+developer_activity-003,Who are the top commit authors in repository synthetic-org/platform? Return each developer identifier with the number of commits.,graph
+code_retrieval-023,"Which source file in repository apache/airflow contains the code fragment ""field_overrides[field_name] = (ann, new_info)""?",vector
+documentation_lookup-013,"Which documentation file in repository apache/airflow contains the text ""* It is used by the larger majority of users (>80%)""?",vector
+multi_hop-057,Which developers authored commits that modified the file 'src/Webhooks.API/IntegrationEvents/ProductPriceChangedIntegrationEventHandler.cs' in repository dotnet/eShop?,hybrid
+documentation_lookup-014,"Which documentation file in repository apache/airflow contains the text ""* `The apache-airflow-providers-facebook 3.9.5 sdist package <https://downloads.apache.org/airflow/p""?",vector
+developer_activity-013,Who are the top commit authors in repository dotnet/eShop? Return each developer identifier with the number of commits.,graph
+code_retrieval-039,"Which source file in repository apache/airflow contains the code fragment ""import type { XComResponse, DeleteXcomEntryData } from ""openapi/requests/types.gen"";""?",vector
+code_retrieval-015,"Which source file in repository apache/airflow contains the code fragment """"warning"": ""Это удалит все метаданные, связанные с {{type}}.""""?",vector
+structure-007,Which .py files are located under the 'airflow-core/src/airflow/api_fastapi/' directory in repository apache/airflow?,graph
+structure-036,Which .json files are located under the 'airflow-core/src/airflow/ui/public/i18n/locales/de/' directory in repository apache/airflow?,graph
+multi_hop-033,Which developers authored commits that modified the file 'travis/large-requirements.txt' in repository mlflow/mlflow?,hybrid
+issue_pr_analysis-018,What is the title of issue #66792 in repository apache/airflow?,graph
+structure-022,Which .py files are located under the 'airflow-ctl/src/airflowctl/ctl/commands/' directory in repository apache/airflow?,graph
+code_retrieval-022,"Which source file in repository apache/airflow contains the code fragment ""callback: () => handleScrollTo(""top""),""?",vector
+documentation_lookup-030,"Which documentation file in repository apache/airflow contains the text "".. _howto/connection:dbt_cloud:""?",vector
+code_retrieval-013,"Which source file in repository apache/airflow contains the code fragment """"delta"": encode_interval(timetable.delta),""?",vector
+dependency_analysis-045,Which files were modified by commit dotnet/eShop:commit:3b2515e69c16b1c2f64276aef3caeca5f947d399 in repository dotnet/eShop?,graph
+structure-039,Which .json files are located under the 'airflow-core/src/airflow/ui/public/i18n/locales/es/' directory in repository apache/airflow?,graph
+issue_pr_analysis-044,What are the titles of the closed issues in repository apache/airflow?,graph
+multi_hop-051,Which developers authored commits that modified the file 'mlflow/R/mlflow/man/mlflow_client_log_metric.Rd' in repository mlflow/mlflow?,hybrid
+structure-014,Which .txt files are located under the 'docs/' directory in repository apache/airflow?,graph
+code_retrieval-016,"Which source file in repository apache/airflow contains the code fragment """"""""Enum of supported attribute types of DAG.""""""""?",vector
+documentation_lookup-035,"Which documentation file in repository apache/airflow contains the text ""<https://cloud.google.com/dataflow/docs/guides/stopping-a-pipeline>`_.""?",vector
+dependency_analysis-004,Which files were modified by commit mlflow/mlflow:commit:495946edb5d3a2837304a2318de3a70c47555112 in repository mlflow/mlflow?,graph
+multi_hop-060,Which developers authored commits that modified the file 'mlflow/java/client/pom.xml' in repository mlflow/mlflow?,hybrid
+dependency_analysis-006,Which files were modified by commit mlflow/mlflow:commit:d2a30699b3e350af0518f778705a4605a860e8c7 in repository mlflow/mlflow?,graph
+documentation_lookup-007,"Which documentation file in repository apache/airflow contains the text ""``airflow db clean`` is invoked from a DAG task and you want the task to turn red on failure —""?",vector
+dependency_analysis-032,Which files were modified by commit mlflow/mlflow:commit:8af29d007942f610688d0c0836cb7d23edb76ff2 in repository mlflow/mlflow?,graph
+code_retrieval-019,"Which source file in repository apache/airflow contains the code fragment ""const currentParam = paramsDict[name];""?",vector
+developer_activity-019,Which commits were authored by developer email:philippe.marschall@gmail.com in repository spring-projects/spring-petclinic?,graph
+developer_activity-027,Which commits were authored by developer email:pihdave@gmail.com in repository openmrs/openmrs-core?,graph
+developer_activity-010,Which commits were authored by developer email:grahamhealy20@users.noreply.github.com in repository mlflow/mlflow?,graph
+developer_activity-014,Which commits were authored by developer email:simrinjoshi@yahoo.com in repository spring-projects/spring-petclinic?,graph
+developer_activity-021,Which commits were authored by developer email:49397448+mereltheisenqb@users.noreply.github.com in repository mlflow/mlflow?,graph
+developer_activity-007,Which commits were authored by developer email:dandrfranco@gmail.com in repository spring-projects/spring-petclinic?,graph
+developer_activity-008,Which commits were authored by developer email:kdonald@vmware.com in repository spring-projects/spring-petclinic?,graph
+developer_activity-024,Which commits were authored by developer email:dmatrix@comcast.net in repository mlflow/mlflow?,graph
+developer_activity-012,Which commits were authored by developer email:thinkshihang@gmail.com in repository spring-projects/spring-petclinic?,graph
+developer_activity-028,Which commits were authored by developer email:arinto@gmail.com in repository mlflow/mlflow?,graph
+developer_activity-011,Which commits were authored by developer email:eskibear@users.noreply.github.com in repository spring-projects/spring-petclinic?,graph
+issue_pr_analysis-006,What is the issue number for 'Review stats' in repository mlflow/mlflow?,graph
+issue_pr_analysis-042,What are the titles of the closed issues in repository synthetic-org/platform?,graph
+issue_pr_analysis-026,"Which repository contains issue #67 titled '[WebToolsE2E][Aspire] When typing ‘Ctrl-C' to stop debugging eshop.web, I get some errors:“Aspire.Hosting.Dcp.dcpctrl.ExecutableReconciler[0] could not remove process's standard output file.”'?",graph
+issue_pr_analysis-022,What is the issue number for 'Pet details are not updated' in repository spring-projects/spring-petclinic?,graph
+issue_pr_analysis-017,Which open issue has the highest issue number in repository synthetic-org/platform? Return its number and title.,graph
+issue_pr_analysis-041,What is the state of issue #24414 in repository mlflow/mlflow?,graph
+issue_pr_analysis-008,Which repository contains issue #23978 titled '[BUG] ChrfScore in mlflow.genai.scorers.ragas fails due to class name mismatch with ragas.metrics.collections'?,graph
+issue_pr_analysis-046,What is the issue number for '[FR] Align MCP registry auth with other MLflow resources' in repository mlflow/mlflow?,graph
+issue_pr_analysis-030,What is the issue number for 'Can't find API Getway project' in repository dotnet/eShop?,graph
+issue_pr_analysis-043,Which issues in repository openmrs/openmrs-core contain the term 'active' in their title?,graph
+issue_pr_analysis-048,What are the title and state of issue #1723 in repository spring-projects/spring-petclinic?,graph
+issue_pr_analysis-040,What are the titles of the closed issues in repository mlflow/mlflow?,graph
+issue_pr_analysis-002,Which issues in repository mlflow/mlflow contain the term 'registered_model_name' in their title?,graph
+issue_pr_analysis-019,What is the state of issue #996 in repository dotnet/eShop?,graph
+issue_pr_analysis-025,What is the title of issue #8700 in repository mlflow/mlflow?,graph
+issue_pr_analysis-034,What is the state of issue #7186 in repository mlflow/mlflow?,graph
+issue_pr_analysis-024,What are the titles of the open issues in repository mlflow/mlflow?,graph
+issue_pr_analysis-032,What is the issue number for '[FR] Support Agent-as-a-Judge (`{{ trace }}`) with `bedrock:/` model URIs' in repository mlflow/mlflow?,graph
+documentation_lookup-027,"Which documentation file in repository mlflow/mlflow contains the text ""# TODO: Move these into the `docs` dependency group in pyproject.toml""?",vector
+documentation_lookup-003,"Which documentation file in repository mlflow/mlflow contains the text ""sphinx-reredirects==0.1.3""?",vector
+documentation_lookup-002,"Which documentation file in repository mlflow/mlflow contains the text "".. automodule:: mlflow.system_metrics""?",vector
+multi_hop-006,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:lukasz-szewc@users.noreply.github.com?,hybrid
+multi_hop-050,Which files in repository mlflow/mlflow were modified through commits authored by developer email:hamroune.z@gmail.com?,hybrid
+multi_hop-008,Which files in repository mlflow/mlflow were modified through commits authored by developer email:mehdi.sebih@gmail.com?,hybrid
+multi_hop-048,Which files in repository mlflow/mlflow were modified through commits authored by developer email:zangr@users.noreply.github.com?,hybrid
+multi_hop-049,Which files in repository mlflow/mlflow were modified through commits authored by developer email:chipiga86@gmail.com?,hybrid
+multi_hop-023,Which files in repository mlflow/mlflow were modified through commits authored by developer email:jdlesage@gmail.com?,hybrid
+multi_hop-037,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:robertson-neil@users.noreply.github.com?,hybrid
+multi_hop-038,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:anyulled@gmail.com?,hybrid
+multi_hop-002,Which files in repository dotnet/eShop were modified through commits authored by developer email:mictlan@gmail.com?,hybrid
+multi_hop-020,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:jby0711823@naver.com?,hybrid
+multi_hop-011,Which files in repository spring-projects/spring-petclinic were modified through commits authored by developer email:denis.fuenzalida@gmail.com?,hybrid
+multi_hop-025,Which files in repository mlflow/mlflow were modified through commits authored by developer email:fhoring@gmail.com?,hybrid
+multi_hop-046,Which files in repository mlflow/mlflow were modified through commits authored by developer email:jaroslaw.konczak@gmail.com?,hybrid
+multi_hop-014,Which files in repository dotnet/eShop were modified through commits authored by developer email:davidfowl@gmail.com?,hybrid
+multi_hop-007,Which files in repository dotnet/eShop were modified through commits authored by developer email:me@aaron-powell.com?,hybrid
+dependency_analysis-038,Which commits modified the file 'mlflow/store/db_migrations/versions/__init__.py' in repository mlflow/mlflow?,graph
+dependency_analysis-021,Which commits modified the file 'mlflow/server/js/src/components/NoteEditorView.js' in repository mlflow/mlflow?,graph
+dependency_analysis-020,Which commits modified the file 'src/Ordering.Infrastructure/Ordering.Infrastructure.csproj' in repository dotnet/eShop?,graph
+dependency_analysis-011,Which commits modified the file 'src/ClientApp/ViewModels/CatalogViewModel.cs' in repository dotnet/eShop?,graph
+dependency_analysis-015,Which commits modified the file 'metadata/model/openmrs_data_model_0.80.png' in repository openmrs/openmrs-core?,graph
+dependency_analysis-005,Which commits modified the file 'src/Catalog.API/Extensions/Extensions.cs' in repository dotnet/eShop?,graph
+dependency_analysis-024,Which commits modified the file 'metadata/api/sqlmap/maps/Order.xml' in repository openmrs/openmrs-core?,graph
+dependency_analysis-022,Which commits modified the file 'mlflow/server/js/src/components/NoteShowView.css' in repository mlflow/mlflow?,graph
+dependency_analysis-013,Which commits modified the file 'src/Catalog.API/Pics/80.webp' in repository dotnet/eShop?,graph
+dependency_analysis-008,Which commits modified the file 'R/mlflow/R/snapshot.R' in repository mlflow/mlflow?,graph
+dependency_analysis-034,Which commits modified the file 'mlflow/server/js/src/components/MetricsPlotView.js' in repository mlflow/mlflow?,graph

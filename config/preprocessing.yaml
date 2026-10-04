@@ -1,0 +1,57 @@
+# Preprocessing rules applied before Neo4j import.
+excluded_directories:
+  - .git
+  - .github
+  - .idea
+  - .vscode
+  - .venv
+  - venv
+  - node_modules
+  - vendor
+  - dist
+  - build
+  - target
+  - out
+  - bin
+  - obj
+  - coverage
+  - __pycache__
+  - .pytest_cache
+  - .mypy_cache
+  - .gradle
+  - .next
+  - generated
+  - third_party
+
+excluded_filenames:
+  - package-lock.json
+  - yarn.lock
+  - pnpm-lock.yaml
+  - poetry.lock
+  - Cargo.lock
+  - composer.lock
+
+excluded_suffixes:
+  - .min.js
+  - .min.css
+  - .map
+  - .class
+  - .jar
+  - .war
+  - .dll
+  - .exe
+  - .so
+  - .dylib
+  - .pyc
+
+max_file_bytes: 200000
+max_text_characters: 120000
+min_text_characters: 2
+min_commit_message_characters: 2
+min_issue_title_characters: 2
+min_pr_title_characters: 2
+
+# Keep documentation, tests and configuration because they are relevant to
+# repository-level question answering.
+normalize_whitespace: true
+remove_html_comments: false

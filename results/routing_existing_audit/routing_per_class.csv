@@ -1,0 +1,4 @@
+route,support,precision,recall,f1
+graph,127,1.0,1.0,1.0
+vector,71,0.0,0.0,0.0
+hybrid,44,0.3826086956521739,1.0,0.5534591194968553

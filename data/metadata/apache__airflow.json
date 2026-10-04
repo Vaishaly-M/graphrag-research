@@ -1,0 +1,23 @@
+{
+  "repository": "apache/airflow",
+  "github_url": "https://github.com/apache/airflow",
+  "recorded_at_utc": "2026-08-27T18:19:34.151212+00:00",
+  "cloned": true,
+  "commit_sha": "df2272c562a7cbf407e405df9c6c82b356a533b9",
+  "commit_date": "2026-07-17T10:39:58+02:00",
+  "default_branch": "main",
+  "raw_counts": {
+    "files": 11946,
+    "commits": 1000,
+    "issues": 300,
+    "pull_requests": 300,
+    "developers": 314
+  },
+  "processed_counts": {
+    "files": 11934,
+    "commits": 1000,
+    "issues": 300,
+    "pull_requests": 299,
+    "developers": 314
+  }
+}

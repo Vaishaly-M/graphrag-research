@@ -1,0 +1,7 @@
+failure_type,adaptive_hybrid_graphrag,fixed_graph_rag,fixed_hybrid_rag,langchain_graphrag,llamaindex_graphrag,oracle_hybrid_rag,plain_llm,vector_rag
+wrong_route,0.0,,,,,,,
+empty_retrieval,0.0,0.0,0.0,0.0,0.0,0.0,,
+invalid_query,0.0,0.0,0.0,0.0,0.0,0.0,,
+missing_entities,0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285,1.0,0.8571428571428571
+unsupported_claim,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.8571428571428571
+unnecessary_abstention,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.8571428571428571

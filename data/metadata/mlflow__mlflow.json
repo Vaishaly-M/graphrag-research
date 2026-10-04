@@ -1,0 +1,23 @@
+{
+  "repository": "mlflow/mlflow",
+  "github_url": "https://github.com/mlflow/mlflow",
+  "recorded_at_utc": "2026-08-27T18:19:36.111634+00:00",
+  "cloned": true,
+  "commit_sha": "c557df01e3b7f1ec351df281f40d4c88d736ffdc",
+  "commit_date": "2026-07-17T09:08:56+00:00",
+  "default_branch": "master",
+  "raw_counts": {
+    "files": 6377,
+    "commits": 1000,
+    "issues": 300,
+    "pull_requests": 300,
+    "developers": 481
+  },
+  "processed_counts": {
+    "files": 5537,
+    "commits": 1000,
+    "issues": 300,
+    "pull_requests": 299,
+    "developers": 481
+  }
+}

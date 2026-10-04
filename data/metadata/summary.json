@@ -1,0 +1,119 @@
+{
+  "repositories": [
+    {
+      "repository": "spring-projects/spring-petclinic",
+      "github_url": "https://github.com/spring-projects/spring-petclinic",
+      "recorded_at_utc": "2026-08-27T18:19:30.057847+00:00",
+      "cloned": true,
+      "commit_sha": "f182358d02e4a68e52bdbabf55ca7800288511e7",
+      "commit_date": "2026-07-16T18:57:23+01:00",
+      "default_branch": "main",
+      "raw_counts": {
+        "files": 83,
+        "commits": 1000,
+        "issues": 300,
+        "pull_requests": 300,
+        "developers": 592
+      },
+      "processed_counts": {
+        "files": 83,
+        "commits": 1000,
+        "issues": 297,
+        "pull_requests": 300,
+        "developers": 589
+      }
+    },
+    {
+      "repository": "openmrs/openmrs-core",
+      "github_url": "https://github.com/openmrs/openmrs-core",
+      "recorded_at_utc": "2026-08-27T18:19:31.348307+00:00",
+      "cloned": true,
+      "commit_sha": "90309a7359a4912d84fa7df6c8463b24e0ce5051",
+      "commit_date": "2026-07-16T22:34:41+03:00",
+      "default_branch": "master",
+      "raw_counts": {
+        "files": 1606,
+        "commits": 1000,
+        "issues": 9,
+        "pull_requests": 300,
+        "developers": 101
+      },
+      "processed_counts": {
+        "files": 1603,
+        "commits": 1000,
+        "issues": 9,
+        "pull_requests": 300,
+        "developers": 101
+      }
+    },
+    {
+      "repository": "dotnet/eShop",
+      "github_url": "https://github.com/dotnet/eShop",
+      "recorded_at_utc": "2026-08-27T18:19:32.158319+00:00",
+      "cloned": true,
+      "commit_sha": "9b4f9434f46fdc5c1a6e9e936af2868340cdbc48",
+      "commit_date": "2026-04-21T09:27:58-05:00",
+      "default_branch": "main",
+      "raw_counts": {
+        "files": 604,
+        "commits": 342,
+        "issues": 223,
+        "pull_requests": 300,
+        "developers": 283
+      },
+      "processed_counts": {
+        "files": 603,
+        "commits": 342,
+        "issues": 223,
+        "pull_requests": 300,
+        "developers": 283
+      }
+    },
+    {
+      "repository": "apache/airflow",
+      "github_url": "https://github.com/apache/airflow",
+      "recorded_at_utc": "2026-08-27T18:19:34.151212+00:00",
+      "cloned": true,
+      "commit_sha": "df2272c562a7cbf407e405df9c6c82b356a533b9",
+      "commit_date": "2026-07-17T10:39:58+02:00",
+      "default_branch": "main",
+      "raw_counts": {
+        "files": 11946,
+        "commits": 1000,
+        "issues": 300,
+        "pull_requests": 300,
+        "developers": 314
+      },
+      "processed_counts": {
+        "files": 11934,
+        "commits": 1000,
+        "issues": 300,
+        "pull_requests": 299,
+        "developers": 314
+      }
+    },
+    {
+      "repository": "mlflow/mlflow",
+      "github_url": "https://github.com/mlflow/mlflow",
+      "recorded_at_utc": "2026-08-27T18:19:36.111634+00:00",
+      "cloned": true,
+      "commit_sha": "c557df01e3b7f1ec351df281f40d4c88d736ffdc",
+      "commit_date": "2026-07-17T09:08:56+00:00",
+      "default_branch": "master",
+      "raw_counts": {
+        "files": 6377,
+        "commits": 1000,
+        "issues": 300,
+        "pull_requests": 300,
+        "developers": 481
+      },
+      "processed_counts": {
+        "files": 5537,
+        "commits": 1000,
+        "issues": 300,
+        "pull_requests": 299,
+        "developers": 481
+      }
+    }
+  ]
+}

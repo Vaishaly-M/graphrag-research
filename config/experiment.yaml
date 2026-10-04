@@ -1,0 +1,84 @@
+# Centralized reproducibility and runtime configuration.
+#
+# Values here are defaults for the experiment code. Credentials and
+# infrastructure endpoints (GEMINI_API_KEY, NEO4J_URI, etc.) still live in
+# .env and are never read from this file.
+
+seeds:
+  benchmark_generation: 42
+  synthetic_generation: 42
+
+llm:
+  temperature_default: 0.2
+  temperature_deterministic: 0.0
+  max_output_tokens_answer: 1024
+  max_output_tokens_cypher: 700
+  default_rpm: 10
+  prompt_version: v1
+
+retry:
+  retries: 6
+  base_delay_s: 1.0
+  # Gemini RetryInfo delays are honoured. Increase retries only for
+  # transient quota/network limits; daily quota exhaustion still needs
+  # provider capacity before a resumed run can finish.
+
+neo4j:
+  connection_timeout_s: 60.0
+  # connection_write_timeout is not a valid neo4j-python-driver config key
+  # (confirmed against the installed 5.28.1 driver) -- there is no
+  # separate write-timeout knob on GraphDatabase.driver(); do not add it
+  # back without checking the driver's actual PoolConfig class first.
+  liveness_check_timeout_s: 30.0
+  max_connection_pool_size: 10
+
+vector:
+  chunk_size: 1200
+  chunk_overlap: 180
+  top_k: 10
+
+router:
+  # Guide Section 8.2 confidence policy: >= high uses the selected single
+  # -source route as-is; between medium and high uses hybrid; below
+  # medium uses hybrid with stricter evidence validation. Tune these on
+  # the dev/validation split only, never on hidden-test.
+  high_confidence_threshold: 0.85
+  medium_confidence_threshold: 0.60
+
+adaptive_hybrid:
+  vector_top_k: 10
+  max_graph_rows: 100
+  max_final_evidence: 16
+  fusion_weights:
+    retrieval: 0.72
+    lexical: 0.20
+    graph_bonus: 0.08
+
+# Disk cache for LLM calls. OFF by default. This is a development/cost
+# convenience only: a cache hit skips the real API call, so latency_s on
+# that row is not a real measurement. Never enable this for a run whose
+# latency numbers will be reported in the paper. Cached responses are
+# marked with GeminiClient.last_cache_hit so callers can exclude them from
+# timing statistics.
+llm_cache:
+  enabled: false
+  directory: .cache/gemini
+
+# Pool of Gemini API keys YOU legitimately hold (e.g. separate GCP
+# projects/billing under your own account), used only to spread load
+# across capacity you actually own. Each key is still rate-limited to
+# llm.default_rpm individually -- this raises aggregate throughput
+# proportionally to the number of keys you legitimately provisioned, it
+# does not remove the per-key limit.
+#
+# Do NOT use this to rotate through multiple free-tier accounts in order
+# to evade Google's per-account rate limit. That is a violation of the
+# provider's terms of service, not a throughput problem, and this project
+# will not help route around it.
+#
+# Leave disabled and use GEMINI_API_KEY alone unless you already own
+# multiple keys.
+llm_key_pool:
+  enabled: false
+  # When enabled, keys are read from GEMINI_API_KEYS in .env as a
+  # comma-separated list, e.g.: GEMINI_API_KEYS=key_one,key_two

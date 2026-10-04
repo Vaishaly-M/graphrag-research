@@ -1,0 +1,23 @@
+{
+  "repository": "spring-projects/spring-petclinic",
+  "github_url": "https://github.com/spring-projects/spring-petclinic",
+  "recorded_at_utc": "2026-08-27T18:19:30.057847+00:00",
+  "cloned": true,
+  "commit_sha": "f182358d02e4a68e52bdbabf55ca7800288511e7",
+  "commit_date": "2026-07-16T18:57:23+01:00",
+  "default_branch": "main",
+  "raw_counts": {
+    "files": 83,
+    "commits": 1000,
+    "issues": 300,
+    "pull_requests": 300,
+    "developers": 592
+  },
+  "processed_counts": {
+    "files": 83,
+    "commits": 1000,
+    "issues": 297,
+    "pull_requests": 300,
+    "developers": 589
+  }
+}

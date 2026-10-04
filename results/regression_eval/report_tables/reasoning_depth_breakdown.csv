@@ -1,0 +1,9 @@
+system,one_hop,two_hop,three_plus_hop
+adaptive_hybrid_graphrag,1.0,1.0,1.0
+fixed_graph_rag,1.0,1.0,1.0
+fixed_hybrid_rag,1.0,1.0,1.0
+langchain_graphrag,1.0,1.0,1.0
+llamaindex_graphrag,1.0,1.0,1.0
+oracle_hybrid_rag,1.0,1.0,1.0
+plain_llm,0.0,0.0,0.0
+vector_rag,0.25,0.0,0.0

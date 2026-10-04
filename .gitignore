@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+repos/
+data/raw/
+data/processed/
+data/vector_index/
+results/*.jsonl
+results/*.csv
+results/*.png

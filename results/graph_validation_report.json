@@ -1,0 +1,182 @@
+{
+  "graph_checks": {
+    "node_counts": [
+      {
+        "label": "File",
+        "count": 27624
+      },
+      {
+        "label": "Commit",
+        "count": 5696
+      },
+      {
+        "label": "Developer",
+        "count": 1807
+      },
+      {
+        "label": "PullRequest",
+        "count": 1506
+      },
+      {
+        "label": "Issue",
+        "count": 1141
+      },
+      {
+        "label": "Repository",
+        "count": 6
+      }
+    ],
+    "relationship_counts": [
+      {
+        "relationship_type": "MODIFIED_FILE",
+        "count": 40103
+      },
+      {
+        "relationship_type": "CONTAINS_FILE",
+        "count": 27624
+      },
+      {
+        "relationship_type": "COMMITTED_TO",
+        "count": 5696
+      },
+      {
+        "relationship_type": "AUTHORED_COMMIT",
+        "count": 4372
+      },
+      {
+        "relationship_type": "AUTHORED_PR",
+        "count": 1506
+      },
+      {
+        "relationship_type": "HAS_PR",
+        "count": 1506
+      },
+      {
+        "relationship_type": "MERGED_AS",
+        "count": 1325
+      },
+      {
+        "relationship_type": "AUTHORED_ISSUE",
+        "count": 1141
+      },
+      {
+        "relationship_type": "HAS_ISSUE",
+        "count": 1141
+      },
+      {
+        "relationship_type": "ASSIGNED_TO",
+        "count": 247
+      }
+    ],
+    "orphan_commits": [
+      {
+        "count": 0
+      }
+    ],
+    "orphan_files": [
+      {
+        "count": 0
+      }
+    ],
+    "orphan_issues": [
+      {
+        "count": 0
+      }
+    ],
+    "orphan_pull_requests": [
+      {
+        "count": 0
+      }
+    ],
+    "missing_file_paths": [
+      {
+        "count": 0
+      }
+    ],
+    "duplicate_file_paths_per_repo": [],
+    "malformed_commit_timestamps": [],
+    "malformed_issue_dates": [],
+    "malformed_pull_request_dates": [],
+    "invalid_developer_identifiers": [],
+    "developer_email_malformed": [
+      {
+        "id": "email:andrej1",
+        "email": "andrej1"
+      }
+    ],
+    "incomplete_pull_requests_missing_title": [],
+    "merged_pull_requests_without_merge_commit": []
+  },
+  "failing_checks": [],
+  "warnings": [
+    "developer_email_malformed"
+  ],
+  "preprocessing_audit_categorized": {
+    "apache__airflow": {
+      "excluded_by_preprocessing": {
+        "commit_irrelevant_file_change": 112,
+        "files_excluded_directory": 8,
+        "files_excluded_filename": 2,
+        "files_likely_minified": 2,
+        "pulls_duplicate": 1
+      },
+      "known_upstream_gap": {
+        "historical_or_deleted_file_references": 2108,
+        "unmined_merge_commit_references": 269
+      },
+      "unclassified_investigate": {}
+    },
+    "dotnet__eShop": {
+      "excluded_by_preprocessing": {
+        "commit_irrelevant_file_change": 64,
+        "files_excluded_filename": 1
+      },
+      "known_upstream_gap": {
+        "historical_or_deleted_file_references": 1451,
+        "unmined_merge_commit_references": 195
+      },
+      "unclassified_investigate": {}
+    },
+    "mlflow__mlflow": {
+      "excluded_by_preprocessing": {
+        "commit_irrelevant_file_change": 38,
+        "files_excluded_directory": 823,
+        "files_excluded_suffix": 4,
+        "files_likely_minified": 13,
+        "pulls_duplicate": 1
+      },
+      "known_upstream_gap": {
+        "historical_or_deleted_file_references": 3905,
+        "unmined_merge_commit_references": 276
+      },
+      "unclassified_investigate": {}
+    },
+    "openmrs__openmrs-core": {
+      "excluded_by_preprocessing": {
+        "commit_irrelevant_file_change": 254,
+        "files_excluded_suffix": 3
+      },
+      "known_upstream_gap": {
+        "historical_or_deleted_file_references": 24608,
+        "unmined_merge_commit_references": 230
+      },
+      "unclassified_investigate": {}
+    },
+    "spring-projects__spring-petclinic": {
+      "excluded_by_preprocessing": {
+        "commit_irrelevant_file_change": 377,
+        "issues_missing_required": 3
+      },
+      "known_upstream_gap": {
+        "historical_or_deleted_file_references": 4190,
+        "unmined_merge_commit_references": 285
+      },
+      "unclassified_investigate": {}
+    },
+    "synthetic": {
+      "excluded_by_preprocessing": {},
+      "known_upstream_gap": {},
+      "unclassified_investigate": {}
+    }
+  }
+}

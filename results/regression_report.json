@@ -1,0 +1,426 @@
+[
+  {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "structure-032",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "code_retrieval-026",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "dependency_analysis-002",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "documentation_lookup-027",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "issue_pr_analysis-009",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "developer_activity-021",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "adaptive_hybrid_graphrag",
+    "question_id": "multi_hop-031",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_graph_rag",
+    "question_id": "structure-032",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_graph_rag",
+    "question_id": "code_retrieval-026",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_graph_rag",
+    "question_id": "dependency_analysis-002",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_graph_rag",
+    "question_id": "documentation_lookup-027",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_graph_rag",
+    "question_id": "issue_pr_analysis-009",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_graph_rag",
+    "question_id": "developer_activity-021",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_graph_rag",
+    "question_id": "multi_hop-031",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_hybrid_rag",
+    "question_id": "structure-032",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_hybrid_rag",
+    "question_id": "code_retrieval-026",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_hybrid_rag",
+    "question_id": "dependency_analysis-002",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_hybrid_rag",
+    "question_id": "documentation_lookup-027",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_hybrid_rag",
+    "question_id": "issue_pr_analysis-009",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_hybrid_rag",
+    "question_id": "developer_activity-021",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "fixed_hybrid_rag",
+    "question_id": "multi_hop-031",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "langchain_graphrag",
+    "question_id": "structure-032",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "langchain_graphrag",
+    "question_id": "code_retrieval-026",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "langchain_graphrag",
+    "question_id": "dependency_analysis-002",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "langchain_graphrag",
+    "question_id": "documentation_lookup-027",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "langchain_graphrag",
+    "question_id": "issue_pr_analysis-009",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "langchain_graphrag",
+    "question_id": "developer_activity-021",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "langchain_graphrag",
+    "question_id": "multi_hop-031",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "llamaindex_graphrag",
+    "question_id": "structure-032",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "llamaindex_graphrag",
+    "question_id": "code_retrieval-026",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "llamaindex_graphrag",
+    "question_id": "dependency_analysis-002",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "llamaindex_graphrag",
+    "question_id": "documentation_lookup-027",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "llamaindex_graphrag",
+    "question_id": "issue_pr_analysis-009",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "llamaindex_graphrag",
+    "question_id": "developer_activity-021",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "llamaindex_graphrag",
+    "question_id": "multi_hop-031",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "oracle_hybrid_rag",
+    "question_id": "structure-032",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "oracle_hybrid_rag",
+    "question_id": "code_retrieval-026",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "oracle_hybrid_rag",
+    "question_id": "dependency_analysis-002",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "oracle_hybrid_rag",
+    "question_id": "documentation_lookup-027",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "oracle_hybrid_rag",
+    "question_id": "issue_pr_analysis-009",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "oracle_hybrid_rag",
+    "question_id": "developer_activity-021",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "oracle_hybrid_rag",
+    "question_id": "multi_hop-031",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "plain_llm",
+    "question_id": "structure-032",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "answer_missing_expected_entity:['airflow-core/tests/unit/serialization/serializers/__init__.py']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "plain_llm",
+    "question_id": "code_retrieval-026",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "answer_missing_expected_entity:['airflow-core/src/airflow/api_fastapi/auth/managers/simple/ui/openapi-gen/requests/core/auth.gen.ts']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "plain_llm",
+    "question_id": "dependency_analysis-002",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "answer_missing_expected_entity:['airflow/operators/python_operator.py']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "plain_llm",
+    "question_id": "documentation_lookup-027",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "answer_missing_expected_entity:['requirements/torch.txt']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "plain_llm",
+    "question_id": "issue_pr_analysis-009",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "answer_missing_expected_entity:['mlflow/mlflow']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "plain_llm",
+    "question_id": "developer_activity-021",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "answer_missing_expected_entity:['mlflow/mlflow:commit:9aed0ac470c1f560d03bafaf516302b4ce041b7c']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "plain_llm",
+    "question_id": "multi_hop-031",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "answer_missing_expected_entity:['src/main/resources/messages/messages_pt.properties']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "vector_rag",
+    "question_id": "structure-032",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "abstained_when_answer_was_expected",
+      "answer_missing_expected_entity:['airflow-core/tests/unit/serialization/serializers/__init__.py']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "vector_rag",
+    "question_id": "code_retrieval-026",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "abstained_when_answer_was_expected",
+      "answer_missing_expected_entity:['airflow-core/src/airflow/api_fastapi/auth/managers/simple/ui/openapi-gen/requests/core/auth.gen.ts']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "vector_rag",
+    "question_id": "dependency_analysis-002",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "abstained_when_answer_was_expected",
+      "answer_missing_expected_entity:['airflow/operators/python_operator.py']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "vector_rag",
+    "question_id": "documentation_lookup-027",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "abstained_when_answer_was_expected",
+      "answer_missing_expected_entity:['requirements/torch.txt']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "vector_rag",
+    "question_id": "issue_pr_analysis-009",
+    "status": "PASS",
+    "failures": [],
+    "expected_failure": false
+  },
+  {
+    "system": "vector_rag",
+    "question_id": "developer_activity-021",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "abstained_when_answer_was_expected",
+      "answer_missing_expected_entity:['mlflow/mlflow:commit:9aed0ac470c1f560d03bafaf516302b4ce041b7c']"
+    ],
+    "expected_failure": true
+  },
+  {
+    "system": "vector_rag",
+    "question_id": "multi_hop-031",
+    "status": "EXPECTED_FAIL",
+    "failures": [
+      "abstained_when_answer_was_expected",
+      "answer_missing_expected_entity:['src/main/resources/messages/messages_pt.properties']"
+    ],
+    "expected_failure": true
+  }
+]

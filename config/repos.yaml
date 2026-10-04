@@ -1,0 +1,11 @@
+repositories:
+  - slug: spring-projects/spring-petclinic
+  - slug: openmrs/openmrs-core
+  - slug: dotnet/eShop
+  - slug: apache/airflow
+  - slug: mlflow/mlflow
+limits:
+  commits_per_repo: 1000
+  issues_per_repo: 300
+  pulls_per_repo: 300
+  max_file_bytes: 120000

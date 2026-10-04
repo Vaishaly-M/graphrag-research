@@ -1,0 +1,1084 @@
+========================================
+Ablation: full_system
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\full_system\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\full_system\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.13s)
+[2/29] OK    developer_activity-026 (0.14s)
+[3/29] OK    developer_activity-015 (0.14s)
+[4/29] OK    developer_activity-018 (0.13s)
+[5/29] OK    developer_activity-029 (0.23s)
+[6/29] OK    issue_pr_analysis-015 (0.17s)
+[7/29] OK    issue_pr_analysis-035 (0.17s)
+[8/29] OK    issue_pr_analysis-005 (0.21s)
+[9/29] OK    issue_pr_analysis-010 (0.18s)
+[10/29] OK    issue_pr_analysis-021 (0.17s)
+[11/29] OK    issue_pr_analysis-033 (0.18s)
+[12/29] OK    issue_pr_analysis-039 (0.16s)
+[13/29] OK    issue_pr_analysis-014 (0.18s)
+[14/29] OK    issue_pr_analysis-028 (0.14s)
+[15/29] OK    documentation_lookup-024 (1.61s)
+[16/29] OK    documentation_lookup-020 (0.22s)
+[17/29] OK    multi_hop-029 (0.17s)
+[18/29] OK    multi_hop-043 (0.18s)
+[19/29] OK    multi_hop-005 (0.18s)
+[20/29] OK    multi_hop-012 (0.18s)
+[21/29] OK    multi_hop-024 (0.16s)
+[22/29] OK    multi_hop-004 (0.20s)
+[23/29] OK    multi_hop-032 (0.16s)
+[24/29] OK    multi_hop-031 (0.18s)
+[25/29] OK    dependency_analysis-043 (0.15s)
+[26/29] OK    dependency_analysis-028 (0.14s)
+[27/29] OK    dependency_analysis-003 (0.14s)
+[28/29] OK    dependency_analysis-025 (0.15s)
+[29/29] OK    dependency_analysis-033 (0.16s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\full_system\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\full_system\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: no_vector
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_vector\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_vector\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.28s)
+[2/29] OK    developer_activity-026 (0.22s)
+[3/29] OK    developer_activity-015 (0.16s)
+[4/29] OK    developer_activity-018 (0.17s)
+[5/29] OK    developer_activity-029 (0.18s)
+[6/29] OK    issue_pr_analysis-015 (0.17s)
+[7/29] OK    issue_pr_analysis-035 (0.16s)
+[8/29] OK    issue_pr_analysis-005 (0.18s)
+[9/29] OK    issue_pr_analysis-010 (0.15s)
+[10/29] OK    issue_pr_analysis-021 (0.16s)
+[11/29] OK    issue_pr_analysis-033 (0.19s)
+[12/29] OK    issue_pr_analysis-039 (0.25s)
+[13/29] OK    issue_pr_analysis-014 (0.17s)
+[14/29] OK    issue_pr_analysis-028 (0.19s)
+[15/29] OK    documentation_lookup-024 (0.25s)
+[16/29] OK    documentation_lookup-020 (0.18s)
+[17/29] OK    multi_hop-029 (0.22s)
+[18/29] OK    multi_hop-043 (0.16s)
+[19/29] OK    multi_hop-005 (0.16s)
+[20/29] OK    multi_hop-012 (0.30s)
+[21/29] OK    multi_hop-024 (0.17s)
+[22/29] OK    multi_hop-004 (0.16s)
+[23/29] OK    multi_hop-032 (0.15s)
+[24/29] OK    multi_hop-031 (0.19s)
+[25/29] OK    dependency_analysis-043 (0.22s)
+[26/29] OK    dependency_analysis-028 (0.18s)
+[27/29] OK    dependency_analysis-003 (0.22s)
+[28/29] OK    dependency_analysis-025 (0.16s)
+[29/29] OK    dependency_analysis-033 (0.17s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_vector\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_vector\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: no_graph
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_graph\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_graph\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (2.83s)
+[2/29] OK    developer_activity-026 (7.67s)
+[3/29] OK    developer_activity-015 (7.38s)
+[4/29] OK    developer_activity-018 (7.82s)
+[5/29] OK    developer_activity-029 (7.61s)
+[6/29] OK    issue_pr_analysis-015 (8.85s)
+[7/29] OK    issue_pr_analysis-035 (8.71s)
+[8/29] OK    issue_pr_analysis-005 (7.70s)
+[9/29] OK    issue_pr_analysis-010 (7.80s)
+[10/29] OK    issue_pr_analysis-021 (7.91s)
+[11/29] OK    issue_pr_analysis-033 (7.69s)
+[12/29] OK    issue_pr_analysis-039 (8.04s)
+[13/29] OK    issue_pr_analysis-014 (7.92s)
+[14/29] OK    issue_pr_analysis-028 (7.64s)
+[15/29] OK    documentation_lookup-024 (8.00s)
+[16/29] OK    documentation_lookup-020 (7.60s)
+[17/29] OK    multi_hop-029 (7.60s)
+[18/29] OK    multi_hop-043 (10.43s)
+[19/29] OK    multi_hop-005 (7.71s)
+[20/29] OK    multi_hop-012 (7.79s)
+[21/29] OK    multi_hop-024 (7.95s)
+[22/29] OK    multi_hop-004 (7.88s)
+[23/29] OK    multi_hop-032 (7.56s)
+[24/29] OK    multi_hop-031 (6.98s)
+[25/29] OK    dependency_analysis-043 (7.53s)
+[26/29] OK    dependency_analysis-028 (7.48s)
+[27/29] OK    dependency_analysis-003 (7.54s)
+[28/29] OK    dependency_analysis-025 (7.64s)
+[29/29] OK    dependency_analysis-033 (7.50s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_graph\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_graph\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: no_routing
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_routing\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_routing\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (1.61s)
+[2/29] OK    developer_activity-026 (0.58s)
+[3/29] OK    developer_activity-015 (0.82s)
+[4/29] OK    developer_activity-018 (0.18s)
+[5/29] OK    developer_activity-029 (0.46s)
+[6/29] OK    issue_pr_analysis-015 (1.00s)
+[7/29] OK    issue_pr_analysis-035 (0.57s)
+[8/29] OK    issue_pr_analysis-005 (1.59s)
+[9/29] OK    issue_pr_analysis-010 (1.34s)
+[10/29] OK    issue_pr_analysis-021 (0.45s)
+[11/29] OK    issue_pr_analysis-033 (0.20s)
+[12/29] OK    issue_pr_analysis-039 (0.20s)
+[13/29] OK    issue_pr_analysis-014 (0.25s)
+[14/29] OK    issue_pr_analysis-028 (0.28s)
+[15/29] OK    documentation_lookup-024 (0.91s)
+[16/29] OK    documentation_lookup-020 (3.75s)
+[17/29] OK    multi_hop-029 (0.48s)
+[18/29] OK    multi_hop-043 (0.36s)
+[19/29] OK    multi_hop-005 (0.32s)
+[20/29] OK    multi_hop-012 (0.29s)
+[21/29] OK    multi_hop-024 (0.40s)
+[22/29] OK    multi_hop-004 (0.20s)
+[23/29] OK    multi_hop-032 (0.23s)
+[24/29] OK    multi_hop-031 (0.19s)
+[25/29] OK    dependency_analysis-043 (0.29s)
+[26/29] OK    dependency_analysis-028 (0.25s)
+[27/29] OK    dependency_analysis-003 (0.18s)
+[28/29] OK    dependency_analysis-025 (0.21s)
+[29/29] OK    dependency_analysis-033 (0.24s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_routing\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_routing\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: no_templates
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (5.19s)
+[2/29] OK    developer_activity-026 (13.50s)
+[3/29] OK    developer_activity-015 (5.22s)
+[4/29] OK    developer_activity-018 (7.53s)
+[5/29] OK    developer_activity-029 (27.66s)
+[6/29] OK    issue_pr_analysis-015 (12.96s)
+[7/29] OK    issue_pr_analysis-035 (5.04s)
+[8/29] OK    issue_pr_analysis-005 (27.84s)
+[9/29] OK    issue_pr_analysis-010 (9.17s)
+[10/29] OK    issue_pr_analysis-021 (8.59s)
+[11/29] OK    issue_pr_analysis-033 (16.85s)
+[12/29] OK    issue_pr_analysis-039 (7.78s)
+[13/29] OK    issue_pr_analysis-014 (7.52s)
+[14/29] OK    issue_pr_analysis-028 (8.63s)
+[15/29] OK    documentation_lookup-024 (11.62s)
+[16/29] OK    documentation_lookup-020 (8.96s)
+[17/29] OK    multi_hop-029 (18.66s)
+[18/29] OK    multi_hop-043 (7.19s)
+[19/29] OK    multi_hop-005 (8.11s)
+[20/29] OK    multi_hop-012 (7.29s)
+[21/29] OK    multi_hop-024 (7.91s)
+[22/29] OK    multi_hop-004 (7.45s)
+[23/29] OK    multi_hop-032 (7.44s)
+[24/29] OK    multi_hop-031 (7.11s)
+[25/29] OK    dependency_analysis-043 (7.18s)
+[26/29] OK    dependency_analysis-028 (7.37s)
+[27/29] OK    dependency_analysis-003 (7.66s)
+[28/29] OK    dependency_analysis-025 (7.74s)
+[29/29] OK    dependency_analysis-033 (7.30s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: no_fallback
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_fallback\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_fallback\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.25s)
+[2/29] OK    developer_activity-026 (0.18s)
+[3/29] OK    developer_activity-015 (0.16s)
+[4/29] OK    developer_activity-018 (0.16s)
+[5/29] OK    developer_activity-029 (0.15s)
+[6/29] OK    issue_pr_analysis-015 (0.16s)
+[7/29] OK    issue_pr_analysis-035 (0.16s)
+[8/29] OK    issue_pr_analysis-005 (0.14s)
+[9/29] OK    issue_pr_analysis-010 (0.15s)
+[10/29] OK    issue_pr_analysis-021 (0.15s)
+[11/29] OK    issue_pr_analysis-033 (0.17s)
+[12/29] OK    issue_pr_analysis-039 (0.16s)
+[13/29] OK    issue_pr_analysis-014 (0.15s)
+[14/29] OK    issue_pr_analysis-028 (0.17s)
+[15/29] OK    documentation_lookup-024 (1.42s)
+[16/29] OK    documentation_lookup-020 (0.24s)
+[17/29] OK    multi_hop-029 (0.17s)
+[18/29] OK    multi_hop-043 (0.19s)
+[19/29] OK    multi_hop-005 (0.17s)
+[20/29] OK    multi_hop-012 (0.18s)
+[21/29] OK    multi_hop-024 (0.21s)
+[22/29] OK    multi_hop-004 (0.21s)
+[23/29] OK    multi_hop-032 (0.25s)
+[24/29] OK    multi_hop-031 (0.19s)
+[25/29] OK    dependency_analysis-043 (0.18s)
+[26/29] OK    dependency_analysis-028 (0.20s)
+[27/29] OK    dependency_analysis-003 (0.20s)
+[28/29] OK    dependency_analysis-025 (0.15s)
+[29/29] OK    dependency_analysis-033 (0.15s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_fallback\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_fallback\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: no_validation
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_validation\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_validation\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.18s)
+[2/29] OK    developer_activity-026 (0.15s)
+[3/29] OK    developer_activity-015 (0.15s)
+[4/29] OK    developer_activity-018 (0.15s)
+[5/29] OK    developer_activity-029 (0.15s)
+[6/29] OK    issue_pr_analysis-015 (0.24s)
+[7/29] OK    issue_pr_analysis-035 (0.16s)
+[8/29] OK    issue_pr_analysis-005 (0.17s)
+[9/29] OK    issue_pr_analysis-010 (0.16s)
+[10/29] OK    issue_pr_analysis-021 (0.15s)
+[11/29] OK    issue_pr_analysis-033 (0.15s)
+[12/29] OK    issue_pr_analysis-039 (0.15s)
+[13/29] OK    issue_pr_analysis-014 (0.13s)
+[14/29] OK    issue_pr_analysis-028 (0.14s)
+[15/29] OK    documentation_lookup-024 (1.46s)
+[16/29] OK    documentation_lookup-020 (0.26s)
+[17/29] OK    multi_hop-029 (0.18s)
+[18/29] OK    multi_hop-043 (0.17s)
+[19/29] OK    multi_hop-005 (0.18s)
+[20/29] OK    multi_hop-012 (0.17s)
+[21/29] OK    multi_hop-024 (0.20s)
+[22/29] OK    multi_hop-004 (0.21s)
+[23/29] OK    multi_hop-032 (0.19s)
+[24/29] OK    multi_hop-031 (0.19s)
+[25/29] OK    dependency_analysis-043 (0.14s)
+[26/29] OK    dependency_analysis-028 (0.16s)
+[27/29] OK    dependency_analysis-003 (0.16s)
+[28/29] OK    dependency_analysis-025 (0.16s)
+[29/29] OK    dependency_analysis-033 (0.15s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_validation\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_validation\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: fixed_1hop
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_1hop\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_1hop\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.15s)
+[2/29] OK    developer_activity-026 (0.14s)
+[3/29] OK    developer_activity-015 (0.14s)
+[4/29] OK    developer_activity-018 (0.16s)
+[5/29] OK    developer_activity-029 (0.17s)
+[6/29] OK    issue_pr_analysis-015 (0.15s)
+[7/29] OK    issue_pr_analysis-035 (0.23s)
+[8/29] OK    issue_pr_analysis-005 (0.13s)
+[9/29] OK    issue_pr_analysis-010 (0.13s)
+[10/29] OK    issue_pr_analysis-021 (0.15s)
+[11/29] OK    issue_pr_analysis-033 (0.15s)
+[12/29] OK    issue_pr_analysis-039 (0.15s)
+[13/29] OK    issue_pr_analysis-014 (0.16s)
+[14/29] OK    issue_pr_analysis-028 (0.20s)
+[15/29] OK    documentation_lookup-024 (1.48s)
+[16/29] OK    documentation_lookup-020 (0.20s)
+[17/29] OK    multi_hop-029 (0.19s)
+[18/29] OK    multi_hop-043 (0.25s)
+[19/29] OK    multi_hop-005 (0.20s)
+[20/29] OK    multi_hop-012 (0.18s)
+[21/29] OK    multi_hop-024 (0.20s)
+[22/29] OK    multi_hop-004 (0.20s)
+[23/29] OK    multi_hop-032 (0.20s)
+[24/29] OK    multi_hop-031 (0.16s)
+[25/29] OK    dependency_analysis-043 (0.15s)
+[26/29] OK    dependency_analysis-028 (0.15s)
+[27/29] OK    dependency_analysis-003 (0.15s)
+[28/29] OK    dependency_analysis-025 (0.15s)
+[29/29] OK    dependency_analysis-033 (0.16s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_1hop\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_1hop\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: fixed_2hop
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_2hop\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_2hop\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.40s)
+[2/29] OK    developer_activity-026 (0.21s)
+[3/29] OK    developer_activity-015 (0.19s)
+[4/29] OK    developer_activity-018 (0.28s)
+[5/29] OK    developer_activity-029 (0.17s)
+[6/29] OK    issue_pr_analysis-015 (0.14s)
+[7/29] OK    issue_pr_analysis-035 (0.16s)
+[8/29] OK    issue_pr_analysis-005 (0.14s)
+[9/29] OK    issue_pr_analysis-010 (0.15s)
+[10/29] OK    issue_pr_analysis-021 (0.19s)
+[11/29] OK    issue_pr_analysis-033 (0.13s)
+[12/29] OK    issue_pr_analysis-039 (0.17s)
+[13/29] OK    issue_pr_analysis-014 (0.16s)
+[14/29] OK    issue_pr_analysis-028 (0.14s)
+[15/29] OK    documentation_lookup-024 (1.67s)
+[16/29] OK    documentation_lookup-020 (0.20s)
+[17/29] OK    multi_hop-029 (0.17s)
+[18/29] OK    multi_hop-043 (0.18s)
+[19/29] OK    multi_hop-005 (0.18s)
+[20/29] OK    multi_hop-012 (0.20s)
+[21/29] OK    multi_hop-024 (0.17s)
+[22/29] OK    multi_hop-004 (0.15s)
+[23/29] OK    multi_hop-032 (0.16s)
+[24/29] OK    multi_hop-031 (0.20s)
+[25/29] OK    dependency_analysis-043 (0.14s)
+[26/29] OK    dependency_analysis-028 (0.27s)
+[27/29] OK    dependency_analysis-003 (0.21s)
+[28/29] OK    dependency_analysis-025 (0.20s)
+[29/29] OK    dependency_analysis-033 (0.20s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_2hop\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_2hop\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: fixed_3hop
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_3hop\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_3hop\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.17s)
+[2/29] OK    developer_activity-026 (0.13s)
+[3/29] OK    developer_activity-015 (0.15s)
+[4/29] OK    developer_activity-018 (0.15s)
+[5/29] OK    developer_activity-029 (0.17s)
+[6/29] OK    issue_pr_analysis-015 (0.21s)
+[7/29] OK    issue_pr_analysis-035 (0.16s)
+[8/29] OK    issue_pr_analysis-005 (0.15s)
+[9/29] OK    issue_pr_analysis-010 (0.15s)
+[10/29] OK    issue_pr_analysis-021 (0.15s)
+[11/29] OK    issue_pr_analysis-033 (0.14s)
+[12/29] OK    issue_pr_analysis-039 (0.14s)
+[13/29] OK    issue_pr_analysis-014 (0.14s)
+[14/29] OK    issue_pr_analysis-028 (0.14s)
+[15/29] OK    documentation_lookup-024 (1.50s)
+[16/29] OK    documentation_lookup-020 (0.28s)
+[17/29] OK    multi_hop-029 (0.31s)
+[18/29] OK    multi_hop-043 (0.26s)
+[19/29] OK    multi_hop-005 (0.21s)
+[20/29] OK    multi_hop-012 (0.30s)
+[21/29] OK    multi_hop-024 (0.24s)
+[22/29] OK    multi_hop-004 (0.22s)
+[23/29] OK    multi_hop-032 (0.28s)
+[24/29] OK    multi_hop-031 (0.24s)
+[25/29] OK    dependency_analysis-043 (0.30s)
+[26/29] OK    dependency_analysis-028 (0.18s)
+[27/29] OK    dependency_analysis-003 (0.18s)
+[28/29] OK    dependency_analysis-025 (0.19s)
+[29/29] OK    dependency_analysis-033 (0.18s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_3hop\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_3hop\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: fusion_graph_heavy
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_graph_heavy\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_graph_heavy\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.28s)
+[2/29] OK    developer_activity-026 (0.16s)
+[3/29] OK    developer_activity-015 (0.16s)
+[4/29] OK    developer_activity-018 (0.16s)
+[5/29] OK    developer_activity-029 (0.15s)
+[6/29] OK    issue_pr_analysis-015 (0.15s)
+[7/29] OK    issue_pr_analysis-035 (0.16s)
+[8/29] OK    issue_pr_analysis-005 (0.16s)
+[9/29] OK    issue_pr_analysis-010 (0.17s)
+[10/29] OK    issue_pr_analysis-021 (0.15s)
+[11/29] OK    issue_pr_analysis-033 (0.17s)
+[12/29] OK    issue_pr_analysis-039 (0.17s)
+[13/29] OK    issue_pr_analysis-014 (0.19s)
+[14/29] OK    issue_pr_analysis-028 (0.19s)
+[15/29] OK    documentation_lookup-024 (1.60s)
+[16/29] OK    documentation_lookup-020 (0.21s)
+[17/29] OK    multi_hop-029 (0.18s)
+[18/29] OK    multi_hop-043 (0.17s)
+[19/29] OK    multi_hop-005 (0.17s)
+[20/29] OK    multi_hop-012 (0.17s)
+[21/29] OK    multi_hop-024 (0.19s)
+[22/29] OK    multi_hop-004 (0.18s)
+[23/29] OK    multi_hop-032 (0.17s)
+[24/29] OK    multi_hop-031 (0.18s)
+[25/29] OK    dependency_analysis-043 (0.14s)
+[26/29] OK    dependency_analysis-028 (0.17s)
+[27/29] OK    dependency_analysis-003 (0.14s)
+[28/29] OK    dependency_analysis-025 (0.12s)
+[29/29] OK    dependency_analysis-033 (0.12s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_graph_heavy\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_graph_heavy\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: fusion_vector_heavy
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_vector_heavy\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_vector_heavy\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.21s)
+[2/29] OK    developer_activity-026 (0.24s)
+[3/29] OK    developer_activity-015 (0.17s)
+[4/29] OK    developer_activity-018 (0.16s)
+[5/29] OK    developer_activity-029 (0.37s)
+[6/29] OK    issue_pr_analysis-015 (0.19s)
+[7/29] OK    issue_pr_analysis-035 (0.16s)
+[8/29] OK    issue_pr_analysis-005 (0.14s)
+[9/29] OK    issue_pr_analysis-010 (0.16s)
+[10/29] OK    issue_pr_analysis-021 (0.16s)
+[11/29] OK    issue_pr_analysis-033 (0.22s)
+[12/29] OK    issue_pr_analysis-039 (0.17s)
+[13/29] OK    issue_pr_analysis-014 (0.17s)
+[14/29] OK    issue_pr_analysis-028 (0.27s)
+[15/29] OK    documentation_lookup-024 (1.59s)
+[16/29] OK    documentation_lookup-020 (0.98s)
+[17/29] OK    multi_hop-029 (0.81s)
+[18/29] OK    multi_hop-043 (0.17s)
+[19/29] OK    multi_hop-005 (0.16s)
+[20/29] OK    multi_hop-012 (0.19s)
+[21/29] OK    multi_hop-024 (0.20s)
+[22/29] OK    multi_hop-004 (0.20s)
+[23/29] OK    multi_hop-032 (0.21s)
+[24/29] OK    multi_hop-031 (0.30s)
+[25/29] OK    dependency_analysis-043 (0.15s)
+[26/29] OK    dependency_analysis-028 (0.16s)
+[27/29] OK    dependency_analysis-003 (0.18s)
+[28/29] OK    dependency_analysis-025 (0.14s)
+[29/29] OK    dependency_analysis-033 (0.14s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_vector_heavy\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_vector_heavy\adaptive_hybrid_graphrag_results.csv
+========================================
+Ablation: fusion_equal_weight
+========================================
+Neo4j URI: 'neo4j+s://9102aef9.databases.neo4j.io'
+Neo4j username: 'neo4j'
+Neo4j database: 'neo4j'
+
+System execution
+--------------------------------------------------------------------------------
+System        : adaptive_hybrid_graphrag
+Benchmark     : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\data\benchmark\splits\dev.csv
+Questions     : 29
+Repeats       : 1
+Total runs    : 29
+Completed IDs : 0
+JSONL output  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_equal_weight\adaptive_hybrid_graphrag_results.jsonl
+CSV output    : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_equal_weight\adaptive_hybrid_graphrag_results.csv
+--------------------------------------------------------------------------------
+[1/29] OK    developer_activity-006 (0.24s)
+[2/29] OK    developer_activity-026 (0.15s)
+[3/29] OK    developer_activity-015 (0.16s)
+[4/29] OK    developer_activity-018 (0.16s)
+[5/29] OK    developer_activity-029 (0.15s)
+[6/29] OK    issue_pr_analysis-015 (0.15s)
+[7/29] OK    issue_pr_analysis-035 (0.15s)
+[8/29] OK    issue_pr_analysis-005 (0.16s)
+[9/29] OK    issue_pr_analysis-010 (0.15s)
+[10/29] OK    issue_pr_analysis-021 (0.15s)
+[11/29] OK    issue_pr_analysis-033 (0.17s)
+[12/29] OK    issue_pr_analysis-039 (0.13s)
+[13/29] OK    issue_pr_analysis-014 (0.17s)
+[14/29] OK    issue_pr_analysis-028 (0.15s)
+[15/29] OK    documentation_lookup-024 (3.47s)
+[16/29] OK    documentation_lookup-020 (0.31s)
+[17/29] OK    multi_hop-029 (0.26s)
+[18/29] OK    multi_hop-043 (0.26s)
+[19/29] OK    multi_hop-005 (0.25s)
+[20/29] OK    multi_hop-012 (0.26s)
+[21/29] OK    multi_hop-024 (0.28s)
+[22/29] OK    multi_hop-004 (0.28s)
+[23/29] OK    multi_hop-032 (0.23s)
+[24/29] OK    multi_hop-031 (0.25s)
+[25/29] OK    dependency_analysis-043 (0.61s)
+[26/29] OK    dependency_analysis-028 (0.19s)
+[27/29] OK    dependency_analysis-003 (0.51s)
+[28/29] OK    dependency_analysis-025 (0.17s)
+[29/29] OK    dependency_analysis-033 (0.20s)
+
+Execution completed
+--------------------------------------------------------------------------------
+Processed : 29
+Skipped   : 0
+Failed    : 0
+JSONL file: C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_equal_weight\adaptive_hybrid_graphrag_results.jsonl
+CSV file  : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_equal_weight\adaptive_hybrid_graphrag_results.csv
+========================================
+Evaluating all ablation variants
+========================================
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.937931               0.392519    0.959366 0.965517                  1.000000             0.366988              0.072414                 0.034483                   0.344828         1.000000      0.999759  0.999879 0.994139   0.217368          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\full_system\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\full_system\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\full_system\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.927586               0.339262    0.962336 0.965517                  0.724138             0.366988              0.000000                 0.000000                   0.000000         1.000000      0.999759  0.999879 0.994139   0.189755          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_vector\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_vector\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_vector\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         0.137931         0.103448               0.103448          0.103448       0.103448   0.103448                0.103448                 NaN              NaN          NaN            NaN                   NaN              0.103448            0.896552                  0.965517               0.196723    0.978338 0.965517                  0.068966             0.000000              0.196723                 0.000000                   0.000000         0.103448      0.103448  0.103448 0.103448   7.681140          NaN                       NaN               0.000000                  NaN                       NaN              NaN                                    0.000000                                        0.862069                                0.103448                                            0.034483                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_graph\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_graph\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_graph\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.934483               0.444243    0.974847 0.977011                  0.344828             0.366988              0.193432                 0.192529                   0.931034         1.000000      0.999759  0.999879 0.994139   0.614949          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_routing\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_routing\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_routing\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         0.862069               0.862069          0.379310       0.362069   0.367816                0.344828                 NaN              NaN          NaN            NaN                   NaN              0.827473            0.498471                  0.793103               0.248169    0.811688 0.810345                  1.000000             0.216055              0.072414                 0.040000                   0.344828         0.513971      0.919540  0.534304 0.559769  10.084189          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                0.862069                                            0.137931                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_templates\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.937931               0.392519    0.959366 0.965517                  1.000000             0.366988              0.072414                 0.034483                   0.344828         1.000000      0.999759  0.999879 0.994139   0.221528          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_fallback\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_fallback\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_fallback\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.937931               0.392519    0.959366 0.965517                  1.000000             0.366988              0.072414                 0.034483                   0.344828         1.000000      0.999759  0.999879 0.994139   0.213839          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_validation\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_validation\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\no_validation\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.937931               0.392519    0.959366 0.965517                  1.000000             0.366988              0.072414                 0.034483                   0.344828         1.000000      0.999759  0.999879 0.994139   0.215271          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_1hop\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_1hop\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_1hop\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.937931               0.392519    0.959366 0.965517                  1.000000             0.366988              0.072414                 0.034483                   0.344828         1.000000      0.999759  0.999879 0.994139   0.238171          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_2hop\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_2hop\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_2hop\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.937931               0.392519    0.959366 0.965517                  1.000000             0.366988              0.072414                 0.034483                   0.344828         1.000000      0.999759  0.999879 0.994139   0.241233          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_3hop\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_3hop\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fixed_3hop\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.937931               0.392519    0.959261 0.965517                  1.000000             0.366988              0.072414                 0.034483                   0.344828         1.000000      0.999759  0.999879 0.994139   0.218198          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_graph_heavy\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_graph_heavy\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_graph_heavy\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.944828               0.395810    0.960979 0.965517                  1.000000             0.365263              0.072414                 0.034483                   0.344828         1.000000      0.999759  0.999879 0.994139   0.288152          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_vector_heavy\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_vector_heavy\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_vector_heavy\evaluation\summary_metrics.csv
+
+Evaluation input validation
+----------------------------------------------------------------------------------------------------
+System                              Rows   Answers    Errors   Missing Ref   Evaluable
+----------------------------------------------------------------------------------------------------
+adaptive_hybrid_graphrag              29        29         0             0          29
+
+Evaluation summary
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  system  total_rows  successful_rows  failed_rows  error_rows  missing_answer_rows  missing_reference_rows  success_rate  answer_coverage  answer_accuracy  ground_truth_coverage  entity_precision  entity_recall  entity_f1  required_fact_coverage  relation_precision  relation_recall  relation_f1  path_accuracy  multi_hop_completion  supported_claim_rate  hallucination_rate  evidence_precision_at_10  evidence_recall_at_10  ndcg_at_10      mrr  retrieval_route_accuracy  graph_source_recall  vector_source_recall  evidence_source_overlap  evidence_source_diversity  token_precision  token_recall  token_f1  rouge_l  latency_s  token_usage  retrieved_context_tokens  graph_query_attempted  graph_query_invalid  graph_query_empty_result  graph_hop_count  abstention_quality_correct_abstention_rate  abstention_quality_unnecessary_abstention_rate  abstention_quality_correct_answer_rate  abstention_quality_incorrect_confident_answer_rate  abstention_quality_unsupported_answer_rate
+adaptive_hybrid_graphrag          29               29            0           0                    0                       0      1.000000         1.000000         1.000000               1.000000          0.379310       0.362069   0.367816                0.632184            1.000000         1.000000     1.000000       1.000000              1.000000              1.000000            0.000000                  0.944828               0.395810    0.961334 0.965517                  1.000000             0.365263              0.072414                 0.034483                   0.344828         1.000000      0.999759  0.999879 0.994139   0.336888          NaN                       NaN               1.000000             0.000000                  0.000000         1.896552                                    0.000000                                        0.000000                                1.000000                                            0.000000                                    0.000000
+
+Metric interpretation
+----------------------------------------------------------------------------------------------------
+answer_accuracy/entity_f1 : primary factual correctness
+required_fact_coverage    : semantic coverage of validated facts
+relation/path metrics     : reported only when explicit predictions exist
+supported_claim_rate      : claims supported by benchmark facts/evidence
+hallucination_rate        : unsupported generated claims
+retrieval metrics         : canonical evidence matching
+route accuracy            : reported only for Adaptive Hybrid
+ROUGE-L/BERTScore         : supporting similarity metrics
+
+Output files
+----------------------------------------------------------------------------------------------------
+Per-question metrics : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_equal_weight\evaluation\per_question_metrics.csv
+Error report         : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_equal_weight\evaluation\evaluation_errors.csv
+Summary metrics      : C:\Users\ADMIN\Documents\Sem\4-Research\My Research\Experiment\graphrag-research-starter\graphrag-research\results\ablations\fusion_equal_weight\evaluation\summary_metrics.csv
+Ablation matrix complete.
+Per-variant results: results/ablations/<variant>/evaluation/summary_metrics.csv
