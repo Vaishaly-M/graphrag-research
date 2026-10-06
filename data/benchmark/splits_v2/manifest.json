@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "policy": "retain existing memberships; no human tuning",
+  "splits": {
+    "development": {
+      "count": 29,
+      "sha256": "05530b27aaca82cbf87442d92da73eb13e70e5b64716be922283e5b342d24b7e",
+      "source": "data\\benchmark\\splits\\dev.csv"
+    },
+    "validation": {
+      "count": 29,
+      "sha256": "65217b4ef800772c7549e24faf7d3260bdf701336c951ad75be9989ef9c48ed5",
+      "source": "data\\benchmark\\splits\\validation.csv"
+    },
+    "hidden-test": {
+      "count": 242,
+      "sha256": "42b776aa59bc63bff3bd21641c7238b2f61136469438332832ce3b52aa7d8e15",
+      "source": "data\\benchmark\\splits\\hidden_test_answer_key.csv"
+    },
+    "human-test": {
+      "count": 100,
+      "sha256": "1f7dad16b56f10924233d2c728ef776401be24bc9cf4cd8a420dd3cd023ce390",
+      "source": "data\\benchmark\\Human Written Question.csv"
+    }
+  },
+  "paraphrased_set": null
+}
