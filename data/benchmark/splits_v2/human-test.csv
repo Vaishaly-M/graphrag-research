@@ -1,0 +1,101 @@
+question_id,author_persona,repo,category,question
+Q001,New contributor onboarding,spring-projects/spring-petclinic,Structure,Where do the Java classes for owners and pets live?
+Q002,New contributor onboarding,spring-projects/spring-petclinic,Code retrieval,Which method handles submitting the new pet form?
+Q003,New contributor onboarding,spring-projects/spring-petclinic,Dependency analysis,What brings Spring Boot into this project's Maven build?
+Q004,New contributor onboarding,spring-projects/spring-petclinic,Documentation lookup,Is there a README command I can use to run PetClinic locally?
+Q005,New contributor onboarding,openmrs/openmrs-core,Issue/PR analysis,How do I find the newest open PR that changes Java code in the api module?
+Q006,New contributor onboarding,openmrs/openmrs-core,Developer activity,Who wrote the most recent commit touching README.md?
+Q007,New contributor onboarding,openmrs/openmrs-core,Multi-hop reasoning,"Starting with PatientService, can you trace its implementation to the test class exercising it, then tell me who last changed that test class?"
+Q008,New contributor onboarding,openmrs/openmrs-core,Structure,Where's the src/quantum-patient-teleporter folder meant to fit in?
+Q009,New contributor onboarding,dotnet/eShop,Code retrieval,Can someone point me to the code that lists catalog items?
+Q010,New contributor onboarding,dotnet/eShop,Dependency analysis,Which NuGet packages does Catalog.API directly reference?
+Q011,New contributor onboarding,dotnet/eShop,Documentation lookup,What setup steps does the README give for running the sample?
+Q012,New contributor onboarding,dotnet/eShop,Issue/PR analysis,What's the newest merged PR whose diff includes Catalog.API?
+Q013,New contributor onboarding,apache/airflow,Developer activity,Who last edited the contributors' quick start guide?
+Q014,New contributor onboarding,apache/airflow,Multi-hop reasoning,"From the Task SDK README, follow the link to its contributor setup guide, find the script used by a setup command there, and show where that script is implemented."
+Q015,New contributor onboarding,apache/airflow,Structure,How are airflow-core and task-sdk laid out relative to each other?
+Q016,New contributor onboarding,apache/airflow,Code retrieval,Where is the execute method for QuantumTeleportOperator implemented?
+Q017,New contributor onboarding,mlflow/mlflow,Dependency analysis,Which file declares the Python packages needed to install MLflow from source?
+Q018,New contributor onboarding,mlflow/mlflow,Documentation lookup,Any quickstart example in the repo for logging params and metrics?
+Q019,New contributor onboarding,mlflow/mlflow,Issue/PR analysis,What does the most recently opened PR changing CONTRIBUTING.md propose?
+Q020,New contributor onboarding,mlflow/mlflow,Developer activity,Who authored the latest commit to the tracking quickstart example?
+Q021,Maintainer doing triage,spring-projects/spring-petclinic,Multi-hop reasoning,"For the latest merged PR touching PetController.java, which test file changed alongside the controller, and who authored the most recent earlier commit to that test file?"
+Q022,Maintainer doing triage,spring-projects/spring-petclinic,Structure,Location of controller tests?
+Q023,Maintainer doing triage,spring-projects/spring-petclinic,Code retrieval,Where is a duplicate pet name rejected?
+Q024,Maintainer doing triage,spring-projects/spring-petclinic,Dependency analysis,What Java version does the build require?
+Q025,Maintainer doing triage,openmrs/openmrs-core,Documentation lookup,Which contribution instructions cover submitting a patch?
+Q026,Maintainer doing triage,openmrs/openmrs-core,Issue/PR analysis,Status and labels on GitHub issue #987654321?
+Q027,Maintainer doing triage,openmrs/openmrs-core,Developer activity,Who contributed commits under api during the last 30 days?
+Q028,Maintainer doing triage,openmrs/openmrs-core,Multi-hop reasoning,"Find the newest merged PR changing PatientService, follow it to the changed implementation file, then identify the author of the previous commit to that implementation file."
+Q029,Maintainer doing triage,dotnet/eShop,Structure,Which top-level folders contain runnable services?
+Q030,Maintainer doing triage,dotnet/eShop,Code retrieval,Find the catalog endpoint code that fetches an item by its identifier.
+Q031,Maintainer doing triage,dotnet/eShop,Dependency analysis,Where are shared NuGet package versions pinned?
+Q032,Maintainer doing triage,dotnet/eShop,Documentation lookup,Need the repo's documented instructions for starting the AppHost.
+Q033,Maintainer doing triage,apache/airflow,Issue/PR analysis,Which open issues currently carry the good first issue label?
+Q034,Maintainer doing triage,apache/airflow,Developer activity,List the authors of the ten most recent commits changing contributing-docs.
+Q035,Maintainer doing triage,apache/airflow,Multi-hop reasoning,"In the newest merged scheduler PR, what issue is explicitly linked and what reproduction steps does that issue provide?"
+Q036,Maintainer doing triage,apache/airflow,Structure,Where are provider packages kept?
+Q037,Maintainer doing triage,mlflow/mlflow,Code retrieval,Show me the implementation behind mlflow.log_metric.
+Q038,Maintainer doing triage,mlflow/mlflow,Dependency analysis,Which runtime dependencies are declared for the quantum-unicorn-tracker package?
+Q039,Maintainer doing triage,mlflow/mlflow,Documentation lookup,Where does the contribution guide explain running tests for examples?
+Q040,Maintainer doing triage,mlflow/mlflow,Issue/PR analysis,Any open PRs with tracking in the title? Return their titles and review states.
+Q041,Code reviewer,spring-projects/spring-petclinic,Developer activity,Identify the author of the latest commit modifying OwnerController.java.
+Q042,Code reviewer,spring-projects/spring-petclinic,Multi-hop reasoning,"For a failed pet creation submission, trace the controller's returned view to its HTML template and then to the message resource that supplies the required-name validation text."
+Q043,Code reviewer,spring-projects/spring-petclinic,Structure,How are HTML templates separated from Java source in this repository?
+Q044,Code reviewer,spring-projects/spring-petclinic,Code retrieval,Which function in GalacticPetVaccinationController processes interplanetary vaccination requests?
+Q045,Code reviewer,openmrs/openmrs-core,Dependency analysis,How does the api module inherit dependency versions from the parent Maven configuration?
+Q046,Code reviewer,openmrs/openmrs-core,Documentation lookup,What coding conventions are stated in the repository's contribution documentation?
+Q047,Code reviewer,openmrs/openmrs-core,Issue/PR analysis,"For the most recently merged PR touching api, what concerns were raised in its review comments?"
+Q048,Code reviewer,openmrs/openmrs-core,Developer activity,Who authored the last five commits modifying Patient.java?
+Q049,Code reviewer,dotnet/eShop,Multi-hop reasoning,"Which catalog handler returns an item by ID, and where is that handler registered as an HTTP endpoint?"
+Q050,Code reviewer,dotnet/eShop,Structure,Where are Catalog.API endpoint definitions placed within src?
+Q051,Code reviewer,dotnet/eShop,Code retrieval,Locate the catalog item model and its declared properties.
+Q052,Code reviewer,dotnet/eShop,Dependency analysis,Which project references are declared by the AppHost project?
+Q053,Code reviewer,apache/airflow,Documentation lookup,What does the contribution workflow document require before a pull request is submitted?
+Q054,Code reviewer,apache/airflow,Issue/PR analysis,Summarize the diff and reviewer feedback for PR #987654322.
+Q055,Code reviewer,apache/airflow,Developer activity,Which contributors authored commits to task-sdk in the last completed calendar month?
+Q056,Code reviewer,apache/airflow,Multi-hop reasoning,"For the newest merged PR changing a Task SDK public interface, identify a changed test covering it, then find the CI workflow that runs that test suite."
+Q057,Code reviewer,mlflow/mlflow,Structure,How are reusable Python packages under libs organized separately from the main mlflow package?
+Q058,Code reviewer,mlflow/mlflow,Code retrieval,Where is the public start_run function defined?
+Q059,Code reviewer,mlflow/mlflow,Dependency analysis,What build backend and version constraints are specified in pyproject.toml?
+Q060,Code reviewer,mlflow/mlflow,Documentation lookup,Which repository document describes building the documentation locally?
+Q061,QA / release engineer,spring-projects/spring-petclinic,Issue/PR analysis,Show the latest merged PR that updates pom.xml and any CI results attached to it.
+Q062,QA / release engineer,spring-projects/spring-petclinic,Developer activity,Who committed the latest change to PetControllerTests.java?
+Q063,QA / release engineer,spring-projects/spring-petclinic,Multi-hop reasoning,"Starting with the blank-name pet test, follow the request to the controller's validation path, then locate the message resource entry for the resulting required-name error."
+Q064,QA / release engineer,spring-projects/spring-petclinic,Structure,Where is the release checklist under release/quantum-vaccination-v9?
+Q065,QA / release engineer,openmrs/openmrs-core,Code retrieval,Find the tests covering PatientService.
+Q066,QA / release engineer,openmrs/openmrs-core,Dependency analysis,What Maven plugins participate in running the api module's tests?
+Q067,QA / release engineer,openmrs/openmrs-core,Documentation lookup,What build-and-test commands are documented for a clean checkout?
+Q068,QA / release engineer,openmrs/openmrs-core,Issue/PR analysis,Which open PRs targeting the default branch currently have failing checks?
+Q069,QA / release engineer,dotnet/eShop,Developer activity,Who made the newest commit changing a test project?
+Q070,QA / release engineer,dotnet/eShop,Multi-hop reasoning,"Which SDK version does global.json request, and which CI workflow selects that SDK to build the solution?"
+Q071,QA / release engineer,dotnet/eShop,Structure,Which directories contain automated test projects?
+Q072,QA / release engineer,dotnet/eShop,Code retrieval,Where are the tests for catalog API behavior implemented?
+Q073,QA / release engineer,apache/airflow,Dependency analysis,Where does the build configuration specify supported Python versions?
+Q074,QA / release engineer,apache/airflow,Documentation lookup,Which checked-in instructions describe testing a release candidate?
+Q075,QA / release engineer,apache/airflow,Issue/PR analysis,"What's the latest open issue with scheduler in its title, including the reported version and reproduction steps?"
+Q076,QA / release engineer,apache/airflow,Developer activity,Which release-related commits were authored by the GitHub user quantum-unicorn-release-bot-987654321?
+Q077,QA / release engineer,mlflow/mlflow,Multi-hop reasoning,"Follow the release tooling to the file that replaces pyproject.toml, identify the script generating that replacement file, and tell me who last committed a change to that generator."
+Q078,QA / release engineer,mlflow/mlflow,Structure,Where do the example test suites sit relative to the examples they run?
+Q079,QA / release engineer,mlflow/mlflow,Code retrieval,Locate the automated tests that exercise logging metrics.
+Q080,QA / release engineer,mlflow/mlflow,Dependency analysis,What Python version range is declared for the release package?
+Q081,Student studying the project,spring-projects/spring-petclinic,Documentation lookup,How does the README describe what this sample application demonstrates?
+Q082,Student studying the project,spring-projects/spring-petclinic,Issue/PR analysis,What explanation did the author give in the latest merged PR changing VisitController.java?
+Q083,Student studying the project,spring-projects/spring-petclinic,Developer activity,"Looking at the file history, who first introduced PetController.java?"
+Q084,Student studying the project,spring-projects/spring-petclinic,Multi-hop reasoning,"Could you walk me from the owner details request to its controller method, then to the rendered template, and finally to the template fragment it uses for the page layout?"
+Q085,Student studying the project,openmrs/openmrs-core,Structure,"What is the difference between the api, web and webapp modules according to their files and build definitions?"
+Q086,Student studying the project,openmrs/openmrs-core,Code retrieval,Where can I read the Patient class itself?
+Q087,Student studying the project,openmrs/openmrs-core,Dependency analysis,Which external libraries does the web module declare directly?
+Q088,Student studying the project,openmrs/openmrs-core,Documentation lookup,Which section of docs/quantum-patient-teleportation.md explains patient teleportation?
+Q089,Student studying the project,dotnet/eShop,Issue/PR analysis,"In the newest merged PR that changes README.md, why did the contributor say the edit was needed?"
+Q090,Student studying the project,dotnet/eShop,Developer activity,Who introduced the CatalogApi.cs file in the commit history?
+Q091,Student studying the project,dotnet/eShop,Multi-hop reasoning,"How does the AppHost register Catalog.API, and which consuming app is given a reference to that service?"
+Q092,Student studying the project,dotnet/eShop,Structure,What files make up the src/QuantumUnicornCheckout service?
+Q093,Student studying the project,apache/airflow,Code retrieval,Where can I inspect the Python class representing a DAG?
+Q094,Student studying the project,apache/airflow,Dependency analysis,Which dependencies are listed for the Task SDK package?
+Q095,Student studying the project,apache/airflow,Documentation lookup,Is there a checked-in explanation of how to write a first DAG?
+Q096,Student studying the project,apache/airflow,Issue/PR analysis,What problem is described by the oldest currently open issue with XCom in its title?
+Q097,Student studying the project,mlflow/mlflow,Developer activity,Who has changed the tracking quickstart example over its full recorded history?
+Q098,Student studying the project,mlflow/mlflow,Multi-hop reasoning,"In the tracking quickstart, follow the parameter-logging call to its public implementation, then to the client method it invokes, and finally to the tracking-store method that client delegates to."
+Q099,Student studying the project,mlflow/mlflow,Structure,How are the docs and examples folders arranged at the repository root?
+Q100,Student studying the project,mlflow/mlflow,Multi-hop reasoning,"What artifact-logging function is used in the tracking quickstart, and where is that function's implementation documented?"

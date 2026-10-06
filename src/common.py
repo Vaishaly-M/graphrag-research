@@ -309,7 +309,7 @@ def _clean_cypher_for_validation(query: str) -> str:
     return cleaned
 
 
-def safe_read_cypher(query: str) -> str:
+def _safe_read_cypher_impl(query: str) -> str:
     """
     Validate and return a read-only Cypher query.
 
@@ -398,3 +398,14 @@ def safe_read_cypher(query: str) -> str:
         )
 
     return cypher
+
+
+def safe_read_cypher(query: str) -> str:
+    from src.evaluation.telemetry import CURRENT
+    try:
+        return _safe_read_cypher_impl(query)
+    except Exception as exc:
+        measurement = CURRENT.get()
+        if measurement:
+            measurement.parse_failures.append(type(exc).__name__ + ": " + str(exc))
+        raise

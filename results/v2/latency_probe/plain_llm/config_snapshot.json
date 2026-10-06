@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "git_hash": "45f8ac56c66d0232f3a05312e58015a1efbc94cd",
+  "dirty_tree": true,
+  "system": "plain_llm",
+  "model_name": "gemini-flash-lite-latest",
+  "temperature": 0.0,
+  "seed": null,
+  "seed_note": "Gemini generation seed was not set by the existing systems; not changed in Phase 1",
+  "rpm": 10,
+  "retry_settings": {
+    "retries": 6,
+    "base_delay_s": 1.0
+  },
+  "sdk_attempts": 1,
+  "request_timeout_ms": 60000,
+  "k": 10,
+  "chunk_size": 1200,
+  "chunk_overlap": 180,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "thresholds": {
+    "high_confidence_threshold": 0.85,
+    "medium_confidence_threshold": 0.6
+  },
+  "index_file_hash": "cf50cb33ebc9bdd4644cd2fe32dc6766113240fb961db489239041b4682099b8",
+  "index_manifest_hash": null,
+  "index_directory": "C:\\Users\\ADMIN\\Documents\\Sem\\4-Research\\My Research\\Experiment\\graphrag-research-starter\\graphrag-research\\data\\vector_index",
+  "benchmark_file": "C:\\Users\\ADMIN\\Documents\\Sem\\4-Research\\My Research\\Experiment\\graphrag-research-starter\\graphrag-research\\data\\benchmark\\splits\\hidden_test_questions.csv",
+  "benchmark_sha256": "49dc2327c3bbb578100ffb099b354785bfa1ef845ec2a1e61d44764c5ae542eb",
+  "config": {
+    "seeds": {
+      "benchmark_generation": 42,
+      "synthetic_generation": 42
+    },
+    "llm": {
+      "temperature_default": 0.2,
+      "temperature_deterministic": 0.0,
+      "max_output_tokens_answer": 1024,
+      "max_output_tokens_cypher": 700,
+      "default_rpm": 10,
+      "prompt_version": "v1"
+    },
+    "retry": {
+      "retries": 6,
+      "base_delay_s": 1.0
+    },
+    "neo4j": {
+      "connection_timeout_s": 60.0,
+      "liveness_check_timeout_s": 30.0,
+      "max_connection_pool_size": 10
+    },
+    "vector": {
+      "chunk_size": 1200,
+      "chunk_overlap": 180,
+      "top_k": 10
+    },
+    "router": {
+      "high_confidence_threshold": 0.85,
+      "medium_confidence_threshold": 0.6
+    },
+    "adaptive_hybrid": {
+      "vector_top_k": 10,
+      "max_graph_rows": 100,
+      "max_final_evidence": 16,
+      "fusion_weights": {
+        "retrieval": 0.72,
+        "lexical": 0.2,
+        "graph_bonus": 0.08
+      }
+    },
+    "llm_cache": {
+      "enabled": false,
+      "directory": ".cache/gemini"
+    },
+    "llm_key_pool": {
+      "enabled": false
+    }
+  },
+  "questions": 10,
+  "ways": [
+    "trivial_llm",
+    "retrieval_only",
+    "full_system"
+  ],
+  "physical_request_budget": 60,
+  "source_hashes": {
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/benchmark_gen/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/benchmark_gen/create_pilot_benchmark.py": "4d96089b5a222a7a638151c243875ca297282208766ebccde21a0b60ca6c716b",
+    "src/benchmark_gen/generate_benchmark.py": "b3f1ae16b25c870193a9fac69bef765083ea32cf98f93740c7e35b18e9821626",
+    "src/benchmark_gen/leakage_check.py": "cf46739e1794d531cc82bc371485ea94242e87f8224d6d353ffefc53bb18c2d1",
+    "src/benchmark_gen/paraphrase.py": "5ae0fca1bb6e61c69d54fbaf6f45cb291bd5dc5d681e7a019fd75aa111a24cdf",
+    "src/benchmark_gen/split_benchmark.py": "a786d9c3a3365dff06690eac097a7e06a42d93007abf1d2ec95617f898ca2673",
+    "src/build_vector_index.py": "4f91a5acad90edc81cf136bb83def0361f279b4213a2f01056def7f208e50203",
+    "src/common.py": "2c844330b1f465297c2e6ef2317a2112f44a4450be8e43c3093fe8be414d60d9",
+    "src/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/evaluation/agreement.py": "53c5760e54a7189fde9cfdfbe7a7052f8a4fb213d8a0ec6df3e199822d1ddd61",
+    "src/evaluation/hallucination_annotation.py": "b68525f200813244bd453dcfee4fa4d739d3354c7c6d6c4679beab6a2ef73b1e",
+    "src/evaluation/hallucination_template.py": "86b3d0047e2dde9a69f611fa510f3693f2a8570bc1e9a8f7af6066004d22ed27",
+    "src/evaluation/harness_v2.py": "647c1a73ef7b14c888e5cb18ab0a6fb70ee7d41a0e2b32592bdcdf14d433487d",
+    "src/evaluation/metrics.py": "4a2a74b85ca0aef70d6ece761037f9f3906bc60a013cdadfac9c80e20fa98e4d",
+    "src/evaluation/metrics_v2.py": "ac517868d12e2e8d606478bc398fb8d27ff7cecaefd97c21e82f57d9747e16a2",
+    "src/evaluation/plots.py": "828da295d69a6e3b2de94816a65f6b8132c9dc39b1848e981b2212697c4b6833",
+    "src/evaluation/regression_check.py": "e138a27be6642ada436b90ac96f51b1aa8467e54706d4a40a91fd507477adff3",
+    "src/evaluation/report_tables.py": "d32de82daea7edb62f91f54959bf091037fcf46f60d3c5ec004e94ccdf789a76",
+    "src/evaluation/reproducibility.py": "d936d90c042b359645325d4ed8ff2165c1ca91b8d031320ecf1535fd147430d4",
+    "src/evaluation/routing_diagnostics.py": "d80f863bd9f99987985f5150416da9f1eb860ba2ba7d4d952131c35aae1cd17e",
+    "src/evaluation/statistics.py": "b810a816533f36bf2d1bbdb436c616e3ab6a583fba631fa1dbb27434417262a4",
+    "src/evaluation/telemetry.py": "007ea7388e1cf1cf7f5f55f0f77a4791d2321b827b8b5843534805696d82414b",
+    "src/graph.py": "4d99a21d4ee4512ed2a58ac216d9d3f71d1689f4f9b0eea8bba452685cebdbb9",
+    "src/ingestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/ingestion/clone_repos.py": "b94f75304b6aa027673c32a95130ace5cdfecfeca515a288d90bc59867887c34",
+    "src/ingestion/mine_repositories.py": "f4d1ed106fc55ee174f768562780ad9e8f8c61623cf702da5c97778909ec9eeb",
+    "src/ingestion/repository_metadata.py": "ee8c62690abc0db4ba8c03b5e51a71ae9c1a869cecb5b041342985a9fed39eb0",
+    "src/kg_construction/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/kg_construction/load_graph.py": "40ef38bce27552eaf4736ded3f9f5fa3b15815a2774bf2034d7cabb5b617b090",
+    "src/kg_construction/validate_graph.py": "5868d931f5fd93921daa603e14e242835b1df58f813500b40f7e1a98f69921bd",
+    "src/llm.py": "66a68f56c395429d235d92872b54fd2d79b9fbf6e927871b500d269cbca611b5",
+    "src/preprocessing/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/preprocessing/preprocess_data.py": "a58b966ffeb66659632e03451e697df8d438fa3357316f2de97f013736630a9f",
+    "src/scalability/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/scalability/generate_and_measure.py": "3d7b0b8e6f608a96d85d4c39ad59047bca3b18d6ff2768f39d2beb084ab8cbb3",
+    "src/synthetic_gen/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/synthetic_gen/generate.py": "71f2eb1f92246413b0c72623cfedb49065d06e61b8b98ca50b59b10820008299",
+    "src/systems/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/systems/adaptive_hybrid_graphrag.py": "2c186b65ebab6dde0f8092c9ab85dd630e92a9b10906f17e336faac12c81eca6",
+    "src/systems/base.py": "52608c97c1a31ec7ad851d1ce5891128e25a2426c8a3640986e9d81445062ce8",
+    "src/systems/fixed_graph_rag.py": "17bfbb04e3049de0600ed57bb774c5129b4f42ef53220812734aa034be6c262c",
+    "src/systems/fixed_hybrid_rag.py": "beb1981a85692c4dfeab8ad6bb26eeba5ae207746369a4befd65617e75837d44",
+    "src/systems/langchain_graphrag.py": "94f49b3b28fdce7cbce81d54c8efa1282c287fc093bd06ac35825348e4a2042f",
+    "src/systems/llamaindex_graphrag.py": "f723020004249cb42430b0ae455d09ef3bdeea6aaa984876a83281740f4ecd5d",
+    "src/systems/oracle_hybrid_rag.py": "10d1d3fdd62cb3d4ee7b285454a1e5527d91a2c44d3ca66b747987599a221e87",
+    "src/systems/plain_llm.py": "5cc7e22364ea6467f2191e7843acd6558051a82685b4de4557dfc53d67a74ffb",
+    "src/systems/prompts.py": "af6a254bf5180ced89b86ff8b46bf9ae34478dcb814e57c10e3920e03b164789",
+    "src/systems/query_registry.py": "7316594fcc32c56017488a08f36ed01e315f2f68002889a4df377907206af002",
+    "src/systems/retrieval_core.py": "0b85905e979063ddafc33f68eedf09ade73bca98ff2f9e6a40b5262e1e1cfea4",
+    "src/systems/router.py": "8db2f221b4c43a0352545320a747252240becd33c64589af7766f6e0ad37532b",
+    "src/systems/vector_rag.py": "f310175655906438ff8c7cc0f18e07436171aa99eafa840256eaaa6c08d89293",
+    "src/vector_store.py": "375c55759e438c79149ee2e3cacdea98afec88189bd44edd36e95dec895783d5"
+  }
+}

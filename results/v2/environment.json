@@ -1,0 +1,24 @@
+{
+  "gemini": {
+    "key_present": true,
+    "model": "gemini-flash-lite-latest",
+    "remote_model_availability": "not checked; key presence is not model access"
+  },
+  "neo4j": {
+    "status": "error",
+    "error_type": "ValueError"
+  },
+  "vector_index": {
+    "status": "error",
+    "directory": "C:\\Users\\ADMIN\\Documents\\Sem\\4-Research\\My Research\\Experiment\\graphrag-research-starter\\graphrag-research\\data\\vector_index",
+    "error_type": "FileNotFoundError"
+  },
+  "ollama": {
+    "status": "ok",
+    "models": [
+      "gemma4:latest",
+      "llama3.1:latest"
+    ],
+    "qwen2_5_pulled": false
+  }
+}

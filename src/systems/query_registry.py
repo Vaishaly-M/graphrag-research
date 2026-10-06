@@ -237,7 +237,16 @@ def issue_details(question: str) -> QueryMatch | None:
 def issue_number_by_title(question: str) -> QueryMatch | None:
     if "issue number for" not in question.lower():
         return None
-    repo, title = _repo(question), _fragment(question)
+    # Anchor the closing delimiter to the repository clause: apostrophes
+    # and quoted words inside an issue title are part of the title.
+    title_match = re.search(
+        r"\bissue number for\s+(['\"])(.+)\1\s+in repository\s+"
+        r"([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)\s*\??\s*$",
+        question, flags=re.I | re.S,
+    )
+    if title_match is None:
+        return None
+    title, repo = title_match.group(2), title_match.group(3)
     if not repo or not title:
         return None
     return QueryMatch(
