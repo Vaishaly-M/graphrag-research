@@ -1,0 +1,78 @@
+{
+  "schema_version": 2,
+  "diagnostic_only": true,
+  "provenance": "byte-identical legacy import; original build metadata unavailable",
+  "created_at": "2026-10-08T04:51:04.608218+00:00",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_model_basis": "compatible with recomputed checkpoint subset; not an attestation of historical build settings",
+  "compatibility_checks": [
+    {
+      "start": 0,
+      "count": 2048,
+      "max_absolute_difference": 8.940696716308594e-08,
+      "checkpoint_sha256": "a59c2f2021054365261c7c221eb87c107a68a65ef0064f637d845daf1175fcd9"
+    },
+    {
+      "start": 2048,
+      "count": 2048,
+      "max_absolute_difference": 1.043081283569336e-07,
+      "checkpoint_sha256": "46e40516887b0aac05fce76a21d1fe0e12ac203a57b8248cfe1b14a55e29fb80"
+    },
+    {
+      "start": 4096,
+      "count": 2048,
+      "max_absolute_difference": 7.450580596923828e-08,
+      "checkpoint_sha256": "231d5feeed9da86958af38033fe75ff537294af9e2cf8d8a580ae155c37c1845"
+    },
+    {
+      "start": 6144,
+      "count": 2048,
+      "max_absolute_difference": 6.332993507385254e-08,
+      "checkpoint_sha256": "2dfbb081126a8d4d98cbba1c7bef2181589adf2d416315bd30dd2c1f987b31f7"
+    },
+    {
+      "start": 8192,
+      "count": 2048,
+      "max_absolute_difference": 8.009374141693115e-08,
+      "checkpoint_sha256": "69de6ff24e6e936863d22087fa634f9d785bcd2d38f052b3ecd9e747bd0e2b1b"
+    },
+    {
+      "start": 10240,
+      "count": 2048,
+      "max_absolute_difference": 8.940696716308594e-08,
+      "checkpoint_sha256": "540500f5210ef198366848911ce2b66b9f6dc05a44e42e1760e716458a4c3695"
+    },
+    {
+      "start": 12288,
+      "count": 2048,
+      "max_absolute_difference": 8.940696716308594e-08,
+      "checkpoint_sha256": "e28ae7fec67b37cbe9a6882a94ab31210b2a2cbee9ab0dd9fbb8c22827818cfa"
+    }
+  ],
+  "verified_vector_count": 14336,
+  "chunk_size": null,
+  "chunk_overlap": null,
+  "original_source_dirs": null,
+  "source_dirs": [
+    "C:\\Users\\ADMIN\\Documents\\Sem\\4-Research\\My Research\\Experiment\\graphrag-research-starter\\graphrag-research\\data\\vector_index"
+  ],
+  "doc_count": 131179,
+  "counts_per_repo": {
+    "apache/airflow": 72800,
+    "dotnet/eShop": 4707,
+    "mlflow/mlflow": 38847,
+    "openmrs/openmrs-core": 12427,
+    "spring-projects/spring-petclinic": 2098,
+    "synthetic-org/platform": 300
+  },
+  "counts_per_kind": {
+    "file": 116923,
+    "commit": 4559,
+    "issue": 3389,
+    "pull_request": 6308
+  },
+  "synthetic_included": true,
+  "synthetic_basis": "synthetic repository documents present; original ingestion directory unrecorded",
+  "index_sha256": "cf50cb33ebc9bdd4644cd2fe32dc6766113240fb961db489239041b4682099b8",
+  "docs_sha256": "d125a2aa9a3fbc328a9fc11419a629ce929761000767ddc14a407a8eabf70007"
+}

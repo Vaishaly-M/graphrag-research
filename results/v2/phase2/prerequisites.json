@@ -1,0 +1,10 @@
+{
+  "router_tuning_csv_present": false,
+  "router_tuning_manifest_entry_present": false,
+  "empirical_route_script_present": false,
+  "recall_accuracy_implemented": false,
+  "gold_complete_implemented": false,
+  "qwen2.5:7b_pulled": false,
+  "verified_build_manifest_present": false,
+  "environment_exit_code": 1
+}

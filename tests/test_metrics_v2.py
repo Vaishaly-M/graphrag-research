@@ -22,6 +22,19 @@ class MetricsV2Tests(unittest.TestCase):
         r = self.score("issue_pr_analysis-004", self.answers["issue_pr_analysis-004"])
         self.assertEqual((r["strict_accuracy"], r["entity_f1"]), (1, 1))
 
+    def test_uncertainty_words_inside_title_are_not_abstention(self):
+        r = evaluate_row(dict(answer="Build fails: Unable to find multiple packages", answer_type="issue_title",
+                              expected_entities=['Build fails: Unable to find multiple packages']))
+        self.assertFalse(r["abstained"])
+        self.assertEqual(r["strict_accuracy"], 1)
+
+    def test_short_hash_unique_and_ambiguous(self):
+        a, b = "abcdef0123456789", "abcdef0987654321"
+        r = evaluate_row(dict(answer="abcdef0", answer_type="commit_list", expected_entities=[a]))
+        self.assertEqual(r["strict_accuracy"], 1)
+        r = evaluate_row(dict(answer="abcdef0", answer_type="commit_list", expected_entities=[a, b]))
+        self.assertEqual(r["strict_accuracy"], 0)
+
     def test_number_is_not_title(self):
         self.assertEqual(self.score("issue_pr_analysis-028", "2157")["strict_accuracy"], 0)
 
@@ -82,6 +95,19 @@ class MetricsV2Tests(unittest.TestCase):
         _, _, predicted = extract_entities("{'name': 'Foo', 'state': 'open'}", {"answer_type": "quoted_symbol"}, ["Foo"])
         self.assertNotIn("name", predicted)
         self.assertNotIn("state", predicted)
+
+    def test_abstention_with_fabricated_path(self):
+        r = evaluate_row(dict(answer="Insufficient repository evidence. src/fabricated.py", answerable="false"))
+        self.assertEqual(r["correct_abstention"], 0)
+        self.assertEqual(r["fabrication"], 1)
+
+    def test_gold_symbol_as_dictionary_key_is_not_answer(self):
+        r = evaluate_row(dict(answer="{'Foo': 1}", expected_entities=["Foo"], answer_type="quoted_symbol"))
+        self.assertEqual(r["strict_accuracy"], 0)
+
+    def test_hash_in_larger_word_does_not_match(self):
+        r = evaluate_row(dict(answer="zabcdef0123456789z", expected_entities=["abcdef0123456789"], answer_type="commit_list"))
+        self.assertEqual(r["strict_accuracy"], 0)
 
     def test_malformed_gold_raises(self):
         with self.assertRaises(ValueError):

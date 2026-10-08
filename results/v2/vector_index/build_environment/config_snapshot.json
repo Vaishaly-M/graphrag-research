@@ -1,0 +1,79 @@
+{
+  "schema_version": 2,
+  "git_hash": "ed647d697a8965671acae2b92d5fb84c55898253",
+  "dirty_tree": true,
+  "system": "vector_index_build",
+  "model_name": "gemini-flash-lite-latest",
+  "temperature": 0.0,
+  "seed": null,
+  "seed_note": "Gemini generation seed was not set by the existing systems; not changed in Phase 1",
+  "rpm": 10,
+  "retry_settings": {
+    "retries": 6,
+    "base_delay_s": 1.0
+  },
+  "sdk_attempts": 1,
+  "request_timeout_ms": 60000,
+  "k": 10,
+  "chunk_size": 1200,
+  "chunk_overlap": 180,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "thresholds": {
+    "high_confidence_threshold": 0.85,
+    "medium_confidence_threshold": 0.6
+  },
+  "index_file_hash": null,
+  "index_manifest_hash": null,
+  "index_directory": "C:\\Users\\ADMIN\\Documents\\Sem\\4-Research\\My Research\\Experiment\\graphrag-research-starter\\graphrag-research\\results\\v2\\vector_index",
+  "benchmark_file": null,
+  "benchmark_sha256": null,
+  "config": {
+    "seeds": {
+      "benchmark_generation": 42,
+      "synthetic_generation": 42
+    },
+    "llm": {
+      "temperature_default": 0.2,
+      "temperature_deterministic": 0.0,
+      "max_output_tokens_answer": 1024,
+      "max_output_tokens_cypher": 700,
+      "default_rpm": 10,
+      "prompt_version": "v1"
+    },
+    "retry": {
+      "retries": 6,
+      "base_delay_s": 1.0
+    },
+    "neo4j": {
+      "connection_timeout_s": 60.0,
+      "liveness_check_timeout_s": 30.0,
+      "max_connection_pool_size": 10
+    },
+    "vector": {
+      "chunk_size": 1200,
+      "chunk_overlap": 180,
+      "top_k": 10
+    },
+    "router": {
+      "high_confidence_threshold": 0.85,
+      "medium_confidence_threshold": 0.6
+    },
+    "adaptive_hybrid": {
+      "vector_top_k": 10,
+      "max_graph_rows": 100,
+      "max_final_evidence": 16,
+      "fusion_weights": {
+        "retrieval": 0.72,
+        "lexical": 0.2,
+        "graph_bonus": 0.08
+      }
+    },
+    "llm_cache": {
+      "enabled": false,
+      "directory": ".cache/gemini"
+    },
+    "llm_key_pool": {
+      "enabled": false
+    }
+  }
+}

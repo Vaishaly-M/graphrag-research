@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.common import ROOT
 from src.evaluation.reproducibility import read_csv, write_csv, sha256
-from src.evaluation.metrics_v2 import CATEGORY_MAP, PATH, HASH, EMAIL
+from src.evaluation.metrics_v2 import CATEGORY_MAP, PATH, HASH, EMAIL, NUMBER, SYMBOL
 
 
 def norm(s):
@@ -17,7 +17,10 @@ def norm(s):
 
 
 def entities(s):
-    return {m.group().casefold() for pattern in [PATH, HASH, EMAIL] for m in pattern.finditer(s)}
+    found = {m.group().casefold().rstrip(".,;:!?") for pattern in [PATH, HASH, EMAIL] for m in pattern.finditer(s)}
+    found.update("number:" + str(int(n)) for n in NUMBER.findall(s))
+    found.update("symbol:" + m.group(2).casefold() for m in SYMBOL.finditer(s))
+    return found
 
 
 def main():
@@ -63,6 +66,8 @@ def main():
         duplicate_normalized_questions=duplicates, duplicate_ids=[], repositories=dict(Counter(r["repo"] for r in human)),
         categories=dict(Counter(r["category"] for r in human)),
         unknown_categories=sorted({r["category"] for r in human}-set(CATEGORY_MAP)),
+        unknown_repositories=sorted({r["repo"] for r in human}-{r["source_repo"] for r in templates}),
+        duplicate_full_rows=sum(count-1 for count in Counter(tuple(r.items()) for r in human).values() if count>1),
         answerability="unknown for every row; cannot infer from question wording",
         missing_gold_ids=[r["question_id"] for r in missing], paraphrased_set="missing; no saved paraphrased CSV found",
         problems=["No answerability labels", "No gold answers or expected entities", "No required facts",

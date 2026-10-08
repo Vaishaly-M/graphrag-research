@@ -16,7 +16,7 @@ CATEGORY_MAP = {"Structure": "structure", "Code retrieval": "code_retrieval",
                 "Issue/PR analysis": "issue_pr_analysis", "Developer activity": "developer_activity",
                 "Multi-hop reasoning": "multi_hop"}
 PATH = re.compile(r"(?<![\w./\\-])(?:[\w.@+-]+[/\\])+[\w.@+/-]+|(?<![\w.-])[\w+-]+\.(?:py|java|js|jsx|ts|tsx|md|rst|txt|json|yaml|yml|xml|properties|cs|go|rs|sh|html|css)\b")
-HASH = re.compile(r"(?<![a-fA-F0-9])[a-fA-F0-9]{7,40}(?![a-fA-F0-9])")
+HASH = re.compile(r"(?<![\w])[a-fA-F0-9]{7,40}(?![\w])")
 EMAIL = re.compile(r"(?:email:)?[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}")
 SYMBOL = re.compile(r"([`'\"])([A-Za-z_][\w.$:<>-]*)\1(?!\s*:)")
 NUMBER = re.compile(r"(?<![\w.])#?(\d+)(?![\w.])")
@@ -134,6 +134,8 @@ def extract_entities(answer, row, expected):
     else:
         # Titles and composite records have an open vocabulary. Only full gold strings are detected.
         candidates = []
+    if kind == "quoted_symbol":
+        predicted = set()  # Quoted dictionary keys must not enter through gold containment either.
     predicted.update(canonical_entity(e, kind, expected) for e in candidates)
     return kind, gold, predicted
 
@@ -174,11 +176,12 @@ def evaluate_row(row, system=None, k=10):
     f1 = 2 * precision * recall / (precision + recall) if recall is not None and precision + recall else 0.0
     closed = kind in {"file_list", "file_path", "documentation_file", "issue_number", "commit_list", "developer_list", "quoted_symbol", "issue_state"}
     conflicts = contradictions(answer, row, expected, kind)
+    fabricated_identifier = bool(PATH.search(answer) or HASH.search(answer) or EMAIL.search(answer) or NUMBER.search(answer))
     scorable = answerable is not None and (not answerable or bool(expected))
     if not scorable:
         strict = None
     elif not answerable:
-        strict = int(abstained and not predicted and not conflicts)
+        strict = int(abstained and not predicted and not conflicts and not fabricated_identifier)
     else:
         strict = int(not error and not abstained and gold <= predicted and
                      (not closed or not (predicted - gold)) and not conflicts)
@@ -207,14 +210,14 @@ def evaluate_row(row, system=None, k=10):
                 source_repo=row.get("source_repo") or row.get("repo"), answerable=answerable,
                 scorable=scorable, missing_gold=not scorable, is_error=error, abstained=abstained,
                 answer_status="error" if error else "abstained" if abstained else "answered",
-                strict_accuracy=strict, legacy_accuracy=legacy_accuracy, fact_recall=fact_recall,
+                strict_accuracy=strict, legacy_accuracy=legacy_accuracy, fact_recall=fact_recall, required_fact_coverage=fact_recall,
                 entity_precision=precision if scorable else None, entity_recall=recall if scorable else None,
                 entity_f1=f1 if scorable else None, entity_kind=kind, closed_set=closed,
                 predicted_entities=sorted(predicted), missing_entities=sorted(gold-predicted),
                 extra_entities=sorted(predicted-gold), contradictions=conflicts,
                 unchecked_fact_count=len(unchecked), unchecked_facts=unchecked,
                 correct_abstention=int(strict == 1) if answerable is False else None,
-                fabrication=int(not error and (not abstained or bool(predicted))) if answerable is False else None,
+                fabrication=int(not error and (not abstained or bool(predicted) or fabricated_identifier)) if answerable is False else None,
                 evidence_precision_at_k=evidence_metrics[0], evidence_recall_at_k=evidence_metrics[1],
                 mrr=evidence_metrics[2], latency_s=row.get("latency_s"),
                 total_wall_s=row.get("total_wall_s"), n_attempts=row.get("n_attempts"),

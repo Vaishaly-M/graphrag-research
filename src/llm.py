@@ -36,7 +36,7 @@ def retry_after_seconds(exc):
                 return max(0.0, (parsedate_to_datetime(value) - datetime.now(timezone.utc)).total_seconds())
             except (ValueError, TypeError):
                 pass
-    match = re.search(r"retry(?:[_ ]?delay|[_ ]?after)?[\"':= ]+([0-9.]+)s?", str(exc).lower())
+    match = re.search(r"retry(?:[_ -]?delay|[_ -]?after)?[\"':= ]+([0-9.]+)s?", str(exc).lower())
     return float(match.group(1)) if match else None
 
 
@@ -50,6 +50,7 @@ class GeminiClient:
     # Shared budget is used by the latency probe; it counts physical SDK requests, including retries.
     request_budget = None
     requests_used = 0
+    budget_file = None
 
     def __init__(self, model=None, rpm=None):
         self.model = model or os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite-preview")
@@ -83,6 +84,15 @@ class GeminiClient:
         return self.cache_dir / self.cache_namespace / (digest + ".json")
 
     def generate(self, prompt, *, temperature=0.2, max_output_tokens=1024):
+        try:
+            return self._generate(prompt, temperature=temperature, max_output_tokens=max_output_tokens)
+        except Exception as exc:
+            measurement = CURRENT.get()
+            if measurement and type(exc).__name__ not in measurement.llm_failures:
+                measurement.llm_failures.append(type(exc).__name__)
+            raise
+
+    def _generate(self, prompt, *, temperature=0.2, max_output_tokens=1024):
         measurement = CURRENT.get() or Measurement()
         self.last_cache_hit = False
         cache = self._cache_path(prompt, temperature, max_output_tokens)
@@ -117,6 +127,12 @@ class GeminiClient:
                 raise CallBudgetExceeded("Physical API request budget exhausted")
             started, start = utc_now(), time.perf_counter()
             GeminiClient.requests_used += 1
+            if GeminiClient.budget_file is not None:
+                target = GeminiClient.budget_file
+                target.parent.mkdir(parents=True, exist_ok=True)
+                temporary = target.with_suffix(".tmp")
+                temporary.write_text(json.dumps({"requests_reserved": GeminiClient.requests_used}), encoding="utf-8")
+                temporary.replace(target)
             measurement.n_attempts += 1
             error = None
             answer = None

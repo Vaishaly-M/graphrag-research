@@ -10,6 +10,8 @@ from src.common import ROOT, load_experiment_config
 
 
 def sha256(path):
+    if path is None:
+        return None
     path = Path(path)
     if not path.is_file():
         return None
@@ -63,7 +65,8 @@ def snapshot(benchmark, system, **protocol):
                 embedding_model=os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2"),
                 thresholds=config.get("router", {}), index_file_hash=sha256(index / "index.faiss"),
                 index_manifest_hash=sha256(index / "manifest.json"), index_directory=str(index),
-                benchmark_file=str(Path(benchmark).resolve()), benchmark_sha256=sha256(benchmark),
+                benchmark_file=str(Path(benchmark).resolve()) if benchmark is not None else None,
+                benchmark_sha256=sha256(benchmark),
                 config=config, **protocol)
 
 
@@ -82,4 +85,6 @@ def save_snapshot(directory, value):
 
 
 def source_hashes():
-    return {p.relative_to(ROOT).as_posix(): sha256(p) for p in sorted((ROOT / "src").rglob("*.py"))}
+    paths = list((ROOT / "src").rglob("*.py")) + list((ROOT / "scripts").glob("*.py"))
+    paths += [ROOT / "config/experiment.yaml"]
+    return {p.relative_to(ROOT).as_posix(): sha256(p) for p in sorted(paths)}
