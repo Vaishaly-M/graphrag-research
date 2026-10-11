@@ -9,3 +9,9 @@ data/vector_index/
 results/*.jsonl
 results/*.csv
 results/*.png
+
+# Generated indexes exceed GitHub's file-size limit; rebuild locally.
+results/v2/latency_probe/diagnostic_index/docs.json
+results/v2/latency_probe/diagnostic_index/index.faiss
+results/v2/vector_index/docs.json
+results/v2/vector_index/index.faiss

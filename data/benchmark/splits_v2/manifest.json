@@ -21,6 +21,17 @@
       "count": 100,
       "sha256": "1f7dad16b56f10924233d2c728ef776401be24bc9cf4cd8a420dd3cd023ce390",
       "source": "data\\benchmark\\Human Written Question.csv"
+    },
+    "router-tuning": {
+      "count": 70,
+      "sha256": "fee8bab59925109abfff7d7b579fa1df92800962403200116fd329f2ce539aa8",
+      "seed": 20261009,
+      "source": "fresh graph-verified generator",
+      "excluded_repositories": [
+        "apache/airflow"
+      ],
+      "disjoint_normalized_questions": true,
+      "disjoint_complete_expected_entity_sets": true
     }
   },
   "paraphrased_set": null

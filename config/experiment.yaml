@@ -45,6 +45,12 @@ router:
   high_confidence_threshold: 0.85
   medium_confidence_threshold: 0.60
 
+router_v2:
+  # Unselected construction default. Deployment uses the selected tau in frozen_router.json.
+  tau: 0.75
+  minimum_vector_score: 0.30
+  artifact_directory: results/v2/phase2
+
 adaptive_hybrid:
   vector_top_k: 10
   max_graph_rows: 100

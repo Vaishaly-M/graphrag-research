@@ -24,7 +24,9 @@ def verify():
             driver.verify_connectivity()
             rows, _, _ = driver.execute_query("MATCH (n) UNWIND labels(n) AS label RETURN label, count(*) AS n",
                 database_=os.getenv("NEO4J_DATABASE", "neo4j"))
-            report["neo4j"] = dict(status="ok", label_counts=[r.data() for r in rows])
+            counts = [r.data() for r in rows]
+            report["neo4j"] = dict(status="ok" if counts else "error", connected=True,
+                                    empty_graph=not bool(counts), label_counts=counts)
     except Exception as exc:
         report["neo4j"] = dict(status="error", error_type=type(exc).__name__, node_counts=None,
             address_resolution_failed="Cannot resolve address" in str(exc))
@@ -36,6 +38,7 @@ def verify():
         manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
         good = all(sha256(directory / filename) == manifest[field] for filename, field in
                    [("index.faiss", "index_sha256"), ("docs.json", "docs_sha256")])
+        good = good and not manifest.get("diagnostic_only", False)
         report["vector_index"] = dict(status="ok" if good else "error", directory=str(directory),
                                       manifest=manifest, hashes_match=good, diagnostic_only=manifest.get("diagnostic_only", False))
     except Exception as exc:
@@ -46,7 +49,8 @@ def verify():
         with urllib.request.urlopen(host + "/api/tags", timeout=5) as response:
             names = [m["name"] for m in json.load(response)["models"]]
         report["ollama"] = dict(status="ok", models=names,
-                                qwen2_5_pulled=any(n.startswith("qwen2.5:") for n in names))
+                                qwen2_5_pulled="qwen2.5:7b" in names,
+                                required_model="qwen2.5:7b")
     except Exception as exc:
         report["ollama"] = dict(status="error", error_type=type(exc).__name__, qwen2_5_pulled=False)
     return report

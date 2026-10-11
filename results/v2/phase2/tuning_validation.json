@@ -1,0 +1,23 @@
+{
+  "count": 70,
+  "categories": {
+    "code_retrieval": 10,
+    "structure": 10,
+    "documentation_lookup": 10,
+    "dependency_analysis": 10,
+    "issue_pr_analysis": 10,
+    "developer_activity": 10,
+    "multi_hop": 10
+  },
+  "repositories": {
+    "openmrs/openmrs-core": 20,
+    "spring-projects/spring-petclinic": 16,
+    "mlflow/mlflow": 14,
+    "dotnet/eShop": 13,
+    "synthetic-org/platform": 7
+  },
+  "unique_ids": 70,
+  "sha256": "fee8bab59925109abfff7d7b579fa1df92800962403200116fd329f2ce539aa8",
+  "problems": [],
+  "heldout_access": "Exclusion comparison only; no inference or tuning on old splits"
+}

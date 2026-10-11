@@ -1,0 +1,24 @@
+{
+  "tests_passed": 48,
+  "command": "python -B -m unittest discover -s tests -v",
+  "source_sha256": {
+    "config/experiment.yaml": "7921ee450f8468c4584bcc9e0126cb31ac87e3e3865ebc6909283b46f8393562",
+    "src/systems/router_v2.py": "44a1a3de1aad96efb6193d7f77e590db4082024414e4b0cf951bfd7e1d8bf52f",
+    "src/systems/adaptive_hybrid_graphrag_v2.py": "a9148b25e37dc1c7e37c8b72e8a80e8febc9893c69ee1d17ab30e387d6c7ac6d",
+    "src/systems/ollama_router_client.py": "80312ed7890eb0cb5c4275e8d18634c8efb3bdb5936dfccf6e5d282916089c06",
+    "src/evaluation/metrics_v2.py": "6f31e2181dbd1ccc87db1c235b5478d0e73b54308acaac2e8d06eba26e1bae35",
+    "src/vector_store.py": "2ebffced3e04cc8d80b7bea988c715d097ffbb7021d64cbbd9cd5eb87fbe11ec",
+    "scripts/run_eval.py": "7dfd975c2205a47f5559a7ee0a37f9f670b75d27b21f529a89347b06b0361bd4",
+    "scripts/verify_environment.py": "f04c6743b4056a7d19962e8fb92fcd69fa7fbbc9cf7a8ba92f1652e1f5d935ac",
+    "scripts/prepare_router_tuning.py": "0dd49c67e535ef488ac26fd7cc9cbf5d0e26bb102cd58c692b32f3ad00997953",
+    "scripts/derive_oracle_routes.py": "e510d1595ae44bdaf77cbdbdd942cc5bfb4b0acd227e9890a4af1e101f5f1cd9",
+    "scripts/train_router_v2.py": "b0d57e44b2bd98ecd425569e620aa5ec9f4f31cba41d0aae5d73ad48382d542f",
+    "scripts/compare_router_v2.py": "787ebcebcbc5b0d60a0837407bc67bf3f9af062630cab4c66ee9b3dbb185a88e",
+    "tests/test_router_v2.py": "52cad0e12a3f730d6a2fd850e6affc4644c8d4df8ff8b3b12661709ec29da90b",
+    "tests/test_gold_completeness.py": "e1b50e53774ba8ae9d8eb4bbdbfc982cd259bf7779afb00877192211637514cd",
+    "docs/router_v2.md": "c81533a89230e95e0f7afb1bd7263b060bea5a25fd9d3e7d6e20e917611321c0",
+    "docs/phase2_selection_rule.json": "06be064120fa4cc420ae3e650312ea03306b611725ee53027eb4cbcf1ad20f71",
+    "reports/phase2.md": "e07b7de76b781592cb6fcdbe6663b9fc619c69c60fec3b91d7b51c75acd7c986"
+  },
+  "empirical_phase_complete": false
+}

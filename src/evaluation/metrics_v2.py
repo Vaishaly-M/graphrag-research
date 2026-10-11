@@ -50,6 +50,25 @@ def truth(x):
     return value(x).lower() in {"true", "1", "yes"}
 
 
+def gold_completeness(row):
+    """Nullable annotation derived from provenance, without changing the reference answer."""
+    explicit = value(row.get("gold_complete")).lower()
+    if explicit in {"true", "false", "1", "0"}:
+        return truth(explicit), "explicit_annotation"
+    query = value(row.get("cypher"))
+    if not query or "cypher" not in value(row.get("reference_provenance")).lower():
+        return None, "missing_generation_query_provenance"
+    expected = items(row.get("expected_entities")) or items(row.get("expected_answer"))
+    limits = re.findall(r"\bLIMIT\s+(\d+)\b", query, re.I)
+    if re.search(r"\bSKIP\b|\bLIMIT\s+\$", query, re.I) or len(limits)>1:
+        return None, "complex_or_parameterized_limit"
+    if not limits:
+        return True, "generation_query_without_limit"
+    if len(expected) < int(limits[0]):
+        return True, "generation_query_returned_fewer_than_limit"
+    return None, "generation_limit_reached_completeness_unknown"
+
+
 def is_abstention(answer):
     return bool(ABSTENTION.search(value(answer)))
 
@@ -188,6 +207,10 @@ def evaluate_row(row, system=None, k=10):
     if error and scorable:
         strict = 0
         precision = recall = f1 = 0.0
+    recall_accuracy = (int(not error and not abstained and gold <= predicted and
+                           not any(c.startswith("negated_expected_entity:") for c in conflicts))
+                       if scorable and answerable else strict)
+    gold_complete, gold_complete_reason = gold_completeness(row)
     facts = items(row.get("required_facts"))
     checks, unchecked = [], []
     for fact in facts:
@@ -210,7 +233,10 @@ def evaluate_row(row, system=None, k=10):
                 source_repo=row.get("source_repo") or row.get("repo"), answerable=answerable,
                 scorable=scorable, missing_gold=not scorable, is_error=error, abstained=abstained,
                 answer_status="error" if error else "abstained" if abstained else "answered",
-                strict_accuracy=strict, legacy_accuracy=legacy_accuracy, fact_recall=fact_recall, required_fact_coverage=fact_recall,
+                strict_accuracy=strict, recall_accuracy=recall_accuracy,
+                gold_complete=gold_complete, gold_complete_reason=gold_complete_reason,
+                strict_complete_accuracy=strict if gold_complete is True else None,
+                legacy_accuracy=legacy_accuracy, fact_recall=fact_recall, required_fact_coverage=fact_recall,
                 entity_precision=precision if scorable else None, entity_recall=recall if scorable else None,
                 entity_f1=f1 if scorable else None, entity_kind=kind, closed_set=closed,
                 predicted_entities=sorted(predicted), missing_entities=sorted(gold-predicted),
@@ -244,6 +270,9 @@ def summarize(rows):
                        n_missing_gold=len(group)-len(scorable), n_errors=sum(r["is_error"] for r in group),
                        n_abstained=sum(r["abstained"] for r in group),
                        strict_accuracy=mean(r["strict_accuracy"] for r in scorable),
+                       recall_accuracy=mean(r["recall_accuracy"] for r in scorable),
+                       strict_complete_accuracy=mean(r["strict_complete_accuracy"] for r in scorable),
+                       n_gold_complete=sum(r["gold_complete"] is True for r in scorable),
                        accuracy_non_error=mean(r["strict_accuracy"] for r in nonerror),
                        legacy_accuracy=mean(r["legacy_accuracy"] for r in scorable),
                        abstention_rate=mean(int(r["abstained"]) for r in group if r["answerable"] is True),

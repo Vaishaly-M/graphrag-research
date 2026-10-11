@@ -53,7 +53,9 @@ class VectorStore:
                             chunk_overlap=CHUNK_OVERLAP, batch_size=64,
                             docs_hash=digest(json.dumps(docs, sort_keys=True).encode()).hexdigest())
         save_snapshot(self.dir, build_config)
-        save_snapshot(self.dir / "build_environment", snapshot(None, "vector_index_build"))
+        from datetime import datetime, timezone
+        invocation = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+        save_snapshot(self.dir / "build_environment" / invocation, snapshot(None, "vector_index_build"))
         blocks = []
         for start in range(0, len(docs), 2048):
             checkpoint = self.dir / f"embeddings_{start:08d}.npy"
