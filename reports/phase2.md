@@ -1,55 +1,71 @@
-# Phase 2 - blocked by unmet Phase 1B prerequisites
+# Phase 2 - implementation complete; empirical execution in progress
 
-Date: 2026-10-08 (Asia/Colombo).
+Date: 2026-10-09 (Asia/Colombo).
 
-**Phase 2 is not complete. No router implementation, tuning, evaluation or freezing was performed.** The request authorizes Phase 2, but the required router-tuning data and empirical oracle labels are not available, and the prior instruction to stop on prerequisite failures remains applicable. No hidden-test or human-test question contents were read or evaluated in this turn.
+Phase 2 is **not yet empirically complete**. The router, fallback, training/oracle scripts and tests now exist. No tuning results, chosen variant, selected threshold or frozen model are claimed. No gold answers, old split memberships, historical experiment results, original router or baseline implementations were changed. Existing `.review_tools` deletions were left alone.
 
-## Current prerequisite check
+## Implemented fixes
 
-The following read-only command was rerun with network access:
+- Added a separate `adaptive_hybrid_graphrag_v2` system so the original adaptive system remains available for comparison.
+- Explicit graph/vector/hybrid scores use resolved KG entities, relation, multi-hop, aggregation, explanatory and semantic cues, plus similarity to fixed exemplars. All three routes are reachable in tests.
+- Implemented rule, embedding kNN, standardized logistic regression and JSON-output local LLM router variants. The LLM router targets `qwen2.5:7b`; malformed output raises an error.
+- Low top-route confidence selects hybrid. Empty/invalid graph evidence and empty/low-score vector evidence trigger logged hybrid escalation. Prior execution errors remain errors after recovery.
+- Exposed tau in configuration. Frozen deployment checks the selected configuration checksum, entity catalog fingerprint, feature schema, exemplars and embedding model. The fallback score threshold is frozen too.
+- Implemented graph-verified fresh router-tuning generation, excluding Airflow and rejecting normalized question or full expected-entity-set overlap with all existing splits. Existing sets are used only for exclusion checks, never substituted for tuning.
+- Implemented forced graph/vector/hybrid outcomes, per-question maximum oracle accuracy, cheapest-correct labels from clean timings, category-stratified five-fold training, and the offline threshold sweep.
+- Recorded the selection rule before any empirical router outcomes: maximize latency savings including routing overhead among candidates with mean recall-accuracy regret at most 0.02; then macro-F1, simpler variant, lower tau. If no candidate qualifies, freezing fails.
+- Added recall accuracy alongside strict accuracy, nullable query-provenance-derived gold completeness, and strict accuracy on known-complete gold only. Reaching a query LIMIT remains unknown completeness; references are unchanged.
+- Corrected environment verification to reject an empty graph, a diagnostic index and absence of the exact local model tag. Index rebuild invocation snapshots now permit resuming valid embedding checkpoints while retaining each invocation's configuration.
 
-```powershell
-python scripts/verify_environment.py --output results/v2/phase2/environment.json
-```
+The protocol, feature definitions and limitations are in [docs/router_v2.md](../docs/router_v2.md). The machine-readable predeclared policy is [docs/phase2_selection_rule.json](../docs/phase2_selection_rule.json).
 
-It exited with **code 1**. Evidence: [environment.json](../results/v2/phase2/environment.json) and [prerequisites.json](../results/v2/phase2/prerequisites.json).
+## Verification
 
-| Prerequisite | Current finding |
+`python -B -m unittest discover -s tests -v` passed all 48 tests. These cover route reachability, threshold escalation, KG entity resolution, vector/graph fallback, no-fallback behavior, supervised scores, malformed LLM output, frozen-config checks, oracle dominance/cheapest selection and gold completeness, plus the existing harness and metric regression tests. Unit fixtures do not establish empirical routing performance.
+
+## Current external prerequisites
+
+| Requirement | Observed state |
 | --- | --- |
-| Neo4j | Address resolution fails (ValueError). Connectivity and graph node counts cannot be verified. |
-| Verified vector index | The selected legacy index lacks its manifest. results/v2/vector_index also has no completed build manifest. The available diagnostic-only copy is not a valid substitute. |
-| Ollama | Service reachable; installed tags are gemma4:latest and llama3.1:latest. The required qwen2.5:7b tag is absent. |
-| Gemini | API key present; no generation call or remote model-availability test was made. |
-| Fresh router-tuning split | data/benchmark/splits_v2/router-tuning.csv is absent, and the splits manifest has no router-tuning entry. |
-| Empirical oracle route derivation | scripts/derive_oracle_routes.py is absent. No empirical oracle labels for a fresh router-tuning split are available. Old oracle-system outputs do not supply this prerequisite. |
-| Dual accuracy and gold completeness | metrics_v2.py does not yet implement recall_accuracy or gold_complete. Phase 1B's metric correction remains pending. |
+| Neo4j | Network connectivity succeeds, but the configured database has no nodes/labels. |
+| Data loading | User authorization received; the approved MERGE-based load is in progress. |
+| Vector index | The full manifest-backed rebuild has completed. Hash verification is pending the post-load environment check. |
+| Local model | Ollama is reachable and `qwen2.5:7b` is installed. |
+| Gemini | Key present; user authorized transmission of fresh tuning questions and repository evidence. |
+| Fresh tuning data | Not generated: requires the populated graph. |
 
-## Requested Phase 2 results
+Connectivity evidence is [environment_network_current.json](../results/v2/phase2/environment_network_current.json). Its raw empty `label_counts` observation predates the verifier fix and must not be interpreted as a usable graph. The index build runs locally in the background and saves resumable embedding checkpoints under `results/v2/vector_index/`; it is not a completed index until its manifest exists.
 
-| Deliverable | Status |
-| --- | --- |
-| Empirical oracle route distribution and vector-cheapest-correct rate | Not measured: fresh tuning set and route outcomes unavailable. |
-| Four router variants and five-fold category-stratified comparison | Not implemented or run. |
-| Offline tau sweep from 0.55 through 0.95 | Not run; no out-of-fold router scores or route outcomes exist. |
-| Selection rule and chosen configuration | Neither created nor selected in this blocked turn. The rule must be recorded before any future router results are examined. |
-| Frozen config, weights and split hash | Not created; freezing an untrained or unselected router would misrepresent completion. |
-| Misrouted examples and old-adaptive versus RouterV2 answer comparison | Not available without tuning runs; no examples fabricated. |
-| Variant, escalation and frozen-config tests | Not written or run because implementation was not started. |
+## Results still required
 
-Missing measurements are unavailable, not zero. No claims are made that vector is selected, that it is cheapest-correct on any question, or that a regret constraint has been met.
+Oracle route distribution and vector-cheapest rate, four-variant cross-validation results, threshold sweep measurements, selected configuration, empirical misroutes and old-adaptive versus V2 comparison are unavailable. Unavailable does not mean zero. No existing test/human split, template route label or diagnostic index was used to manufacture these results.
 
-## Required continuation
+Offline fallback latency is explicitly an estimate: initial retrieval plus the stored hybrid runtime. The eventual live comparison remains necessary. Five-fold results used for selection are tuning results, not held-out paper results. Graph and model execution failures block clean oracle cost selection rather than counting as fast answers.
 
-Restore the prerequisites and complete the deferred Phase 1B work: verify Neo4j connectivity/node counts, finish a non-diagnostic VectorStore.build index, pull qwen2.5:7b, implement both accuracy metrics with gold-completeness provenance, generate and validate the fresh disjoint router-tuning split, and derive empirical per-route outcomes on that split.
+## Changed source and documentation files
 
-Phase 2 can then record its selection rule before inspecting results, implement the variants and escalation, cross-validate exclusively on router-tuning, sweep thresholds offline, and freeze only a verified selected configuration. No development, validation, hidden-test or human-test split may be substituted for router-tuning. No diagnostic-only index may be used to bypass the environment gate.
+- `config/experiment.yaml`
+- `src/systems/router_v2.py`
+- `src/systems/adaptive_hybrid_graphrag_v2.py`
+- `src/systems/ollama_router_client.py`
+- `src/evaluation/metrics_v2.py`
+- `src/vector_store.py`
+- `scripts/run_eval.py`
+- `scripts/verify_environment.py`
+- `scripts/prepare_router_tuning.py`
+- `scripts/derive_oracle_routes.py`
+- `scripts/train_router_v2.py`
+- `scripts/compare_router_v2.py`
+- `tests/test_router_v2.py`
+- `tests/test_gold_completeness.py`
+- `docs/router_v2.md`
+- `docs/phase2_selection_rule.json`
+- `reports/phase2.md`
 
-## Files written
+Complete contents, not diffs, are supplied in [phase2_complete_files.zip](../results/v2/phase2/phase2_complete_files.zip). New generated artifacts are confined to `results/v2/`, except the requested report and source/docs. The index checkpoints are binary build artifacts rather than source changes.
 
-- reports/phase2.md (this complete report)
-- results/v2/phase2/environment.json
-- results/v2/phase2/prerequisites.json
+## Authorization and continuation
 
-No source code, router policy, gold answers, split memberships, historical results, or accepted Phase 1/1B reports were changed. No models were pulled and no background jobs were started.
+The user authorized the configured database load and Gemini use on 2026-10-09 ("allow and load the db"). The previously rejected MERGE loader was approved and is now running. The full vector index has completed with 131,179 chunks; its hashes and the loaded graph will be verified before tuning. The earlier authorization block is resolved.
 
-**Stopped at the failed prerequisite gate. Awaiting prerequisite resolution and confirmation to resume.**
+After the load: verify the graph/index, generate the fresh disjoint tuning split, collect forced-route outcomes, run the predeclared comparison and sweep, freeze only a qualifying configuration, run the live old/new comparison, and replace this pending-results section with measured findings. Stop at Phase 2.

@@ -1,0 +1,9 @@
+{
+  "completed_at": "2026-10-09T08:58:16.739050+00:00",
+  "exit_code": 0,
+  "node_count": 37780,
+  "relationship_count": 84661,
+  "repositories": 6,
+  "verification": "../environment_verified.json",
+  "included_processed_synthetic": true
+}

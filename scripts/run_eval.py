@@ -11,13 +11,13 @@ from src.evaluation.reproducibility import snapshot, save_snapshot, source_hashe
 
 
 SYSTEMS = ("plain_llm", "vector_rag", "fixed_graph_rag", "fixed_hybrid_rag",
-           "adaptive_hybrid_graphrag", "oracle_hybrid_rag", "langchain_graphrag", "llamaindex_graphrag")
+           "adaptive_hybrid_graphrag", "adaptive_hybrid_graphrag_v2", "oracle_hybrid_rag", "langchain_graphrag", "llamaindex_graphrag")
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("system", choices=SYSTEMS)
-    p.add_argument("split", choices=["development", "validation", "hidden-test", "human-test"])
+    p.add_argument("split", choices=["development", "validation", "hidden-test", "human-test", "router-tuning"])
     p.add_argument("--repeats", type=int, default=1)
     p.add_argument("--run-name", required=True)
     p.add_argument("--discard-first-run", action=argparse.BooleanOptionalAction, default=False)

@@ -1,0 +1,91 @@
+{
+  "schema_version": 2,
+  "git_hash": "9aa0998bf1b62c3a3fb2f33b89340fe2319b7dd1",
+  "dirty_tree": true,
+  "system": "router_tuning_generation",
+  "model_name": "gemini-flash-lite-latest",
+  "temperature": 0.0,
+  "seed": null,
+  "seed_note": "Gemini generation seed was not set by the existing systems; not changed in Phase 1",
+  "rpm": 10,
+  "retry_settings": {
+    "retries": 6,
+    "base_delay_s": 1.0
+  },
+  "sdk_attempts": 1,
+  "request_timeout_ms": 60000,
+  "k": 10,
+  "chunk_size": 1200,
+  "chunk_overlap": 180,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "thresholds": {
+    "high_confidence_threshold": 0.85,
+    "medium_confidence_threshold": 0.6
+  },
+  "index_file_hash": "cf50cb33ebc9bdd4644cd2fe32dc6766113240fb961db489239041b4682099b8",
+  "index_manifest_hash": null,
+  "index_directory": "C:\\Users\\ADMIN\\Documents\\Sem\\4-Research\\My Research\\Experiment\\graphrag-research-starter\\graphrag-research\\data\\vector_index",
+  "benchmark_file": null,
+  "benchmark_sha256": null,
+  "config": {
+    "seeds": {
+      "benchmark_generation": 42,
+      "synthetic_generation": 42
+    },
+    "llm": {
+      "temperature_default": 0.2,
+      "temperature_deterministic": 0.0,
+      "max_output_tokens_answer": 1024,
+      "max_output_tokens_cypher": 700,
+      "default_rpm": 10,
+      "prompt_version": "v1"
+    },
+    "retry": {
+      "retries": 6,
+      "base_delay_s": 1.0
+    },
+    "neo4j": {
+      "connection_timeout_s": 60.0,
+      "liveness_check_timeout_s": 30.0,
+      "max_connection_pool_size": 10
+    },
+    "vector": {
+      "chunk_size": 1200,
+      "chunk_overlap": 180,
+      "top_k": 10
+    },
+    "router": {
+      "high_confidence_threshold": 0.85,
+      "medium_confidence_threshold": 0.6
+    },
+    "router_v2": {
+      "tau": 0.75,
+      "minimum_vector_score": 0.3,
+      "artifact_directory": "results/v2/phase2"
+    },
+    "adaptive_hybrid": {
+      "vector_top_k": 10,
+      "max_graph_rows": 100,
+      "max_final_evidence": 16,
+      "fusion_weights": {
+        "retrieval": 0.72,
+        "lexical": 0.2,
+        "graph_bonus": 0.08
+      }
+    },
+    "llm_cache": {
+      "enabled": false,
+      "directory": ".cache/gemini"
+    },
+    "llm_key_pool": {
+      "enabled": false
+    }
+  },
+  "generation_seed": 20261009,
+  "exclusion_hashes": {
+    "development": "05530b27aaca82cbf87442d92da73eb13e70e5b64716be922283e5b342d24b7e",
+    "validation": "65217b4ef800772c7549e24faf7d3260bdf701336c951ad75be9989ef9c48ed5",
+    "hidden-test": "42b776aa59bc63bff3bd21641c7238b2f61136469438332832ce3b52aa7d8e15",
+    "human-test": "1f7dad16b56f10924233d2c728ef776401be24bc9cf4cd8a420dd3cd023ce390"
+  }
+}
