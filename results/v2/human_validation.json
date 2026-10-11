@@ -33,6 +33,8 @@
     "Multi-hop reasoning": 15
   },
   "unknown_categories": [],
+  "unknown_repositories": [],
+  "duplicate_full_rows": 0,
   "answerability": "unknown for every row; cannot infer from question wording",
   "missing_gold_ids": [
     "Q001",

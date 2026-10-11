@@ -199,8 +199,8 @@ class BaseSystem:
                 row.get("id") is None
                 and row.get("question_id") is None
             ):
-                # Assign a stable fallback ID.
-                row["id"] = f"question_{index:04d}"
+                # Frozen evaluations require source IDs, never row-order identifiers.
+                raise ValueError(f"Benchmark row {index} has no question ID")
 
     @staticmethod
     def _serialise_csv_value(

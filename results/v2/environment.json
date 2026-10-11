@@ -5,20 +5,22 @@
     "remote_model_availability": "not checked; key presence is not model access"
   },
   "neo4j": {
-    "status": "error",
-    "error_type": "ValueError"
+    "status": "ok",
+    "label_counts": []
   },
   "vector_index": {
     "status": "error",
     "directory": "C:\\Users\\ADMIN\\Documents\\Sem\\4-Research\\My Research\\Experiment\\graphrag-research-starter\\graphrag-research\\data\\vector_index",
-    "error_type": "FileNotFoundError"
+    "error_type": "FileNotFoundError",
+    "diagnostic_copy_available": true
   },
   "ollama": {
     "status": "ok",
     "models": [
+      "qwen2.5:7b",
       "gemma4:latest",
       "llama3.1:latest"
     ],
-    "qwen2_5_pulled": false
+    "qwen2_5_pulled": true
   }
 }

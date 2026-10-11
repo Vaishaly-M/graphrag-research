@@ -52,8 +52,7 @@ class Measurement:
                     n_cache_hits=self.n_cache_hits, total_wall_s=total,
                     latency_s=max(0.0, total - wait),
                     other_time_s=max(0.0, total - wait - self.retrieval_time_s - self.llm_time_s),
-                    latency_eligible=self.n_cache_hits == 0 and
-                    not any(e.get("status") == "error" for e in self.events))
+                    latency_eligible=self.n_cache_hits == 0)
 
 
 CURRENT = contextvars.ContextVar("evaluation_measurement", default=None)

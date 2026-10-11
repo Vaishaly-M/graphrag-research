@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "git_hash": "ed647d697a8965671acae2b92d5fb84c55898253",
+  "dirty_tree": true,
+  "system": "vector_rag",
+  "model_name": "gemini-flash-lite-latest",
+  "temperature": 0.0,
+  "seed": null,
+  "seed_note": "Gemini generation seed was not set by the existing systems; not changed in Phase 1",
+  "rpm": 10,
+  "retry_settings": {
+    "retries": 6,
+    "base_delay_s": 1.0
+  },
+  "sdk_attempts": 1,
+  "request_timeout_ms": 60000,
+  "k": 10,
+  "chunk_size": 1200,
+  "chunk_overlap": 180,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "thresholds": {
+    "high_confidence_threshold": 0.85,
+    "medium_confidence_threshold": 0.6
+  },
+  "index_file_hash": "cf50cb33ebc9bdd4644cd2fe32dc6766113240fb961db489239041b4682099b8",
+  "index_manifest_hash": "74974f4aa29c4945a33c3367988d9ce2c6457b29cc6db051083b10c2e534392a",
+  "index_directory": "C:\\Users\\ADMIN\\Documents\\Sem\\4-Research\\My Research\\Experiment\\graphrag-research-starter\\graphrag-research\\results\\v2\\latency_probe\\diagnostic_index",
+  "benchmark_file": "C:\\Users\\ADMIN\\Documents\\Sem\\4-Research\\My Research\\Experiment\\graphrag-research-starter\\graphrag-research\\data\\benchmark\\splits\\hidden_test_questions.csv",
+  "benchmark_sha256": "49dc2327c3bbb578100ffb099b354785bfa1ef845ec2a1e61d44764c5ae542eb",
+  "config": {
+    "seeds": {
+      "benchmark_generation": 42,
+      "synthetic_generation": 42
+    },
+    "llm": {
+      "temperature_default": 0.2,
+      "temperature_deterministic": 0.0,
+      "max_output_tokens_answer": 1024,
+      "max_output_tokens_cypher": 700,
+      "default_rpm": 10,
+      "prompt_version": "v1"
+    },
+    "retry": {
+      "retries": 6,
+      "base_delay_s": 1.0
+    },
+    "neo4j": {
+      "connection_timeout_s": 60.0,
+      "liveness_check_timeout_s": 30.0,
+      "max_connection_pool_size": 10
+    },
+    "vector": {
+      "chunk_size": 1200,
+      "chunk_overlap": 180,
+      "top_k": 10
+    },
+    "router": {
+      "high_confidence_threshold": 0.85,
+      "medium_confidence_threshold": 0.6
+    },
+    "adaptive_hybrid": {
+      "vector_top_k": 10,
+      "max_graph_rows": 100,
+      "max_final_evidence": 16,
+      "fusion_weights": {
+        "retrieval": 0.72,
+        "lexical": 0.2,
+        "graph_bonus": 0.08
+      }
+    },
+    "llm_cache": {
+      "enabled": false,
+      "directory": ".cache/gemini"
+    },
+    "llm_key_pool": {
+      "enabled": false
+    }
+  },
+  "questions": 10,
+  "ways": [
+    "full_system"
+  ],
+  "physical_request_budget": 61,
+  "source_hashes": {
+    "config/experiment.yaml": "13555af7fdcdc6eef9fd3d6ed26d3858fa0e592e80ce626245f415ea4ef08792",
+    "scripts/freeze_evaluation.py": "e7b25a9cd94019ab099bdabf9f49fb9c0c7907599e766226c0d62811be9df2ab",
+    "scripts/latency_probe.py": "96f65d225ad0b0b3192a8ec7c74821ca48a9fe5035916f589fbb07c1d3978194",
+    "scripts/prepare_latency_index.py": "a6de1f140c3aeec5151b81ebb58d6e125991b75d2a67f3586c4de813e85380d7",
+    "scripts/prepare_routing_evaluation.py": "ef596fbc8e1869c9e8ff50b1babccebdb9bd0a347856d798cd6a3816a87959d3",
+    "scripts/record_environment.py": "23b53675c7a41b8c5dad56e0553c34b877c96d5405c303312db7e7a641658b99",
+    "scripts/report_phase1.py": "fd7c7081427238e9cec2fc6870594e8e87fe76f82644550212409fddceda6b30",
+    "scripts/rescore_old_answers.py": "59907d896b22fa7b4737f114bafbe092569fbaa8574b5aa8efa5e4212492d4b7",
+    "scripts/run_eval.py": "ebcd180962535216b33566947c4146c738f0621dadc30538f9a10a91e2f6d1cc",
+    "scripts/test_gemini.py": "18b2e272904404bf21683db5a33826c813ba7e0291b1a38d9396fb04110fbc63",
+    "scripts/test_issue_title_parser.py": "89ed9efb1ac92c12c84b0522b6e2a99ac6a4dacecaf85c2d802968deb77d66aa",
+    "scripts/verify_environment.py": "8499c0ce4a486d7ee0a9e790f3287510839d6e2205ade0a94db4a9f852c80c4b",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/benchmark_gen/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/benchmark_gen/create_pilot_benchmark.py": "4d96089b5a222a7a638151c243875ca297282208766ebccde21a0b60ca6c716b",
+    "src/benchmark_gen/generate_benchmark.py": "b3f1ae16b25c870193a9fac69bef765083ea32cf98f93740c7e35b18e9821626",
+    "src/benchmark_gen/leakage_check.py": "cf46739e1794d531cc82bc371485ea94242e87f8224d6d353ffefc53bb18c2d1",
+    "src/benchmark_gen/paraphrase.py": "5ae0fca1bb6e61c69d54fbaf6f45cb291bd5dc5d681e7a019fd75aa111a24cdf",
+    "src/benchmark_gen/split_benchmark.py": "a786d9c3a3365dff06690eac097a7e06a42d93007abf1d2ec95617f898ca2673",
+    "src/build_vector_index.py": "a8a782bac220105ade4bd6a855a5bbfb18e0390c932395655085f8bd17acdb02",
+    "src/common.py": "2c844330b1f465297c2e6ef2317a2112f44a4450be8e43c3093fe8be414d60d9",
+    "src/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/evaluation/agreement.py": "53c5760e54a7189fde9cfdfbe7a7052f8a4fb213d8a0ec6df3e199822d1ddd61",
+    "src/evaluation/hallucination_annotation.py": "b68525f200813244bd453dcfee4fa4d739d3354c7c6d6c4679beab6a2ef73b1e",
+    "src/evaluation/hallucination_template.py": "86b3d0047e2dde9a69f611fa510f3693f2a8570bc1e9a8f7af6066004d22ed27",
+    "src/evaluation/harness_v2.py": "50c5d72bf3daa7b97b3698f2cf3211d3b646368c2afd3bfe46906867794dcd31",
+    "src/evaluation/metrics.py": "4a2a74b85ca0aef70d6ece761037f9f3906bc60a013cdadfac9c80e20fa98e4d",
+    "src/evaluation/metrics_v2.py": "7dd716e5e58b32af737d844fb3e0eb2e1599d97ae622a105dd092ee1d57d4291",
+    "src/evaluation/plots.py": "828da295d69a6e3b2de94816a65f6b8132c9dc39b1848e981b2212697c4b6833",
+    "src/evaluation/regression_check.py": "e138a27be6642ada436b90ac96f51b1aa8467e54706d4a40a91fd507477adff3",
+    "src/evaluation/report_tables.py": "d32de82daea7edb62f91f54959bf091037fcf46f60d3c5ec004e94ccdf789a76",
+    "src/evaluation/reproducibility.py": "ff3656417f21ea1bfa475cde6b45dc5889f2212ccbaa925a74dbc59d0856a11b",
+    "src/evaluation/routing_diagnostics.py": "d80f863bd9f99987985f5150416da9f1eb860ba2ba7d4d952131c35aae1cd17e",
+    "src/evaluation/statistics.py": "b810a816533f36bf2d1bbdb436c616e3ab6a583fba631fa1dbb27434417262a4",
+    "src/evaluation/telemetry.py": "6441feb0b7b457247b872e6f9dba3695ca690f52a808ad7c2e509e5d3571109d",
+    "src/graph.py": "4d99a21d4ee4512ed2a58ac216d9d3f71d1689f4f9b0eea8bba452685cebdbb9",
+    "src/ingestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/ingestion/clone_repos.py": "b94f75304b6aa027673c32a95130ace5cdfecfeca515a288d90bc59867887c34",
+    "src/ingestion/mine_repositories.py": "f4d1ed106fc55ee174f768562780ad9e8f8c61623cf702da5c97778909ec9eeb",
+    "src/ingestion/repository_metadata.py": "ee8c62690abc0db4ba8c03b5e51a71ae9c1a869cecb5b041342985a9fed39eb0",
+    "src/kg_construction/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/kg_construction/load_graph.py": "40ef38bce27552eaf4736ded3f9f5fa3b15815a2774bf2034d7cabb5b617b090",
+    "src/kg_construction/validate_graph.py": "5868d931f5fd93921daa603e14e242835b1df58f813500b40f7e1a98f69921bd",
+    "src/llm.py": "60aa97bef66b34f7b85909e0d573baa292417ab646eab12c5725fc83e8293492",
+    "src/preprocessing/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/preprocessing/preprocess_data.py": "a58b966ffeb66659632e03451e697df8d438fa3357316f2de97f013736630a9f",
+    "src/scalability/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/scalability/generate_and_measure.py": "3d7b0b8e6f608a96d85d4c39ad59047bca3b18d6ff2768f39d2beb084ab8cbb3",
+    "src/synthetic_gen/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/synthetic_gen/generate.py": "71f2eb1f92246413b0c72623cfedb49065d06e61b8b98ca50b59b10820008299",
+    "src/systems/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/systems/adaptive_hybrid_graphrag.py": "2c186b65ebab6dde0f8092c9ab85dd630e92a9b10906f17e336faac12c81eca6",
+    "src/systems/base.py": "018a48d20729ed1f71350e474c6e50c06d2f208a967043b324ae5aeaf8262816",
+    "src/systems/fixed_graph_rag.py": "17bfbb04e3049de0600ed57bb774c5129b4f42ef53220812734aa034be6c262c",
+    "src/systems/fixed_hybrid_rag.py": "beb1981a85692c4dfeab8ad6bb26eeba5ae207746369a4befd65617e75837d44",
+    "src/systems/langchain_graphrag.py": "94f49b3b28fdce7cbce81d54c8efa1282c287fc093bd06ac35825348e4a2042f",
+    "src/systems/llamaindex_graphrag.py": "f723020004249cb42430b0ae455d09ef3bdeea6aaa984876a83281740f4ecd5d",
+    "src/systems/oracle_hybrid_rag.py": "10d1d3fdd62cb3d4ee7b285454a1e5527d91a2c44d3ca66b747987599a221e87",
+    "src/systems/plain_llm.py": "5cc7e22364ea6467f2191e7843acd6558051a82685b4de4557dfc53d67a74ffb",
+    "src/systems/prompts.py": "af6a254bf5180ced89b86ff8b46bf9ae34478dcb814e57c10e3920e03b164789",
+    "src/systems/query_registry.py": "7316594fcc32c56017488a08f36ed01e315f2f68002889a4df377907206af002",
+    "src/systems/retrieval_core.py": "0b85905e979063ddafc33f68eedf09ade73bca98ff2f9e6a40b5262e1e1cfea4",
+    "src/systems/router.py": "8db2f221b4c43a0352545320a747252240becd33c64589af7766f6e0ad37532b",
+    "src/systems/vector_rag.py": "f310175655906438ff8c7cc0f18e07436171aa99eafa840256eaaa6c08d89293",
+    "src/vector_store.py": "9a9f96fd34d9d1c9c8680ca8bded1dde85a9a65e57795ea02737e6a0acb799e5"
+  }
+}

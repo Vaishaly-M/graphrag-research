@@ -27,7 +27,8 @@ class RetrievalTests(unittest.TestCase):
         rows = store.search("query", k=10, repository="dotnet/eShop")
         self.assertEqual(len(rows), 10)
         self.assertTrue(all(r["repo"] == "dotnet/eShop" for r in rows))
-        self.assertGreater(store.last_search_stats["unique_global_candidates_examined"], 50)
+        self.assertEqual(store.last_search_stats["unique_global_candidates_examined"], 110)
+        self.assertEqual(store.last_search_stats["global_candidates_examined"], 260)
         self.assertEqual(store.search("q", repository="absent/repo"), [])
 
     def test_manifest_required(self):

@@ -83,6 +83,81 @@ class HarnessTests(unittest.TestCase):
         self.assertNotEqual(client._cache_path("x", 0, 100), client._cache_path("x", 1, 100))
         self.assertNotEqual(client._cache_path("x", 0, 100), client._cache_path("y", 0, 100))
 
+    def test_six_attempts_and_separate_backoff_accounting(self):
+        clock = [100.0]
+        def request(**kwargs):
+            clock[0] += 2.0
+            raise TimeoutError("timeout; retry-after: 3s")
+        def sleep(seconds):
+            clock[0] += seconds
+        fake_time = SimpleNamespace(perf_counter=lambda: clock[0], monotonic=lambda: clock[0], sleep=sleep)
+        client = self.client(request)
+        client.interval = 6
+        client._last_call = {"fake": 100.0}
+        with tempfile.TemporaryDirectory() as directory:
+            m = Measurement(event_path=Path(directory)/"events.jsonl")
+            with measured(m), patch("src.llm.time", fake_time), patch("src.llm.random.random", return_value=0), self.assertRaises(TimeoutError):
+                client.generate("test")
+        self.assertEqual(m.n_attempts, 6)
+        self.assertEqual(m.llm_time_s, 12)
+        self.assertEqual(m.pacing_sleep_s, 6)
+        self.assertEqual(m.backoff_sleep_s, 34)  # max(1,3)+max(2,3)+4+8+16
+        self.assertEqual(len(m.events), 6)
+        self.assertEqual(m.events[0]["retry_after_s"], 3)
+
+    def test_retried_success_remains_latency_eligible(self):
+        m = Measurement()
+        m.events = [{"status": "error"}, {"status": "ok"}]
+        m.llm_time_s, m.backoff_sleep_s, m.n_attempts = 4, 2, 2
+        timing = m.timing(6)
+        self.assertTrue(timing["latency_eligible"])
+        self.assertEqual(timing["latency_s"], 4)
+
+    def test_cached_response_makes_no_request(self):
+        client = self.client(lambda **kwargs: self.fail("cache hit made an API request"))
+        with tempfile.TemporaryDirectory() as directory:
+            client.cache_dir = Path(directory)
+            client.cache_enabled = True
+            path = client._cache_path("test", .2, 1024)
+            path.parent.mkdir(parents=True)
+            path.write_text(json.dumps({"answer": "cached answer"}))
+            m = Measurement(event_path=Path(directory)/"events.jsonl")
+            with measured(m):
+                self.assertEqual(client.generate("test"), "cached answer")
+            self.assertEqual(m.n_attempts, 0)
+            self.assertEqual(m.n_cache_hits, 1)
+            self.assertFalse(m.timing(.1)["latency_eligible"])
+
+    def test_explicit_system_error_is_preserved(self):
+        class Reported(BaseSystem):
+            name = "reported"
+            def answer(self, question):
+                return dict(answer="Insufficient repository evidence.", error="failed")
+        result, _ = measure_answer(Reported(), "q", "x")
+        self.assertEqual(result["answer_status"], "error")
+        self.assertEqual(result["error_type"], "SystemReportedError")
+
+    def test_missing_id_fails_loudly(self):
+        with self.assertRaises(ValueError):
+            BaseSystem._validate_benchmark_rows([{"question": "q"}], Path("test.csv"))
+
+    def test_swallowed_graph_failure(self):
+        class Graph:
+            def query(self, *args, **kwargs):
+                raise TimeoutError("test")
+        class Swallow(BaseSystem):
+            name = "swallow"
+            graph = Graph()
+            def answer(self, question):
+                try:
+                    self.graph.query("MATCH")
+                except TimeoutError:
+                    pass
+                return {"answer": "Insufficient repository evidence."}
+        result, _ = measure_answer(Swallow(), "q", "x")
+        self.assertEqual(result["answer_status"], "error")
+        self.assertIn("TimeoutError", result["retrieval_error"])
+
 
 if __name__ == "__main__":
     unittest.main()

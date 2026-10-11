@@ -1,0 +1,26 @@
+{
+  "indexes": {
+    "data/vector_index": {
+      "manifest.json": false,
+      "index.faiss": true,
+      "docs.json": true,
+      "embedding_checkpoint_count": 0
+    },
+    "results/v2/vector_index": {
+      "manifest.json": false,
+      "index.faiss": false,
+      "docs.json": false,
+      "embedding_checkpoint_count": 7
+    },
+    "results/v2/latency_probe/diagnostic_index": {
+      "manifest.json": true,
+      "index.faiss": true,
+      "docs.json": true,
+      "embedding_checkpoint_count": 0,
+      "diagnostic_only": true,
+      "provenance": "byte-identical legacy import; original build metadata unavailable"
+    }
+  },
+  "required_ollama_model": "qwen2.5:7b",
+  "exact_model_pulled": false
+}

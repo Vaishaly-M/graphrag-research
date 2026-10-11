@@ -1,4 +1,4 @@
-"""At most 60 physical requests, with cache and stage/attempt records."""
+"""Approximately 60 physical requests, with cache and stage/attempt records."""
 import argparse
 import importlib
 import json
@@ -39,22 +39,29 @@ def main():
     parser.add_argument("--benchmark", default="data/benchmark/splits/hidden_test_questions.csv")
     parser.add_argument("--systems", nargs="+", default=["plain_llm", "vector_rag"], choices=["plain_llm", "vector_rag"])
     parser.add_argument("--output", default="results/v2/latency_probe.csv")
+    parser.add_argument("--ways", nargs="+", choices=["trivial_llm", "retrieval_only", "full_system"])
+    parser.add_argument("--max-requests", type=int, default=60, choices=range(1, 62),
+                        help="Persistent attempt cap; one extra attempt may finish a retried probe")
     args = parser.parse_args()
     path = ROOT / args.output
     if not path.resolve().is_relative_to((ROOT / "results/v2").resolve()):
         parser.error("output must be under results/v2")
+    if (ROOT / "results/v2/vector_index/manifest.json").exists():
+        os.environ.setdefault("VECTOR_INDEX_DIR", str(ROOT / "results/v2/vector_index"))
     benchmark = ROOT / args.benchmark
     questions = read_csv(benchmark)[:10]
     output = read_csv(path) if path.exists() else []
     done = {(r["system"], r["question_id"], r["way"]) for r in output if r.get("answer_status") != "error"}
     # Count all past actual attempts, including failed ones, on restart.
-    GeminiClient.request_budget = 60
-    GeminiClient.requests_used = sum(int(r["n_attempts"]) for r in output)
+    GeminiClient.request_budget = args.max_requests
+    GeminiClient.budget_file = path.parent / "latency_probe" / "request_budget.json"
+    reserved = json.loads(GeminiClient.budget_file.read_text()).get("requests_reserved", 0) if GeminiClient.budget_file.exists() else 0
+    GeminiClient.requests_used = max(reserved, sum(int(r["n_attempts"]) for r in output))
     for system_name in args.systems:
         directory = path.parent / "latency_probe" / system_name / ("invocation_" + str(len(output)))
         save_snapshot(directory, snapshot(benchmark, system_name, questions=10,
-            ways=["trivial_llm", "retrieval_only", "full_system"],
-            physical_request_budget=60, source_hashes=source_hashes()))
+            ways=args.ways or ["trivial_llm", "retrieval_only", "full_system"],
+            physical_request_budget=args.max_requests, source_hashes=source_hashes()))
         try:
             system = importlib.import_module("src.systems." + system_name).System()
             system.llm.cache_dir = path.parent / "latency_probe" / "response_cache"
@@ -65,6 +72,8 @@ def main():
             (directory / "setup_error.json").write_text(json.dumps(dict(error_type=type(exc).__name__)), encoding="utf-8")
             raise
         ways = ["trivial_llm", "full_system"] if system_name == "plain_llm" else ["trivial_llm", "retrieval_only", "full_system"]
+        if args.ways:
+            ways = [way for way in ways if way in args.ways]
         for i, row in enumerate(questions):
             qid = row.get("question_id") or row["id"]
             for way in ways:

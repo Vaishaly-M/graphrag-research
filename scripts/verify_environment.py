@@ -26,16 +26,21 @@ def verify():
                 database_=os.getenv("NEO4J_DATABASE", "neo4j"))
             report["neo4j"] = dict(status="ok", label_counts=[r.data() for r in rows])
     except Exception as exc:
-        report["neo4j"] = dict(status="error", error_type=type(exc).__name__)
-    directory = Path(os.getenv("VECTOR_INDEX_DIR", str(ROOT / "data/vector_index")))
+        report["neo4j"] = dict(status="error", error_type=type(exc).__name__, node_counts=None,
+            address_resolution_failed="Cannot resolve address" in str(exc))
+    default_index = ROOT / "results/v2/vector_index"
+    if not (default_index / "manifest.json").exists():
+        default_index = ROOT / "data/vector_index"
+    directory = Path(os.getenv("VECTOR_INDEX_DIR", str(default_index)))
     try:
         manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
         good = all(sha256(directory / filename) == manifest[field] for filename, field in
                    [("index.faiss", "index_sha256"), ("docs.json", "docs_sha256")])
         report["vector_index"] = dict(status="ok" if good else "error", directory=str(directory),
-                                      manifest=manifest, hashes_match=good)
+                                      manifest=manifest, hashes_match=good, diagnostic_only=manifest.get("diagnostic_only", False))
     except Exception as exc:
-        report["vector_index"] = dict(status="error", directory=str(directory), error_type=type(exc).__name__)
+        report["vector_index"] = dict(status="error", directory=str(directory), error_type=type(exc).__name__,
+            diagnostic_copy_available=(ROOT / "results/v2/latency_probe/diagnostic_index/manifest.json").exists())
     try:
         host = os.getenv("OLLAMA_HOST", "http://localhost:11434").rstrip("/")
         with urllib.request.urlopen(host + "/api/tags", timeout=5) as response:
@@ -61,7 +66,7 @@ def main():
         display = {k: v for k, v in result.items() if k != "manifest"}
         print(name + ": " + json.dumps(display))
     return int(not report["gemini"]["key_present"] or any(report[k].get("status") != "ok" for k in
-               ["neo4j", "vector_index", "ollama"]) or not report["ollama"]["qwen2_5_pulled"])
+               ["neo4j", "vector_index", "ollama"]) or not report["ollama"]["qwen2_5_pulled"] or report["vector_index"].get("diagnostic_only", False))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,44 @@
+test_cache_key_includes_params (test_harness_v2.HarnessTests.test_cache_key_includes_params) ... ok
+test_cached_response_makes_no_request (test_harness_v2.HarnessTests.test_cached_response_makes_no_request) ... ok
+test_empty_model_response_raises (test_harness_v2.HarnessTests.test_empty_model_response_raises) ... ok
+test_explicit_system_error_is_preserved (test_harness_v2.HarnessTests.test_explicit_system_error_is_preserved) ... ok
+test_missing_id_fails_loudly (test_harness_v2.HarnessTests.test_missing_id_fails_loudly) ... ok
+test_resume_preserves_failures_and_warmup (test_harness_v2.HarnessTests.test_resume_preserves_failures_and_warmup) ... q::run1: error wall=0.000s attempts=0
+q::run2: error wall=0.000s attempts=0
+q::run1: answered wall=0.000s attempts=0
+q::run2: answered wall=0.000s attempts=0
+ok
+test_retried_success_remains_latency_eligible (test_harness_v2.HarnessTests.test_retried_success_remains_latency_eligible) ... ok
+test_six_attempts_and_separate_backoff_accounting (test_harness_v2.HarnessTests.test_six_attempts_and_separate_backoff_accounting) ... ok
+test_swallowed_graph_failure (test_harness_v2.HarnessTests.test_swallowed_graph_failure) ... ok
+test_swallowed_llm_error_not_abstention (test_harness_v2.HarnessTests.test_swallowed_llm_error_not_abstention) ... ok
+test_abstention_with_fabricated_path (test_metrics_v2.MetricsV2Tests.test_abstention_with_fabricated_path) ... ok
+test_bare_issue_number (test_metrics_v2.MetricsV2Tests.test_bare_issue_number) ... ok
+test_dictionary_keys_are_not_symbols (test_metrics_v2.MetricsV2Tests.test_dictionary_keys_are_not_symbols) ... ok
+test_errors_in_denominator (test_metrics_v2.MetricsV2Tests.test_errors_in_denominator) ... ok
+test_extra_file (test_metrics_v2.MetricsV2Tests.test_extra_file) ... ok
+test_extra_issue_number (test_metrics_v2.MetricsV2Tests.test_extra_issue_number) ... ok
+test_failed_abstention (test_metrics_v2.MetricsV2Tests.test_failed_abstention) ... ok
+test_gold_symbol_as_dictionary_key_is_not_answer (test_metrics_v2.MetricsV2Tests.test_gold_symbol_as_dictionary_key_is_not_answer) ... ok
+test_hash_in_larger_word_does_not_match (test_metrics_v2.MetricsV2Tests.test_hash_in_larger_word_does_not_match) ... ok
+test_malformed_gold_raises (test_metrics_v2.MetricsV2Tests.test_malformed_gold_raises) ... ok
+test_missing_gold_is_not_incorrect_gold (test_metrics_v2.MetricsV2Tests.test_missing_gold_is_not_incorrect_gold) ... ok
+test_negated_correct_file (test_metrics_v2.MetricsV2Tests.test_negated_correct_file) ... ok
+test_no_retrieval_na (test_metrics_v2.MetricsV2Tests.test_no_retrieval_na) ... ok
+test_number_is_not_title (test_metrics_v2.MetricsV2Tests.test_number_is_not_title) ... ok
+test_prefixed_path_not_containment (test_metrics_v2.MetricsV2Tests.test_prefixed_path_not_containment) ... ok
+test_prose_titles (test_metrics_v2.MetricsV2Tests.test_prose_titles) ... ok
+test_right_file_wrong_commit (test_metrics_v2.MetricsV2Tests.test_right_file_wrong_commit) ... ok
+test_short_hash_unique_and_ambiguous (test_metrics_v2.MetricsV2Tests.test_short_hash_unique_and_ambiguous) ... ok
+test_ten_files (test_metrics_v2.MetricsV2Tests.test_ten_files) ... ok
+test_unanswerable (test_metrics_v2.MetricsV2Tests.test_unanswerable) ... ok
+test_uncertainty_words_inside_title_are_not_abstention (test_metrics_v2.MetricsV2Tests.test_uncertainty_words_inside_title_are_not_abstention) ... ok
+test_uncheckable_fact_flag (test_metrics_v2.MetricsV2Tests.test_uncheckable_fact_flag) ... ok
+test_airflow_heavy_index (test_phase1_retrieval.RetrievalTests.test_airflow_heavy_index) ... ok
+test_apostrophe_registry (test_phase1_retrieval.RetrievalTests.test_apostrophe_registry) ... ok
+test_manifest_required (test_phase1_retrieval.RetrievalTests.test_manifest_required) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 2.151s
+
+OK

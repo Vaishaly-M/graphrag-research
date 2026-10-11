@@ -34,7 +34,12 @@ def measure_answer(system, question_id, question, *, run_id=1, attempt_number=1,
         if graph is not None:
             graph.query = original_query
     total = time.perf_counter() - start
+    if result.get("error") or result.get("error_type") or result.get("answer_status") == "error":
+        error_type = error_type or result.get("error_type") or "SystemReportedError"
+        error = error_type
     retrieval_errors = list(measurement.retrieval_failures)
+    if result.get("retrieval_error"):
+        retrieval_errors.append(result["retrieval_error"])
     reported = result.get("retrieval_errors") or []
     if isinstance(reported, str):
         try:
@@ -73,6 +78,10 @@ def run(system, benchmark, output_dir, limit=None, reset=False, repeats=1,
         raise ValueError("Need positive repeats and at least two when discarding warm-up")
     rows = system._load_benchmark(benchmark)
     ids = [str(r.get("question_id") or r.get("id")) for r in rows]
+    if not rows or any(qid in {"", "None"} for qid in ids):
+        raise ValueError("Empty benchmark or missing question IDs")
+    if any(not str(r.get("question") or "").strip() for r in rows):
+        raise ValueError("Missing question text")
     if len(ids) != len(set(ids)):
         raise ValueError("Duplicate question IDs")
     if limit is not None:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 import json, os
+import numpy as np
 from collections import Counter
 from src.evaluation.telemetry import CURRENT, retrieval_call
 from src.evaluation.reproducibility import sha256
@@ -44,7 +45,33 @@ class VectorStore:
                     for i,chunk in enumerate(chunk_text(text)):
                         docs.append({'id':f'{aid}:chunk:{i}','artifact_id':aid,'repo':r.get('repo'),'kind':kind,'path':r.get('path'),'text':chunk})
         if not docs: raise RuntimeError('No artifacts available for vector indexing')
-        emb=self.model.encode([d['text'] for d in docs],normalize_embeddings=True,show_progress_bar=True,batch_size=64).astype('float32')
+        # Checkpoint unchanged embeddings so an interrupted build can resume safely.
+        from src.evaluation.reproducibility import save_snapshot, snapshot
+        from hashlib import sha256 as digest
+        self.dir.mkdir(parents=True, exist_ok=True)
+        build_config = dict(embedding_model=self.model_name, chunk_size=CHUNK_SIZE,
+                            chunk_overlap=CHUNK_OVERLAP, batch_size=64,
+                            docs_hash=digest(json.dumps(docs, sort_keys=True).encode()).hexdigest())
+        save_snapshot(self.dir, build_config)
+        save_snapshot(self.dir / "build_environment", snapshot(None, "vector_index_build"))
+        blocks = []
+        for start in range(0, len(docs), 2048):
+            checkpoint = self.dir / f"embeddings_{start:08d}.npy"
+            if checkpoint.exists():
+                block = np.load(checkpoint, allow_pickle=False)
+            else:
+                block = self.model.encode([d['text'] for d in docs[start:start+2048]],
+                    normalize_embeddings=True, show_progress_bar=False, batch_size=64).astype('float32')
+                temporary = checkpoint.with_suffix('.tmp')
+                with temporary.open('wb') as stream:
+                    np.save(stream, block, allow_pickle=False)
+                temporary.replace(checkpoint)
+            if len(block) != len(docs[start:start+2048]):
+                raise RuntimeError("Embedding checkpoint count mismatch")
+            blocks.append(block)
+            print(f"Index embeddings {min(start+2048, len(docs))}/{len(docs)}", flush=True)
+        emb = np.concatenate(blocks)
+
         idx=faiss.IndexFlatIP(emb.shape[1]); idx.add(emb); self.dir.mkdir(parents=True,exist_ok=True); faiss.write_index(idx,str(self.dir/'index.faiss')); (self.dir/'docs.json').write_text(json.dumps(docs,ensure_ascii=False),encoding='utf-8'); self.index,self.docs=idx,docs
         manifest = {
             "schema_version": 2, "embedding_model": self.model_name,
@@ -83,16 +110,20 @@ class VectorStore:
         v = self.model.encode([q], normalize_embeddings=True).astype('float32')
         candidate = min(max(k*5, k), len(self.docs))
         total_examined = 0
+        requested_candidates = 0
+        examined_ids = set()
         rounds = 0
         out = []
         while candidate:
             scores, ids = self.index.search(v, candidate)
             rounds += 1
-            total_examined += candidate
+            requested_candidates += candidate
             out = []
             for score, i in zip(scores[0], ids[0]):
                 if i < 0:
                     continue
+                total_examined += 1
+                examined_ids.add(int(i))
                 doc = self.docs[i]
                 if repository and doc.get('repo') != repository:
                     continue
@@ -105,7 +136,8 @@ class VectorStore:
                 break
             candidate = min(candidate*2, len(self.docs))
         self.last_search_stats = dict(global_candidates_examined=total_examined,
-            unique_global_candidates_examined=candidate, search_rounds=rounds,
+            unique_global_candidates_examined=len(examined_ids),
+            global_candidates_requested=requested_candidates, search_rounds=rounds,
             repository=repository, returned=len(out), k=k)
         measurement = CURRENT.get()
         if measurement:

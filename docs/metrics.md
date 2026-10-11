@@ -76,7 +76,7 @@ when gold evidence is missing. Other retrieval evidence comparisons reuse the le
 matcher and must not be confused with entity/answer correctness. Missing measurement is never zero.
 
 The harness logs retrieval time, API attempt time, pacing/backoff waits, total wall time and residual
-overhead. Analysis latency = total_wall_s - sleep_wait_s. Only non-error, non-retried, non-cache-hit rows
+overhead. Analysis latency = total_wall_s - sleep_wait_s. Only non-error, non-cache-hit rows
 enter the reported latency mean/sample SD. Every requested repeat is retained with its run_id;
 --discard-first-run excludes repeat one, so five requested repeats leave four measured repeats.
 Accuracy repeat mean/sample SD is computed from repeat-level accuracies. API seed is recorded as null
@@ -91,3 +91,10 @@ application retries keep the configured budget. A finite 60-second HTTP timeout 
 
 Diagnostic rescores of old answers are not reruns, do not repair historical telemetry, and are not paper
 results. No bootstrap or paired significance claims are introduced in Phase 1.
+
+The latency diagnostic may use a byte-identical legacy index copy with an explicit diagnostic-only
+manifest. Its historical chunk/source settings remain unknown; recomputed prefix vectors are only
+compatibility evidence. The normal evaluation entry point rejects this copy. Complete an explicit
+`python -m src.build_vector_index` build before new publishable vector evaluations. Partial embedding
+checkpoints can resume only with an identical corpus/model/chunk configuration. No historical build
+manifest is retroactively fabricated.
