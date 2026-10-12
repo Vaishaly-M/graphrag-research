@@ -1,0 +1,87 @@
+{
+  "status": "FAIL",
+  "rule": {
+    "version": "primary-subject-v2",
+    "changed_on": "2026-10-12",
+    "post_hoc": true,
+    "reason": "User-requested correction after Phase 1B failed: repository sharing is not primary-subject leakage.",
+    "subjects": [
+      "commit hash",
+      "issue number",
+      "PR number",
+      "file path",
+      "developer identity",
+      "code/doc fragment"
+    ],
+    "excluded_subjects": [
+      "repository alone",
+      "directory alone",
+      "issue search keyword",
+      "issue title alone"
+    ],
+    "normalization": "Unicode text casefold and whitespace collapse; paths normalize backslashes; commit prefixes match at >=7 characters",
+    "scope": "Files, issue/PR numbers and fragments are repository-scoped; commit hashes and developer identities are global.",
+    "limitations": "Human subjects lack annotations; only identifiable literal subjects can be checked. Not proof of semantic/paraphrase disjointness."
+  },
+  "checks": {
+    "development": {
+      "status": "FAIL",
+      "text_overlaps": 0,
+      "primary_entity_overlaps": 1,
+      "overlaps": [
+        {
+          "question_id": "router-tuning-c6dc0e1b1b05a2df",
+          "other_question_id": "developer_activity-006",
+          "check": "primary_entity",
+          "entity_type": "developer",
+          "entity": "choonghee.lee@hotmail.com",
+          "repository": "spring-projects/spring-petclinic"
+        }
+      ]
+    },
+    "validation": {
+      "status": "PASS_DETECTABLE_SUBJECTS",
+      "text_overlaps": 0,
+      "primary_entity_overlaps": 0,
+      "overlaps": []
+    },
+    "hidden-test": {
+      "status": "PASS_DETECTABLE_SUBJECTS",
+      "text_overlaps": 0,
+      "primary_entity_overlaps": 0,
+      "overlaps": []
+    },
+    "human-test": {
+      "status": "PASS_DETECTABLE_SUBJECTS",
+      "text_overlaps": 0,
+      "primary_entity_overlaps": 0,
+      "overlaps": []
+    }
+  },
+  "count": 70,
+  "categories": {
+    "code_retrieval": 10,
+    "structure": 10,
+    "documentation_lookup": 10,
+    "dependency_analysis": 10,
+    "issue_pr_analysis": 10,
+    "developer_activity": 10,
+    "multi_hop": 10
+  },
+  "repositories": {
+    "openmrs/openmrs-core": 20,
+    "spring-projects/spring-petclinic": 16,
+    "mlflow/mlflow": 14,
+    "dotnet/eShop": 13,
+    "synthetic-org/platform": 7
+  },
+  "hashes": {
+    "router-tuning": "fee8bab59925109abfff7d7b579fa1df92800962403200116fd329f2ce539aa8",
+    "development": "05530b27aaca82cbf87442d92da73eb13e70e5b64716be922283e5b342d24b7e",
+    "validation": "65217b4ef800772c7549e24faf7d3260bdf701336c951ad75be9989ef9c48ed5",
+    "hidden-test": "42b776aa59bc63bff3bd21641c7238b2f61136469438332832ce3b52aa7d8e15",
+    "human-test": "1f7dad16b56f10924233d2c728ef776401be24bc9cf4cd8a420dd3cd023ce390"
+  },
+  "audited_split": "router-tuning_v1",
+  "audited_split_sha256": "fee8bab59925109abfff7d7b579fa1df92800962403200116fd329f2ce539aa8"
+}

@@ -1,0 +1,9 @@
+﻿category,n,graph,vector,hybrid,none,vector_cheapest_rate
+ALL,140,26,12,0,102,0.08571428571428572
+code_retrieval,20,9,2,0,9,0.1
+dependency_analysis,20,3,0,0,17,0.0
+developer_activity,20,0,1,0,19,0.05
+documentation_lookup,20,7,4,0,9,0.2
+issue_pr_analysis,20,5,3,0,12,0.15
+multi_hop,20,2,2,0,16,0.1
+structure,20,0,0,0,20,0.0

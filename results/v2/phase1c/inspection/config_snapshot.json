@@ -1,0 +1,14 @@
+{
+  "human_sha256": "1f7dad16b56f10924233d2c728ef776401be24bc9cf4cd8a420dd3cd023ce390",
+  "template_registry_sha256": "7316594fcc32c56017488a08f36ed01e315f2f68002889a4df377907206af002",
+  "inspection_script_sha256": "0c0fd9be200519dfb9e5de89afc068bfb0bde31cc7fd8292d1be37d743c5e2ad",
+  "human_protocol": "Question text only; boolean template match; no gold, scoring, model calls or tuning",
+  "historical_review_ids": [
+    "code_retrieval-003",
+    "code_retrieval-005",
+    "code_retrieval-013",
+    "code_retrieval-018",
+    "code_retrieval-033"
+  ],
+  "historical_protocol": "Inspect explicitly requested five questions, saved entities and graph fragment matches; no gold edits, no model calls"
+}

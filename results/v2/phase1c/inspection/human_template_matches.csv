@@ -1,0 +1,101 @@
+﻿question_id,category,repository,template_matches
+Q001,Structure,spring-projects/spring-petclinic,False
+Q002,Code retrieval,spring-projects/spring-petclinic,False
+Q003,Dependency analysis,spring-projects/spring-petclinic,False
+Q004,Documentation lookup,spring-projects/spring-petclinic,False
+Q005,Issue/PR analysis,openmrs/openmrs-core,False
+Q006,Developer activity,openmrs/openmrs-core,False
+Q007,Multi-hop reasoning,openmrs/openmrs-core,False
+Q008,Structure,openmrs/openmrs-core,False
+Q009,Code retrieval,dotnet/eShop,False
+Q010,Dependency analysis,dotnet/eShop,False
+Q011,Documentation lookup,dotnet/eShop,False
+Q012,Issue/PR analysis,dotnet/eShop,False
+Q013,Developer activity,apache/airflow,False
+Q014,Multi-hop reasoning,apache/airflow,False
+Q015,Structure,apache/airflow,False
+Q016,Code retrieval,apache/airflow,False
+Q017,Dependency analysis,mlflow/mlflow,False
+Q018,Documentation lookup,mlflow/mlflow,False
+Q019,Issue/PR analysis,mlflow/mlflow,False
+Q020,Developer activity,mlflow/mlflow,False
+Q021,Multi-hop reasoning,spring-projects/spring-petclinic,False
+Q022,Structure,spring-projects/spring-petclinic,False
+Q023,Code retrieval,spring-projects/spring-petclinic,False
+Q024,Dependency analysis,spring-projects/spring-petclinic,False
+Q025,Documentation lookup,openmrs/openmrs-core,False
+Q026,Issue/PR analysis,openmrs/openmrs-core,False
+Q027,Developer activity,openmrs/openmrs-core,False
+Q028,Multi-hop reasoning,openmrs/openmrs-core,False
+Q029,Structure,dotnet/eShop,False
+Q030,Code retrieval,dotnet/eShop,False
+Q031,Dependency analysis,dotnet/eShop,False
+Q032,Documentation lookup,dotnet/eShop,False
+Q033,Issue/PR analysis,apache/airflow,False
+Q034,Developer activity,apache/airflow,False
+Q035,Multi-hop reasoning,apache/airflow,False
+Q036,Structure,apache/airflow,False
+Q037,Code retrieval,mlflow/mlflow,False
+Q038,Dependency analysis,mlflow/mlflow,False
+Q039,Documentation lookup,mlflow/mlflow,False
+Q040,Issue/PR analysis,mlflow/mlflow,False
+Q041,Developer activity,spring-projects/spring-petclinic,False
+Q042,Multi-hop reasoning,spring-projects/spring-petclinic,False
+Q043,Structure,spring-projects/spring-petclinic,False
+Q044,Code retrieval,spring-projects/spring-petclinic,False
+Q045,Dependency analysis,openmrs/openmrs-core,False
+Q046,Documentation lookup,openmrs/openmrs-core,False
+Q047,Issue/PR analysis,openmrs/openmrs-core,False
+Q048,Developer activity,openmrs/openmrs-core,False
+Q049,Multi-hop reasoning,dotnet/eShop,False
+Q050,Structure,dotnet/eShop,False
+Q051,Code retrieval,dotnet/eShop,False
+Q052,Dependency analysis,dotnet/eShop,False
+Q053,Documentation lookup,apache/airflow,False
+Q054,Issue/PR analysis,apache/airflow,False
+Q055,Developer activity,apache/airflow,False
+Q056,Multi-hop reasoning,apache/airflow,False
+Q057,Structure,mlflow/mlflow,False
+Q058,Code retrieval,mlflow/mlflow,False
+Q059,Dependency analysis,mlflow/mlflow,False
+Q060,Documentation lookup,mlflow/mlflow,False
+Q061,Issue/PR analysis,spring-projects/spring-petclinic,False
+Q062,Developer activity,spring-projects/spring-petclinic,False
+Q063,Multi-hop reasoning,spring-projects/spring-petclinic,False
+Q064,Structure,spring-projects/spring-petclinic,False
+Q065,Code retrieval,openmrs/openmrs-core,False
+Q066,Dependency analysis,openmrs/openmrs-core,False
+Q067,Documentation lookup,openmrs/openmrs-core,False
+Q068,Issue/PR analysis,openmrs/openmrs-core,False
+Q069,Developer activity,dotnet/eShop,False
+Q070,Multi-hop reasoning,dotnet/eShop,False
+Q071,Structure,dotnet/eShop,False
+Q072,Code retrieval,dotnet/eShop,False
+Q073,Dependency analysis,apache/airflow,False
+Q074,Documentation lookup,apache/airflow,False
+Q075,Issue/PR analysis,apache/airflow,False
+Q076,Developer activity,apache/airflow,False
+Q077,Multi-hop reasoning,mlflow/mlflow,False
+Q078,Structure,mlflow/mlflow,False
+Q079,Code retrieval,mlflow/mlflow,False
+Q080,Dependency analysis,mlflow/mlflow,False
+Q081,Documentation lookup,spring-projects/spring-petclinic,False
+Q082,Issue/PR analysis,spring-projects/spring-petclinic,False
+Q083,Developer activity,spring-projects/spring-petclinic,False
+Q084,Multi-hop reasoning,spring-projects/spring-petclinic,False
+Q085,Structure,openmrs/openmrs-core,False
+Q086,Code retrieval,openmrs/openmrs-core,False
+Q087,Dependency analysis,openmrs/openmrs-core,False
+Q088,Documentation lookup,openmrs/openmrs-core,False
+Q089,Issue/PR analysis,dotnet/eShop,False
+Q090,Developer activity,dotnet/eShop,False
+Q091,Multi-hop reasoning,dotnet/eShop,False
+Q092,Structure,dotnet/eShop,False
+Q093,Code retrieval,apache/airflow,False
+Q094,Dependency analysis,apache/airflow,False
+Q095,Documentation lookup,apache/airflow,False
+Q096,Issue/PR analysis,apache/airflow,False
+Q097,Developer activity,mlflow/mlflow,False
+Q098,Multi-hop reasoning,mlflow/mlflow,False
+Q099,Structure,mlflow/mlflow,False
+Q100,Multi-hop reasoning,mlflow/mlflow,False

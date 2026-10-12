@@ -1,0 +1,48 @@
+{
+  "count": 140,
+  "sha256": "b46e373f1b9ac2ce3a868ca62cab09589f0540cac6089f713c493fd083d634f6",
+  "retained": 69,
+  "removed": [
+    "router-tuning-c6dc0e1b1b05a2df"
+  ],
+  "added": 71,
+  "categories": {
+    "code_retrieval": 20,
+    "structure": 20,
+    "documentation_lookup": 20,
+    "dependency_analysis": 20,
+    "issue_pr_analysis": 20,
+    "developer_activity": 20,
+    "multi_hop": 20
+  },
+  "repositories": {
+    "openmrs/openmrs-core": 24,
+    "spring-projects/spring-petclinic": 24,
+    "mlflow/mlflow": 26,
+    "dotnet/eShop": 28,
+    "synthetic-org/platform": 15,
+    "apache/airflow": 23
+  },
+  "attempts": {
+    "structure": 12,
+    "code_retrieval": 84,
+    "dependency_analysis": 10,
+    "documentation_lookup": 71,
+    "issue_pr_analysis": 15,
+    "developer_activity": 19,
+    "multi_hop": 12
+  },
+  "rejections": {
+    "structure/no_valid_candidate": 2,
+    "code_retrieval/no_valid_candidate": 74,
+    "documentation_lookup/no_valid_candidate": 61,
+    "issue_pr_analysis/protected_subject_overlap": 4,
+    "issue_pr_analysis/duplicate_text": 1,
+    "developer_activity/protected_subject_overlap": 8,
+    "developer_activity/duplicate_text": 1,
+    "multi_hop/protected_subject_overlap": 1
+  },
+  "target": 20,
+  "missing_target": {},
+  "maximum_note": "Target reached where reported; no exhaustive mathematical maximum claimed. A shortfall is the achieved count within the recorded candidate-search budget."
+}

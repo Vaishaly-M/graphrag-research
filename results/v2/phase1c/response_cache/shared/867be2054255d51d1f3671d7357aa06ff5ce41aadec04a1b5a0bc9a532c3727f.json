@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'mlflow/mlflow'})-[:CONTAINS_FILE]->(f:File)\nWHERE f.content CONTAINS '\"name\": \"claude-instant-100k\",'\nRETURN f.path AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T13:47:40.302405+00:00"}

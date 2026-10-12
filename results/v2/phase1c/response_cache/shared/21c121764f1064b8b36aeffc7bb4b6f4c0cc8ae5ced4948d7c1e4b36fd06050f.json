@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'spring-projects/spring-petclinic'})-[:CONTAINS_FILE]->(f:File)\nWHERE f.content CONTAINS '# database init, supports postgres too'\nRETURN f.path AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T13:59:07.568106+00:00"}

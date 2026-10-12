@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "split_hashes_unchanged": true,
+    "source_hashes_match_run": true,
+    "only_router_tuning_outcomes": true,
+    "no_route_escalation": true,
+    "errors_incorrect": true,
+    "latency_excludes_waits": true,
+    "oracle_dominates_both_metrics": true,
+    "completed_question_count_matches": true,
+    "run_is_complete_or_quota_stopped": true,
+    "all_70_if_complete": true,
+    "attempt_starts_and_completions_logged": true,
+    "api_attempts_logged": true,
+    "api_event_file_matches_records": true,
+    "saved_oracle_matches_derivation": true
+  },
+  "all_pass": true,
+  "outcome_count": 210,
+  "complete_questions": 70,
+  "api_attempts": 70,
+  "cache_hits": 0,
+  "scope": "Integrity checks only; split disjointness remains FAIL"
+}

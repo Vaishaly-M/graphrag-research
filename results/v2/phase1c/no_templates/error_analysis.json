@@ -1,0 +1,29 @@
+{
+  "status": "FAIL_NETWORK_CONFOUNDED",
+  "errors": 127,
+  "by_route": {
+    "graph": 64,
+    "hybrid": 63
+  },
+  "by_reason": {
+    "ConnectError: [WinError 10065] A socket operation was attempted to an unreachable host": 1,
+    "ConnectError: [Errno 11001] getaddrinfo failed": 122,
+    "ValueError: Cannot resolve address f57c1e74.databases.neo4j.io:7687": 4
+  },
+  "first_error": {
+    "question_id": "router-tuning-c8f5f5dddfb1a544",
+    "route": "graph",
+    "start_time": "2026-10-12T14:09:19.833932+00:00",
+    "end_time": "2026-10-12T14:09:46.642455+00:00",
+    "retrieval_error": "ConnectError: [WinError 10065] A socket operation was attempted to an unreachable host"
+  },
+  "last_error": {
+    "question_id": "router-tuning-2ea294b5e2a85c18",
+    "route": "graph",
+    "start_time": "2026-10-12T14:11:04.685687+00:00",
+    "end_time": "2026-10-12T14:11:04.695760+00:00",
+    "retrieval_error": "ConnectError: [Errno 11001] getaddrinfo failed"
+  },
+  "questions_all_routes_error_free": 76,
+  "interpretation": "Errors retained and scored incorrect. Route comparison is confounded by network failure; no clean route-quality conclusion."
+}

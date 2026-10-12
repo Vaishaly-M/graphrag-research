@@ -92,6 +92,32 @@ application retries keep the configured budget. A finite 60-second HTTP timeout 
 Diagnostic rescores of old answers are not reruns, do not repair historical telemetry, and are not paper
 results. No bootstrap or paired significance claims are introduced in Phase 1.
 
+## Phase 1B: recall accuracy and nullable gold completeness
+
+`recall_accuracy` requires every expected entity, successful execution, no abstention, and no
+explicit negation of a required entity. Additional entities do not lower recall accuracy.
+`strict_accuracy` retains the frozen-set extra-entity and contradiction rules above. Both metrics
+count execution errors as incorrect. Neither metric changes gold or infers that extra entities are true.
+
+`gold_complete` is nullable. An explicit annotation takes precedence. Otherwise, a generation query
+with Cypher provenance and no LIMIT establishes completeness; fewer returned entities than one literal
+LIMIT also establishes completeness. Reaching LIMIT, missing provenance, SKIP, multiple limits or a
+parameterized limit leaves completeness unknown. Unknown is not false and is not a pass.
+`strict_complete_accuracy` is strict accuracy only when `gold_complete=true`; other rows are excluded
+from that metric, with the denominator reported. Strict accuracy over all rows remains available.
+
+The Phase 1B extension of the existing adaptive 25-flip diagnostic records gold length, extracted
+returned length, completeness and extra entities in `results/v2/phase1b/diagnostic_25_flips.csv`.
+It uses saved diagnostic entity sets and original generation provenance, without rerunning held-out
+questions or modifying gold. Of 25 frozen-set strict flips, 5 have known-complete gold and 20 have
+unknown completeness. All 25 remain strict flips; 5 remain in the known-complete subset and none
+remain under recall accuracy. Exclusion from the complete-gold subset does not validate extra answers.
+
+Phase 1B oracle route choice uses the specified ordinal cost graph < vector < hybrid among
+recall-correct routes, not measured latency. Per-route latency excludes pacing/backoff. Cache-hit
+timings are recorded but excluded from clean latency means. The best recall and best strict outcome
+are calculated independently; the cheapest recall-correct route need not be strict-correct.
+
 The latency diagnostic may use a byte-identical legacy index copy with an explicit diagnostic-only
 manifest. Its historical chunk/source settings remain unknown; recomputed prefix vectors are only
 compatibility evidence. The normal evaluation entry point rejects this copy. Complete an explicit

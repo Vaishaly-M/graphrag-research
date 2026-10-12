@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'openmrs/openmrs-core'})-[:CONTAINS_FILE]->(f:File {path: 'src/api/org/openmrs/reporting/ObsListProducer.java'})\nMATCH (c:Commit)-[:MODIFIED_FILE]->(f)\nRETURN c AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T13:48:22.734409+00:00"}

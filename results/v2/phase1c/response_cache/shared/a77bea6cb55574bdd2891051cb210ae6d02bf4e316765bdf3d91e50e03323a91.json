@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'openmrs/openmrs-core'})-[:HAS_ISSUE]->(i:Issue)\nWHERE i.title CONTAINS 'TRUNK-6429'\nRETURN i.number AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T14:02:45.473395+00:00"}

@@ -1,0 +1,1 @@
+{"answer": "src/Ordering.Domain/Events/OrderCancelledDomainEvent.cs\nsrc/Ordering.Domain/Events/OrderShippedDomainEvent.cs\nsrc/Ordering.Domain/Events/OrderStartedDomainEvent.cs", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T13:34:37.756099+00:00"}

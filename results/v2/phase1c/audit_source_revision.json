@@ -1,0 +1,23 @@
+{
+  "reason": "Canonicalize structured repo:commit:hash IDs to the primary hash; v1 and v2 audit findings unchanged; no inference source or split changed",
+  "old_audit_source_sha256": "d554734608dc045a06e838977308a6e5abdd0ca6124e7356cfb29c629fe02e1d",
+  "new_audit_source_sha256": "49f21daea66a2b318cf7bfab34e870bf0d6f0ed907c9c7ddacd48c3c69329fd0",
+  "original_run_snapshot": "results\\v2\\phase1c\\with_templates\\config_revisions\\before_commit_hash_normalization.json",
+  "progress_at_revision": {
+    "status": "RUNNING",
+    "total_questions": 140,
+    "questions_with_all_routes": 95,
+    "questions_without_errors": 95,
+    "route_outcomes": 287,
+    "attempts": 287,
+    "active_errors": 0,
+    "diagnostic_only": true,
+    "cost_order": [
+      "graph",
+      "vector",
+      "hybrid"
+    ],
+    "latency_excludes": "pacing and backoff",
+    "resume_command": "python -B scripts/derive_oracle_routes.py --run-name with_templates --extend-phase1b"
+  }
+}

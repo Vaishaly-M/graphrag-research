@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'synthetic-org/platform'})-[:CONTAINS_FILE]->(f:File)\nWHERE f.path STARTS WITH 'src/component_14/' AND f.extension = 'py'\nRETURN f.path AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T14:07:55.272210+00:00"}

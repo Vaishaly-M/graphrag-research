@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'dotnet/eShop'})-[:CONTAINS_FILE]->(f:File)\nWHERE f.content CONTAINS 'to clarify expected behavior in our community.'\nRETURN f.path AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T13:48:01.879970+00:00"}

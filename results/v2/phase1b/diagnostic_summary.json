@@ -1,0 +1,8 @@
+{
+  "original_flips": 25,
+  "strict_flips_remaining": 25,
+  "known_complete_flips_remaining": 5,
+  "recall_flips_remaining": 0,
+  "unknown_completeness": 20,
+  "note": "Unknown completeness is excluded from strict-complete accuracy, never converted into a pass."
+}

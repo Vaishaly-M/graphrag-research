@@ -23,15 +23,59 @@
       "source": "data\\benchmark\\Human Written Question.csv"
     },
     "router-tuning": {
+      "version": 2,
+      "count": 140,
+      "sha256": "b46e373f1b9ac2ce3a868ca62cab09589f0540cac6089f713c493fd083d634f6",
+      "usage": "tuning-only; post-hoc primary-subject rule; not held-out evidence",
+      "seed": 20261012,
+      "retained_v1_seed": 20261009,
+      "retained_v1_questions": 69,
+      "removed_v1_questions": [
+        "router-tuning-c6dc0e1b1b05a2df"
+      ],
+      "source": "v1 retained rows plus fresh graph-verified generation",
+      "excluded_repositories": [],
+      "primary_entity_disjointness": "PASS_DETECTABLE_SUBJECTS",
+      "audit_rule": {
+        "version": "primary-subject-v2",
+        "changed_on": "2026-10-12",
+        "post_hoc": true,
+        "reason": "User-requested correction after Phase 1B failed: repository sharing is not primary-subject leakage.",
+        "subjects": [
+          "commit hash",
+          "issue number",
+          "PR number",
+          "file path",
+          "developer identity",
+          "code/doc fragment"
+        ],
+        "excluded_subjects": [
+          "repository alone",
+          "directory alone",
+          "issue search keyword",
+          "issue title alone"
+        ],
+        "normalization": "Unicode text casefold and whitespace collapse; paths normalize backslashes; commit prefixes match at >=7 characters",
+        "scope": "Files, issue/PR numbers and fragments are repository-scoped; commit hashes and developer identities are global.",
+        "limitations": "Human subjects lack annotations; only identifiable literal subjects can be checked. Not proof of semantic/paraphrase disjointness."
+      },
+      "disjoint_normalized_questions": true,
+      "audit": "results/v2/phase1c/disjointness.json"
+    },
+    "router-tuning_v1": {
       "count": 70,
       "sha256": "fee8bab59925109abfff7d7b579fa1df92800962403200116fd329f2ce539aa8",
       "seed": 20261009,
       "source": "fresh graph-verified generator",
+      "usage": "tuning-only; overlap-contaminated diagnostic, explicitly authorized",
+      "primary_entity_disjointness": false,
+      "phase1b_disjointness_report": "results/v2/phase1b/disjointness.json",
       "excluded_repositories": [
         "apache/airflow"
       ],
       "disjoint_normalized_questions": true,
-      "disjoint_complete_expected_entity_sets": true
+      "disjoint_complete_expected_entity_sets": true,
+      "file": "router-tuning_v1.csv"
     }
   },
   "paraphrased_set": null

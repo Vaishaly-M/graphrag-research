@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETE_DIAGNOSTIC",
+  "total_questions": 70,
+  "questions_with_all_routes": 70,
+  "questions_without_errors": 70,
+  "route_outcomes": 210,
+  "attempts": 210,
+  "active_errors": 0,
+  "diagnostic_only": true,
+  "cost_order": [
+    "graph",
+    "vector",
+    "hybrid"
+  ],
+  "latency_excludes": "pacing and backoff",
+  "resume_command": "python -B scripts/derive_oracle_routes.py --run-name route_outcomes --allow-overlap-diagnostic"
+}
