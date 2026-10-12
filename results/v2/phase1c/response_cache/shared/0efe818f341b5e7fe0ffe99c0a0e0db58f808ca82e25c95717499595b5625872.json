@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'spring-projects/spring-petclinic'})-[:HAS_ISSUE]->(i:Issue {number: 279})\nRETURN {title: i.title, state: i.state} AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T13:50:41.086522+00:00"}

@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: \"openmrs/openmrs-core\"})-[:CONTAINS_FILE]->(f:File)\nWHERE f.content CONTAINS \"return super.resolveSqlTypeDescriptor(columnTypeName, jdbcTypeCode, precision, scale, jdbcTypeRegist\"\nRETURN f.path AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T14:05:02.150497+00:00"}

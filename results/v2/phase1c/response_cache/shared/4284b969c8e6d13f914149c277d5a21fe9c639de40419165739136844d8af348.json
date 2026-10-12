@@ -1,0 +1,1 @@
+{"answer": "Title: Order stop/discontinue does not fire a *ServiceEvent for the stopped order (event-driven consumers see it as still active)\nState: open", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T14:06:25.237301+00:00"}

@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'dotnet/eShop'})-[:CONTAINS_FILE]->(f:File)\nWHERE f.content CONTAINS '- A clear title and description of the suggestion'\n  AND (f.extension = 'md' OR f.path ENDS WITH '.md' OR f.path CONTAINS 'docs')\nRETURN f.path AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T14:07:32.988698+00:00"}

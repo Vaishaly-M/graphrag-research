@@ -166,7 +166,10 @@ class GeminiClient:
                 sleep_s=(pacing if attempt == 1 else 0.0) + backoff,
                 pacing_sleep_s=pacing if attempt == 1 else 0.0, backoff_sleep_s=backoff,
                 retry_after_s=retry_after, reason="retry" if can_retry else "terminal" if failure else "completed",
-                model=self.model)
+                model=self.model,
+                provider_status_code=getattr(failure, "code", None) if failure else None,
+                quota_exhausted=bool(failure and any(token in str(failure).lower()
+                    for token in ("429", "quota", "resource_exhausted", "resource exhausted"))))
             if failure:
                 if can_retry:
                     continue

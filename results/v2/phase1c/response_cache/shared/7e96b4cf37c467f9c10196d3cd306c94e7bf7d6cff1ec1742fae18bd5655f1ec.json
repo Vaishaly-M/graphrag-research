@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: \"spring-projects/spring-petclinic\"})-[:CONTAINS_FILE]->(f:File)\nWHERE f.content CONTAINS \"void validateWithInvalidBirthDate() {\"\nRETURN f.path AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T13:51:47.670006+00:00"}

@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'spring-projects/spring-petclinic'})-[:HAS_ISSUE]->(i:Issue)\nWHERE i.title CONTAINS 'Failed'\nRETURN i.title AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T13:58:17.912992+00:00"}

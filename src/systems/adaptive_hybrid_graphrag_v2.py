@@ -46,7 +46,9 @@ class System(OriginalSystem):
         fused = fuse_evidence(question, graph_evidence(graph_rows)+vector_evidence(vector_rows), weights=self.ablation.fusion_weights)
         # Graph evidence has already passed validation. Routing confidence must not
         # silently change the answer-generation policy used for forced-route outcomes.
-        direct = direct_answers(graph_rows)
+        # Disabling templates disables both query lookup AND deterministic answer extraction,
+        # even when LLM-generated Cypher happens to return an `answer` column.
+        direct = [] if self.ablation.no_templates else direct_answers(graph_rows)
         if direct:
             answer, mode = "\n".join(direct), "deterministic_graph"
         elif fused:
@@ -54,7 +56,7 @@ class System(OriginalSystem):
         else:
             answer, mode = "Insufficient repository evidence.", "abstained"
         best = next((a for a in attempts if a["valid"]), None)
-        return dict(answer=answer, answer_generation_mode=mode,
+        return dict(answer=answer, answer_generation_mode=mode, templates_enabled=not self.ablation.no_templates,
             selected_retrieval_route=route, executed_retrieval_route=evidence["executed_route"],
             fallback_used=evidence["fallback_used"] or len(attempts)>1,
             fallback_reason=evidence["fallback_reason"], router_scores=decision.scores,

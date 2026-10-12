@@ -1,0 +1,7 @@
+{
+  "reason": "Corrected retained-list aliasing in counts only; split bytes unchanged",
+  "retained": 69,
+  "added": 71,
+  "split_sha256": "b46e373f1b9ac2ce3a868ca62cab09589f0540cac6089f713c493fd083d634f6",
+  "corrected_script_sha256": "6a7413a747057ec142a8e0cbebfc9669c82b96bc1c4798f665b06e277f66f245"
+}

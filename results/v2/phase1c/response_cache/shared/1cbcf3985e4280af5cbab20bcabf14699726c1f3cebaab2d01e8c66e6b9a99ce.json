@@ -1,0 +1,1 @@
+{"answer": "MATCH (r:Repository {id: 'openmrs/openmrs-core'})-[:HAS_ISSUE]->(i:Issue {number: 6197})\nRETURN {title: i.title, state: i.state} AS answer", "model": "gemini-flash-lite-latest", "created_at": "2026-10-12T14:06:10.601995+00:00"}

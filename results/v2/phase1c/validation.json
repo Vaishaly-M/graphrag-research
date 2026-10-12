@@ -1,0 +1,154 @@
+{
+  "checks": {
+    "protected_splits_unchanged": true,
+    "v1_byte_hash_unchanged": true,
+    "retained_rows_unchanged": true,
+    "only_flagged_question_removed": true,
+    "final_split_hash_matches": true
+  },
+  "modes": {
+    "with_templates": {
+      "status": "COMPLETE_DIAGNOSTIC",
+      "progress": {
+        "status": "COMPLETE_DIAGNOSTIC",
+        "total_questions": 140,
+        "questions_with_all_routes": 140,
+        "questions_without_errors": 140,
+        "route_outcomes": 420,
+        "attempts": 420,
+        "active_errors": 0,
+        "diagnostic_only": true,
+        "cost_order": [
+          "graph",
+          "vector",
+          "hybrid"
+        ],
+        "latency_excludes": "pacing and backoff",
+        "resume_command": "python -B scripts/derive_oracle_routes.py --run-name with_templates --extend-phase1b"
+      },
+      "complete_questions": 140,
+      "questions_with_any_different_answers": 127,
+      "questions_with_three_distinct_answers": 0,
+      "questions_with_different_recall_correctness": 116,
+      "questions_with_different_strict_correctness": 89,
+      "strict_comparison_denominator": 113,
+      "oracle_distribution": {
+        "graph": 134,
+        "none": 6
+      },
+      "oracle_recall_accuracy": 0.9571428571428572,
+      "oracle_strict_accuracy": 0.9292035398230089,
+      "best_single_route_correct": 134,
+      "oracle_correct": 134,
+      "oracle_gain_questions": 0,
+      "dominating_routes": [
+        "graph",
+        "hybrid"
+      ],
+      "route_recall_counts": {
+        "graph": 134,
+        "vector": 18,
+        "hybrid": 134
+      },
+      "strict_dominating_routes": [],
+      "route_strict_counts": {
+        "graph": 103,
+        "vector": 18,
+        "hybrid": 103
+      },
+      "strict_oracle_gain_questions": 2,
+      "imported_outcomes": 207,
+      "graph_hybrid_identical": 140,
+      "local_api_attempts": 74,
+      "local_cache_hits": 2,
+      "total_pacing_s": 301.99730729998555,
+      "total_backoff_s": 1.4961660999979358,
+      "checks": {
+        "run_source_hashes_match": true,
+        "only_current_tuning_ids": true,
+        "strict_na_unless_known_complete": true,
+        "errors_incorrect": true,
+        "forced_route_preserved": true,
+        "latency_excludes_pacing_backoff": true,
+        "complete_count_matches": true,
+        "oracle_dominates_each_route": true,
+        "no_templates_enforced": true,
+        "full_denominator_if_complete": true,
+        "imported_answers_and_timings_unchanged": true,
+        "all_local_api_events_logged": true
+      },
+      "all_checks_pass": true
+    },
+    "no_templates": {
+      "status": "COMPLETE_WITH_ERRORS_DIAGNOSTIC",
+      "progress": {
+        "status": "COMPLETE_WITH_ERRORS_DIAGNOSTIC",
+        "total_questions": 140,
+        "questions_with_all_routes": 140,
+        "questions_without_errors": 76,
+        "route_outcomes": 420,
+        "attempts": 420,
+        "active_errors": 127,
+        "diagnostic_only": true,
+        "cost_order": [
+          "graph",
+          "vector",
+          "hybrid"
+        ],
+        "latency_excludes": "pacing and backoff",
+        "resume_command": "python -B scripts/derive_oracle_routes.py --run-name no_templates --no-templates"
+      },
+      "complete_questions": 140,
+      "questions_with_any_different_answers": 101,
+      "questions_with_three_distinct_answers": 3,
+      "questions_with_different_recall_correctness": 32,
+      "questions_with_different_strict_correctness": 31,
+      "strict_comparison_denominator": 113,
+      "oracle_distribution": {
+        "graph": 26,
+        "none": 102,
+        "vector": 12
+      },
+      "oracle_recall_accuracy": 0.2714285714285714,
+      "oracle_strict_accuracy": 0.3274336283185841,
+      "best_single_route_correct": 26,
+      "oracle_correct": 38,
+      "oracle_gain_questions": 12,
+      "dominating_routes": [],
+      "route_recall_counts": {
+        "graph": 26,
+        "vector": 18,
+        "hybrid": 14
+      },
+      "strict_dominating_routes": [],
+      "route_strict_counts": {
+        "graph": 25,
+        "vector": 18,
+        "hybrid": 14
+      },
+      "strict_oracle_gain_questions": 12,
+      "imported_outcomes": 0,
+      "graph_hybrid_identical": 111,
+      "local_api_attempts": 327,
+      "local_cache_hits": 300,
+      "total_pacing_s": 1122.984709499935,
+      "total_backoff_s": 0.0,
+      "checks": {
+        "run_source_hashes_match": true,
+        "only_current_tuning_ids": true,
+        "strict_na_unless_known_complete": true,
+        "errors_incorrect": true,
+        "forced_route_preserved": true,
+        "latency_excludes_pacing_backoff": true,
+        "complete_count_matches": true,
+        "oracle_dominates_each_route": true,
+        "no_templates_enforced": true,
+        "full_denominator_if_complete": true,
+        "imported_answers_and_timings_unchanged": true,
+        "all_local_api_events_logged": true
+      },
+      "all_checks_pass": true
+    }
+  },
+  "all_available_checks_pass": true
+}

@@ -1,0 +1,14 @@
+﻿group,value,n,matched,unmatched,match_rate
+ALL,ALL,100,0,100,0.0
+category,Code retrieval,14,0,14,0.0
+category,Dependency analysis,14,0,14,0.0
+category,Developer activity,14,0,14,0.0
+category,Documentation lookup,14,0,14,0.0
+category,Issue/PR analysis,14,0,14,0.0
+category,Multi-hop reasoning,15,0,15,0.0
+category,Structure,15,0,15,0.0
+repository,apache/airflow,20,0,20,0.0
+repository,dotnet/eShop,20,0,20,0.0
+repository,mlflow/mlflow,20,0,20,0.0
+repository,openmrs/openmrs-core,20,0,20,0.0
+repository,spring-projects/spring-petclinic,20,0,20,0.0

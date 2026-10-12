@@ -1,0 +1,19 @@
+{
+  "split_hashes": {
+    "router-tuning": "fee8bab59925109abfff7d7b579fa1df92800962403200116fd329f2ce539aa8",
+    "development": "05530b27aaca82cbf87442d92da73eb13e70e5b64716be922283e5b342d24b7e",
+    "validation": "65217b4ef800772c7549e24faf7d3260bdf701336c951ad75be9989ef9c48ed5",
+    "hidden-test": "42b776aa59bc63bff3bd21641c7238b2f61136469438332832ce3b52aa7d8e15",
+    "human-test": "1f7dad16b56f10924233d2c728ef776401be24bc9cf4cd8a420dd3cd023ce390"
+  },
+  "inputs": {
+    "results/v2/changed_verdicts.csv": "5a197b78a59dbd51af950d160f9763754b01ed90d0c91591d5b04049b19388c3",
+    "results/v2/rescore_per_question.csv": "be22acaeb1c9f98155a284b68ab1bca05daf5d7127d93b82f7d2b1b85f575fcf",
+    "data/benchmark/benchmark_300.csv": "ca07cb61eeac79d0ea8f25d6fe5dc3b1544badadf76ad509f499570bcd18346e",
+    "src/evaluation/metrics_v2.py": "6f31e2181dbd1ccc87db1c235b5478d0e73b54308acaac2e8d06eba26e1bae35",
+    "scripts/audit_phase1b.py": "2bdc63798a54dd39f15cd761272fb3f13ebe058da971a3a819f2af741ae42234"
+  },
+  "entity_rule": "Repository-scoped query subjects, not whole expected-answer sets.\n\n    Code/doc fragments use their returned file identity; repository-only questions use the repo.\n    Human questions have no structured subjects: match known subjects against text.\n    This establishes detectable overlap, not semantic disjointness of paraphrases.\n    ",
+  "diagnostic_system": "adaptive_hybrid_graphrag",
+  "evaluation_runs": 0
+}

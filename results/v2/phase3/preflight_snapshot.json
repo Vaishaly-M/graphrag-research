@@ -1,0 +1,19 @@
+{
+  "phase": 3,
+  "date": "2026-10-12",
+  "timezone": "Asia/Colombo",
+  "status": "BLOCKED_PREFLIGHT",
+  "blocker": "config/router_frozen.yaml is missing",
+  "router_tuning_exists": true,
+  "metrics_v2_fields_present": ["recall_accuracy", "strict_accuracy", "gold_complete"],
+  "metrics_verification": "source inspection only",
+  "environment_verification": "NOT RUN: stopped on missing frozen router prerequisite",
+  "qwen_required": false,
+  "tuning_configurations_tried": 0,
+  "evaluation_runs": 0,
+  "hidden_test_run": false,
+  "human_test_run": false,
+  "gold_modified": false,
+  "experiment_config_snapshot": null,
+  "snapshot_reason": "No experiment configured or executed; required frozen router absent"
+}

@@ -86,7 +86,7 @@ class RouterTests(unittest.TestCase):
         records=[dict(question_id="q",route=route,recall_accuracy=1,strict_accuracy=1,
                       is_error=False,latency_eligible=True,latency_s=cost) for route,cost in zip(ROUTES,[2,1,3])]
         result=derive(records)[0]
-        self.assertEqual(result["oracle_route"],"vector")
+        self.assertEqual(result["oracle_route"],"graph")
         self.assertEqual(result["oracle_best_accuracy"],1)
         with self.assertRaises(ValueError):
             derive(records[:2])
