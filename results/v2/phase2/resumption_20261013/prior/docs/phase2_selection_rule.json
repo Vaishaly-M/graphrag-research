@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "recorded_before_router_results": true,
+  "tuning_split": "data/benchmark/splits_v2/router-tuning.csv",
+  "excluded_splits": ["development", "validation", "hidden-test", "human-test"],
+  "seed": 20261009,
+  "categories": 7,
+  "questions_per_category": 10,
+  "folds": 5,
+  "stratification": "category",
+  "variants": ["rule", "knn", "logistic", "llm"],
+  "knn_k": 3,
+  "minimum_vector_score": 0.30,
+  "logistic_C": 1.0,
+  "tau_values": [0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95],
+  "primary_accuracy": "recall_accuracy",
+  "secondary_accuracy": "strict_accuracy and strict_complete_accuracy",
+  "maximum_mean_regret": 0.02,
+  "selection": "Among candidates meeting the regret bound, maximize retrieval/answer latency savings vs always-hybrid minus measured routing overhead; then macro-F1; then rule, knn, logistic, llm; then lower tau. If none meet the bound, do not freeze.",
+  "oracle": "Per-question maximum correct answer over three forced routes; choose minimum clean measured latency among correct routes; exact ties use graph, vector, hybrid. No-correct-route questions have null oracle_route and still contribute zero oracle accuracy.",
+  "fallback": "Escalate an empty/invalid graph result or empty/low-score vector result to hybrid; log the executed route. Offline latency charges the failed initial retrieval plus hybrid, conservatively.",
+  "interpretation": "Internal tuning cross-validation, not held-out paper results. One measured outcome per forced route; latency selection is provisional unless all required clean timings exist. No random seed guarantees LLM determinism."
+}

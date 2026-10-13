@@ -1,0 +1,6 @@
+{
+  "source": "results\\v2\\phase2\\entity_catalog.json",
+  "sha256": "ce236cabb1a6c4b991f15e416f0e077f9110982f26a2e2e8e20af60a1b473a17",
+  "records": 37780,
+  "policy": "Reuse existing KG-exported feature catalog unchanged; no gold-derived aliases. Snapshot freezes exact catalog."
+}
