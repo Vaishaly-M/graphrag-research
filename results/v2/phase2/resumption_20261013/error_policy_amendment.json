@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-13",
+  "authorization": "User explicitly approved retaining system errors with measured cost and retrying infrastructure only.",
+  "post_hoc": true,
+  "prior_outcomes": 33,
+  "prior_system_errors": 1,
+  "changed_source_files": [
+    "scripts/measure_phase2_routes.py"
+  ],
+  "inference_source_unchanged": true,
+  "prior_outcomes_sha256": "b50500b676e765529c5ab661e593b766d14e3cd42b839314a3e99d3e537e8b98",
+  "prior_snapshot_sha256": "0c27abf21f874f8c18b5d55c316335c35132f48e2f2a6e04168e9d454d733cf5"
+}

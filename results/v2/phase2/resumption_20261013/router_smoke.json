@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scores": {
+    "graph": 0.2,
+    "vector": 0.5,
+    "hybrid": 0.3
+  },
+  "scope": "local transport/schema only; no benchmark scoring"
+}

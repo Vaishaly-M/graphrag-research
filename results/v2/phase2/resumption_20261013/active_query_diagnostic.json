@@ -1,0 +1,8 @@
+[
+  {
+    "transactionId": "f57c1e74-transaction-514",
+    "currentQuery": "SHOW TRANSACTIONS YIELD transactionId, username, currentQuery, elapsedTime, status WHERE username = $user RETURN transactionId, currentQuery, toString(elapsedTime) AS elapsed, status",
+    "elapsed": "PT0.041S",
+    "status": "Running"
+  }
+]

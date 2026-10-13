@@ -1,0 +1,15 @@
+{
+  "status": "POLICY_RESOLVED",
+  "outcomes": 33,
+  "clean_outcomes": 32,
+  "fully_clean_questions": 10,
+  "questions_with_all_routes": 11,
+  "failure_question_id": "router-tuning-196f6b2ad2abeb00",
+  "failure_route": "hybrid",
+  "failure_type": "CypherSyntaxError",
+  "reason": "Generated ENDS_WITH is invalid Cypher; existing policy requires clean timings for every route. Do not retry model-generated failure until it disappears.",
+  "policy_decision_pending": false,
+  "training_executed": false,
+  "router_frozen": false,
+  "resolution": "User approved retaining genuine system errors and measured costs; retry infrastructure only."
+}
