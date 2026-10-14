@@ -99,13 +99,14 @@ def main():
     os.environ['VECTOR_INDEX_DIR'] = str(index)
     directory = OUTPUT/'route_outcomes'
     from src.systems.prompts import ADAPTIVE_FINAL_ANSWER, ANSWER_TEMPERATURE, ANSWER_MAX_OUTPUT_TOKENS
-    save_snapshot(directory/'policy_v2', snapshot(benchmark, 'phase2_forced_routes', mode='no-templates',
+    save_snapshot(directory/'transport_fix_v1', snapshot(benchmark, 'phase2_forced_routes', mode='no-templates',
         source_hashes=source_hashes(), policy_sha256=sha256(policy_path), cache_enabled=False,
         safety_fallback=False, answer_prompt=ADAPTIVE_FINAL_ANSWER, answer_temperature=ANSWER_TEMPERATURE,
         answer_max_output_tokens=ANSWER_MAX_OUTPUT_TOKENS, evidence_budget_items=16,
         context_token_cap=None, oracle_cost='measured latency; system errors incorrect',
         retry_policy='Retry only infrastructure failures on resumption; stop on unknown failures; retain system failures.',
-        prior_snapshot_sha256=sha256(directory/'config_snapshot.json')))
+        prior_snapshot_sha256=sha256(directory/'policy_v2/config_snapshot.json'),
+        transport_repair='Retry explicit HTTP 408/429/500/502/503/504; retain six-attempt cap and original timeout. User requested blocker repair.'))
     rows = read_csv(benchmark)
     path = directory/'outcomes.jsonl'
     history = read_jsonl(path)

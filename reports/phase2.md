@@ -76,7 +76,7 @@ Cross-validation and threshold sweep are not yet available. The unchanged select
 
 **No router is frozen.** Live old-adaptive/new-router comparison is not yet available.
 
-**Phase 2 is incomplete and stopped on infrastructure failure.** Two continuation attempts at the pending hybrid measurement encountered Gemini 503/504 errors. Neither attempt supplies a usable selection timing. No model switch, timeout change, gold change or measurement-policy workaround was made. Resume only after provider availability recovers using `python -B scripts/measure_phase2_routes.py`; the checkpoint skips usable outcomes. No background measurement process remains running at this handoff.
+**Phase 2 is incomplete and stopped on infrastructure failure.** Two continuation attempts at the pending hybrid measurement encountered Gemini 503/504 errors. Neither attempt supplies a usable selection timing. No model switch, timeout change or gold change was made. Resume only after provider availability recovers using `python -B scripts/measure_phase2_routes.py`; the checkpoint skips usable outcomes. No background measurement process remains running at this handoff.
 
 Pending work: finish route measurements; run Gemini-router five-fold CV and the offline threshold sweep; produce variant comparisons and misrouted examples; integrate and test the selected configuration and held-out frozen-config guard; run the old/new live tuning-only comparison if selection succeeds. The deployment loader's existing Ollama branch also needs Gemini support before deploying an LLM selection. No selected YAML or completed freeze is claimed.
 
@@ -84,6 +84,8 @@ Continuation verification: seven measurement-policy tests and ten router tests p
 
 ## Files and reproducibility
 
+- `src/llm.py`
+- `tests/test_llm_retry_status.py`
 - `docs/router_selection_rule.md`
 - `scripts/measure_phase2_routes.py`
 - `tests/test_phase2_measurements.py`
@@ -92,5 +94,16 @@ Continuation verification: seven measurement-policy tests and ten router tests p
 - `results/v2/phase2/resumption_20261013/train_current.py`
 - `results/v2/phase2/resumption_20261013/render_report.py`
 - `results/v2/phase2/resumption_20261013/check_local_router.py`
+- `results/v2/phase2/resumption_20261013/check_provider.py`
 
 All generated measurements, logs, snapshots, tests, catalog provenance and prior documents are under `results/v2/phase2/resumption_20261013/`. Files contain complete contents, not diffs. No redundant ZIP archive is created.
+
+## Blocker repair — 2026-10-13
+
+The user requested a blocker fix. A minimal non-benchmark prompt (`Reply with OK.`) also returned HTTP 504, showing that the observed failure does not depend on repository retrieval or a large evidence prompt. Google documents 503 as service unavailability and 504 as a deadline failure: [official troubleshooting](https://ai.google.dev/gemini-api/docs/troubleshooting). This identifies the failure class, not the underlying cause inside Google's service.
+
+The local retry classifier depended on English message text and did not recognize numeric 504 with `DEADLINE_EXCEEDED`. It now treats explicit HTTP 408/429/500/502/503/504 as retryable, keeps nonretryable HTTP statuses terminal, and retains the existing six-attempt cap, backoff accounting, timeout, model and generation parameters. Six new tests, ten harness tests and seven measurement-policy tests passed (23 total).
+
+This is a disclosed transport-handling amendment, not a change to answering or scoring. Original complete source files are preserved in `provider_recovery/before_fix/`. Future measurement snapshots use `route_outcomes/transport_fix_v1/`, binding the previous `policy_v2` snapshot by hash; old snapshots and outcomes remain intact. Infrastructure-contaminated timings remain ineligible even if an in-call retry succeeds.
+
+Latest isolated health result: `{"ok": false, "model": "gemini-flash-lite-latest", "error_type": "ServerError", "wall_s": 61.003842500002065, "terminal_exception": "CallBudgetExceeded", "provider_status_code": 504, "n_attempts": 1}`. Diagnostic attempts are stored separately in `provider_recovery/events.jsonl` and are not evaluation rows. A retry repair cannot restore an unavailable upstream service; no successful recovery is claimed unless the health result and subsequent benchmark call succeed.

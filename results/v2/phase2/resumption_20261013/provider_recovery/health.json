@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "model": "gemini-flash-lite-latest",
+  "error_type": "ServerError",
+  "wall_s": 61.003842500002065,
+  "terminal_exception": "CallBudgetExceeded",
+  "provider_status_code": 504,
+  "n_attempts": 1
+}

@@ -41,6 +41,16 @@ def retry_after_seconds(exc):
 
 
 def retryable(exc):
+    # Provider status codes are authoritative: DEADLINE_EXCEEDED need not
+    # contain the word "timeout", and messages may be localized or empty.
+    code = getattr(exc, "code", None)
+    if code is None:
+        code = getattr(getattr(exc, "response", None), "status_code", None)
+    if code is not None:
+        try:
+            return int(code) in {408, 429, 500, 502, 503, 504}
+        except (TypeError, ValueError):
+            pass
     return any(token in str(exc).lower() for token in (
         "429", "quota", "rate limit", "tempor", "timeout", "connection", "unavailable",
         "resource exhausted", "disconnected", "remoteprotocolerror", "protocol error", "reset by peer", "eof"))
