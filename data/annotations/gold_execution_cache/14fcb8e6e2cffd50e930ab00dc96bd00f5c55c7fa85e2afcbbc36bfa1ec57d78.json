@@ -1,0 +1,46 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (f:DLFile) WHERE f.dataset=$dataset AND f.repo=$repo AND f.path=$path UNWIND split(f.content,'\\n') AS line WITH f,trim(line) AS heading WHERE heading STARTS WITH '#' RETURN DISTINCT heading AS entity,heading AS fact,[f.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "path": "README.md",
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic"
+  },
+  "rows": [
+    {
+      "entity": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)",
+      "fact": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md"
+      ]
+    },
+    {
+      "entity": "## Building a Container",
+      "fact": "## Building a Container",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md"
+      ]
+    },
+    {
+      "entity": "## Compiling the CSS",
+      "fact": "## Compiling the CSS",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md"
+      ]
+    },
+    {
+      "entity": "## Contributing",
+      "fact": "## Contributing",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md"
+      ]
+    },
+    {
+      "entity": "## Database configuration",
+      "fact": "## Database configuration",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md"
+      ]
+    }
+  ]
+}

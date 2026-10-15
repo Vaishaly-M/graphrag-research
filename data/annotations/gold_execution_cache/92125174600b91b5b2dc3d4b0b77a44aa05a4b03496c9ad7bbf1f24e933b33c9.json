@@ -1,0 +1,70 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)<-[:DL_AUTHORED_COMMIT]-(d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(other:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND c<>other AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id)+collect(DISTINCT d.id)+collect(DISTINCT other.id) AS evidence RETURN b.path AS entity,b.path+': '+split(b.content,'\\n')[0] AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "path": "contributing-docs/30_new_language_sdk.rst"
+  },
+  "rows": [
+    {
+      "entity": ".agents/skills/airflow-java-sdk/SKILL.md",
+      "fact": ".agents/skills/airflow-java-sdk/SKILL.md: ---",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/30_new_language_sdk.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:1f938e558231526d4dc2eb205fa8bac9793bc05c",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:uranusjr@gmail.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:a527de7aba64c0b8f99c6ed988d3d7d2f82e43c7",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/airflow-java-sdk/SKILL.md"
+      ]
+    },
+    {
+      "entity": ".agents/skills/airflow-new-sdk/SKILL.md",
+      "fact": ".agents/skills/airflow-new-sdk/SKILL.md: ---",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/30_new_language_sdk.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:1f938e558231526d4dc2eb205fa8bac9793bc05c",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:uranusjr@gmail.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:a527de7aba64c0b8f99c6ed988d3d7d2f82e43c7",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/airflow-new-sdk/SKILL.md"
+      ]
+    },
+    {
+      "entity": ".dockerignore",
+      "fact": ".dockerignore: #",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/30_new_language_sdk.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:1f938e558231526d4dc2eb205fa8bac9793bc05c",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:a527de7aba64c0b8f99c6ed988d3d7d2f82e43c7",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:uranusjr@gmail.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:c9d7f367ac4c7043454502b16d41340b3ec2c66d",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.dockerignore"
+      ]
+    },
+    {
+      "entity": ".github/CODEOWNERS",
+      "fact": ".github/CODEOWNERS: # Core",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/30_new_language_sdk.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:1f938e558231526d4dc2eb205fa8bac9793bc05c",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:a527de7aba64c0b8f99c6ed988d3d7d2f82e43c7",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:uranusjr@gmail.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:0f3161ef28b5f4d2ec977810a0d18b6a0e75576c",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:4b925364105cbe8871abe1cbbf96ace6e41f6086",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.github/CODEOWNERS"
+      ]
+    },
+    {
+      "entity": ".github/workflows/additional-prod-image-tests.yml",
+      "fact": ".github/workflows/additional-prod-image-tests.yml: # Licensed to the Apache Software Foundation (ASF) under one",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/30_new_language_sdk.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:07a7a5297d696c8aaaa0c929b9004b5f03621e75",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:68415893+jason810496@users.noreply.github.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:1aa5fa3fab8646f240bf567d9ebc7882fb80248e",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:2dcfd7ccd2abc95d53f0c73a114c1b9309d29bb7",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.github/workflows/additional-prod-image-tests.yml"
+      ]
+    }
+  ]
+}

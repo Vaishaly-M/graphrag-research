@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+        "path": "README.md",
+        "offset": 870,
+        "line": 8
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/vet/VetRepository.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/vet/VetRepository.java",
+        "offset": 607,
+        "line": 14
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/PostgresIntegrationTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/PostgresIntegrationTests.java",
+        "offset": 559,
+        "line": 13
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java",
+        "offset": 534,
+        "line": 13
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+        "path": null,
+        "offset": 229,
+        "line": 9
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2672",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/resources/templates/owners/ownerDetails.html",
+        "path": "src/main/resources/templates/owners/ownerDetails.html",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:824",
+        "path": null,
+        "offset": 3518,
+        "line": 45
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 870,
+      "excerpt": "(legacy slides)](https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20)\n\n> **Note:** These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.  \n> For up-to-date information, please refer to this repository and its documentation.\n\n\n## Run Petclinic locally\n\nSpring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).\nJava 17 or later is required for the build, and the application can run with Java 17 or newer.\n\nYou first need to clone the project locally:\n\n```bash\ngit clone https://github.com/spring-projects/spring-petclinic.git\ncd spring-petclinic\n```\nIf you are using Maven, you can start the application on the command-line as follows:\n\n```bash\n./mvnw spring-boot:run\n```\nWith Gradle, the command is as follows:\n\n```bash\n./gradlew bootRun\n```\n\nYou can then access the Petclinic at <http://localhost:8080/>.\n\n<img width=\"1042\" alt=\"petclinic-screenshot\" src=\"https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png\">\n\nYou can, of course, run Petclinic in your favorite IDE.\nSee below for more details.\n\n## Building a Container\n\nThere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\ndocker images | grep petclinic\ndocker run -p 8080:8080 docker.io/library/spring-petclinic:latest\n```\n\n## In case you find a bug/suggested improvement for Spring Petclinic\n\nOur issue tracker is available [here](https://github.com/spring-projects/spring-petclinic/issues).\n\n## Database configuration\n\nIn its default configuration, Petclinic uses an in-memory database (H2) which\ngets populated at startup with data. The h2 console is exposed at `http://localhost:8080/h2-console`,\nand it is possible to inspect the content of the database using the `jdbc:h2:mem:<uuid>` URL. The UUID is printed at startup to the console.\n\nA similar setup is provided for MySQL and PostgreSQL if a persistent database configuration is needed. Note that whenever the database type changes, the app needs to run with a different profile: `spring.profiles.active=mysql` for MySQL or `spring.p"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 534,
+      "excerpt": "r the specific language governing permissions and\n * limitations under the License.\n */\npackage org.springframework.samples.petclinic.owner;\n\nimport java.util.Optional;\n\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.data.jpa.repository.JpaRepository;\n\n/**\n * Repository class for <code>Owner</code> domain objects. All method names are compliant\n * with Spring Data naming conventions so this interface can easily be extended for Spring\n * Data. See:\n * https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation\n *\n * @author Ken Krebs\n * @author Juergen Hoeller\n * @author Sam Brannen\n * @author Michael Isvy\n * @author Wick Dynex\n */\npublic interface OwnerRepository extends JpaRepository<Owner, Integer> {\n\n\t/**\n\t * Retrieve {@link Owner}s from the data store by last name, returning all owners\n\t * whose last name <i>starts</i> with the given name.\n\t * @param lastName Value to search for\n\t * @return a Collection of matching {@link Owner}s (or an empty Collection if none\n\t * found)\n\t */\n\tPage<Owner> findByLastNameStartingWith(String lastName, Pageable pageable);\n\n\t/**\n\t * Retrieve an {@link Owner} from the data store by id.\n\t * <p>\n\t * This method returns an {@link Optional} containing the {@link Owner} if found. If\n\t * no {@link Owner} is found with the provided id, it will return an empty\n\t * {@link Optional}.\n\t * </p>\n\t * @param id the id to search for\n\t * @return an {@link Optional} containing the {@link Owner} if found, or an empty\n\t * {@link Optional} if not found.\n\t * @throws IllegalArgumentException if the id is null (assuming null is not a valid\n\t * input for id)\n\t */\n\tOptional<Owner> findById(Integer id);\n\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/vet/VetRepository.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/vet/VetRepository.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 607,
+      "excerpt": "e License.\n */\npackage org.springframework.samples.petclinic.vet;\n\nimport org.springframework.cache.annotation.Cacheable;\nimport org.springframework.dao.DataAccessException;\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.data.repository.Repository;\nimport org.springframework.transaction.annotation.Transactional;\n\nimport java.util.Collection;\n\n/**\n * Repository class for <code>Vet</code> domain objects All method names are compliant\n * with Spring Data naming conventions so this interface can easily be extended for Spring\n * Data. See:\n * https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation\n *\n * @author Ken Krebs\n * @author Juergen Hoeller\n * @author Sam Brannen\n * @author Michael Isvy\n */\npublic interface VetRepository extends Repository<Vet, Integer> {\n\n\t/**\n\t * Retrieve all <code>Vet</code>s from the data store.\n\t * @return a <code>Collection</code> of <code>Vet</code>s\n\t */\n\t@Transactional(readOnly = true)\n\t@Cacheable(\"vets\")\n\tCollection<Vet> findAll() throws DataAccessException;\n\n\t/**\n\t * Retrieve all <code>Vet</code>s from data store in Pages\n\t * @param pageable\n\t * @return\n\t * @throws DataAccessException\n\t */\n\t@Transactional(readOnly = true)\n\t@Cacheable(\"vets\")\n\tPage<Vet> findAll(Pageable pageable) throws DataAccessException;\n\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/resources/templates/owners/ownerDetails.html",
+      "kind": "File",
+      "path": "src/main/resources/templates/owners/ownerDetails.html",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "<!DOCTYPE html>\n\n<html xmlns:th=\"https://www.thymeleaf.org\" th:replace=\"~{fragments/layout :: layout (~{::body},'owners')}\">\n\n<body>\n\n  <h2 th:text=\"#{ownerInformation}\">Owner Information</h2>\n\n  <div th:if=\"${message}\" class=\"alert alert-success\" id=\"success-message\">\n    <span th:text=\"${message}\"></span>\n  </div>\n\n  <div th:if=\"${error}\" class=\"alert alert-danger\" id=\"error-message\">\n    <span th:text=\"${error}\"></span>\n  </div>\n\n  <table class=\"table table-striped\" th:object=\"${owner}\">\n    <tr>\n      <th th:text=\"#{name}\">Name</th>\n      <td><b th:text=\"*{firstName + ' ' + lastName}\"></b></td>\n    </tr>\n    <tr>\n      <th th:text=\"#{address}\">Address</th>\n      <td th:text=\"*{address}\"></td>\n    </tr>\n    <tr>\n      <th th:text=\"#{city}\">City</th>\n      <td th:text=\"*{city}\"></td>\n    </tr>\n    <tr>\n      <th th:text=\"#{telephone}\">Telephone</th>\n      <td th:text=\"*{telephone}\"></td>\n    </tr>\n  </table>\n\n  <a th:href=\"@{__${owner.id}__/edit}\" class=\"btn btn-primary\" th:text=\"#{editOwner}\">Edit\n    Owner</a>\n  <a th:href=\"@{__${owner.id}__/pets/new}\" class=\"btn btn-primary\" th:text=\"#{addNewPet}\">Add\n    New Pet</a>\n\n  <br />\n  <br />\n  <br />\n  <h2 th:text=\"#{petsAndVisits}\">Pets and Visits</h2>\n\n  <table class=\"table table-striped\">\n\n    <tr th:each=\"pet : ${owner.pets}\">\n      <td valign=\"top\">\n        <dl class=\"dl-horizontal\">\n          <dt th:text=\"#{name}\">Name</dt>\n          <dd th:text=\"${pet.name}\"></dd>\n          <dt th:text=\"#{birthDate}\">Birth Date</dt>\n          <dd th:text=\"${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}\"></dd>\n          <dt th:text=\"#{type}\">Type</dt>\n          <dd th:text=\"${pet.type}\"></dd>\n        </dl>\n      </td>\n      <td valign=\"top\">\n        <table class=\"table-condensed\">\n          <thead>\n            <tr>\n              <th th:text=\"#{visitDate}\">Visit Date</th>\n              <th th:text=\"#{description}\">Description</th>\n            </tr>\n          </thead>\n          <tr th:each=\"visit : ${pet.visits}\">\n            <td th:text=\"${#temporals.format(visit.date, 'yyyy-MM-dd')}\"></td>\n            <td th:text=\"${visit?.description}\"></td>\n          </tr>\n          <tr>\n            <td><a th:href=\"@{__${owner.id}__/pets/__${pet.id}__/edit}\" th:text=\"#{editPet}\">Edit Pet</a></td>\n            <td><a th:href=\"@{__${owner.id}__/pets/__${pet.id}__/visits/new}\" th:text=\"#{addVisit}\">Add Visit</a></td>\n          </tr>\n   "
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/PostgresIntegrationTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/PostgresIntegrationTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 559,
+      "excerpt": "overning permissions and\n * limitations under the License.\n */\n\npackage org.springframework.samples.petclinic;\n\nimport static org.assertj.core.api.Assertions.assertThat;\nimport static org.junit.jupiter.api.Assertions.assertNotNull;\nimport static org.junit.jupiter.api.Assumptions.assumeTrue;\n\nimport java.util.Arrays;\nimport java.util.LinkedList;\nimport java.util.List;\n\nimport org.apache.commons.logging.Log;\nimport org.apache.commons.logging.LogFactory;\nimport org.junit.jupiter.api.BeforeAll;\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.api.condition.DisabledInNativeImage;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.builder.SpringApplicationBuilder;\nimport org.springframework.boot.context.event.ApplicationPreparedEvent;\nimport org.springframework.boot.restclient.RestTemplateBuilder;\nimport org.springframework.boot.test.context.SpringBootTest;\nimport org.springframework.boot.test.context.SpringBootTest.WebEnvironment;\nimport org.springframework.boot.test.web.server.LocalServerPort;\nimport org.springframework.context.ApplicationListener;\nimport org.springframework.core.env.ConfigurableEnvironment;\nimport org.springframework.core.env.EnumerablePropertySource;\nimport org.springframework.core.env.PropertySource;\nimport org.springframework.http.HttpStatus;\nimport org.springframework.http.RequestEntity;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.samples.petclinic.vet.VetRepository;\nimport org.springframework.test.context.ActiveProfiles;\nimport org.springframework.web.client.RestTemplate;\nimport org.testcontainers.DockerClientFactory;\n\n@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = { \"spring.docker.compose.skip.in-tests=false\", //\n\t\t\"spring.docker.compose.start.arguments=--force-recreate,--renew-anon-volumes,postgres\" })\n@ActiveProfiles(\"postgres\")\n@DisabledInNativeImage\npublic class PostgresIntegrationTests {\n\n\t@LocalServerPort\n\tint port;\n\n\t@Autowired\n\tprivate VetRepository vets;\n\n\t@Autowired\n\tprivate RestTemplateBuilder builder;\n\n\t@BeforeAll\n\tstatic void available() {\n\t\tassumeTrue(DockerClientFactory.instance().isDockerAvailable(), \"Docker not available\");\n\t}\n\n\tpublic static void main(String[] args) {\n\t\tnew SpringApplicationBuilder(PetClinicApplication.class) //\n\t\t\t.profiles(\"postgres\") //\n\t\t\t.properties( //\n\t\t\t\t\t\"spring.docker.compose.start.a"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 458,
+      "title": "Surefire failing on Java 13",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 229,
+      "excerpt": "petclinic >------------\r\n[INFO] Building petclinic 2.1.0.BUILD-SNAPSHOT\r\n[INFO] --------------------------------[ jar ]---------------------------------\r\n[INFO] \r\n[INFO] --- jacoco-maven-plugin:0.8.2:prepare-agent (default) @ spring-petclinic ---\r\n[INFO] argLine set to -javaagent:/Users/pkumari/.m2/repository/org/jacoco/org.jacoco.agent/0.8.2/org.jacoco.agent-0.8.2-runtime.jar=destfile=/Users/pkumari/java/spring-petclinic/target/jacoco.exec\r\n[INFO] \r\n[INFO] --- git-commit-id-plugin:2.2.6:revision (default) @ spring-petclinic ---\r\n[INFO] dotGitDirectory /Users/pkumari/java/spring-petclinic/.git\r\n[INFO] git.build.user.name Priti Kumari\r\n[INFO] git.build.user.email pkumari@redhat.com\r\n[INFO] git.branch master\r\n[INFO] --always = true\r\n[INFO] --dirty = -dirty\r\n[INFO] --abbrev = 7\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] git.commit.id.describe f284b29\r\n[INFO] git.commit.id f284b29501946f933ee4473ecf59096d013df31c\r\n[INFO] git.commit.id.abbrev f284b29\r\n[INFO] git.dirty false\r\n[INFO] git.commit.user.name Stephane Nicoll\r\n[INFO] git.commit.user.email snicoll@pivotal.io\r\n[INFO] git.commit.message.full Upgrade to Spring Boot 2.1.9.RELEASE\r\n[INFO] git.commit.message.short Upgrade to Spring Boot 2.1.9.RELEASE\r\n[INFO] git.commit.time 2019-10-03T17:29:27+0530\r\n[INFO] git.remote.origin.url https://github.com/spring-projects/spring-petclinic.git\r\n[INFO] git.tags \r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] git.closest.tag.name \r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] git.closest.tag.commit.count \r\n[INFO] git.total.commit.count 665\r\n[INFO] git.build.time 2019-10-09T15:19:55+0530\r\n[INFO] git.build.version 2.1.0.BUILD-SNAPSHOT\r\n[INFO] git.build.host Pritis-MacBook-Pro\r\n[INFO] git.commit.id.describe-short f284b29\r\n[INFO] found property git.tags\r\n[INFO] found property git.closest.tag.commit.count\r\n[INFO] found property git.build.version\r\n[INFO] found property git.commit.user.name\r\n[INFO] found property git.commit.id.abbrev\r\n[INFO] found property git.branch\r\n[INFO] fou"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:824",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 824,
+      "title": "Test fail with profile MySQL",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3518,
+      "excerpt": "s is safe\r\nspring.datasource.initialization-mode=always\r\n\r\n```\r\n### application.properties\r\n```\r\n# database init, supports mysql too\r\ndatabase=h2\r\nspring.datasource.schema=classpath*:db/${database}/schema.sql\r\nspring.datasource.data=classpath*:db/${database}/data.sql\r\n\r\n# Web\r\nspring.thymeleaf.mode=HTML\r\n\r\n# JPA\r\nspring.jpa.hibernate.ddl-auto=none\r\nspring.jpa.open-in-view=false\r\n\r\n# Internationalization\r\nspring.messages.basename=messages/messages\r\n\r\n# Actuator\r\nmanagement.endpoints.web.exposure.include=*\r\n\r\n# Logging\r\nlogging.level.org.springframework=INFO\r\n# logging.level.org.springframework.web=DEBUG\r\n# logging.level.org.springframework.context.annotation=TRACE\r\n\r\n# Maximum time static resources should be cached\r\nspring.resources.cache.cachecontrol.max-age=12h\r\n\r\n```\r\n\r\nThe only change I made concerns the MySQL listening port.\r\n\r\n## Solutions ?\r\n\r\nFrom my point of view, there are three way to solve this problem (maybe you have another, better ;-)).\r\n\r\n### First solution\r\nFirst, package and test are two separate stage \r\n\r\n```\r\n./mvnw clean package -Dspring.profiles.active=mysql -DskipTests\r\n./mvn clean test\r\n```\r\nThis is work fine, but not perfect because the scope of testing is not the same.\r\n\r\n### Second solution\r\nSecond, add an active test configuration\r\n\r\n#### application-test.properties\r\n```\r\n# database init, supports mysql too\r\ndatabase=mysql\r\nspring.datasource.schema=classpath*:db/${database}/schema.sql\r\nspring.datasource.data=classpath*:db/${database}/data.sql\r\n\r\nspring.datasource.url=${MYSQL_URL:jdbc:mysql://localhost:3306/petclinic}\r\nspring.datasource.username=${MYSQL_USER:petclinic}\r\nspring.datasource.password=${MYSQL_PASS:petclinic}\r\n# SQL is written to be idempotent so this is safe\r\nspring.datasource.initialization-mode=always\r\n```\r\n\r\n#### Annoatation test\r\nand add this annotation only to the test ClinicServiceTests and the test wil be OK.\r\n\r\n```\r\n@ActiveProfiles(\"test\")\r\n@AutoConfigureTestDatabase(replace = Replace.NONE)\r\n```\r\n\r\n### Third solution\r\nOr more simple solution \r\nUse this annotation to prevent using h2 as driver\r\n```\r\n@AutoConfigureTestDatabase(replace = Replace.NONE)\r\n```\r\nand then put the correct configuration in the profil. With this line you can use the initial mysql configuration and the test will be OK. \r\n\r\nWhat is the correct way to pass test with MySQL profil ? Is there some error in my configuration ?\r\nThanks for your help."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2672",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2672,
+      "title": "Fix/integer overflow mitigation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\r\n\r\nWhile using this repository as a sandbox for exploring DevSecOps tools, I ran OWASP ZAP against the application and found a possible integer-overflow issue related to the pagination parameters.\r\n\r\nI then used CodeQL to investigate the finding further. CodeQL identified the arithmetic expressions in the following controllers as the source of the issue:\r\n\r\n* `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n* `src/main/java/org/springframework/samples/petclinic/vet/VetController.java`\r\n\r\nBoth controllers previously derived the zero-based page index directly from the HTTP request parameter:\r\n\r\n```java\r\nPageRequest.of(page - 1, pageSize)\r\n```\r\n\r\nBecause `page` is user-controlled input, values outside the expected range could be used in this calculation. For example, a value of `0` would result in a negative page index, while extreme integer values could cause problematic arithmetic.\r\n\r\nThe controllers were updated to validate and normalize the page value before performing the calculation. Valid page numbers continue to behave as before, while values below `1` are normalized to the first page.\r\n\r\n## Security findings\r\n\r\nThe issue was identified through the following workflow:\r\n\r\n1. **OWASP ZAP** reported a possible integer-overflow condition involving user-controlled pagination input.\r\n2. **CodeQL** was used to trace the input to the specific arithmetic expressions responsible for the finding.\r\n3. The affected controllers were updated to validate the input before passing the resulting page index to `PageRequest`.\r\n\r\n## GitHub Actions\r\n\r\nI also created GitHub Actions workflow changes to run OWASP ZAP and CodeQL as part of the DevSecOps exploration.\r\n\r\nThose workflow changes are **not included in this pull request**. I left them out intentionally because I was unsure whether the maintainers wanted CI/security-scanning changes included alongside this focused application-code fix.\r\n\r\nThis PR therefore only contains the application changes necessary to address the identified pagination issue.\r\n\r\n## Validation\r\n\r\nExisting behavior is preserved for valid page numbers.\r\n\r\nValues below page `1` are normalized before being passed to `PageRequest`, preventing a negative page index from being generated.\r\n\r\nThe OWASP ZAP report that initially identified the issue is shown below:\r\n\r\n![OWASP ZAP report](https://github.com/user-attac"
+    }
+  ]
+}

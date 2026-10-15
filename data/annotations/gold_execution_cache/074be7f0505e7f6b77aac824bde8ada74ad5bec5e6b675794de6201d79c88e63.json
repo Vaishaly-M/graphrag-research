@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 26145,
+        "line": 321
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/18_contribution_workflow.rst",
+        "path": "contributing-docs/18_contribution_workflow.rst",
+        "offset": 512,
+        "line": 11
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 8442,
+        "line": 179
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/05_pull_requests.rst",
+        "path": "contributing-docs/05_pull_requests.rst",
+        "offset": 10981,
+        "line": 185
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 42105,
+        "line": 787
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 1013,
+        "line": 23
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/03_contributors_quick_start.rst",
+        "path": "contributing-docs/03_contributors_quick_start.rst",
+        "offset": 28077,
+        "line": 783
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 10531,
+        "line": 193
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26145,
+      "excerpt": "loses: #ISSUE  (if applicable)\n\n---\n\n##### Was generative AI tooling used to co-author this PR?\n\n- [X] Yes — <Agent Name and Version>\n\nGenerated-by: <Agent Name and Version> following [the guidelines](https://github.com/apache/airflow/blob/main/contributing-docs/05_pull_requests.rst#gen-ai-assisted-contributions)\n\nEOF\n)\"\n```\n\nThe `--web` flag opens the browser so the user can review and submit. The `--body` flag\npre-fills the PR template with the generative AI disclosure already completed.\n\nRemind the user to:\n\n1. Review the PR title — keep it short (under 70 chars), in the imperative mood, and focused on user impact. Do not use Conventional Commits prefixes (`fix:`, `feat:`, `chore:`, …).\n2. Add a brief description of the changes at the top of the body.\n3. Reference related issues when applicable (`closes: #ISSUE` or `related: #ISSUE`).\n\n### Golden rule: when a fix is imminent, open the PR, not an issue\n\nIf you already know how to fix the problem and you (or the user) are going to\nopen the PR shortly, **do not file a GitHub issue first**. Go straight to the\nPR.\n\n- Airflow does not use issues as a changelog, as a parallel bug database, or\n  as a duplicate record of in-flight work. The PR itself is the canonical\n  record — title, description, diff, discussion, and merge all live in one\n  place. An issue that gets closed by a PR a day later is double accounting\n  that carries no information the PR does not already carry.\n- Open issues attract drive-by submissions, often from other agents, that\n  haven't seen the in-flight work. That produces duplicate fixes, low-quality\n  PRs that have to be closed, and wasted reviewer time. Not opening the\n  issue avoids creating that bait in the first place.\n- If you catch yourself drafting an issue body that reads like the PR\n  description you are about to write, that is the signal — skip the issue\n  and open the PR.\n\nThe one exception is the case covered by the next section: the PR ships a\n**workaround, mitigation, or partial fix** and the real follow-up work is\ngenuinely deferred to a later PR. There, the issue captures work that will\noutlive the PR, so the issue is load-bearing rather than duplicate.\n\n### Tracking issues for deferred work\n\nWhen a PR applies a **workaround, version cap, mitigation, or partial fix**\nrather than solving the underlying problem (for example: upper-binding a\ndependency to avoid a breaking upst"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/03_contributors_quick_start.rst",
+      "kind": "File",
+      "path": "contributing-docs/03_contributors_quick_start.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 28077,
+      "excerpt": "ou may refer to\n\n  |Local and Remote Debugging in IDE|\n\n  .. |Local and Remote Debugging in IDE| raw:: html\n\n   <a href=\"https://github.com/apache/airflow/blob/main/contributing-docs/07_local_virtualenv.rst#local-and-remote-debugging-in-ide\"\n   target=\"_blank\">Local and Remote Debugging in IDE</a>\n\nContribution guide\n##################\n\n- To know how to contribute to the project visit |README.rst|\n\n.. |README.rst| raw:: html\n\n   <a href=\"https://github.com/apache/airflow/blob/main/contributing-docs/README.rst\" target=\"_blank\">README.rst</a>\n\n- Following are some of the important links of Contribution documentation\n\n  - |Types of contributions|\n\n  .. |Types of contributions| raw:: html\n\n   <a href=\"https://github.com/apache/airflow/blob/main/contributing-docs/04_how_to_contribute.rst\" target=\"_blank\">\n   Types of contributions</a>\n\n  - |Roles of contributor|\n\n  .. |Roles of contributor| raw:: html\n\n   <a href=\"https://github.com/apache/airflow/blob/main/contributing-docs/01_roles_in_airflow_project.rst\" target=\"_blank\">Roles of\n   contributor</a>\n\n\n  - |Workflow for a contribution|\n\n  .. |Workflow for a contribution| raw:: html\n\n   <a href=\"https://github.com/apache/airflow/blob/main/contributing-docs/18_contribution_workflow.rst\" target=\"_blank\">\n   Workflow for a contribution</a>\n\n\n\nRaising Pull Request\n--------------------\n\n1. Go to your GitHub account and open your fork project and click on Branches\n\n   .. raw:: html\n\n    <div align=\"center\" style=\"padding-bottom:10px\">\n      <img src=\"images/quick_start/pr1.png\"\n           alt=\"Go to fork and select branches\">\n    </div>\n\n2. Click on ``New pull request`` button on branch from which you want to raise a pull request\n\n   .. raw:: html\n\n      <div align=\"center\" style=\"padding-bottom:10px\">\n        <img src=\"images/quick_start/pr2.png\"\n             alt=\"Accessing local airflow\">\n      </div>\n\n3. Add title and description as per Contributing guidelines and click on ``Create pull request``\n\n   .. raw:: html\n\n      <div align=\"center\" style=\"padding-bottom:10px\">\n        <img src=\"images/quick_start/pr3.png\"\n             alt=\"Accessing local airflow\">\n      </div>\n\n\nSyncing Fork and rebasing Pull request\n--------------------------------------\n\nOften it takes several days or weeks to discuss and iterate with the PR until it is ready to merge.\nIn the meantime new commits are merged, and you might run into conflic"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/05_pull_requests.rst",
+      "kind": "File",
+      "path": "contributing-docs/05_pull_requests.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10981,
+      "excerpt": "The PR's static checks (pre-commit / ruff / mypy) must pass.\n   You can run them locally with ``prek run --from-ref main`` before pushing.\n\n5. **Gen-AI disclosure** — If the PR was created with the assistance of generative AI tools,\n   the description must include a disclosure (see `Gen-AI Assisted contributions`_ below).\n\n6. **Coherent changes** — The PR should contain related changes only. Completely unrelated\n   changes bundled together will be flagged.\n\n**What happens when a PR is converted to draft?**\n\n-  The comment informs you what you need to do.\n-  Fix each issue, then mark the PR as \"Ready for review\" in the GitHub UI - but only after making sure that all the issues are fixed.\n-  There is no rush — take your time and work at your own pace. We appreciate your contribution and are happy to wait for updates.\n-  Maintainers will then proceed with a normal review.\n\nConverting a PR to draft is **not** a rejection — it is an invitation to bring the PR up to\nthe project's standards so that maintainer review time is spent productively.\n\nFor details on how maintainers use tooling to triage and review PRs, see\n`Maintainer PR Triage and Review <25_maintainer_pr_triage.md>`__.\n\n**What happens when a PR is closed for quality violations?**\n\nIf a contributor has more than 3 open PRs that are flagged for quality issues, maintainers may\nchoose to **close** the PR instead of converting it to draft. Closed PRs receive the\n``closed because of multiple quality violations`` label and a comment listing the violations.\nContributors are welcome to open a new PR that addresses the issues listed in the comment.\n\n**What happens when suspicious changes are detected?**\n\nWhen maintainers review a PR's diff before approving CI workflow runs and determine that it\ncontains suspicious changes (e.g. attempts to exfiltrate secrets, modify CI pipelines\nmaliciously, or inject harmful code), **all open PRs by the same author** will be closed\nand labeled ``suspicious changes detected``. A comment is posted on each PR explaining that\nthe closure was triggered by suspicious changes found in the flagged PR.\n\nIf a contributor believes any closure described above was applied in error, the appeal channel\nis the PMC private list — see the\n`Community escalation process <../COMMUNITY_ESCALATION.md>`_ for how to email\n``private@airflow.apache.org``. That document also covers the further steps the pr"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/18_contribution_workflow.rst",
+      "kind": "File",
+      "path": "contributing-docs/18_contribution_workflow.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 512,
+      "excerpt": "e law or agreed to in writing,\n    software distributed under the License is distributed on an\n    \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n    KIND, either express or implied.  See the License for the\n    specific language governing permissions and limitations\n    under the License.\n\nContribution Workflow\n=====================\n\n.. contents:: Table of Contents\n   :depth: 2\n   :local:\n\nTypically, you start your first contribution by reviewing open tickets\nat `GitHub issues <https://github.com/apache/airflow/issues>`__.\n\nIf you create pull-request, you don't have to create an issue first, but if you want, you can do it.\nCreating an issue will allow you to collect feedback or share plans with other people.\n\nFor example, you want to have the following sample ticket assigned to you:\n`#7782: Add extra CC: to the emails sent by Airflow <https://github.com/apache/airflow/issues/7782>`_.\n\nIn general, your contribution includes the following stages:\n\n.. image:: images/workflow.png\n    :align: center\n    :alt: Contribution Workflow\n\n1. Make your own `fork <https://help.github.com/en/github/getting-started-with-github/fork-a-repo>`__ of\n   the Apache Airflow `main repository <https://github.com/apache/airflow>`__.\n\n2. Create a `local virtualenv <07_local_virtualenv.rst>`_,\n   initialize the `Breeze environment <../dev/breeze/doc/README.rst>`__, and\n   install `prek tool <08_static_code_checks.rst#prek-hooks>`__.\n   If you want to add more changes in the future, set up your fork and enable GitHub Actions.\n\n3. Join `devlist <https://lists.apache.org/list.html?dev@airflow.apache.org>`__\n   and set up a `Slack account <https://s.apache.org/airflow-slack>`__.\n\n4. Make the change and create a `Pull Request (PR) from your fork <https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__.\n\n5. Ping @ #contributors slack, comment @people. Be annoying. Be considerate.\n\nStep 1: Fork the Apache Airflow Repo\n------------------------------------\nFrom the `apache/airflow <https://github.com/apache/airflow>`_ repo,\n`create a fork <https://help.github.com/en/github/getting-started-with-github/fork-a-repo>`_:\n\n.. image:: images/fork.png\n    :align: center\n    :alt: Creating a fork\n\n\nStep 2: Configure Your Environment\n----------------------------------\n\nYou can use several development environments for Airflow. If you p"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1013,
+      "excerpt": "R)](#collect-ambiguities-during-the-release-for-a-follow-up-doc-pr)\n- [Perform review of security issues that are marked for the release](#perform-review-of-security-issues-that-are-marked-for-the-release)\n- [Selecting what to put into the release](#selecting-what-to-put-into-the-release)\n  - [i18n workflow](#i18n-workflow)\n  - [Selecting what to cherry-pick](#selecting-what-to-cherry-pick)\n  - [Making the cherry picking](#making-the-cherry-picking)\n  - [Collapse Cadwyn Migrations](#collapse-cadwyn-migrations)\n  - [Reviewing cherry-picked PRs and assigning labels](#reviewing-cherry-picked-prs-and-assigning-labels)\n- [Prepare the Apache Airflow Package RC](#prepare-the-apache-airflow-package-rc)\n  - [Update the milestone](#update-the-milestone)\n  - [Build RC artifacts](#build-rc-artifacts)\n  - [Publish release candidate documentation (staging)](#publish-release-candidate-documentation-staging)\n  - [Prepare production Docker Image RC](#prepare-production-docker-image-rc)\n  - [Prepare Vote email on the Apache Airflow release candidate](#prepare-vote-email-on-the-apache-airflow-release-candidate)\n- [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [Reproducible package check](#reproducible-package-check)\n  - [SVN check](#svn-check)\n  - [Licence check](#licence-check)\n  - [Signature check](#signature-check)\n  - [SHA512 sum check](#sha512-sum-check)\n  - [Optional: Automated verification using Breeze](#optional-automated-verification-using-breeze)\n- [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n  - [Installing release candidate in your local virtual environment](#installing-release-candidate-in-your-local-virtual-environment)\n- [Publish the final Apache Airflow release](#publish-the-final-apache-airflow-release)\n  - [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Manually prepare production Docker Image](#manually-prepare-production-docker-image)\n  - [Verify production images](#verify-production-images)\n  - [Publish final documentation](#publish-final-documentation)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-rele"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10531,
+      "excerpt": "s, Apache INFRA picks up the new protection automatically.\n`airflow-ctl/vX-Y-test` is intentionally **not** protected — the release\nmanager needs to push cherry-picks and the sync-PR merge commits onto it\ndirectly.\n\nAlso create the `backport-to-airflow-ctl-vX-Y-test` label so the automated\nbackport workflow can target the new branch, and wire it up in\n[`.github/boring-cyborg.yml`](../.github/boring-cyborg.yml) the same way\nas the existing `backport-to-vX-Y-test` labels:\n\n```shell script\ngh label create \"backport-to-airflow-ctl-v${CTL_VERSION_BRANCH}-test\" \\\n    --repo apache/airflow \\\n    --description \"Backport to airflow-ctl/v${CTL_VERSION_BRANCH}-test\" \\\n    --color 0e8a16\n```\n\n## Choosing the branch to release from\n\nEvery RC is cut from a maintenance branch. Pick between `-test` and\n`-stable` based on the stage of the release:\n\n- **First RC of a new minor line (X.Y.0rc1)** — cut from\n  `airflow-ctl/vX-Y-test` using the \"shortcut\" below. The first RC is\n  unlikely to be approved on the first try, so going straight from the\n  test branch avoids the overhead of a sync PR that you would have to\n  redo for every subsequent RC.\n- **Subsequent RCs during the X.Y.0 RC cycle** — cherry-pick fixes onto\n  `airflow-ctl/vX-Y-test`, then cut the next RC directly from `-test`.\n- **GA of a minor and every patch release (X.Y.0 final, X.Y.1, ...)** —\n  open a sync PR from `airflow-ctl/vX-Y-test` → `airflow-ctl/vX-Y-stable`\n  (see below), wait for it to merge, then cut the RC from\n  `airflow-ctl/vX-Y-stable`.\n\nReleases are **never cut from `main`** — if the `airflow-ctl/vX-Y-*`\nbranches for the target line do not exist yet, create them using \"When to\ncreate the X.Y branches\" above before proceeding.\n\n> [!TIP]\n> **Shortcut for first RC candidates:** when preparing the first RC\n> for a new minor (e.g. `0.2.0rc1`), the release manager may cut the RC\n> directly from `airflow-ctl/vX-Y-test` without opening a sync PR to\n> `airflow-ctl/vX-Y-stable`. However, they **must** verify that the\n> `airflow-ctl/vX-Y-test` push CI action (\"Tests\" workflow) has succeeded\n> before cutting the RC.\n\nBefore cutting an RC, confirm the set of commits on the maintenance\nbranch is what you expect:\n\n```shell script\n# airflow-ctl commits on the test branch since the previous release.\ngit log --oneline \\\n    \"airflow-ctl/${PREVIOUS_VERSION}..upstream/airflow-ctl/v${CTL_VERSION_BRANCH}-test\" -- airflow"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8442,
+      "excerpt": "r example:\n\n```yaml\nannotations:\n  artifacthub.io/changes: |\n    - kind: added\n      description: Add resources for `cleanup` and `createuser` jobs\n      links:\n        - name: \"#19263\"\n          url: https://github.com/apache/airflow/pull/19263\n```\n\nMake sure that all the release notes changes are submitted as PR and merged. Changes in release notes should\nalso automatically (via `prek` trigger updating of the [reproducible_build.yaml](../chart/reproducible_build.yaml))\nfile which is uses to reproducibly build the chart package and source tarball.\n\nYou can leave the k8s environment now:\n\n```shell\nexit\n```\n\n## Update minimum version of Kubernetes\n\nThe minimum version of Kubernetes should be updated according to\nhttps://github.com/apache/airflow/blob/main/README.md#requirements in two places:\n\n* [../../helm-chart/README.md](../chart/README.md)\n* [../chart/docs/index.rst](../chart/docs/index.rst)\n\n\n## Build RC artifacts\n\nThe Release Candidate artifacts we vote upon should be the exact ones we vote against,\nwithout any modification than renaming – i.e. the contents of the files must be\nthe same between voted release candidate and final release.\nBecause of this the version in the built artifacts that will become the\nofficial Apache releases must not include the rcN suffix.\n\nMake sure you have the `upstream` remote set up pointing to the apache git repo\n(per the standard convention `upstream` → `apache/airflow`, `origin` → your fork —\nsee\n[`contributing-docs/10_working_with_git.rst`](../contributing-docs/10_working_with_git.rst#git-remote-naming-conventions)).\nIf needed, add it with:\n\n```shell\ngit remote add upstream git@github.com:apache/airflow.git\ngit fetch upstream\n```\n\n- We currently release Helm Chart from `main` branch:\n\nFor releasing 1.2x.0\n\n```shell\ngit checkout apache/chart/v1-2x-test\n```\n\nFor releasing 2.x.x and onwards\n\n```shell\ngit checkout upstream/main\n```\n\n- Clean the checkout: (note that this step will also clean any IDE settings you might have so better to\n  do it in a checked out version you only use for releasing)\n\n```shell\ngit clean -fxd\nrm -rf dist/*\n```\n\n- Verify your GPG signing key is ready.\n\n  Before you spend 10+ minutes building artifacts only to discover that signing\n  fails, run these checks once:\n\n  ```shell\n  # 1. The apache.org key has a secret signing subkey available locally.\n  gpg --list-secret-keys apache.org\n\n  # 2. Signing a"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 42105,
+      "excerpt": "he released versions is published in the staging S3 bucket, and the site is\nkept in a separate repository - [`apache/airflow-site`](https://github.com/apache/airflow-site),\nbut the documentation source code and build tools are available in the `apache/airflow` repository, so\nyou need to run several workflows to publish the documentation. More details about it can be found in\n[Docs README](../docs/README.md) showing the architecture and workflows including manual workflows for\nemergency cases.\n\nYou usually use the `breeze` command to publish the documentation. The command does the following:\n\n1. Triggers [Publish Docs to S3](https://github.com/apache/airflow/actions/workflows/publish-docs-to-s3.yml).\n2. Triggers workflow in apache/airflow-site to refresh\n3. Triggers S3 to GitHub Sync\n\n```shell script\n  breeze workflow-run publish-docs --ref providers/${RELEASE_DATE} --site-env staging all-providers\n```\n\nOr if you just want to publish a few selected providers, you can run:\n\n```shell script\n  breeze workflow-run publish-docs --ref providers/${RELEASE_DATE} --site-env staging PACKAGE1 PACKAGE2 ..\n```\n\n> [!WARNING]\n> Make sure to NOT close the terminal while the command is running and to keep your computer from\n> sleep. This command will run several (3!) workflows from your terminal and this is important to keep\n> it running until completion.\n\n<!-- -->\n\n> [!NOTE]\n> If the workflow fails because a file it references or executes is missing or has incompatible\n> logic in the release tag (e.g. it was added or changed in `main` after the tag was cut), see\n> [Fixing released documentation](#fixing-released-documentation) in the Misc section below for\n> the `-docs` branch workaround.\n\nThere is also a manual way of running the workflows (see at the end of the document, this should normally\nnot be needed unless there is some problem with workflow automation above)\n\n## Prepare issue in GitHub to keep status of testing\n\nCreate a GitHub issue with the content generated via manual execution of the command below. You will use\nlink to that issue in the next step.\n\n```shell script\ncd \"${AIRFLOW_REPO_ROOT}\"\n\nbreeze release-management generate-issue-content-providers --only-available-in-dist\n```\n\nBy default the command will attempt to retrieve the GitHub token used to authenticate with GH and tackle\nrate limiting from locally run `gh auth token` command output - but if you do not "
+    }
+  ]
+}

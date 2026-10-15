@@ -1,0 +1,69 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)<-[:DL_AUTHORED_COMMIT]-(d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(other:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND c<>other AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id)+collect(DISTINCT d.id)+collect(DISTINCT other.id) AS evidence RETURN b.path AS entity,b.path+': '+split(b.content,'\\n')[0] AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "path": "scripts/tests/ci/prek/test_check_partition_mapper_defaults_in_sync.py"
+  },
+  "rows": [
+    {
+      "entity": ".github/workflows/publish-docs-to-s3.yml",
+      "fact": ".github/workflows/publish-docs-to-s3.yml: # Licensed to the Apache Software Foundation (ASF) under one",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:scripts/tests/ci/prek/test_check_partition_mapper_defaults_in_sync.py",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:f690474a26a18f34e95469a5c28369b87c8f3838",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:weilee.rx@gmail.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:c217e9a577fee7fedca8048b5d0c75a43305efa8",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.github/workflows/publish-docs-to-s3.yml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/run-unit-tests.yml",
+      "fact": ".github/workflows/run-unit-tests.yml: # Licensed to the Apache Software Foundation (ASF) under one",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:scripts/tests/ci/prek/test_check_partition_mapper_defaults_in_sync.py",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:f690474a26a18f34e95469a5c28369b87c8f3838",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:weilee.rx@gmail.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:c217e9a577fee7fedca8048b5d0c75a43305efa8",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.github/workflows/run-unit-tests.yml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/upgrade-check.yml",
+      "fact": ".github/workflows/upgrade-check.yml: # Licensed to the Apache Software Foundation (ASF) under one",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:scripts/tests/ci/prek/test_check_partition_mapper_defaults_in_sync.py",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:f690474a26a18f34e95469a5c28369b87c8f3838",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:weilee.rx@gmail.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:96122a4e9d040b39e0c5c664bc89dfc5314d38fc",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.github/workflows/upgrade-check.yml"
+      ]
+    },
+    {
+      "entity": ".pre-commit-config.yaml",
+      "fact": ".pre-commit-config.yaml: # Licensed to the Apache Software Foundation (ASF) under one",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:scripts/tests/ci/prek/test_check_partition_mapper_defaults_in_sync.py",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:f690474a26a18f34e95469a5c28369b87c8f3838",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:weilee.rx@gmail.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:953aa7945040c64856b755f1ee89538d05d856de",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:a8c99107c9fda3664979c1eba34a5c7e3e0944b3",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.pre-commit-config.yaml"
+      ]
+    },
+    {
+      "entity": "airflow-core/docs/authoring-and-scheduling/assets.rst",
+      "fact": "airflow-core/docs/authoring-and-scheduling/assets.rst:  .. Licensed to the Apache Software Foundation (ASF) under one",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:scripts/tests/ci/prek/test_check_partition_mapper_defaults_in_sync.py",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:f690474a26a18f34e95469a5c28369b87c8f3838",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:weilee.rx@gmail.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:365ea553add6b94cec1510d435f1bc0d5561911b",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:79e9628fa1d8b35800d1f2fd1b5ed4ddfa0046ab",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:90f061288b37e7b50d48723fe7bbebb4d8f4858d",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/authoring-and-scheduling/assets.rst"
+      ]
+    }
+  ]
+}

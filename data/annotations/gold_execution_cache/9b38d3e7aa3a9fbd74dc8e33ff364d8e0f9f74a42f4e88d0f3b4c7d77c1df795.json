@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+        "path": "README.md",
+        "offset": 3117,
+        "line": 25
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6399",
+        "path": null,
+        "offset": 4280,
+        "line": 69
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/release.yaml",
+        "path": ".github/workflows/release.yaml",
+        "offset": 14401,
+        "line": 237
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6522",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+        "path": "web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+        "offset": 6008,
+        "line": 164
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6623",
+        "path": null,
+        "offset": 1123,
+        "line": 9
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PatientService.java",
+        "path": "api/src/main/java/org/openmrs/api/PatientService.java",
+        "offset": 10920,
+        "line": 250
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "offset": 4991,
+        "line": 143
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/release.yaml",
+      "kind": "File",
+      "path": ".github/workflows/release.yaml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14401,
+      "excerpt": "een build on this commit\n        # Bamboo only offers the Release stage on a green build; enforce the same here\n        env:\n          GH_TOKEN: ${{ github.token }}\n        run: |\n          SUCCESSFUL_RUNS=$(gh api \"repos/${GITHUB_REPOSITORY}/actions/workflows/build.yaml/runs?head_sha=${GITHUB_SHA}&status=success&exclude_pull_requests=true\" --jq '.total_count')\n          if [[ \"${SUCCESSFUL_RUNS}\" -lt 1 ]]; then\n            echo \"::error::No successful 'Build with Maven' run for ${GITHUB_SHA}; wait for CI to pass on ${GITHUB_REF_NAME} before releasing\"\n            exit 1\n          fi\n\n      - name: Set the release version\n        run: |\n          mvn versions:set -DnewVersion=\"${OMRS_VERSION}\" -DgenerateBackupPoms=false --batch-mode\n          git config user.name openmrs-bot\n          git config user.email infrastructure@openmrs.org\n          git commit -am \"[skip-ci] [skip actions] Releasing ${OMRS_VERSION}\"\n\n      - uses: docker/setup-qemu-action@96fe6ef7f33517b61c61be40b68a1882f3264fb8 # v4.2.0\n\n      - uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0\n\n      - uses: docker/login-action@af1e73f918a031802d376d3c8bbc3fe56130a9b0 # v4.4.0\n        with:\n          username: ${{ secrets.DOCKER_HUB_USERNAME }}\n          password: ${{ secrets.DOCKER_HUB_TOKEN }}\n\n      - name: Build and push the dev image\n        run: |\n          docker buildx build --pull --push --platform \"${DOCKER_IMAGE_PLATFORMS}\" \\\n            --cache-from \"${DOCKER_IMAGE_NAME}:${GITHUB_REF_NAME}-dev-cache\" \\\n            --target dev \\\n            --build-arg MVN_ARGS=\"${MVN_ARGS}\" \\\n            -t \"${DOCKER_IMAGE_NAME}:${OMRS_VERSION}-dev\" .\n\n      - name: Build and push the production image\n        # the compile/dev stages are reused from the previous step via the local\n        # buildx cache; the registry cache only helps when that is unavailable\n        run: |\n          docker buildx build --pull --push --platform \"${DOCKER_IMAGE_PLATFORMS}\" \\\n            --cache-from \"${DOCKER_IMAGE_NAME}:${GITHUB_REF_NAME}-dev-cache\" \\\n            --build-arg MVN_ARGS=\"${MVN_ARGS}\" \\\n            -t \"${DOCKER_IMAGE_NAME}:${OMRS_VERSION}\" .\n\n      - name: Release to maven\n        env:\n          MAVEN_REPO_USERNAME: ${{ secrets.MAVEN_REPO_USERNAME }}\n          MAVEN_REPO_API_KEY: ${{ secrets.MAVEN_REPO_API_KEY }}\n        # run mvn deploy inside the dev image just pushed, a"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3117,
+      "excerpt": " with Modules](#extending-openmrs-with-modules)\n6. [Documentation](#documentation)\n   1. [Developer guides](#developer-guides)\n   2. [Wiki](#wiki)\n   3. [Website](#website)\n7. [Contributing](#contributing)\n   1. [Code](#code)\n   2. [Code Reviews](#code-reviews)\n   3. [Translation](#translation)\n8. [Issues](#issues)\n9. [Community](#community)\n10. [Support](#support)\n11. [License](#license)\n\n## Build\n\n### Prerequisites\n\n#### Java\n\nOpenMRS is a Java application which is why you need to install a Java JDK.\n\nIf you want to build the master branch you will need a Java JDK of minimum version 8.\n\n#### Maven\n\nInstall the build tool [Maven](https://maven.apache.org/).\n\nYou need to ensure that Maven uses the Java JDK needed for the branch you want to build.\n\nTo do so execute\n\n```bash\nmvn -version\n```\n\nwhich will tell you what version Maven is using. Refer to the [Maven docs](https://maven.apache.org/configure.html) if you need to configure Maven.\n\n#### Git\n\nInstall the version control tool [git](https://git-scm.com/) and clone this repository with\n\n```bash\ngit clone https://github.com/openmrs/openmrs-core.git\n```\n\n### Build Command\n\nAfter you have taken care of the [Prerequisites](#prerequisites)\n\nExecute the following\n\n```bash\ncd openmrs-core\n./mvnw clean package\n```\n\nThis will generate the OpenMRS application in `webapp/target/openmrs.war`, which you will have to deploy to an application server such as [Tomcat](https://tomcat.apache.org/) or [Jetty](https://jetty.org/).\n\n### Deploy\n\nFor development purposes you can simply deploy the `openmrs.war` into the application server jetty via\n\n```bash\ncd openmrs-core/webapp\n../mvnw jetty:run\n```\n\nTo run Jetty on a custom port, use the `jetty.http.port` property:\n\n```bash\n../mvnw -Djetty.http.port=8081 jetty:run\n```\n\nTo run on Cargo, use the `cargo:run` command:\n\n```bash\n../mvnw cargo:run\n```\n\nTo run Cargo on a custom port, use the `cargo.servlet.port` property:\n\n```bash\n../mvnw -Dcargo.servlet.port=8081 cargo:run\n```\n\nIf all goes well (check the console output) you can access the OpenMRS application at `localhost:8080/openmrs`.\n\nRefer to [Getting Started as a Developer](https://wiki.openmrs.org/display/docs/Getting+Started+as+a+Developer) for some more information\non useful Maven commands and build options.\n\n## Docker build\n\nDocker builds are still a work in progress. We appreciate any feedback and improvements to the process"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PatientService.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/PatientService.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10920,
+      "excerpt": "es the type of identifiers to get\n\t * @param locations the locations of the identifiers to match\n\t * @param patients the patients containing these identifiers\n\t * @param isPreferred if true, limits to only preferred identifiers if false, only non preferred. if\n\t *            null, ignores preferred status\n\t * @return PatientIdentifiers matching these criteria\n\t * @throws APIException\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PATIENT_IDENTIFIERS })\n\tpublic List<PatientIdentifier> getPatientIdentifiers(String identifier,\n\t        List<PatientIdentifierType> patientIdentifierTypes, List<Location> locations, List<Patient> patients,\n\t        Boolean isPreferred) throws APIException;\n\n\t/**\n\t * Create or update a PatientIdentifierType\n\t * <p>\n\t * <strong>Should</strong> create new patient identifier type<br/>\n\t * <strong>Should</strong> update existing patient identifier type<br/>\n\t * <strong>Should</strong> throw error when trying to save a patient identifier type while patient\n\t * identifier\n\t *\n\t * @param patientIdentifierType PatientIdentifierType to create or update\n\t * @return the saved type\n\t * @throws APIException types are locked\n\t */\n\t@Authorized({ PrivilegeConstants.MANAGE_IDENTIFIER_TYPES })\n\tpublic PatientIdentifierType savePatientIdentifierType(PatientIdentifierType patientIdentifierType) throws APIException;\n\n\t/**\n\t * Get all patientIdentifier types\n\t * <p>\n\t * Ordered same as {@link PatientIdentifierTypeDefaultComparator}.\n\t * <p>\n\t * <strong>Should</strong> fetch all non retired patient identifier types<br/>\n\t * <strong>Should</strong> order as default comparator\n\t *\n\t * @return patientIdentifier types list\n\t * @throws APIException\n\t */\n\t@Authorized({ PrivilegeConstants.GET_IDENTIFIER_TYPES })\n\tpublic List<PatientIdentifierType> getAllPatientIdentifierTypes() throws APIException;\n\n\t/**\n\t * Get all patientIdentifier types.\n\t * <p>\n\t * Ordered same as {@link PatientIdentifierTypeDefaultComparator}.\n\t * <p>\n\t * <strong>Should</strong> fetch patient identifier types including retired when include retired is\n\t * true<br/>\n\t * <strong>Should</strong> fetch patient identifier types excluding retired when include retired is\n\t * false<br/>\n\t * <strong>Should</strong> order as default comparator\n\t *\n\t * @param includeRetired true/false whether retired types should be included\n\t * @return patientIdentifier types list\n\t * @throws APIException\n\t */\n\t@Authorize"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4991,
+      "excerpt": "tic String OBSCURE_PATIENTS_FAMILY_NAME = \"Person\";\n\n\tpublic static final String REGEX_LARGE = \"[!\\\"#\\\\$%&'\\\\(\\\\)\\\\*,+-\\\\./:;<=>\\\\?@\\\\[\\\\\\\\\\\\\\\\\\\\]^_`{\\\\|}~]\";\n\n\tpublic static final String REGEX_SMALL = \"[!\\\"#\\\\$%&'\\\\(\\\\)\\\\*,\\\\./:;<=>\\\\?@\\\\[\\\\\\\\\\\\\\\\\\\\]^_`{\\\\|}~]\";\n\n\tpublic static final Integer CIVIL_STATUS_CONCEPT_ID = 1054;\n\n\t/**\n\t * The directory which OpenMRS should attempt to use as its application data directory in case the\n\t * current users home dir is not writeable (e.g. when using application servers like tomcat to\n\t * deploy OpenMRS).\n\t *\n\t * @see #APPLICATION_DATA_DIRECTORY_RUNTIME_PROPERTY\n\t * @see OpenmrsUtil#getApplicationDataDirectory()\n\t */\n\tpublic static final String APPLICATION_DATA_DIRECTORY_FALLBACK_UNIX = \"/var/lib\";\n\n\tpublic static final String APPLICATION_DATA_DIRECTORY_FALLBACK_WIN = System.getenv(\"appdata\");\n\n\t/**\n\t * The name of the runtime property that a user can set that will specify where openmrs's\n\t * application directory is\n\t *\n\t * @see OpenmrsUtil#getApplicationDataDirectory()\n\t * @see OpenmrsUtil#startup(java.util.Properties)\n\t */\n\tpublic static final String APPLICATION_DATA_DIRECTORY_RUNTIME_PROPERTY = \"application_data_directory\";\n\n\t/**\n\t * The name of the runtime property that a user can set that will specify whether the database is\n\t * automatically updated on startup\n\t */\n\tpublic static final String AUTO_UPDATE_DATABASE_RUNTIME_PROPERTY = \"auto_update_database\";\n\n\t/**\n\t * These words are ignored in concept and patient searches\n\t *\n\t * @return Collection&lt;String&gt; of words that are ignored\n\t */\n\tpublic static final Collection<String> STOP_WORDS() {\n\t\tList<String> stopWords = new ArrayList<>();\n\t\tstopWords.add(\"A\");\n\t\tstopWords.add(\"AND\");\n\t\tstopWords.add(\"AT\");\n\t\tstopWords.add(\"BUT\");\n\t\tstopWords.add(\"BY\");\n\t\tstopWords.add(\"FOR\");\n\t\tstopWords.add(\"HAS\");\n\t\tstopWords.add(\"OF\");\n\t\tstopWords.add(\"THE\");\n\t\tstopWords.add(\"TO\");\n\n\t\treturn stopWords;\n\t}\n\n\t/**\n\t * A gender character to gender name map<br>\n\t * TODO issues with localization. How should this be handled?\n\t *\n\t * @deprecated As of 2.2, replaced by {@link #GENDERS}\n\t * @return Map&lt;String, String&gt; of gender character to gender name\n\t */\n\t@Deprecated\n\t@SuppressWarnings(\"squid:S00100\")\n\tpublic static final Map<String, String> GENDER() {\n\t\tMap<String, String> genders = new LinkedHashMap<>();\n\t\tgenders.put(\"M\", \"Male\");\n\t\tgenders.put(\"F\", \"Female\");\n\t\treturn gende"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+      "kind": "File",
+      "path": "web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6008,
+      "excerpt": "D_COMPLETE = \"wizardcomplete.vm\";\n\n\t/**\n\t * A page that lists off what is happening while it is going on. This page has ajax that callst he\n\t * {@value #PROGRESS_VM_AJAXREQUEST} page\n\t */\n\tprivate static final String PROGRESS_VM = \"progress.vm\";\n\n\t/**\n\t * This url is called by javascript to get the status of the install\n\t */\n\tprivate static final String PROGRESS_VM_AJAXREQUEST = \"progress.vm.ajaxRequest\";\n\n\tpublic static final String RELEASE_TESTING_MODULE_PATH = \"/module/releasetestinghelper/\";\n\n\t/**\n\t * The model object that holds all the properties that the rendered templates use. All attributes on\n\t * this object are made available to all templates via reflection in the\n\t * {@link org.openmrs.web.filter.StartupFilter#renderTemplate(String, Map, HttpServletResponse)}\n\t * method.\n\t */\n\tprotected InitializationWizardModel wizardModel = null;\n\n\tprivate InitializationCompletion initJob;\n\n\t/**\n\t * Variable set to true as soon as the installation begins and set to false when the process ends\n\t * This thread should only be accesses through the synchronized method.\n\t */\n\tprivate static boolean isInstallationStarted = false;\n\n\t// the actual driver loaded by the DatabaseUpdater class\n\tprivate String loadedDriverString;\n\n\tprivate static final Set<String> NON_NORMALIZED_KEYS = new HashSet<>(Arrays.asList(\"INSTALL_METHOD\", \"DATABASE_NAME\",\n\t    \"HAS_CURRENT_OPENMRS_DATABASE\", \"CREATE_DATABASE_USER\", \"CREATE_TABLES\", \"ADD_DEMO_DATA\", \"MODULE_WEB_ADMIN\",\n\t    \"AUTO_UPDATE_DATABASE\", \"ADMIN_USER_PASSWORD\", \"CREATE_DATABASE_USERNAME\", \"CREATE_DATABASE_PASSWORD\",\n\t    \"CREATE_USER_USERNAME\", \"CREATE_USER_PASSWORD\", \"CONNECTION_DRIVER_CLASS\", \"IMPORT_TEST_DATA\", \"REMOTE_URL\",\n\t    \"REMOTE_USERNAME\", \"REMOTE_PASSWORD\", \"ADMIN_PASSWORD_LOCKED\"));\n\n\t/**\n\t * Variable set at the end of the wizard when spring is being restarted\n\t */\n\tprivate static boolean initializationComplete = false;\n\n\tprotected synchronized void setInitializationComplete(boolean initializationComplete) {\n\t\tInitializationFilter.initializationComplete = initializationComplete;\n\t}\n\n\t/**\n\t * Called by {@link #doFilter(ServletRequest, ServletResponse, FilterChain)} on GET requests\n\t *\n\t * @param httpRequest\n\t * @param httpResponse\n\t */\n\t@Override\n\tprotected void doGet(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException {\n\t\tlog.debug(\"Entered initialization filter\");\n\n\t\tSessionMode"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6399",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6399,
+      "title": "Make the openmrs-api surefire crash on 2.8.x explain itself",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4280,
+      "excerpt": "up, and `api` forces `mock-maker-inline`, whose class generation is where the Java 11 crash lands. That correlation is not the whole story, since `windows-latest, 8` uses the old toolchain and passes, so I would rather test a toolchain bump against this now-reliable reproduction than assume it.\n\n## Issue I worked on\n\nNo Jira issue yet; happy to file one if we would rather track it there.\n\n## Checklist: I completed these to help reviewers :)\n\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n- [x] I have **added tests** to cover my changes. CI-only change, so verified by extracting the step's script straight out of the workflow and running it under GitHub's exact shell (`bash --noprofile --norc -e -o pipefail`) against the real `hs_err` and `.dumpstream` files this PR captured, with a deliberately unreadable directory in the tree. It exits 0, still surfaces `find`'s own errors, and prints the Mockito frame that identifies the crash in 487 lines with no memory-map bloat; the first version of the script exits 1 and prints no fatal error log at all.\n- [x] I ran `mvn clean package` right before creating this pull request and added all formatting changes to my commit.\n- [x] All new and existing **tests passed**.\n- [x] My pull request is **based on the latest changes** of the 2.8.x branch.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6522",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6522,
+      "title": "TRUNK-6793: Add optional OpenTelemetry metrics export",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "<!--- Add a pull request title above in this format -->\r\n<!--- real example: 'TRUNK-5111: Replace use of deprecated isVoided' -->\r\n<!--- 'TRUNK-JiraIssueNumber: JiraIssueTitle' -->\r\n## Description of what I changed\r\n<!--- Describe your changes in detail -->\r\n<!--- It can simply be your commit message, which you must have -->\r\nOpenMRS now speaks OpenTelemetry!\r\n\r\nopenmrs-core can now export OpenTelemetry metrics. bundles the OTel Java agent and attaches it when `OMRS_OTEL_ENABLED`=true.\r\n\r\noff by default. nothing changes for anyone who doesn't opt in.\r\n\r\n### Why do we need this?\r\n\r\nImplementers currently have no standard way to see whether an openmrs server is healthy. everyone builds their own thing, in whatever shape, so nothing's shareable.\r\n\r\nOTel is a CNCF standard that basically every observability backend speaks. So instead of us picking a monitoring vendor for people, we emit a standard format and they point it wherever:\r\n\r\n_\"openmrs exports standard OTel. Grab it however you like.\"_\r\n\r\n**Why core and not the distro:** bahmni, kenyaEMR, ugandaEMR and the rest all build on core. distro-only means each of them reimplements it. also the attach logic has to live in startup.sh anyway, and that's here.\r\n\r\n**Why the java agent and not a JMX scraper**: runs in-process, exposes nothing. a scraper needs every deployment to open a JMX/RMI port, which is a rough default for a clinical system.\r\n\r\n### What changed\r\n\r\nDockerfile: downloads the agent to /openmrs/otel in the production stage, checksum-verified, same pattern as the tini and tomcat downloads. Pure java so no TARGETARCH handling needed.\r\n\r\nstartup.sh: appends -javaagent: to CATALINA_OPTS when the flag is set. mirrors the existing OMRS_DEV_DEBUG_PORT block right above it. uses ${VAR-} since the script runs under -u.\r\n\r\nthat's it. everything past the on/off flag is standard `OTEL_*` variables, so the config surface is the OTel spec rather than something we invented.\r\n\r\nSample config:\r\n```\r\n        OMRS_OTEL_ENABLED: true\r\n        OTEL_EXPORTER_OTLP_ENDPOINT: http://alloy:4317\r\n        OTEL_EXPORTER_OTLP_PROTOCOL: grpc\r\n        OTEL_SERVICE_NAME: openmrs-backend\r\n        OTEL_JMX_TARGET_SYSTEM: tomcat\r\n        OTEL_METRICS_EXPORTER: otlp\r\n        OTEL_TRACES_EXPORTER: none\r\n        OTEL_LOGS_EXPORTER: none\r\n```\r\n\r\n### The cost\r\n\r\nThe jar adds ~24MB to every openmrs-core image whether you use it or not. that"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6623",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6623,
+      "title": "maven(deps): bump org.owasp.encoder:encoder from 1.4.0 to 1.4.1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1123,
+      "excerpt": "oder-esapi/1.4.1/\">encoder-esapi</a>, <a href=\"https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder-parent/1.4.1/\">encoder-parent</a>.</p>\n<h2>Security fixes</h2>\n<p>Upgrade all OWASP Java Encoder dependencies to <strong>1.4.1</strong>. Versions through 1.4.0\nare affected by the following issues:</p>\n<ul>\n<li><strong>GHSA-57jg-769q-93vh:</strong> <code>EncodedWriter</code> could lose encoding context when pending\nlookahead overflowed its output buffer, allowing CDATA or XML comment delimiters\nto escape and dropping or duplicating characters. The fix preserves unconsumed\ninput across buffer flushes.</li>\n<li><strong>GHSA-q6jj-5396-8mq2:</strong> <code>EncodedWriter</code> could loop indefinitely when a write did\nnot supply enough input to resolve pending lookahead. The fix retains pending\ninput for the next write or close instead of spinning.</li>\n<li><strong>GHSA-p9ff-j89j-9xhx:</strong> long runs of U+2028 or U+2029 could cause the String\noverloads of <code>Encode.forCssString</code> and <code>Encode.forCssUrl</code> to throw <code>AssertionError</code>.\nThe fix corrects the maximum encoded output size. The JSP/Jakarta CSS EL\nfunctions and the ESAPI CSS adapter also benefit from this fix.</li>\n</ul>\n<p>The first two issues require direct use of <code>EncodedWriter</code>; the <code>Encode</code> facade,\nJSP/Jakarta tags, and ESAPI adapter do not call it internally. The CSS size issue\naffects String-returning APIs; Writer overloads and CSS tags are unaffected.</p>\n<h2>Compatibility and other changes</h2>\n<ul>\n<li>Java 8 remains the minimum runtime. Build and test with JDK 17.</li>\n<li>Public method signatures, Maven coordinates, explicit JPMS module names, and\nhistorical <code>Automatic-Module-Name</code> values are retained.</li>\n<li>The JSP, Jakarta, and ESAPI module descriptors now expose their public API\ndependencies transitively (<a href=\"https://redirect.github.com/owasp/owasp-java-encoder/issues/98\">#98</a>).</li>\n<li>The ESAPI adapter now uses a fixed ESAPI 2.7.0.0 dependency; tested compatibility\nis documented in <code>esapi/README.md</code> (<a href=\"https://redirect.github.com/owasp/owasp-java-encoder/issues/99\">#99</a>).</li>\n<li>Build tooling, packaged OSGi compatibility tests, project metadata, and Jakarta\ntest dependency alignment have been updated (<a href=\"https://redirect.github.com/owasp/owasp-java-encoder/issues/90\">#90</a>, <a "
+    }
+  ]
+}

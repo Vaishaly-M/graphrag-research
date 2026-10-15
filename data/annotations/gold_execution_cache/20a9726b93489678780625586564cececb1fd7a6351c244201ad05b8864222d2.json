@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 57486,
+        "line": 1038
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+        "path": null,
+        "offset": 4053,
+        "line": 78
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+        "path": "README.md",
+        "offset": 2759,
+        "line": 58
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:536",
+        "path": null,
+        "offset": 291,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:951",
+        "path": null,
+        "offset": 954,
+        "line": 21
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:954",
+        "path": null,
+        "offset": 912,
+        "line": 21
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:955",
+        "path": null,
+        "offset": 912,
+        "line": 21
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:956",
+        "path": null,
+        "offset": 940,
+        "line": 21
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2759,
+      "excerpt": "https://code.visualstudio.com/docs/csharp/get-started)\n- Optional: Install [.NET MAUI Workload](https://learn.microsoft.com/dotnet/maui/get-started/installation?tabs=visual-studio-code)\n\n> Note: When running on Mac with Apple Silicon (M series processor), Rosetta 2 for grpc-tools. \n\n### Running the solution\n\n> [!WARNING]\n> Remember to ensure that Docker is started\n\n* (Windows only) Run the application from Visual Studio:\n - Open the `eShop.Web.slnf` file in Visual Studio\n - Ensure that `eShop.AppHost.csproj` is your startup project\n - Hit Ctrl-F5 to launch Aspire\n\n* Or run the application from your terminal:\n```powershell\ndotnet run --project src/eShop.AppHost/eShop.AppHost.csproj\n```\nthen look for lines like this in the console output in order to find the URL to open the Aspire dashboard:\n```sh\nLogin to the dashboard at: http://localhost:19888/login?t=uniquelogincodeforyou\n```\n\n> You may need to install ASP.NET Core HTTPS development certificates first, and then close all browser tabs. Learn more at https://aka.ms/aspnet/https-trust-dev-cert\n\n### Azure Open AI\n\nWhen using Azure OpenAI, inside *eShop.AppHost/appsettings.json*, add the following section:\n\n```json\n  \"ConnectionStrings\": {\n    \"OpenAi\": \"Endpoint=xxx;Key=xxx;\"\n  }\n```\n\nReplace the values with your own. Then, in the eShop.AppHost *Program.cs*, set this value to **true**\n\n```csharp\nbool useOpenAI = false;\n```\n\nHere's additional guidance on the [.NET Aspire OpenAI component](https://learn.microsoft.com/dotnet/aspire/azureai/azureai-openai-component?tabs=dotnet-cli). \n\n### Use Azure Developer CLI\n\nYou can use the [Azure Developer CLI](https://aka.ms/azd) to run this project on Azure with only a few commands. Follow the next instructions:\n\n- Install the latest or update to the latest [Azure Developer CLI (azd)](https://aka.ms/azure-dev/install).\n- Log in `azd` (if you haven't done it before) to your Azure account:\n```sh\nazd auth login\n```\n- Initialize `azd` from the root of the repo.\n```sh\nazd init\n```\n- During init:\n  - Select `Use code in the current directory`. Azd will automatically detect the .NET Aspire project.\n  - Confirm `.NET (Aspire)` and continue.\n  - Select which services to expose to the Internet (exposing `webapp` is enough to test the sample).\n  - Finalize the initialization by giving a name to your environment.\n\n- Create Azure resources and deploy the sample by running:\n```sh\nazd up"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:536",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 536,
+      "title": "Not obvious error with restoring the solution out of box with not latest sdk",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 291,
+      "excerpt": "![image](https://github.com/user-attachments/assets/a6829b30-c9e0-4f10-b880-8b208e7df352)\r\n\r\nand about 30k compile-time errors\r\n\r\nBTW, before I downloaded the 8.0.401 sdk, the approach with latest sdk's version in the global.json was fixing the problem. However, I suppose, that isn't an appropriate solution.\r\n`{\r\n  \"sdk\": {\r\n    \"version\": \"latest\",\r\n    \"rollForward\": \"latestFeature\",\r\n    \"allowPrerelease\": true\r\n  }\r\n}`\r\n\r\nSo, my question is how to make the error  more obvious? \r\n\r\nI understand that we all have to read the documentation properly, but, frankly speaking, who does it? :)"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 57486,
+      "excerpt": "eibow in https://github.com/dotnet/maui/pull/33519\n\n- [AI] Fix multi-turn tool calling, add chat overlay, upgrade Agent Framework to rc2, and add CI pipelines by @​mattleibow in https://github.com/dotnet/maui/pull/34124\n\n## Ai Agents\n- Copilot agent infrastructure, emulator reliability, and try-fix workflow improvements by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33937\n\n- Update PR agent models to claude-sonnet-4.6 and gpt-5.3-codex by @​kubaflo in https://github.com/dotnet/maui/pull/34109\n\n- ci-copilot: set pipeline run title early using build.updatebuildnumber by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/34156\n\n- Revamp find-reviewable-pr skill: priorities, defaults, and doc fixes by @​PureWeen in https://github.com/dotnet/maui/pull/34160\n\n- Add correct CI pipeline names to Copilot instructions by @​jfversluis in https://github.com/dotnet/maui/pull/34255\n\n- Add resilience to UI tests for frozen/unresponsive apps by @​PureWeen in https://github.com/dotnet/maui/pull/34023\n\n- Copilot CI: Structured phase outputs, autonomous execution, iOS support, and CI pipeline by @​kubaflo in https://github.com/dotnet/maui/pull/34040\n\n- Agent Workflow Metrics via GitHub Labels by @​kubaflo in https://github.com/dotnet/maui/pull/33986\n\n## Animation\n- [Android] Fixed TransformProperties issue when a wrapper view is present by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/29228\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Android Image.Scale produces wrong layout](https://github.com/dotnet/maui/issues/7432)\n  </details>\n\n## API\n- Add PublicAPI.Unshipped.txt BOM sort warning to Copilot instructions by @​jfversluis in https://github.com/dotnet/maui/pull/34327\n\n## Button\n- Fix ImageButton not rendering correctly based on its bounds by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/28309\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [ImageButton dosen't scale Image correctly](https://github.com/dotnet/maui/issues/25558)\n  - [ButtonImage width not sizing correctly](https://github.com/dotnet/maui/issues/14346)\n  </details>\n ... (truncated)\n\n## 10.0.41\n\n## What's Changed\n* [release/10.0.1xx-sr4] Revert \"Remove InternalsVisibleTo attributes for .NET MAUI Community … by @​github-actions[bot] in https://github.com/dotnet/maui/pull/34052\n* Increment patch version from 40 to 41 by @​PureWeen in https://github.com/dotnet/mau"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:951",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 951,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 954,
+      "excerpt": "thub.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on Windows](https://github.com/dotnet/maui/issues/18420)\n  </details>\n\n## Button\n- [Android] Fixed Material controls themeing issue by @​NirmalKumarYuvaraj in https://github.com/dotnet/maui/pull/30415\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Java.Lang.IllegalArgumentException: The style on this component requires your app theme to be Theme.MaterialComponent.](https://github.com/dotnet/maui/issues/13356)\n  </details>\n\n## CollectionView\n- Fix for CollectionView with GridItemsLayout (Span=1) doesn't adapt to window width reduction on Windows platform by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/31038\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI]I1_Layout-Vertical list and Grid content cannot adapt when the window is reduced](https://github.com/dotnet/maui/issues/23702)\n  </details>\n\n- [iOS] RTL column mirroring in UICollectionView - fix by @​kubaflo in https://github.com/dotnet/maui/pull/32372\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.11\n\n## What's Changed\n\n.NET MAUI 10.0.11 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 11 commits with various improvements, bug fixes, and enhancements.\n\n## .NET MAUI Product Fixes\n## Android\n- Fix content page title clipping on Android API < 30 with window insets compatibility by @​Copilot in https://github.com/dotnet/maui/pull/32738\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Shell content page title position incorrect/clipped](https://github.com/dotnet/maui/issues/3252"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 953,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4053,
+      "excerpt": "workload:\n  - On macOS, open the Terminal and enter the following command: `sudo dotnet workload install maui; sudo dotnet workload update`\n  - On Windows, open the command prompt (or Powershell) and enter the following command: `dotnet workload install maui && dotnet workload update`\n- [ ] Add a [`global.json`](https://learn.microsoft.com/dotnet/core/tools/global-json) file to your application with the following parameters to ensure you're not using a unsupported preview version of .NET (example below)\n  - The .NET MAUI Community Toolkit does not provide support for preview releases of .NET\n\n### global.json\n\n```json\n{\n  \"sdk\": {\n    \"version\": \"9.0.306\", \n    \"rollForward\": \"latestFeature\",\n    \"allowPrerelease\": false\n  }\n}\n```\n\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/compare/12.2.0...12.3.0\n\n## 12.2.0\n\nSome more fixes related to Popup and then some... Also, this release reinstates the assembly versioning that got lost in translation somewhere. Most people probably didn't even notice or care. But if you're one of the people who does... Now its fixed!\n\n## What's Changed\n\n* Adds installation instructions to README by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/2797\n* Fire `Action PopupOptions.OnTappingOutsideOfPopup` when Android Back Button Pressed by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2799\n* Prevent Popup From Being Dismissed when Tapped Inside Popup by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2800\n* Reinstate assembly versioning by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/2837\n* Refactor TextCaseConverter and enhance ListToStringConverterTests by @​waheez in https://github.com/CommunityToolkit/Maui/pull/2840\n* Fix typo in the example label text on IsInRangeConverterPage by @​ruyut in https://github.com/CommunityToolkit/Maui/pull/2846\n\n## New Contributors\n* @​waheez made their first contribution in https://github.com/CommunityToolkit/Maui/pull/2840\n* @​ruyut made their first contribution in https://github.com/CommunityToolkit/Maui/pull/2846\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/compare/12.1.0...12.2.0\n\n## 12.1.0\n\n## What's Changed\n\n* Restrict AddPopup extensions to View to avoid ContentPage from being allowed by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2715\n* [Popup] Properly handle Android Back"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:954",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 954,
+      "title": "Bump Microsoft.Maui.Controls from 9.0.30 to 10.0.20",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 912,
+      "excerpt": "thub.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on Windows](https://github.com/dotnet/maui/issues/18420)\n  </details>\n\n## Button\n- [Android] Fixed Material controls themeing issue by @​NirmalKumarYuvaraj in https://github.com/dotnet/maui/pull/30415\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Java.Lang.IllegalArgumentException: The style on this component requires your app theme to be Theme.MaterialComponent.](https://github.com/dotnet/maui/issues/13356)\n  </details>\n\n## CollectionView\n- Fix for CollectionView with GridItemsLayout (Span=1) doesn't adapt to window width reduction on Windows platform by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/31038\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI]I1_Layout-Vertical list and Grid content cannot adapt when the window is reduced](https://github.com/dotnet/maui/issues/23702)\n  </details>\n\n- [iOS] RTL column mirroring in UICollectionView - fix by @​kubaflo in https://github.com/dotnet/maui/pull/32372\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.11\n\n## What's Changed\n\n.NET MAUI 10.0.11 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 11 commits with various improvements, bug fixes, and enhancements.\n\n## .NET MAUI Product Fixes\n## Android\n- Fix content page title clipping on Android API < 30 with window insets compatibility by @​Copilot in https://github.com/dotnet/maui/pull/32738\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Shell content page title position incorrect/clipped](https://github.com/dotnet/maui/issues/3252"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:955",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 955,
+      "title": "Bump Microsoft.Maui.Controls from 9.0.40 to 10.0.20",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 912,
+      "excerpt": "thub.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on Windows](https://github.com/dotnet/maui/issues/18420)\n  </details>\n\n## Button\n- [Android] Fixed Material controls themeing issue by @​NirmalKumarYuvaraj in https://github.com/dotnet/maui/pull/30415\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Java.Lang.IllegalArgumentException: The style on this component requires your app theme to be Theme.MaterialComponent.](https://github.com/dotnet/maui/issues/13356)\n  </details>\n\n## CollectionView\n- Fix for CollectionView with GridItemsLayout (Span=1) doesn't adapt to window width reduction on Windows platform by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/31038\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI]I1_Layout-Vertical list and Grid content cannot adapt when the window is reduced](https://github.com/dotnet/maui/issues/23702)\n  </details>\n\n- [iOS] RTL column mirroring in UICollectionView - fix by @​kubaflo in https://github.com/dotnet/maui/pull/32372\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.11\n\n## What's Changed\n\n.NET MAUI 10.0.11 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 11 commits with various improvements, bug fixes, and enhancements.\n\n## .NET MAUI Product Fixes\n## Android\n- Fix content page title clipping on Android API < 30 with window insets compatibility by @​Copilot in https://github.com/dotnet/maui/pull/32738\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Shell content page title position incorrect/clipped](https://github.com/dotnet/maui/issues/3252"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:956",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 956,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.30 to 10.0.20",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 940,
+      "excerpt": "thub.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on Windows](https://github.com/dotnet/maui/issues/18420)\n  </details>\n\n## Button\n- [Android] Fixed Material controls themeing issue by @​NirmalKumarYuvaraj in https://github.com/dotnet/maui/pull/30415\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Java.Lang.IllegalArgumentException: The style on this component requires your app theme to be Theme.MaterialComponent.](https://github.com/dotnet/maui/issues/13356)\n  </details>\n\n## CollectionView\n- Fix for CollectionView with GridItemsLayout (Span=1) doesn't adapt to window width reduction on Windows platform by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/31038\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI]I1_Layout-Vertical list and Grid content cannot adapt when the window is reduced](https://github.com/dotnet/maui/issues/23702)\n  </details>\n\n- [iOS] RTL column mirroring in UICollectionView - fix by @​kubaflo in https://github.com/dotnet/maui/pull/32372\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.11\n\n## What's Changed\n\n.NET MAUI 10.0.11 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 11 commits with various improvements, bug fixes, and enhancements.\n\n## .NET MAUI Product Fixes\n## Android\n- Fix content page title clipping on Android API < 30 with window insets compatibility by @​Copilot in https://github.com/dotnet/maui/pull/32738\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Shell content page title position incorrect/clipped](https://github.com/dotnet/maui/issues/3252"
+    }
+  ]
+}

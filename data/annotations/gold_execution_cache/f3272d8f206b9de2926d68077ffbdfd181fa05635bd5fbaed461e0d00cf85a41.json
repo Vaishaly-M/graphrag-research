@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Catalog.API.csproj",
+        "path": "src/Catalog.API/Catalog.API.csproj",
+        "offset": 1660,
+        "line": 41
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:226",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 2832,
+        "line": 42
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+        "path": null,
+        "offset": 30614,
+        "line": 506
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+        "path": null,
+        "offset": 17170,
+        "line": 306
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Packages.props",
+        "path": "Directory.Packages.props",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:930",
+        "path": null,
+        "offset": 9642,
+        "line": 109
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Packages.props",
+      "kind": "File",
+      "path": "Directory.Packages.props",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "<Project>\n  <PropertyGroup>\n    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>\n    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>\n    <DotnetPackagesVersion>10.0.5</DotnetPackagesVersion>\n    <MicrosoftExtensionsVersion>10.4.0</MicrosoftExtensionsVersion>\n    <AspireVersion>13.2.0</AspireVersion>\n    <AspireUnstablePackagesVersion>13.2.0-preview.1.26170.3</AspireUnstablePackagesVersion>\n    <GrpcVersion>2.76.0</GrpcVersion>\n    <DuendeVersion>7.3.1</DuendeVersion>\n    <ApiVersioningVersion>10.0.0-preview.2</ApiVersioningVersion>\n  </PropertyGroup>\n  <ItemGroup>\n    <!-- Version together with Aspire -->\n    <PackageVersion Include=\"Aspire.Hosting.Azure.CognitiveServices\" Version=\"$(AspireVersion)\" />\n    <PackageVersion Include=\"Aspire.Hosting.PostgreSQL\" Version=\"$(AspireVersion)\" />\n    <PackageVersion Include=\"Aspire.Hosting.RabbitMQ\" Version=\"$(AspireVersion)\" />\n    <PackageVersion Include=\"Aspire.Hosting.Redis\" Version=\"$(AspireVersion)\" />\n    <PackageVersion Include=\"Aspire.Hosting.Yarp\" Version=\"$(AspireVersion)\" />\n    <PackageVersion Include=\"Aspire.Npgsql\" Version=\"$(AspireVersion)\" />\n    <PackageVersion Include=\"Aspire.Npgsql.EntityFrameworkCore.PostgreSQL\" Version=\"$(AspireVersion)\" />\n    <PackageVersion Include=\"Aspire.RabbitMQ.Client\" Version=\"$(AspireVersion)\" />\n    <PackageVersion Include=\"Aspire.StackExchange.Redis\" Version=\"$(AspireVersion)\" />\n    <PackageVersion Include=\"Aspire.Azure.AI.OpenAI\" Version=\"$(AspireUnstablePackagesVersion)\" />\n    <!-- Version together with Asp.Versioning -->\n    <PackageVersion Include=\"Asp.Versioning.Http\" Version=\"$(ApiVersioningVersion)\" />\n    <PackageVersion Include=\"Asp.Versioning.Http.Client\" Version=\"$(ApiVersioningVersion)\" />\n    <PackageVersion Include=\"Asp.Versioning.Mvc.ApiExplorer\" Version=\"$(ApiVersioningVersion)\" />\n    <PackageVersion Include=\"Asp.Versioning.OpenApi\" Version=\"$(ApiVersioningVersion)\" />\n    <!-- Version together with ASP.NET -->\n    <PackageVersion Include=\"Microsoft.AspNetCore.Authentication.JwtBearer\" Version=\"$(DotnetPackagesVersion)\" />\n    <PackageVersion Include=\"Microsoft.AspNetCore.Authentication.OpenIdConnect\" Version=\"$(DotnetPackagesVersion)\" />\n    <PackageVersion Include=\"Microsoft.AspNetCore.Components.QuickGrid\" Version=\"$(DotnetPackagesVersion)\" />\n    <PackageVersion Include=\"Microsoft.AspNetC"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Catalog.API.csproj",
+      "kind": "File",
+      "path": "src/Catalog.API/Catalog.API.csproj",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1660,
+      "excerpt": "ntLogEF\\IntegrationEventLogEF.csproj\" />\n    <ProjectReference Include=\"..\\eShop.ServiceDefaults\\eShop.ServiceDefaults.csproj\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <Content Include=\"Pics\\*.webp\" CopyToOutputDirectory=\"PreserveNewest\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <InternalsVisibleTo Include=\"Catalog.FunctionalTests\" />\n  </ItemGroup>\n\n</Project>\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:226",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 226,
+      "title": "Errors when trying to build the eShop project.",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "I receive the following errors when building the project:\r\n- Assembly reference errors.\r\n- The remote server returned an error: (503) Server Unavailable.\r\n\r\n![image](https://github.com/dotnet/eShop/assets/25210501/a738b1db-b8cf-437a-a394-9bf0074df9aa)\r\n\r\nBelow are the Directory.Packages.props and NuGet.config files:\r\n\r\n**Directory.Packages.props**\r\n```\r\n<Project>\r\n  <PropertyGroup>\r\n    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>\r\n    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>\r\n    <AspnetVersion>8.0.2</AspnetVersion>\r\n    <MicrosoftExtensionsVersion>8.2.0</MicrosoftExtensionsVersion>\r\n    <EfVersion>8.0.2</EfVersion>\r\n    <AspireVersion>8.0.0-preview.3.24105.21</AspireVersion>\r\n    <GrpcVersion>2.61.0</GrpcVersion>\r\n    <DuendeVersion>7.0.1</DuendeVersion>\r\n  </PropertyGroup>\r\n  <ItemGroup>\r\n    <!-- Version together with Aspire -->\r\n    <PackageVersion Include=\"Aspire.Hosting\" Version=\"$(AspireVersion)\" />\r\n    <PackageVersion Include=\"Aspire.Hosting.Azure\" Version=\"$(AspireVersion)\" />\r\n    <PackageVersion Include=\"Aspire.Npgsql\" Version=\"$(AspireVersion)\" />\r\n    <PackageVersion Include=\"Aspire.Npgsql.EntityFrameworkCore.PostgreSQL\" Version=\"$(AspireVersion)\" />\r\n    <PackageVersion Include=\"Aspire.RabbitMQ.Client\" Version=\"$(AspireVersion)\" />\r\n    <PackageVersion Include=\"Aspire.StackExchange.Redis\" Version=\"$(AspireVersion)\" />\r\n    <PackageVersion Include=\"Aspire.Azure.AI.OpenAI\" Version=\"$(AspireVersion)\" />\r\n    <PackageVersion Include=\"Microsoft.Extensions.ServiceDiscovery\" Version=\"$(AspireVersion)\" />\r\n    <PackageVersion Include=\"Microsoft.Extensions.ServiceDiscovery.Yarp\" Version=\"$(AspireVersion)\" />\r\n    <!-- Version together with ASP.NET -->\r\n    <PackageVersion Include=\"Microsoft.AspNetCore.Authentication.JwtBearer\" Version=\"$(AspnetVersion)\" />\r\n    <PackageVersion Include=\"Microsoft.AspNetCore.Authentication.OpenIdConnect\" Version=\"$(AspnetVersion)\" />\r\n    <PackageVersion Include=\"Microsoft.AspNetCore.Components.QuickGrid\" Version=\"$(AspnetVersion)\" />\r\n    <PackageVersion Include=\"Microsoft.AspNetCore.Components.Web\" Version=\"$(AspnetVersion)\" />\r\n    <PackageVersion Include=\"Microsoft.AspNetCore.Identity.EntityFrameworkCore\" Version=\"$(AspnetVersion)\" />\r\n    <PackageVersion Include=\"Microsoft.AspNetCore.Identity.UI\" Version=\"$(AspnetVersion)\" />\r\n    <PackageVersion"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "…ging coverage\r\n\r\nIntroduce pluggable functional test modes (Aspire, RepositoryMock, EfCoreInMemory, Testcontainers, and messaging variants) for Catalog and Ordering via a shared Testing.Common library. Extract ICatalogRepository from Catalog.API to enable in-memory persistence swaps, add Serilog logging to ServiceDefaults, fix integration event type discovery under WebApplicationFactory, and add runsettings plus xUnit traits for filtering tests by mode.\r\n\r\n# eShop Multi-Mode Functional Testing\r\n\r\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontaine"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1022,
+      "title": "Bump the microsoftextensions group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 30614,
+      "excerpt": "ness CI stage by merging into Build #​7594 by @​adamsitnik (co-authored by @​Copilot)\n* Update Agent Framework to 1.13.0 #​7613 by @​jeffhandley (co-authored by @​Copilot)\n ... (truncated)\n\n## 10.7.0\n\nv10.7.0 graduates the [Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes) package to stable. The package registers a Kubernetes-aware `ResourceQuotaProvider` that reads the pod's CPU and memory requests and limits and exposes them to `Microsoft.Extensions.Diagnostics.ResourceMonitoring` as baseline and maximum quotas, which then feed the request and limit dimensions of the published resource utilization metrics. The companion `ResourceQuota` and `ResourceQuotaProvider` types in `Microsoft.Extensions.Diagnostics.ResourceMonitoring` graduate to stable in the same change so that consumers can implement custom quota providers without taking an experimental dependency.\n\nOn the AI side, `Microsoft.Extensions.AI.OpenAI` moves to OpenAI 2.11.0 and fixes a deserialization bug in `ToolJson.AdditionalProperties` so that JSON Schema `additionalProperties` values shaped as sub-schema objects (for example `{\"type\":\"string\"}`) are preserved instead of throwing during deserialization. `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` graduate to stable since both values are consistently available across hosted-file providers, while `Purpose` and `Scope` remain experimental as provider-shaped vocabulary. `FunctionInvokingChatClient` drops a backward-compat path that auto-marked `ToolApprovalResponseContent` entries with `InformationalOnly: true`; consumers that need to continue accepting sessions serialized before #​7468 can use the sample `ApprovalHistoryNormalizingChatClient` middleware added in the test project.\n\n## Experimental API Changes\n\n### Now Stable\n\n* `Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes` package is now stable #​7253\n* Resource Monitoring `ResourceQuota` and `ResourceQuotaProvider` APIs are now stable (previously `EXTEXP0008`) #​7253\n* `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` are now stable (previously `MEAI001`) #​7513\n\n## What's Changed\n\n### AI\n\n* Graduate HostedFileContent.SizeInBytes and HostedFileContent.CreatedAt #​7513 by @​jozkee (co-authored by @​Copilot)\n* Remove backward-compat Infor"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1034,
+      "title": "Bump the aspire group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 17170,
+      "excerpt": "ness CI stage by merging into Build #​7594 by @​adamsitnik (co-authored by @​Copilot)\n* Update Agent Framework to 1.13.0 #​7613 by @​jeffhandley (co-authored by @​Copilot)\n ... (truncated)\n\n## 10.7.0\n\nv10.7.0 graduates the [Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes) package to stable. The package registers a Kubernetes-aware `ResourceQuotaProvider` that reads the pod's CPU and memory requests and limits and exposes them to `Microsoft.Extensions.Diagnostics.ResourceMonitoring` as baseline and maximum quotas, which then feed the request and limit dimensions of the published resource utilization metrics. The companion `ResourceQuota` and `ResourceQuotaProvider` types in `Microsoft.Extensions.Diagnostics.ResourceMonitoring` graduate to stable in the same change so that consumers can implement custom quota providers without taking an experimental dependency.\n\nOn the AI side, `Microsoft.Extensions.AI.OpenAI` moves to OpenAI 2.11.0 and fixes a deserialization bug in `ToolJson.AdditionalProperties` so that JSON Schema `additionalProperties` values shaped as sub-schema objects (for example `{\"type\":\"string\"}`) are preserved instead of throwing during deserialization. `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` graduate to stable since both values are consistently available across hosted-file providers, while `Purpose` and `Scope` remain experimental as provider-shaped vocabulary. `FunctionInvokingChatClient` drops a backward-compat path that auto-marked `ToolApprovalResponseContent` entries with `InformationalOnly: true`; consumers that need to continue accepting sessions serialized before #​7468 can use the sample `ApprovalHistoryNormalizingChatClient` middleware added in the test project.\n\n## Experimental API Changes\n\n### Now Stable\n\n* `Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes` package is now stable #​7253\n* Resource Monitoring `ResourceQuota` and `ResourceQuotaProvider` APIs are now stable (previously `EXTEXP0008`) #​7253\n* `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` are now stable (previously `MEAI001`) #​7513\n\n## What's Changed\n\n### AI\n\n* Graduate HostedFileContent.SizeInBytes and HostedFileContent.CreatedAt #​7513 by @​jozkee (co-authored by @​Copilot)\n* Remove backward-compat Infor"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2832,
+      "excerpt": "T 11 install v15.0.1 (or later), before .NET 11 is released in November. Apps running `CommunityToolkit.Maui` v14.2.2 and earlier will not be compatible with .NET 11.\n\n## What's Changed\n* Remove MAUI internal API usage by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/3251\n* Hardcode NuGet trusted publishing user by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/3266\n\n## Housekeeping\n* Bump actions/setup-dotnet from 5.4.0 to 6.0.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3268\n* Bump actions/setup-java from 5.5.0 to 5.6.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3267\n\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/compare/14.2.2...14.2.3\n\n## 14.2.2\n\n**Note:** 14.2.2 supersedes 14.2.1, which was not published to NuGet.org due to an expired publishing credential.\n\nJust a couple bug fixes in this one!\n* Prevent Race Conditions when closing a Popup\n* Set initial folder for FilePicker and FolderPicker on Windows\n\n## What's Changed\n* Prevent Race Condition Allowing Simultaneous Calling of `Navigation.PushModalAsync()` / `Shell.GotoAsync()` in `PopupExtensions` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3234\n* Add `SemaphoreSlim` Support for `Popup` `CloseAsync` to Avoid Race Conditions by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3235\n* Set Windows Folder Picker Initial Path by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3078\n\n## Housekeeping\n* Bump actions/checkout from 6.0.2 to 6.0.3 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3236\n* Bump Microsoft.Testing.Extensions.CodeCoverage from 18.7.0 to 18.8.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3237\n* Bump System.Formats.Asn1 from 10.0.8 to 10.0.9 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3238\n* Bump actions/checkout from 6.0.3 to 7.0.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3245\n* Bump actions/setup-java from 5.2.0 to 5.3.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3246\n* Bump actions/setup-java from 5.3.0 to 5.4.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3256\n* Bump actions/setup-dotnet from 5.3.0 to 5.4.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/p"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:930",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 930,
+      "title": "Bump CommunityToolkit.Aspire.OllamaSharp from 9.8.0-beta.395 to 13.0.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9642,
+      "excerpt": "h the main features being:\n* Support for Aspire 9.5\n* Open Telemetry Collector hosting integration\n* Apache Solr hosting integration\n\nWe also have a change to the package versioning for the SQLite EF Core integration, it's now marked as a pre-release package as it brings support for OTEL via [their NuGet package](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.EntityFrameworkCore), but their package is in beta, so we have to publish a pre-release version of our package too.\n\n## What's Changed\n* Bumping for next version (which will have some integrations so minor bump by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/824\n* Adding more test coverage and fixing URL handling by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/825\n* Add detect-pr-label job to manage package publishing based on PR labels by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/829\n* Not sure how that was missed by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/830\n* Bump next from 15.4.6 to 15.4.7 in /examples/nodejs-ext/turborepo-demo in the npm_and_yarn group across 1 directory by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/820\n* Adding some more descriptive relationships to the MCP inspector by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/828\n* Feature/solr integration by @​Chicoo in https://github.com/CommunityToolkit/Aspire/pull/802\n* Fix Solr docker image name for Azure Container Registry caching by @​Copilot in https://github.com/CommunityToolkit/Aspire/pull/833\n* Add OpenTelemetry Collector extension/component by @​martinjt in https://github.com/CommunityToolkit/Aspire/pull/603\n* [k6] Update k6 container image tag by @​martincostello in https://github.com/CommunityToolkit/Aspire/pull/835\n* feat(dapr): add IValueProvider support for component metadata configuration by @​gabynevada in https://github.com/CommunityToolkit/Aspire/pull/810\n* add @​oising as powershell owner by @​oising in https://github.com/CommunityToolkit/Aspire/pull/839\n* Fix link to PostgreSQL integration documentation by @​lvmajor in https://github.com/CommunityToolkit/Aspire/pull/841\n* chore(deps): bump actions/stale from 9 to 10 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/843\n* chore(deps): bump actions/setup-dotn"
+    }
+  ]
+}

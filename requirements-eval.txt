@@ -1,0 +1,4 @@
+# Phase 4 tests and statistical helpers (existing numerical runtime).
+pytest==9.1.1
+numpy==1.26.4
+scipy==1.13.1

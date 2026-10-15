@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/utils/db.py",
+        "path": "airflow-core/src/airflow/utils/db.py",
+        "offset": 52496,
+        "line": 1531
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 15826,
+        "line": 233
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/google/src/airflow/providers/google/cloud/hooks/bigquery.py",
+        "path": "providers/google/src/airflow/providers/google/cloud/hooks/bigquery.py",
+        "offset": 13563,
+        "line": 338
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+        "path": "contributing-docs/testing/unit_tests.rst",
+        "offset": 47164,
+        "line": 1128
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/execution_time/supervisor.py",
+        "path": "task-sdk/src/airflow/sdk/execution_time/supervisor.py",
+        "offset": 20246,
+        "line": 566
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+        "path": ".agents/skills/magpie-setup/adopt.md",
+        "offset": 12688,
+        "line": 295
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/authoring-and-scheduling/language-sdks/java.rst",
+        "path": "airflow-core/docs/authoring-and-scheduling/language-sdks/java.rst",
+        "offset": 22719,
+        "line": 714
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/dag.py",
+        "path": "airflow-core/src/airflow/models/dag.py",
+        "offset": 7634,
+        "line": 209
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+      "kind": "File",
+      "path": ".agents/skills/magpie-setup/adopt.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12688,
+      "excerpt": "tch produced an unexpected\nlayout — surface and stop.\n\n## Step 3b — Reconcile the committed `setup` with the new snapshot + reload in-flight\n\nPer [`SKILL.md` Golden rule 9](SKILL.md#golden-rules), the\nadopter-side committed `setup` skill must match the\nsnapshot's version before the rest of this run executes —\notherwise we finish adoption against the *old* bootstrap\nlogic for a *new* framework version.\n\n1. Diff the canonical committed copy\n   `.agents/skills/magpie-setup/` against\n   `.apache-magpie/skills/setup/`.\n2. If they match — skip the rest of this step.\n3. If they differ and the adopter has **no** local\n   modifications beyond what the snapshot ships — overwrite\n   the canonical committed copy from the snapshot:\n\n   ```bash\n   rm -rf .agents/skills/magpie-setup\n   cp -r .apache-magpie/skills/setup \\\n         .agents/skills/magpie-setup\n   ```\n\n   The relay symlinks (`.claude/skills/magpie-setup`,\n   `.github/skills/magpie-setup`) point at\n   `../../.agents/skills/magpie-setup` and need no change.\n\n4. If the adopter **does** have local modifications,\n   surface the diff and stop. The user either (a) confirms\n   the local mods can be discarded, (b) upstreams them as a\n   PR to `apache/magpie` first, or (c) defers the\n   bootstrap-skill refresh — in (c) the rest of this run\n   continues against the in-flight (older) version with a\n   warning.\n5. **Reload in-flight.** Immediately after the copy lands,\n   re-read `.agents/skills/magpie-setup/SKILL.md`\n   and `.agents/skills/magpie-setup/adopt.md` (the\n   current sub-action file), plus any helper file already\n   open in this run (`agents.md`, `overrides.md`),\n   before continuing to Step 4. The remaining steps run\n   against the just-loaded content.\n\nFor a FRESH adoption where the bootstrap recipe placed the\nmatching `setup` content on disk before this skill\nwas invoked, the diff in (1) is empty and this step is a\nno-op. For a SUBSEQUENT adoption against an old committed\ncopy, the overwrite + reload is the common case.\n\n## Step 4 — Write `<committed-lock>` (FRESH only)\n\nCreate `<repo-root>/.apache-magpie.lock`:\n\n```text\n# .apache-magpie.lock — committed; the project's pin.\n# Edited only by /magpie-setup; do not modify by hand.\n\nmethod: <method>\nurl:    <url>\n\n# Per-method fields:\nref:    <branch | tag | version>\n# git-tag: also `commit: <SHA>`\n# svn-zip: also `sha512: <hash>`\n```\n\n## Step 4b — Read fit sign"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/authoring-and-scheduling/language-sdks/java.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/authoring-and-scheduling/language-sdks/java.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22719,
+      "excerpt": "imitations\n-----------\n\n* **One JVM subprocess per task instance.**  Each task instance spawns a fresh JVM. Tasks that need to share\n  in-process state between instances should use XCom or an external store instead.\n* **Limited support for assets, deferral, and other Airflow features.** They may be implemented in the future\n  based on user feedback and demand.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/dag.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/models/dag.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7634,
+      "excerpt": "n)\n\n\nclass InconsistentDataInterval(AirflowException):\n    \"\"\"\n    Exception raised when a model populates data interval fields incorrectly.\n\n    The data interval fields should either both be None (for runs scheduled\n    prior to AIP-39), or both be datetime (for runs scheduled after AIP-39 is\n    implemented). This is raised if exactly one of the fields is None.\n    \"\"\"\n\n    _template = (\n        \"Inconsistent {cls}: {start[0]}={start[1]!r}, {end[0]}={end[1]!r}, \"\n        \"they must be either both None or both datetime\"\n    )\n\n    def __init__(self, instance: Any, start_field_name: str, end_field_name: str) -> None:\n        self._class_name = type(instance).__name__\n        self._start_field = (start_field_name, getattr(instance, start_field_name))\n        self._end_field = (end_field_name, getattr(instance, end_field_name))\n\n    def __str__(self) -> str:\n        return self._template.format(cls=self._class_name, start=self._start_field, end=self._end_field)\n\n\ndef _get_model_data_interval(\n    instance: Any,\n    start_field_name: str,\n    end_field_name: str,\n) -> DataInterval | None:\n    start = timezone.coerce_datetime(getattr(instance, start_field_name))\n    end = timezone.coerce_datetime(getattr(instance, end_field_name))\n    if start is None:\n        if end is not None:\n            raise InconsistentDataInterval(instance, start_field_name, end_field_name)\n        return None\n    if end is None:\n        raise InconsistentDataInterval(instance, start_field_name, end_field_name)\n    return DataInterval(start, end)\n\n\ndef get_last_dagrun(dag_id: str, session: Session, include_manually_triggered: bool = False) -> DagRun | None:\n    \"\"\"\n    Return the last dag run for a dag, None if there was none.\n\n    Last dag run can be any type of run e.g. scheduled or backfilled.\n    Overridden DagRuns are ignored.\n    \"\"\"\n    DR = DagRun\n    query = select(DR).where(DR.dag_id == dag_id, DR.logical_date.is_not(None))\n    if not include_manually_triggered:\n        query = query.where(DR.run_type != DagRunType.MANUAL)\n    query = query.order_by(DR.logical_date.desc())\n    return session.scalar(query.limit(1))\n\n\ndef get_asset_triggered_next_run_info(\n    dag_ids: list[str], *, session: Session\n) -> dict[str, dict[str, int | str]]:\n    \"\"\"\n    Get next run info for a list of dag_ids.\n\n    Given a list of dag_ids, get string representing how close any that are asset triggere"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/utils/db.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/utils/db.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 52496,
+      "excerpt": "e(text(\"select 1 as is_alive;\"))\n    log.info(\"Connection successful.\")\n\n\n@enum.unique\nclass DBLocks(enum.IntEnum):\n    \"\"\"\n    Cross-db Identifiers for advisory global database locks.\n\n    Postgres uses int64 lock ids so we use the integer value, MySQL uses names, so we\n    call ``str()`, which is implemented using the ``_name_`` field.\n    \"\"\"\n\n    MIGRATIONS = enum.auto()\n    SCHEDULER_CRITICAL_SECTION = enum.auto()\n\n    def __str__(self):\n        return f\"airflow_{self._name_}\"\n\n\n@contextlib.contextmanager\ndef _create_global_lock_mysql(lock: DBLocks, lock_timeout: int) -> Generator[None, None, None]:\n    \"\"\"\n    Create a global advisory lock for MySQL.\n\n    Uses a dedicated AUTOCOMMIT connection because:\n    - GET_LOCK is session-level, not transaction-level\n    - DDL operations cause implicit commits that would break transaction wrappers\n    \"\"\"\n    lock_conn = settings.get_engine().connect()\n    try:\n        lock_conn = lock_conn.execution_options(isolation_level=\"AUTOCOMMIT\")\n\n        # GET_LOCK returns: 1 = acquired, 0 = timeout, NULL = error\n        lock_result = lock_conn.execute(\n            text(\"SELECT GET_LOCK(:lock_name, :timeout)\"),\n            {\"lock_name\": str(lock), \"timeout\": lock_timeout},\n        ).scalar()\n\n        if lock_result != 1:\n            raise RuntimeError(\n                f\"Could not acquire MySQL advisory lock '{lock}'. \"\n                f\"Result: {lock_result}. Another process may be holding the lock.\"\n            )\n\n        try:\n            yield\n        finally:\n            lock_conn.execute(text(\"SELECT RELEASE_LOCK(:lock_name)\"), {\"lock_name\": str(lock)})\n    finally:\n        lock_conn.close()\n\n\n@contextlib.contextmanager\ndef _create_global_lock_postgresql(\n    session: Session, lock: DBLocks, lock_timeout: int\n) -> Generator[None, None, None]:\n    \"\"\"Create a global advisory lock for PostgreSQL using transactional advisory locks.\"\"\"\n    bind = session.get_bind()\n    if hasattr(bind, \"connect\"):\n        conn = bind.connect()\n        owns_connection = True\n    else:\n        conn = bind\n        owns_connection = False\n\n    try:\n        if _USE_PSYCOPG3:\n            conn.execute(\n                text(\"SELECT set_config('lock_timeout', :timeout, false)\"),\n                {\"timeout\": str(lock_timeout)},\n            )\n            conn.execute(text(\"SELECT pg_advisory_lock(:id)\"), {\"id\": lock.value})\n        else:\n           "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+      "kind": "File",
+      "path": "contributing-docs/testing/unit_tests.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 47164,
+      "excerpt": "nd future!) releases of Airflow.\nFor example, it could be used to run the latest provider versions with released or main\nAirflow 3 if they are developed independently.\n\nThe tests use the current source version of the ``tests`` folder and current ``providers``, so care should be\ntaken that the tests implemented for providers in the sources allow running against previous versions\nof Airflow and against Airflow installed from the PyPI package rather than from sources.\n\nRunning the compatibility tests locally\n.......................................\n\nRunning tests locally is easy with the appropriate ``breeze`` command. In CI, the command\nis slightly different as it runs using providers built using wheel packages, but it is faster\nto run it locally and easier to iterate if you need to fix a provider using provider sources mounted\ndirectly to the container.\n\n1. Make sure to build the latest Breeze CI image:\n\n.. code-block:: bash\n\n   breeze ci-image build --python 3.9\n\n2. Enter the breeze environment by selecting the appropriate Airflow version and choosing\n   the ``providers-and-tests`` option for the ``--mount-sources`` flag.\n\n.. code-block:: bash\n\n  breeze shell --use-airflow-version 2.9.1 --mount-sources providers-and-tests\n\n3. You can then run tests as usual:\n\n.. code-block:: bash\n\n   pytest providers/<provider>/tests/.../test.py\n\n4. Iterate with the tests and providers. Both providers and tests are mounted from local sources, so\n   changes you make locally in both tests and provider sources are immediately reflected inside the\n   breeze container, and you can re-run the tests inside the ``breeze`` container without restarting it\n   (which makes it faster to iterate).\n\n.. note::\n\n   Since providers are installed from sources rather than from packages, plugins from providers are not\n   recognized by ProvidersManager for Airflow < 2.10, and tests that expect plugins to work might not work.\n   In such cases, you should follow the ``CI`` way of running the tests (see below).\n\nImplementing compatibility for provider tests for older Airflow versions\n........................................................................\n\nWhen you implement tests for providers, you should ensure that they are compatible with older Airflow versions.\n\nNote that some tests, if written without taking care about compatibility, might not work with older\nversions of Airflow. This is due to"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 15826,
+      "excerpt": " be pinged to review and resolve them.\n\n## Convert commits to changelog entries and bump provider versions\n\nFirst thing that release manager has to do is to convert commits for each provider into changelog entries\nand update version of the provider to a target version - depending on type of changes implemented in the\nproviders.\n\nOne option for doing this is the **`prepare-providers-documentation` skill** loaded by an\nagentic coding framework (e.g. Claude Code or OpenAI Codex CLI), which replaces the manual\ncommit-by-commit classification step of `breeze release-management\nprepare-provider-documentation` with AI-driven classification. The skill inspects every PR (using\nsub-agents per PR for thorough analysis), pays special attention to potentially breaking changes by\nreading the actual diff (not just the commit message or PR labels), scopes multi-provider PRs to the\nslice that touched the current provider, and asks the release manager only when genuinely uncertain.\n\n> [!WARNING]\n> The skill is an **optional** aid, not a required or default part of the release process. The\n> interactive `breeze release-management prepare-provider-documentation` command (see\n> [Falling back to interactive breeze](#falling-back-to-interactive-breeze)) remains the baseline,\n> and release managers who do not use AI tooling should use that command directly — this skill is\n> not for them. If you do use the skill, keep the following in mind:\n>\n> * **You must verify its output.** The version bumps and changelog entries it produces are\n>   generated by an LLM and are **not authoritative** — the release manager is responsible for\n>   reviewing every generated entry (especially breaking-change classification and version bumps)\n>   before merging the release PR. Treat the skill's output as a first draft to be checked, not a\n>   final answer.\n> * **It runs for a long time and consumes a lot of tokens.** Classifying a full release wave with\n>   per-PR sub-agents can take a while and burn through a large amount of model tokens. Because of\n>   that, it is hard to recommend without a high-capacity plan (e.g. Claude Max, or an equivalent\n>   GitHub Copilot / OpenAI tier). On a metered or low-quota plan the cost may be significant and\n>   the run may not complete.\n\n**Prerequisites:** running this skill requires an agentic coding environment with the\n[GitHub MCP server](https://github.com/github/"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/google/src/airflow/providers/google/cloud/hooks/bigquery.py",
+      "kind": "File",
+      "path": "providers/google/src/airflow/providers/google/cloud/hooks/bigquery.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13563,
+      "excerpt": "one,\n        commit_every: Any = 1000,\n        replace: Any = False,\n        **kwargs,\n    ) -> None:\n        \"\"\"\n        Insert rows.\n\n        Insertion is currently unsupported. Theoretically, you could use\n        BigQuery's streaming API to insert rows into a table, but this hasn't\n        been implemented.\n        \"\"\"\n        raise NotImplementedError()\n\n    def _get_pandas_df(\n        self,\n        sql: str,\n        parameters: Iterable | Mapping[str, Any] | None = None,\n        dialect: str | None = None,\n        **kwargs,\n    ) -> pd.DataFrame:\n        if dialect is None:\n            dialect = \"legacy\" if self.use_legacy_sql else \"standard\"\n\n        credentials, project_id = self.get_credentials_and_project_id()\n\n        return read_gbq(sql, project_id=project_id, dialect=dialect, credentials=credentials, **kwargs)\n\n    def _get_polars_df(self, sql, parameters=None, dialect=None, **kwargs) -> pl.DataFrame:\n        try:\n            import polars as pl\n        except ImportError:\n            raise AirflowOptionalProviderFeatureException(\n                \"Polars is not installed. Please install it with `pip install polars`.\"\n            )\n\n        if dialect is None:\n            dialect = \"legacy\" if self.use_legacy_sql else \"standard\"\n\n        credentials, project_id = self.get_credentials_and_project_id()\n\n        pandas_df = read_gbq(sql, project_id=project_id, dialect=dialect, credentials=credentials, **kwargs)\n        return pl.from_pandas(pandas_df)\n\n    @overload\n    def get_df(\n        self, sql, parameters=None, dialect=None, *, df_type: Literal[\"pandas\"] = \"pandas\", **kwargs\n    ) -> pd.DataFrame: ...\n\n    @overload\n    def get_df(\n        self, sql, parameters=None, dialect=None, *, df_type: Literal[\"polars\"], **kwargs\n    ) -> pl.DataFrame: ...\n\n    def get_df(\n        self,\n        sql,\n        parameters=None,\n        dialect=None,\n        *,\n        df_type: Literal[\"pandas\", \"polars\"] = \"pandas\",\n        **kwargs,\n    ) -> pd.DataFrame | pl.DataFrame:\n        \"\"\"\n        Get a DataFrame for the BigQuery results.\n\n        The DbApiHook method must be overridden because Pandas doesn't support\n        PEP 249 connections, except for SQLite.\n\n        .. seealso::\n            https://github.com/pandas-dev/pandas/blob/055d008615272a1ceca9720dc365a2abd316f353/pandas/io/sql.py#L415\n            https://github.com/pandas-dev/pandas/issues/6900\n\n  "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/execution_time/supervisor.py",
+      "kind": "File",
+      "path": "task-sdk/src/airflow/sdk/execution_time/supervisor.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 20246,
+      "excerpt": "implementation.\n\n    :meta private:\n    \"\"\"\n\n\nclass ProcessTracker:\n    \"\"\"\n    Common interface to track a process.\n\n    This protocol works for both :class:`psutil.Process` (used by the forking\n    model) and :class:`subprocess.Popen` (used by the subprocess model). A\n    custom class may also be implemented if needed in the future.\n\n    :meta private:\n    \"\"\"\n\n    ProcessNotFound: type[Exception]\n    TimeoutExpired: type[Exception]\n\n    @property\n    def pid(self) -> int:\n        raise NotImplementedError\n\n    def send_signal(self, s: signal.Signals) -> None:\n        raise NotImplementedError\n\n    def wait(self, timeout: float | None) -> int:\n        raise NotImplementedError\n\n\nclass PsutilTracker(ProcessTracker):\n    \"\"\"\n    Process tracker backed by :class:`psutil.Process`.\n\n    :meta private:\n    \"\"\"\n\n    ProcessNotFound = psutil.NoSuchProcess\n    TimeoutExpired = psutil.TimeoutExpired\n\n    def __init__(self, impl: psutil.Process) -> None:\n        self._impl = impl\n\n    @property\n    def pid(self) -> int:\n        return self._impl.pid\n\n    def send_signal(self, s: signal.Signals) -> None:\n        self._impl.send_signal(s)\n\n    def wait(self, timeout: float | None) -> int:\n        return self._impl.wait(timeout)\n\n\ndef _validate_schema_version(instance, _, value) -> str | None:\n    if value is None:\n        return None\n    return get_schema_version_migrator().resolve_version(str(value))\n\n\n@attrs.define(kw_only=True)\nclass WatchedSubprocess:\n    \"\"\"\n    Base class for managing subprocesses in Airflow's TaskSDK.\n\n    This class handles common functionalities required for subprocess management, such as\n    socket handling, process monitoring, and request handling.\n    \"\"\"\n\n    id: UUID\n\n    pid: int\n    \"\"\"The process ID of the child process\"\"\"\n\n    stdin: socket\n    \"\"\"The handle connected to stdin of the child process\"\"\"\n\n    decoder: ClassVar[TypeAdapter]\n    \"\"\"The decoder to use for incoming messages from the child process.\"\"\"\n\n    _process: ProcessTracker = attrs.field(repr=False)\n    \"\"\"Handler to track the process.\"\"\"\n\n    _subprocess_schema_version: str | None = attrs.field(default=None, validator=_validate_schema_version)\n    \"\"\"\n    Schema version for the subprocess to specify the schema version it uses.\n\n    This is used for the supervisor (server) to upgrade messages from the client\n    to match the server schema, and downgrade server messages "
+    }
+  ]
+}

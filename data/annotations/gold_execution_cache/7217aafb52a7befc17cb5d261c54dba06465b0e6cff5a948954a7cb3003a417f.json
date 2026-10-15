@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:89d0e24488af04f0c0a0d2172186d0ce2a3c3cdd",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+        "offset": 522,
+        "line": 13
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2439",
+        "path": null,
+        "offset": 85,
+        "line": 2
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1961",
+        "path": null,
+        "offset": 2051,
+        "line": 72
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2460",
+        "path": null,
+        "offset": 949,
+        "line": 32
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2422",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+        "offset": 582,
+        "line": 13
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:89d0e24488af04f0c0a0d2172186d0ce2a3c3cdd",
+      "kind": "Commit",
+      "path": null,
+      "commit": "89d0e24488af04f0c0a0d2172186d0ce2a3c3cdd",
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Merge branch 'master' into springboot\n\nConflicts:\n\tpom.xml\n\treadme.md\n\tsrc/main/java/org/springframework/samples/petclinic/repository/jdbc/JdbcPetRepositoryImpl.java\n\tsrc/main/java/org/springframework/samples/petclinic/web/VetController.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/CrashControllerTests.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/OwnerControllerTests.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/PetControllerTests.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/VetControllerTests.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/VisitControllerTests.java"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 582,
+      "excerpt": "d\n * limitations under the License.\n */\npackage org.springframework.samples.petclinic.vet;\n\nimport java.util.List;\n\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageRequest;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.Model;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.bind.annotation.ResponseBody;\n\n/**\n * @author Juergen Hoeller\n * @author Mark Fisher\n * @author Ken Krebs\n * @author Arjen Poutsma\n */\n@Controller\nclass VetController {\n\n\tprivate final VetRepository vetRepository;\n\n\tpublic VetController(VetRepository vetRepository) {\n\t\tthis.vetRepository = vetRepository;\n\t}\n\n\t@GetMapping(\"/vets.html\")\n\tpublic String showVetList(@RequestParam(defaultValue = \"1\") int page, Model model) {\n\t\tPage<Vet> paginated = findPaginated(page);\n\t\treturn addPaginationModel(page, paginated, model);\n\t}\n\n\tprivate String addPaginationModel(int page, Page<Vet> paginated, Model model) {\n\t\tList<Vet> listVets = paginated.getContent();\n\t\tmodel.addAttribute(\"currentPage\", page);\n\t\tmodel.addAttribute(\"totalPages\", paginated.getTotalPages());\n\t\tmodel.addAttribute(\"totalItems\", paginated.getTotalElements());\n\t\tmodel.addAttribute(\"listVets\", listVets);\n\t\treturn \"vets/vetList\";\n\t}\n\n\tprivate Page<Vet> findPaginated(int page) {\n\t\tint pageSize = 5;\n\t\tPageable pageable = PageRequest.of(page - 1, pageSize);\n\t\treturn vetRepository.findAll(pageable);\n\t}\n\n\t@GetMapping({ \"/vets\" })\n\tpublic @ResponseBody Vets showResourcesVetList() {\n\t\t// Here we are returning an object of type 'Vets' rather than a collection of Vet\n\t\t// objects so it is simpler for JSon/Object mapping\n\t\tVets vets = new Vets();\n\t\tvets.getVetList().addAll(this.vetRepository.findAll());\n\t\treturn vets;\n\t}\n\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 522,
+      "excerpt": "e License for the specific language governing permissions and\n * limitations under the License.\n */\n\npackage org.springframework.samples.petclinic.system;\n\nimport org.junit.jupiter.api.Test;\n\nimport static org.assertj.core.api.Assertions.assertThatExceptionOfType;\n\n/**\n * Test class for {@link CrashController}\n *\n * @author Colin But\n * @author Alex Lutz\n */\n// Waiting https://github.com/spring-projects/spring-boot/issues/5574 ..good\n// luck ((plain(st) UNIT test)! :)\nclass CrashControllerTests {\n\n\tfinal CrashController testee = new CrashController();\n\n\t@Test\n\tvoid triggerException() {\n\t\tassertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> testee.triggerException())\n\t\t\t.withMessageContaining(\"Expected: controller used to showcase what happens when an exception is thrown\");\n\t}\n\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1961",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1961,
+      "title": "Fix test failures due to feature flag configuration and port conflict",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2051,
+      "excerpt": "s.visit-management=false\npetclinic.features.vet-management=false\n```\n\n\n**Solution Plan**:\n\n\n1. Update the CucumberSpringConfiguration class to explicitly use the test properties profile. \n2. Ensure that the application-test.properties file is properly loaded during tests by moving it to the correct location if needed. \n3. Verify that the test configuration is working by adding a debug log statement in a test to print the active feature flag values.\n\n\n----\n\n### Issue 3\n\n\n**Problem**: The integration test for adding a visit is failing because the lastResponse variable is null. This occurs because the feature flag for visit management is disabled, causing a FeatureDisabledException, but the test is not properly handling this exception.\n\n\n**File**: ```src/test/java/org/springframework/samples/petclinic/integration/steps/PetClinicSteps.java```\n\n\n**Error Log**:\n```\n2025-06-23T23:16:59.7218536Z out: java.lang.NullPointerException: Cannot invoke \"org.springframework.http.ResponseEntity.getStatusCode()\" because \"this.lastResponse\" is null\n```\n\n\n**Code snippet**:\n```\n@Then(\"the visit should be added successfully\")\npublic void theVisitShouldBeAddedSuccessfully() {\n    assertThat(lastResponse.getStatusCode()).isEqualTo(HttpStatus.OK);\n    assertThat(lastResponse.getBody()).isNotNull();\n}\n```\n\n\n**Solution Plan**:\n\n\n1. Modify the PetClinicSteps class to properly handle exceptions by checking if lastResponse is null before accessing its methods. \n2. Apply similar null checks to other assertion methods in the class. \n3. Update the test to account for feature flags by adding conditional scenarios.\n\n\n----\n\n### Issue 4\n\n\n**Problem**: The test for validation errors is failing because it expects an HttpClientErrorException but receives an HttpServerErrorException$ServiceUnavailable due to the feature flag being disabled.\n\n\n**File**: ```src/test/java/org/springframework/samples/petclinic/integration/steps/PetClinicSteps.java```\n\n\n**Error Log**:\n```\n2025-06-23T23:16:59.5669631Z out: java.lang.AssertionError: \n2025-06-23T23:16:59.5670070Z out: Expecting actual throwable to be an instance of:\n2025-06-23T23:16:59.5670597Z out: org.springframework.web.client.HttpClientErrorException\n2025-06-23T23:16:59.5671070Z out: but was:\n2025-06-23T23:16:59.5672287Z out: org.springframework.web.client.HttpServerErrorException$ServiceUnavailable: 503 Service Unavailable\n```\n\n\n**Code snippet**:\n```\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2422",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2422,
+      "title": "fix: Replace wildcard MockMvcResultMatcher imports with explicit imports in test folder",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "**Summary**\r\nReplace import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*; in OwnerControllerTests and VetControllerTests with explicit static imports of only the matchers each test actually uses\r\nEliminates the ~10 unused symbols each wildcard pulls into scope; declares the test's true dependency on the Spring MockMvc API\r\nBrings both files into line with the explicit-import style already used by VisitControllerTests and PetControllerTests\r\n**Sustainability rationale**\r\nIndividual: Explicit imports reduce cognitive load — a reviewer sees the test's true MockMvc surface area without scanning the body, supporting manageable workloads / stress-free work culture.\r\nSocial: Aligns all four MockMvc test files on one convention (two currently differ), reducing reviewer friction and supporting transparency/collaboration.\r\nEconomic: Cheaper to maintain — a renamed/removed Spring matcher surfaces as a single missing import, not a confusing wildcard error; reduces upgrade risk and debugging cost.\r\nTechnical: Supports longevity/adaptability — makes the dependency graph statically analysable, prevents silent symbol shadowing, removes a piece of technical debt.\r\nEnvironmental: Stops IDE/CI tools re-resolving the whole MockMvcResultMatchers class on every edit/build; small per-build saving compounding across the project's lifetime (ICT carbon-footprint effect).\r\n**Files changed**\r\nOwnerControllerTests.java — wildcard → 5 explicit imports (flash, model, redirectedUrl, status, view)\r\nVetControllerTests.java — wildcard → 5 explicit imports (content, jsonPath, model, status, view)\r\n**Testing**\r\nAll existing tests pass; identical bytecode after the change. Verified with ./mvnw clean test-compile (BUILD SUCCESS, 17 test sources compiled).\r\n\r\n**SonarQube note**\r\nSonarQube did not flag these out of the box — rule java:S2208 is deactivated in the default Sonar Way profile, and java:S1128 (unused imports) does not fire because the wildcard is technically \"used\". Identified by manual inspection against the assignment criterion; rule java:S2208 was enabled in a custom profile to generate before/after evidence screenshots for the appendix."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2434,
+      "title": "Refactor: remove unnecessary imports and redundant intermediate variables",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\r\nThis PR removes unnecessary imports and eliminates redundant intermediate variables across three controllers and two test files, as part of the sustainable coding practices evaluation for SE754 Assignment 5.\r\n\r\n## Problem\r\nManual inspection and SonarQube analysis identified two categories of redundant code across the `owner` package.\r\n\r\n**Unnecessary imports** - `OwnerControllerTests.java` and `VetControllerTests.java` both had a class-level import for `MockMvcRequestBuilders` despite already having static imports for the individual methods (`get`, `post`) from the same class. This made the class-level import redundant and unused. Similarly, `OwnerController.java`, `PetController.java`, and `VisitController.java` each imported `java.util.Optional` which was only needed to hold an intermediate variable that was immediately unwrapped on the next line.\r\n\r\n**Redundant intermediate variables** - In `OwnerController.java`, `PetController.java`, and `VisitController.java`, the pattern of assigning `owners.findById(...)` to an `optionalOwner` variable and then calling `.orElseThrow(...)` on the very next line served no purpose. SonarQube flags this under `java:S1488` - local variables should not be declared and then immediately returned or used.\r\n\r\n## Changes\r\n- Replaced `MockMvcRequestBuilders.post(...)` and `MockMvcRequestBuilders.get(...)` with the already-imported static equivalents in `OwnerControllerTests.java` and `VetControllerTests.java`, and removed the now-unused class-level imports\r\n- Collapsed all `optionalOwner` intermediate variable declarations into single chained expressions using `.orElseThrow(...)` directly on the repository call in `OwnerController.java`, `PetController.java`, and `VisitController.java`\r\n- Removed the `java.util.Optional` import from each controller where it was no longer referenced\r\n\r\n## Sustainability Impact\r\nRedundant code and unnecessary imports increase the noise developers must read through when understanding or modifying a file. Unused imports can mislead future contributors into thinking a type is meaningfully used, and they accumulate silently over time if not caught early.\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclin"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2439",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2439,
+      "title": "Documentation: Improve documentation across classes",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 85,
+      "excerpt": " application as part of the sustainable coding practices evaluation for SE754 Assignment 5.\r\n\r\n## Problem\r\nManual review and SonarQube feedback showed that several important classes in the owner and vet areas were under-documented. While the code was functional, the intent of the domain objects and controller flows was not immediately clear to readers, especially around model preparation, pet ownership rules, and veterinarian specialty handling.\r\n\r\nThe `Owner` domain model, `PetController`, and `Vet` model each contain logic that benefits from clearer class-level and method-level documentation. Without that context, future contributors have to infer behavior from implementation details rather than from the API contract.\r\n\r\n## Changes\r\n- Expanded the class-level documentation in `Owner.java` to explain its role as the core owner entity and its relationship to pets\r\n- Added method-level documentation in `PetController.java` to clarify:\r\n  - model attribute preparation\r\n  - request binding\r\n  - validation flow\r\n  - pet create/update handling\r\n- Improved the class and method documentation in `Vet.java` to explain:\r\n  - specialty management\r\n  - the read-only sorted view exposed to callers\r\n\r\n## Sustainability Impact\r\nBetter documentation reduces cognitive load for future maintenance work. These classes are part of the main application flow, so clearer comments and Javadoc help new contributors understand why the code exists, not just what it does.\r\n\r\nThis improves long-term maintainability by:\r\n- reducing onboarding friction for new contributors\r\n- making controller and domain behavior easier to reason about\r\n- lowering the risk of incorrect future modifications\r\n- improving overall code readability and maintainability\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/Owner.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/vet/Vet.java`"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2460",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2460,
+      "title": "[DEMO-001] The change involves adding a health check REST endpoint to an existing Java p...",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 949,
+      "excerpt": "t State Analysis\n\n### Project Info\n- Framework: Not Identified (Assumed Spring Boot based on standard practice for health checks)\n- Java version: Not Identified\n- Build system: Not Identified (Commonly Maven for Spring Boot projects)\n- Test framework: Not Identified\n\n### Affected Components\n- A new controller class for health check endpoint will be created (e.g., `HealthCheckController`)\n\n### Existing Patterns\nUnable to identify existing patterns due to lack of data, but typically, REST endpoints are implemented using Spring RestController annotations.\n\n## Implementation Plan\n\n1. Create a new class `HealthCheckController` under the package `com.example.controller` to define the health check endpoint.\n2. Implement a GET endpoint `/api/health` in `HealthCheckController` that returns a 200 OK status and JSON with a status field.\n3. Add unit tests for `HealthCheckController` to validate the new endpoint functionality.\n\n## Test Requirements\n\n- Unit tests for `HealthCheckController` covering the response status and JSON output.\n- Ensure tests are aligned with existing test practices in the codebase.\n\n## Vulnerability Findings\nNone, as no new dependencies or significant changes that impact security are introduced.\n\n## Items Flagged for Human Review\n- Verify if the project indeed uses Spring Boot.\n- Confirm if additional health indicators are needed beyond the basic status field.\n\n## Changes Made\n\n### Created (4)\n\n- `src/test/java/org/springframework/samples/petclinic/system/HealthCheckControllerTests.java` - Generated unit tests for HealthCheckController covering the acceptance criteria.\n- `src/main/java/org/springframework/samples/petclinic/system/HealthCheckController.java` - Added HealthCheckController to implement the /api/health endpoint as per the assessment.\n- `src/main/java/org/springframework/samples/petclinic/system/HealthStatus.java` - Created HealthStatus class for the health check endpoint response.\n- `src/main/java/com/example/controller/HealthCheckController.java` - Created HealthCheckController to implement the required health check REST endpoint at /api/health.\n\n\n## Tests Generated\n\n- **HealthCheckControllerTests** (1 unit tests) → tests `HealthCheckController`\n  - File: `src/test/java/org/springframework/samples/petclinic/system/HealthCheckControllerTests.java`\n\n## Build Status\n\n✅ Build passed (`(skipped)`)\n\n## 📊 Agent Run Statistics\n\n| Phase | Tu"
+    }
+  ]
+}

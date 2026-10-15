@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1898",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+        "path": null,
+        "offset": 1427,
+        "line": 19
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:277",
+        "path": null,
+        "offset": 1392,
+        "line": 19
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+        "path": null,
+        "offset": 1207,
+        "line": 27
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2641",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:a0d743cfed340fbe96d5e3d79d6a3d2a78c6894f",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2562",
+        "path": null,
+        "offset": 544,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:547",
+        "path": null,
+        "offset": 2585,
+        "line": 6
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:a0d743cfed340fbe96d5e3d79d6a3d2a78c6894f",
+      "kind": "Commit",
+      "path": null,
+      "commit": "a0d743cfed340fbe96d5e3d79d6a3d2a78c6894f",
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Do not fail packaging if repo info is absent\n\nAs part of a process to build a BOSH release, I encountered the error\nbelow while running `./mvnw package`:\n\n```\n[ERROR] Failed to execute goal pl.project13.maven:git-commit-id-plugin:3.0.1:revision (default) on project spring-petclinic: Could not complete Mojo execution...: Error: Could not get HEAD Ref, are you sure you have set the dotGitDirectory property of this plugin to a valid path? -> [Help 1]\n[ERROR]\n[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.\n[ERROR] Re-run Maven using the -X switch to enable full debug logging.\n[ERROR]\n[ERROR] For more information about the errors and possible solutions, please read the following articles:\n[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException\n```\n\nThat's because we are just interested on the source files for the BOSH\nrelease, we don't care about repo metadata (so we exclude them).\n\nGoing through the [git-commit-id-maven-plugin\ndocs](https://github.com/git-commit-id/git-commit-id-maven-plugin/blob/master/maven/docs/using-the-plugin.md)\nwe learned it is possible to prevent the failure above via\nconfiguration.\n\nWe propose then to set\n`<failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>`,\nenabling use cases similar to ours.\n\nFWIW `failOnNoGitDirectory` is already set to false."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1898",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1898,
+      "title": "Feature: Add Medical History Tracking for Pets",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## User Story\n\n**As a** pet owner,  \n**I want to** view and manage the medical history of my pet (such as diagnoses, treatments, and vaccines),  \n**So that** I can track its health status and vaccination history over time.\n\n---\n\n## Acceptance Criteria \n\n### Viewing Medical History\n\n**Given** a pet with existing medical records  \n**When** I navigate to the pet's profile page  \n**Then** I should see a list of all diagnoses, treatments, and vaccinations recorded\n\n---\n\n### Adding a New Medical Record\n\n**Given** I am on the medical record creation form for a pet  \n**When** I fill in the diagnosis, treatment, vaccine, and date fields and submit  \n**Then** a new medical record should be saved and associated with the selected pet\n\n---\n\n### Validation\n\n**Given** I leave required fields empty  \n**When** I try to submit the form  \n**Then** I should see validation messages and the record should not be saved\n\n---\n\n## Notes\n- This feature will require extending the data model by introducing a new `MedicalRecord` entity.\n- UI support may include listing medical records on the pet detail page and a form to add a new record.\n- Spring Data JPA will be used to handle the entity relationships.\n\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:277",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 277,
+      "title": "Experiments running the build in parallel - Parallel tests fail",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1392,
+      "excerpt": "java:901) ~[na:1.8.0_131]\r\n\tat java.util.ArrayList$Itr.next(ArrayList.java:851) ~[na:1.8.0_131]\r\n\tat org.springframework.boot.test.autoconfigure.web.servlet.SpringBootMockMvcBuilderCustomizer$SystemLinesWriter.write(SpringBootMockMvcBuilderCustomizer.java:307) ~[spring-boot-test-autoconfigure-1.5.4.RELEASE.jar:1.5.4.RELEASE]\r\n\tat org.springframework.boot.test.autoconfigure.web.servlet.SpringBootMockMvcBuilderCustomizer$DeferredLinesWriter.writeDeferredResult(SpringBootMockMvcBuilderCustomizer.java:257) ~[spring-boot-test-autoconfigure-1.5.4.RELEASE.jar:1.5.4.RELEASE]\r\n\tat org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener.afterTestMethod(MockMvcPrintOnlyOnFailureTestExecutionListener.java:38) ~[spring-boot-test-autoconfigure-1.5.4.RELEASE.jar:1.5.4.RELEASE]\r\n\tat org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:319) ~[spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:94) [spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84) [spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]\r\n\tat org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252) [spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94) [spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]\r\n\tat org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387) [surefire-junit47-2.18.1.jar:2.18.1]\r\n\tat org.apache.maven.surefire.junitcore.pc.InvokerStrategy.schedule(InvokerStrategy.java:54) [surefire-junit47-2.18.1.jar:2.18.1]\r\n\tat org.apache.maven.surefire.junitcore.pc.Scheduler.schedule(Scheduler.java:346) [surefire-junit47-2.18.1.jar:2.18.1]\r\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]\r\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]\r\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:2"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 458,
+      "title": "Surefire failing on Java 13",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1207,
+      "excerpt": ".id.describe f284b29\r\n[INFO] git.commit.id f284b29501946f933ee4473ecf59096d013df31c\r\n[INFO] git.commit.id.abbrev f284b29\r\n[INFO] git.dirty false\r\n[INFO] git.commit.user.name Stephane Nicoll\r\n[INFO] git.commit.user.email snicoll@pivotal.io\r\n[INFO] git.commit.message.full Upgrade to Spring Boot 2.1.9.RELEASE\r\n[INFO] git.commit.message.short Upgrade to Spring Boot 2.1.9.RELEASE\r\n[INFO] git.commit.time 2019-10-03T17:29:27+0530\r\n[INFO] git.remote.origin.url https://github.com/spring-projects/spring-petclinic.git\r\n[INFO] git.tags \r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] git.closest.tag.name \r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] git.closest.tag.commit.count \r\n[INFO] git.total.commit.count 665\r\n[INFO] git.build.time 2019-10-09T15:19:55+0530\r\n[INFO] git.build.version 2.1.0.BUILD-SNAPSHOT\r\n[INFO] git.build.host Pritis-MacBook-Pro\r\n[INFO] git.commit.id.describe-short f284b29\r\n[INFO] found property git.tags\r\n[INFO] found property git.closest.tag.commit.count\r\n[INFO] found property git.build.version\r\n[INFO] found property git.commit.user.name\r\n[INFO] found property git.commit.id.abbrev\r\n[INFO] found property git.branch\r\n[INFO] found property git.build.host\r\n[INFO] found property git.commit.id.describe-short\r\n[INFO] found property git.total.commit.count\r\n[INFO] found property git.commit.id.describe\r\n[INFO] found property git.build.user.email\r\n[INFO] found property git.commit.id\r\n[INFO] found property git.commit.message.short\r\n[INFO] found property git.commit.user.email\r\n[INFO] found property git.closest.tag.name\r\n[INFO] found property git.commit.time\r\n[INFO] found property git.build.time\r\n[INFO] found property git.build.user.name\r\n[INFO] found property git.dirty\r\n[INFO] found property git.commit.message.full\r\n[INFO] found property git.remote.origin.url\r\n[INFO] Reading existing properties file [/Users/pkumari/java/spring-petclinic/target/classes/git.properties] (for module petclinic)...\r\n[INFO] Properties file [/Users/pkumari/java/spring-petclinic/target/classes/git.properties] is up-to-date (for module petclinic)...\r\n[INFO] \r\n[INFO] --- spring-boot-maven-plugin:2.1.9.RELEASE:build-info (def"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:547",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 547,
+      "title": "Can not launch the app",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2585,
+      "excerpt": "/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/lib/tools.jar:/Users/cavitpinar/code/spring-petclinic2/target/classes:/Users/cavitpinar/.m2/repository/org/springframework/boot/spring-boot-starter-actuator/2.2.4.RELEASE/spring-boot-starter-actuator-2.2.4.RELEASE.jar:/Users/cavitpinar/.m2/repository/org/springframework/boot/spring-boot-starter/2.2.4.RELEASE/spring-boot-starter-2.2.4.RELEASE.jar:/Users/cavitpinar/.m2/repository/org/springframework/boot/spring-boot-starter-logging/2.2.4.RELEASE/spring-boot-starter-logging-2.2.4.RELEASE.jar:/Users/cavitpinar/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar:/Users/cavitpinar/.m2/repository/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar:/Users/cavitpinar/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.12.1/log4j-to-slf4j-2.12.1.jar:/Users/cavitpinar/.m2/repository/org/apache/logging/log4j/log4j-api/2.12.1/log4j-api-2.12.1.jar:/Users/cavitpinar/.m2/repository/org/slf4j/jul-to-slf4j/1.7.30/jul-to-slf4j-1.7.30.jar:/Users/cavitpinar/.m2/repository/jakarta/annotation/jakarta.annotation-api/1.3.5/jakarta.annotation-api-1.3.5.jar:/Users/cavitpinar/.m2/repository/org/yaml/snakeyaml/1.25/snakeyaml-1.25.jar:/Users/cavitpinar/.m2/repository/org/springframework/boot/spring-boot-actuator-autoconfigure/2.2.4.RELEASE/spring-boot-actuator-autoconfigure-2.2.4.RELEASE.jar:/Users/cavitpinar/.m2/repository/org/springframework/boot/spring-boot-actuator/2.2.4.RELEASE/spring-boot-actuator-2.2.4.RELEASE.jar:/Users/cavitpinar/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.10.2/jackson-databind-2.10.2.jar:/Users/cavitpinar/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.10.2/jackson-annotations-2.10.2.jar:/Users/cavitpinar/.m2/repository/org/springframework/spring-context/5.2.3.RELEASE/spring-context-5.2.3.RELEASE.jar:/Users/cavitpinar/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.10.2/jackson-datatype-jsr310-2.10.2.jar:/Users/cavitpinar/.m2/repository/io/micrometer/micrometer-core/1.3.2/micrometer-core-1.3.2.jar:/Users/cavitpinar/.m2/repository/org/hdrhistogram/HdrHistogram/2.1.11/HdrHistogram-2.1.11.jar:/Users/cavitpinar/.m2/repository/org/springframework/boot/spring-boot-starter-cache/2.2.4.RELEASE/spring-boot-starter-cache-2.2.4.RELEASE.jar:/Users"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2519,
+      "title": "Upgrade to Spring Boot 4.1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1427,
+      "excerpt": "ive experimental options, including where they come from and possible alternatives. If you think an experimental option should be considered as stable, please file an issue.\r\n[INFO]     [creator]     Warning: Option 'DynamicProxyConfigurationResources' is deprecated and might be removed in a future release: This can be caused by a proxy-config.json file in your META-INF directory. Consider including proxy configuration in the reflection section of reachability-metadata.md instead.. Please refer to the GraalVM release notes.\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     GraalVM Native Image: Generating 'org.springframework.samples.petclinic.PetClinicApplication' (executable)...\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     For detailed information and explanations on the build output, visit:\r\n[INFO]     [creator]     https://github.com/oracle/graal/blob/master/docs/reference-manual/native-image/BuildOutput.md\r\n[INFO]     [creator]     --------------------------------------------------------------------------------\r\n[INFO]     [creator]     [1/8] Initializing...                                            (7.3s @ 0.37GB)\r\n[INFO]     [creator]      Java version: 25.0.3+12-LTS, vendor version: Liberica-NIK-25.0.3-1\r\n[INFO]     [creator]      Graal compiler: optimization level: 2, target machine: x86-64-v3\r\n[INFO]     [creator]      C compiler: gcc (linux, x86_64, 13.3.0)\r\n[INFO]     [creator]      Garbage collector: Serial GC (max heap size: 80% of RAM)\r\n[INFO]     [creator]      4 user-specific feature(s):\r\n[INFO]     [creator]      - com.oracle.svm.thirdparty.gson.GsonFeature\r\n[INFO]     [creator]      - org.eclipse.angus.activation.nativeimage.AngusActivationFeature\r\n[INFO]     [creator]      - org.springframework.aot.nativex.feature.PreComputeFieldFeature\r\n[INFO]     [creator]      - org.springframework.data.core.TypedPropertyPathFeature\r\n[INFO]     [creator]     --------------------------------------------------------------------------------\r\n[INFO]     [creator]      2 experimental option(s) unlocked:\r\n[INFO]     [creator]      - '-H:Name' (alternative API option(s): -o org.springframework.samples.petclinic.PetClinicApplication; origin(s): command line)\r\n[INFO]     [creator]      - '-H:"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2562",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2562,
+      "title": "Deploy Pipeline",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 544,
+      "excerpt": ".sh, 07-provision-vm.sh): a Vagrant-managed Ubuntu 22.04 VM. Provider/box are auto-detected per host so the\r\n  same scripts work on Apple Silicon (QEMU, since VirtualBox has no real arm64-Linux-guest support there), Intel Mac, and Linux (VirtualBox) — this is what makes it re-runnable regardless of where the\r\n  repo is cloned.\r\n  - Ansible control node (devops/docker-compose.deploy.yml, devops/docker/ansible-control/Dockerfile, devops/scripts/08-configure-ansible-control.sh): a small sidecar container on the existing\r\n  petclinic-devops-net network, reached by Jenkins via docker exec/docker cp (same sibling-container pattern already used for Jenkins↔SonarQube). Its inventory/SSH key are generated automatically from\r\n  vagrant ssh-config.\r\n  - Deploy playbook (devops/ansible/playbooks/deploy.yml + templates/petclinic.service.j2): installs a JRE 17 (matches pom.xml's java.version), creates a dedicated petclinic user, and runs the app as a\r\n  petclinic.service systemd unit on port 8080.\r\n  - Single deploy script (devops/scripts/09-deploy-app.sh): builds the jar if needed and deploys it — used both by a human running it manually and by the Jenkinsfile's Deploy stage, so manual and CI\r\n  deploys behave identically.\r\n  - Teardown (devops/scripts/10-teardown-vm.sh): symmetric cleanup (halt or fully destroy the VM).\r\n  - pom.xml: added **/.vagrant/**/* and devops/ansible/files/**/* to the existing nohttp-checkstyle excludes — the Vagrant-managed VM disk image was tripping that check since it embeds http:// URLs from\r\n  the guest OS's own package lists.\r\n  - devops/ANSIBLE-DEPLOYMENT-SETUP.md: setup/troubleshooting doc in the same style as JENKINS-PIPELINE-SETUP.md.\r\n\r\n  Known limitations   \r\n\r\n  - Requires nested virtualization (won't work inside another VM or most containerized CI runners).\r\n  - 06-install-vm-prerequisites.sh installs packages via Homebrew/apt but assumes those package managers are already present.\r\n  - The arm64 Vagrant box (perk/ubuntu-2204-arm64) is best-effort on Vagrant Cloud; override with VM_BOX if needed."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2641",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2641,
+      "title": "Add vaccination management",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Add vaccination management"
+    }
+  ]
+}

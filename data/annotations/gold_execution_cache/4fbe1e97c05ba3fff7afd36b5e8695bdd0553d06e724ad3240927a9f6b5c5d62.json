@@ -1,0 +1,68 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)<-[:DL_AUTHORED_COMMIT]-(d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(other:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND c<>other AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id)+collect(DISTINCT d.id)+collect(DISTINCT other.id) AS evidence RETURN b.path AS entity,b.path+': '+split(b.content,'\\n')[0] AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "path": "api/src/main/java/org/openmrs/patient/IdentifierValidator.java"
+  },
+  "rows": [
+    {
+      "entity": ".github/workflows/build.yaml",
+      "fact": ".github/workflows/build.yaml: # standard build with Maven and push coverage data",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/patient/IdentifierValidator.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:52504170+ibacher@users.noreply.github.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:39348a66d267e32bcad6c24f2829807e68143441",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:c7b067d412984d9153665fd7beaab3b29a4e50a7",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/build.yaml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/codeql-analysis.yml",
+      "fact": ".github/workflows/codeql-analysis.yml: # For most projects, this workflow file will not need changing; you simply need",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/patient/IdentifierValidator.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:52504170+ibacher@users.noreply.github.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:cc26bbf0baa792a6fbf7e1ba5647cd55896edc9d",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/codeql-analysis.yml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/scorecard.yml",
+      "fact": ".github/workflows/scorecard.yml: # This workflow uses actions that are not certified by GitHub. They are provided",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/patient/IdentifierValidator.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:52504170+ibacher@users.noreply.github.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:8e1bf8ffbf2b4790a71830fb458d4180ea11b126",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/scorecard.yml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/stale.yml",
+      "fact": ".github/workflows/stale.yml: name: \"Close stale pull requests\"",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/patient/IdentifierValidator.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:52504170+ibacher@users.noreply.github.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:88a78fcb5192e907026d4d6470087b46ecc6862e",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/stale.yml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/tx-pull.yml",
+      "fact": ".github/workflows/tx-pull.yml: on:",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/patient/IdentifierValidator.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:52504170+ibacher@users.noreply.github.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:32f43d6031b9d30e9c49f4ba913fb4b6b7bc8acb",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:5c8af8624f3c1b0cd5faeabd0b147d8bf6024d51",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/tx-pull.yml"
+      ]
+    }
+  ]
+}

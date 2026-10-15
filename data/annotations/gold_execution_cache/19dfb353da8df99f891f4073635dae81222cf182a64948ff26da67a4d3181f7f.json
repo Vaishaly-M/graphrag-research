@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/project.rst",
+        "path": "airflow-core/docs/project.rst",
+        "offset": 3271,
+        "line": 106
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:issue:73089",
+        "path": null,
+        "offset": 3268,
+        "line": 28
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 2259,
+        "line": 38
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:issue:74459",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 2029,
+        "line": 35
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PYTHON_CLIENT.md",
+        "path": "dev/README_RELEASE_PYTHON_CLIENT.md",
+        "offset": 1447,
+        "line": 28
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+        "path": "dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+        "offset": 6185,
+        "line": 178
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:issue:72902",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/project.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/project.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3271,
+      "excerpt": "masz Urbaszek (@turbaszek)\n- Tzu-ping Chung (@uranusjr)\n- Utkarsh Sharma (@utkarsharma2)\n- Vikram Koka (@vikramkoka)\n- Vincent Beck (@vincbeck)\n- Wei Lee (@Lee-W)\n- Xiaodong Deng (@XD-DENG)\n- Xinbin Huang (@xinbinhuang)\n- Yeonguk Choo (@choo121600)\n- Zhe You Liu (@jason810496)\n\nFor the full list of contributors, take a look at `Airflow's GitHub\nContributor page:\n<https://github.com/apache/airflow/graphs/contributors>`_\n\n\nResources & links\n-----------------\n\n* `Airflow's official documentation <https://airflow.apache.org/docs/>`_\n* Mailing lists:\n\n  * Developer's mailing list: dev-subscribe@airflow.apache.org\n  * All commits mailing list: commits-subscribe@airflow.apache.org\n  * Airflow users mailing list: users-subscribe@airflow.apache.org\n\n* `Issues on GitHub <https://github.com/apache/airflow/issues>`_\n* `Slack (chat) Channel <https://s.apache.org/airflow-slack>`_\n* `Airflow Improvement Proposals <https://cwiki.apache.org/confluence/display/AIRFLOW/Airflow+Improvement+Proposals>`_\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2259,
+      "excerpt": "ible-package-check)\n  - [SVN check](#svn-check)\n  - [Licence check](#licence-check)\n  - [Signature check](#signature-check)\n  - [SHA512 sum check](#sha512-sum-check)\n  - [Optional: Automated verification using Breeze](#optional-automated-verification-using-breeze)\n- [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n  - [Installing release candidate in your local virtual environment](#installing-release-candidate-in-your-local-virtual-environment)\n- [Publish the final Apache Airflow release](#publish-the-final-apache-airflow-release)\n  - [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Manually prepare production Docker Image](#manually-prepare-production-docker-image)\n  - [Verify production images](#verify-production-images)\n  - [Publish final documentation](#publish-final-documentation)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Update Announcements page](#update-announcements-page)\n  - [Create release on GitHub](#create-release-on-github)\n  - [Close the milestone](#close-the-milestone)\n  - [Close the testing status issue](#close-the-testing-status-issue)\n  - [Announce the release on the community slack](#announce-the-release-on-the-community-slack)\n  - [Announce about the release in social media](#announce-about-the-release-in-social-media)\n  - [Update `main` with the latest release details](#update-main-with-the-latest-release-details)\n  - [Update default Airflow version in the helm chart](#update-default-airflow-version-in-the-helm-chart)\n  - [Update airflow/config_templates/config.yml file](#update-airflowconfig_templatesconfigyml-file)\n  - [API clients](#api-clients)\n- [Additional processes](#additional-processes)\n  - [Fixing released documentation](#fixing-released-documentation)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\nYou can find the prerequisites to release Apache Airflow in [README.md](README.md).\n\n# Collect ambiguities during the release (for a follow-up doc PR)\n\nThese instructions"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2029,
+      "excerpt": "e-release-candidate-by-pmc-members)\n  - [SVN check](#svn-check)\n  - [Source tarball reproducibility check](#source-tarball-reproducibility-check)\n  - [Licence check](#licence-check)\n  - [Signature check](#signature-check)\n  - [SHA512 sum check](#sha512-sum-check)\n- [Verify the release candidates by Contributors](#verify-the-release-candidates-by-contributors)\n  - [End-to-end verification with Breeze and KinD](#end-to-end-verification-with-breeze-and-kind)\n- [Publish the final release](#publish-the-final-release)\n  - [Summarize the voting for the release](#summarize-the-voting-for-the-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Publish release tag](#publish-release-tag)\n  - [Publish final documentation](#publish-final-documentation)\n  - [Update `index.yaml` in airflow-site](#update-indexyaml-in-airflow-site)\n  - [Wait for ArtifactHUB to discover new release](#wait-for-artifacthub-to-discover-new-release)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Update Announcements page](#update-announcements-page)\n  - [Create release on GitHub](#create-release-on-github)\n  - [Close the milestone](#close-the-milestone)\n  - [Close the testing status issue](#close-the-testing-status-issue)\n  - [Update issue template with the new release](#update-issue-template-with-the-new-release)\n  - [Announce the release on the community slack](#announce-the-release-on-the-community-slack)\n  - [Announce about the release in social media](#announce-about-the-release-in-social-media)\n  - [Bump chart version in Chart.yaml](#bump-chart-version-in-chartyaml)\n  - [Remove old releases](#remove-old-releases)\n- [Additional processes](#additional-processes)\n  - [Fixing released documentation](#fixing-released-documentation)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\nYou can find the prerequisites to release Apache Airflow in [README.md](README.md). This document\ndetails the steps for releasing Helm Chart.\n\n# Collect ambiguities during the release (for a follow-up doc PR)\n\nThese instructions are imperfect. Every release uncovers at least one command\nthat has drifted, one st"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PYTHON_CLIENT.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PYTHON_CLIENT.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1447,
+      "excerpt": "ient release candidate](#prepare-vote-email-on-the-airflow-client-release-candidate)\n- [Verification of the release candidate](#verification-of-the-release-candidate)\n  - [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n- [Publish the final Apache Airflow client release](#publish-the-final-apache-airflow-client-release)\n  - [Summarize the voting for the Apache Airflow client release](#summarize-the-voting-for-the-apache-airflow-client-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Prepare PyPI \"release\" packages](#prepare-pypi-release-packages)\n  - [Create release on GitHub](#create-release-on-github)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\n# Collect ambiguities during the release (for a follow-up doc PR)\n\nThese instructions are imperfect. Every release uncovers at least one command\nthat has drifted, one step that is under-documented, or one automation that\nsilently did the wrong thing. As you run through this document, jot down any\nsuch observations in a scratch file kept **outside** the repo (anywhere that\nis not tracked by git — a note in your home directory, a scratchpad, a\ngist). Once the release has landed, turn those notes into a follow-up PR\nagainst this document.\n\nKeeping the scratch file out of the repo avoids accidentally committing\nrelease-manager notes along with the release-prep PR, and makes it obvious\nthat the notes are input to the next doc PR rather than something to keep\naround long-term.\n\n# Perform review of security issues that are marked for the release\n\nWe are keeping track of security issues in the [Security Issues](https://github.com/airflow-s/airflow-s/issues)\nrepository currently. As a release manager, you should have access to the repository.\nPlease review and ensure that all security issues marked for the release have been\naddressed and resolved. Ping security team (comment in the issues) if anything missing or\nthe issue does not seem to be addressed.\n\nAdditionally, the [dependabot alerts](https://github.com/apache/airflow/security/dependabot) and\ncode [sca"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+      "kind": "File",
+      "path": "dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6185,
+      "excerpt": "eDict[FileGroupForCi] = HashableDict(\n    {\n        FileGroupForCi.ENVIRONMENT_FILES: [\n            # Only workflows that actually run or configure the test suite force the full\n            # matrix. Non-test workflows (security scans, doc publishing, notifications,\n            # backporting, stale/calendar bots, …) cannot affect test outcomes, so they\n            # are excluded here to avoid accidental full-matrix runs.\n            r\"^\\.github/workflows/(?!(\"\n            r\"asf-allowlist-check|automatic-backport|backport-cli|ci-duration-monitor|ci-notification|\"\n            r\"codeql-analysis|e2e-flaky-tests-report|milestone-tag-assistant|notify-uv-lock-conflicts|\"\n            r\"publish-docs-to-s3|recheck-old-bug-report|scheduled-verify-release-calendar|stale\"\n            r\")\\.yml$)\",\n            r\"^dev/breeze/src\",\n            r\"^dev/breeze/pyproject\\.toml\",\n            r\"^dev/breeze/uv\\.lock\",\n            r\"^dev/(?!breeze/tests/).*\\.py$\",\n            r\"^Dockerfile\",\n            r\"^scripts/ci/docker-compose\",\n            r\"^scripts/ci/kubernetes\",\n            # NOTE: scripts/ci/prek (static-check hooks) is intentionally NOT here. prek\n            # hooks drive static checks, not the test matrix, so they must not force the\n            # full matrix. They still build the CI image via FileGroupForCi.PREK_FILES\n            # below (so mypy-scripts and all static checks still run).\n            r\"^scripts/docker\",\n            r\"^scripts/in_container\",\n        ],\n        FileGroupForCi.BREEZE_INTEGRATION_TEST_FILES: [\n            r\"^dev/breeze/src/.*\",\n            r\"^dev/breeze/tests/.*_integration\\.py\",\n            r\"^dev/breeze/pyproject\\.toml\",\n            r\"^dev/breeze/uv\\.lock\",\n        ],\n        FileGroupForCi.REMOTE_LOGGING_E2E_SHARED_FILES: [\n            r\"^airflow-core/src/airflow/config_templates/airflow_local_settings\\.py$\",\n            r\"^airflow-core/src/airflow/logging/.*\",\n            r\"^airflow-core/src/airflow/logging_config\\.py$\",\n            r\"^airflow-core/src/airflow/api_fastapi/core_api/routes/public/log\\.py$\",\n            r\"^airflow-core/src/airflow/api_fastapi/core_api/datamodels/log\\.py$\",\n            r\"^airflow-core/src/airflow/utils/log/.*\",\n            r\"^airflow-e2e-tests/.*\",\n            r\"^shared/logging/.*\",\n        ],\n        FileGroupForCi.REMOTE_LOGGING_E2E_S3_FILES: [\n            r\"^airflow-e2e-tests/tests/airflow_e2e_tests/remo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:issue:72902",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 72902,
+      "title": "Status of testing Providers that were prepared on September 09, 2026",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "I have a kind request for all the contributors to the latest provider distributions release.\nCould you please help us to test the RC versions of the providers?\n\nThe guidelines on how to test providers can be found in\n\n[Verify providers by contributors](https://github.com/apache/airflow/blob/main/dev/README_RELEASE_PROVIDERS.md#verify-the-release-candidate-by-contributors)\n\nLet us know in the comments, whether the issue is addressed.\n\nThese are providers that require testing as there were some substantial changes introduced:\n\n\n## Provider [akeyless: 0.3.1rc1](https://pypi.org/project/apache-airflow-providers-akeyless/0.3.1rc1)\n   - [x] [Refuse Akeyless secret ids that address another team's namespace (#72646)](https://github.com/apache/airflow/pull/72646): @potiuk\n## Provider [amazon: 9.36.0rc1](https://pypi.org/project/apache-airflow-providers-amazon/9.36.0rc1)\n   - [ ] [Scope asset API responses to the assets a user may read (#72682)](https://github.com/apache/airflow/pull/72682): @henry3260\n     Linked issues:\n       - [Linked Issue #72333](https://github.com/apache/airflow/issues/72333): @nuefis-mkarpisek\n   - [ ] [Preserve AWS waiter outcomes in trigger events (#72455)](https://github.com/apache/airflow/pull/72455): @SameerMesiah97\n   - [ ] [Fix pickle round-trip of Amazon provider exceptions and add their tests (#72824)](https://github.com/apache/airflow/pull/72824): @bingqin2\n     Linked issues:\n       - [Linked Issue #22002](https://github.com/apache/airflow/pull/22002): @zachliu\n       - [Linked Issue #21441](https://github.com/apache/airflow/pull/21441): @ngwallace\n       - [Linked Issue #35442](https://github.com/apache/airflow/issues/35442): @potiuk\n       - [Linked Issue #72455](https://github.com/apache/airflow/pull/72455): @SameerMesiah97\n   - [ ] [Fix region_name being ignored by the Step Functions execution trigger (#72625)](https://github.com/apache/airflow/pull/72625): @nandeshkanagaraju\n   - [ ] [Pass verify and botocore_config to GlueJobCompleteTrigger (#72557)](https://github.com/apache/airflow/pull/72557): @zohaibfast99\n     Linked issues:\n       - [Linked Issue #72144](https://github.com/apache/airflow/issues/72144): @SEPURI-SAI-KRISHNA\n       - [Linked Issue #72171](https://github.com/apache/airflow/pull/72171): @SEPURI-SAI-KRISHNA\n   - [ ] [Skip GCS folder-marker keys in GCSToS3Operator (#72497)](https://github.com/apache/airflow/pul"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:issue:73089",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 73089,
+      "title": "Status of testing of Apache Airflow 3.3.2rc1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3268,
+      "excerpt": " - [Skip stored credentials when a connection test overrides host or port (#69957)](https://github.com/apache/airflow/pull/69957)\n- [x] [[v3-3-test] Always tag providers from the wave tag during release (#71431) (#71434)](https://github.com/apache/airflow/pull/71434): @potiuk\n- [ ] [[v3-3-test] Fix Calendar view hanging for Dags with high-frequency cron schedules (#71435)](https://github.com/apache/airflow/pull/71435): @theJohnnyBrown @pierrejeambrun\n     Linked issues:\n     - [Fix Calendar view hanging for Dags with high-frequency cron schedules (#71263)](https://github.com/apache/airflow/pull/71263)\n- [ ] [[v3-3-test] Keep Dag run execution API endpoints working for older Task SDK clients (#70138) (#71438)](https://github.com/apache/airflow/pull/71438): @henry3260\n- [x] [[v3-3-test] Spell out the empty version suffix for the SVN provider build (#71247) (#71451)](https://github.com/apache/airflow/pull/71451): @potiuk\n- [ ] [[v3-3-test] Show each Dag only once in airflow dags list (#70934) (#71481)](https://github.com/apache/airflow/pull/71481): @Eason09053360\n- [ ] [[v3-3-test] Include server error detail in Task SDK API error tracebacks (#71440) (#71491)](https://github.com/apache/airflow/pull/71491): @pierrejeambrun\n- [ ] [[v3-3-test] Refactor AdvancedSearchToggle and SearchBar components for improved clarity and functionality (#71470) (#71501)](https://github.com/apache/airflow/pull/71501): @ryanahamilton\n- [x] [[v3-3-test] Use uv --package instead of --project in codegen prek hooks (#71511) (#71512)](https://github.com/apache/airflow/pull/71512): @potiuk\n- [ ] [[v3-3-test] Fix Variables API handling of non-string JSON values (#71018) (#71526)](https://github.com/apache/airflow/pull/71526): @kaxil @jason810496\n- [ ] [[v3-3-test] Mark only a run's most recent asset event as triggering it (#71547)](https://github.com/apache/airflow/pull/71547): @pierrejeambrun @bbovenzi\n     Linked issues:\n     - [Mark only a run's most recent asset event as triggering it (#71441)](https://github.com/apache/airflow/pull/71441)\n     - [Updated sort+filters for Assets List (#69940)](https://github.com/apache/airflow/pull/69940)\n- [ ] [[v3-3-test] Resolve provider namespaces from the real directory tree in prek hooks (#70468) (#71553)](https://github.com/apache/airflow/pull/71553): @FrankYang0529\n- [ ] [[v3-3-test] Fix `clearTaskInstances` returning 500 instead of 422 on inva"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:issue:74459",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 74459,
+      "title": "Status of testing Providers that were prepared on October 06, 2026",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "I have a kind request for all the contributors to the latest provider distributions release.\nCould you please help us to test the RC versions of the providers?\n\nThe guidelines on how to test providers can be found in\n\n[Verify providers by contributors](https://github.com/apache/airflow/blob/main/dev/README_RELEASE_PROVIDERS.md#verify-the-release-candidate-by-contributors)\n\nLet us know in the comments, whether the issue is addressed.\n\nThese are providers that require testing as there were some substantial changes introduced:\n\n\n## Provider [airbyte: 6.2.0rc1](https://pypi.org/project/apache-airflow-providers-airbyte/6.2.0rc1)\n   - [ ] [Add configurable request timeout for the Airbyte API (#71092)](https://github.com/apache/airflow/pull/71092): @filipeaaoliveira\n## Provider [akeyless: 0.3.2rc1](https://pypi.org/project/apache-airflow-providers-akeyless/0.3.2rc1)\n   - [ ] [Refuse nested secret ids looked up with no team in multi-team mode (#73789)](https://github.com/apache/airflow/pull/73789): @potiuk\n## Provider [amazon: 9.38.0rc1](https://pypi.org/project/apache-airflow-providers-amazon/9.38.0rc1)\n   - [ ] [Bind the AWS auth manager SAML response to the browser that started the login (#73698)](https://github.com/apache/airflow/pull/73698): @potiuk\n     Linked issues:\n       - [Linked Issue #72647](https://github.com/apache/airflow/pull/72647): @potiuk\n   - [ ] [Carry task attempt UUIDs through executor providers (#73917)](https://github.com/apache/airflow/pull/73917): @ashb\n   - [ ] [Add a vendor-neutral managed-agent hook contract to Common AI (#73532)](https://github.com/apache/airflow/pull/73532): @kaxil\n     Linked issues:\n       - [Linked Issue #71946](https://github.com/apache/airflow/pull/71946): @vikramkoka\n   - [ ] [Add DuckDB support to the Amazon provider (#73301)](https://github.com/apache/airflow/pull/73301): @o-nikolas\n   - [ ] [Add EmrServerlessStartSessionOperator to Amazon provider (#70763)](https://github.com/apache/airflow/pull/70763): @vgkowski\n     Linked issues:\n       - [Linked Issue #69207](https://github.com/apache/airflow/pull/69207): @vgkowski\n   - [x] [AIP-82: Add KinesisMessageQueueProvider (#73509)](https://github.com/apache/airflow/pull/73509): @aaron-y-chen\n     Linked issues:\n       - [Linked Issue #52712](https://github.com/apache/airflow/issues/52712): @jason810496\n   - [ ] [Support unexposed CreateWorkflow and UpdateWorkflo"
+    }
+  ]
+}

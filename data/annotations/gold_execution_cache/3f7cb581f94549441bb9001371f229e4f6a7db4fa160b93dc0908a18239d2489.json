@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+        "path": "README.md",
+        "offset": 4708,
+        "line": 111
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+        "path": null,
+        "offset": 22799,
+        "line": 481
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+        "path": null,
+        "offset": 22785,
+        "line": 481
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+        "path": null,
+        "offset": 22785,
+        "line": 481
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1053",
+        "path": null,
+        "offset": 22767,
+        "line": 481
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 20801,
+        "line": 439
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 18068,
+        "line": 373
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+        "path": null,
+        "offset": 7475,
+        "line": 130
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4708,
+      "excerpt": " from the root of the repo.\n```sh\nazd init\n```\n- During init:\n  - Select `Use code in the current directory`. Azd will automatically detect the .NET Aspire project.\n  - Confirm `.NET (Aspire)` and continue.\n  - Select which services to expose to the Internet (exposing `webapp` is enough to test the sample).\n  - Finalize the initialization by giving a name to your environment.\n\n- Create Azure resources and deploy the sample by running:\n```sh\nazd up\n```\nNotes:\n  - The operation takes a few minutes the first time it is ever run for an environment.\n  - At the end of the process, `azd` will display the `url` for the webapp. Follow that link to test the sample.\n  - You can run `azd up` after saving changes to the sample to re-deploy and update the sample.\n  - Report any issues to [azure-dev](https://github.com/Azure/azure-dev/issues) repo.\n  - [FAQ and troubleshoot](https://learn.microsoft.com/azure/developer/azure-developer-cli/troubleshoot?tabs=Browser) for azd.\n\n## Contributing\n\nFor more information on contributing to this repo, read [the contribution documentation](./CONTRIBUTING.md) and [the Code of Conduct](CODE-OF-CONDUCT.md).\n\n### Sample data\n\nThe sample catalog data is defined in [catalog.json](https://github.com/dotnet/eShop/blob/main/src/Catalog.API/Setup/catalog.json). Those product names, descriptions, and brand names are fictional and were generated using [GPT-35-Turbo](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/chatgpt), and the corresponding [product images](https://github.com/dotnet/eShop/tree/main/src/Catalog.API/Pics) were generated using [DALL·E 3](https://openai.com/dall-e-3).\n\n## eShop on Azure\n\nFor a version of this app configured for deployment on Azure, please view [the eShop on Azure](https://github.com/Azure-Samples/eShopOnAzure) repo.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18068,
+      "excerpt": "ments across all platforms with focus on quality, performance, and developer experience. This release includes 143 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Improve write-tests-agent with best practices by @​sheiksyedm in https://github.com/dotnet/maui/pull/33860\n\n- [Sample] Add Microsoft.Maui.Essentials.AI sample app with multi-agent workflow by @​mattleibow in https://github.com/dotnet/maui/pull/33610\n\n## Ai Agents\n- Add FileLoggingProvider for MacCatalyst UI test logging by @​PureWeen in https://github.com/dotnet/maui/pull/33518\n\n- Improve verify-tests-fail-without-fix Skill by @​kubaflo in https://github.com/dotnet/maui/pull/33513\n\n- Add find-reviewable-pr skill from existing PR by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33349\n\n- Add learn-from-pr agent and enhance skills framework structure by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33579\n\n- Fix PS1 scripts for Windows compatibility by @​PureWeen in https://github.com/dotnet/maui/pull/33679\n\n- Improve skills and scripts for better agent workflows by @​PureWeen in https://github.com/dotnet/maui/pull/33699\n\n- [XEXPR] Refactor test skills/agents to dispatcher pattern by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33721\n\n- [ai] Skill for running device tests  by @​rmarinho in https://github.com/dotnet/maui/pull/33484\n\n- Add ai-summary-comment skill for automated PR review comments by @​kubaflo in https://github.com/dotnet/maui/pull/33585\n\n- Add PR label management to test verification skill by @​kubaflo in https://github.com/dotnet/maui/pull/33739\n\n- ai-summary-comment: Simplify PR finalize to two collapsible sections by @​kubaflo in https://github.com/dotnet/maui/pull/33771\n\n- Improve issue-triage skill: Add gh CLI checks and fix workflow by @​PureWeen in https://github.com/dotnet/maui/pull/33750\n\n- [ai] Add integration test runner skill by @​rmarinho in https://github.com/dotnet/maui/pull/33654\n\n- Improve PR Agent Gate verification to prevent result fabrication by @​PureWeen in https://github.com/dotnet/maui/pull/33806\n\n- Improve test report formatting and summary extraction by @​kubaflo in https://github.com/dotnet/maui/pull/33793\n\n- Improve try-fix comment parsing and summary by @​kubaflo in https://github.com/dotnet/maui/pull/33794\n\n- Enhance PR agent: multi-model workflow, blocker handling, shared rules"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 20801,
+      "excerpt": "ments across all platforms with focus on quality, performance, and developer experience. This release includes 143 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Improve write-tests-agent with best practices by @​sheiksyedm in https://github.com/dotnet/maui/pull/33860\n\n- [Sample] Add Microsoft.Maui.Essentials.AI sample app with multi-agent workflow by @​mattleibow in https://github.com/dotnet/maui/pull/33610\n\n## Ai Agents\n- Add FileLoggingProvider for MacCatalyst UI test logging by @​PureWeen in https://github.com/dotnet/maui/pull/33518\n\n- Improve verify-tests-fail-without-fix Skill by @​kubaflo in https://github.com/dotnet/maui/pull/33513\n\n- Add find-reviewable-pr skill from existing PR by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33349\n\n- Add learn-from-pr agent and enhance skills framework structure by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33579\n\n- Fix PS1 scripts for Windows compatibility by @​PureWeen in https://github.com/dotnet/maui/pull/33679\n\n- Improve skills and scripts for better agent workflows by @​PureWeen in https://github.com/dotnet/maui/pull/33699\n\n- [XEXPR] Refactor test skills/agents to dispatcher pattern by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33721\n\n- [ai] Skill for running device tests  by @​rmarinho in https://github.com/dotnet/maui/pull/33484\n\n- Add ai-summary-comment skill for automated PR review comments by @​kubaflo in https://github.com/dotnet/maui/pull/33585\n\n- Add PR label management to test verification skill by @​kubaflo in https://github.com/dotnet/maui/pull/33739\n\n- ai-summary-comment: Simplify PR finalize to two collapsible sections by @​kubaflo in https://github.com/dotnet/maui/pull/33771\n\n- Improve issue-triage skill: Add gh CLI checks and fix workflow by @​PureWeen in https://github.com/dotnet/maui/pull/33750\n\n- [ai] Add integration test runner skill by @​rmarinho in https://github.com/dotnet/maui/pull/33654\n\n- Improve PR Agent Gate verification to prevent result fabrication by @​PureWeen in https://github.com/dotnet/maui/pull/33806\n\n- Improve test report formatting and summary extraction by @​kubaflo in https://github.com/dotnet/maui/pull/33793\n\n- Improve try-fix comment parsing and summary by @​kubaflo in https://github.com/dotnet/maui/pull/33794\n\n- Enhance PR agent: multi-model workflow, blocker handling, shared rules"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1043,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22799,
+      "excerpt": "ments across all platforms with focus on quality, performance, and developer experience. This release includes 143 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Improve write-tests-agent with best practices by @​sheiksyedm in https://github.com/dotnet/maui/pull/33860\n\n- [Sample] Add Microsoft.Maui.Essentials.AI sample app with multi-agent workflow by @​mattleibow in https://github.com/dotnet/maui/pull/33610\n\n## Ai Agents\n- Add FileLoggingProvider for MacCatalyst UI test logging by @​PureWeen in https://github.com/dotnet/maui/pull/33518\n\n- Improve verify-tests-fail-without-fix Skill by @​kubaflo in https://github.com/dotnet/maui/pull/33513\n\n- Add find-reviewable-pr skill from existing PR by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33349\n\n- Add learn-from-pr agent and enhance skills framework structure by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33579\n\n- Fix PS1 scripts for Windows compatibility by @​PureWeen in https://github.com/dotnet/maui/pull/33679\n\n- Improve skills and scripts for better agent workflows by @​PureWeen in https://github.com/dotnet/maui/pull/33699\n\n- [XEXPR] Refactor test skills/agents to dispatcher pattern by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33721\n\n- [ai] Skill for running device tests  by @​rmarinho in https://github.com/dotnet/maui/pull/33484\n\n- Add ai-summary-comment skill for automated PR review comments by @​kubaflo in https://github.com/dotnet/maui/pull/33585\n\n- Add PR label management to test verification skill by @​kubaflo in https://github.com/dotnet/maui/pull/33739\n\n- ai-summary-comment: Simplify PR finalize to two collapsible sections by @​kubaflo in https://github.com/dotnet/maui/pull/33771\n\n- Improve issue-triage skill: Add gh CLI checks and fix workflow by @​PureWeen in https://github.com/dotnet/maui/pull/33750\n\n- [ai] Add integration test runner skill by @​rmarinho in https://github.com/dotnet/maui/pull/33654\n\n- Improve PR Agent Gate verification to prevent result fabrication by @​PureWeen in https://github.com/dotnet/maui/pull/33806\n\n- Improve test report formatting and summary extraction by @​kubaflo in https://github.com/dotnet/maui/pull/33793\n\n- Improve try-fix comment parsing and summary by @​kubaflo in https://github.com/dotnet/maui/pull/33794\n\n- Enhance PR agent: multi-model workflow, blocker handling, shared rules"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1051,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22785,
+      "excerpt": "ments across all platforms with focus on quality, performance, and developer experience. This release includes 143 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Improve write-tests-agent with best practices by @​sheiksyedm in https://github.com/dotnet/maui/pull/33860\n\n- [Sample] Add Microsoft.Maui.Essentials.AI sample app with multi-agent workflow by @​mattleibow in https://github.com/dotnet/maui/pull/33610\n\n## Ai Agents\n- Add FileLoggingProvider for MacCatalyst UI test logging by @​PureWeen in https://github.com/dotnet/maui/pull/33518\n\n- Improve verify-tests-fail-without-fix Skill by @​kubaflo in https://github.com/dotnet/maui/pull/33513\n\n- Add find-reviewable-pr skill from existing PR by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33349\n\n- Add learn-from-pr agent and enhance skills framework structure by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33579\n\n- Fix PS1 scripts for Windows compatibility by @​PureWeen in https://github.com/dotnet/maui/pull/33679\n\n- Improve skills and scripts for better agent workflows by @​PureWeen in https://github.com/dotnet/maui/pull/33699\n\n- [XEXPR] Refactor test skills/agents to dispatcher pattern by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33721\n\n- [ai] Skill for running device tests  by @​rmarinho in https://github.com/dotnet/maui/pull/33484\n\n- Add ai-summary-comment skill for automated PR review comments by @​kubaflo in https://github.com/dotnet/maui/pull/33585\n\n- Add PR label management to test verification skill by @​kubaflo in https://github.com/dotnet/maui/pull/33739\n\n- ai-summary-comment: Simplify PR finalize to two collapsible sections by @​kubaflo in https://github.com/dotnet/maui/pull/33771\n\n- Improve issue-triage skill: Add gh CLI checks and fix workflow by @​PureWeen in https://github.com/dotnet/maui/pull/33750\n\n- [ai] Add integration test runner skill by @​rmarinho in https://github.com/dotnet/maui/pull/33654\n\n- Improve PR Agent Gate verification to prevent result fabrication by @​PureWeen in https://github.com/dotnet/maui/pull/33806\n\n- Improve test report formatting and summary extraction by @​kubaflo in https://github.com/dotnet/maui/pull/33793\n\n- Improve try-fix comment parsing and summary by @​kubaflo in https://github.com/dotnet/maui/pull/33794\n\n- Enhance PR agent: multi-model workflow, blocker handling, shared rules"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1052,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.40 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22785,
+      "excerpt": "ments across all platforms with focus on quality, performance, and developer experience. This release includes 143 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Improve write-tests-agent with best practices by @​sheiksyedm in https://github.com/dotnet/maui/pull/33860\n\n- [Sample] Add Microsoft.Maui.Essentials.AI sample app with multi-agent workflow by @​mattleibow in https://github.com/dotnet/maui/pull/33610\n\n## Ai Agents\n- Add FileLoggingProvider for MacCatalyst UI test logging by @​PureWeen in https://github.com/dotnet/maui/pull/33518\n\n- Improve verify-tests-fail-without-fix Skill by @​kubaflo in https://github.com/dotnet/maui/pull/33513\n\n- Add find-reviewable-pr skill from existing PR by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33349\n\n- Add learn-from-pr agent and enhance skills framework structure by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33579\n\n- Fix PS1 scripts for Windows compatibility by @​PureWeen in https://github.com/dotnet/maui/pull/33679\n\n- Improve skills and scripts for better agent workflows by @​PureWeen in https://github.com/dotnet/maui/pull/33699\n\n- [XEXPR] Refactor test skills/agents to dispatcher pattern by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33721\n\n- [ai] Skill for running device tests  by @​rmarinho in https://github.com/dotnet/maui/pull/33484\n\n- Add ai-summary-comment skill for automated PR review comments by @​kubaflo in https://github.com/dotnet/maui/pull/33585\n\n- Add PR label management to test verification skill by @​kubaflo in https://github.com/dotnet/maui/pull/33739\n\n- ai-summary-comment: Simplify PR finalize to two collapsible sections by @​kubaflo in https://github.com/dotnet/maui/pull/33771\n\n- Improve issue-triage skill: Add gh CLI checks and fix workflow by @​PureWeen in https://github.com/dotnet/maui/pull/33750\n\n- [ai] Add integration test runner skill by @​rmarinho in https://github.com/dotnet/maui/pull/33654\n\n- Improve PR Agent Gate verification to prevent result fabrication by @​PureWeen in https://github.com/dotnet/maui/pull/33806\n\n- Improve test report formatting and summary extraction by @​kubaflo in https://github.com/dotnet/maui/pull/33793\n\n- Improve try-fix comment parsing and summary by @​kubaflo in https://github.com/dotnet/maui/pull/33794\n\n- Enhance PR agent: multi-model workflow, blocker handling, shared rules"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1053",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1053,
+      "title": "Bump Microsoft.Maui.Controls.Maps from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22767,
+      "excerpt": "ments across all platforms with focus on quality, performance, and developer experience. This release includes 143 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Improve write-tests-agent with best practices by @​sheiksyedm in https://github.com/dotnet/maui/pull/33860\n\n- [Sample] Add Microsoft.Maui.Essentials.AI sample app with multi-agent workflow by @​mattleibow in https://github.com/dotnet/maui/pull/33610\n\n## Ai Agents\n- Add FileLoggingProvider for MacCatalyst UI test logging by @​PureWeen in https://github.com/dotnet/maui/pull/33518\n\n- Improve verify-tests-fail-without-fix Skill by @​kubaflo in https://github.com/dotnet/maui/pull/33513\n\n- Add find-reviewable-pr skill from existing PR by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33349\n\n- Add learn-from-pr agent and enhance skills framework structure by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33579\n\n- Fix PS1 scripts for Windows compatibility by @​PureWeen in https://github.com/dotnet/maui/pull/33679\n\n- Improve skills and scripts for better agent workflows by @​PureWeen in https://github.com/dotnet/maui/pull/33699\n\n- [XEXPR] Refactor test skills/agents to dispatcher pattern by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33721\n\n- [ai] Skill for running device tests  by @​rmarinho in https://github.com/dotnet/maui/pull/33484\n\n- Add ai-summary-comment skill for automated PR review comments by @​kubaflo in https://github.com/dotnet/maui/pull/33585\n\n- Add PR label management to test verification skill by @​kubaflo in https://github.com/dotnet/maui/pull/33739\n\n- ai-summary-comment: Simplify PR finalize to two collapsible sections by @​kubaflo in https://github.com/dotnet/maui/pull/33771\n\n- Improve issue-triage skill: Add gh CLI checks and fix workflow by @​PureWeen in https://github.com/dotnet/maui/pull/33750\n\n- [ai] Add integration test runner skill by @​rmarinho in https://github.com/dotnet/maui/pull/33654\n\n- Improve PR Agent Gate verification to prevent result fabrication by @​PureWeen in https://github.com/dotnet/maui/pull/33806\n\n- Improve test report formatting and summary extraction by @​kubaflo in https://github.com/dotnet/maui/pull/33793\n\n- Improve try-fix comment parsing and summary by @​kubaflo in https://github.com/dotnet/maui/pull/33794\n\n- Enhance PR agent: multi-model workflow, blocker handling, shared rules"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 953,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7475,
+      "excerpt": "onyuk in https://github.com/CommunityToolkit/Maui/pull/2760\n* [Popup] Add `DefaultPopupOptionsSettings` and `DefaultPopupSettings` to `.UseMauiCommunityToolkit(Options)` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2759\n* [Popup] Add `ComplexPopup` to `CommunityToolkit.Maui.Sample` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2771\n* Fix Windows Snackbar Registration by @​ne0rrmatrix in https://github.com/CommunityToolkit/Maui/pull/2755\n\n## Requirements\n\nThe following tools are now required for CommunityToolkit.Maui:\n\n- [ ] Download/install [.NET SDK v9.0.300](https://dotnet.microsoft.com/download/dotnet/)\n- [ ] Install Xcode 16.2.0 (or higher)\n  - Read the [latest .NET MAUI Release wiki](https://github.com/dotnet/maui/wiki/Release-Versions) to always find the latest-supported version) of Xcode for .NET MAUI \n  - We HIGHLY recommend using the open-source tool [Xcodes](https://github.com/XcodesOrg/XcodesApp) to easily manage your installed Xcode versions\n- [ ] Update to the latest stable version of Visual Studio (or Jet Brains Rider)\n- [ ] After installing the latest stable .NET SDK, update to the latest stable version of the .NET MAUI workload:\n  - On macOS, open the Terminal and enter the following command: `sudo dotnet workload install maui; sudo dotnet workload update`\n  - On Windows, open the command prompt (or Powershell) and enter the following command: `dotnet workload install maui && dotnet workload update`\n- [ ] Add a [`global.json`](https://learn.microsoft.com/dotnet/core/tools/global-json) file to your application with the following parameters to ensure you're not using a unsupported preview version of .NET (example below)\n  - The .NET MAUI Community Toolkit does not support preview releases of .NET\n\n### global.json\n\n```json\n{\n  \"sdk\": {\n    \"version\": \"9.0.300\", \n    \"rollForward\": \"latestFeature\",\n    \"allowPrerelease\": false\n  }\n}\n```\n\n\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/compare/12.0.0...12.1.0\n\n## 12.0.0\n\nAn all new implementation of Popups! We complete wrote Popup from the ground up so that it is now more stable and easier to work with than ever.\n\nIf you're migrating, be sure to check out our [Popup v2 Migration Guide](https://github.com/CommunityToolkit/Maui/wiki/Migrating-to-Popup-v2), along with the updated Popup documentation:\n- Popup: https://learn.microsoft.com/"
+    }
+  ]
+}

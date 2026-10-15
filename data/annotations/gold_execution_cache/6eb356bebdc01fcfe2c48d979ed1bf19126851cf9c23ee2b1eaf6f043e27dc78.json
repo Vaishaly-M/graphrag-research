@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 74686,
+        "line": 1561
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 7643,
+        "line": 96
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 43045,
+        "line": 1098
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 65703,
+        "line": 1468
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 54570,
+        "line": 1326
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:README.md",
+        "path": "README.md",
+        "offset": 37891,
+        "line": 554
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+        "path": ".agents/skills/magpie-setup/adopt.md",
+        "offset": 6585,
+        "line": 143
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/03_contributors_quick_start.rst",
+        "path": "contributing-docs/03_contributors_quick_start.rst",
+        "offset": 30139,
+        "line": 853
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+      "kind": "File",
+      "path": ".agents/skills/magpie-setup/adopt.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6585,
+      "excerpt": "- **`magpie-setup` is itself a symlink** (→ `../../skills/setup/`),\n  not a committed copy. The copy-vs-symlink rule of\n  [`SKILL.md` Golden rule 6](SKILL.md#golden-rules) exists only\n  because adopter snapshots disappear on clone; the framework's\n  own source is always present, so the bootstrap is linked like\n  every other skill.\n\n### Steps\n\n1. **Pre-flight** ([Step 0](#step-0--pre-flight)) has confirmed\n   we are in the framework checkout and in the main checkout (not\n   a worktree).\n2. **Refuse a remote method.** If the user passed\n   `method:git-branch|git-tag|svn-zip`, stop: a remote snapshot\n   of the framework into itself is circular and would shadow the\n   live `skills/` source.\n3. **Enumerate skills.** List every directory under\n   `<repo-root>/skills/` that contains a `SKILL.md`. Apply\n   `skill-families:` as a filter if it was passed; otherwise take\n   all of them.\n4. **Write the marker lock** at `<repo-root>/.apache-magpie.lock`:\n\n   ```text\n   # .apache-magpie.lock — committed. Local self-adoption marker.\n   # The framework checkout links its own skills/ source; there is\n   # no remote snapshot. Edited only by /magpie-setup.\n\n   method: local\n   source: skills/\n   ```\n\n5. **`.gitignore`.** Ensure each skills dir glob is ignored with\n   the `magpie-*` set un-ignored, in **every active target\n   location** ([`agents.md`](agents.md) — the always-on neutral\n   targets `.agents/skills/`, `.claude/skills/`, `.github/skills/`\n   plus any other registry dir already present). Idempotent — add\n   any missing line. For the default set:\n\n   ```text\n   .agents/skills/*\n   !/.agents/skills/magpie-*\n   .claude/skills/*\n   !/.claude/skills/magpie-*\n   .github/skills/*\n   !/.github/skills/magpie-*\n   ```\n\n   (Self-adoption symlinks are *committed*, not gitignored — see\n   the next step — so the `!…/magpie-*` negation here un-ignores\n   the whole set, not just `magpie-setup`.)\n\n6. **Create the symlinks** (canonical first, then relays). For\n   each enumerated skill `<n>`:\n   - **Canonical** — create `.agents/skills/magpie-<n>` →\n     `../../skills/<n>` (the in-repo source).\n   - **Relays** — for every *other* active target dir from\n     [`agents.md`](agents.md) (`.claude/skills/`, `.github/skills/`,\n     plus any present holdout), create `magpie-<n>` →\n     `../../.agents/skills/magpie-<n>` (pointing back at the\n     canonical entry).\n\n   Idempotent: re-point a pr"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7643,
+      "excerpt": "ferred tasks/sensors in separate processes. Like the Dag File Processor, software guards steer it through the Execution API rather than direct database access, but these guards do not protect against intentional bypassing by malicious or misconfigured code.\n7. Shared libraries that are symbolically linked to different Python distributions are in `shared` folder.\n8. Airflow uses `uv workspace` feature to keep all the distributions sharing dependencies and venv\n9. Each of the distributions should declare other needed distributions: `uv --project <FOLDER> sync` command acts on the selected project in the monorepo with only dependencies that it has\n\n## Security Model\n\nWhen reviewing code, writing security documentation, or performing security research, keep in\nmind the following aspects of Airflow's security model. The authoritative reference is\n[`airflow-core/docs/security/security_model.rst`](airflow-core/docs/security/security_model.rst)\nand [`airflow-core/docs/security/jwt_token_authentication.rst`](airflow-core/docs/security/jwt_token_authentication.rst).\n\nParticularly, the intentional design choices, that are not security vulnerabilities and should not be\nreported as such are described in \"What is NOT considered a security vulnerability\" chapter of the security model.\n\n**When flagging security concerns, distinguish between:**\n\n1. **Actual vulnerabilities** — code that violates the documented security model (e.g., a worker\n   gaining database access it shouldn't have, a Scheduler executing user code, an unauthenticated\n   user accessing protected endpoints).\n2. **Known limitations** — documented gaps where the current implementation doesn't provide full\n   isolation (e.g., DFP/Triggerer database access, shared Execution API resources, multi-team\n   not enforcing task-level isolation). These are tracked for improvement in future versions and\n   should not be reported as new findings.\n3. **Deployment hardening opportunities** — measures a Deployment Manager can take to improve\n   isolation beyond what Airflow enforces natively (e.g., per-component configuration, asymmetric\n   JWT keys, network policies). These belong in deployment guidance, not as code-level issues.\n\n# Shared libraries\n\n- shared libraries provide implementation of some common utilities like logging, configuration where the code should be reused in different distributions (potentially in diffe"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 37891,
+      "excerpt": "0-stable` branch and released in `2.10.2rc1`\nand eventually in `2.10.2`.\n\nThe final decision about cherry-picking is made by the release manager.\n\nMarking issues with a milestone is a bit different. Maintainers do not mark issues with a milestone usually,\nnormally they are only marked in PRs. If PR linked to the issue (and \"fixing it\") gets merged and released\nin a specific version following the process described above, the issue will be automatically closed, no\nmilestone will be set for the issue, you need to check the PR that fixed the issue to see which version\nit was released in.\n\nHowever, sometimes maintainers mark issues with specific milestone, which means that the\nissue is important to become a candidate to take a look when the release is being prepared. Since this is an\nOpen-Source project, where basically all contributors volunteer their time, there is no guarantee that specific\nissue will be fixed in specific version. We do not want to hold the release because some issue is not fixed,\nso in such case release manager will reassign such unfixed issues to the next milestone in case they are not\nfixed in time for the current release. Therefore, the milestone for issue is more of an intent that it should be\nlooked at, than promise it will be fixed in the version.\n\nMore context and **FAQ** about the patchlevel release can be found in the\n[What goes into the next release](dev/WHAT_GOES_INTO_THE_NEXT_RELEASE.md) document in the `dev` folder of the\nrepository.\n\n## Can I use the Apache Airflow logo in my presentation?\n\nYes! Be sure to abide by the Apache Foundation [trademark policies](https://www.apache.org/foundation/marks/#books) and the Apache Airflow [Brandbook](https://cwiki.apache.org/confluence/display/AIRFLOW/Brandbook). The most up-to-date logos are found in [this repo](https://github.com/apache/airflow/tree/main/airflow-core/docs/img/logos/) and on the Apache Software Foundation [website](https://www.apache.org/logos/about.html).\n\n## Links\n\n- [Documentation](https://airflow.apache.org/docs/apache-airflow/stable/)\n- [Chat](https://s.apache.org/airflow-slack)\n- [Community Information](https://airflow.apache.org/community/)\n\n## Sponsors\n\nThe CI infrastructure for Apache Airflow has been sponsored by:\n\n<!-- Ordered by most recently \"funded\" -->\n\n<a href=\"https://astronomer.io\"><img src=\"https://assets2.astronomer.io/logos/logoForLIGHTbackground.png\" "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/03_contributors_quick_start.rst",
+      "kind": "File",
+      "path": "contributing-docs/03_contributors_quick_start.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 30139,
+      "excerpt": "=\"images/quick_start/pr3.png\"\n             alt=\"Accessing local airflow\">\n      </div>\n\n\nSyncing Fork and rebasing Pull request\n--------------------------------------\n\nOften it takes several days or weeks to discuss and iterate with the PR until it is ready to merge.\nIn the meantime new commits are merged, and you might run into conflicts, therefore you should periodically\nsynchronize main in your fork with the ``apache/airflow`` main and rebase your PR on top of it. Following\ndescribes how to do it.\n\n* `Update new changes made to apache:airflow project to your fork <10_working_with_git.rst#how-to-sync-your-fork>`__\n* `Rebasing pull request <10_working_with_git.rst#how-to-rebase-pr>`__\n\n\nUsing your IDE\n##############\n\nIf you are familiar with Python development and use your favourite editors, Airflow can be setup\nsimilarly to other projects of yours. However, if you need specific instructions for your IDE you\nwill find more detailed instructions here:\n\n* `PyCharm/IntelliJ <quick-start-ide/contributors_quick_start_pycharm_intellij.rst>`_\n* `Visual Studio Code <quick-start-ide/contributors_quick_start_vscode.rst>`_\n\n\nUsing Remote development environments\n#####################################\n\nIn order to use remote development environment, you usually need a paid account, but you do not have to\nsetup local machine for development.\n\n* `GitPod <quick-start-ide/contributors_quick_start_gitpod.rst>`_\n* `GitHub Codespaces <quick-start-ide/contributors_quick_start_codespaces.rst>`_\n\n\n----------------\n\nOnce you have your environment set up, you can start contributing to Airflow. You can find more\nabout ways you can contribute in the `How to contribute <04_how_to_contribute.rst>`_ document.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 65703,
+      "excerpt": "uld publish to the `live` bucket - based on\nthe tag you use - pre-release tags go to staging. But you can also override it and specify the destination\nmanually to be `live` or `staging`.\n\nAfter that step, the provider documentation should be available under the https://airflow.apache.org/ URL\n(also linked directly from the PyPI packages) but stable links and drop-down boxes should not be yet updated.\nThat allows the Release Manager to verify if the documentation is published.\n\n2. Invalidate Fastly Cache, update version drop-down and stable links with the new versions of the documentation.\n\nIn order to do it, you need to run the [Build docs](https://github.com/apache/airflow-site/actions/workflows/build.yml)\nworkflow in `airflow-site` repository. Make sure to use `main` as the branch to run the workflow.\n\nAfter that workflow completes, the new version should be available in the drop-down list and stable links\nshould be updated, also Fastly cache will be invalidated.\n\n## Notify developers of release\n\n- Notify users@airflow.apache.org (cc'ing dev@airflow.apache.org) that\nthe artifacts have been published:\n\nSubject:\n\n```shell script\ncat <<EOF\n[ANNOUNCE] Apache Airflow ${VERSION} Released\nEOF\n```\n\nBody:\n\n```shell script\ncat <<EOF\nDear Airflow community,\n\nI'm happy to announce that Airflow ${VERSION} was just released.\n\nThe released sources and packages can be downloaded via https://airflow.apache.org/docs/apache-airflow/${VERSION}/installation/installing-from-sources.html\n\nOther installation methods are described in https://airflow.apache.org/docs/apache-airflow/stable/installation/\n\nWe also made this version available on PyPI for convenience:\n\\`pip install apache-airflow\\`\nhttps://pypi.org/project/apache-airflow/${VERSION}/\n\nThe documentation is available at:\nhttps://airflow.apache.org/docs/apache-airflow/${VERSION}/\n\nFind the release notes here for more details:\nhttps://airflow.apache.org/docs/apache-airflow/${VERSION}/release_notes.html\n\nContainer images are published at:\nhttps://hub.docker.com/r/apache/airflow/tags/?page=1&name=${VERSION}\n\nCheers,\n<your name>\nEOF\n```\n\nSend the same email to announce@apache.org, except change the opening line to `Dear community,`.\nIt is more reliable to send it via the web ui at https://lists.apache.org/list.html?announce@apache.org\n(press \"c\" to compose a new thread)\n\n## Send announcements about security issues fixed in the r"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 54570,
+      "excerpt": "ct directory and a symbolic link\n# Otherwise 'svn mv' errors out if it is with \"E200033: Another process is blocking the working copy database\ncd \"<ROOT_WHERE_YOUR_ASF_DIST_IS_CREATED>\"\n\nexport ASF_DIST_PARENT=\"$(pwd -P)\"\n# make sure physical path is used, in case original directory is symbolically linked\ncd \"${ASF_DIST_PARENT}\"\n\n# or clone it if it's not done yet\n[ -d asf-dist ] || svn checkout --depth=immediates https://dist.apache.org/repos/dist asf-dist\n# Update to latest version\nsvn update --set-depth=infinity asf-dist/dev/airflow asf-dist/release/airflow\n\nSOURCE_DIR=\"${ASF_DIST_PARENT}/asf-dist/dev/airflow/airflow-ctl\"\n\n# Create airflow-ctl folder if it does not exist\n# All latest releases are kept in this one folder without version sub-folder\ncd \"${ASF_DIST_PARENT}/asf-dist/release/airflow\"\nmkdir -pv airflow-ctl/${VERSION}\ncd airflow-ctl/${VERSION}\nsvn add .\n\n# Copy your airflow-ctl with the target name to dist directory and to SVN\nrm -rf \"${AIRFLOW_REPO_ROOT}\"/dist/*\n\nfor file in \"${SOURCE_DIR}\"/${VERSION_RC}/*\ndo\n base_file=$(basename ${file})\n cp -v \"${file}\" \"${AIRFLOW_REPO_ROOT}/dist/${base_file//rc[0-9]/}\"\n svn mv \"${file}\" \"${base_file//rc[0-9]/}\"\ndone\n\n# Prune older airflow-ctl release folders. Move UP one level first — the\n# script operates on its current working directory and prunes version-named\n# subdirectories, keeping only the latest version. Inside the new\n# ${VERSION} folder there are only artifact files, so we must run it from\n# asf-dist/release/airflow/airflow-ctl/ (parent). The script's scope is\n# limited to cwd, so it will NOT touch sibling directories such as the\n# airflow, helm-chart, or provider release folders.\ncd ..\n\n# Check which directories are going to be removed. Check if this looks right\nuv run \"${AIRFLOW_REPO_ROOT}/dev/prune_old_dirs.py\"\n\n# Remove old release directories\nuv run \"${AIRFLOW_REPO_ROOT}/dev/prune_old_dirs.py\" --execute\n\n# You need to do go to the asf-dist directory in order to commit both dev and release together\ncd ${ASF_DIST_PARENT}/asf-dist\n# Commit to SVN\nsvn commit -m \"Release Airflow Ctl ${VERSION}\"\n```\n\nVerify that the packages appear in\n[airflow-ctl](https://dist.apache.org/repos/dist/release/airflow/airflow-ctl)\n\nYou are expected to see all latest versions of airflow-ctl.\nThe ones you are about to release (with new version) and the ones that are not part of the current release.\n\n## Publish the packa"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 43045,
+      "excerpt": "d mark as READY all the security issues fixed in the release.\nSuch issues are marked as affecting `< <JUST_RELEASED_VERSION>` in the CVE management tool\nat https://cveprocess.apache.org/. Then the release manager should announced the issues via the tool.\n\nOnce announced, each of the issue should be linked with a 'reference' with tag 'vendor advisory' with the\nURL to the announcement published automatically by the CVE management tool.\nNote that the announce@apache.org is moderated, and the link to the email thread will not be published\nimmediately, that's why it is recommended to add the link to users@airflow.apache.org which takes usually\nfew seconds to be published after the CVE tool sends them.\n\nThe ASF Security will be notified and will submit to the CVE project and will set the state to 'PUBLIC'.\n\n## Add release data to Apache Committee Report Helper\n\nAdd the release data (version and date) at: https://reporter.apache.org/addrelease.html?airflow\n\n## Update Announcements page\n\nUpdate \"Announcements\" page at the [Official Airflow website](https://airflow.apache.org/announcements/)\n\n## Create release on GitHub\n\nCreate a new release on GitHub with the release notes and assets from the release svn.\n\n- Create a new release in https://github.com/apache/airflow/releases/new (\"Draft new release\" button)\n- Select the tag, e.g. `helm-chart/1.20.0`\n- Use title: Apache Airflow Helm Chart 1.20.0\n- Copy the release notes RST from the release. Need to convert all headings with `^^^^^` as underline to H1 in markdown with a `#` as prefix and all headings with `\"\"\"\"\"` as underline to H2 in markdown with a `##` prefix.\n- Use binaries (all chart files, signatures and source tar) from the SVN\n- Click on \"Publish release\"\n\n## Close the milestone\n\nUse: https://github.com/apache/airflow/milestones\n\nBefore closing the milestone on GitHub, make sure that all PR marked for it are either part of the release (was cherry picked) or\npostponed to the next release, then close the milestone. Create the next one if it hasn't been already (it probably has been).\n\n## Close the testing status issue\n\nDon't forget to thank the folks who tested and close the issue tracking the testing status.\n\n```\nThank you everyone. New Helm-Chart is released.\n\nI invite everyone to help improve the chart for the next release, a list of open issues can be found [here](https://github.com/apache/airflow/issues?q=i"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 74686,
+      "excerpt": "ise 'svn mv' errors out if it is with \"E200033: Another process is blocking the working copy database\n# Assuming that your `asf-dist` is checked out in the same folder as airflow:\ncd ..\n\nexport ASF_DIST_PARENT=\"$(pwd -P)\"\n# make sure physical path is used, in case original directory is symbolically linked\ncd \"${ASF_DIST_PARENT}\"\n\n# or clone it if it's not done yet\n[ -d asf-dist ] || svn checkout --depth=immediates https://dist.apache.org/repos/dist asf-dist\n# Update to latest version\nsvn update --set-depth=infinity asf-dist/dev/airflow asf-dist/release/airflow\n\nSOURCE_DIR=\"${ASF_DIST_PARENT}/asf-dist/dev/airflow/providers/${RELEASE_DATE}\"\n\n# If some packages have been excluded, remove them now\n# Check the packages are there (replace <provider> with the name of the provider that you remove)\nls ${SOURCE_DIR}/*<provider>*\n# Remove them\nsvn rm ${SOURCE_DIR}/*<provider>*\n\n# All latest releases are kept in this providers folder without version sub-folder\ncd \"${ASF_DIST_PARENT}/asf-dist/release/airflow/providers\"\n\n# Copy your providers with the target name to dist directory and to SVN\nrm -rf \"${AIRFLOW_REPO_ROOT}\"/dist/*\n\nfor file in \"${SOURCE_DIR}\"/*\ndo\n base_file=$(basename ${file})\n cp -v \"${file}\" \"${AIRFLOW_REPO_ROOT}/dist/${base_file//rc[0-9]/}\"\n svn mv \"${file}\" \"${base_file//rc[0-9]/}\"\ndone\n\n# Check which old packages will be removed using dry run\nbreeze release-management clean-old-provider-artifacts --directory $(pwd -P) --dry-run\n\n# Remove those packages\nbreeze release-management clean-old-provider-artifacts --directory $(pwd -P)\n\n# You need to do go to the asf-dist directory in order to commit both dev and release together\ncd ${ASF_DIST_PARENT}/asf-dist\n# Commit to SVN\nsvn commit -m \"Release Airflow Providers on $(date \"+%Y-%m-%d%n\"): release preparation date ${RELEASE_DATE}\"\n```\n\nVerify that the packages appear in\n[providers](https://dist.apache.org/repos/dist/release/airflow/providers) and the (always first)\n`apache_airflow_providers-RELEASE_DATE-source.tar.gz` file should have the right RELEASE_DATE.\n\nYou are expected to see all latest versions of providers.\nThe ones you are about to release (with new version) and the ones that are not part of the current release.\n\nTroubleshoot:\nIn case that while viewing the packages in dist/release you see that a provider has files from current version and release version it probably means that you wanted to exclud"
+    }
+  ]
+}

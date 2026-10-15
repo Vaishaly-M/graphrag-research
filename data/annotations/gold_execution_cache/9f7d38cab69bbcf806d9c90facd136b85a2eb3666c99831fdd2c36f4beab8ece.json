@@ -1,0 +1,136 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)<-[:DL_AUTHORED_COMMIT]-(d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(other:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND c<>other AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id)+collect(DISTINCT d.id)+collect(DISTINCT other.id) AS evidence RETURN b.path AS entity,b.path+': '+split(b.content,'\\n')[0] AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "path": "mvnw.cmd"
+  },
+  "rows": [
+    {
+      "entity": ".editorconfig",
+      "fact": ".editorconfig: # top-most EditorConfig file",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:mvnw.cmd",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:907eea340b7d51faf8f668cd15a1ae3b001fb7ef",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:d6697d8853d97645dfa28cbe024425737cabb43d",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:k.neirynck@gmail.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:antoine.rey@free.fr",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:9873188e291a2f81f7d5f27dea09ba5e66fede14",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:d94b995db23e9251a865b85bcb2d8ed99f45d8bb",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:09ed33a5fc01209b4190c74f405b2b1e523b739c",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:81fac33fb56d7642d50084e373a13e59b5b64688",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:.editorconfig"
+      ]
+    },
+    {
+      "entity": ".gitignore",
+      "fact": ".gitignore: HELP.md",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:mvnw.cmd",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0962ed7e8f5df8cf287c79975f9894f3189aebab",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0d9e882e54ee5b259b2d10fd59db580aed818382",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:52e528b2ad877f3172b90bd3ec0ea53254465506",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:d8fcd11e677102a795326ef73df09b50a646f849",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:patrick.baumgartner@42talents.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:stephane.nicoll@broadcom.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:608e2b614233106daf7e2b8775d977bf2da34d03",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:a50bfb65bb9ead5b8d6342bab3db9b2eb77f3f33",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:6feeae0f13e0e258eedc99832416b42bb13779b1",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:.gitignore"
+      ]
+    },
+    {
+      "entity": "README.md",
+      "fact": "README.md: # Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:mvnw.cmd",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0962ed7e8f5df8cf287c79975f9894f3189aebab",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0d9e882e54ee5b259b2d10fd59db580aed818382",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:52e528b2ad877f3172b90bd3ec0ea53254465506",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:b26f235250627a235a2974a22f2317dbef27338d",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:d6697d8853d97645dfa28cbe024425737cabb43d",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:d8fcd11e677102a795326ef73df09b50a646f849",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:patrick.baumgartner@42talents.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:contact@patbaumgartner.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:antoine.rey@free.fr",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:stephane.nicoll@broadcom.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:a50bfb65bb9ead5b8d6342bab3db9b2eb77f3f33",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:37d53152a08a5de9d225c7f25f41b77c5d8b3cae",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:4a021e4ccf7a48c8d1b5a68485418a49e1fed606",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:9a5d50cf5343558e12b528f7299af8698fb753fc",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:cefaf55dd124d0635abfe857c3c99a3d3ea62017",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:edf4db28affcc4741c79850a3d95bc3f177b5ff9",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:ee8f8dcdad3f3c8195ec57894411d160dd9826f0",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:47be0ea24f3dc33975d8a68173697a144c59a08c",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:6feeae0f13e0e258eedc99832416b42bb13779b1",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:987613eb4958f25ec3b137fd860cf915f516f0ec",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:f5b8a8945194f271384dd7132f4be03d984c42e8",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md"
+      ]
+    },
+    {
+      "entity": "build.gradle",
+      "fact": "build.gradle: plugins {",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:mvnw.cmd",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0962ed7e8f5df8cf287c79975f9894f3189aebab",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0d9e882e54ee5b259b2d10fd59db580aed818382",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:52e528b2ad877f3172b90bd3ec0ea53254465506",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:b26f235250627a235a2974a22f2317dbef27338d",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:d8fcd11e677102a795326ef73df09b50a646f849",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:patrick.baumgartner@42talents.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:contact@patbaumgartner.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:stephane.nicoll@broadcom.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0d9e882e54ee5b259b2d10fd59db580aed818382",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:308f7ec783bd4de3f61f50aa39ac7b4c488b322a",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:39cc7e160e16171acd46487b863dd046a9af8336",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:6fffe61b93dcfd040fdc83856fd6ec4d7781546d",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:a0ba075bd86d3940e6bbcb74612103a611aa2da4",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:a50bfb65bb9ead5b8d6342bab3db9b2eb77f3f33",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:de0e3663c033ac9b51f2fb497bc32edf7558277b",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0962ed7e8f5df8cf287c79975f9894f3189aebab",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:37d53152a08a5de9d225c7f25f41b77c5d8b3cae",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:67643c4137eb75bfeb177b427f8459c471bdcbd8",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:7ba7f8449ed7c0ad12b6d4ba1d66e588a4f9c1e3",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:9264c4813f367ead80d7f62fbaea397926ad8012",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:9a5d50cf5343558e12b528f7299af8698fb753fc",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:47be0ea24f3dc33975d8a68173697a144c59a08c",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:5149abbc90a6710fdb5e8aa0d0530b093e4a80cd",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:645c85278bed6dac6aa2c521cfd07498e7756fb4",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:6feeae0f13e0e258eedc99832416b42bb13779b1",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:95f7e82ad5fd16114d4655d29196566d48d0ea9d",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:aa9b9e7f4353a9a7667aaa58acd9fb7b9dd48b53",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:b5a630b1994b5b2f3f590d1c398612cf6b955a59",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:fa8f6836bdda07a403abcac044d0877fe73f16bc",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:fc1c7490edb484dddcf39d336422d308925c04a4",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:build.gradle"
+      ]
+    },
+    {
+      "entity": "docker-compose.yml",
+      "fact": "docker-compose.yml: services:",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:mvnw.cmd",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0962ed7e8f5df8cf287c79975f9894f3189aebab",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0d9e882e54ee5b259b2d10fd59db580aed818382",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:52e528b2ad877f3172b90bd3ec0ea53254465506",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:b26f235250627a235a2974a22f2317dbef27338d",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:patrick.baumgartner@42talents.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:developer:email:contact@patbaumgartner.com",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0d9e882e54ee5b259b2d10fd59db580aed818382",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:39cc7e160e16171acd46487b863dd046a9af8336",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:6fffe61b93dcfd040fdc83856fd6ec4d7781546d",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:a50bfb65bb9ead5b8d6342bab3db9b2eb77f3f33",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:de0e3663c033ac9b51f2fb497bc32edf7558277b",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:0962ed7e8f5df8cf287c79975f9894f3189aebab",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:37d53152a08a5de9d225c7f25f41b77c5d8b3cae",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:4a021e4ccf7a48c8d1b5a68485418a49e1fed606",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:9a5d50cf5343558e12b528f7299af8698fb753fc",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:cefaf55dd124d0635abfe857c3c99a3d3ea62017",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:edf4db28affcc4741c79850a3d95bc3f177b5ff9",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:docker-compose.yml"
+      ]
+    }
+  ]
+}

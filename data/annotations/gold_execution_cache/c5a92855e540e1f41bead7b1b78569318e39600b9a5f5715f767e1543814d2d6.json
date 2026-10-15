@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_CONTAINS_FILE]->(f:DLFile) WHERE r.dataset=$dataset AND r.repo=$repo AND f.path=$path WITH r,f,[line IN split(f.content,'\\n') WHERE trim(line) STARTS WITH 'import ' OR trim(line) STARTS WITH 'from ' OR trim(line) STARTS WITH 'using ' OR trim(line) STARTS WITH '#include' OR trim(line) STARTS WITH 'require('] AS imports UNWIND CASE WHEN size(imports)=0 THEN ['no matching import declarations'] ELSE imports[0..5] END AS line RETURN trim(line) AS entity,trim(line) AS fact,[r.id,f.id] AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "synthetic-org/platform",
+    "path": "src/module_1/component_19.py"
+  },
+  "rows": [
+    {
+      "entity": "no matching import declarations",
+      "fact": "no matching import declarations",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:repository:synthetic-org/platform",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_1/component_19.py"
+      ]
+    }
+  ]
+}

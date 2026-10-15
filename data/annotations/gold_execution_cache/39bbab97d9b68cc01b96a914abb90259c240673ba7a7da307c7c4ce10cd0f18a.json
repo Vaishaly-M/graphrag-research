@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/25_maintainer_pr_triage.md",
+        "path": "contributing-docs/25_maintainer_pr_triage.md",
+        "offset": 2467,
+        "line": 51
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/common/ai/docs/hitl_review.rst",
+        "path": "providers/common/ai/docs/hitl_review.rst",
+        "offset": 4235,
+        "line": 94
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/05_pull_requests.rst",
+        "path": "contributing-docs/05_pull_requests.rst",
+        "offset": 7706,
+        "line": 136
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 3092,
+        "line": 45
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 2980,
+        "line": 44
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 23076,
+        "line": 262
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+        "path": "java-sdk/README.md",
+        "offset": 4712,
+        "line": 142
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.github/instructions/code-review.instructions.md",
+        "path": ".github/instructions/code-review.instructions.md",
+        "offset": 3544,
+        "line": 35
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.github/instructions/code-review.instructions.md",
+      "kind": "File",
+      "path": ".github/instructions/code-review.instructions.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3544,
+      "excerpt": " flag it, but confirm the diff removes the identical raise elsewhere and leaves it otherwise unchanged.** **Do not suggest changing specific exceptions back to `AirflowException`.**\n\n## Testing Requirements\n\n- **Flag any changed or added behaviour without a corresponding test, and flag tests that a reviewer cannot fail by reverting the PR's change.** The target is exactly 100% coverage of what the PR changes — no more, no less. Tests for pre-existing logic or standard-library/third-party functions are padding; missing tests for changed behaviour are gaps. Exception: deliberate behaviour or integration tests may cross those boundaries by design.\n- **Flag any `unittest.TestCase` subclass.** Use pytest patterns instead.\n- **Flag any `mock.Mock()` or `mock.MagicMock()` without `spec` or `autospec`.** Unspec'd mocks silently accept any attribute access, hiding real bugs.\n- **Flag any `time.sleep` or `datetime.now()` in tests.** Use `time_machine` for time-dependent tests.\n- **Flag any issue number in test docstrings** (e.g., `\"\"\"Fix for #12345\"\"\"`) — test names should describe behavior, not track tickets.\n\n## API Correctness\n\n- **Flag any query on mapped task instances that does not filter on `map_index`.** Without it, queries may return arbitrary instances from the mapped set.\n- **Flag any Execution API change without a Cadwyn version migration** (CalVer format).\n\n## UI Code (React/TypeScript)\n\n- Avoid `useState + useEffect` to sync derived state. Use nullish coalescing or nullable override patterns instead.\n- Extract shared logic into custom hooks rather than copy-pasting across components.\n\n## Generated Files\n\n- **Flag any manual edits to files in `openapi-gen/`** or Task SDK generated models. These must be regenerated, not hand-edited.\n\n## AI-Generated Code Signals\n\nFlag these patterns that indicate low-quality AI-generated contributions:\n\n- **Fabricated diffs**: Changes to files or code paths that don't exist in the repository.\n- **Unrelated files included**: Changes to files that have nothing to do with the stated purpose of the PR.\n- **Description doesn't match code**: PR description describes something different from what the code actually does.\n- **No evidence of testing**: Claims of fixes without test evidence, or author admitting they cannot run the test suite.\n- **Over-engineered solutions**: Adding caching layers, complex locking, or benchmark script"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23076,
+      "excerpt": "ontributing-docs/04_how_to_contribute.rst`) — but it is not the\ndefault: prefer reviewing and building on an existing PR. Open a separate\none only *if your approach is genuinely different*. Do not blindly open\nanother near-identical PR for an issue that already has one (or several) —\nthat just adds reviewer noise.\n\n### Creating Pull Requests\n\n**Always push to the user's fork (`origin`)**, not to `upstream` (`apache/airflow`).\nNever push directly to `main`.\n\nBefore pushing, confirm the remote setup matches the conventions above\n(`upstream` → `apache/airflow`, `origin` → your fork). Run `git remote -v` and,\nif the names don't match, propose renames as described in \"Git remote naming\nconventions\" — ask the user to confirm before running them.\n\nIf the fork remote does not exist at all, create one:\n\n```bash\ngh repo fork apache/airflow --remote --remote-name origin\n```\n\nBefore pushing, perform a self-review of your changes following the Gen-AI review guidelines\nin [`contributing-docs/05_pull_requests.rst`](contributing-docs/05_pull_requests.rst) and the\ncode review checklist in [`.github/instructions/code-review.instructions.md`](.github/instructions/code-review.instructions.md):\n\n1. Review the full diff (`git diff main...HEAD`) and verify every change is intentional and\n   related to the task — remove any unrelated changes.\n2. Read `.github/instructions/code-review.instructions.md` and check your diff against every\n   rule — architecture boundaries, database correctness, code quality, testing requirements,\n   API correctness, and AI-generated code signals. Fix any violations before pushing.\n3. Confirm the code follows the project's coding standards and architecture boundaries\n   described in this file.\n4. Run regular (fast) static checks (`prek run --from-ref <target_branch> --stage pre-commit`)\n   and fix any failures. This includes mypy checks for non-provider projects (airflow-core, task-sdk, airflow-ctl, dev, scripts, devel-common).\n5. Run manual (slower) checks (`prek run --from-ref <target_branch> --stage manual`) and fix any failures.\n6. Run relevant individual tests and confirm they pass.\n7. Find which tests to run for the changes with selective-checks and run those tests in parallel to confirm they pass and check for CI-specific issues.\n8. Check for security issues — no secrets, no injection vulnerabilities, no unsafe patterns.\n\nBefore pushing, always re"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/05_pull_requests.rst",
+      "kind": "File",
+      "path": "contributing-docs/05_pull_requests.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7706,
+      "excerpt": "PR to several smaller PRs. It's also quite a good and common idea to keep a big ``Draft`` PR if you have\n    a bigger change that you want to make and then create smaller PRs from it that are easier to review and\n    merge and cherry-pick. It takes a long time (and a lot of attention and focus of a reviewer to review\n    big PRs so by splitting it to smaller PRs you actually speed up the review process and make it easier\n    for your change to be eventually merged.\n\n-   To learn more about ``cherry-pick`` of PRs, refer to the `Airflow 3 development documentation <../blob/main/dev/README_AIRFLOW3_DEV.md>`_.\n\n-   Run relevant tests locally before opening PR. Often tests are placed in the files that are corresponding\n    to the changed code (for example for ``airflow/cli/cli_parser.py`` changes you have tests in\n    ``tests/cli/test_cli_parser.py``). However there are a number of cases where the tests that should run\n    are placed elsewhere - you can either run tests for the whole ``TEST_TYPE`` that is relevant (see\n    ``breeze testing core-tests --help`` or ``breeze testing providers-tests --help`` output for\n    available test types for each of the testing commands) or you can run all tests, or eventually\n    you can push your code to PR and see results of the tests in the CI.\n\n-   You can use any supported python version to run the tests, but the best is to check\n    if it works for the oldest supported version (Python 3.10 currently). In rare cases\n    tests might fail with the oldest version when you use features that are available in newer Python\n    versions. For that purpose we have ``airflow.compat`` package where we keep back-ported\n    useful features from newer versions.\n\n-   Adhere to guidelines for commit messages described in this `article <https://cbea.ms/git-commit/>`_.\n    This makes the lives of those who come after you (and your future self) a lot easier.\n\n.. _pull-request-quality-criteria:\n\nPull Request quality criteria\n-----------------------------\n\nEvery open PR must meet the following minimum quality criteria before maintainers will review it.\nPRs that do not meet these criteria may be automatically converted to **draft** status by project\ntooling, with a comment explaining what needs to be fixed.\n\n1. **Descriptive title** — The PR title must clearly describe the change.\n   Generic titles such as \"Fix bug\", \"Update code\", \"Changes\", si"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/25_maintainer_pr_triage.md",
+      "kind": "File",
+      "path": "contributing-docs/25_maintainer_pr_triage.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2467,
+      "excerpt": "ozens of new Pull Requests every day from contributors all over\nthe world. A maintainer's most valuable resource is the time they spend in actual\nconversation with a contributor — explaining a design decision, helping a first-time\ncontributor land their change, weighing a tradeoff that only a human reviewer can\nweigh. That time is finite and irreplaceable.\n\nTo protect it, the project splits PR handling into two stages:\n\n1. **First pass — automated, mechanical, fast.** A maintainer invokes the\n   [`pr-management-triage`](https://github.com/apache/magpie/blob/main/.claude/skills/pr-management-triage/SKILL.md) skill, which sweeps the open\n   PR queue, runs purely deterministic checks (CI status, merge conflicts, unresolved\n   review threads, workflow-approval state, draft staleness), and proposes a\n   disposition for each PR. The maintainer confirms in batches — accepting a group of\n   \"rebase\" PRs in one keystroke, pulling individual PRs out for case-by-case\n   handling, skipping anything that doesn't fit. Comments posted by the skill are\n   drafted by an AI-assisted tool, attribute themselves clearly to the contributor,\n   and link back here so contributors understand why their first piece of feedback\n   came from a tool rather than a person.\n2. **Second pass — human review, on PRs that survived the first pass.** Once a PR\n   carries the `ready for maintainer review` label, a maintainer reads the diff,\n   leaves substantive comments, asks questions, suggests improvements, and ultimately\n   approves or requests changes. This is the part of the work that has to be done by\n   a human and benefits from a human's full attention.\n\nAutomating the first pass is what makes the second pass possible. Without it,\nmaintainers would spend most of their week mechanically checking whether each PR has\ngreen CI, is rebased on `main`, and has no unresolved review threads — instead of\nactually reviewing code. **There is no rush** — the skill grants generous grace\nwindows and posts comments that explicitly tell contributors to take their time. The\ngoal is not to push contributors faster; it is to make sure that when a maintainer\n*does* engage, it is on a PR that is ready for that engagement.\n\n## Two-stage workflow\n\n```mermaid\nflowchart TD\n    A[Contributor opens PR] --> B[\"Open PR (no label)\"]\n    B -->|\"Maintainer invokes<br/>pr-management-triage skill in Claude Code\"| C[\"Stage "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2980,
+      "excerpt": "rflow-ctl-release-candidate)\n  - [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n- [Publish release](#publish-release)\n- [Set variables](#set-variables)\n  - [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Publish the packages to PyPI](#publish-the-packages-to-pypi)\n  - [Add the final release tag in git](#add-the-final-release-tag-in-git)\n  - [Publish documentation](#publish-documentation)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Announce about the release in social media](#announce-about-the-release-in-social-media)\n  - [Announce about the release in Apache Airflow Slack](#announce-about-the-release-in-apache-airflow-slack)\n  - [Add Blog post about the release](#add-blog-post-about-the-release)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Close the testing status issue](#close-the-testing-status-issue)\n- [Additional processes](#additional-processes)\n  - [Fixing released documentation](#fixing-released-documentation)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\n------------------------------------------------------------------------------------------------------------\n\n# What the airflow-ctl distribution is\n\nThe distribution is separate packages that implement remote CLI for Apache Airflow.\n\nThe Release Manager prepares `airflow-ctl` packages separately from the main Airflow Release, using\n`breeze` commands and accompanying scripts. This document provides an overview of the command line tools\nneeded to prepare the packages.\n\nNOTE!! When you have problems with any of those commands that run inside `breeze` docker image, you\ncan run the command with `--debug` flag that will drop you in the shell inside the image and will\nprint the command that you should run.\n\n# Collect ambiguities during the release (for a follow-up doc PR)\n\nThese instructions are imperfect. Every release uncovers at least one command\nthat has drifted, one step that is unde"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3092,
+      "excerpt": "ase-candidate)\n- [Release verification](#release-verification)\n  - [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n- [Publish release](#publish-release)\n  - [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Publish the packages to PyPI](#publish-the-packages-to-pypi)\n  - [Add the final release tag in git](#add-the-final-release-tag-in-git)\n  - [Publish documentation](#publish-documentation)\n  - [Update providers metadata](#update-providers-metadata)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Announce about the release in social media](#announce-about-the-release-in-social-media)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Close the testing status issue](#close-the-testing-status-issue)\n  - [Remove Provider distributions scheduled for removal](#remove-provider-distributions-scheduled-for-removal)\n- [Misc / Post release Helpers](#misc--post-release-helpers)\n  - [Fixing released documentation](#fixing-released-documentation)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\n------------------------------------------------------------------------------------------------------------\n\n# Intro\n\n## What the provider distributions are\n\nThe Provider distributions are separate packages (one package per provider) that implement\nintegrations with external services for Airflow in the form of installable Python packages.\n\nThe Release Manager prepares packages separately from the main Airflow Release, using\n`breeze` commands and accompanying scripts. This document provides an overview of the command line tools\nneeded to prepare the packages.\n\nNOTE!! When you have problems with any of those commands that run inside `breeze` docker image, you\ncan run the command with `--debug` flag that will drop you in the shell inside the image and will\nprint the command that you should run.\n\n## Decide when to release\n\nYou can release Provider distributions separately from the m"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+      "kind": "File",
+      "path": "java-sdk/README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4712,
+      "excerpt": " and\nbefore the GA, so no extra bump is needed after a beta.\n\n### Tag the release candidate\n\nTag the release commit, keeping the RC number in the tag name so a failed vote\nsimply bumps to the next RC (the artifact version itself does not carry the RC\nsuffix). Push the tag before sending the vote so reviewers can check out the\nexact source being voted on.\n\n```bash\ngit tag -s java-sdk/<VERSION>-rc<N> -m \"Java SDK <VERSION> RC <N>\"\ngit push upstream java-sdk/<VERSION>-rc<N>\n```\n\n### Verify the POM locally\n\nBefore touching any remote repository, publish to your local Maven cache and\ninspect the generated POM:\n\n```bash\nrm -rf ~/.m2/repository/org/apache/airflow/  # Start clean.\n\n./gradlew publishToMavenLocal -PskipSigning=true\n\n# The airflow-sdk runtime.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk/*/airflow-sdk-*.pom\n\n# The bill of materials of airflow-sdk\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-bom/*/*.pom\n\n# The annotation processor for the builder pattern.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-processor/*/airflow-sdk-*.pom\n\n# The Gradle plugin for bundling.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-gradle-plugin/*/airflow-sdk-*.pom\n\n# The Gradle plugin's registration.\nless ~/.m2/repository/org/apache/airflow/sdk/org.apache.airflow.sdk.gradle.plugin/*/*.pom\n```\n\nCheck that the coordinates, description, license, SCM, and organization fields\nlook correct.\n\n### Dry-run against a local repository\n\nTo test the full publish flow without touching ASF infrastructure, override the\nrepository URL to a local directory\n\n```bash\nrm -rf /tmp/local-maven-repo  # Start clean.\n./gradlew publish -PmavenUrl=file:///tmp/local-maven-repo -PskipSigning=true\nls /tmp/local-maven-repo/org/apache/airflow/\n# This should contain the same components in ~/.m2 as inspected in the previous step.\n```\n\n*NOTE:* Signing is not required since nothing goes to Maven Central. If you want\nto test signing, set the GPG private key and passphrase as described in the next\nsection, and remove `-PskipSigning=true` from the above command.\n\n### Publish to ASF Nexus staging\n\nStore the credentials in `~/.gradle/gradle.properties` so they are not exposed\nin your shell history:\n\n```properties\nmavenUsername=your-asf-nexus-token-username\nmavenPassword=your-asf-nexus-token-password\nsigning.password=your-gpg-key-passphrase\n```\n\nThen stage and close the release. The\n[Gra"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/common/ai/docs/hitl_review.rst",
+      "kind": "File",
+      "path": "providers/common/ai/docs/hitl_review.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4235,
+      "excerpt": "==\n\nEnable the review loop with ``enable_hitl_review=True``:\n\n.. code-block:: python\n\n    from airflow.providers.common.ai.operators.agent import AgentOperator\n    from airflow.providers.common.ai.toolsets.sql import SQLToolset\n    from datetime import timedelta\n\n    AgentOperator(\n        task_id=\"summarize\",\n        prompt=\"Summarize the sales data\",\n        llm_conn_id=\"openai\",\n        toolsets=[SQLToolset(db_conn_id=\"postgres\")],\n        enable_hitl_review=True,\n        hitl_timeout=timedelta(minutes=30),\n        hitl_poll_interval=10.0,\n    )\n\n**Parameters**\n\n- ``enable_hitl_review`` — When ``True``, the operator enters the review loop\n  after the first generation. Default ``False``.\n- ``max_hitl_iterations`` — Maximum outputs the reviewer can see (1 = initial\n  output plus subsequent regenerations). When the reviewer requests changes at\n  iteration ``>= max_hitl_iterations``, the task fails with\n  ``HITLMaxIterationsError`` without running the LLM. For example, ``5`` allows\n  changes at iterations 1–4; the fifth output must be either approved or\n  rejected. Default ``5``.\n- ``hitl_timeout`` — Maximum wall-clock time to wait for all review rounds.\n  ``None`` = no timeout (blocks until a terminal action).\n- ``hitl_poll_interval`` — Seconds between XCom polls while waiting for a\n  human response. Default ``10``.\n\n**Accessing the chat UI** — The chat loads as a React plugin on the task\ninstance page. Use the **HITL Review** extra link on the task instance, or\nnavigate to\n``/dags/{dag_id}/runs/{run_id}/tasks/{task_id}/plugin/hitl-review``.\n\n**Example Dag**\n\n.. exampleinclude:: /../../ai/src/airflow/providers/common/ai/example_dags/example_agent.py\n    :language: python\n    :start-after: [START howto_operator_agent_hitl_review]\n    :end-before: [END howto_operator_agent_hitl_review]\n\n\nREST API\n========\n\nThe plugin exposes a FastAPI app at ``/hitl-review``. Base URL:\n\n.. code-block:: text\n\n    {AIRFLOW_BASE_URL}/hitl-review\n\n**Common query parameters** (where applicable):\n\n- ``dag_id`` — Dag ID.\n- ``run_id`` — Dag run ID.\n- ``task_id`` — Task ID.\n- ``map_index`` — Map index for mapped tasks. Use ``-1`` for non-mapped tasks or index for dynamic mapping.\n\n\nEndpoints\n---------\n\n.. list-table::\n   :header-rows: 1\n   :widths: 20 20 60\n\n   * - Method\n     - Path\n     - Description\n   * - GET\n     - ``/health``\n     - Liveness check. Returns ``{\"status\": \"ok\"}``.\n "
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+        "path": "airflow-core/docs/best-practices.rst",
+        "offset": 26879,
+        "line": 636
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+        "path": "contributing-docs/testing/unit_tests.rst",
+        "offset": 47164,
+        "line": 1128
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/howto/custom-operator.rst",
+        "path": "airflow-core/docs/howto/custom-operator.rst",
+        "offset": 3280,
+        "line": 78
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/executors/base_executor.py",
+        "path": "airflow-core/src/airflow/executors/base_executor.py",
+        "offset": 539,
+        "line": 12
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/dag.py",
+        "path": "airflow-core/src/airflow/models/dag.py",
+        "offset": 7634,
+        "line": 209
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/dagrun.py",
+        "path": "airflow-core/src/airflow/models/dagrun.py",
+        "offset": 23918,
+        "line": 582
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/utils/db.py",
+        "path": "airflow-core/src/airflow/utils/db.py",
+        "offset": 52496,
+        "line": 1531
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/adr/0002-workload-execution.md",
+        "path": "java-sdk/adr/0002-workload-execution.md",
+        "offset": 1384,
+        "line": 31
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/best-practices.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26879,
+      "excerpt": "simple enough\". However, as with any Python code, you can definitely tell that\nyour Dag code is \"simpler\" or \"faster\" when it is optimized. If you\nwant to optimize your Dags there are the following actions you can take:\n\n* Make your Dag load faster. This is a single improvement advice that might be implemented in various ways\n  but this is the one that has biggest impact on scheduler's performance. Whenever you have a chance to make\n  your Dag load faster - go for it, if your goal is to improve performance. Look at the\n  :ref:`best_practices/top_level_code` to get some tips of how you can do it. Also see at\n  :ref:`best_practices/dag_loader_test` on how to asses your Dag loading time.\n\n* Make your Dag generate simpler structure. Every task dependency adds additional processing overhead for\n  scheduling and execution. The Dag that has simple linear structure ``A -> B -> C`` will experience\n  less delays in task scheduling than Dag that has a deeply nested tree structure with exponentially growing\n  number of depending tasks for example. If you can make your Dags more linear - where at single point in\n  execution there are as few potential candidates to run among the tasks, this will likely improve overall\n  scheduling performance.\n\n* Make smaller number of Dags per file. While Airflow 2 is optimized for the case of having multiple Dags\n  in one file, there are some parts of the system that make it sometimes less performant, or introduce more\n  delays than having those Dags split among many files. Just the fact that one file can only be parsed by one\n  FileProcessor, makes it less scalable for example. If you have many Dags generated from one file,\n  consider splitting them if you observe it takes a long time to reflect changes in your Dag files in the\n  UI of Airflow.\n\n* Write efficient Python code. A balance must be struck between fewer Dags per file, as stated above, and\n  writing less code overall. Creating the Python files that describe Dags should follow best programming\n  practices and not be treated like configurations. If your Dags share similar code you should not copy\n  them over and over again to a large number of nearly identical source files, as this will cause a\n  number of unnecessary repeated imports of the same resources. Rather, you should aim to minimize\n  repeated code across all of your Dags so that the application can run efficiently and"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/howto/custom-operator.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/howto/custom-operator.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3280,
+      "excerpt": "folder, you can import the operator as follows:\n\n.. code-block:: python\n\n    from hello_operator import HelloOperator\n\nIf an operator communicates with an external service (API, database, etc) it's a good idea\nto implement the communication layer using a :ref:`custom-operator/hook`. In this way the implemented logic\ncan be reused by other users in different operators. Such approach provides better decoupling and\nutilization of added integration than using ``CustomServiceBaseOperator`` for each external service.\n\nOther consideration is the temporary state. If an operation requires an in-memory state (for example\na job id that should be used in ``on_kill`` method to cancel a request) then the state should be kept\nin the operator not in a hook. In this way the service hook can be completely state-less and whole\nlogic of an operation is in one place - in the operator.\n\n.. _custom-operator/hook:\n\nHooks\n-----\nHooks act as an interface to communicate with the external shared resources in a Dag.\nFor example, multiple tasks in a Dag can require access to a MySQL database. Instead of\ncreating a connection per task, you can retrieve a connection from the hook and utilize it.\nHook also helps to avoid storing connection auth parameters in a Dag.\nSee :doc:`connection` for how to create and manage connections and :doc:`apache-airflow-providers:index` for\ndetails of how to add your custom connection types via providers.\n\nLet's extend our previous example to fetch name from MySQL:\n\n.. code-block:: python\n\n    class HelloDBOperator(BaseOperator):\n        def __init__(self, name: str, mysql_conn_id: str, database: str, **kwargs) -> None:\n            super().__init__(**kwargs)\n            self.name = name\n            self.mysql_conn_id = mysql_conn_id\n            self.database = database\n\n        def execute(self, context):\n            hook = MySqlHook(mysql_conn_id=self.mysql_conn_id, schema=self.database)\n            sql = \"select name from user\"\n            result = hook.get_first(sql)\n            message = f\"Hello {result['name']}\"\n            print(message)\n            return message\n\nWhen the operator invokes the query on the hook object, a new connection gets created if it doesn't exist.\nThe hook retrieves the auth parameters such as username and password from Airflow\nbackend and passes the params to the :py:func:`airflow.hooks.base.BaseHook.get_connection`.\nYou should c"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/executors/base_executor.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/executors/base_executor.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 539,
+      "excerpt": "istributed under the License is distributed on an\n# \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n# KIND, either express or implied.  See the License for the\n# specific language governing permissions and limitations\n# under the License.\n\"\"\"Base executor - this is the base class for all the implemented executors.\"\"\"\n\nfrom __future__ import annotations\n\nimport logging\nimport sys\nfrom collections import defaultdict, deque\nfrom collections.abc import Sequence\nfrom dataclasses import dataclass, field\nfrom functools import cached_property\nfrom typing import TYPE_CHECKING, Any, ClassVar, cast\n\nimport pendulum\n\nfrom airflow._shared.observability.metrics import stats\nfrom airflow.cli.cli_config import DefaultHelpParser\nfrom airflow.configuration import conf\nfrom airflow.executors import workloads\nfrom airflow.executors.executor_loader import ExecutorLoader\nfrom airflow.executors.workloads.callback import ExecuteCallback\nfrom airflow.executors.workloads.connection_test import TestConnection\nfrom airflow.executors.workloads.task import ExecuteTask\nfrom airflow.executors.workloads.types import state_class_for_key\nfrom airflow.models import Log\nfrom airflow.models.taskinstancekey import TaskInstanceKey\nfrom airflow.observability.metrics import stats_utils\nfrom airflow.utils.helpers import prune_dict\nfrom airflow.utils.log.logging_mixin import LoggingMixin\n\nPARALLELISM: int = conf.getint(\"core\", \"PARALLELISM\")\n\n\ndef get_execution_api_server_url(conf_source: AirflowConfigParser | ExecutorConf = conf) -> str:\n    \"\"\"\n    Resolve the execution API server URL from configuration.\n\n    :param conf_source: Configuration source to read from. Defaults to the global ``conf``.\n        Team-specific executors can pass their own config (e.g. ``ExecutorConf``) to resolve\n        a team-specific URL.\n    \"\"\"\n    base_url = conf_source.get(\"api\", \"base_url\", fallback=\"/\")\n    # ExecutorConf.get() is typed as str | None even when fallback= guarantees a str,\n    # so the `not base_url` guard and the cast() below keep mypy happy.\n    if not base_url or base_url.startswith(\"/\"):\n        base_url = f\"http://localhost:8080{base_url}\"\n    default_execution_api_server = f\"{base_url.rstrip('/')}/execution/\"\n    return cast(\n        \"str\", conf_source.get(\"core\", \"execution_api_server_url\", fallback=default_execution_api_server)\n    )\n\n\nif TYPE_CHECKING:\n    import argparse\n    from datet"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/dag.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/models/dag.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7634,
+      "excerpt": "n)\n\n\nclass InconsistentDataInterval(AirflowException):\n    \"\"\"\n    Exception raised when a model populates data interval fields incorrectly.\n\n    The data interval fields should either both be None (for runs scheduled\n    prior to AIP-39), or both be datetime (for runs scheduled after AIP-39 is\n    implemented). This is raised if exactly one of the fields is None.\n    \"\"\"\n\n    _template = (\n        \"Inconsistent {cls}: {start[0]}={start[1]!r}, {end[0]}={end[1]!r}, \"\n        \"they must be either both None or both datetime\"\n    )\n\n    def __init__(self, instance: Any, start_field_name: str, end_field_name: str) -> None:\n        self._class_name = type(instance).__name__\n        self._start_field = (start_field_name, getattr(instance, start_field_name))\n        self._end_field = (end_field_name, getattr(instance, end_field_name))\n\n    def __str__(self) -> str:\n        return self._template.format(cls=self._class_name, start=self._start_field, end=self._end_field)\n\n\ndef _get_model_data_interval(\n    instance: Any,\n    start_field_name: str,\n    end_field_name: str,\n) -> DataInterval | None:\n    start = timezone.coerce_datetime(getattr(instance, start_field_name))\n    end = timezone.coerce_datetime(getattr(instance, end_field_name))\n    if start is None:\n        if end is not None:\n            raise InconsistentDataInterval(instance, start_field_name, end_field_name)\n        return None\n    if end is None:\n        raise InconsistentDataInterval(instance, start_field_name, end_field_name)\n    return DataInterval(start, end)\n\n\ndef get_last_dagrun(dag_id: str, session: Session, include_manually_triggered: bool = False) -> DagRun | None:\n    \"\"\"\n    Return the last dag run for a dag, None if there was none.\n\n    Last dag run can be any type of run e.g. scheduled or backfilled.\n    Overridden DagRuns are ignored.\n    \"\"\"\n    DR = DagRun\n    query = select(DR).where(DR.dag_id == dag_id, DR.logical_date.is_not(None))\n    if not include_manually_triggered:\n        query = query.where(DR.run_type != DagRunType.MANUAL)\n    query = query.order_by(DR.logical_date.desc())\n    return session.scalar(query.limit(1))\n\n\ndef get_asset_triggered_next_run_info(\n    dag_ids: list[str], *, session: Session\n) -> dict[str, dict[str, int | str]]:\n    \"\"\"\n    Get next run info for a list of dag_ids.\n\n    Given a list of dag_ids, get string representing how close any that are asset triggere"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/dagrun.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/models/dagrun.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23918,
+      "excerpt": "ag_id\": self.dag_id, \"run_type\": self.run_type, \"team_name\": getattr(self, \"_team_name\", None)}\n        )\n\n    def get_state(self):\n        return self._state\n\n    def set_state(self, state: DagRunState) -> None:\n        \"\"\"\n        Change the state of the DagRun.\n\n        Changes to attributes are implemented in accordance with the following table\n        (rows represent old states, columns represent new states):\n\n        .. list-table:: State transition matrix\n           :header-rows: 1\n           :stub-columns: 1\n\n           * -\n             - QUEUED\n             - RUNNING\n             - SUCCESS\n             - FAILED\n           * - None\n             - queued_at = timezone.utcnow()\n             - if empty: start_date = timezone.utcnow()\n               end_date = None\n             - end_date = timezone.utcnow()\n             - end_date = timezone.utcnow()\n           * - QUEUED\n             - queued_at = timezone.utcnow()\n             - if empty: start_date = timezone.utcnow()\n               end_date = None\n             - end_date = timezone.utcnow()\n             - end_date = timezone.utcnow()\n           * - RUNNING\n             - queued_at = timezone.utcnow()\n               start_date = None\n               end_date = None\n             -\n             - end_date = timezone.utcnow()\n             - end_date = timezone.utcnow()\n           * - SUCCESS\n             - queued_at = timezone.utcnow()\n               start_date = None\n               end_date = None\n             - start_date = timezone.utcnow()\n               end_date = None\n             -\n             -\n           * - FAILED\n             - queued_at = timezone.utcnow()\n               start_date = None\n               end_date = None\n             - start_date = timezone.utcnow()\n               end_date = None\n             -\n             -\n\n        \"\"\"\n        if state not in State.dag_states:\n            raise ValueError(f\"invalid DagRun state: {state}\")\n        if self._state != state:\n            if state == DagRunState.QUEUED:\n                self.queued_at = timezone.utcnow()\n                self.start_date = None\n                self.end_date = None\n            if state == DagRunState.RUNNING:\n                if self._state in State.finished_dr_states:\n                    self.start_date = timezone.utcnow()\n                else:\n                    self.start_date = self.start_date or timezone.utcnow("
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/utils/db.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/utils/db.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 52496,
+      "excerpt": "e(text(\"select 1 as is_alive;\"))\n    log.info(\"Connection successful.\")\n\n\n@enum.unique\nclass DBLocks(enum.IntEnum):\n    \"\"\"\n    Cross-db Identifiers for advisory global database locks.\n\n    Postgres uses int64 lock ids so we use the integer value, MySQL uses names, so we\n    call ``str()`, which is implemented using the ``_name_`` field.\n    \"\"\"\n\n    MIGRATIONS = enum.auto()\n    SCHEDULER_CRITICAL_SECTION = enum.auto()\n\n    def __str__(self):\n        return f\"airflow_{self._name_}\"\n\n\n@contextlib.contextmanager\ndef _create_global_lock_mysql(lock: DBLocks, lock_timeout: int) -> Generator[None, None, None]:\n    \"\"\"\n    Create a global advisory lock for MySQL.\n\n    Uses a dedicated AUTOCOMMIT connection because:\n    - GET_LOCK is session-level, not transaction-level\n    - DDL operations cause implicit commits that would break transaction wrappers\n    \"\"\"\n    lock_conn = settings.get_engine().connect()\n    try:\n        lock_conn = lock_conn.execution_options(isolation_level=\"AUTOCOMMIT\")\n\n        # GET_LOCK returns: 1 = acquired, 0 = timeout, NULL = error\n        lock_result = lock_conn.execute(\n            text(\"SELECT GET_LOCK(:lock_name, :timeout)\"),\n            {\"lock_name\": str(lock), \"timeout\": lock_timeout},\n        ).scalar()\n\n        if lock_result != 1:\n            raise RuntimeError(\n                f\"Could not acquire MySQL advisory lock '{lock}'. \"\n                f\"Result: {lock_result}. Another process may be holding the lock.\"\n            )\n\n        try:\n            yield\n        finally:\n            lock_conn.execute(text(\"SELECT RELEASE_LOCK(:lock_name)\"), {\"lock_name\": str(lock)})\n    finally:\n        lock_conn.close()\n\n\n@contextlib.contextmanager\ndef _create_global_lock_postgresql(\n    session: Session, lock: DBLocks, lock_timeout: int\n) -> Generator[None, None, None]:\n    \"\"\"Create a global advisory lock for PostgreSQL using transactional advisory locks.\"\"\"\n    bind = session.get_bind()\n    if hasattr(bind, \"connect\"):\n        conn = bind.connect()\n        owns_connection = True\n    else:\n        conn = bind\n        owns_connection = False\n\n    try:\n        if _USE_PSYCOPG3:\n            conn.execute(\n                text(\"SELECT set_config('lock_timeout', :timeout, false)\"),\n                {\"timeout\": str(lock_timeout)},\n            )\n            conn.execute(text(\"SELECT pg_advisory_lock(:id)\"), {\"id\": lock.value})\n        else:\n           "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+      "kind": "File",
+      "path": "contributing-docs/testing/unit_tests.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 47164,
+      "excerpt": "nd future!) releases of Airflow.\nFor example, it could be used to run the latest provider versions with released or main\nAirflow 3 if they are developed independently.\n\nThe tests use the current source version of the ``tests`` folder and current ``providers``, so care should be\ntaken that the tests implemented for providers in the sources allow running against previous versions\nof Airflow and against Airflow installed from the PyPI package rather than from sources.\n\nRunning the compatibility tests locally\n.......................................\n\nRunning tests locally is easy with the appropriate ``breeze`` command. In CI, the command\nis slightly different as it runs using providers built using wheel packages, but it is faster\nto run it locally and easier to iterate if you need to fix a provider using provider sources mounted\ndirectly to the container.\n\n1. Make sure to build the latest Breeze CI image:\n\n.. code-block:: bash\n\n   breeze ci-image build --python 3.9\n\n2. Enter the breeze environment by selecting the appropriate Airflow version and choosing\n   the ``providers-and-tests`` option for the ``--mount-sources`` flag.\n\n.. code-block:: bash\n\n  breeze shell --use-airflow-version 2.9.1 --mount-sources providers-and-tests\n\n3. You can then run tests as usual:\n\n.. code-block:: bash\n\n   pytest providers/<provider>/tests/.../test.py\n\n4. Iterate with the tests and providers. Both providers and tests are mounted from local sources, so\n   changes you make locally in both tests and provider sources are immediately reflected inside the\n   breeze container, and you can re-run the tests inside the ``breeze`` container without restarting it\n   (which makes it faster to iterate).\n\n.. note::\n\n   Since providers are installed from sources rather than from packages, plugins from providers are not\n   recognized by ProvidersManager for Airflow < 2.10, and tests that expect plugins to work might not work.\n   In such cases, you should follow the ``CI`` way of running the tests (see below).\n\nImplementing compatibility for provider tests for older Airflow versions\n........................................................................\n\nWhen you implement tests for providers, you should ensure that they are compatible with older Airflow versions.\n\nNote that some tests, if written without taking care about compatibility, might not work with older\nversions of Airflow. This is due to"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/adr/0002-workload-execution.md",
+      "kind": "File",
+      "path": "java-sdk/adr/0002-workload-execution.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1384,
+      "excerpt": "ntegration.md). It starts with the generic model — the\nabstract contracts and expected behavior that any language must implement — then walks through\nJava as a concrete example.\n\nThe Python-side `BaseCoordinator` interface, `CoordinatorManager`, and the supervisor changes\nneeded to support them are implemented in the Task SDK alongside the Java coordinator.\n\n## Decision\n\n### Extension Point: `BaseCoordinator`\n\n`BaseCoordinator` (in `task-sdk/src/airflow/sdk/execution_time/coordinator.py`) exposes a\nsingle `execute_task` method. Subclasses implement this to start the language-specific\nsubprocess and block until it completes, returning an `ExecutionResult` (exit code + final\ntask state string).\n\nThere is no lower-level `task_execution_cmd` hook; each coordinator implementation is free to\nstart its subprocess however it likes. For details on the built-in Python coordinator and how\nthe Java coordinator reuses `ActivitySubprocess` infrastructure, see\n[ADR-0001 — Coordinator Interface and Code Reuse](0001-java-sdk-airflow-integration.md#coordinator-interface-and-code-reuse).\n\nCoordinators contribute to the `airflow.sdk.coordinators` namespace package and are activated\nthrough `[sdk] coordinators` in `airflow.cfg` — there is no `provider.yaml` involvement.\n\n### Registration and Discovery\n\nCoordinators are registered in `[sdk] coordinators` and routed via `[sdk] queue_to_coordinator`\nin `airflow.cfg`. See [ADR-0001 — Java Coordinator Configuration](0001-java-sdk-airflow-integration.md#java-coordinator-configuration)\nfor a configuration example, and [ADR-0005](0005-coordinator-packaging.md) for the full\nconfiguration schema and rationale.\n\n`CoordinatorManager.for_queue(ti.queue)` resolves the queue to a coordinator instance (or falls\nback to `_PythonCoordinator`) and returns it to the supervisor, which then calls\n`coordinator.execute_task(...)`. See\n[ADR-0001 — The Coordinator Layer](0001-java-sdk-airflow-integration.md#the-coordinator-layer)\nfor how `CoordinatorManager` loads and caches coordinator instances.\n\n### Expected E2E Flow\n\n```\nAirflow Executor (dispatches task)\n  │\n  ▼\nsupervise_task()                      ← supervisor process entry point\n  │\n  ├─ coordinator = CoordinatorManager.for_queue(ti.queue)\n  │   └─ returns JavaCoordinator (or _PythonCoordinator as fallback)\n  │\n  ▼\ncoordinator.execute_task(what, dag_rel_path, bundle_info, client, ...)\n  │\n  │ [Py"
+    }
+  ]
+}

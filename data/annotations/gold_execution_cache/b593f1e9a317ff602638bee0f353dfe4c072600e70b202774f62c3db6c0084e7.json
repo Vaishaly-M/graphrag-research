@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/eShop.AppHost.csproj",
+        "path": "src/eShop.AppHost/eShop.AppHost.csproj",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:486",
+        "path": null,
+        "offset": 2728,
+        "line": 25
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+        "path": null,
+        "offset": 378,
+        "line": 12
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+        "path": "src/eShop.AppHost/Program.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+        "path": null,
+        "offset": 4511,
+        "line": 83
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 1282,
+        "line": 26
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.slnx",
+        "path": "eShop.slnx",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+        "path": null,
+        "offset": 23778,
+        "line": 363
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.slnx",
+      "kind": "File",
+      "path": "eShop.slnx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "<Solution>\n  <Folder Name=\"/src/\">\n    <Project Path=\"src/eShop.AppHost/eShop.AppHost.csproj\" />\n    <Project Path=\"src/Basket.API/Basket.API.csproj\" />\n    <Project Path=\"src/Catalog.API/Catalog.API.csproj\" />\n    <Project Path=\"src/eShop.ServiceDefaults/eShop.ServiceDefaults.csproj\" />\n    <Project Path=\"src/EventBus/EventBus.csproj\" />\n    <Project Path=\"src/EventBusRabbitMQ/EventBusRabbitMQ.csproj\" />\n    <Project Path=\"src/Identity.API/Identity.API.csproj\" />\n    <Project Path=\"src/IntegrationEventLogEF/IntegrationEventLogEF.csproj\" />\n    <Project Path=\"src/Ordering.API/Ordering.API.csproj\" />\n    <Project Path=\"src/OrderProcessor/OrderProcessor.csproj\" />\n    <Project Path=\"src/Ordering.Domain/Ordering.Domain.csproj\" />\n    <Project Path=\"src/Ordering.Infrastructure/Ordering.Infrastructure.csproj\" />\n    <Project Path=\"src/PaymentProcessor/PaymentProcessor.csproj\" />\n    <Project Path=\"src/WebApp/WebApp.csproj\" />\n    <Project Path=\"src/WebhookClient/WebhookClient.csproj\" />\n    <Project Path=\"src/Webhooks.API/Webhooks.API.csproj\" />\n    <Project Path=\"src/WebAppComponents/WebAppComponents.csproj\" />\n    <Project Path=\"src/HybridApp/HybridApp.csproj\" />\n    <Project Path=\"src/ClientApp/ClientApp.csproj\" />\n  </Folder>\n  <Folder Name=\"/tests/\">\n    <Project Path=\"tests/Basket.UnitTests/Basket.UnitTests.csproj\" />\n    <Project Path=\"tests/Catalog.FunctionalTests/Catalog.FunctionalTests.csproj\" />\n    <Project Path=\"tests/Ordering.FunctionalTests/Ordering.FunctionalTests.csproj\" />\n    <Project Path=\"tests/Ordering.UnitTests/Ordering.UnitTests.csproj\" />\n    <Project Path=\"tests/ClientApp.UnitTests/ClientApp.UnitTests.csproj\" />\n  </Folder>\n  <Folder Name=\"/Solution Items/\">\n    <File Path=\".editorconfig\" />\n    <File Path=\"Directory.Packages.props\" />\n    <File Path=\"NuGet.config\" />\n    <File Path=\"README.md\" />\n  </Folder>\n</Solution>"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+      "kind": "File",
+      "path": "src/eShop.AppHost/Program.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using eShop.AppHost;\n\nvar builder = DistributedApplication.CreateBuilder(args);\n\nbuilder.AddForwardedHeaders();\n\nvar redis = builder.AddRedis(\"redis\");\nvar rabbitMq = builder.AddRabbitMQ(\"eventbus\")\n    .WithLifetime(ContainerLifetime.Persistent);\nvar postgres = builder.AddPostgres(\"postgres\")\n    .WithImage(\"ankane/pgvector\")\n    .WithImageTag(\"latest\")\n    .WithLifetime(ContainerLifetime.Persistent);\n\nvar catalogDb = postgres.AddDatabase(\"catalogdb\");\nvar identityDb = postgres.AddDatabase(\"identitydb\");\nvar orderDb = postgres.AddDatabase(\"orderingdb\");\nvar webhooksDb = postgres.AddDatabase(\"webhooksdb\");\n\nvar launchProfileName = ShouldUseHttpForEndpoints() ? \"http\" : \"https\";\n\n// Services\nvar identityApi = builder.AddProject<Projects.Identity_API>(\"identity-api\", launchProfileName)\n    .WithExternalHttpEndpoints()\n    .WithReference(identityDb)\n    .WithHttpHealthCheck(\"/health\");\n\nvar identityEndpoint = identityApi.GetEndpoint(launchProfileName);\n\nvar basketApi = builder.AddProject<Projects.Basket_API>(\"basket-api\")\n    .WithReference(redis)\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\nredis.WithParentRelationship(basketApi);\n\nvar catalogApi = builder.AddProject<Projects.Catalog_API>(\"catalog-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(catalogDb);\n\nvar orderingApi = builder.AddProject<Projects.Ordering_API>(\"ordering-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb).WaitFor(orderDb)\n    .WithHttpHealthCheck(\"/health\")\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\nbuilder.AddProject<Projects.OrderProcessor>(\"order-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb)\n    .WaitFor(orderingApi); // wait for the orderingApi to be ready because that contains the EF migrations\n\nbuilder.AddProject<Projects.PaymentProcessor>(\"payment-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq);\n\nvar webHooksApi = builder.AddProject<Projects.Webhooks_API>(\"webhooks-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(webhooksDb)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\n// Reverse proxies\nbuilder.AddYarp(\"mobile-bff\")\n    .WithExternalHttpEndpoints()\n    .ConfigureMobileBffRoutes(catalogApi, orderingApi, identityApi);\n\n// Apps\nvar webhooksClient = builder.AddProject<Proje"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/eShop.AppHost.csproj",
+      "kind": "File",
+      "path": "src/eShop.AppHost/eShop.AppHost.csproj",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "<Project Sdk=\"Aspire.AppHost.Sdk/13.2.0\">\n  \n  <PropertyGroup>\n    <OutputType>Exe</OutputType>\n    <TargetFramework>net10.0</TargetFramework>\n    <Nullable>enable</Nullable>\n    <IsPackable>false</IsPackable>\n    <UserSecretsId>b99dbce4-17d4-41d2-858a-2b0529d60bb8</UserSecretsId>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"Aspire.Hosting.RabbitMQ\" />\n    <PackageReference Include=\"Aspire.Hosting.Redis\" />\n    <PackageReference Include=\"Aspire.Hosting.PostgreSQL\" />\n    <PackageReference Include=\"Aspire.Hosting.Azure.CognitiveServices\" />\n    <PackageReference Include=\"Aspire.Hosting.Yarp\" />\n    <PackageReference Include=\"CommunityToolkit.Aspire.Hosting.Ollama\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <ProjectReference Include=\"..\\Basket.API\\Basket.API.csproj\" />\n    <ProjectReference Include=\"..\\Catalog.API\\Catalog.API.csproj\" />\n    <ProjectReference Include=\"..\\Identity.API\\Identity.API.csproj\" />\n    <ProjectReference Include=\"..\\Ordering.API\\Ordering.API.csproj\" />\n    <ProjectReference Include=\"..\\OrderProcessor\\OrderProcessor.csproj\" />\n    <ProjectReference Include=\"..\\PaymentProcessor\\PaymentProcessor.csproj\" />\n    <ProjectReference Include=\"..\\Webhooks.API\\Webhooks.API.csproj\" />\n    <ProjectReference Include=\"..\\WebApp\\WebApp.csproj\" />\n    <ProjectReference Include=\"..\\WebhookClient\\WebhookClient.csproj\" />\n  </ItemGroup>\n\n</Project>\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:486",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 486,
+      "title": "Full rebuild of eshop solution fails on ClientApp",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2728,
+      "excerpt": "sec).\nRestored D:\\GitHub\\eshop\\src\\eShop.ServiceDefaults\\eShop.ServiceDefaults.csproj (in 1.38 sec).\nRestored D:\\GitHub\\eshop\\tests\\Basket.UnitTests\\Basket.UnitTests.csproj (in 1.43 sec).\nRestored D:\\GitHub\\eshop\\src\\Ordering.API\\Ordering.API.csproj (in 1.45 sec).\nRestored D:\\GitHub\\eshop\\src\\eShop.AppHost\\eShop.AppHost.csproj (in 1.48 sec).\nRestored D:\\GitHub\\eshop\\src\\Ordering.Domain\\Ordering.Domain.csproj (in 1.5 sec).\nRestored D:\\GitHub\\eshop\\src\\Webhooks.API\\Webhooks.API.csproj (in 1.51 sec).\nRestored D:\\GitHub\\eshop\\tests\\Ordering.FunctionalTests\\Ordering.FunctionalTests.csproj (in 1.56 sec).\nRestored D:\\GitHub\\eshop\\src\\WebApp\\WebApp.csproj (in 1.59 sec).\nRestored D:\\GitHub\\eshop\\src\\EventBus\\EventBus.csproj (in 1.6 sec).\nRestored D:\\GitHub\\eshop\\src\\Ordering.Infrastructure\\Ordering.Infrastructure.csproj (in 1.61 sec).\nRestored D:\\GitHub\\eshop\\tests\\Ordering.UnitTests\\Ordering.UnitTests.csproj (in 1.71 sec).\nRestored D:\\GitHub\\eshop\\src\\Basket.API\\Basket.API.csproj (in 1.72 sec).\nRestored D:\\GitHub\\eshop\\src\\Identity.API\\Identity.API.csproj (in 1.77 sec).\nRestored D:\\GitHub\\eshop\\src\\OrderProcessor\\OrderProcessor.csproj (in 1.78 sec).\nRestored D:\\GitHub\\eshop\\src\\WebhookClient\\WebhookClient.csproj (in 1.8 sec).\nRestored D:\\GitHub\\eshop\\tests\\Catalog.FunctionalTests\\Catalog.FunctionalTests.csproj (in 1.82 sec).\nRestored D:\\GitHub\\eshop\\src\\EventBusRabbitMQ\\EventBusRabbitMQ.csproj (in 1.84 sec).\nRestored D:\\GitHub\\eshop\\src\\IntegrationEventLogEF\\IntegrationEventLogEF.csproj (in 1.85 sec).\nRestored D:\\GitHub\\eshop\\src\\Mobile.Bff.Shopping\\Mobile.Bff.Shopping.csproj (in 1.86 sec).\nRestored D:\\GitHub\\eshop\\src\\ClientApp\\ClientApp.csproj (in 555 ms).\nRestored D:\\GitHub\\eshop\\src\\HybridApp\\HybridApp.csproj (in 2.28 sec).\n1>------ Rebuild All started: Project: ClientApp, Configuration: Debug Any CPU ------\n2>------ Rebuild All started: Project: WebAppComponents, Configuration: Debug Any CPU ------\n3>------ Rebuild All started: Project: Ordering.Domain, Configuration: Debug Any CPU ------\n4>------ Rebuild All started: Project: EventBus, Configuration: Debug Any CPU ------\n5>------ Rebuild All started: Project: eShop.ServiceDefaults, Configuration: Debug Any CPU ------\nRestored D:\\GitHub\\eshop\\tests\\ClientApp.UnitTests\\ClientApp.UnitTests.csproj (in 2.3 sec).\n3>Ordering.Domain -> D:\\GitHub\\eshop\\src\\Ordering.Domain\\bin\\Debug\\net8.0\\Ordering.Domain.dll\n5>eShop.Se"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1282,
+      "excerpt": "## What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontainers** | Testcontainers.PostgreSql | Real PostgreSQL in container | Fake AI, no-op event bus |\r\n| **AspireMessagingOutbox** | Aspire + Postgres | Real PostgreSQL | `CapturingEventBus` spy instead of RabbitMQ |\r\n| **AspireMessagingRabbitMq** | Aspire + Postgres + RabbitMQ | Real PostgreSQL | Real RabbitMQ + capture handlers |\r\n\r\n### Architecture (How It Works)\r\n\r\n```mermaid\r\nflowchart TB\r\n    subgraph TestLayer[\"Test class\"]\r\n        T[\"CatalogApiTests / OrderingApiTests\"]\r\n        A[\"[CatalogFunctionalTestMode] attribute\"]\r\n    end\r\n\r\n    subgraph Session[\"CatalogApiTestSession (assembly fixture)\"]\r\n        M[\"Resolve mode from attribute + env override\"]\r\n        L[\"Lazy ConcurrentDictionary per mode\"]\r\n    end\r\n\r\n    subgraph Fixture[\"CatalogApiFixture (one per mode)\"]\r\n        WH[\"ConfigureWebHost → mode-specific DI\"]\r\n        IH[\"InitializeAsync → start infra + seed data\"]\r\n    end\r\n\r\n    subgraph Hosts[\"Infrastructure hosts\"]\r\n        Aspire[\"CatalogAspireTestHost\"]\r\n        TC[\"CatalogTestcontainersHost\"]\r\n        Mock[\"CatalogRepositoryMockStore\"]\r\n        Mem[\"InMemoryCatalogContext\"]\r\n    end\r\n\r\n    subgraph Runtime[\"Under test\"]\r\n        API[\"Catalog.API via WebApplicationFactory\"]\r\n    end\r\n\r\n    T --> A\r\n    T --> Session\r\n    Session --> M --> L --> Fi"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1020,
+      "title": "Bump the aspire group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4511,
+      "excerpt": " retired on July 30, 2026](https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/). The `--provider` option is now required with no default ([#​7667](https://github.com/dotnet/extensions/pull/7667)).\n- Updated AI template dependencies — bumped `Aspire.Hosting.AppHost` to `13.4.6` and `CommunityToolkit.VectorData.SqliteVec` to `1.0.0-preview.4` (aligned `System.Linq.AsyncEnumerable` to `10.0.9`), replacing earlier workaround package pins ([#​7639](https://github.com/dotnet/extensions/pull/7639)).\n\n## Full Changelog\n\n- https://github.com/dotnet/extensions/compare/v10.8.3...v10.8.4\n\n\n## 10.8.3\n\n## Packages in this release\n\n| Package | Version |\n|---|---|\n| Microsoft.Extensions.AI | 10.8.3 |\n| Microsoft.Extensions.AI.Abstractions | 10.8.3 |\n| Microsoft.Extensions.AI.OpenAI | 10.8.3 |\n\n## Experimental API Changes\n\n### Experimental API behavior updates\n\n- Updated serialization behavior for experimental `ToolApprovalRequestContent.RequiresConfirmation` so it no longer leaks into consumer source-generated `AIContent` JSON metadata unless approval APIs are intentionally used ([#​7659](https://github.com/dotnet/extensions/pull/7659)).\n\n## What's Changed\n\n### AI abstractions and serialization\n\n- Fixed MEAI001 leakage from `RequiresConfirmation` in source-generated `AIContent` contexts by using an internal JSON-included backing member while keeping the public experimental member ignored for source-generation metadata ([#​7659](https://github.com/dotnet/extensions/pull/7659)).\n\n## Test Improvements\n\n- Added stabilization regression coverage to verify consumer source-generated `List<AIContent>` contexts compile and round-trip without requiring MEAI001 suppression ([#​7659](https://github.com/dotnet/extensions/pull/7659)).\n\n## Full Changelog\n\n- https://github.com/dotnet/extensions/compare/v10.8.2...v10.8.3\n\n\n## 10.8.2\n\nThis servicing release updates Microsoft.Extensions.VectorData.ConformanceTests to 10.8.2 and includes targeted test framework migration fixes.\n\n## Packages in this release\n\n| Package | Version | Note |\n|---------|---------|---------|\n| Microsoft.Extensions.VectorData.Abstractions | 10.8.2 | Published August 7, 2026 |\n| Microsoft.Extensions.VectorData.ConformanceTests | 10.8.2 | |\n\n**Update: August 7, 2026**\nThe Microsoft.Extensions.VectorData.Abstractions package was initially excluded from this release by mistake. Be"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1022,
+      "title": "Bump the microsoftextensions group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23778,
+      "excerpt": " retired on July 30, 2026](https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/). The `--provider` option is now required with no default ([#​7667](https://github.com/dotnet/extensions/pull/7667)).\n- Updated AI template dependencies — bumped `Aspire.Hosting.AppHost` to `13.4.6` and `CommunityToolkit.VectorData.SqliteVec` to `1.0.0-preview.4` (aligned `System.Linq.AsyncEnumerable` to `10.0.9`), replacing earlier workaround package pins ([#​7639](https://github.com/dotnet/extensions/pull/7639)).\n\n## Full Changelog\n\n- https://github.com/dotnet/extensions/compare/v10.8.3...v10.8.4\n\n\n## 10.8.3\n\n## Packages in this release\n\n| Package | Version |\n|---|---|\n| Microsoft.Extensions.AI | 10.8.3 |\n| Microsoft.Extensions.AI.Abstractions | 10.8.3 |\n| Microsoft.Extensions.AI.OpenAI | 10.8.3 |\n\n## Experimental API Changes\n\n### Experimental API behavior updates\n\n- Updated serialization behavior for experimental `ToolApprovalRequestContent.RequiresConfirmation` so it no longer leaks into consumer source-generated `AIContent` JSON metadata unless approval APIs are intentionally used ([#​7659](https://github.com/dotnet/extensions/pull/7659)).\n\n## What's Changed\n\n### AI abstractions and serialization\n\n- Fixed MEAI001 leakage from `RequiresConfirmation` in source-generated `AIContent` contexts by using an internal JSON-included backing member while keeping the public experimental member ignored for source-generation metadata ([#​7659](https://github.com/dotnet/extensions/pull/7659)).\n\n## Test Improvements\n\n- Added stabilization regression coverage to verify consumer source-generated `List<AIContent>` contexts compile and round-trip without requiring MEAI001 suppression ([#​7659](https://github.com/dotnet/extensions/pull/7659)).\n\n## Full Changelog\n\n- https://github.com/dotnet/extensions/compare/v10.8.2...v10.8.3\n\n\n## 10.8.2\n\nThis servicing release updates Microsoft.Extensions.VectorData.ConformanceTests to 10.8.2 and includes targeted test framework migration fixes.\n\n## Packages in this release\n\n| Package | Version | Note |\n|---------|---------|---------|\n| Microsoft.Extensions.VectorData.Abstractions | 10.8.2 | Published August 7, 2026 |\n| Microsoft.Extensions.VectorData.ConformanceTests | 10.8.2 | |\n\n**Update: August 7, 2026**\nThe Microsoft.Extensions.VectorData.Abstractions package was initially excluded from this release by mistake. Be"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1034,
+      "title": "Bump the aspire group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 378,
+      "excerpt": ", DevTunnel errors with automatically selected regions, misleading Azure emulator dashboard entries, and unintended changes to generated starter apps, plus Homebrew compatibility and Radius API diagnostic updates.\n\n### 🐛 Fixes\n\n- 📨 **Kafka health checks leaked producers and polling threads** — Each AppHost health-check execution created a new Kafka producer without disposing it, accumulating background threads over time. Health checks now reuse a producer per Kafka resource and dispose it with the AppHost, while keeping multiple Kafka resources independently configured. Fixes [#​20091](https://github.com/microsoft/aspire/issues/20091). ([#​20094](https://github.com/microsoft/aspire/pull/20094), backport of [#​20092](https://github.com/microsoft/aspire/pull/20092), @​davidfowl)\n\n- 🌐 **DevTunnels could fail when the region was selected automatically** — Tunnel setup and health checks now use the cluster-qualified tunnel ID returned by the DevTunnel CLI for port operations and access queries. This fixes failures when a bare tunnel ID cannot be resolved for those operations. Regression introduced in 13.3. Fixes [#​18790](https://github.com/microsoft/aspire/issues/18790). ([#​19853](https://github.com/microsoft/aspire/pull/19853), backport of [#​19230](https://github.com/microsoft/aspire/pull/19230), @​Vladipz)\n\n- ☁️ **Emulator-only AppHosts showed an unused Azure environment** — The dashboard now hides the `azure-environment` resource when no Azure resources require cloud provisioning, instead of leaving it visible in **Not started**. It remains visible for apps that combine local emulators with resources requiring Azure provisioning. No AppHost changes are needed. Fixes [#​19617](https://github.com/microsoft/aspire/issues/19617). ([#​19998](https://github.com/microsoft/aspire/pull/19998), backport of [#​19843](https://github.com/microsoft/aspire/pull/19843), @​eerhardt)\n\n- 🧩 **Starter app generation could alter unrelated JavaScript values** — Dynamic port replacement could also replace matching numeric literals in bundled JavaScript, including Bootstrap timing values. Port substitutions are now restricted to `localhost:` URLs, preserving the original library files while still configuring the requested ports. Fixes [#​20030](https://github.com/microsoft/aspire/issues/20030). ([#​20110](https://github.com/microsoft/aspire/pull/20110), backport of [#​20031](https:"
+    }
+  ]
+}

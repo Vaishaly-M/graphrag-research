@@ -1,0 +1,43 @@
+schema_version: 1
+dataset_id: rebuild-20261014
+seed: 42
+code_snapshot_policy: pinned existing local commit; read Git objects, never working
+  tree
+api_snapshot_policy: immutable first successful paginated responses; observed state,
+  not reconstructed commit-date state
+limits:
+  commits_per_repo: 1000
+  issues_per_repo: 300
+  pulls_per_repo: 300
+  max_file_bytes: 120000
+repositories:
+- repo: spring-projects/spring-petclinic
+  local_path: repos/spring-projects__spring-petclinic
+  commit_sha: f182358d02e4a68e52bdbabf55ca7800288511e7
+  commit_date: '2026-07-16T18:57:23+01:00'
+- repo: openmrs/openmrs-core
+  local_path: repos/openmrs__openmrs-core
+  commit_sha: 90309a7359a4912d84fa7df6c8463b24e0ce5051
+  commit_date: '2026-07-16T22:34:41+03:00'
+- repo: dotnet/eShop
+  local_path: repos/dotnet__eShop
+  commit_sha: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+  commit_date: '2026-04-21T09:27:58-05:00'
+- repo: apache/airflow
+  local_path: repos/apache__airflow
+  commit_sha: df2272c562a7cbf407e405df9c6c82b356a533b9
+  commit_date: '2026-07-17T10:39:58+02:00'
+- repo: mlflow/mlflow
+  local_path: repos/mlflow__mlflow
+  commit_sha: c557df01e3b7f1ec351df281f40d4c88d736ffdc
+  commit_date: '2026-07-17T09:08:56+00:00'
+synthetic:
+  repo: synthetic-org/platform
+  seed: 42
+  files: 60
+  commits: 40
+  issues: 30
+  pulls: 20
+  local_path: data/snapshots/rebuild-20261014/synthetic-org__platform/git_source
+  commit_sha: 7fcc2d61700076789de72af76d78025b0adb10ba
+  commit_date: '2026-01-01T00:39:00+00:00'

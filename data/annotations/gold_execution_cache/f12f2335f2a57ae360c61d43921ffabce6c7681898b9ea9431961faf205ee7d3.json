@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PatientService.java",
+        "path": "api/src/main/java/org/openmrs/api/PatientService.java",
+        "offset": 2384,
+        "line": 62
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PersonService.java",
+        "path": "api/src/main/java/org/openmrs/api/PersonService.java",
+        "offset": 24702,
+        "line": 603
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "offset": 25856,
+        "line": 640
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/resources/org/openmrs/arden/include/Fluoride_3-16y_PWS.mlm",
+        "path": "api/src/test/resources/org/openmrs/arden/include/Fluoride_3-16y_PWS.mlm",
+        "offset": 307,
+        "line": 11
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6687",
+        "path": null,
+        "offset": 183,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/Person.java",
+        "path": "api/src/main/java/org/openmrs/Person.java",
+        "offset": 15965,
+        "line": 568
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/resources/messages_en_GB.properties",
+        "path": "api/src/main/resources/messages_en_GB.properties",
+        "offset": 453,
+        "line": 14
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+        "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+        "offset": 20785,
+        "line": 655
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/Person.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/Person.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 15965,
+      "excerpt": "* the given name is null, or this person has no attributes.\n\t * <p>\n\t * <strong>Should</strong> return person attribute based on attributeName<br/>\n\t * <strong>Should</strong> return null if AttributeName is voided\n\t *\n\t * @param attributeName the name string to match on\n\t * @return PersonAttribute whose {@link PersonAttributeType#getName()} matchs the given name string\n\t */\n\tpublic PersonAttribute getAttribute(String attributeName) {\n\t\tif (attributeName != null) {\n\t\t\tfor (PersonAttribute attribute : getAttributes()) {\n\t\t\t\tPersonAttributeType type = attribute.getAttributeType();\n\t\t\t\tif (type != null && attributeName.equals(type.getName()) && !attribute.getVoided()) {\n\t\t\t\t\treturn attribute;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\treturn null;\n\t}\n\n\t/**\n\t * Convenience method to get this person's first attribute that has a PersonAttributeTypeId equal to\n\t * <code>attributeTypeId</code>.<br>\n\t * <br>\n\t * Returns null if this person has no non-voided {@link PersonAttribute} with the given type id or\n\t * this person has no attributes.<br>\n\t * <br>\n\t * The given id cannot be null.\n\t * <p>\n\t * <strong>Should</strong> return PersonAttribute based on attributeTypeId<br/>\n\t * <strong>Should</strong> return null when existing personAttribute with matching attribute type id\n\t * is voided\n\t *\n\t * @param attributeTypeId the id of the {@link PersonAttributeType} to look for\n\t * @return PersonAttribute whose {@link PersonAttributeType#getId()} equals the given Integer id\n\t */\n\tpublic PersonAttribute getAttribute(Integer attributeTypeId) {\n\t\tfor (PersonAttribute attribute : getActiveAttributes()) {\n\t\t\tif (attributeTypeId.equals(attribute.getAttributeType().getPersonAttributeTypeId())) {\n\t\t\t\treturn attribute;\n\t\t\t}\n\t\t}\n\t\treturn null;\n\t}\n\n\t/**\n\t * Convenience method to get all of this person's attributes that have a PersonAttributeType.name\n\t * equal to <code>attributeName</code>.\n\t * <p>\n\t * <strong>Should</strong> return all PersonAttributes with matching attributeType names\n\t *\n\t * @param attributeName\n\t */\n\tpublic List<PersonAttribute> getAttributes(String attributeName) {\n\t\tList<PersonAttribute> ret = new ArrayList<>();\n\n\t\tfor (PersonAttribute attribute : getActiveAttributes()) {\n\t\t\tPersonAttributeType type = attribute.getAttributeType();\n\t\t\tif (type != null && attributeName.equals(type.getName())) {\n\t\t\t\tret.add(attribute);\n\t\t\t}\n\t\t}\n\n\t\treturn ret;\n\t}\n\n\t/**\n\t * Convenience method to get all of th"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PatientService.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/PatientService.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2384,
+      "excerpt": " if none is specified<br/>\n\t * <strong>Should</strong> not set the preferred name address and identifier if they already\n\t * exist<br/>\n\t * <strong>Should</strong> not set a voided name or address or identifier as preferred\n\t *\n\t * @param patient patient to be created or updated\n\t * @return patient who was created or updated\n\t * @throws APIException regression 1375\n\t */\n\t@Authorized({ PrivilegeConstants.ADD_PATIENTS, PrivilegeConstants.EDIT_PATIENTS })\n\tpublic Patient savePatient(Patient patient) throws APIException;\n\n\t/**\n\t * Get patient by internal identifier\n\t * <p>\n\t * <strong>Should</strong> return null object if patient id doesnt exist<br/>\n\t * <strong>Should</strong> fetch patient with given patient id<br/>\n\t * <strong>Should</strong> return null when patient with given patient id does not exist\n\t *\n\t * @param patientId internal patient identifier\n\t * @return patient with given internal identifier\n\t * @throws APIException\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PATIENTS })\n\tpublic Patient getPatient(Integer patientId) throws APIException;\n\n\t/**\n\t * Get patient by internal identifier. If this id is for an existing person then instantiates a new\n\t * patient from that person, copying over all the fields.\n\t *\n\t * @param patientOrPersonId\n\t * @return a new unsaved patient or null if person or patient is not found\n\t * @throws APIException\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PATIENTS })\n\tPatient getPatientOrPromotePerson(Integer patientOrPersonId) throws APIException;\n\n\t/**\n\t * Get patient by universally unique identifier.\n\t * <p>\n\t * <strong>Should</strong> fetch patient with given uuid<br/>\n\t * <strong>Should</strong> return null if patient not found with given uuid\n\t *\n\t * @param uuid universally unique identifier\n\t * @return the patient that matches the uuid\n\t * @throws APIException\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PATIENTS })\n\tpublic Patient getPatientByUuid(String uuid) throws APIException;\n\n\t/**\n\t * Get patient identifier by universally unique identifier.\n\t * <p>\n\t * <strong>Should</strong> fetch patient identifier with given uuid<br/>\n\t * <strong>Should</strong> return null if patient identifier not found with given uuid\n\t *\n\t * @param uuid universally unique identifier\n\t * @return the patient identifier that matches the uuid\n\t * @throws APIException\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PATIENT_IDENTIFIERS })\n\tpublic Patient"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PersonService.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/PersonService.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 24702,
+      "excerpt": "t the preferred name and address if none is specified<br/>\n\t * <strong>Should</strong> not set the preferred name and address if they already exist<br/>\n\t * <strong>Should</strong> not set a voided name or address as preferred\n\t *\n\t * @param person person to be created or updated\n\t * @return person who was created or updated\n\t * @throws APIException\n\t */\n\t@Authorized({ PrivilegeConstants.ADD_PERSONS, PrivilegeConstants.EDIT_PERSONS })\n\tpublic Person savePerson(Person person) throws APIException;\n\n\t/**\n\t * Purges a person from the database (cannot be undone)\n\t * <p>\n\t * <strong>Should</strong> delete person from the database\n\t *\n\t * @param person person to be purged from the database\n\t * @throws APIException\n\t */\n\t@Authorized({ PrivilegeConstants.PURGE_PERSONS })\n\tpublic void purgePerson(Person person) throws APIException;\n\n\t/**\n\t * Get Person by its UUID\n\t * <p>\n\t * <strong>Should</strong> find object given valid uuid<br/>\n\t * <strong>Should</strong> return null if no object found with given uuid\n\t *\n\t * @param uuid\n\t * @return person or null\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PERSONS })\n\tpublic Person getPersonByUuid(String uuid) throws APIException;\n\n\t/**\n\t * Get PersonAddress by its UUID\n\t * <p>\n\t * <strong>Should</strong> find object given valid uuid<br/>\n\t * <strong>Should</strong> return null if no object found with given uuid\n\t *\n\t * @param uuid\n\t * @return person address or null\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PERSONS })\n\tpublic PersonAddress getPersonAddressByUuid(String uuid) throws APIException;\n\n\t/**\n\t * Get PersonAttribute by its UUID\n\t * <p>\n\t * <strong>Should</strong> find object given valid uuid<br/>\n\t * <strong>Should</strong> return null if no object found with given uuid\n\t *\n\t * @param uuid\n\t * @return person attribute or null\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PERSONS })\n\tpublic PersonAttribute getPersonAttributeByUuid(String uuid) throws APIException;\n\n\t/**\n\t * Get PersonName by its personNameId\n\t * <p>\n\t * <strong>Should</strong> find PersonName given valid personNameId<br/>\n\t * <strong>Should</strong> return null if no object found with given personNameId\n\t *\n\t * @param personNameId\n\t * @return person name or null\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PERSONS })\n\tPersonName getPersonName(Integer personNameId);\n\n\t/**\n\t * Get PersonName by its UUID\n\t * <p>\n\t * <strong>Should</strong> find object given vali"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 20785,
+      "excerpt": "\t/**\n\t * Convenience method to allow us to change the configuration more easily. TODO See todo for message\n\t * sender.\n\t *\n\t * @return\n\t */\n\tprivate static MessagePreparator getMessagePreparator() throws MessageException {\n\t\treturn new VelocityMessagePreparator();\n\t}\n\n\t/**\n\t * @return \"active\" user who has been authenticated, otherwise <code>null</code>\n\t */\n\tpublic static User getAuthenticatedUser() {\n\t\tif (Daemon.isDaemonThread()) {\n\t\t\treturn Daemon.getDaemonThreadUser();\n\t\t}\n\n\t\treturn getUserContext().getAuthenticatedUser();\n\t}\n\n\t/**\n\t * @return true if user has been authenticated in this context\n\t */\n\tpublic static boolean isAuthenticated() {\n\t\tif (Daemon.isDaemonThread()) {\n\t\t\treturn true;\n\t\t} else {\n\t\t\ttry {\n\t\t\t\treturn getAuthenticatedUser() != null;\n\t\t\t} catch (APIException e) {\n\t\t\t\tlog.info(\n\t\t\t\t    \"Could not get authenticated user inside called to isAuthenticated(), assuming no user context has been defined\",\n\t\t\t\t    e);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t}\n\n\t/**\n\t * Used by {@link org.openmrs.aop.AuthorizationAdvice} to give access for unauthenticated users when\n\t * running initialization code with proxy privileges. See e.g.\n\t * {@link OutboxTaskSchedulerInitializer#afterSingletonsInstantiated()}.\n\t *\n\t * @return true if there are any proxy privileges\n\t * @since 2.9.0\n\t */\n\tpublic static boolean hasProxyPrivileges() {\n\t\treturn getUserContext().hasProxyPrivileges();\n\t}\n\n\t/**\n\t * logs out the \"active\" (authenticated) user within context\n\t * <p>\n\t * <strong>Should</strong> not fail if session hasn't been opened yet\n\t *\n\t * @see #authenticate\n\t */\n\tpublic static void logout() {\n\t\tif (!isSessionOpen()) {\n\t\t\treturn; // fail early if there isn't even a session open\n\t\t}\n\t\tlog.debug(\"Logging out : {}\", getAuthenticatedUser());\n\n\t\tgetUserContext().logout();\n\n\t\t// reset the UserContext object (usually cleared out by closeSession()\n\t\t// soon after this)\n\t\tsetUserContext(new UserContext(getAuthenticationScheme()));\n\t}\n\n\t/**\n\t * Convenience method. Passes through to userContext.getAllRoles(User)\n\t */\n\tpublic static Set<Role> getAllRoles(User user) throws Exception {\n\t\treturn getUserContext().getAllRoles();\n\t}\n\n\t/**\n\t * Tests whether the currently authenticated user has a particular privilege\n\t */\n\tpublic static boolean hasPrivilege(String privilege) {\n\t\t// the daemon threads have access to all things\n\t\tif (Daemon.isDaemonThread()) {\n\t\t\treturn true;\n\t\t}\n\n\t\treturn getUs"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 25856,
+      "excerpt": "ORD_RESET_URL}\n\t */\n\t@Deprecated\n\tpublic static final String GP_HOST_URL = \"host.url\";\n\n\t/**\n\t * Global property that stores the base url for the password reset.\n\t */\n\tpublic static final String GP_PASSWORD_RESET_URL = \"security.passwordResetUrl\";\n\n\t/**\n\t * Global property that stores the number of days for users to be deactivated.\n\t */\n\tpublic static final String GP_NUMBER_OF_DAYS_TO_AUTO_RETIRE_USERS = \"users.numberOfDaysToRetire\";\n\n\t/**\n\t * At OpenMRS startup these global properties/default values/descriptions are inserted into the\n\t * database if they do not exist yet.\n\t *\n\t * @return List&lt;GlobalProperty&gt; of the core global properties\n\t */\n\tpublic static final List<GlobalProperty> CORE_GLOBAL_PROPERTIES() {\n\t\tList<GlobalProperty> props = new ArrayList<>();\n\n\t\tprops.add(new GlobalProperty(\"use_patient_attribute.healthCenter\", \"false\",\n\t\t        \"Indicates whether or not the 'health center' attribute is shown when viewing/searching for patients\",\n\t\t        BooleanDatatype.class, null));\n\t\tprops.add(new GlobalProperty(\"use_patient_attribute.mothersName\", \"false\",\n\t\t        \"Indicates whether or not mother's name is able to be added/viewed for a patient\", BooleanDatatype.class,\n\t\t        null));\n\n\t\tprops.add(new GlobalProperty(GLOBAL_PROPERTY_NEWPATIENTFORM_SHOW_RELATIONSHIPS, \"false\",\n\t\t        \"true/false whether or not to show the relationship editor on the addPatient.htm screen\",\n\t\t        BooleanDatatype.class, null));\n\n\t\tprops.add(new GlobalProperty(\"dashboard.overview.showConcepts\", \"\",\n\t\t        \"Comma delimited list of concepts ids to show on the patient dashboard overview tab\"));\n\n\t\tprops.add(new GlobalProperty(\"dashboard.encounters.showEmptyFields\", \"true\",\n\t\t        \"true/false whether or not to show empty fields on the 'View Encounter' window\", BooleanDatatype.class,\n\t\t        null));\n\t\tprops.add(new GlobalProperty(\"dashboard.encounters.usePages\", \"smart\",\n\t\t        \"true/false/smart on how to show the pages on the 'View Encounter' window.  'smart' means that if > 50% of the fields have page numbers defined, show data in pages\"));\n\t\tprops.add(new GlobalProperty(\"dashboard.encounters.showViewLink\", \"true\",\n\t\t        \"true/false whether or not to show the 'View Encounter' link on the patient dashboard\",\n\t\t        BooleanDatatype.class, null));\n\t\tprops.add(new GlobalProperty(\"dashboard.encounters.showEditLink\", \"true\",\n\t\t        \"true/false w"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/resources/messages_en_GB.properties",
+      "kind": "File",
+      "path": "api/src/main/resources/messages_en_GB.properties",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 453,
+      "excerpt": "\nreporting.taking=Taking\nreporting.missingDrug=MISSING DRUG\nreporting.or=or\nreporting.at=at {0}\nreporting.anyDrugOrder=Any Drug Order\nreporting.patientCurrently=Patients currently\nreporting.patients=Patients\nreporting.takingAnyDrugs=taking any drugs\nreporting.takingNoDrugs=taking no drugs\nreporting.whoNeverTakeDrug=who never took any drugs\nreporting.notTaking=not taking\nreporting.of=of\nreporting.everTakingAnyDrugs=ever taking any drugs\nreporting.withinTheLast=within the last\nreporting.withinTheLastMonths=within the last {0} month(s)\nreporting.withinTheLastDays=within the last {0} day(s)\nreporting.withinLast=within last\nreporting.withinLastMonths=within last {0} month(s)\nreporting.withinLastDays=within last {0} day(s)\nreporting.untilMonthsAgo=until {0} month(s) ago\nreporting.untilDaysAgo=until {0} day(s) ago\nreporting.since=since {0}\nreporting.until=until {0}\nreporting.patientsIn=Patients in\nreporting.anytimeAfter=anytime after {0}\nreporting.anytimeBefore=anytime before {0}\nreporting.patientsWith=Patients with\nreporting.obsWithValue=obs with value\nreporting.qtnNValNull=question and value are both null\nreporting.concept=CONCEPT\nreporting.anyAttribute=any attribute\nreporting.equalTo=equal to\nreporting.patientsWhoStopOrChanged=Patients who stopped or changed\nreporting.anyOf=any of\nreporting.anyFormOf=any form of\nreporting.anyDrug=any drug\nreporting.nameNotDefined=name not defined\nreporting.becauseOf=because of {0}\nreporting.becauseOfAnyOf=because of any of\nreporting.with=with\nreporting.on=on {0}\nreporting.onOrAfter=on or after {0}\nreporting.onOrBefore=on or before {0}\nreporting.any=any\nreporting.atLeastYearsOld=at least {0} year(s) old\nreporting.atMostYearsOld=at most {0} year(s) old\nreporting.atLeast=at least {0}\nreporting.atMost=at most {0}\nreporting.encounters=encounters\nreporting.fromThe=from the {0} form\nreporting.form=form\nreporting.not=not\nreporting.patientsWhoBelongTo=Patients who belong to\nreporting.null=null\nreporting.in=in\nreporting.byMethod=by method\nreporting.allPatients=All Patients\nreporting.female=Female\nreporting.male=Male\nreporting.bornAfter=born after\nreporting.bornBefore=born before\nreporting.bornBetween=born between\nreporting.and=and\nreporting.yearsOld=years old\nreporting.whoAreEither=who are either {0} or {1} of\nreporting.whoAre=who are {0} to {1}\nreporting.withAnyRelationshipTo=with any relationship to\nreporting.to=to\nreporting.anyone=anyo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/resources/org/openmrs/arden/include/Fluoride_3-16y_PWS.mlm",
+      "kind": "File",
+      "path": "api/src/test/resources/org/openmrs/arden/include/Fluoride_3-16y_PWS.mlm",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 307,
+      "excerpt": "se clinician on the supplementation of fluoride to children.;;\n\tExplanation:\tChildren between the ages of 6 mo and 3 years should receive fluoride supplemetation  of /*0.5mg*/ qD if they are not drinking water supplemented with fluoride.;;\n\tKeywords:\tFluoride; dental; oral health;;\n\tCitations:\tCDC, WHO definitions;;\n\tLinks:\t/*http://www.who.int/reproductive-health/publications/MSM_98_1/MSM_98_1_glossary.en.html*/;;\nKnowledge:\n\tType:\tdata_driven;;\n/*\tPriority:\t592;;\n\tEvoke:\t;;\n\tUrgency:\t;;\n*/\nData:\nfluoride := read Last {Fluoride_supplemented from CHICA} Where it Occurred Within Past 60 Days;\nww := read Last {well_water from CHICA} Where it Occurred Within Past 2 Years;\n;;\n\tPriority:\t592;;\n\tEvoke:\t;;\n\nLogic:\nif (fluoride = 1) then conclude False;\nif (ww = 0) then conclude False;\nconclude True;\n;;\nAction:\nwrite (\"Fluoride prevents tooth decay.  City water is fluoridated, well water is usually not.  Fluoride dosage should be 1/2 of recommended if child is in daycare/school with well water at home.\");\n;;\n\tUrgency:\t;;\n/*\t\nCHICA:\nMinimum Age: 3 years;\nMaximum Age: 16 years;\nCHICA Priority: 592;\nJIT Filename: ;\nIf  (Box1) then well_water = 1;\nIf  (Box3) then well_water = 0;\nIf  (Box5) then well_water = 1;\nIf  (Box2) then Fluoride_supplemented = 1;\nIf  (Box6) then Fluoride_supplemented = 1;;;\nPWS Leaves:\nBox1 := All H20 from well or bottled->\nBox2 := 1 mg Fluoride qD\nBox3 := city water\nBox4 := \nBox5 := Comb city H20 & well/bottled->\nBox6 := 0.50 mg Fluoride qD\n;;\n\n*/\nend:"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6687",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6687,
+      "title": "TRUNK-6829: Fix case, duplicates, backslashes and escaping in properties written by startup-init.sh",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 183,
+      "excerpt": " and backported together.\n\n- **TRUNK-6829:** `OMRS_EXTRA_*` names containing any lower case letter keep their case (e.g. `OMRS_EXTRA_mail_smtp_socketFactory_class` → `mail.smtp.socketFactory.class`). All upper case names are lowercased as before. Also replaces the unquoted `tr [:upper:] [:lower:]`, whose arguments were subject to pathname expansion: with a one-character file such as `u` or `e` in the working directory, no extra properties were written.\n- **TRUNK-6830:** when several `OMRS_EXTRA_*` variables give the same property, the first in sorted order is used and the others are logged and ignored. Previously the last won on first install and the first on later starts.\n- **TRUNK-6831:** extra properties are written with `printf` instead of `echo -e`, so backslash sequences in values are no longer interpreted (differently on each path).\n- **TRUNK-6835:** values written to the server and runtime properties files are escaped for the Java properties format (`\\`, line breaks, leading whitespace). A backslash in `OMRS_DB_PASSWORD`, for example, now reaches OpenMRS unchanged.\n\n**Behaviour changes:**\n- A mixed-case name that relied on being lowercased now keeps its case, e.g. `OMRS_EXTRA_Initializer_DOMAINS` used to set `initializer.domains` and now sets `Initializer.DOMAINS`. Such names need to be written all upper case, or in the property's exact case.\n- Anyone who escaped backslashes in these variables by hand to work around the old handling will now get doubled backslashes.\n\n**Not covered:** non-ASCII values. The install script is read with `Properties.load(InputStream)` (ISO-8859-1) and runtime properties as UTF-8.\n\n## Testing\n\nNo automated tests cover `startup-init.sh`. I ran the properties section of the script under `bash -aeu` for both a first install and an existing runtime properties file, and loaded the output with `java.util.Properties` as OpenMRS does:\n\n- On `master`, each of the four problems reproduces.\n- On this branch, a value containing `\\t`, `\\\\`, `=`, `:`, `#`, leading spaces, CR and LF, and a DB password containing `\\`, read back exactly as set on both paths. Mixed-case and duplicate names behave as described above.\n\nI have not built the image or started a container with it. The four commits cherry-pick cleanly onto 2.9.x and 2.8.x.\n\n## Issue I worked on\n\nsee https://issues.openmrs.org/browse/TRUNK-6829, https://issues.openmrs.org/browse/TR"
+    }
+  ]
+}

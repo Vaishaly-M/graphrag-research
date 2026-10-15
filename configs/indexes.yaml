@@ -1,0 +1,12 @@
+schema_version: 1
+model: sentence-transformers/all-MiniLM-L6-v2
+revision: 1110a243fdf4706b3f48f1d95db1a4f5529b4d41
+backend: onnxruntime
+provider: DmlExecutionProvider
+precision: float32
+onnx_path: data/models/minilm_fp32.onnx
+onnx_sha256: 1945e0c1ac14dfa958af807a805fe46a0463a9cdad2974ec85a8858b8e1c9c15
+max_sequence_length: 256
+threads: 2
+batch_size: 64
+normalize_embeddings: true

@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_CONTAINS_FILE]->(f:DLFile) WHERE r.dataset=$dataset AND r.repo=$repo AND f.path=$path WITH r,f,[line IN split(f.content,'\\n') WHERE trim(line) STARTS WITH 'def ' OR trim(line) STARTS WITH 'class ' OR trim(line) STARTS WITH 'public ' OR trim(line) STARTS WITH 'function ' OR trim(line) STARTS WITH 'export '] AS declarations RETURN CASE WHEN size(declarations)=0 THEN 'no matching declaration lines' ELSE reduce(s='',x IN declarations[0..5] | s+CASE WHEN s='' THEN '' ELSE ' | ' END+trim(x)) END AS entity,'Declaration-line extraction from '+f.path AS fact,[r.id,f.id] AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "path": "providers/grpc/src/airflow/providers/__init__.py"
+  },
+  "rows": [
+    {
+      "entity": "no matching declaration lines",
+      "fact": "Declaration-line extraction from providers/grpc/src/airflow/providers/__init__.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:repository:apache/airflow",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/grpc/src/airflow/providers/__init__.py"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "offset": 9024,
+        "line": 134
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+        "path": "api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+        "offset": 18893,
+        "line": 487
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6546",
+        "path": null,
+        "offset": 309,
+        "line": 9
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/Duration.java",
+        "path": "api/src/main/java/org/openmrs/Duration.java",
+        "offset": 1335,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+        "path": null,
+        "offset": 1318,
+        "line": 15
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6691",
+        "path": null,
+        "offset": 3747,
+        "line": 29
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+        "path": "README.md",
+        "offset": 3055,
+        "line": 24
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+        "path": null,
+        "offset": 6307,
+        "line": 20
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3055,
+      "excerpt": "elopment Kit](#software-development-kit)\n5. [Extending OpenMRS with Modules](#extending-openmrs-with-modules)\n6. [Documentation](#documentation)\n   1. [Developer guides](#developer-guides)\n   2. [Wiki](#wiki)\n   3. [Website](#website)\n7. [Contributing](#contributing)\n   1. [Code](#code)\n   2. [Code Reviews](#code-reviews)\n   3. [Translation](#translation)\n8. [Issues](#issues)\n9. [Community](#community)\n10. [Support](#support)\n11. [License](#license)\n\n## Build\n\n### Prerequisites\n\n#### Java\n\nOpenMRS is a Java application which is why you need to install a Java JDK.\n\nIf you want to build the master branch you will need a Java JDK of minimum version 8.\n\n#### Maven\n\nInstall the build tool [Maven](https://maven.apache.org/).\n\nYou need to ensure that Maven uses the Java JDK needed for the branch you want to build.\n\nTo do so execute\n\n```bash\nmvn -version\n```\n\nwhich will tell you what version Maven is using. Refer to the [Maven docs](https://maven.apache.org/configure.html) if you need to configure Maven.\n\n#### Git\n\nInstall the version control tool [git](https://git-scm.com/) and clone this repository with\n\n```bash\ngit clone https://github.com/openmrs/openmrs-core.git\n```\n\n### Build Command\n\nAfter you have taken care of the [Prerequisites](#prerequisites)\n\nExecute the following\n\n```bash\ncd openmrs-core\n./mvnw clean package\n```\n\nThis will generate the OpenMRS application in `webapp/target/openmrs.war`, which you will have to deploy to an application server such as [Tomcat](https://tomcat.apache.org/) or [Jetty](https://jetty.org/).\n\n### Deploy\n\nFor development purposes you can simply deploy the `openmrs.war` into the application server jetty via\n\n```bash\ncd openmrs-core/webapp\n../mvnw jetty:run\n```\n\nTo run Jetty on a custom port, use the `jetty.http.port` property:\n\n```bash\n../mvnw -Djetty.http.port=8081 jetty:run\n```\n\nTo run on Cargo, use the `cargo:run` command:\n\n```bash\n../mvnw cargo:run\n```\n\nTo run Cargo on a custom port, use the `cargo.servlet.port` property:\n\n```bash\n../mvnw -Dcargo.servlet.port=8081 cargo:run\n```\n\nIf all goes well (check the console output) you can access the OpenMRS application at `localhost:8080/openmrs`.\n\nRefer to [Getting Started as a Developer](https://wiki.openmrs.org/display/docs/Getting+Started+as+a+Developer) for some more information\non useful Maven commands and build options.\n\n## Docker build\n\nDocker builds are still a work in progre"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/Duration.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/Duration.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1335,
+      "excerpt": "ilently change how long medications run\n * before they auto-expire. Runtime-configurable registries and terminology-server lookups were\n * considered and rejected; the trade-offs are recorded on TRUNK-6674. The compiled-in design stays\n * safe only while three invariants hold, so preserve them when touching the code registries:\n * entries are additive across vocabulary generations and never removed or repurposed, because\n * existing dictionaries and module binaries carry the old codes; unknown codes surface as\n * validation errors rather than save-time failures; and UCUM, whose codes are stable by design, is\n * recognised alongside SNOMED CT so no single SNOMED inactivation, like the 2021 minute code\n * change, can break order saving on its own.\n *\n * @since 1.10\n */\npublic class Duration {\n\n\tpublic static final String SNOMED_CT_SECONDS_CODE = \"257997001\";\n\n\t/**\n\t * The legacy SNOMED CT code for minute, inactive in SNOMED CT since its 2021-07-31 release but\n\t * still accepted for backward compatibility with existing dictionaries. New mappings should use\n\t * {@link #SNOMED_CT_MINUTES_CODE_2021}.\n\t */\n\tpublic static final String SNOMED_CT_MINUTES_CODE = \"258701004\";\n\n\t/**\n\t * The SNOMED CT code for minute that is active since the 2021-07-31 release, in which the legacy\n\t * code {@link #SNOMED_CT_MINUTES_CODE} was inactivated as ambiguous. Dictionaries that track\n\t * current SNOMED CT releases, such as CIEL, map their minutes concepts to this code.\n\t *\n\t * @since 2.8.8, 2.9.0, 3.0.0\n\t */\n\tpublic static final String SNOMED_CT_MINUTES_CODE_2021 = \"1156209001\";\n\n\tpublic static final String SNOMED_CT_HOURS_CODE = \"258702006\";\n\n\tpublic static final String SNOMED_CT_DAYS_CODE = \"258703001\";\n\n\tpublic static final String SNOMED_CT_WEEKS_CODE = \"258705008\";\n\n\tpublic static final String SNOMED_CT_MONTHS_CODE = \"258706009\";\n\n\tpublic static final String SNOMED_CT_YEARS_CODE = \"258707000\";\n\n\tpublic static final String SNOMED_CT_RECURRING_INTERVAL_CODE = \"252109000\";\n\n\tpublic static final String SNOMED_CT_CONCEPT_SOURCE_HL7_CODE = \"SCT\";\n\n\t/**\n\t * Name identifying the SNOMED CT concept source, used as a fallback for dictionaries that register\n\t * the source by name without setting its HL7 code to {@link #SNOMED_CT_CONCEPT_SOURCE_HL7_CODE},\n\t * mirroring how {@link #UCUM_CONCEPT_SOURCE_NAME} is matched.\n\t *\n\t * @since 3.0.0\n\t */\n\tpublic static final String SNOMED_CT_CONCEPT_S"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18893,
+      "excerpt": "oDB\";\n\t\t}\n\n\t\tClass.forName(driver);\n\t\treturn DriverManager.getConnection(url, username, password);\n\t}\n\n\t/**\n\t * Represents each change in the files referenced by liquibase-update-to-latest\n\t */\n\tpublic static class OpenMRSChangeSet {\n\n\t\tprivate String id;\n\n\t\tprivate String author;\n\n\t\tprivate String comments;\n\n\t\tprivate String description;\n\n\t\tprivate ChangeSet.RunStatus runStatus;\n\n\t\tprivate Date ranDate;\n\n\t\t/**\n\t\t * Create an OpenmrsChangeSet from the given changeset\n\t\t *\n\t\t * @param changeSet\n\t\t * @param database\n\t\t */\n\t\tpublic OpenMRSChangeSet(ChangeSet changeSet, Database database) throws Exception {\n\t\t\tsetId(changeSet.getId());\n\t\t\tsetAuthor(changeSet.getAuthor());\n\t\t\tsetComments(changeSet.getComments());\n\t\t\tsetDescription(changeSet.getDescription());\n\t\t\tsetRunStatus(database.getRunStatus(changeSet));\n\t\t\tsetRanDate(database.getRanDate(changeSet));\n\t\t}\n\n\t\t/**\n\t\t * @return the author\n\t\t */\n\t\tpublic String getAuthor() {\n\t\t\treturn author;\n\t\t}\n\n\t\t/**\n\t\t * @param author the author to set\n\t\t */\n\t\tpublic void setAuthor(String author) {\n\t\t\tthis.author = author;\n\t\t}\n\n\t\t/**\n\t\t * @return the comments\n\t\t */\n\t\tpublic String getComments() {\n\t\t\treturn comments;\n\t\t}\n\n\t\t/**\n\t\t * @param comments the comments to set\n\t\t */\n\t\tpublic void setComments(String comments) {\n\t\t\tthis.comments = comments;\n\t\t}\n\n\t\t/**\n\t\t * @return the description\n\t\t */\n\t\tpublic String getDescription() {\n\t\t\treturn description;\n\t\t}\n\n\t\t/**\n\t\t * @param description the description to set\n\t\t */\n\t\tpublic void setDescription(String description) {\n\t\t\tthis.description = description;\n\t\t}\n\n\t\t/**\n\t\t * @return the runStatus\n\t\t */\n\t\tpublic ChangeSet.RunStatus getRunStatus() {\n\t\t\treturn runStatus;\n\t\t}\n\n\t\t/**\n\t\t * @param runStatus the runStatus to set\n\t\t */\n\t\tpublic void setRunStatus(ChangeSet.RunStatus runStatus) {\n\t\t\tthis.runStatus = runStatus;\n\t\t}\n\n\t\t/**\n\t\t * @return the ranDate\n\t\t */\n\t\tpublic Date getRanDate() {\n\t\t\treturn ranDate;\n\t\t}\n\n\t\t/**\n\t\t * @param ranDate the ranDate to set\n\t\t */\n\t\tpublic void setRanDate(Date ranDate) {\n\t\t\tthis.ranDate = ranDate;\n\t\t}\n\n\t\t/**\n\t\t * @return the id\n\t\t */\n\t\tpublic String getId() {\n\t\t\treturn id;\n\t\t}\n\n\t\t/**\n\t\t * @param id the id to set\n\t\t */\n\t\tpublic void setId(String id) {\n\t\t\tthis.id = id;\n\t\t}\n\n\t}\n\n\t/**\n\t * Returns all change sets defined by (a) the Liquibase snapshot files that had been used to\n\t * initialise the OpenMRS database and (b) the Liquibase update files that that are appli"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "kind": "File",
+      "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9024,
+      "excerpt": "nes if\n# CSRFGuard should generate and utilize a new token after verifying the previous token. Rotation\n# helps minimize the window of opportunity an attacker has to leverage the victim's stolen token\n# in a targeted CSRF attack. However, this functionality generally causes navigation problems in\n# most applications. Specifically, the 'Back' button in the browser will often cease to function\n# properly. When a user hits the 'Back' button and interacts with the HTML, the browser may submit\n# an old token causing CSRFGuard to incorrectly believe this request is a CSRF attack in progress\n# (i.e. a 'false positive'). Users can prevent this scenario by preventing the caching of HTML pages\n# containing FORM submissions using the cache-control header. However, this may also introduce\n# performance problems as the browser will have to request HTML on a more frequent basis.\n#\n# Note: Rotation in case of AJAX requests is not supported currently because of possible race conditions.\n# A Single Page Application can fire multiple simultaneous requests. If rotation is enabled for AJAX requests,\n# the first request could trigger a token change before the validation of the same token within the second request,\n# causing false-positive CSRF intrusion exceptions.\n#\n# The following configuration snippet enables token rotation:\n#\norg.owasp.csrfguard.Rotate = false\n\n#####################################\n## Ajax and XMLHttpRequest Support ##\n#####################################\n# The Ajax property (org.owasp.csrfguard.Ajax) is a boolean value that indicates whether or not OWASP\n# CSRFGuard should support the injection and verification of unique per-session prevention tokens for\n# XMLHttpRequests. To leverage Ajax support, the user must not only set this property to true but must\n# also reference the JavaScript DOM Manipulation code using a script element. This dynamic script will\n# override the send method of the XMLHttpRequest object to ensure the submission of an X-Requested-With\n# header name value pair coupled with the submission of a custom header name value pair for each request.\n# The name of the custom header is the value of the token name property and the value of the header is\n# always the unique per-session token value. This custom header is analogous to the HTTP parameter name\n# value pairs submitted via traditional GET and POST requests. If the X-Requested-With heade"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6533,
+      "title": "TRUNK-6795: Populate obs reference ranges in a save handler so they survive validation.disable",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6307,
+      "excerpt": "MAL`. Deriving the range through `ConceptService.getConceptReferenceRange` drops that fallback: its default range is null when every bound is null, so such an observation now gets neither a reference range nor an interpretation, since `NORMAL` derived from no bounds is not information. This will be most observations in an implementation that has not configured ranges. `handle_shouldSetNeitherReferenceRangeNorInterpretationForAConceptWithNoBoundsConfigured` pins it.\n\nThis also addresses **TRUNK-6442** (the validator overwriting a caller-supplied reference range).\n\n## Issue I worked on\n\nsee https://openmrs.atlassian.net/browse/TRUNK-6795\n\n## Checklist: I completed these to help reviewers :)\n\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n\n  Verified with the project&#39;s own Spotless configuration (`spotless:apply` with a cleared cache reports 0 files changed) and with `license:check` (1459 files, 0 missing headers).\n\n- [x] I have **added tests** to cover my changes.\n\n  New `ObsSaveHandlerTest` holds the population and interpretation tests that moved out of `ObsValidatorTest`, plus tests that fail on `master`: the reference range and interpretation are still populated when validation is disabled for the thread; a caller-supplied reference range survives the save; an amended observation is re-interpreted from its new value; a supplied interpretation is kept on a new observation but re-derived on an amendment; a copied observation with no range to inherit gets one derived; and resolving a range while another observation is dirty in the session does not flush it (`handle_shouldNotFlushADirtyObsWhileEvaluatingReferenceRangeCriteria`, which pins the `FlushMode.MANUAL` guard). The genuinely validation-asserting tests stay in `ObsValidatorTest`.\n\n- [ ] I ran `./mvnw clean package` right before creating this pull request and added all formatting changes to my commit.\n\n  A full `package` could not be run in this environment, since `mavenrepo.openmrs.org` is unreachable from it and the `maven-openmrs-plugin` build extension is not on Maven Central. `openmrs-api` was compiled and its tests were run directly instead.\n\n- [x] All new and existing **tests passed**.\n\n  `ObsSaveHandlerTest`, `ObsValidatorTest`, `ObsServiceTest`, `ObsTest`, `RequiredDataAdviceTest`, `ValidateUtilTest` and `Enco"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6546",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6546,
+      "title": "TRUNK-6768: Remove unused BOM entries and ban SNAPSHOT dependencies in release builds",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 309,
+      "excerpt": "st what `api`, `web`, `webapp`, and `liquibase` actually declare or resolve (via `mvn dependency:tree`).\r\n\r\n**Removed (confirmed unused anywhere in the module tree):**\r\n- `org.openmrs.liquibase.ext:type-converter` — confirmed unused via dependency:tree across all modules\r\n\r\n**Kept, with explanatory comments** (per the ticket's \"deliberately provided with a comment\" criterion):\r\n- `jaxen` — required transitively by the `liquibase` module for XML changelog XPath support; not declared by `api`/`web`/`webapp`\r\n- `netty-bom` — pins the Netty version pulled in transitively via the AWS SDK S3 client\r\n- `sonar-jacoco-listeners` — used as a listener dependency for the jacoco-maven-plugin / Sonar coverage integration in the root pom.xml, not a direct project dependency\r\n\r\n### 2. Release-build check for SNAPSHOT dependencies (`pom.xml`)\r\n\r\nAdded a `release` Maven profile using the built-in `banDynamicVersions` Enforcer rule, bound to the `validate` phase, which fails the build if any resolved dependency has a SNAPSHOT version, a version range, or a LATEST/RELEASE placeholder.\r\n\r\nTested:\r\n- `mvn validate -pl api` → passes (normal dev builds unaffected)\r\n- `mvn validate -Prelease -pl api` → fails with a precise message naming the offending SNAPSHOT dependency\r\n\r\n### 3. What's NOT included, and why\r\n\r\nThe ticket also asks for milestone (`-M`), alpha, beta, and RC qualifiers to be banned in release builds. I was unable to implement this with `bannedDependencies` (the rule the ticket suggests) or any other built-in Enforcer rule:\r\n\r\n- `banDynamicVersions` only covers SNAPSHOT, version ranges, and LATEST/RELEASE — milestone/alpha/beta/RC versions are not \"dynamic\" by Maven's definition and are explicitly out of scope for this rule.\r\n- `bannedDependencies`' wildcard support only replaces a *whole* segment (groupId, artifactId, or version) or accepts a real Maven version range. It does not support partial substring matching within the version field (e.g. `*-M*`). I verified this directly: testing both a `regex:`-prefixed pattern and a plain wildcard pattern against this version position either matched nothing, or — more concerningly — matched every dependency in the project regardless of actual version. Full test output available on request.\r\n- I found one precedent within the OpenMRS ecosystem (openmrs-module-camel's JMS-spec ban) using `bannedDependencies` successfully, but "
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6648,
+      "title": "maven(deps): bump org.owasp.encoder:encoder from 1.4.1 to 1.5.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1318,
+      "excerpt": " three supported libraries. Java 8 remains the minimum runtime; packaged consumers passed on Java 8, 11, 17, 21, and 25.</p>\n<p>The security fixes deliberately change some encoded output:</p>\n<ul>\n<li>JavaScript HTML/block modes emit additional hexadecimal escapes while preserving the string value. Review byte snapshots, cache keys, signatures, and output-size budgets.</li>\n<li>CDATA preserves parsed text but can expand to 13 output characters per input character and can change parser event boundaries.</li>\n<li>XML-comment hyphens become <code>~</code> under the documented lossy policy.</li>\n</ul>\n<p>The optional ESAPI adapter is retired. Version 1.4.1 is its final published release and is unsupported; migrate to direct Java Encoder APIs. Mixing the 1.4.1 adapter with the 1.5 core is not a supported migration.</p>\n<p>See the <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/v1.5.0/docs/compatibility-decisions.md#15-parser-boundary-output-migration\">migration notes</a>, <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/v1.5.0/docs/encoder-esapi-retirement.md\">ESAPI retirement guide</a>, and <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/v1.5.0/CHANGELOG.md\">changelog</a>.</p>\n<h2>Maven artifacts</h2>\n<p>Use group <code>org.owasp.encoder</code> and version <code>1.5.0</code>:</p>\n<ul>\n<li><a href=\"https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder/1.5.0/\">encoder</a></li>\n<li><a href=\"https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder-jsp/1.5.0/\">encoder-jsp</a></li>\n<li><a href=\"https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder-jakarta-jsp/1.5.0/\">encoder-jakarta-jsp</a></li>\n<li><a href=\"https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder-parent/1.5.0/\">encoder-parent</a> (parent POM)</li>\n</ul>\n<p>The optional test WAR and retired ESAPI adapter are not published.</p>\n<h2>Verification</h2>\n<p>Exact release source: <code>3fbc5da5bcdc49a6e2b4f39d3df7410b7c13d07d</code>. The signed <code>v1.5.0</code> tag identifies this tested commit. PR <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/229\">#229</a>'s squash commit <code>030c137fc14f277afc5fbe303d2ca8a149f8068b</code> has the identical file tree.</p>\n<p>Release artifacts were built with Eclipse Temurin 17.0.20.1+1 and the committed Maven 3.9.16 wrapper. All 2,287 local reactor tests passed with zero failures, errors,"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6691",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6691,
+      "title": "maven(deps): bump org.postgresql:postgresql from 42.7.13 to 42.7.14",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3747,
+      "excerpt": "</li>\n<li><code>java.sql.Blob.setBytes(long, byte[], int, int)</code></li>\n</ul>\n<p>Padding is now always zeros. Applications whose declared length always matches the data were not affected. Values stored by an affected version through such a call may already contain leaked data, so you may want to review affected columns. There is no connection property to disable the old behavior; the workaround on older versions is to make the declared length match the data.</p>\n<p>Thanks to <a href=\"https://github.com/vlsi\"><code>@​vlsi</code></a> for finding and reporting this issue.</p>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/pgjdbc/pgjdbc/compare/REL42.7.13...REL42.7.14\">https://github.com/pgjdbc/pgjdbc/compare/REL42.7.13...REL42.7.14</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/pgjdbc/pgjdbc/blob/master/CHANGELOG.md\">org.postgresql:postgresql's changelog</a>.</em></p>\n<blockquote>\n<h1>Changelog</h1>\n<p>Notable changes since version 42.0.0, read the complete <a href=\"https://jdbc.postgresql.org/documentation/changelog.html\">History of Changes</a>.</p>\n<p>The format is based on <a href=\"http://keepachangelog.com/en/1.0.0/\">Keep a Changelog</a>.</p>\n<h2>[Unreleased]</h2>\n<h3>Fixed</h3>\n<ul>\n<li>fix: <code>PGStream.skip</code> no longer loops forever when the connection ends while the driver is discarding bytes, and no longer mistakes a stream that skips nothing for one that has ended. <code>InputStream.skip</code> may return zero with more data still coming, which a stream supplied through the <code>socketFactory</code> property is free to do; the driver now reads a byte in that case and treats only <code>-1</code> as the end [PR <a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4358\">#4358</a>](<a href=\"https://redirect.github.com/pgjdbc/pgjdbc/pull/4358\">pgjdbc/pgjdbc#4358</a>)</li>\n<li>fix: <code>LargeObjectManager</code> operations now work inside an active XA transaction. Since 42.7.13 an XA branch keeps the caller's <code>autoCommit=true</code>, and the guard rejected large objects as if the connection were idle. It now checks the server transaction state (<code>getTransactionState()</code>) instead of <code>autoCommit</code>, so a genuine auto-commit connection with no open transaction is still refused [Issue <a href=\"https://redirect.github.com/pgjdbc/pgjdb"
+    }
+  ]
+}

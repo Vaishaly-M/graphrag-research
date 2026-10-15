@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 23964,
+        "line": 421
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 14750,
+        "line": 357
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+        "path": null,
+        "offset": 4900,
+        "line": 101
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 22679,
+        "line": 463
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 25412,
+        "line": 529
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+        "path": null,
+        "offset": 27410,
+        "line": 571
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+        "path": null,
+        "offset": 27396,
+        "line": 571
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+        "path": null,
+        "offset": 27396,
+        "line": 571
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14750,
+      "excerpt": "ering.API/appsettings.json` |\r\n| Tests | `Catalog.FunctionalTests.csproj`, `CatalogApiTests.cs`, `Ordering.FunctionalTests.csproj`, `OrderingApiTests.cs`, `Basket.UnitTests/GlobalUsings.cs`, `Ordering.UnitTests/GlobalUsings.cs`, `Ordering.UnitTests/Application/NewOrderCommandHandlerTest.cs`, `tests/README.md` |\r\n\r\n### Deleted & Replaced\r\n\r\n- `tests/Catalog.FunctionalTests/CatalogApiFixture.cs` → rewritten under `Fixture/`\r\n- `tests/Ordering.FunctionalTests/OrderingApiFixture.cs` → rewritten under `Fixture/`\r\n\r\n### New Source (Untracked)\r\n\r\n| Path | Role |\r\n|------|------|\r\n| `tests/Testing.Common/**` | Shared test utilities + messaging helpers |\r\n| `src/Catalog.API/Infrastructure/Repositories/**` | Repository abstraction |\r\n| `src/eShop.ServiceDefaults/LoggingExtensions.cs` | Serilog setup |\r\n| `eShop.FunctionalTests*.runsettings` (7 files) | VS/CLI mode presets |\r\n| `tests/Catalog.FunctionalTests/AssemblyInfo.cs` | xUnit assembly fixtures + console capture |\r\n| `tests/Catalog.FunctionalTests/FlushTestLogsAttribute.cs` | Log flush hook |\r\n| `tests/Catalog.FunctionalTests/testconfig.json` | xUnit live output config |\r\n| `tests/Catalog.FunctionalTests/{Fixture,Configuration,Infrastructure,Mocks}/**` | Catalog test infrastructure |\r\n| `tests/Catalog.FunctionalTests/CatalogMessagingTests.cs` | Messaging tests |\r\n| `tests/Ordering.FunctionalTests/AssemblyInfo.cs` | xUnit assembly fixtures |\r\n| `tests/Ordering.FunctionalTests/FlushTestLogsAttribute.cs` | Log flush hook |\r\n| `tests/Ordering.FunctionalTests/testconfig.json` | xUnit live output config |\r\n| `tests/Ordering.FunctionalTests/{Fixture,Configuration,Infrastructure,Mocks}/**` | Ordering test infrastructure |\r\n| `tests/Ordering.FunctionalTests/OrderingMessagingTests.cs` | Messaging tests |\r\n\r\n### Incidental / Likely Noise\r\n\r\n- `src/ClientApp/Services/Basket/Protos/*.cs` — line-ending only (no content diff)\r\n- `.vs/`, `artifacts/` — build/IDE output, not intentional changes\r\n\r\n---\r\n\r\n## Architecture Narrative (Blog Angle)\r\n\r\n> **\"Testing microservices at the speed you need\"**\r\n\r\nThe work introduces a **test fidelity ladder**:\r\n\r\n```\r\nRepositoryMock  →  fastest, no Docker, tests API + domain logic\r\nEfCoreInMemory  →  tests real EF repository code, still no Docker\r\nTestcontainers  →  real PostgreSQL, no full Aspire orchestration\r\nAspire          →  closest to production topology (Postgres + pgvector)\r\nMessaging"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22679,
+      "excerpt": "he Items not displayed properly in CarouselView2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/31336\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] Items are not updated properly in CarouselView2.](https://github.com/dotnet/maui/issues/31148)\n  </details>\n\n## Docs\n- Add comprehensive README to Microsoft.Maui.Controls NuGet package by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/32835\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Improve the MAUI Nuget readme.md file](https://github.com/dotnet/maui/issues/31969)\n  </details>\n\n- Improve Controls Core API docs 2 by @​jfversluis in https://github.com/dotnet/maui/pull/33243\n\n- Update investigations docs by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32949\n\n- Improve agent workflow documentation by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33434\n\n ... (truncated)\n\n## 10.0.20\n\n## What's Changed\n\n.NET MAUI 10.0.20 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 169 commits with various improvements, bug fixes, and enhancements.\n\n## AI\n- PR Reviewer Agent by @​PureWeen in https://github.com/dotnet/maui/pull/32340\n\n- [AI] Moved PR Reviewer Agent to File-Based Instruction System by @​kubaflo in https://github.com/dotnet/maui/pull/32659\n\n- Improved pr-reviewer AI agent and modified the usage instructions in README by @​kubaflo in https://github.com/dotnet/maui/pull/32718\n\n- Add checkpoint/resume system for PR review agent by @​kubaflo in https://github.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 25412,
+      "excerpt": "he Items not displayed properly in CarouselView2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/31336\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] Items are not updated properly in CarouselView2.](https://github.com/dotnet/maui/issues/31148)\n  </details>\n\n## Docs\n- Add comprehensive README to Microsoft.Maui.Controls NuGet package by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/32835\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Improve the MAUI Nuget readme.md file](https://github.com/dotnet/maui/issues/31969)\n  </details>\n\n- Improve Controls Core API docs 2 by @​jfversluis in https://github.com/dotnet/maui/pull/33243\n\n- Update investigations docs by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32949\n\n- Improve agent workflow documentation by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33434\n\n ... (truncated)\n\n## 10.0.20\n\n## What's Changed\n\n.NET MAUI 10.0.20 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 169 commits with various improvements, bug fixes, and enhancements.\n\n## AI\n- PR Reviewer Agent by @​PureWeen in https://github.com/dotnet/maui/pull/32340\n\n- [AI] Moved PR Reviewer Agent to File-Based Instruction System by @​kubaflo in https://github.com/dotnet/maui/pull/32659\n\n- Improved pr-reviewer AI agent and modified the usage instructions in README by @​kubaflo in https://github.com/dotnet/maui/pull/32718\n\n- Add checkpoint/resume system for PR review agent by @​kubaflo in https://github.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1043,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27410,
+      "excerpt": "he Items not displayed properly in CarouselView2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/31336\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] Items are not updated properly in CarouselView2.](https://github.com/dotnet/maui/issues/31148)\n  </details>\n\n## Docs\n- Add comprehensive README to Microsoft.Maui.Controls NuGet package by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/32835\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Improve the MAUI Nuget readme.md file](https://github.com/dotnet/maui/issues/31969)\n  </details>\n\n- Improve Controls Core API docs 2 by @​jfversluis in https://github.com/dotnet/maui/pull/33243\n\n- Update investigations docs by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32949\n\n- Improve agent workflow documentation by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33434\n\n ... (truncated)\n\n## 10.0.20\n\n## What's Changed\n\n.NET MAUI 10.0.20 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 169 commits with various improvements, bug fixes, and enhancements.\n\n## AI\n- PR Reviewer Agent by @​PureWeen in https://github.com/dotnet/maui/pull/32340\n\n- [AI] Moved PR Reviewer Agent to File-Based Instruction System by @​kubaflo in https://github.com/dotnet/maui/pull/32659\n\n- Improved pr-reviewer AI agent and modified the usage instructions in README by @​kubaflo in https://github.com/dotnet/maui/pull/32718\n\n- Add checkpoint/resume system for PR review agent by @​kubaflo in https://github.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23964,
+      "excerpt": "e fixes related to Popup and then some... Also, this release reinstates the assembly versioning that got lost in translation somewhere. Most people probably didn't even notice or care. But if you're one of the people who does... Now its fixed!\n\n## What's Changed\n\n* Adds installation instructions to README by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/2797\n* Fire `Action PopupOptions.OnTappingOutsideOfPopup` when Android Back Button Pressed by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2799\n* Prevent Popup From Being Dismissed when Tapped Inside Popup by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2800\n* Reinstate assembly versioning by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/2837\n* Refactor TextCaseConverter and enhance ListToStringConverterTests by @​waheez in https://github.com/CommunityToolkit/Maui/pull/2840\n* Fix typo in the example label text on IsInRangeConverterPage by @​ruyut in https://github.com/CommunityToolkit/Maui/pull/2846\n\n## New Contributors\n* @​waheez made their first contribution in https://github.com/CommunityToolkit/Maui/pull/2840\n* @​ruyut made their first contribution in https://github.com/CommunityToolkit/Maui/pull/2846\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/compare/12.1.0...12.2.0\n\n## 12.1.0\n\n## What's Changed\n\n* Restrict AddPopup extensions to View to avoid ContentPage from being allowed by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2715\n* [Popup] Properly handle Android Back Button pressed by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2716\n* Speech Recognition Windows Ensure unsubscribe from events on Stop Recording by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/2705\n* Prevent a tap inside the content from closing a popup by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2741\n* [Popup] Add `Popup.CanBeDismissedByTappingOutsideOfPopup` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2753\n* ShowPopupAsync will now correctly return once the popup is closed under heavy garbage collection by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2756\n* Remove exception swallowing and update tests to exhibit expected behaviour by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2749\n* Fix: .UseMauiCommunityToo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1051,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27396,
+      "excerpt": "he Items not displayed properly in CarouselView2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/31336\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] Items are not updated properly in CarouselView2.](https://github.com/dotnet/maui/issues/31148)\n  </details>\n\n## Docs\n- Add comprehensive README to Microsoft.Maui.Controls NuGet package by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/32835\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Improve the MAUI Nuget readme.md file](https://github.com/dotnet/maui/issues/31969)\n  </details>\n\n- Improve Controls Core API docs 2 by @​jfversluis in https://github.com/dotnet/maui/pull/33243\n\n- Update investigations docs by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32949\n\n- Improve agent workflow documentation by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33434\n\n ... (truncated)\n\n## 10.0.20\n\n## What's Changed\n\n.NET MAUI 10.0.20 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 169 commits with various improvements, bug fixes, and enhancements.\n\n## AI\n- PR Reviewer Agent by @​PureWeen in https://github.com/dotnet/maui/pull/32340\n\n- [AI] Moved PR Reviewer Agent to File-Based Instruction System by @​kubaflo in https://github.com/dotnet/maui/pull/32659\n\n- Improved pr-reviewer AI agent and modified the usage instructions in README by @​kubaflo in https://github.com/dotnet/maui/pull/32718\n\n- Add checkpoint/resume system for PR review agent by @​kubaflo in https://github.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1052,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.40 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27396,
+      "excerpt": "he Items not displayed properly in CarouselView2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/31336\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] Items are not updated properly in CarouselView2.](https://github.com/dotnet/maui/issues/31148)\n  </details>\n\n## Docs\n- Add comprehensive README to Microsoft.Maui.Controls NuGet package by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/32835\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Improve the MAUI Nuget readme.md file](https://github.com/dotnet/maui/issues/31969)\n  </details>\n\n- Improve Controls Core API docs 2 by @​jfversluis in https://github.com/dotnet/maui/pull/33243\n\n- Update investigations docs by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32949\n\n- Improve agent workflow documentation by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33434\n\n ... (truncated)\n\n## 10.0.20\n\n## What's Changed\n\n.NET MAUI 10.0.20 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 169 commits with various improvements, bug fixes, and enhancements.\n\n## AI\n- PR Reviewer Agent by @​PureWeen in https://github.com/dotnet/maui/pull/32340\n\n- [AI] Moved PR Reviewer Agent to File-Based Instruction System by @​kubaflo in https://github.com/dotnet/maui/pull/32659\n\n- Improved pr-reviewer AI agent and modified the usage instructions in README by @​kubaflo in https://github.com/dotnet/maui/pull/32718\n\n- Add checkpoint/resume system for PR review agent by @​kubaflo in https://github.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 953,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4900,
+      "excerpt": "e fixes related to Popup and then some... Also, this release reinstates the assembly versioning that got lost in translation somewhere. Most people probably didn't even notice or care. But if you're one of the people who does... Now its fixed!\n\n## What's Changed\n\n* Adds installation instructions to README by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/2797\n* Fire `Action PopupOptions.OnTappingOutsideOfPopup` when Android Back Button Pressed by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2799\n* Prevent Popup From Being Dismissed when Tapped Inside Popup by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2800\n* Reinstate assembly versioning by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/2837\n* Refactor TextCaseConverter and enhance ListToStringConverterTests by @​waheez in https://github.com/CommunityToolkit/Maui/pull/2840\n* Fix typo in the example label text on IsInRangeConverterPage by @​ruyut in https://github.com/CommunityToolkit/Maui/pull/2846\n\n## New Contributors\n* @​waheez made their first contribution in https://github.com/CommunityToolkit/Maui/pull/2840\n* @​ruyut made their first contribution in https://github.com/CommunityToolkit/Maui/pull/2846\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/compare/12.1.0...12.2.0\n\n## 12.1.0\n\n## What's Changed\n\n* Restrict AddPopup extensions to View to avoid ContentPage from being allowed by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2715\n* [Popup] Properly handle Android Back Button pressed by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2716\n* Speech Recognition Windows Ensure unsubscribe from events on Stop Recording by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/2705\n* Prevent a tap inside the content from closing a popup by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2741\n* [Popup] Add `Popup.CanBeDismissedByTappingOutsideOfPopup` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2753\n* ShowPopupAsync will now correctly return once the popup is closed under heavy garbage collection by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2756\n* Remove exception swallowing and update tests to exhibit expected behaviour by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2749\n* Fix: .UseMauiCommunityToo"
+    }
+  ]
+}

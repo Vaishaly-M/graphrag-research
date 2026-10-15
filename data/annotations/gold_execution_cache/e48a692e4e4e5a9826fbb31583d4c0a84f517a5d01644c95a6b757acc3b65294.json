@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+        "path": null,
+        "offset": 89,
+        "line": 2
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6560",
+        "path": null,
+        "offset": 377,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6404",
+        "path": null,
+        "offset": 6933,
+        "line": 96
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6511",
+        "path": null,
+        "offset": 644,
+        "line": 9
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+        "path": "api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+        "offset": 5387,
+        "line": 148
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6674",
+        "path": null,
+        "offset": 909,
+        "line": 8
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6685",
+        "path": null,
+        "offset": 856,
+        "line": 8
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/logging/MemoryAppender.java",
+        "path": "api/src/main/java/org/openmrs/logging/MemoryAppender.java",
+        "offset": 1611,
+        "line": 38
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/logging/MemoryAppender.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/logging/MemoryAppender.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1611,
+      "excerpt": "org.openmrs.util.ThreadSafeCircularFifoQueue;\n\n/**\n * This class stores a configurable number lines of the output from the log file.\n * <p/>\n * Note that this class is implemented as a single-buffer-per-appender-name meaning that each\n * appender name can only support a single buffer size (the most recently applied)\n */\n@Plugin(name = \"Memory\", category = Core.CATEGORY_NAME, elementType = Appender.ELEMENT_TYPE)\npublic class MemoryAppender extends AbstractAppender {\n\n\t// we store the buffers by name, using SoftReferences to allow them to be garbage collected\n\t// this is a HashMap as it is only accessed from a synchronized method\n\tprivate static final Map<String, SoftReference<AtomicReference<ThreadSafeCircularFifoQueue<LogEvent>>>> BUFFERS = new HashMap<>(\n\t        1);\n\n\tprivate final AtomicReference<ThreadSafeCircularFifoQueue<LogEvent>> bufferRef;\n\n\tprivate final int bufferSize;\n\n\tprotected MemoryAppender(String name, Filter filter, StringLayout layout, boolean ignoreExceptions,\n\t    Property[] properties, AtomicReference<ThreadSafeCircularFifoQueue<LogEvent>> bufferRef) {\n\t\tsuper(name, filter, layout, ignoreExceptions, properties);\n\n\t\tthis.bufferRef = bufferRef;\n\t\tthis.bufferSize = bufferRef.get().capacity();\n\t}\n\n\tprotected MemoryAppender(String name, Filter filter, StringLayout layout, boolean ignoreExceptions,\n\t    Property[] properties, int bufferSize) {\n\t\tsuper(name, filter, layout, ignoreExceptions, properties);\n\n\t\tthis.bufferRef = getBufferRef(name, bufferSize);\n\t\tthis.bufferSize = bufferRef.get().capacity();\n\t}\n\n\tpublic static MemoryAppenderBuilder newBuilder() {\n\t\treturn new MemoryAppenderBuilder();\n\t}\n\n\t@PluginFactory\n\t@SuppressWarnings(\"unused\")\n\tprotected static MemoryAppender createAppender(@PluginAttribute(\"name\") final String name,\n\t        @PluginAttribute(\"bufferSize\") final int bufferSize,\n\t        @PluginAttribute(value = \"ignoreExceptions\", defaultBoolean = true) final boolean ignoreExceptions,\n\t        @PluginElement(\"Filter\") final Filter filter, @PluginElement(\"Layout\") final StringLayout layout) {\n\t\tfinal int theBufferSize = bufferSize <= 0 ? 100 : bufferSize;\n\t\tAtomicReference<ThreadSafeCircularFifoQueue<LogEvent>> buffer = getBufferRef(name, theBufferSize);\n\n\t\tMemoryAppender appender = new MemoryAppender(name, filter, layout, ignoreExceptions, null, buffer);\n\t\tif (!appender.isStarted()) {\n\t\t\tappender.start();\n\t\t}\n\t\treturn appender;"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5387,
+      "excerpt": "ngeLogs.isEmpty()) {\n\t\t\treturn;\n\t\t}\n\n\t\tfor (String changeLog : changeLogs) {\n\t\t\tlog.debug(\"applying Liquibase changelog '{}'\", changeLog);\n\t\t\texecuteChangelog(changeLog, (ChangeSetExecutorCallback) null);\n\t\t}\n\t}\n\n\t/**\n\t * Run changesets on database using Liquibase to get the database up to the most recent version\n\t *\n\t * @param changelog the liquibase changelog file to use (or null to use the default file)\n\t * @param userInput nullable map from question to user answer. Used if a call to update(null) threw\n\t *            an {@link InputRequiredException}\n\t * @throws DatabaseUpdateException if an error occurs\n\t * @deprecated as of 2.4 see {@link #executeChangelog(String, ChangeSetExecutorCallback)}\n\t */\n\t@Deprecated\n\tpublic static void executeChangelog(String changelog, Map<String, Object> userInput) throws DatabaseUpdateException {\n\t\tlog.debug(\"Executing changelog: {}\", changelog);\n\t\texecuteChangelog(changelog, (ChangeSetExecutorCallback) null);\n\t}\n\n\t/**\n\t * Executes the given changelog file. This file is assumed to be on the classpath.\n\t *\n\t * @param changelog The string filename of a liquibase changelog xml file to run\n\t * @return A list of messages or warnings generated by the executed changesets\n\t */\n\tpublic static List<String> executeChangelog(String changelog, ChangeSetExecutorCallback callback)\n\t        throws DatabaseUpdateException {\n\t\tlog.debug(\"installing the tables into the database\");\n\n\t\tif (changelog == null) {\n\t\t\tthrow new IllegalArgumentException(\"changelog must not be null\");\n\t\t}\n\n\t\ttry {\n\t\t\tlog.debug(\"executing liquibase changelog {}\", changelog);\n\t\t\treturn executeChangelog(changelog, new Contexts(CONTEXT), callback, null);\n\t\t} catch (Exception e) {\n\t\t\tthrow new DatabaseUpdateException(\"There was an error while updating the database to the latest. file: \"\n\t\t\t        + changelog + \". Error: \" + e.getMessage(), e);\n\t\t}\n\t}\n\n\t/**\n\t * This code was borrowed from the liquibase jar so that we can call the given callback function.\n\t *\n\t * @param changeLogFile the file to execute\n\t * @param contexts the liquibase changeset context\n\t * @param callback the function to call after every changeset\n\t * @return A list of messages or warnings generated by the executed changesets\n\t * @throws Exception\n\t */\n\tpublic static List<String> executeChangelog(String changeLogFile, Contexts contexts, ChangeSetExecutorCallback callback,\n\t        ClassLoader cl) throws E"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6404",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6404,
+      "title": "github-actions(deps): bump actions/stale from 10 to 11",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6933,
+      "excerpt": "<li>Upgrade form-data to bring in fix for critical vulnerability by <a href=\"https://github.com/gowridurgad\"><code>@​gowridurgad</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1277\">actions/stale#1277</a></li>\n</ul>\n<h2>Documentation changes</h2>\n<ul>\n<li>Changelog update for recent releases by <a href=\"https://github.com/suyashgaonkar\"><code>@​suyashgaonkar</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1224\">actions/stale#1224</a></li>\n<li>Permissions update in Readme by <a href=\"https://github.com/ghadimir\"><code>@​ghadimir</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1248\">actions/stale#1248</a></li>\n</ul>\n<h1>[9.1.0]</h1>\n<h2>What's Changed</h2>\n<ul>\n<li>Documentation update by <a href=\"https://github.com/Marukome0743\"><code>@​Marukome0743</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1116\">actions/stale#1116</a></li>\n<li>Add workflow file for publishing releases to immutable action package by <a href=\"https://github.com/Jcambass\"><code>@​Jcambass</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1179\">actions/stale#1179</a></li>\n<li>Update undici from 5.28.2 to 5.28.4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1150\">actions/stale#1150</a></li>\n<li>Update actions/checkout from 3 to 4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1091\">actions/stale#1091</a></li>\n<li>Update actions/publish-action from 0.2.2 to 0.3.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1147\">actions/stale#1147</a></li>\n<li>Update ts-jest from 29.1.1 to 29.2.5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1175\">actions/stale#1175</a></li>\n<li>Update <code>@​actions/core</code> from 1.10.1 to 1.11.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1191\">actions/stale#1191</a></li>\n<li>Update <code>@​types/jest</code> from 29.5.11 to 29.5.14 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.githu"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6511",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6511,
+      "title": "maven(deps): bump org.dbunit:dbunit from 3.5.0 to 3.5.1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 644,
+      "excerpt": "DataSetBuilder#setMetaDataSet(IDataSet) is documented as supplying column metadata only, but a broad metadata source such as a live database's full IDataSet (e.g. via DatabaseConnection#createDataSet()) was being read as if it enumerated the fixture's own tables, so DELETE_ALL/CLEAN_INSERT ended up touching every table in that broader source instead of only the ones the XML body mentions. FlatXmlProducer's issue <a href=\"https://redirect.github.com/dbunit/dbunit-extension/issues/496\">dbunit/dbunit-extension#496</a> empty-table backfill now only runs when the metadata source is DTD-derived (a FlatDtdDataSet, whether parsed inline from the flat XML's own DOCTYPE or supplied via FlatXmlDataSetBuilder#setMetaDataSetFromDtd), restoring pre-3.5.0 behavior for any other explicitly-supplied metadata dataset. Issue: 951. Thanks to tkrah.</li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/dbunit/dbunit-extension/compare/dbunit-3.5.0...dbunit-3.5.1\">https://github.com/dbunit/dbunit-extension/compare/dbunit-3.5.0...dbunit-3.5.1</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/dbunit/dbunit-extension/commit/a1f59440bdadbb3edb7de98064bb03b49d6cacd3\"><code>a1f5944</code></a> docs(site): Update index.adoc with 3.5.1 release</li>\n<li><a href=\"https://github.com/dbunit/dbunit-extension/commit/2c76618e5f3445a980e5b7663c3d835784c1c0a5\"><code>2c76618</code></a> chore(release): Prep 3.5.1</li>\n<li><a href=\"https://github.com/dbunit/dbunit-extension/commit/4674c5d8356fce24eda0618c31bf9e71613ceb58\"><code>4674c5d</code></a> fix(dataset): Restrict FlatXmlProducer empty-table backfill to DTD metadata</li>\n<li><a href=\"https://github.com/dbunit/dbunit-extension/commit/085c74d0800387006d0e9ecc6042132566c086f2\"><code>085c74d</code></a> docs: Convert lists and words to page links</li>\n<li><a href=\"https://github.com/dbunit/dbunit-extension/commit/32a8e00bab3c2fee4d361c41cb523fd2f779387f\"><code>32a8e00</code></a> [maven-release-plugin] prepare for next development iteration</li>\n<li>See full diff in <a href=\"https://github.com/dbunit/dbunit-extension/compare/dbunit-3.5.0...dbunit-3.5.1\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=org.dbunit:dbunit&package-manager=maven&previous-version=3.5"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6533,
+      "title": "TRUNK-6795: Populate obs reference ranges in a save handler so they survive validation.disable",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 89,
+      "excerpt": "K/p1788308814384069)_\n\n## Description of what I changed\n\n**Before:** `ObsValidator` did two unrelated jobs at once. As well as reporting values that fall outside a concept&#39;s absolute range, it was the only thing in core that worked out an observation&#39;s reference range and interpretation and wrote them onto the `Obs`. Validators are only ever reached through `ValidateUtil.validate`, which returns immediately when the `validation.disable` global property is switched on. An implementation running with that property therefore saved every observation with no reference range and no interpretation at all — no error, no warning, just missing data that cannot be reconstructed afterwards, because the range criteria are evaluated against the patient&#39;s state at the time of the observation. The validator also overwrote any reference range a caller had already set on the observation.\n\n**After:** deriving the reference range and the interpretation is a save-time concern, handled by a new `ObsSaveHandler`. Save handlers are dispatched by `RequiredDataAdvice` before, and independently of, validation, so an observation now gets its reference range whether validation is on or off. A reference range supplied by the caller is left alone rather than being replaced with a freshly derived one. `ObsValidator` keeps `validateAbsoluteRanges` and every `error.value.outOfRange.*` rejection; its remaining job is validation, and nothing else.\n\n**How:** `setObsReferenceRange(Obs, ConceptReferenceRange)`, `setObsReferenceRange(Obs)` and `setObsInterpretation(Obs)` moved out of `ObsValidator` into `ObsSaveHandler`, which is registered as `@Handler(supports = Obs.class, order = 50)` and implements `SaveHandler`. The handler reproduces the guards that used to gate the population inside the validator: it skips voided observations, obs groups, non-numeric datatypes, numeric observations with no value, and observations with a null concept. Group members are covered because `RequiredDataAdvice.recursivelyHandle` already walks the `Obs.groupMembers` collection — the field carries neither `@Independent` nor `@DisableHandlers` — so the handler does not recurse itself. `ObsValidator` still looks the `ConceptReferenceRange` up for itself; reusing the one the handler derived is not safe, because `Obs.getReferenceRange()` is an `ObsReferenceRange` rather than a `ConceptReferenceRange`, becaus"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6560",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6560,
+      "title": "maven(deps): bump com.github.spotbugs:spotbugs-maven-plugin from 4.10.4.0 to 4.10.4.1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 377,
+      "excerpt": "2>\n<h2>BREAKING</h2>\n<p>In 2014, maven reporting added various settings that should have resulted in removal here but had gone unseen.  These are now applied and therefore the state changed to immutable which will cause plugin to fail if users do not adjust configuration as noted here.</p>\n<p>Users who previously configured <code>outputEncoding</code> directly on the SpotBugs Maven Plugin must configure <code>project.reporting.outputEncoding</code> instead and remove it to avoid errors.\nUsers passing <code>fork</code> option should remove it to avoid warnings as support was gone in last release and it does nothing.\nUsers who previously configured <code>outputDirectory</code> directly on the SpotBugs Maven Plugin must configure <code>project.reporting.outputDirectory</code> instead and remove it to avoid errors.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Maven 4 rc 6 support, readme cleanup, use latest spotbugs in build, head tag, formatting by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1512\">spotbugs/spotbugs-maven-plugin#1512</a></li>\n<li>Fixes 1511, removed shaded 'outputEncoding' that maven reporting added in 2014 by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1513\">spotbugs/spotbugs-maven-plugin#1513</a></li>\n<li>Remove deprecated 'fork' option and update faq by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1514\">spotbugs/spotbugs-maven-plugin#1514</a></li>\n<li>Minor cleanups by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1515\">spotbugs/spotbugs-maven-plugin#1515</a></li>\n<li>Use super class outputDirectory removing all duplication by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1516\">spotbugs/spotbugs-maven-plugin#1516</a></li>\n<li>Make ownership explicit on xdocs report writer by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1517\">spotbugs/spotbugs-maven-plugin#1517</a></li>\n<li>Cleanu"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6674",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6674,
+      "title": "TRUNK-6823: Deny with APIAuthenticationException again, as an AuthorizationDeniedException",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 909,
+      "excerpt": "wDaemonTask`, `UserContext.becomeUser`, `AlertServiceImpl.getAlerts` and `TestInstallUtil.getResourceInputStream`.\n- `PrivilegeNamingAuthorizationManager` returns it as the result when a `@PreAuthorize`/`@PostAuthorize` check names the missing privilege, and when `isAuthenticated()` denies a caller who is not logged in. The second case carries \"Basic authentication required\", as `@Authorized()` does. Spring's default handler throws that result, so converting a method by the guide's translation table keeps what its callers catch. Only an expression that names neither, such as `denyAll()`, still denies with a plain `AuthorizationDeniedException`. URL rules are unchanged.\n- `doc/AUTHORIZATION_MIGRATION.md`, `ExceptionUtil` and the exception's javadoc say so. The guide has a Pitfalls row for the `VerifyError` below.\n\nwebservices.rest still needs RESTWS-1056 (openmrs/openmrs-module-webservices.rest#767) for denials that are not an `APIAuthenticationException`.\n\n**Compatibility.** `APIAuthenticationException` is no longer an `APIException`.\n\n- **Compiled bytecode that treats it as one fails JVM verification.** A module built against an earlier core breaks until it is rebuilt.\n- **Example: patientdocuments.** It has `catch (APIAuthenticationException | ContextAuthenticationException e)` in two controllers, which javac types as `APIException`. Its omod as built today, against core master, stops this branch's OpenMRS from starting: `VerifyError` while Spring maps `VisitSummaryPreviewController`. Rebuilt against this branch with no source change, it starts and works.\n- **After this merges,** patientdocuments' 3.0 SNAPSHOT needs a rebuild before a server running it will start, as does any other module whose bytecode has that shape.\n- **Scan of the RefApp 3.0 module builds:** 19 classes in the 29 module builds reference the exception. Only those two handlers have this bytecode shape, though other shapes are possible.\n- **Source compatibility:** code that assigns it to an `APIException` stops compiling. `catch (APIException e)` no longer catches a denial core throws, which is already the case on master. After this change it also misses an `APIAuthenticationException` a module throws itself. 6 of the 29 RefApp 3.0 module builds throw one, and none of their catches relies on catching it as an `APIException`.\n- **A catch naming both types stops compiling.** That covers `cat"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6685",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6685,
+      "title": "TRUNK-6809: Run the Liquibase status check inside the update scope (2.8.x)",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 856,
+      "excerpt": "ource accessor.\n\n## Verification on 2.8.x\n\n- `DatabaseUpdaterTest`: 8/8 pass with the change. On unpatched `2.8.x` the two new tests fail with `UnexpectedLiquibaseException: Resource does not exist` from `StatusCommandStep.listUnrunChangeSets`.\n- Restored a backup of a long-running PIH test server (most `liquibasechangelog` rows have `8:` checksums) into the PIH Sierra Leone distro image, which includes Bahmni Appointments 2.2.0:\n  - **2.8.10:** Bahmni Appointments fails to start: `FileNotFoundException: The file patientPastAppointments.sql was not found in the configured search path` from `SQLFileChange.generateCheckSum` / `ShouldRunChangeSetFilter.checksumChanged`.\n  - **2.8.11-SNAPSHOT + this change, first start:** starts cleanly. The appointments changesets match their stored checksums and aren't re-run. The only new changeset is the core `TRUNK-6549-2026-06-07`, already on `2.8.x`.\n  - **Second start:** starts cleanly. Only `runAlways` changesets re-run. The changelog row count and checksum mix are unchanged, and the lock is released.\n\n## Issue I worked on\n\nsee https://openmrs.atlassian.net/browse/TRUNK-6809\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    }
+  ]
+}

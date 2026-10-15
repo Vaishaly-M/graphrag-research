@@ -1,0 +1,33 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (f:DLFile) WHERE f.dataset=$dataset AND f.repo=$repo AND f.path=$path UNWIND split(f.content,'\\n') AS line WITH f,trim(line) AS heading WHERE heading STARTS WITH '#' RETURN DISTINCT heading AS entity,heading AS fact,[f.id] AS evidence_ids ORDER BY entity LIMIT $limit",
+  "parameters": {
+    "path": "liquibase/README.md",
+    "limit": 3,
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core"
+  },
+  "rows": [
+    {
+      "entity": "# Creating Liquibase snapshots for OpenMRS",
+      "fact": "# Creating Liquibase snapshots for OpenMRS",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:liquibase/README.md"
+      ]
+    },
+    {
+      "entity": "## Appendix",
+      "fact": "## Appendix",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:liquibase/README.md"
+      ]
+    },
+    {
+      "entity": "## Folder structure and naming conventions",
+      "fact": "## Folder structure and naming conventions",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:liquibase/README.md"
+      ]
+    }
+  ]
+}

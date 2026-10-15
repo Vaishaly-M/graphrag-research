@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 50726,
+        "line": 898
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+        "path": null,
+        "offset": 51761,
+        "line": 841
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:782",
+        "path": null,
+        "offset": 10466,
+        "line": 54
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:794",
+        "path": null,
+        "offset": 10622,
+        "line": 54
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:806",
+        "path": null,
+        "offset": 10485,
+        "line": 54
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 8736,
+        "line": 178
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 11469,
+        "line": 244
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+        "path": null,
+        "offset": 13467,
+        "line": 286
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8736,
+      "excerpt": " Gate SafeArea inset listeners in recycler items by @​kubaflo in https://github.com/dotnet/maui/pull/35693\n* [release/10.0.1xx-sr7] Revert - Fix TalkBack not correctly narrating RadioButtons with Content by @​kubaflo in https://github.com/dotnet/maui/pull/35694\n* [release/10.0.1xx-sr7] Revert - Fix Changing Shell.NavBarIsVisible does not update the nav bar  by @​Tamilarasan-Paranthaman in https://github.com/dotnet/maui/pull/35703\n* [Revert] - [Windows] Fix WebView blank rendering when used with HybridWebView by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/35744\n* Fix OnNavigatedTo not firing after PopModalAsync when tab is changed inside modal by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/35768\n* Increment patch version from 70 to 71 by @​PureWeen in https://github.com/dotnet/maui/pull/35786\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.70...10.0.71\n\n## 10.0.70\n\n## What's Changed\n\n.NET MAUI 10.0.70 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 135 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- [CI] Extend gate to all test types and decouple from PR review by @​kubaflo in https://github.com/dotnet/maui/pull/34705\n\n- Integrate UI test category detection into PR review and fix gate reliability by @​kubaflo in https://github.com/dotnet/maui/pull/35133\n\n## API\n- Revert public API surface from #​34228 on inflight/candidate by @​Redth in https://github.com/dotnet/maui/pull/35024\n\n## Blazor\n- Fix: Filter precompressed RCL assets from MAUI Blazor Hybrid APKs by @​mattleibow in https://github.com/dotnet/maui/pull/33917\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [.NET MAUI Blazor Hybrid App should not precompress assets](https://github.com/dotnet/maui/issues/33773)\n  </details>\n\n- [Windows] Fix for Runtime error when closing external window with WPF Webview Control by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/34006\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Runtime error when closing external window with WPF Webview Control](https://github.com/dotnet/maui/issues/32944)\n  </details>\n\n## Button\n- [Android] ImageButton CornerRadius not being applied - fix by @​kubaflo in https://github.com/dotnet/maui/pull/30074\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [ImageButton"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11469,
+      "excerpt": " Gate SafeArea inset listeners in recycler items by @​kubaflo in https://github.com/dotnet/maui/pull/35693\n* [release/10.0.1xx-sr7] Revert - Fix TalkBack not correctly narrating RadioButtons with Content by @​kubaflo in https://github.com/dotnet/maui/pull/35694\n* [release/10.0.1xx-sr7] Revert - Fix Changing Shell.NavBarIsVisible does not update the nav bar  by @​Tamilarasan-Paranthaman in https://github.com/dotnet/maui/pull/35703\n* [Revert] - [Windows] Fix WebView blank rendering when used with HybridWebView by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/35744\n* Fix OnNavigatedTo not firing after PopModalAsync when tab is changed inside modal by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/35768\n* Increment patch version from 70 to 71 by @​PureWeen in https://github.com/dotnet/maui/pull/35786\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.70...10.0.71\n\n## 10.0.70\n\n## What's Changed\n\n.NET MAUI 10.0.70 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 135 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- [CI] Extend gate to all test types and decouple from PR review by @​kubaflo in https://github.com/dotnet/maui/pull/34705\n\n- Integrate UI test category detection into PR review and fix gate reliability by @​kubaflo in https://github.com/dotnet/maui/pull/35133\n\n## API\n- Revert public API surface from #​34228 on inflight/candidate by @​Redth in https://github.com/dotnet/maui/pull/35024\n\n## Blazor\n- Fix: Filter precompressed RCL assets from MAUI Blazor Hybrid APKs by @​mattleibow in https://github.com/dotnet/maui/pull/33917\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [.NET MAUI Blazor Hybrid App should not precompress assets](https://github.com/dotnet/maui/issues/33773)\n  </details>\n\n- [Windows] Fix for Runtime error when closing external window with WPF Webview Control by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/34006\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Runtime error when closing external window with WPF Webview Control](https://github.com/dotnet/maui/issues/32944)\n  </details>\n\n## Button\n- [Android] ImageButton CornerRadius not being applied - fix by @​kubaflo in https://github.com/dotnet/maui/pull/30074\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [ImageButton"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1043,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13467,
+      "excerpt": " Gate SafeArea inset listeners in recycler items by @​kubaflo in https://github.com/dotnet/maui/pull/35693\n* [release/10.0.1xx-sr7] Revert - Fix TalkBack not correctly narrating RadioButtons with Content by @​kubaflo in https://github.com/dotnet/maui/pull/35694\n* [release/10.0.1xx-sr7] Revert - Fix Changing Shell.NavBarIsVisible does not update the nav bar  by @​Tamilarasan-Paranthaman in https://github.com/dotnet/maui/pull/35703\n* [Revert] - [Windows] Fix WebView blank rendering when used with HybridWebView by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/35744\n* Fix OnNavigatedTo not firing after PopModalAsync when tab is changed inside modal by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/35768\n* Increment patch version from 70 to 71 by @​PureWeen in https://github.com/dotnet/maui/pull/35786\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.70...10.0.71\n\n## 10.0.70\n\n## What's Changed\n\n.NET MAUI 10.0.70 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 135 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- [CI] Extend gate to all test types and decouple from PR review by @​kubaflo in https://github.com/dotnet/maui/pull/34705\n\n- Integrate UI test category detection into PR review and fix gate reliability by @​kubaflo in https://github.com/dotnet/maui/pull/35133\n\n## API\n- Revert public API surface from #​34228 on inflight/candidate by @​Redth in https://github.com/dotnet/maui/pull/35024\n\n## Blazor\n- Fix: Filter precompressed RCL assets from MAUI Blazor Hybrid APKs by @​mattleibow in https://github.com/dotnet/maui/pull/33917\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [.NET MAUI Blazor Hybrid App should not precompress assets](https://github.com/dotnet/maui/issues/33773)\n  </details>\n\n- [Windows] Fix for Runtime error when closing external window with WPF Webview Control by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/34006\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Runtime error when closing external window with WPF Webview Control](https://github.com/dotnet/maui/issues/32944)\n  </details>\n\n## Button\n- [Android] ImageButton CornerRadius not being applied - fix by @​kubaflo in https://github.com/dotnet/maui/pull/30074\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [ImageButton"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 50726,
+      "excerpt": " Gate SafeArea inset listeners in recycler items by @​kubaflo in https://github.com/dotnet/maui/pull/35693\n* [release/10.0.1xx-sr7] Revert - Fix TalkBack not correctly narrating RadioButtons with Content by @​kubaflo in https://github.com/dotnet/maui/pull/35694\n* [release/10.0.1xx-sr7] Revert - Fix Changing Shell.NavBarIsVisible does not update the nav bar  by @​Tamilarasan-Paranthaman in https://github.com/dotnet/maui/pull/35703\n* [Revert] - [Windows] Fix WebView blank rendering when used with HybridWebView by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/35744\n* Fix OnNavigatedTo not firing after PopModalAsync when tab is changed inside modal by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/35768\n* Increment patch version from 70 to 71 by @​PureWeen in https://github.com/dotnet/maui/pull/35786\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.70...10.0.71\n\n## 10.0.70\n\n## What's Changed\n\n.NET MAUI 10.0.70 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 135 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- [CI] Extend gate to all test types and decouple from PR review by @​kubaflo in https://github.com/dotnet/maui/pull/34705\n\n- Integrate UI test category detection into PR review and fix gate reliability by @​kubaflo in https://github.com/dotnet/maui/pull/35133\n\n## API\n- Revert public API surface from #​34228 on inflight/candidate by @​Redth in https://github.com/dotnet/maui/pull/35024\n\n## Blazor\n- Fix: Filter precompressed RCL assets from MAUI Blazor Hybrid APKs by @​mattleibow in https://github.com/dotnet/maui/pull/33917\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [.NET MAUI Blazor Hybrid App should not precompress assets](https://github.com/dotnet/maui/issues/33773)\n  </details>\n\n- [Windows] Fix for Runtime error when closing external window with WPF Webview Control by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/34006\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Runtime error when closing external window with WPF Webview Control](https://github.com/dotnet/maui/issues/32944)\n  </details>\n\n## Button\n- [Android] ImageButton CornerRadius not being applied - fix by @​kubaflo in https://github.com/dotnet/maui/pull/30074\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [ImageButton"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:782",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 782,
+      "title": "Bump the microsoftextensions group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10466,
+      "excerpt": " MetricsReports in Microsoft.Extensions.AuditReports create directories [Same as ComplianceReport] by <a href=\"https://github.com/IbrahimMNada\"><code>@​IbrahimMNada</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5919\">dotnet/extensions#5919</a></li>\n<li>Update template to newest M.E.AI version by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5923\">dotnet/extensions#5923</a></li>\n<li>Introduce type converter for DataClassification by <a href=\"https://github.com/dariusclay\"><code>@​dariusclay</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5887\">dotnet/extensions#5887</a></li>\n<li>Reinstate caching in schema generation by <a href=\"https://github.com/eiriktsarpalis\"><code>@​eiriktsarpalis</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5908\">dotnet/extensions#5908</a></li>\n<li>Add GetRequiredService extension for IChatClient/EmbeddingGenerator by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5930\">dotnet/extensions#5930</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/dotnet/extensions/commit/f1f17e642a685df7e87b805be1efe4729ff725e4\"><code>f1f17e6</code></a> Merged PR 48301: Fix grouping of ChatResponseUpdate into ChatMessage (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6074\">#6074</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/f663faff909fd0a1455eddf735bdd8af571680d5\"><code>f663faf</code></a> Fix grouping of ChatResponseUpdate into ChatMessage (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6074\">#6074</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/c2f01745f08dea62f9aadd8db512a57a664ac089\"><code>c2f0174</code></a> Merged PR 48268: Address M.E.VectorData feedback for IEmbeddingGenerator (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6058\">#6058</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/5ebe9495fd52e48d0eaa4c33b465aadcd98b3651\"><code>5ebe949</code></a> Address M.E.VectorData feedback for IEmbeddingGenerator (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6058\">#6058</a>)<"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:794",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 794,
+      "title": "Bump the microsoftextensions group across 1 directory with 4 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10622,
+      "excerpt": " MetricsReports in Microsoft.Extensions.AuditReports create directories [Same as ComplianceReport] by <a href=\"https://github.com/IbrahimMNada\"><code>@​IbrahimMNada</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5919\">dotnet/extensions#5919</a></li>\n<li>Update template to newest M.E.AI version by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5923\">dotnet/extensions#5923</a></li>\n<li>Introduce type converter for DataClassification by <a href=\"https://github.com/dariusclay\"><code>@​dariusclay</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5887\">dotnet/extensions#5887</a></li>\n<li>Reinstate caching in schema generation by <a href=\"https://github.com/eiriktsarpalis\"><code>@​eiriktsarpalis</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5908\">dotnet/extensions#5908</a></li>\n<li>Add GetRequiredService extension for IChatClient/EmbeddingGenerator by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5930\">dotnet/extensions#5930</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/dotnet/extensions/commit/f1f17e642a685df7e87b805be1efe4729ff725e4\"><code>f1f17e6</code></a> Merged PR 48301: Fix grouping of ChatResponseUpdate into ChatMessage (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6074\">#6074</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/f663faff909fd0a1455eddf735bdd8af571680d5\"><code>f663faf</code></a> Fix grouping of ChatResponseUpdate into ChatMessage (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6074\">#6074</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/c2f01745f08dea62f9aadd8db512a57a664ac089\"><code>c2f0174</code></a> Merged PR 48268: Address M.E.VectorData feedback for IEmbeddingGenerator (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6058\">#6058</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/5ebe9495fd52e48d0eaa4c33b465aadcd98b3651\"><code>5ebe949</code></a> Address M.E.VectorData feedback for IEmbeddingGenerator (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6058\">#6058</a>)<"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:806",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 806,
+      "title": "Bump the microsoftextensions group across 1 directory with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10485,
+      "excerpt": " MetricsReports in Microsoft.Extensions.AuditReports create directories [Same as ComplianceReport] by <a href=\"https://github.com/IbrahimMNada\"><code>@​IbrahimMNada</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5919\">dotnet/extensions#5919</a></li>\n<li>Update template to newest M.E.AI version by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5923\">dotnet/extensions#5923</a></li>\n<li>Introduce type converter for DataClassification by <a href=\"https://github.com/dariusclay\"><code>@​dariusclay</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5887\">dotnet/extensions#5887</a></li>\n<li>Reinstate caching in schema generation by <a href=\"https://github.com/eiriktsarpalis\"><code>@​eiriktsarpalis</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5908\">dotnet/extensions#5908</a></li>\n<li>Add GetRequiredService extension for IChatClient/EmbeddingGenerator by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5930\">dotnet/extensions#5930</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/dotnet/extensions/commit/f1f17e642a685df7e87b805be1efe4729ff725e4\"><code>f1f17e6</code></a> Merged PR 48301: Fix grouping of ChatResponseUpdate into ChatMessage (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6074\">#6074</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/f663faff909fd0a1455eddf735bdd8af571680d5\"><code>f663faf</code></a> Fix grouping of ChatResponseUpdate into ChatMessage (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6074\">#6074</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/c2f01745f08dea62f9aadd8db512a57a664ac089\"><code>c2f0174</code></a> Merged PR 48268: Address M.E.VectorData feedback for IEmbeddingGenerator (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6058\">#6058</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/5ebe9495fd52e48d0eaa4c33b465aadcd98b3651\"><code>5ebe949</code></a> Address M.E.VectorData feedback for IEmbeddingGenerator (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6058\">#6058</a>)<"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 953,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 51761,
+      "excerpt": "sed to enhance the overall stability and reliability of the framework.\n\n### BindableLayout\n\n* ❤️ [All] Improved reliability by properly disconnecting handlers by [@​albyrock87](https://github.com/albyrock87) in [#​27450](https://github.com/dotnet/maui/pull/27450)\n\n### CarouselView\n\n* 🛠️ [iOS] Fixed changing carousel view orientation with disabled loop by [@​kubaflo](https://github.com/kubaflo) in [#​28545](https://github.com/dotnet/maui/pull/28545)\n* 🛠️ [All] Fixed `ItemsUpdatingScrollMode` so the view keeps position when the collection changes by [@​SuthiYuvaraj](https://github.com/SuthiYuvaraj) in [#​26608](https://github.com/dotnet/maui/pull/26608)\n\n### CollectionView\n\n* 🛠️ [iOS] Fixed footer sizing when the source is empty by [@​kubaflo](https://github.com/kubaflo) in [#​28610](https://github.com/dotnet/maui/pull/28610)\n* 🛠️ [Windows] Fixed crash when `EmptyView` is reused after navigation by [@​KarthikRajaKalaimani](https://github.com/KarthikRajaKalaimani) in [#​28367](https://github.com/dotnet/maui/pull/28367)\n* 🛠️ [iOS] Resolved proper rendering of dynamic header/footer updates by [@​prakashKannanSf3972](https://github.com/prakashKannanSf3972) in [#​28641](https://github.com/dotnet/maui/pull/28641)\n* 🛠️ [iOS] Fixed `TargetInvocationException` when selecting header/footer after changing `ItemsLayout` by [@​Ahamed-Ali](https://github.com/Ahamed-Ali) in [#​28890](https://github.com/dotnet/maui/pull/28890)\n\n### DatePicker\n\n* ✅ [All] Added nullable support for `Date`, `MinimumDate`, and `MaximumDate` properties by [@​jfversluis](https://github.com/jfversluis) in [#​27921](https://github.com/dotnet/maui/pull/27921)\n* 🛠️ [Windows] Fixed text and icon color issues when hovering over the DatePicker by [@​Ahamed-Ali](https://github.com/Ahamed-Ali) in [#​27147](https://github.com/dotnet/maui/pull/27147)\n\n### Entry\n\n* 🛠️ [iOS] Fixed `CursorPosition` property not being applied correctly by [@​praveenkumarkarunanithi](https://github.com/praveenkumarkarunanithi) in [#​27220](https://github.com/dotnet/maui/pull/27220)\n\n### FlyoutPage\n ... (truncated)\n\n## 10.0.0-preview.3.25208.1\n\n## What's Changed\n\n.NET MAUI Preview 3 introduces significant improvements across all platforms. Key highlights include performance optimizations for iOS CollectionView and property mapping, improved WebView capabilities, enhanced accessibility features, and numerous bug fixes for platform-s"
+    }
+  ]
+}

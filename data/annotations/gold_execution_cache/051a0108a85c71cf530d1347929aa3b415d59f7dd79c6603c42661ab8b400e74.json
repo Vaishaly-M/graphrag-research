@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6546",
+        "path": null,
+        "offset": 66,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+        "path": null,
+        "offset": 11583,
+        "line": 67
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6611",
+        "path": null,
+        "offset": 1944,
+        "line": 19
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsClassLoader.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsClassLoader.java",
+        "offset": 4930,
+        "line": 143
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "offset": 16047,
+        "line": 240
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:pom.xml",
+        "path": "pom.xml",
+        "offset": 21199,
+        "line": 747
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+        "offset": 17299,
+        "line": 550
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6432",
+        "path": null,
+        "offset": 1038,
+        "line": 20
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsClassLoader.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsClassLoader.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4930,
+      "excerpt": "> c = getCachedClass(name);\n\t\tif (c == null) {\n\t\t\t// We do not try to load classes using this.findClass on purpose.\n\t\t\t// All classes are loaded by web container or by module class loaders.\n\n\t\t\t// First try loading from modules such that we allow modules to load\n\t\t\t// different versions of the same libraries that may already be used\n\t\t\t// by core or the web container. An example is the chartsearch module\n\t\t\t// which uses different versions of lucene and solr from core\n\t\t\tString packageName = StringUtils.substringBeforeLast(name, \".\");\n\t\t\tSet<ModuleClassLoader> moduleClassLoaders = ModuleFactory.getModuleClassLoadersForPackage(packageName);\n\t\t\tfor (ModuleClassLoader moduleClassLoader : moduleClassLoaders) {\n\t\t\t\ttry {\n\t\t\t\t\tc = moduleClassLoader.loadClass(name);\n\t\t\t\t\tbreak;\n\t\t\t\t} catch (ClassNotFoundException e) {\n\t\t\t\t\t// Continue trying...\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tif (c == null) {\n\t\t\t\t// Finally try loading from web container\n\t\t\t\tc = getParent().loadClass(name);\n\t\t\t}\n\n\t\t\tcacheClass(name, c);\n\t\t}\n\n\t\tif (resolve) {\n\t\t\tresolveClass(c);\n\t\t}\n\n\t\treturn c;\n\t}\n\n\tprivate Class<?> getCachedClass(String name) {\n\t\tWeakReference<Class<?>> ref = cachedClasses.get(name);\n\t\tif (ref != null) {\n\t\t\tClass<?> loadedClass = ref.get();\n\t\t\tif (loadedClass == null || loadedClass.getClassLoader() == null) {\n\t\t\t\t// Class has been garbage collected\n\t\t\t\tcachedClasses.remove(name);\n\t\t\t\tloadedClass = null;\n\t\t\t} else if (loadedClass.getClassLoader() instanceof ModuleClassLoader) {\n\t\t\t\tModuleClassLoader moduleClassLoader = (ModuleClassLoader) loadedClass.getClassLoader();\n\t\t\t\tif (moduleClassLoader.isDisposed()) {\n\t\t\t\t\t// Class has been unloaded\n\t\t\t\t\tcachedClasses.remove(name);\n\t\t\t\t\tloadedClass = null;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\treturn loadedClass;\n\t\t}\n\t\treturn null;\n\t}\n\n\tprivate void cacheClass(String name, Class<?> clazz) {\n\t\tcachedClasses.put(name, new WeakReference<>(clazz));\n\t}\n\n\t/**\n\t * @see java.net.URLClassLoader#findResource(java.lang.String)\n\t */\n\t@Override\n\tpublic URL findResource(final String name) {\n\t\tlog.trace(\"finding resource: {}\", name);\n\n\t\tURL result;\n\t\tfor (ModuleClassLoader classLoader : ModuleFactory.getModuleClassLoaders()) {\n\t\t\tresult = classLoader.findResource(name);\n\t\t\tif (result != null) {\n\t\t\t\treturn result;\n\t\t\t}\n\t\t}\n\n\t\t// look for the resource in the parent\n\t\tresult = super.findResource(name);\n\n\t\t// expand the jar url if necessary\n\t\tif (result != null && \"jar\".equals(result.getProtocol())"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 17299,
+      "excerpt": "g2 d2) {\n\t\tif (d1 == null) {\n\t\t\treturn d2 == null;\n\t\t} else if (d2 == null) {\n\t\t\treturn false;\n\t\t}\n\t\treturn (d1 instanceof Date && d2 instanceof Date) ? compare((Date) d1, (Date) d2) == 0 : d1.equals(d2);\n\t}\n\n\t/**\n\t * Compares two java.util.Date objects, but handles java.sql.Timestamp (which is not directly\n\t * comparable to a date) by dropping its nanosecond value.\n\t */\n\tpublic static int compare(Date d1, Date d2) {\n\t\tif (d1 instanceof Timestamp && d2 instanceof Timestamp) {\n\t\t\treturn d1.compareTo(d2);\n\t\t}\n\t\tif (d1 instanceof Timestamp) {\n\t\t\td1 = new Date(d1.getTime());\n\t\t}\n\t\tif (d2 instanceof Timestamp) {\n\t\t\td2 = new Date(d2.getTime());\n\t\t}\n\t\treturn d1.compareTo(d2);\n\t}\n\n\t/**\n\t * Compares two Date/Timestamp objects, treating null as the earliest possible date.\n\t */\n\tpublic static int compareWithNullAsEarliest(Date d1, Date d2) {\n\t\tif (d1 == null && d2 == null) {\n\t\t\treturn 0;\n\t\t}\n\t\tif (d1 == null) {\n\t\t\treturn -1;\n\t\t} else if (d2 == null) {\n\t\t\treturn 1;\n\t\t} else {\n\t\t\treturn compare(d1, d2);\n\t\t}\n\t}\n\n\t/**\n\t * Compares two Date/Timestamp objects, treating null as the earliest possible date.\n\t */\n\tpublic static int compareWithNullAsLatest(Date d1, Date d2) {\n\t\tif (d1 == null && d2 == null) {\n\t\t\treturn 0;\n\t\t}\n\t\tif (d1 == null) {\n\t\t\treturn 1;\n\t\t} else if (d2 == null) {\n\t\t\treturn -1;\n\t\t} else {\n\t\t\treturn compare(d1, d2);\n\t\t}\n\t}\n\n\tpublic static <E extends Comparable<E>> int compareWithNullAsLowest(E c1, E c2) {\n\t\tif (c1 == null && c2 == null) {\n\t\t\treturn 0;\n\t\t}\n\t\tif (c1 == null) {\n\t\t\treturn -1;\n\t\t} else if (c2 == null) {\n\t\t\treturn 1;\n\t\t} else {\n\t\t\treturn c1.compareTo(c2);\n\t\t}\n\t}\n\n\tpublic static <E extends Comparable<E>> int compareWithNullAsGreatest(E c1, E c2) {\n\t\tif (c1 == null && c2 == null) {\n\t\t\treturn 0;\n\t\t}\n\t\tif (c1 == null) {\n\t\t\treturn 1;\n\t\t} else if (c2 == null) {\n\t\t\treturn -1;\n\t\t} else {\n\t\t\treturn c1.compareTo(c2);\n\t\t}\n\t}\n\n\t/**\n\t * Converts a collection to a String with a specified separator between all elements\n\t *\n\t * @param c Collection to be joined\n\t * @param separator string to put between all elements\n\t * @return a String representing the toString() of all elements in c, separated by separator\n\t * @deprecated as of 2.2 use Java's {@link String#join} or Apache Commons StringUtils.join for\n\t *             iterables which do not extend {@link CharSequence}\n\t */\n\t@Deprecated\n\tpublic static <E> String join(Collection<E> c, String separator) {\n\t\tif (c == nu"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:pom.xml",
+      "kind": "File",
+      "path": "pom.xml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 21199,
+      "excerpt": "de image resource -->\n\t\t\t<plugin>\n\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t<artifactId>maven-javadoc-plugin</artifactId>\n\t\t\t\t<version>3.12.0</version>\n\t\t\t\t<configuration>\n\t\t\t\t\t<docfilessubdirs>true</docfilessubdirs>\n\t\t\t\t\t<bottom>&lt;em&gt;&lt;small&gt; Generated ${TIMESTAMP} NOTE - these libraries are in active development and subject to change&lt;/small&gt;&lt;/em&gt;</bottom>\n\t\t\t\t\t<header>&lt;a href=\"https://www.openmrs.org\" target=_top&gt;&lt;img src=\"resources/openmrs-logo-small.gif\" border=0/&gt;&lt;/a&gt;</header>\n\t\t\t\t\t<footer>&lt;a href=\"https://www.openmrs.org\" target=_top&gt;${project.name}&lt;/a&gt;</footer>\n\t\t\t\t</configuration>\n\t\t\t</plugin>\n\t\t\t<plugin>\n\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t<artifactId>maven-jxr-plugin</artifactId>\n\t\t\t\t<version>3.6.0</version>\n\t\t\t</plugin>\n\t\t</plugins>\n\t</reporting>\n\n\t<repositories>\n\t\t<repository>\n\t\t\t<id>openmrs-repo</id>\n\t\t\t<name>OpenMRS Nexus Repository</name>\n\t\t\t<url>https://mavenrepo.openmrs.org/nexus/content/repositories/public</url>\n\t\t</repository>\n\t</repositories>\n\n\t<pluginRepositories>\n\t\t<pluginRepository>\n\t\t\t<id>openmrs-repo</id>\n\t\t\t<name>OpenMRS Nexus Repository</name>\n\t\t\t<url>https://mavenrepo.openmrs.org/nexus/content/repositories/public</url>\n\t\t\t<snapshots>\n\t\t\t\t<enabled>false</enabled>\n\t\t\t</snapshots>\n\t\t</pluginRepository>\n\t</pluginRepositories>\n\n\t<distributionManagement>\n\t\t<repository>\n\t\t\t<id>openmrs-repo-releases</id>\n\t\t\t<name>OpenMRS Nexus Releases</name>\n\t\t\t<url>https://mavenrepo.openmrs.org/nexus/content/repositories/releases</url>\n\t\t</repository>\n\t\t<snapshotRepository>\n\t\t\t<id>openmrs-repo-snapshots</id>\n\t\t\t<name>OpenMRS Nexus Snapshots</name>\n\t\t\t<url>https://mavenrepo.openmrs.org/nexus/content/repositories/snapshots</url>\n\t\t</snapshotRepository>\n\t</distributionManagement>\n\n\t<properties>\n\t\t<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n\t\t<maven.compiler.release>21</maven.compiler.release>\n\t\t<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>\n\t\t<TIMESTAMP>${maven.build.timestamp}</TIMESTAMP>\n\n\t\t<openmrs.version.long>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion} ${parsedVersion.qualifier} Build ${revisionNumber}</openmrs.version.long>\n\t\t<openmrs.version.short>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${revisionNumber}</openmrs."
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "kind": "File",
+      "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 16047,
+      "excerpt": "cks ##\n####################################\n# The actions directive (org.owasp.csrfguard.action.*) gives the user the ability to specify one or more\n# actions that should be invoked when a CSRF attack is detected. Every action must implement the\n# org.owasp.csrfguard.action.IAction interface either directly or indirectly through the\n# org.owasp.csrfguard.action.AbstractAction helper class. Many actions accept parameters that can be specified\n# along with the action class declaration. These parameters are consumed at runtime and impact the behavior of\n# the associated action.\n#\n# The syntax for defining and configuring CSRFGuard actions is relatively straight forward. Let us assume we wish\n# to redirect the user to a default page when a CSRF attack is detected. A redirect action already exists within\n# the CSRFGuard bundle and is available via the class name org.owasp.csrfguard.actions.Redirect. In order to enable\n# this action, we capture the following declaration in the Owasp.CsrfGuard.properties file:\n#\n# syntax: org.owasp.csrfguard.action.[actionName] = [className]\n# example: org.owasp.csrfguard.action.class.Redirect = org.owasp.csrfguard.actions.Redirect\n#\n# The aforementioned directive declares an action called \"Redirect\" (i.e. [actionName]) referencing the Java class\n# \"org.owasp.csrfguard.actions.Redirect\" (i.e. [className]). Anytime a CSRF attack is detected, the Redirect action\n# will be executed. You may be asking yourself, \"but how do I specify where the user is redirected?\"; this is where\n# action parameters come into play. In order to specify the redirect location, we capture the following declaration\n# in the Owasp.CsrfGuard.properties file:\n#\n# syntax: org.owasp.csrfguard.action.[actionName].[parameterName] = [parameterValue]\n# example: org.owasp.csrfguard.action.Redirect.ErrorPage = %servletContext%/error.html\n#\n# The aforementioned directive declares an action parameter called \"ErrorPage\" (i.e. [parameterName]) with the value\n# of \"%servletContext%/error.html\" (i.e. [parameterValue]) for the action \"Redirect\" (i.e. [actionName]). The\n# Redirect action expects the \"ErrorPage\" parameter to be defined and will redirect the user to this location when\n# an attack is detected.\n# org.owasp.csrfguard.action.Empty = org.owasp.csrfguard.action.Empty\n#\n# org.owasp.csrfguard.action.Invalidate = org.owasp.csrfguard.action.Invalidate\n#\n# org.owasp.csrfgua"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6432",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6432,
+      "title": "TRUNK-6382/TRUNK-6360: Backport @Transactional/@Cacheable-on-classes-without-interface fix to 2.6.x",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1038,
+      "excerpt": " AllComponentsState Proxy Conversion Error](https://talk.openmrs.org/t/fhir2-omod-upgrade-2-5-0-2-6-0-fails-on-openmrs-platform-2-6-17-with-allcomponentsstate-proxy-conversion-error/49841).\n\n## Root cause\n\nSeveral modules (App Framework's `AllComponentsState`, `dataexchange`'s `DataExporter`, etc.) declare `@Transactional` on a concrete class with no interface. Before this fix, `@Transactional`/`@Cacheable` annotation processing silently did not apply to any bean that wasn't an `OpenmrsService`, so these beans were never actually proxied — the raw object was injected directly, and everything worked by accident.\n\nSomething in FHIR2 2.6.0+'s own bean graph correctly triggers Spring's transactional annotation-driven infrastructure to *actually* attempt to proxy these beans for the first time. Since they have no interface, Spring's default JDK-dynamic-proxy strategy can't produce a valid proxy assignable to the concrete class — hence the `IllegalStateException`.\n\nThis exact bug and fix already exist for Core 2.8.0+ (TRUNK-6382, TRUNK-6360), which switches `@Transactional`/`@Cacheable` proxying to CGLIB (class-based) via `<tx:annotation-driven proxy-target-class=\"true\"/>` / `<cache:annotation-driven proxy-target-class=\"true\"/>`, replacing the old `DefaultAdvisorAutoProxyCreator`/`TransactionAttributeSourceAdvisor` pair. CGLIB proxies subclass the real class, so they satisfy `instanceof AllComponentsState` correctly.\n\n**This fix was never backported to 2.6.x or 2.7.x**, only released in Core 2.8.0 (2025-08-15). Implementers who can't yet take the 2.6→2.8 platform jump have no way to consume newer FHIR2/reporting/etc. releases without hitting this.\n\n## What this PR does\n\nCherry-picks the three commits that implement and refine the fix on the 2.8.x branch:\n\n- `7a42063` — TRUNK-6360: Cacheable needs to work not only on OpenmrsService methods but all beans\n- `ec1f42c` — TRUNK-6382: @Transactional must work on classes without interface\n- `77de212` — TRUNK-6382: Use Autowired for cacheConfig for backwards compatibility\n\nPlus one small addition needed specifically for 2.6.x: this branch configures caches via `ehcache-api.xml` rather than the `cache-api.yaml` resource master/2.8.x use, so a `testCache` entry was added there to keep the accompanying unit tests passing.\n\n## Validation\n\nWe independently reproduced and validated this against a real reference-application-distr"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6546",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6546,
+      "title": "TRUNK-6768: Remove unused BOM entries and ban SNAPSHOT dependencies in release builds",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 66,
+      "excerpt": " actual module usage, removes unused managed entries, and adds a release-build check that fails on SNAPSHOT dependencies.\r\n\r\nChanges:\r\n\r\n### 1. BOM Audit (`bom/pom.xml`, `web/pom.xml`)\r\n\r\nAudited every managed dependency in `bom/pom.xml` against what `api`, `web`, `webapp`, and `liquibase` actually declare or resolve (via `mvn dependency:tree`).\r\n\r\n**Removed (confirmed unused anywhere in the module tree):**\r\n- `org.openmrs.liquibase.ext:type-converter` — confirmed unused via dependency:tree across all modules\r\n\r\n**Kept, with explanatory comments** (per the ticket's \"deliberately provided with a comment\" criterion):\r\n- `jaxen` — required transitively by the `liquibase` module for XML changelog XPath support; not declared by `api`/`web`/`webapp`\r\n- `netty-bom` — pins the Netty version pulled in transitively via the AWS SDK S3 client\r\n- `sonar-jacoco-listeners` — used as a listener dependency for the jacoco-maven-plugin / Sonar coverage integration in the root pom.xml, not a direct project dependency\r\n\r\n### 2. Release-build check for SNAPSHOT dependencies (`pom.xml`)\r\n\r\nAdded a `release` Maven profile using the built-in `banDynamicVersions` Enforcer rule, bound to the `validate` phase, which fails the build if any resolved dependency has a SNAPSHOT version, a version range, or a LATEST/RELEASE placeholder.\r\n\r\nTested:\r\n- `mvn validate -pl api` → passes (normal dev builds unaffected)\r\n- `mvn validate -Prelease -pl api` → fails with a precise message naming the offending SNAPSHOT dependency\r\n\r\n### 3. What's NOT included, and why\r\n\r\nThe ticket also asks for milestone (`-M`), alpha, beta, and RC qualifiers to be banned in release builds. I was unable to implement this with `bannedDependencies` (the rule the ticket suggests) or any other built-in Enforcer rule:\r\n\r\n- `banDynamicVersions` only covers SNAPSHOT, version ranges, and LATEST/RELEASE — milestone/alpha/beta/RC versions are not \"dynamic\" by Maven's definition and are explicitly out of scope for this rule.\r\n- `bannedDependencies`' wildcard support only replaces a *whole* segment (groupId, artifactId, or version) or accepts a real Maven version range. It does not support partial substring matching within the version field (e.g. `*-M*`). I verified this directly: testing both a `regex:`-prefixed pattern and a plain wildcard pattern against this version position either matched nothing, or — more concerningly — mat"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6611",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6611,
+      "title": "TRUNK-6766: Replace commons-collections 3.2.2 usage with JDK collections",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1944,
+      "excerpt": "ay with TRUNK-6767 (#6612 ) and TRUNK-6812 (#6616). With all three merged, no module's tree contains it. |\r\n\r\n### Notes for reviewers / module authors\r\n- `AttributeMatcherPredicate#evaluate(Object)` is now `test(T)`.\r\n- Modules that relied on the BOM for the commons-collections version will need to declare it themselves.\r\n- Merging this together with TRUNK-6767 conflicts trivially: the `commons-validator` `<exclusions>` merge into one list, and one import is removed on both sides.\r\n\r\n## Issue I worked on\r\n\r\nsee https://openmrs.atlassian.net/browse/TRUNK-6766\r\n\r\n## Checklist: I completed these to help reviewers :)\r\n\r\n- [ ] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\r\n- [x] I have **added tests** to cover my changes.\r\n- [x] I ran `./mvnw clean package` right before creating this pull request and added all formatting changes to my commit.\r\n- [x] All new and existing **tests passed**. (`api`: 5369, `web`: 199)\r\n- [x] My pull request is **based on the latest changes** of the master branch.\r\n\r\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\r\n\r\nhttps://claude.ai/code/session_01VrZPTwhu6tHo26qXNmPgjS"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6648,
+      "title": "maven(deps): bump org.owasp.encoder:encoder from 1.4.1 to 1.5.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11583,
+      "excerpt": "deprecation call sites, and the README has a <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/main/README.md#migrating-from-foruri\">forUri migration section</a> <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/130\">#130</a>.</li>\n<li>fix: the JSP and Jakarta bundles now declare the core version they need (<code>[1.5,2)</code>, because the tags call <code>Encode.forJson</code>) and the JSP API ranges they support, instead of unversioned imports that could wire to an older core and fail when a tag ran. Bundle symbolic names are now declared explicitly and unchanged <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/137\">#137</a>.</li>\n<li>fix: <code>forHtmlUnquotedAttribute</code> now replaces U+0085 (NEL) with a hyphen like the other C1 control characters, instead of emitting <code>&amp;[#133](https://github.com/OWASP/owasp-java-encoder/issues/133);</code>, which HTML5 parsers decode as U+2026 <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/136\">#136</a>.</li>\n<li>fix: the XML 1.1 encoders (<code>forXml11</code>, <code>forXml11Content</code>, <code>forXml11Attribute</code>) now encode U+0085 (NEL) as <code>&amp;#x85;</code> and U+2028 (line separator) as <code>&amp;#x2028;</code>, so they are not normalized to a line feed <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/136\">#136</a>.</li>\n<li>maintenance: clarify output-context contracts and expand XML 1.1 tests, fix clean reactor compilation, and remove the obsolete benchmark profile.</li>\n</ul>\n<h3>Build, compatibility and maintenance</h3>\n<ul>\n<li>Preserve original-JAR consumers on Java 8/11/17/21/25, explicit/automatic JPMS\nand Felix R6/R8; add final TLD-surface/Writer contract checks (<a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/162\">#162</a>, <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/167\">#167</a>).</li>\n<li>Test packaged javax/Jakarta TLDs through isolated Tomcat/Jasper engines; retain\nrequired real-browser and executable-WAR checks with the modernized optional\nBoot 4.1.1 fixture (<a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/179\">#179</a>, <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/180\">#180</a>).</li>\n<li>Pin and guard Actions, add CodeQL/dependency submissions/Dependabot, isolate\nMaven caches, and preserve require"
+    }
+  ]
+}

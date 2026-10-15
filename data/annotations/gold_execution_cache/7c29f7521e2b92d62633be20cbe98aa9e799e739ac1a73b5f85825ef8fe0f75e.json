@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(c:DLCommit) WHERE d.dataset=$dataset AND d.repo=$repo AND d.id=$developer RETURN toString(count(DISTINCT c)) AS entity,toString(count(DISTINCT c)) AS fact,collect(DISTINCT d.id)+collect(DISTINCT c.id) AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "developer": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:developer:email:luharshekhar2000@gmail.com"
+  },
+  "rows": [
+    {
+      "entity": "1",
+      "fact": "1",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:developer:email:luharshekhar2000@gmail.com",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:d01b61fea5f0d536c0d4ff29c6b9957c81aa4e20"
+      ]
+    }
+  ]
+}

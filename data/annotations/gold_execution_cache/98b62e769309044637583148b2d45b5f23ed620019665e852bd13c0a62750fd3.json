@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+        "path": null,
+        "offset": 3777,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+        "path": null,
+        "offset": 19986,
+        "line": 293
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+        "path": null,
+        "offset": 9750,
+        "line": 170
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:673",
+        "path": null,
+        "offset": 31377,
+        "line": 418
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+        "path": null,
+        "offset": 1524,
+        "line": 28
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 9,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 14489,
+        "line": 233
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:673",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 673,
+      "title": "Help wanted to idenfity why the android application crash with the following message: [libc] Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 3976 (mpanyname.eshop), pid 3976 (mpanyname.eshop)",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 31377,
+      "excerpt": "0x10000 memmap=0x10000$0xff018000 printk.devkmsg=on bootconfig\" -android-hw \"C:\\Users\\User\\.android\\avd\\..\\avd\\pixel_7_-_api_35.avd\\hardware-qemu.ini\"\nDEBUG   | Android qemu version 35.1.20.0 (build_id 12234392) (CL:N/A)\nDEBUG   | Starting QEMU main loop\nDEBUG   | registered 'boot-properties' qemud service\nDEBUG   | Adding boot property: 'ro.opengles.version' = '196608'\nDEBUG   | Adding boot property: 'qemu.sf.fake_camera' = 'front'\nDEBUG   | Adding boot property: 'qemu.adb.secure' = '1'\nDEBUG   | Adding boot property: 'dalvik.vm.heapsize' = '512m'\nDEBUG   | Adding boot property: 'qemu.hw.mainkeys' = '0'\nDEBUG   | Adding boot property: 'qemu.sf.lcd_density' = '420'\nWHPX on Windows 10.0.26100 detected.\nWindows Hypervisor Platform accelerator is operational\nnetsimd I 12-28 15:35:00.907 daemon\\src\\rust_main.rs:98 - netsim artifacts path: \"C:\\\\Users\\\\User\\\\AppData\\\\Local\\\\Temp\\\netsimd\"\nnetsimd I 12-28 15:35:00.907 daemon\\src\\rust_main.rs:101 - NetsimdArgs {\n    fd_startup_str: None,\n    no_cli_ui: true,\n    no_web_ui: true,\n    pcap: false,\n    disable_address_reuse: false,\n    hci_port: None,\n    connector_instance: None,\n    instance: None,\n    logtostderr: false,\n    dev: false,\n    disable_wifi_p2p: false,\n    rust_grpc: false,\n    vsock: None,\n    config: None,\n    host_dns: Some(\n        \"10.0.0.1\",\n    ),\n    http_proxy: None,\n    test_beacons: false,\n    no_test_beacons: false,\n    no_shutdown: false,\n    verbose: false,\n    version: false,\n}\nDEBUG   | control console listening on port 5554, ADB on port 5555\nDEBUG   | goldfish_events.have-dpad: false\nDEBUG   | goldfish_events.have-trackball: false\nDEBUG   | goldfish_events.have-camera: true\nDEBUG   | goldfish_events.have-keyboard: false\nDEBUG   | goldfish_events.have-lidswitch: false\nDEBUG   | goldfish_events.have-tabletmode: false\nDEBUG   | goldfish_events.have-touch: false\nDEBUG   | goldfish_events.have-multitouch: false\nDEBUG   | Adding boot property: 'monodroid.avdname' = 'pixel_7_-_api_35'\nDEBUG   | Adding boot property: 'net.wifi_mac_prefix' = '5554'\nINFO    | Monitoring duration of emulator setup.\nDEBUG   | Adding boot property: 'qemu.timezone' = 'America/Caracas'\nDEBUG   | android_hw_fingerprint_init: fingerprint qemud listen service initialized\nWARNING | The emulator now requires a signed jwt token for gRPC access! Use the -grpc flag if you really want an open unprotected grpc port\nINFO    | Usi"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 998,
+      "title": "Insecure file-serving pattern: `GetItemPictureById` allows path traversal / arbitrary file read via `PictureFileName'",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1524,
+      "excerpt": "* returned — `PhysicalFile` reports `Content-Length: 0` for procfs and Kestrel aborts the response — so process environment variables are not exfiltrable through this particular sink.)\n\n## Impact\n\nUnrestricted local file read of the `Catalog.API` host: `appsettings*.json`, mounted secret files, K8s service-account tokens (`/var/run/secrets/...`), data-protection keys, application source, etc. In the default topology `Catalog.API` is an internal service, so realistic exposure requires it to be network-reachable (direct exposure, misconfiguration, or via SSRF/lateral movement) — but the file-read defect itself is unconditional.\n\n## Suggested fix\n\nConstrain the filename to the `Pics` directory. Either reduce it to a bare filename, or verify the resolved path stays inside the base:\n\n```csharp\npublic static string GetFullPath(string contentRootPath, string pictureFileName)\n{\n    // Reject any directory component supplied by the caller.\n    var safeName = Path.GetFileName(pictureFileName);\n    var picsRoot = Path.Combine(contentRootPath, \"Pics\");\n    var full = Path.GetFullPath(Path.Combine(picsRoot, safeName));\n\n    // Defense in depth: ensure we never escape the Pics directory.\n    if (!full.StartsWith(picsRoot + Path.DirectorySeparatorChar, StringComparison.Ordinal))\n        throw new InvalidOperationException(\"Invalid picture path.\");\n\n    return full;\n}\n```\n\nOptionally also validate `PictureFileName` on write (`CreateItem`/`UpdateItem`) to reject path separators and `..`.\n\n## Notes\n\nRelated hardening for the same endpoints (lower priority, may be intentional for the sample): the `Catalog.API` write endpoints (`POST/PUT/DELETE /api/catalog/items`) have no authorization, which is what lets the malicious `PictureFileName` be stored. If the reference app intends these to be callable only via an authenticated path, adding `RequireAuthorization` on the write routes would also break the chain. I'm happy to open a PR with the fix above if it's welcome.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9,
+      "excerpt": "erage\r\n\r\nIntroduce pluggable functional test modes (Aspire, RepositoryMock, EfCoreInMemory, Testcontainers, and messaging variants) for Catalog and Ordering via a shared Testing.Common library. Extract ICatalogRepository from Catalog.API to enable in-memory persistence swaps, add Serilog logging to ServiceDefaults, fix integration event type discovery under WebApplicationFactory, and add runsettings plus xUnit traits for filtering tests by mode.\r\n\r\n# eShop Multi-Mode Functional Testing\r\n\r\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontainers** | Te"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1020,
+      "title": "Bump the aspire group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Updated [Microsoft.Extensions.ServiceDiscovery.Yarp](https://github.com/dotnet/extensions) from 10.4.0 to 10.9.0.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [Microsoft.Extensions.ServiceDiscovery.Yarp's releases](https://github.com/dotnet/extensions/releases)._\n\n## 10.9.0\n\nVersion 10.9.0 is headlined by changes in these areas:\n\n* **AI:** New experimental routing APIs center on the abstract `RoutingChatClient` base class, with `SemanticRoutingChatClient` as a concrete semantic-routing implementation. Separately, the abstract `FailoverChatClient` specialization and its concrete `OrderedFailoverChatClient` implementation add failover routing.\n* **AI Evaluation:** The generated report gains redesigned Overview, Cases, History, and Comparison views.\n* **ASP.NET Core and HTTP diagnostics:** The release adds HTTP request latency log enrichment and fixes configuration binding, response-body logging, request-path redaction, and resilience package version handling.\n* **Source-generated logging and service discovery:** Fixes cover classification type qualification, thread-local state cleanup, and DNS query suffix handling.\n\n## Experimental API Changes\n\n### New Experimental APIs\n\n* New experimental API: HTTP request latency log enrichment (`EXTEXP0013`) #​7602\n* New experimental API: Chat client routing and failover (`MEAI001`) #​7662\n\n## What's Changed\n\n### AI (`Microsoft.Extensions.AI`, `Microsoft.Extensions.AI.Abstractions`, and `Microsoft.Extensions.AI.OpenAI`)\n\n* Add extensible chat client routing #​7662 by @​joshuajyue (co-authored by @​Copilot)\n* Pass the request's options to the selected client #​7685 by @​joshuajyue (co-authored by @​jozkee @​Copilot)\n* AI.Abstractions: fix ExcludeFromSchema dropped under concurrent AIFunction creation #​7677 by @​jozkee (co-authored by @​Copilot)\n* Cap OpenAI dependency version ([b10f9c0](https://github.com/dotnet/extensions/commit/b10f9c0a081b5dbb7755b8f5592e1d3c3f550a3a)) by @​jeffhandley (co-authored by @​Copilot)\n\n**Note: Microsoft.Extensions.AI.OpenAI constrains its dependency for OpenAI to 2.12.x, preventing OpenAI updates to 2.13.0+ due to an incompatibility. We expect to release Microsoft.Extensions.AI.OpenAI version 10.9.1 during the week of August 17 to address this issue.**\n\n### HTTP Resilience and Diagnostics (`Microsoft.Extensions.Http.Resilience` and `Microsoft.Extensions.Http.Diagnostics`)\n\n* Fix"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1022,
+      "title": "Bump the microsoftextensions group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19986,
+      "excerpt": "ned Overview, Cases, History, and Comparison views.\n* **ASP.NET Core and HTTP diagnostics:** The release adds HTTP request latency log enrichment and fixes configuration binding, response-body logging, request-path redaction, and resilience package version handling.\n* **Source-generated logging and service discovery:** Fixes cover classification type qualification, thread-local state cleanup, and DNS query suffix handling.\n\n## Experimental API Changes\n\n### New Experimental APIs\n\n* New experimental API: HTTP request latency log enrichment (`EXTEXP0013`) #​7602\n* New experimental API: Chat client routing and failover (`MEAI001`) #​7662\n\n## What's Changed\n\n### AI (`Microsoft.Extensions.AI`, `Microsoft.Extensions.AI.Abstractions`, and `Microsoft.Extensions.AI.OpenAI`)\n\n* Add extensible chat client routing #​7662 by @​joshuajyue (co-authored by @​Copilot)\n* Pass the request's options to the selected client #​7685 by @​joshuajyue (co-authored by @​jozkee @​Copilot)\n* AI.Abstractions: fix ExcludeFromSchema dropped under concurrent AIFunction creation #​7677 by @​jozkee (co-authored by @​Copilot)\n* Cap OpenAI dependency version ([b10f9c0](https://github.com/dotnet/extensions/commit/b10f9c0a081b5dbb7755b8f5592e1d3c3f550a3a)) by @​jeffhandley (co-authored by @​Copilot)\n\n**Note: Microsoft.Extensions.AI.OpenAI constrains its dependency for OpenAI to 2.12.x, preventing OpenAI updates to 2.13.0+ due to an incompatibility. We expect to release Microsoft.Extensions.AI.OpenAI version 10.9.1 during the week of August 17 to address this issue.**\n\n### HTTP Resilience and Diagnostics (`Microsoft.Extensions.Http.Resilience` and `Microsoft.Extensions.Http.Diagnostics`)\n\n* Fix Grpc.Net.ClientFactory version range check - Fixes #​7565 #​7566 by @​Ghost93\n* Fix response body logging under debugger #​7678 by @​Rimobul\n* Redact outgoing path when route is unknown #​7687 by @​Rimobul\n* Fix HTTP client logging config binding #​7691 by @​Rimobul\n\n### ASP.NET Core Extensions (`Microsoft.AspNetCore.Diagnostics.Middleware`)\n\n* Rename HttpLatencyTelemetry extensions class and drop redundant TFM guard #​7645 by @​EasyL0ver (co-authored by @​Copilot)\n* Add HTTP request latency log enricher (experimental) #​7602 by @​EasyL0ver (co-authored by @​Copilot)\n\n### Logging Source Generator (`Microsoft.Gen.Logging`)\n\n* [Microsoft.Gen.Logging] Clear thread-local state when logging throws #​7682 by @​Rimo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1034,
+      "title": "Bump the aspire group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3777,
+      "excerpt": "3...v13.5.4)*\n\n*Full commit: [9c1b401dd67746739044f68959cbf4d3d7af93a6](https://github.com/microsoft/aspire/commit/9c1b401dd67746739044f68959cbf4d3d7af93a6)*\n\nCommits viewable in [compare view](https://github.com/microsoft/aspire/compare/v13.5.3...v13.5.4).\n</details>\n\nUpdated [Microsoft.Extensions.ServiceDiscovery.Yarp](https://github.com/dotnet/extensions) from 10.4.0 to 10.10.0.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [Microsoft.Extensions.ServiceDiscovery.Yarp's releases](https://github.com/dotnet/extensions/releases)._\n\n## 10.10.0\n\nThis month's release focuses on AI package reliability: closing gaps in evaluation scoring, hardening OpenAI image-option handling, and removing the deprecated OpenAI Assistants API support.\n\n## Experimental API Changes\n\n### Removed Experimental APIs\n* OpenAI Assistants experimental APIs removed (was experimental under `OPENAI001`) #​7724\n\n## What's Changed\n\n### AI\n\n* Remove OpenAI Assistants API support #​7724 by @​jozkee (co-authored by @​Copilot)\n* Update OpenAI package version to 2.13.0 #​7726 by @​jozkee\n* OpenAI: Avoid null implicit conversions for image options #​7727 by @​jozkee (co-authored by @​Copilot)\n\n### AI Evaluation\n\n* Fail closed when a quality metric has no valid score #​7735 by @​thaildhe172591\n* Validate path segments in Azure storage result store and response cache #​7718 by @​Lroca88\n\n## Repository Infrastructure Updates\n\n* Add TfxInstaller for publishing #​7695 by @​peterwaltonwork\n* Bump PowerShell from 7.6.4 to 7.6.5 #​7702\n* [Infrastructure] Update vulnerable npm dependencies #​7705 by @​wtgodbe\n* Add Node installation for TfxInstaller #​7703 by @​peterwaltonwork\n* Publish VSIX using publish task instead of output #​7711 by @​peterwaltonwork\n* Bump dotnet-coverage from 18.9.0 to 18.10.0 #​7708\n* Do not validate extension during publish step #​7725 by @​peterwaltonwork\n* Add skill for upgrading OpenAI #​7728 by @​jozkee\n* Fix source indexer stage #​7694 by @​jjonescz\n\n## Acknowledgements\n\n* @​Lroca88 made their first contribution in #​7718\n* @​thaildhe172591 made their first contribution in #​7735\n* @​ANcpLua submitted issue #​7665 (resolved by #​7735)\n* @​jeffhandley @​peterwald @​shyamnamboodiripad reviewed pull requests\n\n**Full Changelog**: https://github.com/dotnet/extensions/compare/v10.9.0...v10.10.0\n\n\n## 10.9.0\n\nVersion 10.9.0 is headlined by changes in these areas:\n\n* **AI:*"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14489,
+      "excerpt": "Maui/compare/14.0.1...14.1.0\n\n## 14.0.1\n\n## `CommunityToolkit.Maui v14.0.1`\n\n### Bug Fixes\n* `NavigationBar`\n  * Add Support for `NavigationBar.SetColor(Color)` on Android 35+\n  * Fix duplicate values for `Color` Attached Property\n* `Popup`\n  * Fix duplicate instantiation of the ViewModel via `PopupService.ShowPopupAsync<T>`'\n  * Fix Padding regression introduced in v14.0.0\n* `StateContainer`\n  * Fix duplicate StateContainer ViewState bug\n* BindableProperty Attribute\n  * Resolve CS0436 Warning\n* `DateTimeOffsetConverter`\n  * Use `TimeZoneInfo` to calculate correct offset\n* Microsoft.Maui.Controls Dependency\n  * Increase dependency to `Microsoft.Maui.Controls v10.0.41`\n* Windows Apps\n  *  Downgrade `Microsoft.WindowsAppSDK` to v1.8.260101001 from 2.0.0-experimental\n\n## What's Changed\n* Add Support for `NavigationBar.SetColor(Color)` on Android 35+ by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3057\n* Bump Microsoft.Testing.Extensions.CodeCoverage from 18.3.2 to 18.4.1 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3062\n* Reorder popup/view model instantiation by @​bijington in https://github.com/CommunityToolkit/Maui/pull/3071\n* Resolve CS0436 Warning caused by `[BindableProperty]` and `[AttachedBindableProperty<T>]` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3073\n* Downgrade Windows SDK by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/3076\n* Fix Popup Padding Regression Introduced in v14.0.0 by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3074\n* Fix DateTimeOffset Converter #​2582 by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/3077\n* Bump Microsoft.Extensions.Http.Resilience from 10.2.0 to 10.3.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3086\n* Bump Microsoft.Extensions.Logging.Debug from 10.0.2 to 10.0.3 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3087\n* Bump System.Formats.Asn1 from 10.0.2 to 10.0.3 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3088\n* Fix duplicate state container view states by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3095\n* Increase `Microsoft.Maui.Controls` Dependency to v10.0.41 by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3107\n\n\n**Full Changelog**: https://github.com/"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 953,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9750,
+      "excerpt": "tyToolkit/Maui/wiki/Migrating-to-Popup-v2), along with the updated Popup documentation:\n- Popup: https://learn.microsoft.com/dotnet/communitytoolkit/maui/views/popup\n- Customizing a Popup using Popup Options: https://learn.microsoft.com/dotnet/communitytoolkit/maui/views/popup/popup-options\n- Popup Service: https://learn.microsoft.com/dotnet/communitytoolkit/maui/views/popup-service\n- Returning a Result from Popup: https://learn.microsoft.com/dotnet/communitytoolkit/maui/views/popup/popup-result\n\n## Breaking Changes\n\n- **CommunityToolkit.Maui** \n  - `Popup.Anchor` feature removed\n- **CommunityToolkit.Maui.Camera**\n  - Updated Namespaces\n  - Refactored the following methods in `CameraView`:\n      ```cs\n      ValueTask CaptureImage(CancellationToken);\n      Task StartCameraPreview(CancellationToken);\n      void StopCameraPreview();\n      ```\n\n## Requirements\n\nThe following tools are now required for CommunityToolkit.Maui:\n\n- [ ] Download/install [.NET SDK v9.0.300](https://dotnet.microsoft.com/download/dotnet/)\n- [ ] Install Xcode 16.2.0 (or higher)\n  - Read the [latest .NET MAUI Release wiki](https://github.com/dotnet/maui/wiki/Release-Versions) to always find the latest-supported version) of Xcode for .NET MAUI \n  - We HIGHLY recommend using the open-source tool [Xcodes](https://github.com/XcodesOrg/XcodesApp) to easily manage your installed Xcode versions\n- [ ] Update to the latest stable version of Visual Studio (or Jet Brains Rider)\n- [ ] After installing the latest stable .NET SDK, update to the latest stable version of the .NET MAUI workload:\n  - On macOS, open the Terminal and enter the following command: `sudo dotnet workload install maui; sudo dotnet workload update`\n  - On Windows, open the command prompt (or Powershell) and enter the following command: `dotnet workload install maui && dotnet workload update`\n- [ ] Add a [`global.json`](https://learn.microsoft.com/dotnet/core/tools/global-json) file to your application with the following parameters to ensure you're not using a unsupported preview version of .NET (example below)\n  - The .NET MAUI Community Toolkit does not support preview releases of .NET\n\n### global.json\n\n```json\n{\n  \"sdk\": {\n    \"version\": \"9.0.300\", \n    \"rollForward\": \"latestFeature\",\n    \"allowPrerelease\": false\n  }\n}\n```\n\n## What's Changed\n\n ... (truncated)\n\n## 11.2.0\n\n## What's Changed\n\n* Rating view by @​GeorgeLeithead in htt"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (f:DLFile) WHERE f.dataset=$dataset AND f.repo=$repo AND f.path=$path UNWIND split(f.content,'\\n') AS line WITH f,trim(line) AS heading WHERE heading STARTS WITH '#' RETURN DISTINCT heading AS entity,heading AS fact,[f.id] AS evidence_ids ORDER BY entity LIMIT $limit",
+  "parameters": {
+    "path": "examples/gateway/README.md",
+    "limit": 5,
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow"
+  },
+  "rows": [
+    {
+      "entity": "# For example:",
+      "fact": "# For example:",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/gateway/README.md"
+      ]
+    },
+    {
+      "entity": "# Getting Started with MLflow AI Gateway for OpenAI",
+      "fact": "# Getting Started with MLflow AI Gateway for OpenAI",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/gateway/README.md"
+      ]
+    },
+    {
+      "entity": "# Installation from PyPI",
+      "fact": "# Installation from PyPI",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/gateway/README.md"
+      ]
+    },
+    {
+      "entity": "# Installation from the repository",
+      "fact": "# Installation from the repository",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/gateway/README.md"
+      ]
+    },
+    {
+      "entity": "# MLflow AI Gateway",
+      "fact": "# MLflow AI Gateway",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/gateway/README.md"
+      ]
+    }
+  ]
+}

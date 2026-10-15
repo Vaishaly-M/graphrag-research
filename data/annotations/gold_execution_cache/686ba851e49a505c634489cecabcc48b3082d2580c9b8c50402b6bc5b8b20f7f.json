@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 71392,
+        "line": 38
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/models/evaluation/base.py",
+        "path": "mlflow/models/evaluation/base.py",
+        "offset": 56654,
+        "line": 1328
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/rest_store.py",
+        "path": "mlflow/store/tracking/rest_store.py",
+        "offset": 92898,
+        "line": 2476
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:tests/tracking/fluent/test_fluent.py",
+        "path": "tests/tracking/fluent/test_fluent.py",
+        "offset": 74863,
+        "line": 1960
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 27138,
+        "line": 553
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracking/_tracking_service/client.py",
+        "path": "mlflow/tracking/_tracking_service/client.py",
+        "offset": 223,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llama_index/workflow/Tutorial.ipynb",
+        "path": "examples/llama_index/workflow/Tutorial.ipynb",
+        "offset": 19002,
+        "line": 420
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model-registry/tutorial.mdx",
+        "path": "docs/docs/classic-ml/model-registry/tutorial.mdx",
+        "offset": 7000,
+        "line": 175
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model-registry/tutorial.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model-registry/tutorial.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7000,
+      "excerpt": " errors, you can go to your web browser and visit `http://localhost:8080` to\nview the MLflow UI.\n\nFirst, let's leave the experiment tracking tab and visit the model registry.\n\n<div className=\"center-div\" style={{ width: 1024, maxWidth: \"100%\" }}>\n  ![Model information from the mlflow\n  ui.](/images/quickstart/model-registry-quickstart/model-registry-ui.png)\n</div>\n\nNext, let's add tags and a model version alias to\n[facilitate model deployment](/ml/model-registry/workflow/#deploy-and-organize-models-with-aliases-and-tags).\nYou can add or edit tags and aliases by clicking on the corresponding `Add` link or pencil icon in\nthe model version table. Let's...\n\n1. Add a model version tag with a key of `problem_type` and value of `regression`.\n2. Add a model version alias of `the_best_model_ever`.\n\n<div className=\"center-div\" style={{ width: 1024, maxWidth: \"100%\" }}>\n  ![Model information from the mlflow\n  ui.](/images/quickstart/model-registry-quickstart/model-alias-and-tags.png)\n</div>\n\n## Load a Registered Model\n\nTo perform inference on a registered model version, we need to load it into memory. There are many\nways to find our model version, but the best method differs depending on the information you have\navailable. However, in the spirit of a quickstart, the below code snippet shows the simplest way to\nload a model from the model registry via a specific model URI and perform inference.\n\n```python\nimport mlflow.sklearn\nfrom sklearn.datasets import make_regression\n\nmodel_name = \"sk-learn-random-forest-reg-model\"\nmodel_version = \"latest\"\n\n# Load the model from the Model Registry\nmodel_uri = f\"models:/{model_name}/{model_version}\"\nmodel = mlflow.sklearn.load_model(model_uri)\n\n# Generate a new dataset for prediction and predict\nX_new, _ = make_regression(n_features=4, n_informative=2, random_state=0, shuffle=False)\ny_pred_new = model.predict(X_new)\n\nprint(y_pred_new)\n```\n\nNote that if you're not using sklearn, if your model flavor is supported, you should use the\nspecific model flavor load method e.g. `mlflow.<flavor>.load_model()`. If the model flavor is\nnot supported, you should leverage <APILink fn=\"mlflow.pyfunc.load_model\" />. Throughout this tutorial\nwe leverage sklearn for demonstration purposes.\n\n### Example 0: Load via Tracking Server\n\nA model URI is a unique identifier for a serialized model. Given the model artifact is stored with\nexperiments in the track"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27138,
+      "excerpt": " version of `h2o(-py)` must be installed in the loader's\nenvironment. You can customize the arguments given to\n[h2o.init()](https://docs.h2o.ai/h2o/latest-stable/h2o-py/docs/h2o.html#h2o.init) by modifying the\n`init` entry of the persisted H2O model's YAML configuration file: `model.h2o/h2o.yaml`.\n\nFinally, you can use the <APILink fn=\"mlflow.h2o.load_model\" /> method to load MLflow Models with the\n`h2o` flavor as H2O model objects.\n\nFor more information, see <APILink fn=\"mlflow.h2o\">mlflow.h2o</APILink>.\n\n#### h2o pyfunc usage\n\nFor a minimal h2o model, here is an example of the pyfunc predict() method in a classification scenario:\n\n```python\nimport mlflow\nimport h2o\n\nh2o.init()\nfrom h2o.estimators.glm import H2OGeneralizedLinearEstimator\n\n# import the prostate data\ndf = h2o.import_file(\n    \"http://s3.amazonaws.com/h2o-public-test-data/smalldata/prostate/prostate.csv.zip\"\n)\n\n# convert the columns to factors\ndf[\"CAPSULE\"] = df[\"CAPSULE\"].asfactor()\ndf[\"RACE\"] = df[\"RACE\"].asfactor()\ndf[\"DCAPS\"] = df[\"DCAPS\"].asfactor()\ndf[\"DPROS\"] = df[\"DPROS\"].asfactor()\n\n# split the data\ntrain, test, valid = df.split_frame(ratios=[0.7, 0.15])\n\n# generate a GLM model\nglm_classifier = H2OGeneralizedLinearEstimator(\n    family=\"binomial\", lambda_=0, alpha=0.5, nfolds=5, compute_p_values=True\n)\n\nwith mlflow.start_run():\n    glm_classifier.train(y=\"CAPSULE\", x=[\"AGE\", \"RACE\", \"VOL\", \"GLEASON\"], training_frame=train)\n    metrics = glm_classifier.model_performance()\n    metrics_to_track = [\"MSE\", \"RMSE\", \"r2\", \"logloss\"]\n    metrics_to_log = {\n        key: value for key, value in metrics._metric_json.items() if key in metrics_to_track\n    }\n    params = glm_classifier.params\n    mlflow.log_params(params)\n    mlflow.log_metrics(metrics_to_log)\n    model_info = mlflow.h2o.log_model(glm_classifier, name=\"h2o_model_info\")\n\n# load h2o model and make a prediction\nh2o_pyfunc = mlflow.pyfunc.load_model(model_uri=model_info.model_uri)\ntest_df = test.as_data_frame()\npredictions = h2o_pyfunc.predict(test_df)\nprint(predictions)\n\n# it is also possible to load the model and predict using h2o methods on the h2o frame\n\n# h2o_model = mlflow.h2o.load_model(model_info.model_uri)\n# predictions = h2o_model.predict(test)\n```\n\n### Keras (`keras`) \\{#tf-keras-example}\n\nThe full guide for using the `keras` flavor [can be viewed here](/ml/deep-learning/keras/).\n\n### PyTorch (`pytorch`)\n\nThe full guide for"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llama_index/workflow/Tutorial.ipynb",
+      "kind": "File",
+      "path": "examples/llama_index/workflow/Tutorial.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19002,
+      "excerpt": "/RankGPT).\\n\",\n    \"\\n\",\n    \"```python\\n\",\n    \"    reranker = RankGPTRerank(llm=self.llm, top_n=5)\\n\",\n    \"    reranked_nodes = reranker.postprocess_nodes(ev.nodes, query_str=query)\\n\",\n    \"    reranked_context = \\\"\\\\n\\\".join(node.text for node in reranked_nodes)\\n\",\n    \"```\\n\",\n    \"\\n\",\n    \"Finally, the reranked context is passed to the LLM along with the user query to generate the final answer. The result is returned as a `StopEvent` with the `result` key.\\n\",\n    \"\\n\",\n    \"```python\\n\",\n    \"    @step\\n\",\n    \"    async def query_result(self, ctx: Context, ev: QueryEvent) -> StopEvent:\\n\",\n    \"        \\\"\\\"\\\"Get result with relevant text.\\\"\\\"\\\"\\n\",\n    \"        query = await ctx.get(\\\"query\\\")\\n\",\n    \"\\n\",\n    \"        prompt = FINAL_QUERY_TEMPLATE.format(context=ev.context, query=query)\\n\",\n    \"        response = self.llm.complete(prompt).text\\n\",\n    \"        return StopEvent(result=response)\\n\",\n    \"```\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"37b8f614-cc00-4602-b283-0564ce6d1f14\",\n   \"metadata\": {},\n   \"source\": [\n    \"Now, let's instantiate the workflow and run it.\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"id\": \"c8c91200\",\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"# Workflow with VS + BM25 retrieval\\n\",\n    \"from workflow.workflow import HybridRAGWorkflow\\n\",\n    \"\\n\",\n    \"workflow = HybridRAGWorkflow(retrievers=[\\\"vector_search\\\", \\\"bm25\\\"], timeout=60)\\n\",\n    \"response = await workflow.run(query=\\\"Why use MLflow with LlamaIndex?\\\")\\n\",\n    \"print(response)\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"bef4f09d-98a7-4298-b44d-6ed8eb0d212c\",\n   \"metadata\": {},\n   \"source\": [\n    \"## 7. Log the Workflow in MLflow Experiment\\n\",\n    \"\\n\",\n    \"Now we want to run the workflow with various different retrieval strategy and evaluate the performance. However, before running the evaluation, we'll log the model in MLflow to track both the model and its performance within an **MLflow Experiment**.\\n\",\n    \"\\n\",\n    \"For the LlamaIndex Workflow, we use the new [Model-from-code](https://mlflow.org/docs/latest/models.html#models-from-code) method, which logs models as standalone Python scripts. This approach avoids the risks and instability associated with serialization methods like pickle, relying instead on code as the single source of truth for the model definition. When combined w"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 71392,
+      "excerpt": "n Kubernetes?,\"MLflow runs a Project on Kubernetes by pushing the new Project image to a specified Docker registry and starting a Kubernetes Job on a specified Kubernetes cluster. The Kubernetes Job then downloads the Project image and starts a corresponding Docker container. Finally, the container invokes the Project's entry point, logging parameters, tags, metrics, and artifacts to the MLflow tracking server.\",\"Docker environment. MLflow then pushes the new Project image to your specified Docker registry and starts a Kubernetes Job on your specified Kubernetes cluster. This Kubernetes Job downloads the Project image and starts a corresponding Docker container. Finally, the container invokes your Project's entry point, logging parameters, tags, metrics, and artifacts to your MLflow tracking server. Execution guide You can run your MLflow Project on Kubernetes by following these steps: Add a Docker environment to your MLflow Project, if one does not already exist. For reference, see Specifying an Environment. Create a backend configuration JSON file with the following entries: kube-context The Kubernetes context where MLflow will run the job. If not provided, MLflow will use the current context. If no context is available, MLflow will assume it is running in a Kubernetes cluster and it will use the Kubernetes service account running the current pod ('in-cluster' configuration). repository-uri The URI of the docker repository where the Project execution Docker image will be uploaded (pushed). Your Kubernetes cluster must have access to this repository in order to run your MLflow Project. kube-job-template-path The path to a YAML configuration file for your Kubernetes Job - a Kubernetes Job Spec. MLflow reads the Job Spec and replaces certain fields to facilitate job execution and monitoring; MLflow does not modify the original template file. For more information about writing\",14,projects.html\nWhat fields are replaced when MLflow creates a Kubernetes Job for an MLflow Project?,\"When MLflow creates a Kubernetes Job for an MLflow Project, the following fields are replaced: metadata.name is replaced with a string containing the name of the MLflow Project and the time of Project execution, spec.template.spec.container[0].name is replaced with the name of the MLflow Project, spec.template.spec.container[0].image is replaced with the URI of the Docker image created"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/models/evaluation/base.py",
+      "kind": "File",
+      "path": "mlflow/models/evaluation/base.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 56654,
+      "excerpt": "be numeric, and each feature column must only contain scalar values.\n\n     - Limitations when environment restoration is enabled:\n        - When environment restoration is enabled for the evaluated model (i.e. a non-local\n          ``env_manager`` is specified), the model is loaded as a client that invokes a MLflow\n          Model Scoring Server process in an independent Python environment with the model's\n          training time dependencies installed. As such, methods like ``predict_proba`` (for\n          probability outputs) or ``score`` (computes the evaluation criterian for sklearn models)\n          of the model become inaccessible and the default evaluator does not compute metrics or\n          artifacts that require those methods.\n        - Because the model is an MLflow Model Server process, SHAP explanations are slower to\n          compute. As such, model explainaibility is disabled when a non-local ``env_manager``\n          specified, unless the ``evaluator_config`` option **log_model_explainability** is\n          explicitly set to ``True``.\n\n    Args:\n        model: Optional. If specified, it should be one of the following:\n\n            - A pyfunc model instance\n            - A URI referring to a pyfunc model\n            - A URI referring to an MLflow Deployments endpoint e.g. ``\"endpoints:/my-chat\"``\n            - A callable function: This function should be able to take in model input and\n              return predictions. It should follow the signature of the\n              :py:func:`predict <mlflow.pyfunc.PyFuncModel.predict>` method. Here's an example\n              of a valid function:\n\n              .. code-block:: python\n\n                  model = mlflow.pyfunc.load_model(model_uri)\n\n\n                  def fn(model_input):\n                      return model.predict(model_input)\n\n            If omitted, it indicates a static dataset will be used for evaluation instead of a\n            model.  In this case, the ``data`` argument must be a Pandas DataFrame or an mlflow\n            PandasDataset that contains model outputs, and the ``predictions`` argument must be the\n            name of the column in ``data`` that contains model outputs.\n\n        data: One of the\n            following:\n\n            - A numpy array or list of evaluation features, excluding labels.\n            - A Pandas DataFrame containing evaluation features, labels, and optiona"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/rest_store.py",
+      "kind": "File",
+      "path": "mlflow/store/tracking/rest_store.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 92898,
+      "excerpt": "n/x-protobuf\",\n                MLFLOW_EXPERIMENT_ID_HEADER: location,\n            },\n        )\n\n        verify_rest_response(response, OTLP_TRACES_PATH)\n        return spans\n\n    async def log_spans_async(self, location: str, spans: list[Span]) -> list[Span]:\n        \"\"\"Async wrapper for log_spans. Delegates to the synchronous implementation.\n\n        Args:\n            location: Experiment ID of an MLflow experiment.\n            spans: List of Span entities to log.\n\n        Returns:\n            List of logged Span entities.\n        \"\"\"\n        return self.log_spans(location, spans)\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracking/_tracking_service/client.py",
+      "kind": "File",
+      "path": "mlflow/tracking/_tracking_service/client.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 223,
+      "excerpt": "\nimport logging\nimport os\nimport sys\nfrom itertools import zip_longest\nfrom typing import TYPE_CHECKING, Any, Literal\nfrom urllib import parse as urllib_parse\n\nfrom mlflow.entities import (\n    ExperimentTag,\n    FileInfo,\n    LoggedModel,\n    LoggedModelInput,\n    LoggedModelOutput,\n    LoggedModelParameter,\n    LoggedModelStatus,\n    LoggedModelTag,\n    Metric,\n    Param,\n    RunStatus,\n    RunTag,\n    ViewType,\n)\n\nif TYPE_CHECKING:\n    from mlflow.entities import EvaluationDataset\nfrom mlflow.entities.dataset_input import DatasetInput\nfrom mlflow.environment_variables import MLFLOW_SUPPRESS_PRINTING_URL_TO_STDOUT\nfrom mlflow.exceptions import MlflowException\nfrom mlflow.protos.databricks_pb2 import (\n    INVALID_PARAMETER_VALUE,\n    ErrorCode,\n)\nfrom mlflow.store.artifact.artifact_repo import ArtifactRepository\nfrom mlflow.store.artifact.artifact_repository_registry import get_artifact_repository\nfrom mlflow.store.entities.paged_list import PagedList\nfrom mlflow.store.tracking import (\n    GET_METRIC_HISTORY_MAX_RESULTS,\n    SEARCH_MAX_RESULTS_DEFAULT,\n)\nfrom mlflow.store.tracking.rest_store import RestStore\nfrom mlflow.telemetry.events import (\n    CreateDatasetEvent,\n    CreateExperimentEvent,\n    CreateLoggedModelEvent,\n    CreateRunEvent,\n    GetLoggedModelEvent,\n    LogBatchEvent,\n    LogDatasetEvent,\n    LogMetricEvent,\n    LogParamEvent,\n)\nfrom mlflow.telemetry.track import record_usage_event\nfrom mlflow.tracking._tracking_service import utils\nfrom mlflow.tracking.context import registry as context_registry\nfrom mlflow.tracking.metric_value_conversion_utils import convert_metric_value_to_float_if_possible\nfrom mlflow.utils import chunk_list\nfrom mlflow.utils.async_logging.run_operations import RunOperations, get_combined_run_operations\nfrom mlflow.utils.databricks_utils import get_workspace_url, is_in_databricks_notebook\nfrom mlflow.utils.mlflow_tags import MLFLOW_RUN_TYPE, MLFLOW_RUN_TYPE_GENAI_EVALUATE, MLFLOW_USER\nfrom mlflow.utils.string_utils import is_string_type\nfrom mlflow.utils.time import get_current_time_millis\nfrom mlflow.utils.uri import add_databricks_profile_info_to_artifact_uri, is_databricks_uri\nfrom mlflow.utils.validation import (\n    MAX_ENTITIES_PER_BATCH,\n    MAX_METRICS_PER_BATCH,\n    MAX_PARAMS_TAGS_PER_BATCH,\n    PARAM_VALIDATION_MSG,\n    _validate_experiment_artifact_location,\n    _validate_run_id,\n)\nfrom mlflow.utils.work"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:tests/tracking/fluent/test_fluent.py",
+      "kind": "File",
+      "path": "tests/tracking/fluent/test_fluent.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 74863,
+      "excerpt": "\n        mlflow.sklearn.autolog(log_models=True)\n\n        with mlflow.start_run() as run:\n            lr = LinearRegression()\n            lr.fit([[1], [2]], [3, 4])\n\n        model = mlflow.last_logged_model()\n        assert model is not None\n        assert model.source_run_id == run.info.run_id\n    finally:\n        mlflow.sklearn.autolog(disable=True)\n\n\ndef test_set_and_delete_model_tag():\n    _reset_last_logged_model_id()\n\n    model = mlflow.initialize_logged_model()\n    assert mlflow.last_logged_model().model_id == model.model_id\n\n    mlflow.set_logged_model_tags(model.model_id, {\"tag\": \"value\"})\n    assert mlflow.last_logged_model().tags.get(\"tag\") == \"value\"\n\n    mlflow.delete_logged_model_tag(model.model_id, \"tag\")\n    assert \"tag\" not in mlflow.last_logged_model().tags\n\n\ndef test_search_logged_models():\n    with mock.patch(\"mlflow.tracking.fluent.MlflowClient\") as MockClient:\n        mock_client = MockClient.return_value\n        mock_client.search_logged_models.return_value = PagedList([], None)\n\n        experiment_ids = [\"123\"]\n        filter_string = \"name = 'model'\"\n        datasets = [{\"dataset_name\": \"dataset\"}]\n        max_results = 50\n        order_by = [{\"field_name\": \"metrics.accuracy\", \"ascending\": False}]\n\n        mlflow.search_logged_models(\n            experiment_ids=experiment_ids,\n            filter_string=filter_string,\n            datasets=datasets,\n            max_results=max_results,\n            order_by=order_by,\n            output_format=\"list\",\n        )\n\n        mock_client.search_logged_models.assert_called_once_with(\n            experiment_ids=experiment_ids,\n            filter_string=filter_string,\n            datasets=datasets,\n            max_results=max_results,\n            order_by=order_by,\n            page_token=None,\n        )\n\n\ndef make_mock_search_logged_model_page(models, token):\n    page = mock.Mock()\n    page.to_list.return_value = models\n    page.token = token\n    return page\n\n\ndef test_search_logged_models_pagination():\n    with mock.patch(\"mlflow.tracking.fluent.MlflowClient\") as MockClient:\n        mock_client = MockClient.return_value\n        page_1 = make_mock_search_logged_model_page([\"model_1\", \"model_2\"], \"token_1\")\n        page_2 = make_mock_search_logged_model_page([\"model_3\"], None)\n        mock_client.search_logged_models.side_effect = [page_1, page_2]\n\n        experiment_ids = [\"123\"]\n        result ="
+    }
+  ]
+}

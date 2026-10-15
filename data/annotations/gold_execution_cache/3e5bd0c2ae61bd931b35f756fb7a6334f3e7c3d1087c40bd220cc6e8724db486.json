@@ -1,0 +1,116 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id IN $evidence_ids\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nsubstring(coalesce(n.content,n.body,n.message,''),0,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_ids": [
+      "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PatientService.java",
+      "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PersonService.java",
+      "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/db/hibernate/HibernatePatientDAO.java",
+      "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/logic/LogicService.java",
+      "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6687",
+      "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/Auditable.java",
+      "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6401",
+      "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/resources/messages_fa.properties"
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/Auditable.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/Auditable.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/**\n * This Source Code Form is subject to the terms of the Mozilla Public License,\n * v. 2.0. If a copy of the MPL was not distributed with this file, You can\n * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n *\n * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n * graphic logo is a trademark of OpenMRS Inc.\n */\npackage org.openmrs;\n\n/**\n * In OpenMRS, the convention is to track basic audit information for each object related to who\n * initially created the object and when, and who last changed the object and when. This allows us\n * to check, for example, when a patient record was created, or when a person address was last\n * updated in the system. Any object that needs to keep track of this information should implement\n * this interface.\n *\n * @since 1.5\n */\npublic interface Auditable extends Creatable, Changeable {\n\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PatientService.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/PatientService.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/**\n * This Source Code Form is subject to the terms of the Mozilla Public License,\n * v. 2.0. If a copy of the MPL was not distributed with this file, You can\n * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n *\n * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n * graphic logo is a trademark of OpenMRS Inc.\n */\npackage org.openmrs.api;\n\nimport java.util.Collection;\nimport java.util.Date;\nimport java.util.List;\n\nimport org.openmrs.Allergies;\nimport org.openmrs.Allergy;\nimport org.openmrs.Concept;\nimport org.openmrs.Location;\nimport org.openmrs.Patient;\nimport org.openmrs.PatientIdentifier;\nimport org.openmrs.PatientIdentifierType;\nimport org.openmrs.PatientProgram;\nimport org.openmrs.annotation.Authorized;\nimport org.openmrs.api.db.PatientDAO;\nimport org.openmrs.comparator.PatientIdentifierTypeDefaultComparator;\nimport org.openmrs.patient.IdentifierValidator;\nimport org.openmrs.person.PersonMergeLogData;\nimport org.openmrs.serialization.SerializationException;\nimport org.openmrs.util.PrivilegeConstants;\n\n/**\n * Contains methods pertaining to Patients in the system <pre>\n * Usage:\n * List&lt;Patient&gt; patients = Context.getPatientService().getAllPatients();\n * </pre>\n *\n * @see org.openmrs.api.context.Context\n * @see org.openmrs.Patient\n */\npublic interface PatientService extends OpenmrsService {\n\n\t/**\n\t * Sets the DAO for this service. This is done by DI and Spring. See the\n\t * applicationContext-service.xml definition file.\n\t *\n\t * @param dao DAO for this service\n\t */\n\tpublic void setPatientDAO(PatientDAO dao);\n\n\t/**\n\t * Saved the given <code>patient</code> to the database\n\t * <p>\n\t * <strong>Should</strong> create new patient from existing person plus user object<br/>\n\t * <strong>Should</strong> not throw a NonUniqueObjectException when called with a hand constructed\n\t * patient<br/>\n\t * <strong>Should</strong> fail when patient does not have any patient identifiers<br/>\n\t * <strong>Should</strong> update an existing patient<br/>\n\t * <strong>Should</strong> fail when patient does not have required patient identifiers<br/>\n\t * <strong>Should</strong> update the date changed and changed by on update of the person\n\t * address<br/>\n\t * <strong>Should</strong> set the preferred name address and identifier if none is spec"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PersonService.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/PersonService.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/**\n * This Source Code Form is subject to the terms of the Mozilla Public License,\n * v. 2.0. If a copy of the MPL was not distributed with this file, You can\n * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n *\n * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n * graphic logo is a trademark of OpenMRS Inc.\n */\npackage org.openmrs.api;\n\nimport java.util.Date;\nimport java.util.List;\nimport java.util.Map;\nimport java.util.Set;\n\nimport org.openmrs.Person;\nimport org.openmrs.PersonAddress;\nimport org.openmrs.PersonAttribute;\nimport org.openmrs.PersonAttributeType;\nimport org.openmrs.PersonName;\nimport org.openmrs.Relationship;\nimport org.openmrs.RelationshipType;\nimport org.openmrs.annotation.Authorized;\nimport org.openmrs.api.db.PersonDAO;\nimport org.openmrs.person.PersonMergeLog;\nimport org.openmrs.serialization.SerializationException;\nimport org.openmrs.util.OpenmrsConstants;\nimport org.openmrs.util.OpenmrsConstants.PERSON_TYPE;\nimport org.openmrs.util.PrivilegeConstants;\n\n/**\n * Contains methods pertaining to Persons in the system Use:<br>\n * <pre>\n *\n *\n *\n *\n * List&lt;Person&gt; personObjects = Context.getPersonService().getAllPersons();\n * </pre>\n *\n * @see org.openmrs.api.context.Context\n * @see org.openmrs.Patient\n */\npublic interface PersonService extends OpenmrsService {\n\n\t/**\n\t * These enumerations are used when determining which person attr types to display. If listing off a\n\t * lot of patients/users, one set of types are shown. When only displaying one patient/user, another\n\t * type is shown.\n\t */\n\tpublic static enum ATTR_VIEW_TYPE {\n\t\t/**\n\t\t * Attributes to be shown when listing off multiple patients or users\n\t\t */\n\t\tLISTING,\n\n\t\t/**\n\t\t * Attributes to be shown when only showing one patient or user\n\t\t */\n\t\tVIEWING,\n\n\t\t/**\n\t\t * Attributes to be shown in the header\n\t\t */\n\t\tHEADER,\n\n\t}\n\n\t/**\n\t * Sets the DAO for this service. This is done through spring injection\n\t *\n\t * @param dao DAO for this service\n\t */\n\tpublic void setPersonDAO(PersonDAO dao);\n\n\t/**\n\t * Find a similar person given the attributes. This does a very loose lookup with the\n\t * <code>nameSearch</code> parameter. This does a very loose lookup on <code>birthyear</code> as\n\t * well. Any person with a null/missing birthdate is included and anyone wi"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/db/hibernate/HibernatePatientDAO.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/db/hibernate/HibernatePatientDAO.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/**\n * This Source Code Form is subject to the terms of the Mozilla Public License,\n * v. 2.0. If a copy of the MPL was not distributed with this file, You can\n * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n *\n * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n * graphic logo is a trademark of OpenMRS Inc.\n */\npackage org.openmrs.api.db.hibernate;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Collections;\nimport java.util.Comparator;\nimport java.util.Date;\nimport java.util.HashMap;\nimport java.util.LinkedList;\nimport java.util.List;\nimport java.util.Map;\nimport java.util.Set;\nimport java.util.regex.Pattern;\n\nimport jakarta.persistence.TemporalType;\nimport jakarta.persistence.criteria.CriteriaBuilder;\nimport jakarta.persistence.criteria.CriteriaQuery;\nimport jakarta.persistence.criteria.Join;\nimport jakarta.persistence.criteria.Order;\nimport jakarta.persistence.criteria.Predicate;\nimport jakarta.persistence.criteria.Root;\n\nimport org.apache.commons.collections.CollectionUtils;\nimport org.apache.commons.lang3.StringUtils;\nimport org.hibernate.Session;\nimport org.hibernate.SessionFactory;\nimport org.hibernate.engine.spi.SessionFactoryImplementor;\nimport org.hibernate.persister.entity.AbstractEntityPersister;\nimport org.hibernate.query.MutationQuery;\nimport org.hibernate.query.NativeQuery;\nimport org.hibernate.query.Query;\nimport org.hibernate.search.engine.search.predicate.SearchPredicate;\nimport org.hibernate.search.engine.search.predicate.dsl.SearchPredicateFactory;\nimport org.openmrs.Allergies;\nimport org.openmrs.Allergy;\nimport org.openmrs.Location;\nimport org.openmrs.Patient;\nimport org.openmrs.PatientIdentifier;\nimport org.openmrs.PatientIdentifierType;\nimport org.openmrs.PatientIdentifierType.UniquenessBehavior;\nimport org.openmrs.PatientProgram;\nimport org.openmrs.Person;\nimport org.openmrs.PersonAttribute;\nimport org.openmrs.PersonName;\nimport org.openmrs.api.context.Context;\nimport org.openmrs.api.db.DAOException;\nimport org.openmrs.api.db.PatientDAO;\nimport org.openmrs.api.db.hibernate.search.SearchQueryUnique;\nimport org.openmrs.api.db.hibernate.search.session.SearchSessionFactory;\nimport org.openmrs.util.OpenmrsConstants;\nimport org.openmrs.util.OpenmrsUtil;\nimport org.slf4j.Logger;\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/logic/LogicService.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/logic/LogicService.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/**\n * This Source Code Form is subject to the terms of the Mozilla Public License,\n * v. 2.0. If a copy of the MPL was not distributed with this file, You can\n * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n *\n * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n * graphic logo is a trademark of OpenMRS Inc.\n */\npackage org.openmrs.logic;\n\nimport java.util.List;\nimport java.util.Map;\nimport java.util.Set;\n\nimport org.openmrs.Cohort;\nimport org.openmrs.logic.datasource.LogicDataSource;\nimport org.openmrs.logic.result.Result;\nimport org.openmrs.logic.result.Result.Datatype;\nimport org.openmrs.logic.rule.RuleParameterInfo;\n\n/**\n * The Logic Service provides a mechanism for both registering and consuming business logic in the\n * form of logic <em>rules</em>. Rules may be run against a single patient or a set of patients.\n * Rules are registered under a unique string <em>token</em>. Later evaluation and/or retrieval of\n * the rule is done through the token. Tokens can be tagged with any number of string word/phrases\n * to simplify organization and lookup of tokens. Data source results can be obtained directly by\n * using a token in the form <em>@foo.bar</em>, where <em>foo</em> is the logic data source name and\n * <em>bar</em> is the key for that data source. For example, the token <em>@person.gender</em> is a\n * direct reference to the <em>gender</em> key of the <em>person</em> logic data source.\n * <h3>Example Usage</h3> <pre>\n * Patient myPatient = Context.getPatientService().getPatient(123);\n * LogicService logicService = Context.getLogicService();\n * Result result = logicService.eval(myPatient, &quot;HIV POSITIVE&quot;);\n * if (result.toBoolean()) {\n * \t// patient is HIV positive\n * }\n * </pre> Results can be derived with specific criteria as well. For example, to fetch the maximum\n * CD4 count within the past six months: <pre>\n *   Result result = logicService.eval(myPatient, new LogicCriteria(&quot;CD4 COUNT&quot;)\n *     .within(Duration.months(6)).max();\n * </pre> or within 6 months of 11-November-2006: <pre>\n *   Calendar calendar = Calendar.getInstance();\n *   calendar.set(2006, 11, 11);\n *   Date targetDate = calendar.getTime();\n *   Result result = logicService.eval(myPatient, new LogicCriteria(&quot;CD4 COUNT&q"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/resources/messages_fa.properties",
+      "kind": "File",
+      "path": "api/src/main/resources/messages_fa.properties",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "#This line must not be removed, because it contains BOM to indicate the UTF-8 encoding.\nopenmrs.title=OpenMRS\nindex.title=OpenMRS - خانه\nlogin.title=OpenMRS - ورود\nforgotPassword.title=OpenMRS - بازیابی کلمه عبور\npatientDashboard.title=OpenMRS - داشبورد بیمار\npersonDashboard.title=OpenMRS - داشبورد فرد\nfindPatient.title=OpenMRS - جستجوی بیمار\noptionsForm.title=OpenMRS - علاقمندی های کاربر\ndictionary.titlebar=OpenMRS - لغات نامه\ndictionary.title= مدیریت محتوای لغت نامه \nadmin.titlebar=OpenMRS - مدیریت\nadmin.header= مدیریت\n\nNavigation.home = خانه\nNavigation.findPatient = جستجوی بیمار\nNavigation.findCreatePatient = جستجو/ایجاد بیمار\nNavigation.dictionary = لغت نامه\nNavigation.administration = مدیریت\nNavigation.options = پروفایل من\nNavigation.calendar = تقویم\n\nfix.error=<div class=\"error\">لطفا خطاها را تصحیح کنید و مجددا تلاش کنید.</div>\nfix.error.plain=لطفا خطاها را تصحیح کنید و مجددا تلاش کنید.\n\nerror.general=خطای ارسال فرم\nerror.null=نمی تواند خالی باشد\nerror.inuse=مقدار توسط شی دیگری مورد استفاده است.\nerror.object.inuse.cannot.purge=امکان حذف نیست، به شی مورد نظر در جای دیگری ارجاع شده است\nerror.name=نام نامعتبر\nerror.description=توضیحات نامعتبر\nerror.checkdigit=بررسی اعداد نامعتبر برای\nerror.checkdigits=بررسی اعدا نامعتبر برای {0}\nerror.checkdigits.verbose=  لطفا بیمار را مجددا چک نمایید، حرف مورد نظر در {0}معتبر نیست\nerror.checkdigits.unallowed=شناسه {0} برای {1}معتبر نیست\nerror.concept=مفهوم نامعتبر\nerror.character.invalid=کاراکتر {0} برای {1} معتبر نیست\nerror.date=تاریخ نامعتبر\nerror.number=عدد نامعتبر\nerror.numberOutsideRange = عدد خارج از محدوده مجاز است\nerror.reportObject.type.required=نوع نامعتبر\nerror.reportObject.subType.required=زیر نوع نامعتبر\nerror.date.future=تاریخ مربوط به آینده نیست\nerror.date.nonsensical=تاریخ نامعتبر، لطفا چک کنید\nerror.deathdate.before.birthdate=تاریخ فوت باید یعد از تاربخ تولد باشد\nerror.programWorkflow=جریان کاری برنامه نامعتبر است\nerror.programWorkflowState=وضعیت نامعتبر برای جریان کاری برنامه\nerror.identifier.formatInvalid=شناسه {1} نامعتبر است، شناسه باید به صورت {2} باشد\nerror.beforeDateCreated=نمی تواند قبل از تاریخ ایجاد باشد\nerror.required={0} اجباری است\nerror.trailingSpaces=فضاهای خالی در ابتدا و انتها مجاز نیست\nerror.configurationRequired=تمامی پارامتر های پیکره بندی پیش از استفاده از این مولفه باید مشخص شوند\nerror.dwr.stacktrace=گزارش کامل خطاهای رخ داده را میتوانید در گزارش سرور خود مشاهده نمائید\nerror.dwr=خطا"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6401",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6401,
+      "title": "Stop the JVM aborting the openmrs-api test fork on Java 8 and 11",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Description of what I changed\n\nSince 24 July the `openmrs-api` surefire fork has been aborting part way through the suite on 2.8.x, which fails nearly every pull request against the branch (#6394, #6262, #6230, #6219, and the last two pushes to 2.8.x itself). Every test that ran passed, so the build reported `Process Exit Code: 134` with no test failures to point at, and contributors have been pushing empty \"re-run CI\" commits to get around it.\n\n#6399 makes CI keep the JVM's own crash log, and with that the Java 11 failure is no longer a mystery:\n\n```\n#  Internal Error (moduleEntry.cpp:263), pid=2394, tid=2395\n#  guarantee(java_lang_Module::is_instance(module)) failed: The unnamed module for ClassLoader\n#  jdk.internal.reflect.DelegatingClassLoader, is null or not an instance of java.lang.Module.\n#  The class loader has not been initialized correctly.\n# JRE version: OpenJDK Runtime Environment Temurin-11.0.31+11\n```\n\nreached like this:\n\n```\nV  [libjvm.so+0xc1828a]  ModuleEntry::create_unnamed_module(ClassLoaderData*)+0xca\nV  [libjvm.so+0x61eb86]  ClassLoaderDataGraph::add(Handle, bool)+0x216\nV  [libjvm.so+0xf139db]  Unsafe_DefineClass0+0x37b\nJ  jdk.internal.reflect.MethodAccessorGenerator.generate(...)\nJ  jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(...)\nJ  org.mockito.internal.util.reflection.ReflectionMemberAccessor$$Lambda$1524.newInstance()\nj  org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.lambda$newInstance$4(...)\n```\n\nThe crash needs the JDK to **inflate a reflective accessor**. Once a reflective member has been invoked more than `sun.reflect.inflationThreshold` times (15 by default), the JDK stops using the native accessor, generates a bytecode accessor, and defines it into a `jdk.internal.reflect.DelegatingClassLoader` — and creating that loader's unnamed module is what trips the guarantee. Mockito's inline mock maker reaches that path while instantiating a mock, so a suite creating thousands of mocks in one fork gets there reliably.\n\nRaising the threshold out of reach keeps reflection on the native accessor for the whole run, so no accessor is ever generated and the crashing path is never entered.\n\nI checked that rather than assuming it. On Temurin 11 with `-verbose:class`, reflectively invoking a constructor 200 times:\n\n```\ndefault:                    [class,load] jdk.internal.reflect.GeneratedConstruc"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6687",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6687,
+      "title": "TRUNK-6829: Fix case, duplicates, backslashes and escaping in properties written by startup-init.sh",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Description of what I changed\n\nFour fixes to how `startup-init.sh` writes runtime and server properties, one commit per ticket. They change the same few lines, so they are reviewed and backported together.\n\n- **TRUNK-6829:** `OMRS_EXTRA_*` names containing any lower case letter keep their case (e.g. `OMRS_EXTRA_mail_smtp_socketFactory_class` → `mail.smtp.socketFactory.class`). All upper case names are lowercased as before. Also replaces the unquoted `tr [:upper:] [:lower:]`, whose arguments were subject to pathname expansion: with a one-character file such as `u` or `e` in the working directory, no extra properties were written.\n- **TRUNK-6830:** when several `OMRS_EXTRA_*` variables give the same property, the first in sorted order is used and the others are logged and ignored. Previously the last won on first install and the first on later starts.\n- **TRUNK-6831:** extra properties are written with `printf` instead of `echo -e`, so backslash sequences in values are no longer interpreted (differently on each path).\n- **TRUNK-6835:** values written to the server and runtime properties files are escaped for the Java properties format (`\\`, line breaks, leading whitespace). A backslash in `OMRS_DB_PASSWORD`, for example, now reaches OpenMRS unchanged.\n\n**Behaviour changes:**\n- A mixed-case name that relied on being lowercased now keeps its case, e.g. `OMRS_EXTRA_Initializer_DOMAINS` used to set `initializer.domains` and now sets `Initializer.DOMAINS`. Such names need to be written all upper case, or in the property's exact case.\n- Anyone who escaped backslashes in these variables by hand to work around the old handling will now get doubled backslashes.\n\n**Not covered:** non-ASCII values. The install script is read with `Properties.load(InputStream)` (ISO-8859-1) and runtime properties as UTF-8.\n\n## Testing\n\nNo automated tests cover `startup-init.sh`. I ran the properties section of the script under `bash -aeu` for both a first install and an existing runtime properties file, and loaded the output with `java.util.Properties` as OpenMRS does:\n\n- On `master`, each of the four problems reproduces.\n- On this branch, a value containing `\\t`, `\\\\`, `=`, `:`, `#`, leading spaces, CR and LF, and a DB password containing `\\`, read back exactly as set on both paths. Mixed-case and duplicate names behave as described above.\n\nI have not built the image or started a cont"
+    }
+  ]
+}

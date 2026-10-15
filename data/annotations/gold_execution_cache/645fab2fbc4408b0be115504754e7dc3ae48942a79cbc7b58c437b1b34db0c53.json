@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/tutorial/fundamentals.rst",
+        "path": "airflow-core/docs/tutorial/fundamentals.rst",
+        "offset": 12372,
+        "line": 302
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 11158,
+        "line": 137
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/docs/changelog.rst",
+        "path": "providers/cncf/kubernetes/docs/changelog.rst",
+        "offset": 678,
+        "line": 14
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+        "path": "airflow-core/docs/best-practices.rst",
+        "offset": 1805,
+        "line": 52
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 10159,
+        "line": 229
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/databricks/docs/changelog.rst",
+        "path": "providers/databricks/docs/changelog.rst",
+        "offset": 678,
+        "line": 14
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:docker-stack-docs/build.rst",
+        "path": "docker-stack-docs/build.rst",
+        "offset": 34408,
+        "line": 629
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:devel-common/src/docs/README.rst",
+        "path": "devel-common/src/docs/README.rst",
+        "offset": 4255,
+        "line": 52
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11158,
+      "excerpt": "mments that restate the next line, do not pad logic with multi-line prose, and do not repeat the same rationale at several sites — put one concise note at the source of truth and let the others stand on their own. Tests whose names already describe intent need no explanatory comment. Reserve longer explanation for genuinely complex or non-obvious logic (e.g. a security check whose threat model isn't apparent), and keep even that as tight as it can be. Over-commenting is noise that ages badly and obscures the code it wraps.\n- `time.monotonic()` for durations, not `time.time()`.\n- In `airflow-core`, functions with a `session` parameter must not call `session.commit()`. Use keyword-only `session` parameters.\n- Imports at top of file. Valid exceptions: circular imports, lazy loading for worker isolation, `TYPE_CHECKING` blocks.\n- Guard heavy type-only imports (e.g., `kubernetes.client`) with `TYPE_CHECKING` in multi-process code paths.\n- Define dedicated exception classes or use existing exceptions such as `ValueError` instead of raising the broad `AirflowException` directly. Each error case should have a specific exception type that conveys what went wrong. **Never add new direct `raise AirflowException(...)` usages — the community is actively reducing them, not adding more, and the `check-no-new-airflow-exceptions` prek hook enforces this across `airflow-core`, `airflow-ctl`, `task-sdk`, `providers`, and `shared`.** Prefer a Python built-in (`ValueError`, `TypeError`, `OSError`, …) or a dedicated class in the appropriate `exceptions.py`. The only acceptable way an `AirflowException` line may move is relocating an already-existing one verbatim during a refactor (e.g. moving code between files) — that is not a new usage. When you touch code that already raises `AirflowException`, prefer narrowing it to a more specific exception rather than leaving or duplicating it.\n- Translate domain-layer exceptions to `HTTPException` at FastAPI route boundaries. In `airflow-core/src/airflow/core_api/` route handlers, catch errors raised by domain code (e.g., `ValueError` from `airflow.state.metastore.MetastoreStateBackend` for a missing row or invalid input) and re-raise as `HTTPException` with the right status (`404` for not-found, `400` for invalid input). Otherwise they propagate as `500 Internal Server Error`, leaking internals and misleading clients.\n- Bulk `DELETE`/`UPD"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/best-practices.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1805,
+      "excerpt": "retry a task if it fails. Thus, the tasks should produce the same\noutcome on every re-run. Some of the ways you can avoid producing a different\nresult -\n\n* Do not use INSERT during a task re-run, an INSERT statement might lead to\n  duplicate rows in your database. Replace it with UPSERT.\n* Read and write in a specific partition. Never read the latest available data\n  in a task. Someone may update the input data between re-runs, which results in\n  different outputs. A better way is to read the input data from a specific\n  partition. You can use ``data_interval_start`` as a partition. You should\n  follow this partitioning method while writing data in S3/HDFS as well.\n* The Python datetime ``now()`` function gives the current datetime object. This\n  function should never be used inside a task, especially to do the critical\n  computation, as it leads to different outcomes on each run. It's fine to use\n  it, for example, to generate a temporary log.\n\n.. tip::\n\n    You should define repetitive parameters such as ``connection_id`` or S3 paths in ``default_args`` rather than declaring them for each task.\n    The ``default_args`` help to avoid mistakes such as typographical errors. Also, most connection types have unique parameter names in\n    tasks, so you can declare a connection only once in ``default_args`` (for example ``gcp_conn_id``) and it is automatically\n    used by all operators that use this connection type.\n\nDeleting a task\n----------------\n\nBe careful when deleting a task from a Dag. You would not be able to see the Task in Graph View, Grid View, etc making\nit difficult to check the logs of that Task from the Webserver. If that is not desired, please create a new Dag.\n\n\nCommunication\n--------------\n\nAirflow executes tasks of a Dag on different servers in case you are using :doc:`Kubernetes executor <apache-airflow-providers-cncf-kubernetes:kubernetes_executor>` or :doc:`Celery executor <apache-airflow-providers-celery:celery_executor>`.\nTherefore, you should not store any file or config in the local filesystem as the downstream task is likely to run on a different server without access to it — for example, a task that downloads the data file that the downstream task processes.\nIn the case of :class:`Local executor <airflow.executors.local_executor.LocalExecutor>`,\nstoring a file on disk can make retries harder e.g., your task requires a config file that"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/tutorial/fundamentals.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/tutorial/fundamentals.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12372,
+      "excerpt": " a Scheduler running against it, which will allow your Dag to be\ntriggered and executed daily.\n\nHere are a few suggestions for your next steps:\n\n.. seealso::\n    - Continue to the next step of the tutorial: :doc:`/tutorial/taskflow`\n    - Explore the :doc:`/core-concepts/index` section for detailed explanation of Airflow concepts such as Dags, Tasks, Operators, and more.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10159,
+      "excerpt": "ase Helm Chart from `main` branch:\n\nFor releasing 1.2x.0\n\n```shell\ngit checkout apache/chart/v1-2x-test\n```\n\nFor releasing 2.x.x and onwards\n\n```shell\ngit checkout upstream/main\n```\n\n- Clean the checkout: (note that this step will also clean any IDE settings you might have so better to\n  do it in a checked out version you only use for releasing)\n\n```shell\ngit clean -fxd\nrm -rf dist/*\n```\n\n- Verify your GPG signing key is ready.\n\n  Before you spend 10+ minutes building artifacts only to discover that signing\n  fails, run these checks once:\n\n  ```shell\n  # 1. The apache.org key has a secret signing subkey available locally.\n  gpg --list-secret-keys apache.org\n\n  # 2. Signing actually works (exits 0, writes a .asc, verifies cleanly).\n  echo test > /tmp/sign-check && \\\n      gpg --yes --armor --local-user apache.org \\\n          --output /tmp/sign-check.asc --detach-sig /tmp/sign-check && \\\n      gpg --verify /tmp/sign-check.asc /tmp/sign-check && \\\n      rm -f /tmp/sign-check /tmp/sign-check.asc && \\\n      echo \"GPG signing OK\"\n\n  # 3. The fingerprint of your signing (sub)key appears in the Airflow KEYS file.\n  #    Without this, PMC verifiers cannot validate the release.\n  FINGERPRINT=$(gpg --list-keys --with-colons apache.org | awk -F: '/^fpr:/ {print $10; exit}')\n  curl -fsS https://dist.apache.org/repos/dist/release/airflow/KEYS | \\\n      grep -q \"${FINGERPRINT}\" && echo \"Key ${FINGERPRINT} is in KEYS\" || \\\n      echo \"MISSING: add your key to KEYS before releasing\"\n  ```\n\n  If any of these fail, fix them before the build step. For first-time release\n  managers, adding your key to the `KEYS` file is a separate PR against\n  `https://dist.apache.org/repos/dist/release/airflow/` (SVN).\n\n  `sign.sh` defaults to `SIGN_WITH=apache.org`. If your `apache.org` uid resolves\n  to multiple keys (rare), set `SIGN_WITH` explicitly to the fingerprint of the\n  key you want to use.\n\n- Generate the source tarball:\n\n```shell\nbreeze release-management prepare-helm-chart-tarball --version ${VERSION}\n```\n\nNote: The version suffix is only used for the RC tag and tag message. The version in the tarball is without the suffix, so the tarball can be released as-is when the vote passes.\n\n- Generate the binary Helm Chart release:\n\n```shell\nVERSION_SUFFIX= breeze release-management prepare-helm-chart-package --sign-email jedcunningham@apache.org\n```\n\nNote: we temporarily unset VERSION_SU"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:devel-common/src/docs/README.rst",
+      "kind": "File",
+      "path": "devel-common/src/docs/README.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4255,
+      "excerpt": "__.\n\n2. Locally with a forked copy of the Airflow repo, where you can run local builds and tests prior to making a pull request.\n\n+--------------------------------------+------------------+-------------------------------------------------+\n|  Type of Docs update                 | Suggested Editor | Explanation                                     |\n+======================================+==================+=================================================+\n| I need to edit multiple files.       | Local Editor     | It's easier to batch-edit files in an editor,   |\n|                                      |                  | than make multiple PRs or changes to individual |\n|                                      |                  | files in a GitHub editor.                       |\n+--------------------------------------+------------------+-------------------------------------------------+\n| I want to fix a quick typo or a      | GitHub Editor    | Allows you to quickly edit without any local    |\n| broken link.                         |                  | installation or build required.                 |\n+--------------------------------------+------------------+-------------------------------------------------+\n| My edits contain tables or           | Local Editor     | GitHub can provide Markdown previews, but might |\n| other formatting changes.            |                  | change ``.rst`` styling. Use a local build.     |\n+--------------------------------------+------------------+-------------------------------------------------+\n| I want to make a new page/           | Local Editor     | Will need a local build to check navigation and |\n| delete a page.                       |                  | link redirects.                                 |\n+--------------------------------------+------------------+-------------------------------------------------+\n| I want to edit autogenerated content | Either, probably | Allows you to easily find the correct file and  |\n| on a page.                           | Local Editor     | generate a preview before creating the PR.      |\n+--------------------------------------+------------------+-------------------------------------------------+\n\nFinding source content to edit\n------------------------------\n\nSphinx has _roles_ and _directives_, where Markdown docs frameworks often do not have similar functionality. This me"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:docker-stack-docs/build.rst",
+      "kind": "File",
+      "path": "docker-stack-docs/build.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 34408,
+      "excerpt": "ory to add extra requirements\n* additional apt/python dependencies to install for runtime version of Airflow (RUNTIME dependencies)\n* additional commands and variables to set if needed during building or preparing Airflow runtime\n* choosing constraint file to use when installing Airflow\n\nAdditional explanation is needed for the last point. Airflow uses constraints to make sure\nthat it can be predictably installed, even if some new versions of Airflow dependencies are\nreleased (or even dependencies of our dependencies!). The docker image and accompanying scripts\nusually determine automatically the right versions of constraints to be used based on the Airflow\nversion installed and Python version. For example 2.0.2 version of Airflow installed from PyPI\nuses constraints from ``constraints-2.0.2`` tag). However, in some cases - when installing Airflow from\nGitHub for example - you have to manually specify the version of constraints used, otherwise\nit will default to the latest version of the constraints which might not be compatible with the\nversion of Airflow you use.\n\nYou can also download any version of Airflow constraints and adapt it with your own set of\nconstraints and manually set your own versions of dependencies in your own constraints and use the version\nof constraints that you manually prepared.\n\nYou can read more about constraints in :doc:`apache-airflow:installation/installing-from-pypi`\n\nNote that if you place ``requirements.txt`` in the ``docker-context-files`` folder, it will be\nused to install all requirements declared there. It is recommended that the file\ncontains specified version of dependencies to add with ``==`` version specifier, to achieve\nstable set of requirements, independent if someone releases a newer version. However, you have\nto make sure to update those requirements and rebuild the images to account for latest security fixes.\n\n.. _using-docker-context-files:\n\nUsing docker-context-files\n--------------------------\n\nWhen customizing the image, you can optionally make Airflow install custom binaries or provide custom\nconfiguration for your pip in ``docker-context-files``. In order to enable it, you need to add\n``--build-arg DOCKER_CONTEXT_FILES=docker-context-files`` build arg when you build the image.\nYou can pass any subdirectory of your docker context, it will always be mapped to ``/docker-context-files``\nduring the build.\n\nYou ca"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/cncf/kubernetes/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 678,
+      "excerpt": "ther express or implied.  See the License for the\n    specific language governing permissions and limitations\n    under the License.\n\n\n.. NOTE TO CONTRIBUTORS:\n   Please, only add notes to the Changelog just below the \"Changelog\" header when there are some breaking changes\n   and you want to add an explanation to the users on how they are supposed to deal with them.\n   The changelog is updated and maintained semi-automatically by release manager.\n\n``apache-airflow-providers-cncf-kubernetes``\n\n\nChangelog\n---------\n\n.. note::\n   The ``KubernetesExecutor`` now transparently requeues a worker pod that fails *before* the\n   task process starts (node drain, autoscaler scale-down, node boot race, transient image pull\n   failure, etc.) instead of failing the task on the first pod failure. This is a change in\n   default behavior, controlled by the new ``[kubernetes_executor] pod_launch_failure_retries``\n   option (default ``1``); requeues do not consume a task-level retry. Set it to ``0`` to restore\n   the previous behavior of failing immediately. Avoid ``-1`` (unlimited) with a pod that fails on\n   every launch, as the failed pods are not cleaned up under the default\n   ``delete_worker_pods_on_failure = False`` and will accumulate. The companion\n   ``pod_launch_failure_excluded_container_reasons`` option (default ``Error``) lists container\n   reasons that are excluded from the requeue path.\n\n10.19.0\n.......\n\nFeatures\n~~~~~~~~\n\n* ``Decide pod_template and image based on Coordinator for lang-SDK tasks on KubernetesExecutor (#68713)``\n* ``Add team_name tags to Kubernetes executor metrics (#69046)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``Fix KubernetesExecutor leaking a Manager process when reading running task logs (#68800)``\n* ``Fix KubernetesExecutor never draining its 'self.completed' adoption set (#68674)``\n* ``Make cncf.kubernetes model deserialization picklable in-cluster (#68848)``\n* ``Run 'await_pod_start' before 'await_init_containers_completion' to prevent hanging when streaming init-container logs (#68450)``\n* ``Handle pod preemption before container creation in KubernetesPodOperator (#68328)``\n\nMisc\n~~~~\n\n* ``Make pod patching logic explicitly reflect when a pod is retained (#68507)``\n* ``Fix mypy errors for task_instance access in provider triggers (#68685)``\n* ``Remove leftovers from #45184 clear_not_launched_queued_tasks removal (#68698)``\n\n.. Below changes are exclu"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/databricks/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/databricks/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 678,
+      "excerpt": "ther express or implied.  See the License for the\n    specific language governing permissions and limitations\n    under the License.\n\n\n.. NOTE TO CONTRIBUTORS:\n   Please, only add notes to the Changelog just below the \"Changelog\" header when there are some breaking changes\n   and you want to add an explanation to the users on how they are supposed to deal with them.\n   The changelog is updated and maintained semi-automatically by release manager.\n\n``apache-airflow-providers-databricks``\n\nChangelog\n---------\n\n7.17.0\n......\n\nFeatures\n~~~~~~~~\n\n* ``Add durable execution to 'DatabricksRunNowOperator' (#69174)``\n* ``Accept BLOCKED and WAITING_FOR_RETRY Databricks run states (#69193)``\n* ``Add durable execution to DatabricksSubmitRunOperator (#68974)``\n* ``Add proxy support to Databricks connections (#68527)``\n* ``Surface databricks API errors as a separate exception (#69019)``\n* ``Add query tags to 'DatabricksSqlSensor' and 'DatabricksPartitionSensor' (#68704)``\n* ``Add OpenLineage Spark conf injection to DatabricksSubmitRunOperator (#67894)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``Include last error cause in Databricks API when retry is exhausted (#69238)``\n* ``Align hook run() annotations with None-able handler results (#69230)``\n* ``Reconnect to blocked Databricks runs in SubmitRunOperator durable retries (#69195)``\n* ``Fix DatabricksWorkflowTaskGroup ignoring upstream/downstream set before with block (#68924)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Document each provider's optional extras in its docs index (#69478)``\n   * ``Fix inconsistency between generated provider docs and pyproject.toml (#68991)``\n\n7.16.1\n......\n\n.. note::\n   ``DatabricksCreateJobsOperator``, ``DatabricksSubmitRunOperator`` and ``DatabricksRunNowOperator``\n   now assemble and validate their Databricks request payload at task **execution** time instead of\n   at operator construction time. This is required so that templated ``json`` payloads and templated\n   named parameters (including values pulled from XCom) are rendered before the payload is built.\n   As a result, payload-validation errors that previously surfaced while the Dag was parsed — e.g.\n   ``git_source is required for dbt_task``, ``'pipeline_name' is not allowed in conjunction with\n   'pipeline_id'``, ``Argument 'job_name' is not allowed wit"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+        "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+        "offset": 1542,
+        "line": 46
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PatientService.java",
+        "path": "api/src/main/java/org/openmrs/api/PatientService.java",
+        "offset": 983,
+        "line": 27
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/impl/PatientServiceImpl.java",
+        "path": "api/src/main/java/org/openmrs/api/impl/PatientServiceImpl.java",
+        "offset": 1743,
+        "line": 52
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "offset": 57637,
+        "line": 1139
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/impl/ObsServiceImpl.java",
+        "path": "api/src/main/java/org/openmrs/api/impl/ObsServiceImpl.java",
+        "offset": 743,
+        "line": 22
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "offset": 7332,
+        "line": 110
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+        "path": "web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+        "offset": 3284,
+        "line": 86
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/java/org/openmrs/api/PersonServiceTest.java",
+        "path": "api/src/test/java/org/openmrs/api/PersonServiceTest.java",
+        "offset": 2316,
+        "line": 59
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/PatientService.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/PatientService.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 983,
+      "excerpt": ".patient.IdentifierValidator;\nimport org.openmrs.person.PersonMergeLogData;\nimport org.openmrs.serialization.SerializationException;\nimport org.openmrs.util.PrivilegeConstants;\n\n/**\n * Contains methods pertaining to Patients in the system <pre>\n * Usage:\n * List&lt;Patient&gt; patients = Context.getPatientService().getAllPatients();\n * </pre>\n *\n * @see org.openmrs.api.context.Context\n * @see org.openmrs.Patient\n */\npublic interface PatientService extends OpenmrsService {\n\n\t/**\n\t * Sets the DAO for this service. This is done by DI and Spring. See the\n\t * applicationContext-service.xml definition file.\n\t *\n\t * @param dao DAO for this service\n\t */\n\tpublic void setPatientDAO(PatientDAO dao);\n\n\t/**\n\t * Saved the given <code>patient</code> to the database\n\t * <p>\n\t * <strong>Should</strong> create new patient from existing person plus user object<br/>\n\t * <strong>Should</strong> not throw a NonUniqueObjectException when called with a hand constructed\n\t * patient<br/>\n\t * <strong>Should</strong> fail when patient does not have any patient identifiers<br/>\n\t * <strong>Should</strong> update an existing patient<br/>\n\t * <strong>Should</strong> fail when patient does not have required patient identifiers<br/>\n\t * <strong>Should</strong> update the date changed and changed by on update of the person\n\t * address<br/>\n\t * <strong>Should</strong> set the preferred name address and identifier if none is specified<br/>\n\t * <strong>Should</strong> not set the preferred name address and identifier if they already\n\t * exist<br/>\n\t * <strong>Should</strong> not set a voided name or address or identifier as preferred\n\t *\n\t * @param patient patient to be created or updated\n\t * @return patient who was created or updated\n\t * @throws APIException regression 1375\n\t */\n\t@Authorized({ PrivilegeConstants.ADD_PATIENTS, PrivilegeConstants.EDIT_PATIENTS })\n\tpublic Patient savePatient(Patient patient) throws APIException;\n\n\t/**\n\t * Get patient by internal identifier\n\t * <p>\n\t * <strong>Should</strong> return null object if patient id doesnt exist<br/>\n\t * <strong>Should</strong> fetch patient with given patient id<br/>\n\t * <strong>Should</strong> return null when patient with given patient id does not exist\n\t *\n\t * @param patientId internal patient identifier\n\t * @return patient with given internal identifier\n\t * @throws APIException\n\t */\n\t@Authorized({ PrivilegeConstants.GET_PATIENTS })\n\t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1542,
+      "excerpt": "import org.openmrs.api.FormService;\nimport org.openmrs.api.LocationService;\nimport org.openmrs.api.MedicationDispenseService;\nimport org.openmrs.api.ObsService;\nimport org.openmrs.api.OpenmrsService;\nimport org.openmrs.api.OrderService;\nimport org.openmrs.api.OrderSetService;\nimport org.openmrs.api.PatientService;\nimport org.openmrs.api.PersonService;\nimport org.openmrs.api.ProgramWorkflowService;\nimport org.openmrs.api.ProviderService;\nimport org.openmrs.api.SerializationService;\nimport org.openmrs.api.UserService;\nimport org.openmrs.api.VisitService;\nimport org.openmrs.api.db.ContextDAO;\nimport org.openmrs.event.outbox.tasks.OutboxTaskSchedulerInitializer;\nimport org.openmrs.hl7.HL7Service;\nimport org.openmrs.logic.LogicService;\nimport org.openmrs.messagesource.MessageSourceService;\nimport org.openmrs.module.ModuleMustStartException;\nimport org.openmrs.module.ModuleUtil;\nimport org.openmrs.notification.AlertService;\nimport org.openmrs.notification.MessageException;\nimport org.openmrs.notification.MessagePreparator;\nimport org.openmrs.notification.MessageSender;\nimport org.openmrs.notification.MessageService;\nimport org.openmrs.notification.mail.MailMessageSender;\nimport org.openmrs.notification.mail.velocity.VelocityMessagePreparator;\nimport org.openmrs.scheduler.SchedulerService;\nimport org.openmrs.util.ConfigUtil;\nimport org.openmrs.util.DatabaseUpdateException;\nimport org.openmrs.util.DatabaseUpdater;\nimport org.openmrs.util.InputRequiredException;\nimport org.openmrs.util.LocaleUtility;\nimport org.openmrs.util.OpenmrsClassLoader;\nimport org.openmrs.util.OpenmrsConstants;\nimport org.openmrs.util.OpenmrsUtil;\nimport org.openmrs.util.PrivilegeConstants;\nimport org.openmrs.validator.ValidateUtil;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.aop.Advisor;\nimport org.springframework.beans.BeansException;\nimport org.springframework.beans.factory.NoSuchBeanDefinitionException;\nimport org.springframework.beans.factory.NoUniqueBeanDefinitionException;\n\n/**\n * Represents an OpenMRS <code>Context</code>, which may be used to authenticate to the database and\n * obtain services in order to interact with the system.<br>\n * <br>\n * The Context is split into a {@link UserContext} and {@link ServiceContext}. The UserContext is\n * lightweight and there is an instance for every user logged into the system. The ServiceContext is\n * heav"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/impl/ObsServiceImpl.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/impl/ObsServiceImpl.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 743,
+      "excerpt": "enmrs.Location;\nimport org.openmrs.Obs;\nimport org.openmrs.Patient;\nimport org.openmrs.Person;\nimport org.openmrs.Visit;\nimport org.openmrs.aop.RequiredDataAdvice;\nimport org.openmrs.api.APIException;\nimport org.openmrs.api.EncounterService;\nimport org.openmrs.api.ObsService;\nimport org.openmrs.api.PatientService;\nimport org.openmrs.api.RefByUuid;\nimport org.openmrs.api.context.Context;\nimport org.openmrs.api.db.ObsDAO;\nimport org.openmrs.api.handler.SaveHandler;\nimport org.openmrs.obs.ComplexData;\nimport org.openmrs.obs.ComplexObsHandler;\nimport org.openmrs.util.OpenmrsClassLoader;\nimport org.openmrs.util.OpenmrsConstants.PERSON_TYPE;\nimport org.openmrs.util.OpenmrsUtil;\nimport org.openmrs.util.PrivilegeConstants;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.beans.factory.annotation.Qualifier;\nimport org.springframework.stereotype.Service;\nimport org.springframework.transaction.annotation.Transactional;\n\n/**\n * Default implementation of the Observation Service\n *\n * @see org.openmrs.api.ObsService\n */\n@Service(\"obsService\")\n@Transactional\npublic class ObsServiceImpl extends BaseOpenmrsService implements ObsService, RefByUuid {\n\n\tprivate static final Logger log = LoggerFactory.getLogger(ObsServiceImpl.class);\n\n\t/**\n\t * The data access object for the obs service\n\t */\n\t@Autowired\n\tprotected ObsDAO dao;\n\n\t/**\n\t * Report handlers that have been registered. This is filled via {@link #setHandlers(Map)} and\n\t * spring's applicationContext-service.xml object\n\t */\n\t@Autowired\n\t@Qualifier(\"handlers\")\n\tprivate Map<String, ComplexObsHandler> handlers;\n\n\t/**\n\t * Default empty constructor for this obs service\n\t */\n\tpublic ObsServiceImpl() {\n\t}\n\n\t/**\n\t * @see org.openmrs.api.ObsService#setObsDAO(org.openmrs.api.db.ObsDAO)\n\t */\n\t@Override\n\tpublic void setObsDAO(ObsDAO dao) {\n\t\tthis.dao = dao;\n\t}\n\n\t/**\n\t * Clean up after this class. Set the static var to null so that the classloader can reclaim the\n\t * space.\n\t *\n\t * @see org.openmrs.api.impl.BaseOpenmrsService#onShutdown()\n\t */\n\t@Override\n\tpublic void onShutdown() {\n\t\tsetHandlers(null);\n\t}\n\n\t/**\n\t * @see org.openmrs.api.ObsService#saveObs(org.openmrs.Obs, String)\n\t */\n\t@Override\n\tpublic Obs saveObs(Obs obs, String changeMessage) throws APIException {\n\t\tif (obs == null) {\n\t\t\tthrow new APIException(\"Obs.error.cannot.be.null\","
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/impl/PatientServiceImpl.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/impl/PatientServiceImpl.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1743,
+      "excerpt": "dentifiersException;\nimport org.openmrs.api.MedicationDispenseService;\nimport org.openmrs.api.MissingRequiredIdentifierException;\nimport org.openmrs.api.ObsService;\nimport org.openmrs.api.PatientIdentifierException;\nimport org.openmrs.api.PatientIdentifierTypeLockedException;\nimport org.openmrs.api.PatientService;\nimport org.openmrs.api.PersonService;\nimport org.openmrs.api.ProgramWorkflowService;\nimport org.openmrs.api.RefByUuid;\nimport org.openmrs.api.UserService;\nimport org.openmrs.api.VisitService;\nimport org.openmrs.api.context.Context;\nimport org.openmrs.api.db.PatientDAO;\nimport org.openmrs.api.db.hibernate.HibernateUtil;\nimport org.openmrs.parameter.EncounterSearchCriteria;\nimport org.openmrs.parameter.EncounterSearchCriteriaBuilder;\nimport org.openmrs.parameter.MedicationDispenseCriteria;\nimport org.openmrs.parameter.MedicationDispenseCriteriaBuilder;\nimport org.openmrs.patient.IdentifierValidator;\nimport org.openmrs.patient.impl.LuhnIdentifierValidator;\nimport org.openmrs.person.PersonMergeLog;\nimport org.openmrs.person.PersonMergeLogData;\nimport org.openmrs.serialization.SerializationException;\nimport org.openmrs.util.OpenmrsConstants;\nimport org.openmrs.util.OpenmrsUtil;\nimport org.openmrs.util.PrivilegeConstants;\nimport org.openmrs.validator.PatientIdentifierValidator;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.beans.factory.annotation.Qualifier;\nimport org.springframework.stereotype.Service;\nimport org.springframework.transaction.annotation.Transactional;\n\n/**\n * Default implementation of the patient service. This class should not be used on its own. The\n * current OpenMRS implementation should be fetched from the Context via\n * <code>Context.getPatientService()</code>\n *\n * @see org.openmrs.api.context.Context\n * @see org.openmrs.api.PatientService\n * @see org.openmrs.api.PersonService\n */\n@Service(\"patientService\")\n@Transactional\npublic class PatientServiceImpl extends BaseOpenmrsService implements PatientService, RefByUuid {\n\n\tprivate static final Logger log = LoggerFactory.getLogger(PatientServiceImpl.class);\n\n\t@Autowired\n\tprivate PatientDAO dao;\n\n\t/**\n\t * PatientIdentifierValidators registered through spring's applicationContext-service.xml\n\t */\n\t@Autowired\n\t@Qualifier(\"identifierValidators\")\n\tprivate Map<Class<? extends IdentifierValida"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 57637,
+      "excerpt": "ATING_SYSTEM_OSX));\n\n\tpublic static final boolean WINDOWS_BASED_OPERATING_SYSTEM = OPERATING_SYSTEM.contains(\"Windows\");\n\n\tpublic static final boolean WINDOWS_VISTA_OPERATING_SYSTEM = OPERATING_SYSTEM.equals(OPERATING_SYSTEM_WINDOWS_VISTA);\n\n\t/**\n\t * Marker put into the serialization session map to tell @Replace methods whether or not to do just\n\t * the very basic serialization\n\t */\n\tpublic static final String SHORT_SERIALIZATION = \"isShortSerialization\";\n\n\t// Global property key for global logger level\n\tpublic static final String GLOBAL_PROPERTY_LOG_LEVEL = \"log.level\";\n\n\t/**\n\t * It points to a directory where 'openmrs.log' is stored.\n\t *\n\t * @since 1.9.2\n\t */\n\tpublic static final String GP_LOG_LOCATION = \"log.location\";\n\n\t/**\n\t * It specifies a log layout pattern used by the OpenMRS file appender.\n\t *\n\t * @since 1.9.2\n\t */\n\tpublic static final String GP_LOG_LAYOUT = \"log.layout\";\n\n\t/**\n\t * This is the default logging pattern we use in OpenMRS\n\t *\n\t * @since 2.9.0, 2.8.7\n\t */\n\tpublic static final String DEFAULT_LOG_LAYOUT_PATTERN = \"%p - %C{1}.%M(%L) |%d{ISO8601}| %m%n\";\n\n\t/**\n\t * It specifies a default name of the OpenMRS file appender. .\n\t *\n\t * @since 1.9.2\n\t */\n\tpublic static final String LOG_OPENMRS_FILE_APPENDER = \"OPENMRS FILE APPENDER\";\n\n\t// Global logger category\n\tpublic static final String LOG_CLASS_DEFAULT = \"org.openmrs.api\";\n\n\t// Log levels\n\tpublic static final String LOG_LEVEL_TRACE = \"trace\";\n\n\tpublic static final String LOG_LEVEL_DEBUG = \"debug\";\n\n\tpublic static final String LOG_LEVEL_INFO = \"info\";\n\n\tpublic static final String LOG_LEVEL_WARN = \"warn\";\n\n\tpublic static final String LOG_LEVEL_ERROR = \"error\";\n\n\tpublic static final String LOG_LEVEL_FATAL = \"fatal\";\n\n\t/**\n\t * The name of the in-memory appender\n\t */\n\tpublic static final String MEMORY_APPENDER_NAME = \"MEMORY_APPENDER\";\n\n\t/**\n\t * Default url responsible for authentication if a user is not logged in.\n\t *\n\t * @see #GP_LOGIN_URL\n\t */\n\tpublic static final String LOGIN_URL = \"login.htm\";\n\n\t/**\n\t * Global property name that defines the default url responsible for authentication if user is not\n\t * logged in.\n\t *\n\t * @see #LOGIN_URL\n\t */\n\tpublic static final String GP_LOGIN_URL = \"login.url\";\n\n\t/**\n\t * These enumerations should be used in ObsService and PersonService getters to help determine which\n\t * type of object to restrict on\n\t *\n\t * @see org.openmrs.api.ObsService\n\t * @see org.openm"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/java/org/openmrs/api/PersonServiceTest.java",
+      "kind": "File",
+      "path": "api/src/test/java/org/openmrs/api/PersonServiceTest.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2316,
+      "excerpt": "rg.openmrs.test.TestUtil.containsId;\n\n/**\n * This class tests methods in the PersonService class. TODO: Test all methods in the PersonService\n * class.\n */\npublic class PersonServiceTest extends BaseContextSensitiveTest {\n\n\tprotected static final String CREATE_PATIENT_XML = \"org/openmrs/api/include/PatientServiceTest-createPatient.xml\";\n\n\tprotected static final String CREATE_RELATIONSHIP_XML = \"org/openmrs/api/include/PersonServiceTest-createRelationship.xml\";\n\n\tprotected static final String CREATE_PERSON_PROPERTY_XML = \"org/openmrs/api/include/PersonServiceTest-PersonAttributeType.xml\";\n\n\tprivate static final Integer RETIRED_PERSON_ATTRIBUTE_TYPE = 1;\n\n\tprivate static final Integer UNRETIRED_PERSON_ATTRIBUTE_TYPE = 2;\n\n\tprotected static final DateFormat df = new SimpleDateFormat(\"yyyy-MM-dd\");\n\n\tprotected PatientService ps = null;\n\n\tprotected AdministrationService adminService = null;\n\n\tprotected PersonService personService = null;\n\n\t@BeforeEach\n\tpublic void onSetUpInTransaction() {\n\t\tif (ps == null) {\n\t\t\tps = Context.getPatientService();\n\t\t\tadminService = Context.getAdministrationService();\n\t\t\tpersonService = Context.getPersonService();\n\t\t}\n\t}\n\n\t/**\n\t * Tests a voided relationship between personA and Person B to see if it is still listed when\n\t * retrieving unvoided relationships for personA and if it is still listed when retrieving unvoided\n\t * relationships for personB.\n\t *\n\t * @see PersonService#getRelationshipsByPerson(Person)\n\t */\n\t@Test\n\tpublic void getRelationshipsByPerson_shouldOnlyGetUnvoidedRelationships() {\n\t\texecuteDataSet(CREATE_PATIENT_XML);\n\t\texecuteDataSet(CREATE_RELATIONSHIP_XML);\n\n\t\tPatient p1 = ps.getPatient(6);\n\t\tPatient p2 = ps.getPatient(8);\n\n\t\t// Create a sibling relationship between o1 and p2\n\t\tRelationship sibling = new Relationship();\n\t\tsibling.setPersonA(p1);\n\t\tsibling.setPersonB(p2);\n\t\tsibling.setRelationshipType(personService.getRelationshipType(4));\n\t\tpersonService.saveRelationship(sibling);\n\n\t\t// Make p2 the Doctor of p1.\n\t\tRelationship doctor = new Relationship();\n\t\tdoctor.setPersonB(p1);\n\t\tdoctor.setPersonA(p2);\n\t\tdoctor.setRelationshipType(personService.getRelationshipType(3));\n\t\tpersonService.saveRelationship(doctor);\n\n\t\t// Void all relationships.\n\t\tList<Relationship> allRels = personService.getAllRelationships();\n\t\tfor (Relationship r : allRels) {\n\t\t\tpersonService.voidRelationship(r, \"Because of a JUnit test.\");\n\t\t}\n\n\t\tL"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+      "kind": "File",
+      "path": "web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3284,
+      "excerpt": "PROPERTIES;\nimport static org.openmrs.web.filter.initialization.InitializationWizardModel.DEFAULT_MYSQL_CONNECTION;\nimport static org.openmrs.web.filter.initialization.InitializationWizardModel.DEFAULT_POSTGRESQL_CONNECTION;\n\n/**\n * This is the first filter that is processed. It is only active when starting OpenMRS for the very\n * first time. It will redirect all requests to the {@link WebConstants#SETUP_PAGE_URL} if the\n * {@link Listener} wasn't able to find any runtime properties\n */\npublic class InitializationFilter extends StartupFilter {\n\n\tprivate static final org.slf4j.Logger log = LoggerFactory.getLogger(InitializationFilter.class);\n\n\tprivate static final String DATABASE_POSTGRESQL = \"postgresql\";\n\n\tprivate static final String DATABASE_MYSQL = \"mysql\";\n\n\tprivate static final String DATABASE_SQLSERVER = \"sqlserver\";\n\n\tprivate static final String DATABASE_H2 = \"h2\";\n\n\tprivate static final String DATABASE_MARIADB = \"mariadb\";\n\n\t/**\n\t * The very first page of wizard, that asks user for select his preferred language\n\t */\n\tprivate static final String CHOOSE_LANG = \"chooselang.vm\";\n\n\t/**\n\t * The second page of the wizard that asks for simple or advanced installation.\n\t */\n\tprivate static final String INSTALL_METHOD = \"installmethod.vm\";\n\n\t/**\n\t * The simple installation setup page.\n\t */\n\tprivate static final String SIMPLE_SETUP = \"simplesetup.vm\";\n\n\t/**\n\t * The first page of the advanced installation of the wizard that asks for a current or past\n\t * database\n\t */\n\tprivate static final String DATABASE_SETUP = \"databasesetup.vm\";\n\n\t/**\n\t * The page from where the user specifies the url to a remote system, username and password\n\t */\n\tprivate static final String TESTING_REMOTE_DETAILS_SETUP = \"remotedetails.vm\";\n\n\t/**\n\t * The velocity macro page to redirect to if an error occurs or on initial startup\n\t */\n\tprivate static final String DEFAULT_PAGE = CHOOSE_LANG;\n\n\t/**\n\t * This page asks whether database tables/demo data should be inserted and what the\n\t * username/password that will be put into the runtime properties is\n\t */\n\tprivate static final String DATABASE_TABLES_AND_USER = \"databasetablesanduser.vm\";\n\n\t/**\n\t * This page lets the user define the admin user\n\t */\n\tprivate static final String ADMIN_USER_SETUP = \"adminusersetup.vm\";\n\n\t/**\n\t * This page lets the user pick an implementation id\n\t */\n\tprivate static final String IMPLEMENTATION_ID_SETUP = \"implemen"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "kind": "File",
+      "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7332,
+      "excerpt": "reserving the validity of\n# links if the user pushes the BACK button. There may be a performance impact when enabling this option\n# if the JSP has a large number of protected links that need tokens to be calculated.\n#\n# Note: Pre-creating tokens is only available with the session bound token holder implementation,\n# because in case for stateless or custom state implementations, client could would need\n# to signal when it's ok to pre-create the tokens and this would affect the modularity/pluggability of the solution.\n#\n# Use of the unique token per page property is currently EXPERIMENTAL,\n# but provides a significant amount of improved security. Consider the exposure of a CSRF token using\n# the legacy unique per-session model. Exposure of this token facilitates the attacker's ability to\n# carry out a CSRF attack against the victim's active session for any resource exposed by the web\n# application. Now consider the exposure of a CSRF token using the experimental unique token per-page\n# model. Exposure of this token would only allow the attacker to carry out a CSRF attack against the\n# victim's active session for a small subset of resources exposed by the web application. Use of the\n# unique token per-page property is a strong defense in depth strategy significantly reducing the\n# impact of exposed CSRF prevention tokens. The following configuration snippet instructs OWASP\n# CSRFGuard to utilize the unique token per-page model:\norg.owasp.csrfguard.TokenPerPage = false\norg.owasp.csrfguard.TokenPerPagePrecreate = false\n\n####################\n## Token Rotation ##\n####################\n# The rotate token property (org.owasp.csrfguard.Rotate) is a boolean value that determines if\n# CSRFGuard should generate and utilize a new token after verifying the previous token. Rotation\n# helps minimize the window of opportunity an attacker has to leverage the victim's stolen token\n# in a targeted CSRF attack. However, this functionality generally causes navigation problems in\n# most applications. Specifically, the 'Back' button in the browser will often cease to function\n# properly. When a user hits the 'Back' button and interacts with the HTML, the browser may submit\n# an old token causing CSRFGuard to incorrectly believe this request is a CSRF attack in progress\n# (i.e. a 'false positive'). Users can prevent this scenario by preventing the caching of HTML pages\n# containing FO"
+    }
+  ]
+}

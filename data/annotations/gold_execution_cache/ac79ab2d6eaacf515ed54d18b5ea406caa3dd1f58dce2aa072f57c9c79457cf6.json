@@ -1,0 +1,91 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_HAS_ISSUE]->(i:DLIssue) WHERE r.dataset=$dataset AND r.repo=$repo AND i.state=$state RETURN toString(i.number) AS entity,toString(i.number) AS fact,[r.id,i.id] AS evidence_ids ORDER BY i.number LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "state": "closed"
+  },
+  "rows": [
+    {
+      "entity": "6194",
+      "fact": "6194",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6194"
+      ]
+    },
+    {
+      "entity": "6195",
+      "fact": "6195",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6195"
+      ]
+    },
+    {
+      "entity": "6196",
+      "fact": "6196",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6196"
+      ]
+    },
+    {
+      "entity": "6197",
+      "fact": "6197",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6197"
+      ]
+    },
+    {
+      "entity": "6199",
+      "fact": "6199",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6199"
+      ]
+    },
+    {
+      "entity": "6239",
+      "fact": "6239",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6239"
+      ]
+    },
+    {
+      "entity": "6289",
+      "fact": "6289",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6289"
+      ]
+    },
+    {
+      "entity": "6334",
+      "fact": "6334",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6334"
+      ]
+    },
+    {
+      "entity": "6336",
+      "fact": "6336",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6336"
+      ]
+    },
+    {
+      "entity": "6353",
+      "fact": "6353",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:issue:6353"
+      ]
+    }
+  ]
+}

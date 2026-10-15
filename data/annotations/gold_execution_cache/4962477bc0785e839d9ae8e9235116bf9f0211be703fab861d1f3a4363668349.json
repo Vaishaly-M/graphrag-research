@@ -1,0 +1,101 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id) AS evidence RETURN b.path AS entity,b.path AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "path": "api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java"
+  },
+  "rows": [
+    {
+      "entity": "api/pom.xml",
+      "fact": "api/pom.xml",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/pom.xml"
+      ]
+    },
+    {
+      "entity": "api/src/main/java/liquibase/ext/change/core/InsertWithUuidDataChange.java",
+      "fact": "api/src/main/java/liquibase/ext/change/core/InsertWithUuidDataChange.java",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/liquibase/ext/change/core/InsertWithUuidDataChange.java"
+      ]
+    },
+    {
+      "entity": "api/src/main/java/liquibase/ext/datatype/core/MySQLBooleanType.java",
+      "fact": "api/src/main/java/liquibase/ext/datatype/core/MySQLBooleanType.java",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/liquibase/ext/datatype/core/MySQLBooleanType.java"
+      ]
+    },
+    {
+      "entity": "api/src/main/java/liquibase/ext/datatype/core/PostgreSQLBlobType.java",
+      "fact": "api/src/main/java/liquibase/ext/datatype/core/PostgreSQLBlobType.java",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/liquibase/ext/datatype/core/PostgreSQLBlobType.java"
+      ]
+    },
+    {
+      "entity": "api/src/main/java/liquibase/ext/datatype/core/PostgreSQLUuidType.java",
+      "fact": "api/src/main/java/liquibase/ext/datatype/core/PostgreSQLUuidType.java",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/liquibase/ext/datatype/core/PostgreSQLUuidType.java"
+      ]
+    },
+    {
+      "entity": "api/src/main/java/liquibase/ext/logging/slf4j/Slf4JLogService.java",
+      "fact": "api/src/main/java/liquibase/ext/logging/slf4j/Slf4JLogService.java",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/liquibase/ext/logging/slf4j/Slf4JLogService.java"
+      ]
+    },
+    {
+      "entity": "api/src/main/java/liquibase/ext/logging/slf4j/Slf4JLogger.java",
+      "fact": "api/src/main/java/liquibase/ext/logging/slf4j/Slf4JLogger.java",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/liquibase/ext/logging/slf4j/Slf4JLogger.java"
+      ]
+    },
+    {
+      "entity": "api/src/main/java/liquibase/ext/sqlgenerator/core/ModifyColumnChange.java",
+      "fact": "api/src/main/java/liquibase/ext/sqlgenerator/core/ModifyColumnChange.java",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/liquibase/ext/sqlgenerator/core/ModifyColumnChange.java"
+      ]
+    },
+    {
+      "entity": "api/src/main/java/liquibase/ext/sqlgenerator/core/ModifyColumnGenerator.java",
+      "fact": "api/src/main/java/liquibase/ext/sqlgenerator/core/ModifyColumnGenerator.java",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/liquibase/ext/sqlgenerator/core/ModifyColumnGenerator.java"
+      ]
+    },
+    {
+      "entity": "api/src/main/java/org/openmrs/Address.java",
+      "fact": "api/src/main/java/org/openmrs/Address.java",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/databasechange/UpdateCohortMemberIdsChangeset.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/Address.java"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Apis/CatalogApi.cs",
+        "path": "src/Catalog.API/Apis/CatalogApi.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:859",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Extensions.cs",
+        "path": "src/eShop.AppHost/Extensions.cs",
+        "offset": 1520,
+        "line": 45
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1056",
+        "path": null,
+        "offset": 2779,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+        "path": "src/eShop.AppHost/Program.cs",
+        "offset": 111,
+        "line": 5
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 318,
+        "line": 12
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Apis/CatalogApi.cs",
+      "kind": "File",
+      "path": "src/Catalog.API/Apis/CatalogApi.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using System.ComponentModel;\nusing System.ComponentModel.DataAnnotations;\nusing Microsoft.AspNetCore.Http.HttpResults;\nusing Microsoft.AspNetCore.Mvc;\nusing Microsoft.AspNetCore.Mvc.Infrastructure;\nusing Pgvector.EntityFrameworkCore;\n\nnamespace eShop.Catalog.API;\n\npublic static class CatalogApi\n{\n    public static IEndpointRouteBuilder MapCatalogApi(this IEndpointRouteBuilder app)\n    {\n        // RouteGroupBuilder for catalog endpoints\n        var vApi = app.NewVersionedApi(\"Catalog\");\n        var api = vApi.MapGroup(\"api/catalog\").HasApiVersion(1, 0).HasApiVersion(2, 0);\n        var v1 = vApi.MapGroup(\"api/catalog\").HasApiVersion(1, 0);\n        var v2 = vApi.MapGroup(\"api/catalog\").HasApiVersion(2, 0);\n\n        // Routes for querying catalog items.\n        v1.MapGet(\"/items\", GetAllItemsV1)\n            .WithName(\"ListItems\")\n            .WithSummary(\"List catalog items\")\n            .WithDescription(\"Get a paginated list of items in the catalog.\")\n            .WithTags(\"Items\");\n        v2.MapGet(\"/items\", GetAllItems)\n            .WithName(\"ListItems-V2\")\n            .WithSummary(\"List catalog items\")\n            .WithDescription(\"Get a paginated list of items in the catalog.\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/by\", GetItemsByIds)\n            .WithName(\"BatchGetItems\")\n            .WithSummary(\"Batch get catalog items\")\n            .WithDescription(\"Get multiple items from the catalog\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/{id:int}\", GetItemById)\n            .WithName(\"GetItem\")\n            .WithSummary(\"Get catalog item\")\n            .WithDescription(\"Get an item from the catalog\")\n            .WithTags(\"Items\");\n        v1.MapGet(\"/items/by/{name:minlength(1)}\", GetItemsByName)\n            .WithName(\"GetItemsByName\")\n            .WithSummary(\"Get catalog items by name\")\n            .WithDescription(\"Get a paginated list of catalog items with the specified name.\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/{id:int}/pic\", GetItemPictureById)\n            .WithName(\"GetItemPicture\")\n            .WithSummary(\"Get catalog item picture\")\n            .WithDescription(\"Get the picture for a catalog item\")\n            .WithTags(\"Items\");\n\n        // Routes for resolving catalog items using AI.\n        v1.MapGet(\"/items/withsemanticrelevance/{text:minlength(1)}\", GetItemsBySemanticRelevanceV1)\n        "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Extensions.cs",
+      "kind": "File",
+      "path": "src/eShop.AppHost/Extensions.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1520,
+      "excerpt": "rn Task.CompletedTask;\n        }\n    }\n\n    /// <summary>\n    /// Configures eShop projects to use OpenAI for text embedding and chat.\n    /// </summary>\n    public static IDistributedApplicationBuilder AddOpenAI(this IDistributedApplicationBuilder builder,\n        IResourceBuilder<ProjectResource> catalogApi,\n        IResourceBuilder<ProjectResource> webApp,\n        OpenAITarget openAITarget)\n    {\n        const string openAIName = \"openai\";\n\n        const string textEmbeddingName = \"textEmbeddingModel\";\n        const string textEmbeddingModelName = \"text-embedding-3-small\";\n\n        const string chatName = \"chatModel\";\n        const string chatModelName = \"gpt-4.1-mini\";\n\n        if (openAITarget != OpenAITarget.AzureOpenAI)\n        {\n#pragma warning disable ASPIREINTERACTION001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.\n            IResourceBuilder<ParameterResource>? endpoint = null;\n            if (openAITarget != OpenAITarget.OpenAI)\n            {\n                endpoint = builder.AddParameter(\"OpenAIEndpointParameter\")\n                    .WithDescription(\"The Azure OpenAI endpoint to use, e.g. https://<name>.openai.azure.com/\")\n                    .WithCustomInput(p => new()\n                    {\n                        Name = \"OpenAIEndpointParameter\",\n                        Label = \"Azure OpenAI Endpoint\",\n                        InputType = InputType.Text,\n                        Value = \"https://<name>.openai.azure.com/\",\n                    });\n            }\n\n            IResourceBuilder<ParameterResource>? key = null;\n            if (openAITarget is OpenAITarget.OpenAI or OpenAITarget.AzureOpenAIExistingWithKey)\n            {\n                key = builder.AddParameter(\"OpenAIKeyParameter\", secret: true)\n                    .WithDescription(\"The OpenAI API key to use.\")\n                    .WithCustomInput(p => new()\n                    {\n                        Name = \"OpenAIKeyParameter\",\n                        Label = \"API Key\",\n                        InputType = InputType.SecretText\n                    });\n            }\n\n            var chatModel = builder.AddParameter(\"ChatModelParameter\")\n                .WithDescription(\"The chat model to use.\")\n                .WithCustomInput(p => new()\n                {\n                    Name = \"ChatModelPara"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+      "kind": "File",
+      "path": "src/eShop.AppHost/Program.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 111,
+      "excerpt": "\n\nvar redis = builder.AddRedis(\"redis\");\nvar rabbitMq = builder.AddRabbitMQ(\"eventbus\")\n    .WithLifetime(ContainerLifetime.Persistent);\nvar postgres = builder.AddPostgres(\"postgres\")\n    .WithImage(\"ankane/pgvector\")\n    .WithImageTag(\"latest\")\n    .WithLifetime(ContainerLifetime.Persistent);\n\nvar catalogDb = postgres.AddDatabase(\"catalogdb\");\nvar identityDb = postgres.AddDatabase(\"identitydb\");\nvar orderDb = postgres.AddDatabase(\"orderingdb\");\nvar webhooksDb = postgres.AddDatabase(\"webhooksdb\");\n\nvar launchProfileName = ShouldUseHttpForEndpoints() ? \"http\" : \"https\";\n\n// Services\nvar identityApi = builder.AddProject<Projects.Identity_API>(\"identity-api\", launchProfileName)\n    .WithExternalHttpEndpoints()\n    .WithReference(identityDb)\n    .WithHttpHealthCheck(\"/health\");\n\nvar identityEndpoint = identityApi.GetEndpoint(launchProfileName);\n\nvar basketApi = builder.AddProject<Projects.Basket_API>(\"basket-api\")\n    .WithReference(redis)\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\nredis.WithParentRelationship(basketApi);\n\nvar catalogApi = builder.AddProject<Projects.Catalog_API>(\"catalog-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(catalogDb);\n\nvar orderingApi = builder.AddProject<Projects.Ordering_API>(\"ordering-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb).WaitFor(orderDb)\n    .WithHttpHealthCheck(\"/health\")\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\nbuilder.AddProject<Projects.OrderProcessor>(\"order-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb)\n    .WaitFor(orderingApi); // wait for the orderingApi to be ready because that contains the EF migrations\n\nbuilder.AddProject<Projects.PaymentProcessor>(\"payment-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq);\n\nvar webHooksApi = builder.AddProject<Projects.Webhooks_API>(\"webhooks-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(webhooksDb)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\n// Reverse proxies\nbuilder.AddYarp(\"mobile-bff\")\n    .WithExternalHttpEndpoints()\n    .ConfigureMobileBffRoutes(catalogApi, orderingApi, identityApi);\n\n// Apps\nvar webhooksClient = builder.AddProject<Projects.WebhookClient>(\"webhooksclient\", launchProfileName)\n    .WithReference(webHooksApi)\n    .WithEnvironment(\"I"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 998,
+      "title": "Insecure file-serving pattern: `GetItemPictureById` allows path traversal / arbitrary file read via `PictureFileName'",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\n`Catalog.API`'s product-image endpoint builds a filesystem path by concatenating a **database-stored, client-controllable** `PictureFileName` directly into `Path.Combine(..., \"Pics\", pictureFileName)` and streams the result with `TypedResults.PhysicalFile`, with no containment check. Because `Path.Combine` lets a rooted or `..`-containing final segment escape the `Pics` directory, a caller can make the endpoint return **arbitrary files from the host filesystem** (e.g. `appsettings.json`, project source, `/etc/passwd`).\n\nSince this is a **reference application** that many developers copy patterns from, the file-serving idiom here teaches an insecure practice (CWE-22). The fix is small and self-contained.\n\n## Affected code\n\n`src/Catalog.API/Apis/CatalogApi.cs`\n\n```csharp\n// GetItemPictureById (~line 205) — PictureFileName comes from the stored CatalogItem\nvar path = GetFullPath(environment.ContentRootPath, item.PictureFileName);\n...\nreturn TypedResults.PhysicalFile(path, mimetype, lastModified: lastModified);\n\n// ~line 420\npublic static string GetFullPath(string contentRootPath, string pictureFileName) =>\n    Path.Combine(contentRootPath, \"Pics\", pictureFileName);   // <-- no normalization / containment\n```\n\n`PictureFileName` is bound straight from the request body in `CreateItem`/`UpdateItem` (`product.PictureFileName`), so it is fully attacker-controlled.\n\n## Steps to reproduce\n\n\n\n**Observed scope:** any real on-disk file the process can read is returned. (`/proc/*` pseudo-files are *not* returned — `PhysicalFile` reports `Content-Length: 0` for procfs and Kestrel aborts the response — so process environment variables are not exfiltrable through this particular sink.)\n\n## Impact\n\nUnrestricted local file read of the `Catalog.API` host: `appsettings*.json`, mounted secret files, K8s service-account tokens (`/var/run/secrets/...`), data-protection keys, application source, etc. In the default topology `Catalog.API` is an internal service, so realistic exposure requires it to be network-reachable (direct exposure, misconfiguration, or via SSRF/lateral movement) — but the file-read defect itself is unconditional.\n\n## Suggested fix\n\nConstrain the filename to the `Pics` directory. Either reduce it to a bare filename, or verify the resolved path stays inside the base:\n\n```csharp\npublic static string GetFullPath(string contentRootPath, string pictureFileN"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "…ging coverage\r\n\r\nIntroduce pluggable functional test modes (Aspire, RepositoryMock, EfCoreInMemory, Testcontainers, and messaging variants) for Catalog and Ordering via a shared Testing.Common library. Extract ICatalogRepository from Catalog.API to enable in-memory persistence swaps, add Serilog logging to ServiceDefaults, fix integration event type discovery under WebApplicationFactory, and add runsettings plus xUnit traits for filtering tests by mode.\r\n\r\n# eShop Multi-Mode Functional Testing\r\n\r\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontaine"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 318,
+      "excerpt": "ndowsAppSDK v2.2.0` dependency that was causing apps to crash on Windows. Long story short, [.NET 10 MAUI currently expects Windows App SDK 1.8.x, while .NET 11 expects 2.3.1](https://github.com/CommunityToolkit/Maui/issues/3271#issuecomment-5244819936).\n\nWe also found a few more internal .NET MAUI APIs that we missed in the [`CommunityToolkti.Maui v15.0.0` Release](https://github.com/CommunityToolkit/Maui/releases/tag/15.0.0) used by `FileSaver`, `FolderPicker`, `Snackbar`, `Toast`, `Expander` and `TouchBehavior` that we have now removed. In .NET 11. [`CommunityToolkit.Maui` will no longer have access to internal .NET MAUI APIs](https://github.com/dotnet/maui/pull/34070). We have updated our .NET 11 Migration guidance to use `CommunityToolkit.Maui v15.0.1` or later to ensure compatibility with .NET 11. Specifically, \n\n> [!IMPORTANT]\n> We recommend every .NET MAUI app preparing for .NET 11 install this release, v15.0.1 (or later), before .NET 11 is released in November. Apps running `CommunityToolkit.Maui` v14.2.2 and earlier will not be compatible with .NET 11.\n\n## What's Changed\n* Align Windows App SDK version with .NET MAUI by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/3282\n* Remove all usage of .NET MAUI internal APIs by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/3273\n\n## Housekeeping\n* [housekeeping] Automated PR to fix formatting errors by @​github-actions[bot] in https://github.com/CommunityToolkit/Maui/pull/3286\n* Bump Microsoft.Testing.Extensions.CodeCoverage from 18.9.0 to 18.10.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3285\n* Bump actions/checkout from 7.0.0 to 7.0.1 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3275\n* Bump Microsoft.Testing.Extensions.CodeCoverage from 18.8.0 to 18.9.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3262\n* Bump actions/setup-java from 5.6.0 to 5.7.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3278\n\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/compare/15.0.0...15.0.1\n\n## 15.0.0\n\n## .NET 11 Compatibility \n\nThis release provides compatibility with the upcoming release of .NET 11.\n\nIn .NET 11, [`CommunityToolkit.Maui` will no longer have access to internal .NET MAUI APIs](https://github.com/dotnet/maui/pull/34070). This release removes our use of internal .NET MA"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1056",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1056,
+      "title": "Reserve catalog stock when an order is validated",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2779,
+      "excerpt": "They were **not** run through the Aspire-hosted `CatalogApiFixture`: it would not start on my machine, with or without this change, so I pointed the fixture at a standalone container for the run. CI will be the first run through the real fixture.\r\n\r\n`CatalogApiTests` and `StockReservationTests` are placed in one xunit collection so their fixtures do not start in parallel; two parallel fixtures collided on a socket locally. That is also unconfirmed under the real fixture.\r\n\r\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:859",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 859,
+      "title": "Replace .WithX OpenAPI annotations with XML documentation comments in Catalog.API",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\nThis PR replaces all fluent OpenAPI annotation methods (`.WithSummary()`, `.WithDescription()`, `.WithTags()`, etc.) in `CatalogApi.cs` with equivalent XML documentation comments on the handler methods. This change enables OpenAPI documentation generation from XML doc comments rather than fluent API annotations, following the aspnet-openapi-xml approach.\n\n## Changes Made\n\n### 🗑️ Removed Fluent API Annotations\n- Removed all `.WithSummary()`, `.WithDescription()`, `.WithTags()`, and `.WithName()` calls from 19 endpoint mappings\n- Simplified endpoint registrations to clean, chainable-free syntax\n\n### 📝 Added XML Documentation\n- Added XML `<summary>` and `<remarks>` tags to all 16 handler methods\n- Extracted 2 inline lambda methods (`GetCatalogTypes`, `GetCatalogBrands`) into proper named methods with XML documentation\n- Preserved existing parameter descriptions using `[Description]` attributes\n\n### Before\n```csharp\nv1.MapGet(\"/items\", GetAllItemsV1)\n    .WithName(\"ListItems\")\n    .WithSummary(\"List catalog items\")\n    .WithDescription(\"Get a paginated list of items in the catalog.\")\n    .WithTags(\"Items\");\n```\n\n### After\n```csharp\nv1.MapGet(\"/items\", GetAllItemsV1);\n\n/// <summary>List catalog items</summary>\n/// <remarks>Get a paginated list of items in the catalog.</remarks>\n[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, \"application/problem+json\")]\npublic static async Task<Ok<PaginatedItems<CatalogItem>>> GetAllItemsV1(...)\n```\n\n## Validation\n\n✅ **0** remaining `.WithX` calls (all removed)  \n✅ **16** XML summary and remarks tags added (one for each method)  \n✅ **19** simplified endpoint mappings  \n✅ **No functional changes** - all routing, parameters, and behavior preserved\n\n## Benefits\n\n- 🎯 **Centralized Documentation**: OpenAPI docs now generated directly from method XML comments\n- 🧹 **Cleaner Code**: Simplified endpoint mappings without fluent chaining\n- 📚 **Better IntelliSense**: XML docs provide better IDE support for developers\n- 🔄 **Future-Proof**: Aligns with modern ASP.NET Core OpenAPI best practices\n\nThis change maintains full backward compatibility while improving the developer experience and documentation approach.\n\n*This pull request was created as a result of the following prompt from Copilot chat.*\n> The file src/Catalog.API/Apis/CatalogApi.cs uses several .WithX methods (such as .WithSummary, .WithDescriptio"
+    }
+  ]
+}

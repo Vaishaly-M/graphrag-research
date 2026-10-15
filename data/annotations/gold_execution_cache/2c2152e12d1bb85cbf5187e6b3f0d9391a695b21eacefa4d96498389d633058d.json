@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/module/ModuleUtil.java",
+        "path": "api/src/main/java/org/openmrs/module/ModuleUtil.java",
+        "offset": 5109,
+        "line": 140
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "offset": 59992,
+        "line": 1222
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+        "path": "api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+        "offset": 11808,
+        "line": 405
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6691",
+        "path": null,
+        "offset": 5472,
+        "line": 47
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6674",
+        "path": null,
+        "offset": 5649,
+        "line": 46
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 3562,
+        "line": 43
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:cba0407af8a3bbdcf1cb3f3da1d4264cdc320c9a",
+        "path": null,
+        "offset": 2018,
+        "line": 47
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+        "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+        "offset": 3926,
+        "line": 97
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:cba0407af8a3bbdcf1cb3f3da1d4264cdc320c9a",
+      "kind": "Commit",
+      "path": null,
+      "commit": "cba0407af8a3bbdcf1cb3f3da1d4264cdc320c9a",
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2018,
+      "excerpt": "tore pr-review skill\n\nSkills aren't reliably auto-invoked in claude-code-action automation mode\n(action #1003), so inject the skill as a system prompt:\n- Fetch SKILL.md from the trusted openmrs-module-querystore repo into a\n  temp path outside the PR checkout (a malicious PR can't substitute it),\n  failing loudly if missing/unexpected.\n- Pass it via --append-system-prompt-file; replace the hand-written prompt\n  with a skill invocation over this PR; drop the forced header (it fights\n  the skill's anti-bot-fingerprint rules; the bot identity discloses it).\n- Give the step GH_TOKEN so the skill's gh-based posting is authenticated.\n- Raise --max-turns to 40 and timeout to 30m for the skill's deeper flow.\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>\n\n* Harden skill integration: full history for the skill; hoist SKILL_URL\n\n- fetch-depth: 0 — the skill's local-git verification (merge-base, diff\n  against base, drift checks) can't run on a shallow single-ref checkout.\n- Hoist SKILL_URL to the top-level env next to the other tunables, so\n  pinning the methodology to a commit SHA is a one-line change.\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>\n\n* Forbid executing untrusted PR code during review\n\nAdd a prompt constraint (overriding the skill) that bars running mvn,\ngradle, npm, builds, or any script/binary from the PR tree; verification\nis read-only (git diff/grep, gh pr diff, gh api). Build-only checks are\nreported as questions per the skill's own can't-run-the-experiment rule.\nCloses the arbitrary-code-execution vector where building an untrusted PR\ncould exfiltrate the review secrets. Update the stale timeout comment.\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>\n\n* Clarify the no-exec constraint so it doesn't block posting\n\nScope the ban explicitly to the PR's own build/tests/scripts, and state\nthat Claude's own read-only tooling is expected: git, gh, curl for\nupstream refs, and python to assemble the review payload it posts. Avoids\na silent failure where an over-broad reading of 'never execute any code'\nstops the review from being posted (indistinguishable from a clean PR).\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>\n\n* Fix concurrency: don't let unrelated comments cancel a running review\n\nWorkflow-level concurrency is evaluated per run before the job if:, and\nthe"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3562,
+      "excerpt": "ub.com/fork-a-repo) on which you're working, clone your forked repo to your local computer, and set up the upstream remote:\n\n        git clone git://github.com/YourGitHubUserName/openmrs-core.git\n        git remote add upstream https://github.com/openmrs/openmrs-core.git\n\n3. Checkout to a new local branch based on your master and update it to the latest. The convention is to name the branch after the current ticket, e.g. TRUNK-123:\n\n        git checkout -b TRUNK-123 master\n        git clean -df\n        git pull --rebase upstream master\n\n > Please keep your code clean. Name your branch after the JIRA issue or other description of the work being done. If you find another bug, you want to fix while being in a new branch, please fix it in a separated branch instead.\n\n\n4. Push the branch to your fork. Treat it as a backup.\n\n        git push origin TRUNK-123\n\n5. Code\n  * Adhere to common conventions you see in the existing code\n  * Include tests, and ensure they pass\n  * Search to see if your new functionality has been discussed using our [OpenMRS global search](http://search.openmrs.org), and include updates as appropriate\n\n6. Follow the [Coding Conventions described on our wiki](https://wiki.openmrs.org/x/MxEz).\n\n  > However, please note that **pull requests consisting entirely of style changes are not welcome on this project**. Style changes in the context of pull requests that also refactor code, fix bugs, improve functionality *are* welcome.\n\n7. Commit\n\n  For every commit please write a short (max 72 characters) summary in the first line followed with a blank line and then more detailed descriptions of the change. Use markdown syntax for simple styling. Please include any JIRA issue numbers in your summary.\n  \n        git commit -m \"TRUNK-123: Put change summary here (can be a ticket title)\"\n\n  **NEVER leave the commit message blank!** Provide a detailed, clear, and complete description of your commit!\n\n8. Issue a Pull Request\n\n  Before submitting a pull request, update your branch to the latest code.\n  \n        git pull --rebase upstream master\n\n  If you have made many commits, we ask you to squash them into atomic units of work. Most of tickets should have one commit only, especially bug fixes, which makes them easier to back port.\n\n        git checkout master\n        git pull --rebase upstream master\n        git checkout TRUNK-123\n        git rebase -i mas"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3926,
+      "excerpt": "ntext is\n * heavier and it contains each service class. This is more static and there is only one\n * ServiceContext per OpenMRS instance. <br>\n * <br>\n * Both the {@link UserContext} and the {@link ServiceContext} should not be used directly. This\n * context class has methods to pass through to the currently defined UserContext for the thread and\n * the currently defined ServiceContext. <br>\n * <br>\n * To use the OpenMRS api there are four things that have to be done:\n * <ol>\n * <li>Call {@link Context#startup(String, String, String, Properties)} to let the Context contact\n * the database</li>\n * <li>Call {@link Context#openSession()} to start a \"unit of work\".</li>\n * <li>Call {@link Context#authenticate(String, String)} to authenticate the current user on the\n * current thread</li>\n * <li>Call {@link Context#closeSession()} to end your \"unit of work\" and commit all changes to the\n * database.</li>\n * </ol>\n * <br>\n * Example usage: <pre>\n * \tpublic static void main(String[] args) {\n * \t\tContext.startup(\"jdbc:mysql://localhost:3306/db-name?autoReconnect=true\", \"openmrs-db-user\", \"3jknfjkn33ijt\", new Properties());\n * \t\ttry {\n * \t\t\tContext.openSession();\n * \t\t\tContext.authenticate(\"admin\", \"test\");\n * \t\t\tList&lt;Patients&gt; patients = Context.getPatientService().getPatientsByName(\"Fred\");\n * \t\t\tpatients.get(0).setBirthdate(new Date());\n * \t\t\tContext.getPatientService().savePatient(patients.get(0));\n * \t\t\t...\n *        }\n * \t\tfinally {\n * \t\t\tContext.closeSession();\n *        }\n *    }\n * </pre>\n *\n * @see org.openmrs.api.context.UserContext\n * @see org.openmrs.api.context.ServiceContext\n */\npublic class Context {\n\n\t// Global resources\n\tprivate static ContextDAO contextDAO;\n\n\tprivate static volatile Session mailSession;\n\n\t// Using \"wrapper\" (Object array) around UserContext to avoid ThreadLocal\n\t// bug in Java 1.5\n\tprivate static final ThreadLocal<Object[] /* UserContext */> userContextHolder = new ThreadLocal<>();\n\n\tprivate static volatile ServiceContext serviceContext;\n\n\tprivate static Properties runtimeProperties = new Properties();\n\n\tprivate static Properties configProperties = new Properties();\n\n\tprivate static AuthenticationScheme authenticationScheme;\n\n\tprivate static final Logger log = LoggerFactory.getLogger(Context.class);\n\n\t/**\n\t * Default public constructor\n\t */\n\tpublic Context() {\n\t}\n\n\t/**\n\t * Gets the context's data access object\n\t *\n\t * @return"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11808,
+      "excerpt": "public HL7InError getHL7InError(Integer hl7InErrorId) {\n\t\treturn dao.getHL7InError(hl7InErrorId);\n\t}\n\n\t@Override\n\t@Transactional(readOnly = true)\n\tpublic HL7InError getHL7InErrorByUuid(String uuid) throws APIException {\n\t\treturn dao.getHL7InErrorByUuid(uuid);\n\t}\n\n\t/**\n\t * Gets the error message for failing to resolve a user with a certain id, family, and given name.\n\t *\n\t * @param idNum id number\n\t * @param fName family name\n\t * @param gName given name\n\t * @return error string. User can not be resolveUserId\n\t */\n\tprivate String getFindingUserErrorMessage(String idNum, String fName, String gName) {\n\t\treturn \"Error resolving user with id '\" + idNum + \"' family name '\" + fName + \"' and given name '\" + gName + \"'\";\n\t}\n\n\t/**\n\t * @param xcn HL7 component of data type XCN (extended composite ID number and name for persons)\n\t *            (see HL7 2.5 manual Ch.2A.86)\n\t * @return Internal ID # of the specified user, or null if that user can't be found or is ambiguous\n\t */\n\t@Override\n\t@Transactional(readOnly = true)\n\tpublic Integer resolveUserId(XCN xcn) throws HL7Exception {\n\t\tString idNumber = xcn.getIDNumber().getValue();\n\t\tString familyName = xcn.getFamilyName().getSurname().getValue();\n\t\tString givenName = xcn.getGivenName().getValue();\n\n\t\tif (idNumber != null && idNumber.length() > 0) {\n\t\t\ttry {\n\t\t\t\tInteger userId = Integer.valueOf(idNumber);\n\t\t\t\tUser user = Context.getUserService().getUser(userId);\n\t\t\t\treturn user.getUserId();\n\t\t\t} catch (Exception e) {\n\t\t\t\tlog.error(\"Invalid user ID '\" + idNumber + \"'\", e);\n\t\t\t\treturn null;\n\t\t\t}\n\t\t} else {\n\t\t\ttry {\n\t\t\t\tList<User> users = Context.getUserService().getUsersByName(givenName, familyName, true);\n\t\t\t\tif (users.size() == 1) {\n\t\t\t\t\treturn users.get(0).getUserId();\n\t\t\t\t} else if (users.size() > 1) {\n\t\t\t\t\t//Return null if that user ambiguous\n\t\t\t\t\tlog.error(getFindingUserErrorMessage(idNumber, familyName, givenName) + \": Found \" + users.size()\n\t\t\t\t\t        + \" ambiguous users.\");\n\t\t\t\t\treturn null;\n\t\t\t\t} else {\n\t\t\t\t\t// legacy behavior is looking up by username\n\t\t\t\t\tStringBuilder username = new StringBuilder();\n\t\t\t\t\tif (familyName != null) {\n\t\t\t\t\t\tusername.append(familyName);\n\t\t\t\t\t}\n\t\t\t\t\tif (givenName != null) {\n\t\t\t\t\t\tif (username.length() > 0) {\n\t\t\t\t\t\t\tusername.append(\" \"); // separate names with a space\n\t\t\t\t\t\t}\n\t\t\t\t\t\tusername.append(givenName);\n\t\t\t\t\t}\n\t\t\t\t\tUser user = Context.getUserService().getUserByUsername(username.t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/module/ModuleUtil.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/module/ModuleUtil.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5109,
+      "excerpt": "\t\t\t\tlog.debug(\"No modules loaded\");\n\t\t\t} else {\n\t\t\t\tlog.debug(\"Found and loaded {} module(s)\", modules.size());\n\t\t\t}\n\t\t}\n\n\t\t// make sure all mandatory modules are loaded and started\n\t\tcheckMandatoryModulesStarted();\n\t}\n\n\t/**\n\t * Stops the module system by calling stopModule for all modules that are currently started\n\t */\n\tpublic static void shutdown() {\n\n\t\tList<Module> modules = new ArrayList<>(ModuleFactory.getStartedModules());\n\n\t\tfor (Module mod : modules) {\n\t\t\tlog.debug(\"stopping module: {}\", mod.getModuleId());\n\n\t\t\tif (mod.isStarted()) {\n\t\t\t\tModuleFactory.stopModule(mod, true, true);\n\t\t\t}\n\t\t}\n\n\t\tlog.debug(\"done shutting down modules\");\n\n\t\t// clean up the static variables just in case they weren't done before\n\t\tModuleFactory.extensionMap.clear();\n\t\tModuleFactory.loadedModules.invalidateAll();\n\t\tModuleFactory.moduleClassLoaders.invalidateAll();\n\t\tModuleFactory.startedModules.invalidateAll();\n\t}\n\n\t/**\n\t * Add the <code>inputStream</code> as a file in the modules repository\n\t *\n\t * @param inputStream <code>InputStream</code> to load\n\t * @return filename String of the file's name of the stream\n\t */\n\tpublic static File insertModuleFile(InputStream inputStream, String filename) {\n\t\tFile folder = getModuleRepository();\n\n\t\t// check if module filename is already loaded\n\t\tif (OpenmrsUtil.folderContains(folder, filename)) {\n\t\t\tthrow new ModuleException(filename + \" is already associated with a loaded module.\");\n\t\t}\n\n\t\tFile file = new File(folder.getAbsolutePath(), filename);\n\n\t\ttry (FileOutputStream outputStream = new FileOutputStream(file)) {\n\t\t\tOpenmrsUtil.copyFile(inputStream, outputStream);\n\t\t} catch (IOException e) {\n\t\t\tthrow new ModuleException(\"Can't create module file for \" + filename, e);\n\t\t} finally {\n\t\t\ttry {\n\t\t\t\tinputStream.close();\n\t\t\t} catch (Exception e) { /* pass */}\n\t\t}\n\n\t\treturn file;\n\t}\n\n\t/**\n\t * Checks if the current OpenMRS version is in an array of versions.\n\t * <p>\n\t * This method calls {@link ModuleUtil#matchRequiredVersions(String, String)} internally.\n\t * </p>\n\t * <p>\n\t * <strong>Should</strong> return false when versions is null<br/>\n\t * <strong>Should</strong> return false when versions is empty<br/>\n\t * <strong>Should</strong> return true if current openmrs version matches one element in\n\t * versions<br/>\n\t * <strong>Should</strong> return false if current openmrs version does not match any element in\n\t * versions\n\t *\n\t * @param version"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 59992,
+      "excerpt": "org.openmrs.api.ObsService\n\t * @see org.openmrs.api.PersonService\n\t */\n\tpublic static enum PERSON_TYPE {\n\t\tPERSON,\n\t\tPATIENT,\n\t\tUSER\n\t}\n\n\t//Patient Identifier Validators\n\tpublic static final String LUHN_IDENTIFIER_VALIDATOR = LuhnIdentifierValidator.class.getName();\n\n\t/** The data type to return on failing to load a custom data type. */\n\tpublic static final String DEFAULT_CUSTOM_DATATYPE = FreeTextDatatype.class.getName();\n\n\t/** Prefix followed by registered component name. */\n\tpublic static final String REGISTERED_COMPONENT_NAME_PREFIX = \"bean:\";\n\n\t/** Value for the short person name format */\n\tpublic static final String PERSON_NAME_FORMAT_SHORT = \"short\";\n\n\t/** Value for the long person name format */\n\tpublic static final String PERSON_NAME_FORMAT_LONG = \"long\";\n\n\t// Liquibase Constants\n\tpublic static final String LIQUIBASE_DUPLICATE_FILE_MODE_DEFAULT = GlobalConfiguration.DuplicateFileMode.SILENT.name();\n\n\t/** Value for zero login attempts */\n\tpublic static final String ZERO_LOGIN_ATTEMPTS_VALUE = \"0\";\n\n\tprivate OpenmrsConstants() {\n\t}\n\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6674",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6674,
+      "title": "TRUNK-6823: Deny with APIAuthenticationException again, as an AuthorizationDeniedException",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5649,
+      "excerpt": "have **added tests** to cover my changes.\n- [x] I ran `./mvnw clean package` right before creating this pull request and added all formatting changes to my commit.\n- [x] All new and existing **tests passed**: `mvn clean verify` from the root, with api at 5621 tests (45 skipped) and web at 310, none failing.\n- [x] My pull request is **based on the latest changes** of the master branch.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6691",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6691,
+      "title": "maven(deps): bump org.postgresql:postgresql from 42.7.13 to 42.7.14",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5472,
+      "excerpt": "ode> as the end [PR <a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4358\">#4358</a>](<a href=\"https://redirect.github.com/pgjdbc/pgjdbc/pull/4358\">pgjdbc/pgjdbc#4358</a>)</li>\n<li>fix: <code>LargeObjectManager</code> operations now work inside an active XA transaction. Since 42.7.13 an XA branch keeps the caller's <code>autoCommit=true</code>, and the guard rejected large objects as if the connection were idle. It now checks the server transaction state (<code>getTransactionState()</code>) instead of <code>autoCommit</code>, so a genuine auto-commit connection with no open transaction is still refused [Issue <a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4309\">#4309</a>](<a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4309\">pgjdbc/pgjdbc#4309</a>) [PR <a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4310\">#4310</a>](<a href=\"https://redirect.github.com/pgjdbc/pgjdbc/pull/4310\">pgjdbc/pgjdbc#4310</a>)</li>\n<li>fix: batch update counts are no longer secured as committed inside an XA transaction. <code>BatchResultHandler</code> treated per-statement progress as durable whenever <code>autoCommit=true</code>, but an XA branch keeps <code>autoCommit=true</code> while the transaction is open, so a batch that flushed mid-way and then failed could report rolled-back statements as succeeded. Progress is now secured only when no server transaction is open [Issue <a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4309\">#4309</a>](<a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4309\">pgjdbc/pgjdbc#4309</a>) [PR <a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4311\">#4311</a>](<a href=\"https://redirect.github.com/pgjdbc/pgjdbc/pull/4311\">pgjdbc/pgjdbc#4311</a>)</li>\n</ul>\n<h3>Changed</h3>\n<ul>\n<li>fix: backend message lengths are checked before anything is sized from them. Each length is checked against the message layout and a limit for its type, the lengths inside <code>DataRow</code> and <code>FunctionCallResponse</code> are checked against the message, and the <code>NegotiateProtocolVersion</code> option count is bounded. A hostile or out of sync backend could previously force an allocation of up to two gigabytes with a five byte header [Issue <a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4015\">#4015</a>](<a href=\"https://redirect.github.com/pgjdbc/pgjdbc/issues/4015\">pgjdbc/pgjdbc#4015</a>)"
+    }
+  ]
+}

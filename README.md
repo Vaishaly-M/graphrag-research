@@ -1,5 +1,7 @@
 # Adaptive Hybrid GraphRAG Experiment — Reproducible Starter
 
+For the clean rebuild governed by CLAUDE.md, use [the data-layer guide](docs/data_layer.md), configs/snapshots.yaml, and configs/splits.yaml. The commands and experiment reports below describe the older pipeline and must not be mixed with the rebuilt dataset.
+
 This repository is a resumable research pipeline for evaluating whether Adaptive Hybrid GraphRAG improves repository-aware question answering over graph-only, vector-only, and fixed-hybrid baselines. It mines a repository knowledge graph, builds a Cypher-grounded benchmark with development/validation/hidden-test splits, runs eight comparable QA systems, and produces evaluation tables, statistical tests, ablations, and scalability measurements.
 
 ## Before anything else: credentials

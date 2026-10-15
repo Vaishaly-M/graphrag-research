@@ -1,0 +1,13 @@
+# Rebuilt benchmark workflow
+
+`configs/splits.yaml` assigns template families once. T development/validation/test contain 24/16/96 questions. P inherits the 96 T test questions and their gold; it is generated with installed Qwen 2.5 7B. The generator for T is deterministic Python with executed Neo4j gold, not Gemini. Probes comprise 40 absent targets and 40 matched present targets. Airflow and H never enter development or validation.
+
+Run `python -m analysis.benchmark_gold`, `python -m analysis.unanswerable_probes`, `python -m analysis.paraphrase_questions`, then `python -m analysis.benchmark_stats --require-complete`. Qwen generation is checkpointed. Inspect `data/annotations/paraphrase_spotcheck_50.csv` when collection finishes. Checks preserve named input identifiers and any gold entities already named by T; they do not insert previously absent answers into questions.
+
+The current human source is `data/benchmark/Repository_Questions_with_gold_answers.csv`, pinned by SHA-256 in the split configuration and DECISIONS.md. Original wording, persona author IDs, supplied prose gold, evidence and status are preserved verbatim in `human/normalized.jsonl`. Only `human/test.jsonl` contains approved, scoreable records. No human question is an input to T/P generators, prompts, routing, keyword families or retrieval development.
+
+Generate annotation proposals with `python -m analysis.human_gold`. This performs read-only evidence queries and writes `data/annotations/human_verification.csv`. Candidate queries retrieve evidence, not definitive semantic answers. Supplied verification labels do not convert prose into an atomic entity set automatically. Rows marked partial, ambiguous, requiring live checks or failing their premise require resolution against the recorded snapshot; live upstream changes must not silently replace snapshot truth.
+
+For each accepted row, fill `verified answer set` with a JSON array of exact answer entities, `verified_gold_route`, `verified_answerable` (`true`/`false`), `verified_hop_count`, `verified_evidence_ids` (JSON array of canonical IDs), `verified_required_facts`, and `annotator_id`. Mark `annotator OK?` as `yes` only after review. Unanswerable rows use `[]` or `["not found"]` as the answer set. Do not edit original wording, IDs or hashes. Unknown/unverified rows remain excluded and counted.
+
+Ingest with `python -m analysis.human_gold --verified-sheet data/annotations/human_verification.csv`. The script validates provenance, writes approved H test JSONL and distribution/exclusion statistics, and regenerates `reports/benchmark_stats.md` and `reports/split_counts.md`. These reports are generated counts, not hand-maintained paper numbers. No test evaluation is permitted before the freeze tag.

@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2573",
+        "path": null,
+        "offset": 2289,
+        "line": 29
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+        "offset": 1965,
+        "line": 43
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2422",
+        "path": null,
+        "offset": 155,
+        "line": 2
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+        "offset": 2460,
+        "line": 55
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2427",
+        "path": null,
+        "offset": 379,
+        "line": 10
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+        "path": null,
+        "offset": 1872,
+        "line": 22
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "offset": 383,
+        "line": 11
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2537",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 383,
+      "excerpt": "under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.springframework.samples.petclinic.owner;\n\nimport java.time.LocalDate;\nimport java.util.Map;\nimport java.util.Optional;\n\nimport org.springframework.stereotype.Controller;\nimport org.springframework.validation.BindingResult;\nimport org.springframework.web.bind.WebDataBinder;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.InitBinder;\nimport org.springframework.web.bind.annotation.ModelAttribute;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\n\nimport jakarta.validation.Valid;\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Michael Isvy\n * @author Dave Syer\n * @author Wick Dynex\n */\n@Controller\nclass VisitController {\n\n\tprivate final OwnerRepository owners;\n\n\tpublic VisitController(OwnerRepository owners) {\n\t\tthis.owners = owners;\n\t}\n\n\t@InitBinder\n\tpublic void setAllowedFields(WebDataBinder dataBinder) {\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t/**\n\t * Called before each and every @RequestMapping annotated method. 2 goals: - Make sure\n\t * we always have fresh data - Since we do not use the session scope, make sure that\n\t * Pet object always has an id (Even though id is not part of the form fields)\n\t * @param petId\n\t * @return Pet\n\t */\n\t@ModelAttribute(\"visit\")\n\tpublic Visit loadPetWithVisit(@PathVariable(\"ownerId\") int ownerId, @PathVariable(\"petId\") int petId,\n\t\t\tMap<String, Object> model) {\n\t\tOptional<Owner> optionalOwner = owners.findById(ownerId);\n\t\tOwner owner = optionalOwner.orElseThrow(() -> new IllegalArgumentException(\n\t\t\t\t\"Owner not found with id: \" + ownerId + \". Please ensure the ID is correct \"));\n\n\t\tPet pet = owner.getPet(petId);\n\t\tif (pet == null) {\n\t\t\tthrow new IllegalArgumentException(\n\t\t\t\t\t\"Pet with id \" + petId + \" not found for owner with id \" + ownerId + \".\");\n\t\t}\n\t\tmodel.put(\"pet\", pet);\n\t\tmodel.put(\"owner\", owner);\n\n\t\tVisit visit = new Visit();\n\t\tpet.addVisit(visit);\n\t\treturn visit;\n\t}\n\n\t@ModelAttribute(\"minVisitDate\")\n\tpublic LocalDate minVi"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1965,
+      "excerpt": "w;\n\n/**\n * Test class for the {@link PetController}\n *\n * @author Colin But\n * @author Wick Dynex\n */\n@WebMvcTest(value = PetController.class,\n\t\tincludeFilters = @ComponentScan.Filter(value = PetTypeFormatter.class, type = FilterType.ASSIGNABLE_TYPE))\n@DisabledInNativeImage\n@DisabledInAotMode\nclass PetControllerTests {\n\n\tprivate static final int TEST_OWNER_ID = 1;\n\n\tprivate static final int TEST_PET_ID = 1;\n\n\t@Autowired\n\tprivate MockMvc mockMvc;\n\n\t@MockitoBean\n\tprivate OwnerRepository owners;\n\n\t@MockitoBean\n\tprivate PetTypeRepository types;\n\n\t@BeforeEach\n\tvoid setup() {\n\t\tPetType cat = new PetType();\n\t\tcat.setId(3);\n\t\tcat.setName(\"hamster\");\n\t\tgiven(this.types.findPetTypes()).willReturn(List.of(cat));\n\n\t\tOwner owner = new Owner();\n\t\tPet pet = new Pet();\n\t\tPet dog = new Pet();\n\t\towner.addPet(pet);\n\t\towner.addPet(dog);\n\t\tpet.setId(TEST_PET_ID);\n\t\tdog.setId(TEST_PET_ID + 1);\n\t\tpet.setName(\"petty\");\n\t\tdog.setName(\"doggy\");\n\t\tgiven(this.owners.findById(TEST_OWNER_ID)).willReturn(Optional.of(owner));\n\t}\n\n\t@Test\n\tvoid initCreationForm() throws Exception {\n\t\tmockMvc.perform(get(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID))\n\t\t\t.andExpect(status().isOk())\n\t\t\t.andExpect(view().name(\"pets/createOrUpdatePetForm\"))\n\t\t\t.andExpect(model().attributeExists(\"pet\"));\n\t}\n\n\t@Test\n\tvoid processCreationFormSuccess() throws Exception {\n\t\tmockMvc\n\t\t\t.perform(post(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID).param(\"name\", \"Betty\")\n\t\t\t\t.param(\"type\", \"hamster\")\n\t\t\t\t.param(\"birthDate\", \"2015-02-12\"))\n\t\t\t.andExpect(status().is3xxRedirection())\n\t\t\t.andExpect(view().name(\"redirect:/owners/{ownerId}\"));\n\t}\n\n\t@Nested\n\tclass ProcessCreationFormHasErrors {\n\n\t\t@Test\n\t\tvoid processCreationFormWithBlankName() throws Exception {\n\t\t\tmockMvc\n\t\t\t\t.perform(post(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID).param(\"name\", \"\\t \\n\")\n\t\t\t\t\t.param(\"birthDate\", \"2015-02-12\"))\n\t\t\t\t.andExpect(model().attributeHasNoErrors(\"owner\"))\n\t\t\t\t.andExpect(model().attributeHasErrors(\"pet\"))\n\t\t\t\t.andExpect(model().attributeHasFieldErrors(\"pet\", \"name\"))\n\t\t\t\t.andExpect(model().attributeHasFieldErrorCode(\"pet\", \"name\", \"required\"))\n\t\t\t\t.andExpect(status().isOk())\n\t\t\t\t.andExpect(view().name(\"pets/createOrUpdatePetForm\"));\n\t\t}\n\n\t\t@Test\n\t\tvoid processCreationFormWithDuplicateName() throws Exception {\n\t\t\tmockMvc\n\t\t\t\t.perform(post(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID).param(\"name\", \"petty\")\n\t\t\t\t\t.param(\"birthDate\", \"2015-02"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2460,
+      "excerpt": "d @Autowired} on the <code> </code> instance variable, which uses\n * autowiring <em>by type</em>.\n * <li><strong>Transaction management</strong>, meaning each test method is executed in\n * its own transaction, which is automatically rolled back by default. Thus, even if tests\n * insert or otherwise change database state, there is no need for a teardown or cleanup\n * script.\n * <li>An {@link org.springframework.context.ApplicationContext ApplicationContext} is\n * also inherited and can be used for explicit bean lookup if necessary.</li>\n * </ul>\n *\n * @author Ken Krebs\n * @author Rod Johnson\n * @author Juergen Hoeller\n * @author Sam Brannen\n * @author Michael Isvy\n * @author Dave Syer\n */\n@DataJpaTest\n// Ensure that if the mysql profile is active we connect to the real database:\n@AutoConfigureTestDatabase(replace = Replace.NONE)\n// @TestPropertySource(\"/application-postgres.properties\")\nclass ClinicServiceTests {\n\n\t@Autowired\n\tprotected OwnerRepository owners;\n\n\t@Autowired\n\tprotected PetTypeRepository types;\n\n\t@Autowired\n\tprotected VetRepository vets;\n\n\tprivate final Pageable pageable = Pageable.unpaged();\n\n\t@Test\n\tvoid shouldFindOwnersByLastName() {\n\t\tPage<Owner> owners = this.owners.findByLastNameStartingWith(\"Davis\", pageable);\n\t\tassertThat(owners).hasSize(2);\n\n\t\towners = this.owners.findByLastNameStartingWith(\"Daviss\", pageable);\n\t\tassertThat(owners).isEmpty();\n\t}\n\n\t@Test\n\tvoid shouldFindSingleOwnerWithPet() {\n\t\tOptional<Owner> optionalOwner = this.owners.findById(1);\n\t\tassertThat(optionalOwner).isPresent();\n\t\tOwner owner = optionalOwner.get();\n\t\tassertThat(owner.getLastName()).startsWith(\"Franklin\");\n\t\tassertThat(owner.getPets()).hasSize(1);\n\t\tassertThat(owner.getPets().get(0).getType()).isNotNull();\n\t\tassertThat(owner.getPets().get(0).getType().getName()).isEqualTo(\"cat\");\n\t}\n\n\t@Test\n\t@Transactional\n\tvoid shouldInsertOwner() {\n\t\tPage<Owner> owners = this.owners.findByLastNameStartingWith(\"Schultz\", pageable);\n\t\tint found = (int) owners.getTotalElements();\n\n\t\tOwner owner = new Owner();\n\t\towner.setFirstName(\"Sam\");\n\t\towner.setLastName(\"Schultz\");\n\t\towner.setAddress(\"4, Evans Street\");\n\t\towner.setCity(\"Wollongong\");\n\t\towner.setTelephone(\"4444444444\");\n\t\tthis.owners.save(owner);\n\t\tassertThat(owner.getId()).isNotZero();\n\n\t\towners = this.owners.findByLastNameStartingWith(\"Schultz\", pageable);\n\t\tassertThat(owners.getTotalElements()).isEqualTo(found + 1);\n\t}\n\n\t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2410,
+      "title": "Fix/add service documentation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1872,
+      "excerpt": " methods  |\r\n| S1176 | `PetController.java`   | Javadoc added to class, constructor, and 8 methods  |\r\n| S1176 | `VetController.java`   | Javadoc added to class, constructor, and 4 methods  |\r\n\r\n## Verification\r\n- No logic was changed; all existing tests pass unchanged.\r\n- Each Javadoc addition was committed individually to allow per-method review."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2422",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2422,
+      "title": "fix: Replace wildcard MockMvcResultMatcher imports with explicit imports in test folder",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 155,
+      "excerpt": " explicit static imports of only the matchers each test actually uses\r\nEliminates the ~10 unused symbols each wildcard pulls into scope; declares the test's true dependency on the Spring MockMvc API\r\nBrings both files into line with the explicit-import style already used by VisitControllerTests and PetControllerTests\r\n**Sustainability rationale**\r\nIndividual: Explicit imports reduce cognitive load — a reviewer sees the test's true MockMvc surface area without scanning the body, supporting manageable workloads / stress-free work culture.\r\nSocial: Aligns all four MockMvc test files on one convention (two currently differ), reducing reviewer friction and supporting transparency/collaboration.\r\nEconomic: Cheaper to maintain — a renamed/removed Spring matcher surfaces as a single missing import, not a confusing wildcard error; reduces upgrade risk and debugging cost.\r\nTechnical: Supports longevity/adaptability — makes the dependency graph statically analysable, prevents silent symbol shadowing, removes a piece of technical debt.\r\nEnvironmental: Stops IDE/CI tools re-resolving the whole MockMvcResultMatchers class on every edit/build; small per-build saving compounding across the project's lifetime (ICT carbon-footprint effect).\r\n**Files changed**\r\nOwnerControllerTests.java — wildcard → 5 explicit imports (flash, model, redirectedUrl, status, view)\r\nVetControllerTests.java — wildcard → 5 explicit imports (content, jsonPath, model, status, view)\r\n**Testing**\r\nAll existing tests pass; identical bytecode after the change. Verified with ./mvnw clean test-compile (BUILD SUCCESS, 17 test sources compiled).\r\n\r\n**SonarQube note**\r\nSonarQube did not flag these out of the box — rule java:S2208 is deactivated in the default Sonar Way profile, and java:S1128 (unused imports) does not fire because the wildcard is technically \"used\". Identified by manual inspection against the assignment criterion; rule java:S2208 was enabled in a custom profile to generate before/after evidence screenshots for the appendix."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2427",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2427,
+      "title": "[FIX] Reduce complexity by merging nested IF statements",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 379,
+      "excerpt": "ed branching\r\n- Resolves SonarQube maintainability issue java:S1066\r\n- Preserves existing behavior for pet lookup by name\r\n\r\n### Testing Instructions\r\n```\r\n# Compile the project\r\n`./mvnw compile`\r\n\r\n# Compile tests\r\n./mvnw test-compile\r\n\r\n# Run affected tests\r\n./mvnw test \"-Dtest=ClinicServiceTests,PetControllerTests,OwnerControllerTests\"\r\n\r\n# Run full test suite\r\n./mvnw test\r\n```"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2537",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2537,
+      "title": "Add test for updating pet with same name",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": ":-This PR adds a test case for PetController to verify that updating a pet while keeping the same existing name succeeds without triggering duplicate name validation.\r\n\r\nChanges:-\r\n-Added processUpdateFormWithSameName() test in PetControllerTests.\r\n-Verified that updating a pet with its current name returns a successful redirect.\r\n-Ensures duplicate-name validation only applies when the new name conflicts with another pet owned by the same owner."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2573",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2573,
+      "title": "Prevent duplicate pet creation with similar name for the same owner under concurrent requests",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2289,
+      "excerpt": " validation error on the name field.\r\n\r\nNOTE: To preserve the existing application behavior, the database constraints are implemented in a case-insensitive manner, matching the current Java validation (`equalsIgnoreCase()`).\r\n\r\n\r\n## Testing\r\n- **Unit Tests**: Added mock exception handling tests in [PetControllerTests.java](file:///Users/spring-petclinic/src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java) for both create and edit flows.\r\n- **Service Integration Tests**: Added test cases in [ClinicServiceTests.java](file:///Users/spring-petclinic/src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java) to verify that duplicate pet name insertions fail with a `DataIntegrityViolationException` and that same pet names under different owners succeed.\r\n- **Automated Concurrency Test**: Created [PetClinicConcurrencyTests.java](file:///Users/spring-petclinic/src/test/java/org/springframework/samples/petclinic/PetClinicConcurrencyTests.java) executing concurrent requests in parallel. The test verifies that only one request succeeds and the other is rejected with a validation error.\r\n\r\n## Scope\r\nThis change is tightly scoped to the `Pet` uniqueness invariant, leaving all other entities and system configurations untouched."
+    }
+  ]
+}

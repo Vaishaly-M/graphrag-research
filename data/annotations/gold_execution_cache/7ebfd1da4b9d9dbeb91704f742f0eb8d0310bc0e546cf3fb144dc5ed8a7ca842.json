@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 16333,
+        "line": 381
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:794",
+        "path": null,
+        "offset": 10622,
+        "line": 54
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+        "path": null,
+        "offset": 38358,
+        "line": 685
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 951,
+        "line": 20
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 3684,
+        "line": 86
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+        "path": null,
+        "offset": 5682,
+        "line": 128
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+        "path": null,
+        "offset": 5668,
+        "line": 128
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+        "path": null,
+        "offset": 5668,
+        "line": 128
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 16333,
+      "excerpt": "dering.FunctionalTests/{Fixture,Configuration,Infrastructure,Mocks}/**` | Ordering test infrastructure |\r\n| `tests/Ordering.FunctionalTests/OrderingMessagingTests.cs` | Messaging tests |\r\n\r\n### Incidental / Likely Noise\r\n\r\n- `src/ClientApp/Services/Basket/Protos/*.cs` — line-ending only (no content diff)\r\n- `.vs/`, `artifacts/` — build/IDE output, not intentional changes\r\n\r\n---\r\n\r\n## Architecture Narrative (Blog Angle)\r\n\r\n> **\"Testing microservices at the speed you need\"**\r\n\r\nThe work introduces a **test fidelity ladder**:\r\n\r\n```\r\nRepositoryMock  →  fastest, no Docker, tests API + domain logic\r\nEfCoreInMemory  →  tests real EF repository code, still no Docker\r\nTestcontainers  →  real PostgreSQL, no full Aspire orchestration\r\nAspire          →  closest to production topology (Postgres + pgvector)\r\nMessaging modes →  validates transactional outbox + optional real RabbitMQ\r\n```\r\n\r\nProduction changes (`ICatalogRepository`, Serilog, event type discovery) exist **because** the test infrastructure demanded them — repository swappability, readable logs during failures, and correct outbox deserialization in the test host.\r\n\r\n---\r\n\r\n## Suggested Blog Post Sections\r\n\r\n1. **Problem:** Functional tests were Docker-only, slow, and hard to debug\r\n2. **Design:** Mode attribute + session + lazy fixture per mode\r\n3. **Implementation walkthrough:** Catalog fixture switch statement and DI configuration\r\n4. **Repository extraction:** Why Catalog.API needed `ICatalogRepository`\r\n5. **Messaging tests:** Outbox spy vs real RabbitMQ\r\n6. **Developer experience:** Runsettings, traits, live logging, HTTP traffic traces\r\n7. **Results:** Run mock tests locally in seconds; run Aspire tests in CI\r\n\r\n---\r\n\r\n## Ordering-Specific Notes\r\n\r\n`Ordering.FunctionalTests` mirrors the Catalog structure with service-specific mocks:\r\n\r\n- `OrderingRepositoryMockStore` with in-memory repos for orders, buyers, request manager\r\n- `MockIdentityService` and `AutoAuthorizeStartupFilter` for auth bypass\r\n- Aspire host includes Identity API + IdentityDB alongside OrderingDB\r\n- Card types seeded in mock store (no EF database seeding in mock mode)\r\n\r\n---\r\n\r\n## Catalog-Specific Notes\r\n\r\n- Aspire host uses `ankane/pgvector` image for vector search tests\r\n- `FakeCatalogAI` replaces Ollama/embedding services in non-production test modes\r\n- `NoOpCatalogIntegrationEventService` and `NoOpIntegrationEventLogService` skip"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 951,
+      "excerpt": "issues/36173)\n  </details>\n\n## ActivityIndicator\n- [inflight/candidate] [Android] Fix ActivityIndicator remaining visible after IsRunning/IsVisible set to false by @​github-actions[bot] in https://github.com/dotnet/maui/pull/37112\n\n## Ai Agents\n- Improve /review tests: Opus engine, multi-build base diff, and readable grouped comments by @​kubaflo in https://github.com/dotnet/maui/pull/36533\n\n- Add Trim/NativeAOT safety rules to code review skill by @​PureWeen in https://github.com/dotnet/maui/pull/34962\n\n- [CI] Agentic workflows: Update gh-aw workflows to v0.82.14 by @​PureWeen in https://github.com/dotnet/maui/pull/36705\n\n- Fix regression scanner attribution source by @​PureWeen in https://github.com/dotnet/maui/pull/36686\n\n- Automate visual failure comparisons in /review tests by @​kubaflo in https://github.com/dotnet/maui/pull/36666\n\n- Fix regression scanner attribution reads by @​PureWeen in https://github.com/dotnet/maui/pull/36734\n\n- Escalate Blast Radius probing for frequently-regressed component families by @​PureWeen in https://github.com/dotnet/maui/pull/34884\n\n- Add missing YAML frontmatter to find-regression-risk SKILL.md by @​kubaflo in https://github.com/dotnet/maui/pull/36799\n\n- Harden review-trigger workflow: env-var inputs, single-step token flow, pre-flight authorize job by @​JanKrivanek in https://github.com/dotnet/maui/pull/35439\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Harden review-trigger workflow: consistency and cost improvements](https://github.com/dotnet/maui/issues/35431)\n  </details>\n\n## Animation\n- [Windows] Fix PlatformTicker.Windows.cs — IsRunning always returns false by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35840\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows] PlatformTicker.Windows.cs — IsRunning always returns false](https://github.com/dotnet/maui/issues/35839)\n  </details>\n\n- Fix s_currentTweener++ in AnimationExtensions is not thread-safe, producing duplicate animation IDs by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35838\n  <details>\n ... (truncated)\n\n## 10.0.90\n\n# .NET MAUI 10.0.90 Release Notes\n\n.NET MAUI 10.0.90 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 231 commits with various improvements, bug fixes, and enhancements.\n\n\n## Activityindicator\n- [Android] Fix "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3684,
+      "excerpt": "issues/36173)\n  </details>\n\n## ActivityIndicator\n- [inflight/candidate] [Android] Fix ActivityIndicator remaining visible after IsRunning/IsVisible set to false by @​github-actions[bot] in https://github.com/dotnet/maui/pull/37112\n\n## Ai Agents\n- Improve /review tests: Opus engine, multi-build base diff, and readable grouped comments by @​kubaflo in https://github.com/dotnet/maui/pull/36533\n\n- Add Trim/NativeAOT safety rules to code review skill by @​PureWeen in https://github.com/dotnet/maui/pull/34962\n\n- [CI] Agentic workflows: Update gh-aw workflows to v0.82.14 by @​PureWeen in https://github.com/dotnet/maui/pull/36705\n\n- Fix regression scanner attribution source by @​PureWeen in https://github.com/dotnet/maui/pull/36686\n\n- Automate visual failure comparisons in /review tests by @​kubaflo in https://github.com/dotnet/maui/pull/36666\n\n- Fix regression scanner attribution reads by @​PureWeen in https://github.com/dotnet/maui/pull/36734\n\n- Escalate Blast Radius probing for frequently-regressed component families by @​PureWeen in https://github.com/dotnet/maui/pull/34884\n\n- Add missing YAML frontmatter to find-regression-risk SKILL.md by @​kubaflo in https://github.com/dotnet/maui/pull/36799\n\n- Harden review-trigger workflow: env-var inputs, single-step token flow, pre-flight authorize job by @​JanKrivanek in https://github.com/dotnet/maui/pull/35439\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Harden review-trigger workflow: consistency and cost improvements](https://github.com/dotnet/maui/issues/35431)\n  </details>\n\n## Animation\n- [Windows] Fix PlatformTicker.Windows.cs — IsRunning always returns false by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35840\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows] PlatformTicker.Windows.cs — IsRunning always returns false](https://github.com/dotnet/maui/issues/35839)\n  </details>\n\n- Fix s_currentTweener++ in AnimationExtensions is not thread-safe, producing duplicate animation IDs by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35838\n  <details>\n ... (truncated)\n\n## 10.0.90\n\n# .NET MAUI 10.0.90 Release Notes\n\n.NET MAUI 10.0.90 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 231 commits with various improvements, bug fixes, and enhancements.\n\n\n## Activityindicator\n- [Android] Fix "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1043,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5682,
+      "excerpt": "issues/36173)\n  </details>\n\n## ActivityIndicator\n- [inflight/candidate] [Android] Fix ActivityIndicator remaining visible after IsRunning/IsVisible set to false by @​github-actions[bot] in https://github.com/dotnet/maui/pull/37112\n\n## Ai Agents\n- Improve /review tests: Opus engine, multi-build base diff, and readable grouped comments by @​kubaflo in https://github.com/dotnet/maui/pull/36533\n\n- Add Trim/NativeAOT safety rules to code review skill by @​PureWeen in https://github.com/dotnet/maui/pull/34962\n\n- [CI] Agentic workflows: Update gh-aw workflows to v0.82.14 by @​PureWeen in https://github.com/dotnet/maui/pull/36705\n\n- Fix regression scanner attribution source by @​PureWeen in https://github.com/dotnet/maui/pull/36686\n\n- Automate visual failure comparisons in /review tests by @​kubaflo in https://github.com/dotnet/maui/pull/36666\n\n- Fix regression scanner attribution reads by @​PureWeen in https://github.com/dotnet/maui/pull/36734\n\n- Escalate Blast Radius probing for frequently-regressed component families by @​PureWeen in https://github.com/dotnet/maui/pull/34884\n\n- Add missing YAML frontmatter to find-regression-risk SKILL.md by @​kubaflo in https://github.com/dotnet/maui/pull/36799\n\n- Harden review-trigger workflow: env-var inputs, single-step token flow, pre-flight authorize job by @​JanKrivanek in https://github.com/dotnet/maui/pull/35439\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Harden review-trigger workflow: consistency and cost improvements](https://github.com/dotnet/maui/issues/35431)\n  </details>\n\n## Animation\n- [Windows] Fix PlatformTicker.Windows.cs — IsRunning always returns false by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35840\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows] PlatformTicker.Windows.cs — IsRunning always returns false](https://github.com/dotnet/maui/issues/35839)\n  </details>\n\n- Fix s_currentTweener++ in AnimationExtensions is not thread-safe, producing duplicate animation IDs by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35838\n  <details>\n ... (truncated)\n\n## 10.0.90\n\n# .NET MAUI 10.0.90 Release Notes\n\n.NET MAUI 10.0.90 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 231 commits with various improvements, bug fixes, and enhancements.\n\n\n## Activityindicator\n- [Android] Fix "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1051,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5668,
+      "excerpt": "issues/36173)\n  </details>\n\n## ActivityIndicator\n- [inflight/candidate] [Android] Fix ActivityIndicator remaining visible after IsRunning/IsVisible set to false by @​github-actions[bot] in https://github.com/dotnet/maui/pull/37112\n\n## Ai Agents\n- Improve /review tests: Opus engine, multi-build base diff, and readable grouped comments by @​kubaflo in https://github.com/dotnet/maui/pull/36533\n\n- Add Trim/NativeAOT safety rules to code review skill by @​PureWeen in https://github.com/dotnet/maui/pull/34962\n\n- [CI] Agentic workflows: Update gh-aw workflows to v0.82.14 by @​PureWeen in https://github.com/dotnet/maui/pull/36705\n\n- Fix regression scanner attribution source by @​PureWeen in https://github.com/dotnet/maui/pull/36686\n\n- Automate visual failure comparisons in /review tests by @​kubaflo in https://github.com/dotnet/maui/pull/36666\n\n- Fix regression scanner attribution reads by @​PureWeen in https://github.com/dotnet/maui/pull/36734\n\n- Escalate Blast Radius probing for frequently-regressed component families by @​PureWeen in https://github.com/dotnet/maui/pull/34884\n\n- Add missing YAML frontmatter to find-regression-risk SKILL.md by @​kubaflo in https://github.com/dotnet/maui/pull/36799\n\n- Harden review-trigger workflow: env-var inputs, single-step token flow, pre-flight authorize job by @​JanKrivanek in https://github.com/dotnet/maui/pull/35439\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Harden review-trigger workflow: consistency and cost improvements](https://github.com/dotnet/maui/issues/35431)\n  </details>\n\n## Animation\n- [Windows] Fix PlatformTicker.Windows.cs — IsRunning always returns false by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35840\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows] PlatformTicker.Windows.cs — IsRunning always returns false](https://github.com/dotnet/maui/issues/35839)\n  </details>\n\n- Fix s_currentTweener++ in AnimationExtensions is not thread-safe, producing duplicate animation IDs by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35838\n  <details>\n ... (truncated)\n\n## 10.0.90\n\n# .NET MAUI 10.0.90 Release Notes\n\n.NET MAUI 10.0.90 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 231 commits with various improvements, bug fixes, and enhancements.\n\n\n## Activityindicator\n- [Android] Fix "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1052,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.40 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5668,
+      "excerpt": "issues/36173)\n  </details>\n\n## ActivityIndicator\n- [inflight/candidate] [Android] Fix ActivityIndicator remaining visible after IsRunning/IsVisible set to false by @​github-actions[bot] in https://github.com/dotnet/maui/pull/37112\n\n## Ai Agents\n- Improve /review tests: Opus engine, multi-build base diff, and readable grouped comments by @​kubaflo in https://github.com/dotnet/maui/pull/36533\n\n- Add Trim/NativeAOT safety rules to code review skill by @​PureWeen in https://github.com/dotnet/maui/pull/34962\n\n- [CI] Agentic workflows: Update gh-aw workflows to v0.82.14 by @​PureWeen in https://github.com/dotnet/maui/pull/36705\n\n- Fix regression scanner attribution source by @​PureWeen in https://github.com/dotnet/maui/pull/36686\n\n- Automate visual failure comparisons in /review tests by @​kubaflo in https://github.com/dotnet/maui/pull/36666\n\n- Fix regression scanner attribution reads by @​PureWeen in https://github.com/dotnet/maui/pull/36734\n\n- Escalate Blast Radius probing for frequently-regressed component families by @​PureWeen in https://github.com/dotnet/maui/pull/34884\n\n- Add missing YAML frontmatter to find-regression-risk SKILL.md by @​kubaflo in https://github.com/dotnet/maui/pull/36799\n\n- Harden review-trigger workflow: env-var inputs, single-step token flow, pre-flight authorize job by @​JanKrivanek in https://github.com/dotnet/maui/pull/35439\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Harden review-trigger workflow: consistency and cost improvements](https://github.com/dotnet/maui/issues/35431)\n  </details>\n\n## Animation\n- [Windows] Fix PlatformTicker.Windows.cs — IsRunning always returns false by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35840\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows] PlatformTicker.Windows.cs — IsRunning always returns false](https://github.com/dotnet/maui/issues/35839)\n  </details>\n\n- Fix s_currentTweener++ in AnimationExtensions is not thread-safe, producing duplicate animation IDs by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/35838\n  <details>\n ... (truncated)\n\n## 10.0.90\n\n# .NET MAUI 10.0.90 Release Notes\n\n.NET MAUI 10.0.90 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 231 commits with various improvements, bug fixes, and enhancements.\n\n\n## Activityindicator\n- [Android] Fix "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:794",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 794,
+      "title": "Bump the microsoftextensions group across 1 directory with 4 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10622,
+      "excerpt": " MetricsReports in Microsoft.Extensions.AuditReports create directories [Same as ComplianceReport] by <a href=\"https://github.com/IbrahimMNada\"><code>@​IbrahimMNada</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5919\">dotnet/extensions#5919</a></li>\n<li>Update template to newest M.E.AI version by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5923\">dotnet/extensions#5923</a></li>\n<li>Introduce type converter for DataClassification by <a href=\"https://github.com/dariusclay\"><code>@​dariusclay</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5887\">dotnet/extensions#5887</a></li>\n<li>Reinstate caching in schema generation by <a href=\"https://github.com/eiriktsarpalis\"><code>@​eiriktsarpalis</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5908\">dotnet/extensions#5908</a></li>\n<li>Add GetRequiredService extension for IChatClient/EmbeddingGenerator by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5930\">dotnet/extensions#5930</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/dotnet/extensions/commit/f1f17e642a685df7e87b805be1efe4729ff725e4\"><code>f1f17e6</code></a> Merged PR 48301: Fix grouping of ChatResponseUpdate into ChatMessage (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6074\">#6074</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/f663faff909fd0a1455eddf735bdd8af571680d5\"><code>f663faf</code></a> Fix grouping of ChatResponseUpdate into ChatMessage (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6074\">#6074</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/c2f01745f08dea62f9aadd8db512a57a664ac089\"><code>c2f0174</code></a> Merged PR 48268: Address M.E.VectorData feedback for IEmbeddingGenerator (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6058\">#6058</a>)</li>\n<li><a href=\"https://github.com/dotnet/extensions/commit/5ebe9495fd52e48d0eaa4c33b465aadcd98b3651\"><code>5ebe949</code></a> Address M.E.VectorData feedback for IEmbeddingGenerator (<a href=\"https://redirect.github.com/dotnet/extensions/issues/6058\">#6058</a>)<"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 953,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 38358,
+      "excerpt": " cake by @​PureWeen in https://github.com/dotnet/maui/pull/30695\n- Further remove dependency of  Compatibility.Layout on all modern .NET MAUI controls by @​Copilot in https://github.com/dotnet/maui/pull/30672 - Fixes https://github.com/dotnet/maui/issues/28736\n- Sort the public API files for better diff-ing by @​mattleibow in https://github.com/dotnet/maui/pull/30663\n- [net10.0] Local and Copilot dev can generate public apis by @​mattleibow in https://github.com/dotnet/maui/pull/30661\n- Update bug-report.yml with preview6 by @​PureWeen in https://github.com/dotnet/maui/pull/30639\n- [net10.0] Move to 10.0.1xx-preview7 by @​rmarinho in https://github.com/dotnet/maui/pull/30633\n- [net10.0] Fix SafeArea management on iOS by @​PureWeen in https://github.com/dotnet/maui/pull/30629 - Fixes https://github.com/dotnet/maui/issues/27715, https://github.com/dotnet/maui/issues/24246\n- Update bug-report.yml 9.0.90 SR9 by @​PureWeen in https://github.com/dotnet/maui/pull/30621\n- [net10.0] Merge main to  net10 by @​rmarinho in https://github.com/dotnet/maui/pull/30606\n- [main] Fix formatting for dotnet format by @​github-actions[bot] in https://github.com/dotnet/maui/pull/30589\n- [main] Fix formatting for dotnet format by @​mattleibow in https://github.com/dotnet/maui/pull/30587\n- Pass the launched extra wen resuming auth by @​mattleibow in https://github.com/dotnet/maui/pull/30583 - Fixes https://github.com/dotnet/maui/issues/24692\n- Annotated remaining Converter classes for nullability by @​NirmalKumarYuvaraj in https://github.com/dotnet/maui/pull/30573 - Fixes https://github.com/dotnet/maui/issues/28860\n- Update bug-report.yml 9.0.82 by @​PureWeen in https://github.com/dotnet/maui/pull/30548\n- Update Visual Studio issue link in config.yml by @​morning4coffe-dev in https://github.com/dotnet/maui/pull/30530\n- Remove deprecated Accelerator class from Microsoft.Maui.Controls by @​Copilot in https://github.com/dotnet/maui/pull/30526 - Fixes https://github.com/dotnet/maui/issues/30256\n- [net10.0] Merge main net10 .0 by @​rmarinho in https://github.com/dotnet/maui/pull/30522\n- [main] Workaround REVOCATION in .NET 10 by setting DOTNET_SYSTEM_NET_SECURITY_NOREVOCATIONCHECKBYDEFAULT by @​github-actions[bot] in https://github.com/dotnet/maui/pull/30514\n- [net10.0 Update sdk preview6 by @​rmarinho in https://github.com/dotnet/maui/pull/30509\n- Workaround REVOCATION in .NET 10 by set"
+    }
+  ]
+}

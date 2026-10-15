@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 62550,
+        "line": 1244
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 23326,
+        "line": 599
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 8519,
+        "line": 105
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 46458,
+        "line": 981
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/openlineage/docs/troubleshooting.rst",
+        "path": "providers/openlineage/docs/troubleshooting.rst",
+        "offset": 8376,
+        "line": 159
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 46458,
+        "line": 1087
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+        "path": "airflow-core/docs/best-practices.rst",
+        "offset": 4851,
+        "line": 95
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:ISSUE_TRIAGE_PROCESS.rst",
+        "path": "ISSUE_TRIAGE_PROCESS.rst",
+        "offset": 1222,
+        "line": 27
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8519,
+      "excerpt": "curity/security_model.rst`](airflow-core/docs/security/security_model.rst)\nand [`airflow-core/docs/security/jwt_token_authentication.rst`](airflow-core/docs/security/jwt_token_authentication.rst).\n\nParticularly, the intentional design choices, that are not security vulnerabilities and should not be\nreported as such are described in \"What is NOT considered a security vulnerability\" chapter of the security model.\n\n**When flagging security concerns, distinguish between:**\n\n1. **Actual vulnerabilities** — code that violates the documented security model (e.g., a worker\n   gaining database access it shouldn't have, a Scheduler executing user code, an unauthenticated\n   user accessing protected endpoints).\n2. **Known limitations** — documented gaps where the current implementation doesn't provide full\n   isolation (e.g., DFP/Triggerer database access, shared Execution API resources, multi-team\n   not enforcing task-level isolation). These are tracked for improvement in future versions and\n   should not be reported as new findings.\n3. **Deployment hardening opportunities** — measures a Deployment Manager can take to improve\n   isolation beyond what Airflow enforces natively (e.g., per-component configuration, asymmetric\n   JWT keys, network policies). These belong in deployment guidance, not as code-level issues.\n\n# Shared libraries\n\n- shared libraries provide implementation of some common utilities like logging, configuration where the code should be reused in different distributions (potentially in different versions)\n- we have a number of shared libraries that are separate, small Python distributions located under `shared` folder\n- each of the libraries has it's own src, tests, pyproject.toml and dependencies\n- sources of those libraries are symbolically linked to the distributions that are using them (`airflow-core`, `task-sdk` for example)\n- tests for the libraries (internal) are in the shared distribution's test and can be run from the shared distributions\n- tests of the consumers using the shared libraries are present in the distributions that use the libraries and can be run from there\n\n## Coding Standards\n\n- **Always format and check Python files with ruff immediately after writing or editing them:** `uv run ruff format <file_path>` and `uv run ruff check --fix <file_path>`. Do this for every Python file you create or modify, before moving on to the next s"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:ISSUE_TRIAGE_PROCESS.rst",
+      "kind": "File",
+      "path": "ISSUE_TRIAGE_PROCESS.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1222,
+      "excerpt": "s is intended to make it as easy as possible to contribute to the project.\n\nUsually, users report `Issues <https://github.com/apache/airflow/issues>`_ where they describe\nthe issues they think are Airflow issues and should be solved. There are two kinds of issues:\n\n* Bugs - when the user thinks the reported issue is a bug in Airflow\n* Features - when there are small features that the user would like to see in Airflow\n\nWe have `templates <https://github.com/apache/airflow/tree/main/.github/ISSUE_TEMPLATE>`_ for both types\nof issues defined in Airflow.\n\nHowever, important part of our issue reporting process are\n`GitHub Discussions <https://github.com/apache/airflow/discussions>`_ . Issues should represent\nclear, small feature requests or reproducible bugs which can/should be either implemented or fixed.\nUsers are encouraged to open discussions rather than issues if there are no clear, reproducible\nsteps, or when they have troubleshooting problems, and one of the important points of issue triaging is\nto determine if the issue reported should be rather a discussion. Converting an issue to a discussion\nwhile explaining the user why is an important part of triaging process.\n\nResponding to issues/discussions (relatively) quickly\n'''''''''''''''''''''''''''''''''''''''''''''''''''''\n\nIt is vital to provide rather quick feedback to issues and discussions opened by our users, so that they\nfeel listened to rather than ignored. Even if the response is \"we are not going to work on it because ...\",\nor \"converting this issue to discussion because ...\" or \"closing because it is a duplicate of #xxx\", it is\nfar more welcoming than leaving issues and discussions unanswered. Sometimes issues and discussions are\nanswered by other users (and this is cool) but if an issue/discussion is not responded to for a few days or\nweeks, this gives an impression that the user was ignored and that the Airflow project is unwelcoming.\n\nWe strive to provide relatively quick responses to all such issues and discussions. Users should exercise\npatience while waiting for those (knowing that people might be busy, on vacations etc.) however they should\nnot wait weeks until someone looks at their issues.\n\n\nIssue Triage Team\n''''''''''''''''''\n\nWhile many of the issues can be responded to by other users and committers, the committer team is not\nbig enough to handle all such requests and sometimes they a"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/best-practices.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4851,
+      "excerpt": "d retrieve them using a unique connection id.\n\n.. _best_practices/top_level_code:\n\nTop level Python Code\n---------------------\n\nYou should avoid writing the top level code which is not necessary to create Operators\nand build Dag relations between them. This is because of the design decision for the scheduler of Airflow\nand the impact the top-level code parsing speed on both performance and scalability of Airflow.\n\nAirflow scheduler executes the code outside the Operator's ``execute`` methods with the minimum interval of\n:ref:`min_file_process_interval<config:dag_processor__min_file_process_interval>` seconds. This is done in order\nto allow dynamic scheduling of the Dags - where scheduling and dependencies might change over time and\nimpact the next schedule of the Dag. Airflow scheduler tries to continuously make sure that what you have\nin Dags is correctly reflected in scheduled tasks.\n\nSpecifically you should not run any database access, heavy computations and networking operations.\n\nOne of the important factors impacting Dag loading time, that might be overlooked by Python developers is\nthat top-level imports might take surprisingly a lot of time and they can generate a lot of overhead\nand this can be easily avoided by converting them to local imports inside Python callables for example.\n\nConsider the two examples below. In the first example, Dag will take an additional 1000 seconds to parse\nthan the functionally equivalent Dag in the second example where the ``expensive_api_call`` is executed from the context of its task.\n\nNot avoiding top-level Dag code:\n\n.. code-block:: python\n\n  import pendulum\n\n  from airflow.sdk import DAG\n  from airflow.sdk import task\n\n\n  def expensive_api_call():\n      print(\"Hello from Airflow!\")\n      sleep(1000)\n\n\n  my_expensive_response = expensive_api_call()\n\n  with DAG(\n      dag_id=\"example_python_operator\",\n      schedule=None,\n      start_date=pendulum.datetime(2021, 1, 1, tz=\"UTC\"),\n      catchup=False,\n      tags=[\"example\"],\n  ) as dag:\n\n      @task()\n      def print_expensive_api_call():\n          print(my_expensive_response)\n\nAvoiding top-level Dag code:\n\n.. code-block:: python\n\n  import pendulum\n\n  from airflow.sdk import DAG\n  from airflow.sdk import task\n\n\n  def expensive_api_call():\n      sleep(1000)\n      return \"Hello from Airflow!\"\n\n\n  with DAG(\n      dag_id=\"example_python_operator\",\n      schedule=None,\n    "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 46458,
+      "excerpt": "\n```\n\nRun the check:\n\n```shell script\ncp ${AIRFLOW_REPO_ROOT}/.rat-excludes /tmp/apache-airflow-src/.rat-excludes\njava -jar /tmp/apache-rat-0.18/apache-rat-0.18.jar --input-exclude-file /tmp/apache-airflow-src/.rat-excludes /tmp/apache-airflow-src/ | grep -E \"! |INFO: \"\n```\n\nYou should see no files reported as Unknown or with wrong licence and summary of the check similar to:\n\n```\nINFO: Apache Creadur RAT 0.18 (Apache Software Foundation)\nINFO: Excluding patterns: .git-blame-ignore-revs, .github/*, .git ...\nINFO: Excluding MISC collection.\nINFO: Excluding HIDDEN_DIR collection.\nSLF4J(W): No SLF4J providers were found.\nSLF4J(W): Defaulting to no-operation (NOP) logger implementation\nSLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.\nINFO: RAT summary:\nINFO:   Approved:  15615\nINFO:   Archives:  2\nINFO:   Binaries:  813\nINFO:   Document types:  5\nINFO:   Ignored:  2392\nINFO:   License categories:  2\nINFO:   License names:  2\nINFO:   Notices:  216\nINFO:   Standards:  15609\nINFO:   Unapproved:  0\nINFO:   Unknown:  0\n```\n\nThere should be no files reported as Unknown or Unapproved. The files that are unknown or unapproved should be shown with a line starting with `!`.\n\nFor example:\n\n```\n! Unapproved:         1    A count of unapproved licenses.\n! /CODE_OF_CONDUCT.md\n```\n\n\n## Signature check\n\nMake sure you have imported into your GPG the PGP key of the person signing the release. You can find the valid keys in\n[KEYS](https://dist.apache.org/repos/dist/release/airflow/KEYS).\n\nYou can import the whole KEYS file:\n\n```shell script\nwget https://dist.apache.org/repos/dist/release/airflow/KEYS\ngpg --import KEYS\n```\n\nYou can also import the keys individually from a keyserver. The below one uses Kaxil's key and\nretrieves it from the default GPG keyserver\n[OpenPGP.org](https://keys.openpgp.org):\n\n```shell script\ngpg --keyserver keys.openpgp.org --receive-keys CDE15C6E4D3A8EC4ECF4BA4B6674E08AD7DE406F\n```\n\nYou should choose to import the key when asked.\n\nNote that by being default, the OpenPGP server tends to be overloaded often and might respond with\nerrors or timeouts. Many of the release managers also uploaded their keys to the\n[GNUPG.net](https://keys.gnupg.net) keyserver, and you can retrieve it from there.\n\n```shell script\ngpg --keyserver keys.gnupg.net --receive-keys CDE15C6E4D3A8EC4ECF4BA4B6674E08AD7DE406F\n```\n\nOnce you have the keys, the s"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 46458,
+      "excerpt": "\n```\n\nRun the check:\n\n```shell script\ncp ${AIRFLOW_REPO_ROOT}/.rat-excludes /tmp/apache-airflow-src/.rat-excludes\njava -jar /tmp/apache-rat-0.18/apache-rat-0.18.jar --input-exclude-file /tmp/apache-airflow-src/.rat-excludes /tmp/apache-airflow-src/ | grep -E \"! |INFO: \"\n```\n\nYou should see no files reported as Unknown or with wrong licence and summary of the check similar to:\n\n```\nINFO: Apache Creadur RAT 0.18 (Apache Software Foundation)\nINFO: Excluding patterns: .git-blame-ignore-revs, .github/*, .git ...\nINFO: Excluding MISC collection.\nINFO: Excluding HIDDEN_DIR collection.\nSLF4J(W): No SLF4J providers were found.\nSLF4J(W): Defaulting to no-operation (NOP) logger implementation\nSLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.\nINFO: RAT summary:\nINFO:   Approved:  15615\nINFO:   Archives:  2\nINFO:   Binaries:  813\nINFO:   Document types:  5\nINFO:   Ignored:  2392\nINFO:   License categories:  2\nINFO:   License names:  2\nINFO:   Notices:  216\nINFO:   Standards:  15609\nINFO:   Unapproved:  0\nINFO:   Unknown:  0\n```\n\nThere should be no files reported as Unknown or Unapproved. The files that are unknown or unapproved should be shown with a line starting with `!`.\n\nFor example:\n\n```\n! Unapproved:         1    A count of unapproved licenses.\n! /CODE_OF_CONDUCT.md\n```\n\n\n### Signature check\n\nMake sure you have imported into your GPG the PGP key of the person signing the release. You can find the valid keys in\n[KEYS](https://dist.apache.org/repos/dist/release/airflow/KEYS).\n\nDownload the KEYS file from the above link and save it locally.\n\nYou can import the whole KEYS file into gpg by running the following command:\n\n```shell script\nwget https://dist.apache.org/repos/dist/release/airflow/KEYS\ngpg --import KEYS\n```\n\nYou can also import the keys individually from a keyserver. The below one uses Kaxil's key and\nretrieves it from the default GPG keyserver\n[OpenPGP.org](https://keys.openpgp.org):\n\n```shell script\ngpg --keyserver keys.openpgp.org --receive-keys CDE15C6E4D3A8EC4ECF4BA4B6674E08AD7DE406F\n```\n\nYou should choose to import the key when asked.\n\nNote that by being default, the OpenPGP server tends to be overloaded often and might respond with\nerrors or timeouts. Many of the release managers also uploaded their keys to the\n[GNUPG.net](https://keys.gnupg.net) keyserver, and you can retrieve it from there.\n\n```shell script\ngpg --keyserv"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23326,
+      "excerpt": "/airflow-chart-${VERSION}-source.tar.gz ${SVN_REPO_ROOT}/dev/airflow/helm-chart/${VERSION_RC}/airflow-chart-${VERSION}-source.tar.gz\ndiff ${AIRFLOW_REPO_ROOT}/dist/airflow-${VERSION}.tgz ${SVN_REPO_ROOT}/dev/airflow/helm-chart/${VERSION_RC}/airflow-${VERSION}.tgz\n```\n\nThere should be no differences reported. If you see \"binary files differ\" message, it means that\nthe source tarball is not reproducible. This is not a blocker for the release, you can unpack the sources\nof the tarball and compare the two tarballs and check the differences for example\nwith `diff -R <DIR1> <DIR2>`. It could be that our reproducible build script is not working correctly yet,\nand we need to fix it (so checking the differences would be helpful also to find out what is wrong).\n\nBefore proceeding next you want to go to the SVN directory\n\n```shell\ncd ${SVN_REPO_ROOT}/dev/airflow/helm-chart/${VERSION_RC}\n```\n\n## Licence check\n\nYou can run this command to do it for you (including checksum verification for your own security):\n\n```shell script\n# Checksum value is taken from https://downloads.apache.org/creadur/apache-rat-0.18/apache-rat-0.18-bin.tar.gz.sha512\nwget -q https://archive.apache.org/dist/creadur/apache-rat-0.18/apache-rat-0.18-bin.tar.gz -O /tmp/apache-rat-0.18-bin.tar.gz\necho \"315b16536526838237c42b5e6b613d29adc77e25a6e44a866b2b7f8b162e03d3629d49c9faea86ceb864a36b2c42838b8ce43d6f2db544e961f2259e242748f4  /tmp/apache-rat-0.18-bin.tar.gz\" | sha512sum -c -\ntar -xzf /tmp/apache-rat-0.18-bin.tar.gz -C /tmp\n```\n\n* Unpack the release source archive (the `<package + version>-source.tar.gz` file) to a folder\n* Enter the sources folder run the check\n\n```shell\nrm -rf /tmp/apache/airflow-helm-chart-src && mkdir -p /tmp/apache/airflow-helm-chart-src && tar -xzf ${SVN_REPO_ROOT}/dev/airflow/helm-chart/${VERSION_RC}/airflow-chart-*-source.tar.gz --strip-components 1 -C /tmp/apache/airflow-helm-chart-src\n```\n\n```shell\ncp ${AIRFLOW_REPO_ROOT}/.rat-excludes /tmp/apache/airflow-helm-chart-src/.rat-excludes\njava -jar /tmp/apache-rat-0.18/apache-rat-0.18.jar --input-exclude-file /tmp/apache/airflow-helm-chart-src/.rat-excludes /tmp/apache/airflow-helm-chart-src/ | grep -E \"! |INFO: \"\n```\n\nwhere `.rat-excludes` is the file in the root of Chart source code.\n\nYou should see no files reported as Unknown or with wrong licence and summary of the check similar to:\n\n```\nINFO: Apache Creadur RAT 0.18 (Apach"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 62550,
+      "excerpt": " script\ncp ${AIRFLOW_REPO_ROOT}/.rat-excludes /tmp/apache-airflow-providers-src/.rat-excludes\njava -jar /tmp/apache-rat-0.18/apache-rat-0.18.jar --input-exclude-file /tmp/apache-airflow-providers-src/.rat-excludes /tmp/apache-airflow-providers-src/ | grep -E \"! |INFO: \"\n```\n\nYou should see no files reported as Unknown or with wrong licence and summary of the check similar to:\n\n```\nINFO: Apache Creadur RAT 0.18 (Apache Software Foundation)\nINFO: Excluding patterns: .git-blame-ignore-revs, .github/*, .git ...\nINFO: Excluding MISC collection.\nINFO: Excluding HIDDEN_DIR collection.\nSLF4J(W): No SLF4J providers were found.\nSLF4J(W): Defaulting to no-operation (NOP) logger implementation\nSLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.\nINFO: RAT summary:\nINFO:   Approved:  15615\nINFO:   Archives:  2\nINFO:   Binaries:  813\nINFO:   Document types:  5\nINFO:   Ignored:  2392\nINFO:   License categories:  2\nINFO:   License names:  2\nINFO:   Notices:  216\nINFO:   Standards:  15609\nINFO:   Unapproved:  0\nINFO:   Unknown:  0\n```\n\nThere should be no files reported as Unknown or Unapproved. The files that are unknown or unapproved should be shown with a line starting with `!`.\n\nFor example:\n\n```\n! Unapproved:         1    A count of unapproved licenses.\n! /CODE_OF_CONDUCT.md\n```\n\n### Signature check\n\nMake sure you have imported into your GPG the PGP key of the person signing the release. You can find the valid keys in\n[KEYS](https://dist.apache.org/repos/dist/release/airflow/KEYS).\n\nDownload the KEYS file from the above link and save it locally.\n\nYou can import the whole KEYS file into gpg by running the following command:\n\n```shell script\nwget https://dist.apache.org/repos/dist/release/airflow/KEYS\ngpg --import KEYS\n```\n\nYou can also import the keys individually from a keyserver. The below one uses Kaxil's key and\nretrieves it from the default GPG keyserver\n[OpenPGP.org](https://keys.openpgp.org):\n\n```shell script\ngpg --keyserver keys.openpgp.org --receive-keys CDE15C6E4D3A8EC4ECF4BA4B6674E08AD7DE406F\n```\n\nYou should choose to import the key when asked.\n\nNote that by being default, the OpenPGP server tends to be overloaded often and might respond with\nerrors or timeouts. Many of the release managers also uploaded their keys to the\n[GNUPG.net](https://keys.gnupg.net) keyserver, and you can retrieve it from there.\n\n```shell script\ngpg --keyserve"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/openlineage/docs/troubleshooting.rst",
+      "kind": "File",
+      "path": "providers/openlineage/docs/troubleshooting.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8376,
+      "excerpt": " This approach can provide lineage data, although it may lack finer details (e.g., column-level lineage).\n\n\nTroubleshooting steps\n---------------------\n\n1. Update the provider and its core dependencies\n2. Enable debugging\n3. Inspect events locally\n4. Perform a quick check of your setup\n5. Check for reported bugs in OpenLineage provider and OpenLineage client\n6. Before asking for help anywhere, gather all the information listed below that will help diagnose the issue\n7. If you are still facing the issue, please open an issue in the Airflow repository.\n8. If all else fails, you can try asking for help on the OpenLineage slack channel (but remember that it is a community channel and not a support channel, and people are volunteering their time to help you).\n\n\n1. Upgrade the provider and its core dependencies\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nBefore troubleshooting any issues, ensure you are using the latest versions of both the\n`OpenLineage provider <https://pypi.org/project/apache-airflow-providers-openlineage/>`_ and the\n`OpenLineage client <https://pypi.org/project/openlineage-python/>`_.\nRead more about the two and the upgrade process in the :ref:`client_v_provider:openlineage`.\nUpgrade the OpenLineage provider and the OpenLineage client:\n\n.. code-block:: bash\n\n  pip install --upgrade apache-airflow-providers-openlineage openlineage-python\n\nThen verify the versions in use are the latest available:\n\n.. code-block:: bash\n\n  pip show apache-airflow-providers-openlineage openlineage-python | cat\n\n\n2. Enable debug settings\n^^^^^^^^^^^^^^^^^^^^^^^^^\n\nEnable debug logs by setting the logging level to DEBUG for both Airflow and the OpenLineage client:\n\n- In Airflow, use the `logging_level configuration <https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#logging-level>`_ and set the logging level to DEBUG. You can do this, for example, by exporting an environment variable ``AIRFLOW__LOGGING__LOGGING_LEVEL=DEBUG``.\n- OpenLineage client should automatically pick up the logging level from Airflow, but you can also set it explicitly by exporting an environment variable ``OPENLINEAGE_LOG_LEVEL=DEBUG``.\n\nEnable :ref:`Debug Mode <config:openlineage__debug_mode>` so that the DebugFacet (additional diagnostic info) is attached to events. It can drastically increase the size of the events and logs, so this should only be used tempo"
+    }
+  ]
+}

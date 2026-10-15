@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2460",
+        "path": null,
+        "offset": 949,
+        "line": 32
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/system/CrashControllerIntegrationTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/system/CrashControllerIntegrationTests.java",
+        "offset": 1703,
+        "line": 37
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+        "path": null,
+        "offset": 4224,
+        "line": 87
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "offset": 492,
+        "line": 12
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+        "offset": 522,
+        "line": 13
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+        "offset": 582,
+        "line": 13
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1961",
+        "path": null,
+        "offset": 2051,
+        "line": 72
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "offset": 637,
+        "line": 16
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 637,
+      "excerpt": "ingframework.samples.petclinic.owner;\n\nimport java.util.List;\nimport java.util.Objects;\nimport java.util.Optional;\n\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageRequest;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.Model;\nimport org.springframework.validation.BindingResult;\nimport org.springframework.web.bind.WebDataBinder;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.InitBinder;\nimport org.springframework.web.bind.annotation.ModelAttribute;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.servlet.ModelAndView;\n\nimport jakarta.validation.Valid;\n\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Michael Isvy\n * @author Wick Dynex\n */\n@Controller\nclass OwnerController {\n\n\tprivate static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = \"owners/createOrUpdateOwnerForm\";\n\n\tprivate final OwnerRepository owners;\n\n\tpublic OwnerController(OwnerRepository owners) {\n\t\tthis.owners = owners;\n\t}\n\n\t@InitBinder\n\tpublic void setAllowedFields(WebDataBinder dataBinder) {\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t@ModelAttribute(\"owner\")\n\tpublic Owner findOwner(@PathVariable(name = \"ownerId\", required = false) Integer ownerId) {\n\t\treturn ownerId == null ? new Owner()\n\t\t\t\t: this.owners.findById(ownerId)\n\t\t\t\t\t.orElseThrow(() -> new IllegalArgumentException(\"Owner not found with id: \" + ownerId\n\t\t\t\t\t\t\t+ \". Please ensure the ID is correct \" + \"and the owner exists in the database.\"));\n\t}\n\n\t@GetMapping(\"/owners/new\")\n\tpublic String initCreationForm() {\n\t\treturn VIEWS_OWNER_CREATE_OR_UPDATE_FORM;\n\t}\n\n\t@PostMapping(\"/owners/new\")\n\tpublic String processCreationForm(@Valid Owner owner, BindingResult result, RedirectAttributes redirectAttributes) {\n\t\tif (result.hasErrors()) {\n\t\t\tredirectAttributes.addFlashAttribute(\"error\", \"There was an error in creating the owner.\");\n\t\t\treturn VIEWS_OWNER_CREATE_OR_UPDATE_FORM;\n\t\t}\n\n\t\tthis.owners.save(owner);\n\t\tredirectAttributes.addFlashAttribute(\"message\", \"New Owner Created\");\n\t\treturn"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 492,
+      "excerpt": " express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.springframework.samples.petclinic.owner;\n\nimport java.time.LocalDate;\nimport java.util.Map;\nimport java.util.Optional;\n\nimport org.springframework.stereotype.Controller;\nimport org.springframework.validation.BindingResult;\nimport org.springframework.web.bind.WebDataBinder;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.InitBinder;\nimport org.springframework.web.bind.annotation.ModelAttribute;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\n\nimport jakarta.validation.Valid;\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Michael Isvy\n * @author Dave Syer\n * @author Wick Dynex\n */\n@Controller\nclass VisitController {\n\n\tprivate final OwnerRepository owners;\n\n\tpublic VisitController(OwnerRepository owners) {\n\t\tthis.owners = owners;\n\t}\n\n\t@InitBinder\n\tpublic void setAllowedFields(WebDataBinder dataBinder) {\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t/**\n\t * Called before each and every @RequestMapping annotated method. 2 goals: - Make sure\n\t * we always have fresh data - Since we do not use the session scope, make sure that\n\t * Pet object always has an id (Even though id is not part of the form fields)\n\t * @param petId\n\t * @return Pet\n\t */\n\t@ModelAttribute(\"visit\")\n\tpublic Visit loadPetWithVisit(@PathVariable(\"ownerId\") int ownerId, @PathVariable(\"petId\") int petId,\n\t\t\tMap<String, Object> model) {\n\t\tOptional<Owner> optionalOwner = owners.findById(ownerId);\n\t\tOwner owner = optionalOwner.orElseThrow(() -> new IllegalArgumentException(\n\t\t\t\t\"Owner not found with id: \" + ownerId + \". Please ensure the ID is correct \"));\n\n\t\tPet pet = owner.getPet(petId);\n\t\tif (pet == null) {\n\t\t\tthrow new IllegalArgumentException(\n\t\t\t\t\t\"Pet with id \" + petId + \" not found for owner with id \" + ownerId + \".\");\n\t\t}\n\t\tmodel.put(\"pet\", pet);\n\t\tmodel.put(\"owner\", owner);\n\n\t\tVisit visit = new Visit();\n\t\tpet.addVisit(visit);\n\t\treturn visit;\n\t}\n\n\t@ModelAttribute(\"minVisitDate\")\n\tpublic LocalDate minVisitDate() {\n\t\treturn LocalDate.now().plusDays(1);\n\t}\n\n\t// Spring MVC calls method loadPetWithVisit(...) befor"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 582,
+      "excerpt": "d\n * limitations under the License.\n */\npackage org.springframework.samples.petclinic.vet;\n\nimport java.util.List;\n\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageRequest;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.Model;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.bind.annotation.ResponseBody;\n\n/**\n * @author Juergen Hoeller\n * @author Mark Fisher\n * @author Ken Krebs\n * @author Arjen Poutsma\n */\n@Controller\nclass VetController {\n\n\tprivate final VetRepository vetRepository;\n\n\tpublic VetController(VetRepository vetRepository) {\n\t\tthis.vetRepository = vetRepository;\n\t}\n\n\t@GetMapping(\"/vets.html\")\n\tpublic String showVetList(@RequestParam(defaultValue = \"1\") int page, Model model) {\n\t\tPage<Vet> paginated = findPaginated(page);\n\t\treturn addPaginationModel(page, paginated, model);\n\t}\n\n\tprivate String addPaginationModel(int page, Page<Vet> paginated, Model model) {\n\t\tList<Vet> listVets = paginated.getContent();\n\t\tmodel.addAttribute(\"currentPage\", page);\n\t\tmodel.addAttribute(\"totalPages\", paginated.getTotalPages());\n\t\tmodel.addAttribute(\"totalItems\", paginated.getTotalElements());\n\t\tmodel.addAttribute(\"listVets\", listVets);\n\t\treturn \"vets/vetList\";\n\t}\n\n\tprivate Page<Vet> findPaginated(int page) {\n\t\tint pageSize = 5;\n\t\tPageable pageable = PageRequest.of(page - 1, pageSize);\n\t\treturn vetRepository.findAll(pageable);\n\t}\n\n\t@GetMapping({ \"/vets\" })\n\tpublic @ResponseBody Vets showResourcesVetList() {\n\t\t// Here we are returning an object of type 'Vets' rather than a collection of Vet\n\t\t// objects so it is simpler for JSon/Object mapping\n\t\tVets vets = new Vets();\n\t\tvets.getVetList().addAll(this.vetRepository.findAll());\n\t\treturn vets;\n\t}\n\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/system/CrashControllerIntegrationTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/system/CrashControllerIntegrationTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1703,
+      "excerpt": "pringframework.http.HttpHeaders;\nimport org.springframework.http.HttpMethod;\nimport org.springframework.http.HttpStatus;\nimport org.springframework.http.MediaType;\nimport org.springframework.http.RequestEntity;\nimport org.springframework.http.ResponseEntity;\n\n/**\n * Integration Test for {@link CrashController}.\n *\n * @author Alex Lutz\n */\n// NOT Waiting https://github.com/spring-projects/spring-boot/issues/5574\n@SpringBootTest(webEnvironment = RANDOM_PORT,\n\t\tproperties = { \"spring.web.error.include-message=ALWAYS\", \"management.endpoints.access.default=none\" })\n@AutoConfigureTestRestTemplate\nclass CrashControllerIntegrationTests {\n\n\t@Value(\"${local.server.port}\")\n\tprivate int port;\n\n\t@Autowired\n\tprivate TestRestTemplate rest;\n\n\t@Test\n\tvoid triggerExceptionJson() {\n\t\tResponseEntity<Map<String, Object>> resp = rest.exchange(\n\t\t\t\tRequestEntity.get(\"http://localhost:\" + port + \"/oups\").build(),\n\t\t\t\tnew ParameterizedTypeReference<Map<String, Object>>() {\n\t\t\t\t});\n\t\tassertThat(resp).isNotNull();\n\t\tassertThat(resp.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);\n\t\tassertThat(resp.getBody()).containsKey(\"timestamp\");\n\t\tassertThat(resp.getBody()).containsKey(\"status\");\n\t\tassertThat(resp.getBody()).containsKey(\"error\");\n\t\tassertThat(resp.getBody()).containsEntry(\"message\",\n\t\t\t\t\"Expected: controller used to showcase what happens when an exception is thrown\");\n\t\tassertThat(resp.getBody()).containsEntry(\"path\", \"/oups\");\n\t}\n\n\t@Test\n\tvoid triggerExceptionHtml() {\n\t\tHttpHeaders headers = new HttpHeaders();\n\t\theaders.setAccept(List.of(MediaType.TEXT_HTML));\n\t\tResponseEntity<String> resp = rest.exchange(\"http://localhost:\" + port + \"/oups\", HttpMethod.GET,\n\t\t\t\tnew HttpEntity<>(headers), String.class);\n\t\tassertThat(resp).isNotNull();\n\t\tassertThat(resp.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);\n\t\tassertThat(resp.getBody()).isNotNull();\n\t\t// html:\n\t\tassertThat(resp.getBody()).containsSubsequence(\"<body>\", \"<h2>\", \"Something happened...\", \"</h2>\", \"<p>\",\n\t\t\t\t\"Expected:\", \"controller\", \"used\", \"to\", \"showcase\", \"what\", \"happens\", \"when\", \"an\", \"exception\", \"is\",\n\t\t\t\t\"thrown\", \"</p>\", \"</body>\");\n\t\t// Not the whitelabel error page:\n\t\tassertThat(resp.getBody()).doesNotContain(\"Whitelabel Error Page\",\n\t\t\t\t\"This application has no explicit mapping for\");\n\t}\n\n\t@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class,\n\t\t\tDataSourceTransactionMa"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 522,
+      "excerpt": "e License for the specific language governing permissions and\n * limitations under the License.\n */\n\npackage org.springframework.samples.petclinic.system;\n\nimport org.junit.jupiter.api.Test;\n\nimport static org.assertj.core.api.Assertions.assertThatExceptionOfType;\n\n/**\n * Test class for {@link CrashController}\n *\n * @author Colin But\n * @author Alex Lutz\n */\n// Waiting https://github.com/spring-projects/spring-boot/issues/5574 ..good\n// luck ((plain(st) UNIT test)! :)\nclass CrashControllerTests {\n\n\tfinal CrashController testee = new CrashController();\n\n\t@Test\n\tvoid triggerException() {\n\t\tassertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> testee.triggerException())\n\t\t\t.withMessageContaining(\"Expected: controller used to showcase what happens when an exception is thrown\");\n\t}\n\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1961",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1961,
+      "title": "Fix test failures due to feature flag configuration and port conflict",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2051,
+      "excerpt": "s.visit-management=false\npetclinic.features.vet-management=false\n```\n\n\n**Solution Plan**:\n\n\n1. Update the CucumberSpringConfiguration class to explicitly use the test properties profile. \n2. Ensure that the application-test.properties file is properly loaded during tests by moving it to the correct location if needed. \n3. Verify that the test configuration is working by adding a debug log statement in a test to print the active feature flag values.\n\n\n----\n\n### Issue 3\n\n\n**Problem**: The integration test for adding a visit is failing because the lastResponse variable is null. This occurs because the feature flag for visit management is disabled, causing a FeatureDisabledException, but the test is not properly handling this exception.\n\n\n**File**: ```src/test/java/org/springframework/samples/petclinic/integration/steps/PetClinicSteps.java```\n\n\n**Error Log**:\n```\n2025-06-23T23:16:59.7218536Z out: java.lang.NullPointerException: Cannot invoke \"org.springframework.http.ResponseEntity.getStatusCode()\" because \"this.lastResponse\" is null\n```\n\n\n**Code snippet**:\n```\n@Then(\"the visit should be added successfully\")\npublic void theVisitShouldBeAddedSuccessfully() {\n    assertThat(lastResponse.getStatusCode()).isEqualTo(HttpStatus.OK);\n    assertThat(lastResponse.getBody()).isNotNull();\n}\n```\n\n\n**Solution Plan**:\n\n\n1. Modify the PetClinicSteps class to properly handle exceptions by checking if lastResponse is null before accessing its methods. \n2. Apply similar null checks to other assertion methods in the class. \n3. Update the test to account for feature flags by adding conditional scenarios.\n\n\n----\n\n### Issue 4\n\n\n**Problem**: The test for validation errors is failing because it expects an HttpClientErrorException but receives an HttpServerErrorException$ServiceUnavailable due to the feature flag being disabled.\n\n\n**File**: ```src/test/java/org/springframework/samples/petclinic/integration/steps/PetClinicSteps.java```\n\n\n**Error Log**:\n```\n2025-06-23T23:16:59.5669631Z out: java.lang.AssertionError: \n2025-06-23T23:16:59.5670070Z out: Expecting actual throwable to be an instance of:\n2025-06-23T23:16:59.5670597Z out: org.springframework.web.client.HttpClientErrorException\n2025-06-23T23:16:59.5671070Z out: but was:\n2025-06-23T23:16:59.5672287Z out: org.springframework.web.client.HttpServerErrorException$ServiceUnavailable: 503 Service Unavailable\n```\n\n\n**Code snippet**:\n```\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 458,
+      "title": "Surefire failing on Java 13",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4224,
+      "excerpt": "/classes/static/resources/css\r\n[INFO] The following groups will be processed: [petclinic]\r\n[INFO] folder: /Users/pkumari/java/spring-petclinic/target/classes/static/resources/css\r\n[INFO] processing group: petclinic.css\r\n[WARNING] Less warnings are:\r\n[WARNING] 10:1 Cannot link source map. Css result location is not know and could not be deduced from input less source..\r\n[INFO] file size: petclinic.css -> 152399 bytes\r\n[INFO] /Users/pkumari/java/spring-petclinic/target/classes/static/resources/css/petclinic.css (152399 bytes)\r\n[INFO] folder: /Users/pkumari/java/spring-petclinic/target\r\n[INFO] processing group: petclinic.js\r\n[INFO] \r\n[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ spring-petclinic ---\r\n[INFO] Using 'UTF-8' encoding to copy filtered resources.\r\n[INFO] Copying 2 resources\r\n[INFO] Copying 35 resources\r\n[INFO] \r\n[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ spring-petclinic ---\r\n[INFO] Changes detected - recompiling the module!\r\n[INFO] Compiling 25 source files to /Users/pkumari/java/spring-petclinic/target/classes\r\n[INFO] \r\n[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ spring-petclinic ---\r\n[INFO] Using 'UTF-8' encoding to copy filtered resources.\r\n[INFO] skip non existing resourceDirectory /Users/pkumari/java/spring-petclinic/src/test/resources\r\n[INFO] \r\n[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ spring-petclinic ---\r\n[INFO] Changes detected - recompiling the module!\r\n[INFO] Compiling 11 source files to /Users/pkumari/java/spring-petclinic/target/test-classes\r\n[INFO] \r\n[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ spring-petclinic ---\r\n[INFO] \r\n[INFO] -------------------------------------------------------\r\n[INFO]  T E S T S\r\n[INFO] -------------------------------------------------------\r\n[INFO] \r\n[INFO] Results:\r\n[INFO] \r\n[WARNING] Corrupted STDOUT by directly writing to native stream in forked JVM 1. See FAQ web page and the dump file /Users/pkumari/java/spring-petclinic/target/surefire-reports/2019-10-09T15-20-03_591-jvmRun1.dumpstream\r\n[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0\r\n[INFO] \r\n[INFO] ------------------------------------------------------------------------\r\n[INFO] BUILD FAILURE\r\n[INFO] ------------------------------------------------------------------------\r\n[INFO] Total time:  10.828 s\r\n[INFO] "
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2460",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2460,
+      "title": "[DEMO-001] The change involves adding a health check REST endpoint to an existing Java p...",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 949,
+      "excerpt": "t State Analysis\n\n### Project Info\n- Framework: Not Identified (Assumed Spring Boot based on standard practice for health checks)\n- Java version: Not Identified\n- Build system: Not Identified (Commonly Maven for Spring Boot projects)\n- Test framework: Not Identified\n\n### Affected Components\n- A new controller class for health check endpoint will be created (e.g., `HealthCheckController`)\n\n### Existing Patterns\nUnable to identify existing patterns due to lack of data, but typically, REST endpoints are implemented using Spring RestController annotations.\n\n## Implementation Plan\n\n1. Create a new class `HealthCheckController` under the package `com.example.controller` to define the health check endpoint.\n2. Implement a GET endpoint `/api/health` in `HealthCheckController` that returns a 200 OK status and JSON with a status field.\n3. Add unit tests for `HealthCheckController` to validate the new endpoint functionality.\n\n## Test Requirements\n\n- Unit tests for `HealthCheckController` covering the response status and JSON output.\n- Ensure tests are aligned with existing test practices in the codebase.\n\n## Vulnerability Findings\nNone, as no new dependencies or significant changes that impact security are introduced.\n\n## Items Flagged for Human Review\n- Verify if the project indeed uses Spring Boot.\n- Confirm if additional health indicators are needed beyond the basic status field.\n\n## Changes Made\n\n### Created (4)\n\n- `src/test/java/org/springframework/samples/petclinic/system/HealthCheckControllerTests.java` - Generated unit tests for HealthCheckController covering the acceptance criteria.\n- `src/main/java/org/springframework/samples/petclinic/system/HealthCheckController.java` - Added HealthCheckController to implement the /api/health endpoint as per the assessment.\n- `src/main/java/org/springframework/samples/petclinic/system/HealthStatus.java` - Created HealthStatus class for the health check endpoint response.\n- `src/main/java/com/example/controller/HealthCheckController.java` - Created HealthCheckController to implement the required health check REST endpoint at /api/health.\n\n\n## Tests Generated\n\n- **HealthCheckControllerTests** (1 unit tests) → tests `HealthCheckController`\n  - File: `src/test/java/org/springframework/samples/petclinic/system/HealthCheckControllerTests.java`\n\n## Build Status\n\n✅ Build passed (`(skipped)`)\n\n## 📊 Agent Run Statistics\n\n| Phase | Tu"
+    }
+  ]
+}

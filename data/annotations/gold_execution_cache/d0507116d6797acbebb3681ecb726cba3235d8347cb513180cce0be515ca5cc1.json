@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+        "path": null,
+        "offset": 26828,
+        "line": 432
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+        "path": null,
+        "offset": 25832,
+        "line": 451
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 3252,
+        "line": 66
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 45242,
+        "line": 786
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:859",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1041",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 5985,
+        "line": 132
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "…ging coverage\r\n\r\nIntroduce pluggable functional test modes (Aspire, RepositoryMock, EfCoreInMemory, Testcontainers, and messaging variants) for Catalog and Ordering via a shared Testing.Common library. Extract ICatalogRepository from Catalog.API to enable in-memory persistence swaps, add Serilog logging to ServiceDefaults, fix integration event type discovery under WebApplicationFactory, and add runsettings plus xUnit traits for filtering tests by mode.\r\n\r\n# eShop Multi-Mode Functional Testing\r\n\r\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontaine"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3252,
+      "excerpt": "its with various improvements, bug fixes, and enhancements.\n\n\n## Activityindicator\n- [Android] Fix CollectionView ActivityIndicator not animating after header height change by @​Vignesh-SF3580 in https://github.com/dotnet/maui/pull/35358\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [CollectionView items fail to update ActivityIndicator state after header height change](https://github.com/dotnet/maui/issues/33780)\n  </details>\n\n## Ai Agents\n- Improve code-review skill with regression prevention safeguards by @​PureWeen in https://github.com/dotnet/maui/pull/35478\n\n## Animation\n- [Android] Fix Shadow property affecting transform matrix. by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/32962\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] Applying Shadow property affects the properties in Visual Transform Matrix](https://github.com/dotnet/maui/issues/32731)\n  </details>\n\n## API\n- Add delegate-based alert dialog extensibility convention (no public API changes) by @​Redth in https://github.com/dotnet/maui/pull/35095\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Alert/Dialog system (`DisplayAlert`, `DisplayActionSheet`, `DisplayPromptAsync`) needs a public extensibility point](https://github.com/dotnet/maui/issues/34104)\n  </details>\n\n## Blazor\n- [Android] Fix for BlazorWebView predictive back callback blocks Android back-to-home animation  by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/35538\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] BlazorWebView predictive back callback blocks Android back-to-home animation](https://github.com/dotnet/maui/issues/35397)\n  </details>\n\n- [Android] Fix BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/35611\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[inflight regression] Android BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled](https://github.com/dotnet/maui/issues/35573)\n  </details>\n\n- Skip request-interception tests that hit echo.free.beeceptor.com by @​akoeplinger in https://github.com/dotnet/maui/pull/35661\n\n## Border\n ... (truncated)\n\n## 10.0.80\n\n# .NET MAUI 10.0.80 Release Notes\n\n.NET MAUI 10.0.80 introduces significant improvements across all platforms with focus on quality, performance, and developer experienc"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1022,
+      "title": "Bump the microsoftextensions group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26828,
+      "excerpt": "oft.Extensions.AI, Microsoft.Extensions.AI.Abstractions, and Microsoft.Extensions.AI.OpenAI packages to 10.8.1 with two targeted fixes: correct tool-call/tool-result ordering when resuming approval-gated functions with service-managed chat history, and preservation of the OpenAI Responses reasoning item id for stateless (store=false) encrypted reasoning.\n\n## Packages in this release\n\n| Package | Version |\n|---------|---------|\n| Microsoft.Extensions.AI | 10.8.1 |\n| Microsoft.Extensions.AI.Abstractions | 10.8.1 |\n| Microsoft.Extensions.AI.OpenAI | 10.8.1 |\n\n## What's Changed\n\n### AI\n\n* Fix FICC tool_calls/tool ordering with approvals and service-managed chat history #​7617 by @​westey-m\n* Roundtrip OpenAI Responses reasoning item id for stateless (store=false) encrypted reasoning #​7629 by @​rogerbarreto (co-authored by @​tarekgh)\n\n## Acknowledgements\n\n* @​jozkee reviewed pull requests\n\n**Full Changelog**: https://github.com/dotnet/extensions/compare/v10.8.0...v10.8.1\n\n\n## 10.8.0\n\nThis release adds new experimental APIs to Microsoft.Extensions.AI.Abstractions and updates the OpenAI dependency to 2.12.0, alongside documentation, test, and repository maintenance.\n\n## Experimental API Changes\n\n### New Experimental APIs\n\n* New experimental API: `AIFunctionNameAttribute` and `AIParameterNameAttribute` #​7610 by @​jozkee (co-authored by @​jeffhandley @​Copilot)\n* New experimental API: `ToolApprovalRequestContent.RequiresConfirmation` (`MEAI001`) #​7549 by @​javiercn (co-authored by @​Copilot)\n\n## What's Changed\n\n### AI\n\n* Upgrade OpenAI dependency to 2.12.0 #​7608 by @​jozkee (co-authored by @​Copilot)\n* Auto-detect audio format in OpenAISpeechToTextClient #​7575 by @​jozkee (co-authored by @​Copilot)\n* Fix ImageGeneratingChatClient duplicating preceding content and dropping following content #​7624 by @​jozkee (co-authored by @​Copilot)\n\n### Vector Data\n\n* Make all test methods virtual in VectorData.ConformanceTests #​7606 by @​adamsitnik (co-authored by @​Copilot)\n\n## Documentation Updates\n\n* Remove links to ai-samples repo #​7574 by @​gewarren\n* Fix up docs with Copilot (MEVD) #​7597 by @​gewarren\n* Fix up docs with Copilot (M.E.ServiceDiscovery) #​7598 by @​gewarren (co-authored by @​Copilot)\n* Fix up docs with Copilot (MEAI) #​7600 by @​gewarren\n* Fix up docs with Copilot #​7601 by @​gewarren\n\n## Test Improvements\n\n* Fix flaky StampedeTests and harden related "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5985,
+      "excerpt": "its with various improvements, bug fixes, and enhancements.\n\n\n## Activityindicator\n- [Android] Fix CollectionView ActivityIndicator not animating after header height change by @​Vignesh-SF3580 in https://github.com/dotnet/maui/pull/35358\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [CollectionView items fail to update ActivityIndicator state after header height change](https://github.com/dotnet/maui/issues/33780)\n  </details>\n\n## Ai Agents\n- Improve code-review skill with regression prevention safeguards by @​PureWeen in https://github.com/dotnet/maui/pull/35478\n\n## Animation\n- [Android] Fix Shadow property affecting transform matrix. by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/32962\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] Applying Shadow property affects the properties in Visual Transform Matrix](https://github.com/dotnet/maui/issues/32731)\n  </details>\n\n## API\n- Add delegate-based alert dialog extensibility convention (no public API changes) by @​Redth in https://github.com/dotnet/maui/pull/35095\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Alert/Dialog system (`DisplayAlert`, `DisplayActionSheet`, `DisplayPromptAsync`) needs a public extensibility point](https://github.com/dotnet/maui/issues/34104)\n  </details>\n\n## Blazor\n- [Android] Fix for BlazorWebView predictive back callback blocks Android back-to-home animation  by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/35538\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] BlazorWebView predictive back callback blocks Android back-to-home animation](https://github.com/dotnet/maui/issues/35397)\n  </details>\n\n- [Android] Fix BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/35611\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[inflight regression] Android BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled](https://github.com/dotnet/maui/issues/35573)\n  </details>\n\n- Skip request-interception tests that hit echo.free.beeceptor.com by @​akoeplinger in https://github.com/dotnet/maui/pull/35661\n\n## Border\n ... (truncated)\n\n## 10.0.80\n\n# .NET MAUI 10.0.80 Release Notes\n\n.NET MAUI 10.0.80 introduces significant improvements across all platforms with focus on quality, performance, and developer experienc"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1041",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1041,
+      "title": "Use async EF Core calls in Catalog async handlers",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "# PR to dotnet/eShop\r\n\r\n**Base:** `dotnet/eShop` `main` ← **Head:** `vuglll/eShop` `use-async-ef-calls-in-catalog`\r\n\r\n**Title:**\r\n\r\nUse async EF Core calls in Catalog async handlers\r\n\r\n**Description:**\r\n\r\nThree `async` methods in Catalog.API make synchronous EF Core calls. Each call blocks a thread-pool thread for the whole database round trip, instead of yielding it while the query runs.\r\n\r\n- `OrderStatusChangedToAwaitingValidationIntegrationEventHandler` and `OrderStatusChangedToPaidIntegrationEventHandler`: `CatalogItems.Find(...)` → `await CatalogItems.FindAsync(...)`. Both run inside the `foreach` over the order's items, so the blocking happened once per item.\r\n- `CatalogApi.DeleteItemById`: `SingleOrDefault(...)` → `await SingleOrDefaultAsync(...)`. This matches the other endpoints in the same file, which already use `SingleOrDefaultAsync`, and the `SaveChangesAsync` that follows.\r\n\r\nThere's no behavior change otherwise. The existing `DeleteCatalogItem` and `GetAndDeleteMissingCatalogItemReturnNotFound` functional tests cover the endpoint. The handlers could go further and load all of an order's items in one query instead of one per item. I kept this PR to the minimal change, and I'm happy to follow up with that if you'd like it.\r\n\r\nFound with [EFDoctor](https://github.com/vuglll/EFDoctor), an open-source EF Core analyzer I'm working on."
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 45242,
+      "excerpt": "its with various improvements, bug fixes, and enhancements.\n\n\n## Activityindicator\n- [Android] Fix CollectionView ActivityIndicator not animating after header height change by @​Vignesh-SF3580 in https://github.com/dotnet/maui/pull/35358\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [CollectionView items fail to update ActivityIndicator state after header height change](https://github.com/dotnet/maui/issues/33780)\n  </details>\n\n## Ai Agents\n- Improve code-review skill with regression prevention safeguards by @​PureWeen in https://github.com/dotnet/maui/pull/35478\n\n## Animation\n- [Android] Fix Shadow property affecting transform matrix. by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/32962\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] Applying Shadow property affects the properties in Visual Transform Matrix](https://github.com/dotnet/maui/issues/32731)\n  </details>\n\n## API\n- Add delegate-based alert dialog extensibility convention (no public API changes) by @​Redth in https://github.com/dotnet/maui/pull/35095\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Alert/Dialog system (`DisplayAlert`, `DisplayActionSheet`, `DisplayPromptAsync`) needs a public extensibility point](https://github.com/dotnet/maui/issues/34104)\n  </details>\n\n## Blazor\n- [Android] Fix for BlazorWebView predictive back callback blocks Android back-to-home animation  by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/35538\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] BlazorWebView predictive back callback blocks Android back-to-home animation](https://github.com/dotnet/maui/issues/35397)\n  </details>\n\n- [Android] Fix BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/35611\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[inflight regression] Android BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled](https://github.com/dotnet/maui/issues/35573)\n  </details>\n\n- Skip request-interception tests that hit echo.free.beeceptor.com by @​akoeplinger in https://github.com/dotnet/maui/pull/35661\n\n## Border\n ... (truncated)\n\n## 10.0.80\n\n# .NET MAUI 10.0.80 Release Notes\n\n.NET MAUI 10.0.80 introduces significant improvements across all platforms with focus on quality, performance, and developer experienc"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:859",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 859,
+      "title": "Replace .WithX OpenAPI annotations with XML documentation comments in Catalog.API",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\nThis PR replaces all fluent OpenAPI annotation methods (`.WithSummary()`, `.WithDescription()`, `.WithTags()`, etc.) in `CatalogApi.cs` with equivalent XML documentation comments on the handler methods. This change enables OpenAPI documentation generation from XML doc comments rather than fluent API annotations, following the aspnet-openapi-xml approach.\n\n## Changes Made\n\n### 🗑️ Removed Fluent API Annotations\n- Removed all `.WithSummary()`, `.WithDescription()`, `.WithTags()`, and `.WithName()` calls from 19 endpoint mappings\n- Simplified endpoint registrations to clean, chainable-free syntax\n\n### 📝 Added XML Documentation\n- Added XML `<summary>` and `<remarks>` tags to all 16 handler methods\n- Extracted 2 inline lambda methods (`GetCatalogTypes`, `GetCatalogBrands`) into proper named methods with XML documentation\n- Preserved existing parameter descriptions using `[Description]` attributes\n\n### Before\n```csharp\nv1.MapGet(\"/items\", GetAllItemsV1)\n    .WithName(\"ListItems\")\n    .WithSummary(\"List catalog items\")\n    .WithDescription(\"Get a paginated list of items in the catalog.\")\n    .WithTags(\"Items\");\n```\n\n### After\n```csharp\nv1.MapGet(\"/items\", GetAllItemsV1);\n\n/// <summary>List catalog items</summary>\n/// <remarks>Get a paginated list of items in the catalog.</remarks>\n[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, \"application/problem+json\")]\npublic static async Task<Ok<PaginatedItems<CatalogItem>>> GetAllItemsV1(...)\n```\n\n## Validation\n\n✅ **0** remaining `.WithX` calls (all removed)  \n✅ **16** XML summary and remarks tags added (one for each method)  \n✅ **19** simplified endpoint mappings  \n✅ **No functional changes** - all routing, parameters, and behavior preserved\n\n## Benefits\n\n- 🎯 **Centralized Documentation**: OpenAPI docs now generated directly from method XML comments\n- 🧹 **Cleaner Code**: Simplified endpoint mappings without fluent chaining\n- 📚 **Better IntelliSense**: XML docs provide better IDE support for developers\n- 🔄 **Future-Proof**: Aligns with modern ASP.NET Core OpenAPI best practices\n\nThis change maintains full backward compatibility while improving the developer experience and documentation approach.\n\n*This pull request was created as a result of the following prompt from Copilot chat.*\n> The file src/Catalog.API/Apis/CatalogApi.cs uses several .WithX methods (such as .WithSummary, .WithDescriptio"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 953,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 25832,
+      "excerpt": "​github-actions[bot] in https://github.com/dotnet/maui/pull/32443\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] Refactor WindowInsetListener to per-view registry with MauiWindowInsetListener](https://github.com/dotnet/maui/issues/32278)\n  </details>\n\n\n\n## Collectionview\n- [iOS] Fixed the Items are not displaying in CarouselView 2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/29397\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] CarouselViewHandler2 - NSInternalInconsistencyException thrown when setting `ItemsSources`](https://github.com/dotnet/maui/issues/31339)\n  - [[MAUI][.NET8] Newly created recipes cannot be deleted.](https://github.com/dotnet/maui/issues/16020)\n  - [[iOS] - CarouselView Items Not Displaying in CV2](https://github.com/dotnet/maui/issues/29310)\n  - [The newly added recipe throws an exception:ObjCRuntime.ObjCException when deleted](https://github.com/dotnet/maui/issues/31431)\n  </details>\n\n- [CV2] Fix CarouselView vertical scrolling when orientation is horizontal by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/31395\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] CarouselViewHandler2 - Content is scrolling vertically](https://github.com/dotnet/maui/issues/31361)\n  </details>\n\n- [Android] Fix for IndicatorView remains interactive even when IsEnabled=\"False\"  by @​HarishwaranVijayakumar in https://github.com/dotnet/maui/pull/31457\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] IndicatorView remains interactive even when IsEnabled=\"False\"](https://github.com/dotnet/maui/issues/31063)\n ... (truncated)\n\n## 10.0.1\n\n## What's Changed\n* [release/10.0.1xx] Update templates with new .NET MAUI Community Toolkit package version by @​github-actions[bot] in https://github.com/dotnet/maui/pull/32430\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.0...10.0.1\n\n## 10.0.0\n\n## What's Changed\n\n.NET MAUI 10.0.0 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 73 commits with various improvements, bug fixes, and enhancements.\n\n## Breaking Changes\n- You might have to set your ContentPage to \"SafeAreaEdges.Container\" to restore .NET9 behavior on Android. In order to fully support edge to edge and make the behavior consistent with iOS we defaulted this to \"SafeAreaEdges.None\" on .NET 10.  https://learn.mic"
+    }
+  ]
+}

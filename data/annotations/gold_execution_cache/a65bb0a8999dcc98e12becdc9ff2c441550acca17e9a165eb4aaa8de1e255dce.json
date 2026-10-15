@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+        "path": null,
+        "offset": 6406,
+        "line": 57
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:pom.xml",
+        "path": "pom.xml",
+        "offset": 2537,
+        "line": 79
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:test-suite/module/pom.xml",
+        "path": "test-suite/module/pom.xml",
+        "offset": 2915,
+        "line": 84
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6549",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/release.yaml",
+        "path": ".github/workflows/release.yaml",
+        "offset": 86,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+        "path": "README.md",
+        "offset": 3418,
+        "line": 34
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6534",
+        "path": null,
+        "offset": 5526,
+        "line": 41
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:Dockerfile",
+        "path": "Dockerfile",
+        "offset": 494,
+        "line": 11
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/release.yaml",
+      "kind": "File",
+      "path": ".github/workflows/release.yaml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 86,
+      "excerpt": "# This duplicates the manual \"Release\" stage (and the \"Release image variants\" stage that\n# follows it automatically) of the Bamboo plan defined in bamboo-specs/bamboo.yml\n# (e.g. TRUNK-OC28 \"OpenMRS Core 2.8.x\").\n# For example, dispatching it on 2.8.x with releaseVersion=2.8.8 will:\n#   1. set the maven version to 2.8.8 and commit \"[skip-ci] [skip actions] Releasing 2.8.8\"\n#      as openmrs-bot ([skip-ci] is Bamboo's skip marker; [skip actions] is the one GitHub\n#      recognizes, so the release commit does not trigger a redundant CI run)\n#   2. build and push openmrs/openmrs-core:2.8.8-dev and :2.8.8 (linux/amd64 + linux/arm64)\n#   3. deploy the release artifacts to the OpenMRS Nexus releases repository by running\n#      mvn deploy inside the :2.8.8-dev image, exactly as Bamboo does\n#   4. tag 2.8.8 and push the tag\n#   5. push the release commit to 2.8.x, then set the next development version\n#      (auto-incremented to 2.8.9-SNAPSHOT, or the developmentVersion input if given)\n#      and push \"Setting new SNAPSHOT version\" (non-fatal, as in Bamboo)\n#   6. build and push the per-JDK image variants from the tag:\n#      openmrs/openmrs-core:2.8.8[-dev]-amazoncorretto-{8,11,17,21}\n#\n# Required secrets:\n#   OMRS_RELEASE_BOT_APP_ID / OMRS_RELEASE_BOT_PRIVATE_KEY\n#                                               org-level secrets already shared with this\n#                                               repo; preferred token source (short-lived App\n#                                               installation tokens, like the shared module\n#                                               release workflow). REQUIRED SETUP: the App\n#                                               must be added as a bypass actor on each\n#                                               maintenance-branch ruleset — the validation\n#                                               pre-flight can only verify the token\n#                                               authenticates and the branch state, NOT\n#                                               ruleset bypass (git push --dry-run never runs\n#                                               server-side rules), so without the bypass the\n#                                               branch push is rejected only after the maven\n#                                               deploy\n#   OMRS_BOT_GH_TOKEN                           org-level secre"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:Dockerfile",
+      "kind": "File",
+      "path": "Dockerfile",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 494,
+      "excerpt": "RG DEV_JDK=eclipse-temurin-21\nARG RUNTIME_JDK=jdk21-temurin\n\n### Compile Stage (platform-agnostic)\nFROM --platform=$BUILDPLATFORM maven:3.9-$DEV_JDK AS compile\n\nRUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*\n\nWORKDIR /openmrs_core\n\nENV OMRS_SDK_PLUGIN=\"org.openmrs.maven.plugins:openmrs-sdk-maven-plugin\"\nENV OMRS_SDK_PLUGIN_VERSION=\"5.11.0\"\n\nCOPY docker-pom.xml .\n\n# aether.dependencyCollector.impl=bf downloads poms in parallel in addition to jars, dependency download speed up by ~60%\nARG MVN_SETTINGS=\"-s /usr/share/maven/ref/settings-docker.xml -Daether.dependencyCollector.impl=bf\"\n\n# Setup and cache SDK\nRUN mvn $MVN_SETTINGS -f docker-pom.xml $OMRS_SDK_PLUGIN:$OMRS_SDK_PLUGIN_VERSION:setup-sdk -N -DbatchAnswers=n\n\nCOPY pom.xml .\nCOPY test/pom.xml test/\nCOPY tools/pom.xml tools/\nCOPY liquibase/pom.xml liquibase/\nCOPY api/pom.xml api/\nCOPY web/pom.xml web/\nCOPY webapp/pom.xml webapp/\nCOPY test-suite/pom.xml test-suite/\nCOPY test-suite/module/pom.xml test-suite/module/\nCOPY test-suite/module/api/pom.xml test-suite/module/api/\nCOPY test-suite/module/omod/pom.xml test-suite/module/omod/\nCOPY test-suite/performance/pom.xml test-suite/performance/\n\n# Install dependencies\n# Commenting out as it fails with:\n# `The following artifacts could not be resolved: org.openjfx:javafx-base:jar:linux-aarch64:17.0.14`\n# The version is not LTS thus linux-aarch64 is not available. \n# I wasn't able to force a newer version with dependencyManagement for unknown reason.\n# Neither dependency:tree nor dependency:resolve-plugins lists this dependency. The excludeArtifactIds=javafx-base param\n# does not work due to https://github.com/apache/maven-dependency-plugin/pull/417 (not yet released)\n#RUN mvn $MVN_SETTINGS -B dependency:go-offline -P !default-tools.jar,!mac-tools.jar -DexcludeArtifactIds=javafx-base\n\n# Copy remaining files\nCOPY . .\n\n# Append --build-arg MVN_ARGS='clean install' to change default maven arguments\nARG MVN_ARGS='clean install -DskipTests'\n\n# Build the project\nRUN mvn $MVN_SETTINGS $MVN_ARGS\n\n### Development Stage\nFROM maven:3.9-$DEV_JDK AS dev\n\nRUN apt-get update && apt-get install -y tar gzip git curl mariadb-client && rm -rf /var/lib/apt/lists/*\n\n# Setup Tini\nARG TARGETARCH\nARG TINI_VERSION=v0.19.0\nARG TINI_URL=\"https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini\"\nARG TINI_SHA=\"93dcc18adc78c65a028a84799ecf8ad40c936fdf"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3418,
+      "excerpt": "ssues](#issues)\n9. [Community](#community)\n10. [Support](#support)\n11. [License](#license)\n\n## Build\n\n### Prerequisites\n\n#### Java\n\nOpenMRS is a Java application which is why you need to install a Java JDK.\n\nIf you want to build the master branch you will need a Java JDK of minimum version 8.\n\n#### Maven\n\nInstall the build tool [Maven](https://maven.apache.org/).\n\nYou need to ensure that Maven uses the Java JDK needed for the branch you want to build.\n\nTo do so execute\n\n```bash\nmvn -version\n```\n\nwhich will tell you what version Maven is using. Refer to the [Maven docs](https://maven.apache.org/configure.html) if you need to configure Maven.\n\n#### Git\n\nInstall the version control tool [git](https://git-scm.com/) and clone this repository with\n\n```bash\ngit clone https://github.com/openmrs/openmrs-core.git\n```\n\n### Build Command\n\nAfter you have taken care of the [Prerequisites](#prerequisites)\n\nExecute the following\n\n```bash\ncd openmrs-core\n./mvnw clean package\n```\n\nThis will generate the OpenMRS application in `webapp/target/openmrs.war`, which you will have to deploy to an application server such as [Tomcat](https://tomcat.apache.org/) or [Jetty](https://jetty.org/).\n\n### Deploy\n\nFor development purposes you can simply deploy the `openmrs.war` into the application server jetty via\n\n```bash\ncd openmrs-core/webapp\n../mvnw jetty:run\n```\n\nTo run Jetty on a custom port, use the `jetty.http.port` property:\n\n```bash\n../mvnw -Djetty.http.port=8081 jetty:run\n```\n\nTo run on Cargo, use the `cargo:run` command:\n\n```bash\n../mvnw cargo:run\n```\n\nTo run Cargo on a custom port, use the `cargo.servlet.port` property:\n\n```bash\n../mvnw -Dcargo.servlet.port=8081 cargo:run\n```\n\nIf all goes well (check the console output) you can access the OpenMRS application at `localhost:8080/openmrs`.\n\nRefer to [Getting Started as a Developer](https://wiki.openmrs.org/display/docs/Getting+Started+as+a+Developer) for some more information\non useful Maven commands and build options.\n\n## Docker build\n\nDocker builds are still a work in progress. We appreciate any feedback and improvements to the process.\n\nThe only prerequisite needed is Docker.\n\nIn order to build a development version run:\n\n```bash\ndocker compose build\n```\n\nIt calls `mvn install` by default. If you would like to customize mvn build arguments you can do so by running:\n\n```bash\ndocker compose build --build-arg MVN_ARGS='install -Dski"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:pom.xml",
+      "kind": "File",
+      "path": "pom.xml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2537,
+      "excerpt": "/version>\n\t\t\t\t<scope>provided</scope>\n\t\t\t</dependency>\n\t\t\t<dependency>\n\t\t\t\t<groupId>org.reflections</groupId>\n\t\t\t\t<artifactId>reflections</artifactId>\n\t\t\t\t<version>0.10.2</version>\n\t\t\t\t<scope>test</scope>\n\t\t\t</dependency>\n\t\t</dependencies>\n\t</dependencyManagement>\n\n\t<build>\n\t\t<pluginManagement>\n\t\t\t<plugins>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-surefire-plugin</artifactId>\n\t\t\t\t\t<version>3.5.6</version>\n\t\t\t\t</plugin>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-resources-plugin</artifactId>\n\t\t\t\t\t<version>3.5.0</version>\n\t\t\t\t</plugin>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-deploy-plugin</artifactId>\n\t\t\t\t\t<version>3.1.4</version>\n\t\t\t\t</plugin>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-compiler-plugin</artifactId>\n\t\t\t\t\t<version>3.15.0</version>\n\t\t\t\t\t<configuration>\n\t\t\t\t\t\t<encoding>UTF-8</encoding>\n\t\t\t\t\t</configuration>\n\t\t\t\t</plugin>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-jar-plugin</artifactId>\n\t\t\t\t\t<version>3.5.0</version>\n\t\t\t\t\t<configuration>\n\t\t\t\t\t\t<archive>\n\t\t\t\t\t\t\t<manifestEntries>\n\t\t\t\t\t\t\t\t<Build-Timestamp>${TIMESTAMP}</Build-Timestamp>\n\t\t\t\t\t\t\t\t<Specification-Version>${openmrs.version.shortnumericonly}</Specification-Version>\n\t\t\t\t\t\t\t\t<Specification-Vendor>${openmrs.version.long}</Specification-Vendor>\n\t\t\t\t\t\t\t</manifestEntries>\n\t\t\t\t\t\t</archive>\n\t\t\t\t\t</configuration>\n\t\t\t\t\t<executions>\n\t\t\t\t\t\t<execution>\n\t\t\t\t\t\t\t<goals>\n\t\t\t\t\t\t\t\t<goal>test-jar</goal>\n\t\t\t\t\t\t\t</goals>\n\t\t\t\t\t\t</execution>\n\t\t\t\t\t</executions>\n\t\t\t\t</plugin>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-war-plugin</artifactId>\n\t\t\t\t\t<version>3.5.1</version>\n\t\t\t\t</plugin>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-dependency-plugin</artifactId>\n\t\t\t\t\t<version>3.11.0</version>\n\t\t\t\t</plugin>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.codehaus.mojo</groupId>\n\t\t\t\t\t<artifactId>buildnumber-maven-plugin</artifactId>\n\t\t\t\t\t<version>3.3.0</version>\n\t\t\t\t\t<configuration>\n\t\t\t\t\t\t<buildNumberPropertyName>revisionNumber</buildNumberPropertyName>\n\t\t\t\t\t\t<getRevisionOnlyOnce>true</getRevisionOnlyOnce>\n\t\t\t\t\t\t<revisionOnScmFailure>0</revisionOnScmFailure>\n\t\t\t\t\t\t<shortRevisionLength>6</shortRevisionLength>\n\t\t\t\t\t</configuration>\n\t\t\t\t</plugin>\n\t\t\t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:test-suite/module/pom.xml",
+      "kind": "File",
+      "path": "test-suite/module/pom.xml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2915,
+      "excerpt": "dependency>\n\n\t\t\t<dependency>\n\t\t\t\t<groupId>org.openmrs.test</groupId>\n\t\t\t\t<artifactId>openmrs-test</artifactId>\n\t\t\t\t<version>${openmrsPlatformVersion}</version>\n\t\t\t\t<type>pom</type>\n\t\t\t\t<scope>test</scope>\n\t\t\t</dependency>\n\t\t</dependencies>\n\t</dependencyManagement>\n\n\t<build>\n\t\t<pluginManagement>\n\t\t\t<plugins>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-compiler-plugin</artifactId>\n\t\t\t\t\t<configuration>\n\t\t\t\t\t\t<target>${javaCompilerVersion}</target>\n\t\t\t\t\t\t<source>${javaCompilerVersion}</source>\n                        <encoding>${project.build.sourceEncoding}</encoding>\n\t\t\t\t\t</configuration>\n\t\t\t\t</plugin>\n                <plugin>\n                    <groupId>org.apache.maven.plugins</groupId>\n                    <artifactId>maven-jar-plugin</artifactId>\n                    <executions>\n                        <execution>\n                            <goals>\n                                <goal>test-jar</goal>\n                            </goals>\n                        </execution>\n                    </executions>\n                </plugin>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.openmrs.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-openmrs-plugin</artifactId>\n\t\t\t\t\t<version>1.0.1</version>\n\t\t\t\t</plugin>\n\t\t\t\t<plugin>\n\t\t\t\t    <groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t    <artifactId>maven-surefire-plugin</artifactId>\n\t\t\t\t    <version>3.5.6</version>\n\t\t\t\t</plugin>\n\t\t\t\t<plugin>\n\t\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t\t<artifactId>maven-deploy-plugin</artifactId>\n\t\t\t\t\t<version>3.1.4</version>\n\t\t\t\t</plugin>\n\t\t\t</plugins>\n\t\t</pluginManagement>\n\t\t<plugins>\n\t\t\t<plugin>\n\t\t\t\t<groupId>com.mycila</groupId>\n\t\t\t\t<artifactId>license-maven-plugin</artifactId>\n\t\t\t\t<configuration>\n\t\t\t\t\t<header>${project.parent.basedir}/../license-header.txt</header>\n\t\t\t\t</configuration>\n\t\t\t</plugin>\n\t\t\t<plugin>\n\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\n\t\t\t\t<artifactId>maven-deploy-plugin</artifactId>\n\t\t\t\t<configuration>\n\t\t\t\t\t<skip>true</skip>\n\t\t\t\t</configuration>\n\t\t\t</plugin>\n\t\t</plugins>\n\t</build>\n\n\t<repositories>\n\t\t<repository>\n\t\t\t<id>openmrs-repo</id>\n\t\t\t<name>OpenMRS Nexus Repository</name>\n\t\t\t<url>https://mavenrepo.openmrs.org/public</url>\n\t\t</repository>\n\t</repositories>\n\n\t<pluginRepositories>\n\t\t<pluginRepository>\n\t\t\t<id>openmrs-repo</id>\n\t\t\t<name>OpenMRS Nexus Repository</name>\n\t\t\t<url>https://mavenrepo.openmrs.org/public</url>\n\t\t\t<sn"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6534",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6534,
+      "title": "TRUNK-6512: Introduce ConceptReferenceRangeContext API",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5526,
+      "excerpt": "] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n- [x] I have **added tests** to cover my changes.\n- [x] I ran the build right before creating this pull request and added all formatting changes to my commit. The branch's `maven-java-formatter-plugin` (`eclipse/OpenMRSFormatter.xml`) and `license-maven-plugin:check` both run clean with no changes to report. Note that 2.7.x uses this formatter rather than Spotless.\n- [x] All new and existing **tests passed**. The full `api` module suite ran 4963 tests with a single failure, `OpenmrsConfigurationFactoryTest.getConfigurationFiles_shouldIgnoreUnreadableFiles`, which is environmental (it runs as root, so `setReadable(false)` does not actually make the file unreadable) and reproduces identically on unmodified `2.7.x`. `ConceptServiceTest`, `ConceptServiceImplTest`, `ConceptReferenceRangeUtilityTest`, `ObsValidatorTest`, `ObsServiceTest`, `ObsTest`, and `PatientServiceTest` are all green.\n- [x] My pull request is **based on the latest changes** of the `2.7.x` branch.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01LpFQ9s15PB9Q9gbUnL6VAr\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01LpFQ9s15PB9Q9gbUnL6VAr)_\n\n[TRUNK-6795]: ``https://openmrs.atlassian.net/browse/TRUNK-6795?atlOrigin=eyJpIjoiNWRkNTljNzYxNjVmNDY3MDlhMDU5Y2ZhYzA5YTRkZjUiLCJwIjoiZ2l0aHViLWNvbS1KU1cifQ``"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6549",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6549,
+      "title": "maven(deps): bump org.apache.maven.plugins:maven-surefire-plugin from 3.5.6 to 3.6.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Bumps [org.apache.maven.plugins:maven-surefire-plugin](https://github.com/apache/maven-surefire) from 3.5.6 to 3.6.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/apache/maven-surefire/releases\">org.apache.maven.plugins:maven-surefire-plugin's releases</a>.</em></p>\n<blockquote>\n<h2>3.6.0</h2>\n<!-- raw HTML omitted -->\n<p>Please refer to the main page for what's new <a href=\"https://maven.apache.org/surefire/\">https://maven.apache.org/surefire/</a>\nAnd the migration page <a href=\"https://maven.apache.org/surefire/maven-surefire-plugin/whats-new-3-6-0.html\">https://maven.apache.org/surefire/maven-surefire-plugin/whats-new-3-6-0.html</a></p>\n<h2>🚀 New features and improvements</h2>\n<ul>\n<li>Fix <a href=\"https://redirect.github.com/apache/maven-surefire/issues/3303\">#3303</a>: distinguish JUnit 6 ParameterizedClass invocations (<a href=\"https://redirect.github.com/apache/maven-surefire/pull/3432\">#3432</a>) <a href=\"https://github.com/AzazelSensei\"><code>@​AzazelSensei</code></a></li>\n<li><a href=\"https://issues.apache.org/jira/browse/SUREFIRE-1639\">[SUREFIRE-1639]</a> - Add ability to configure JUnit 5 TestExecutionListener (<a href=\"https://redirect.github.com/apache/maven-surefire/pull/3438\">#3438</a>) <a href=\"https://github.com/pan3793\"><code>@​pan3793</code></a></li>\n<li>Issue <a href=\"https://redirect.github.com/apache/maven-surefire/issues/838\">#838</a> Implement extension point to run diagnosis tools when forked JVM times out (<a href=\"https://redirect.github.com/apache/maven-surefire/pull/3372\">#3372</a>) <a href=\"https://github.com/olamy\"><code>@​olamy</code></a></li>\n<li><a href=\"https://issues.apache.org/jira/browse/SUREFIRE-2148\">[SUREFIRE-2148]</a> - Verify recovered BeforeAll does not fail build (<a href=\"https://redirect.github.com/apache/maven-surefire/pull/3419\">#3419</a>) <a href=\"https://github.com/wilx\"><code>@​wilx</code></a></li>\n<li><a href=\"https://issues.apache.org/jira/browse/SUREFIRE-823\">[SUREFIRE-823]</a> - Decouple -DskipTests from Failsafe plugin (<a href=\"https://redirect.github.com/apache/maven-surefire/pull/3371\">#3371</a>) <a href=\"https://github.com/olamy\"><code>@​olamy</code></a></li>\n<li>Use StackWalker in StackTraceProvider when available (Java 9+) (<a href=\"https://redirect.github.com/apache/maven-surefire/pull/3374\">#3374</a>) <a href=\"https://github.com/olamy\"><code>@​olam"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6648,
+      "title": "maven(deps): bump org.owasp.encoder:encoder from 1.4.1 to 1.5.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6406,
+      "excerpt": "l Maven artifacts remain immutable.</li>\n<li>build: remove advisory-affected dependencies from active Maven plugin realms, including the separately invoked compatibility-fixture downloader; invoke the same japicmp engine without its obsolete reporting wrapper; and submit only actually invoked build plugins to GitHub's dependency graph. Shared inherited tooling is recorded once, and no Dependabot alert is dismissed or suppressed.</li>\n<li>build/compatibility: update the published JSP provided API to 2.3.3 and the Jakarta test classpath to Servlet 6.1.0 and EL 6.0.1, while retaining independent JSP 2.2.1 and Java 8-compatible Jakarta minimum-consumer fixtures. Japicmp now resolves distinct old/new support classpaths so the 1.4.1 comparison remains complete. Dependabot scans the root Maven reactor once, rather than opening duplicate module proposals, and continues to scan the standalone compatibility-fixture project separately.</li>\n<li>feat: all four <code>forJavaScript*</code> methods encode dollar sign (<code>$</code>) as <code>\\x24</code>, backtick as <code>\\x60</code>, and opening brace (<code>{</code>) as <code>\\x7b</code> <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/129\">#129</a>. Escaping <code>{</code> prevents input after a trusted <code>$</code> from completing <code>${...}</code>. Encoded output now supports literal text in ordinary (untagged) template literals as well as single- and double-quoted strings. This changes the encoded output while preserving its decoded JavaScript string value. Tagged templates (including <code>String.raw</code>), <code>${...}</code> expression bodies, JSON, and script URLs are unsupported; each method's HTML context restrictions still apply.</li>\n<li>fix: all four <code>forJavaScript*</code> methods escape unpaired UTF-16 surrogates as <code>\\uXXXX</code>, preserving their JavaScript string values through UTF-8 serialization <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/135\">#135</a>, and escape DEL/C1 controls (U+007F to U+009F) as <code>\\xNN</code> <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/163\">#163</a>. Valid surrogate pairs and other non-ASCII text remain unescaped except U+2028/U+2029. These are output-fidelity changes; NEL was already ordinary JavaScript string data.</li>\n<li>fix: the HTML/block JavaScript encoders escape every ASCII charac"
+    }
+  ]
+}

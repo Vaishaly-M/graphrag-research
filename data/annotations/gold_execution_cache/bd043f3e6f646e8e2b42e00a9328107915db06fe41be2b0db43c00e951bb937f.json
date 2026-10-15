@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 56802,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 153,
+        "line": 4
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26536",
+        "path": null,
+        "offset": 1592,
+        "line": 21
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+        "path": "mlflow/environment_variables.py",
+        "offset": 17057,
+        "line": 384
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 10725,
+        "line": 234
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/projects/index.mdx",
+        "path": "docs/docs/classic-ml/projects/index.mdx",
+        "offset": 1867,
+        "line": 66
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25641",
+        "path": null,
+        "offset": 1616,
+        "line": 49
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/uv_utils.py",
+        "path": "mlflow/utils/uv_utils.py",
+        "offset": 14232,
+        "line": 442
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10725,
+      "excerpt": "itories (e.g., S3 or\nAzure Blob Storage backends), and of course the Python fluent, tracking,\nand model APIs.\n\n### Environment Setup and Python configuration\n\nHaving a standardized development environment is advisable when working\non MLflow. Creating an environment that contains the required Python\npackages (and versions), linting tools, and environment configurations\nwill help to prevent unnecessary CI failures when filing a PR. A\ncorrectly configured local environment will also allow you to run tests\nlocally in an environment that mimics that of the CI execution\nenvironment.\n\nThere are three means of setting up a base Python development environment\nfor MLflow: GitHub Codespaces, automated (through the\n[dev-env-setup.sh](https://github.com/mlflow/mlflow/tree/master/dev/dev-env-setup.sh)\nscript) or manual. Even in a manual-based approach (i.e., testing\nfunctionality of a specific version of a model flavor's package\nversion), the automated script can save a great deal of time and reduce\nerrors in creating the environment.\n\n#### GitHub Codespaces\n\n<img src=\"./assets/create-codespace.png\" width=\"60%\"/>\n\n1. Navigate to https://github.com/mlflow/mlflow.git.\n2. Above the file list, click `Code`, then select `Create codespace` and wait for your codespace to be created.\n\nSee [Quickstart for GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) for more information.\n\n#### Automated Python development environment configuration\n\nThe automated development environment setup script\n([dev-env-setup.sh](https://github.com/mlflow/mlflow/tree/master/dev/dev-env-setup.sh))\ncan be used to setup a development environment that is configured with\nall of the dependencies required and the environment configuration\nneeded to develop and locally test the Python code portions of MLflow.\nThis CLI tool's readme can be accessed via the root of the mlflow\nrepository as follows:\n\n```bash\ndev/dev-env-setup.sh -h\n```\n\nAn example usage of this script that will build a development\nenvironment using `virtualenv` and the minimum supported Python version\n(to ensure compatibility) is:\n\n```bash\ndev/dev-env-setup.sh -d .venvs/mlflow-dev -q\n```\n\nThe `-q` parameter is to \"quiet\" the pip install processes preventing\nstdout printing during installation.\n\nIt is advised to follow all of the prompts to ensure that the\nconfiguration of the environment, as well as git, are compl"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 153,
+      "excerpt": "aging, serving, and deployment.\n---\n\nimport Tabs from \"@theme/Tabs\";\nimport TabItem from \"@theme/TabItem\";\nimport TOCInline from \"@theme/TOCInline\";\nimport { APILink } from \"@site/src/components/APILink\";\n\n# Managing Dependencies in MLflow Models\n\n[MLflow Model](/ml/model) is a standard format that packages a machine learning model with its dependencies and other metadata.\nBuilding a model with its dependencies allows for reproducibility and portability across a variety of platforms and tools.\n\nWhen you create an MLflow model using the [MLflow Tracking APIs](/ml/tracking), for instance, <APILink fn=\"mlflow.pytorch.log_model\" />,\nMLflow automatically infers the required dependencies for the model flavor you're using and records them as a part of Model metadata. Then, when you\nserve the model for prediction, MLflow automatically installs the dependencies to the environment. Therefore, you normally won't need to\nworry about managing dependencies in MLflow Model.\n\nHowever, in some cases, you may need to add or modify some dependencies. This page provides a high-level description of how MLflow manages\ndependencies and guidance for how to customize dependencies for your use case.\n\n:::tip\nOne tip for improving MLflow's dependency inference accuracy is to add an `input_example` when saving your model. This enables MLflow to\nperform a model prediction before saving the model, thereby capturing the dependencies used during the prediction.\nPlease refer to [Model Input Example](/ml/model/signatures) for additional, detailed usage of this parameter.\n:::\n\n<TOCInline toc={toc} maxHeadingLevel={2} />\n\n## How MLflow Records Model Dependencies \\{#how-mlflow-records-dependencies}\n\nAn MLflow Model is saved within a specified directory with the following structure:\n\n```\nmy_model/\n├── MLmodel\n├── model.pkl\n├── conda.yaml\n├── python_env.yaml\n└── requirements.txt\n```\n\nModel dependencies are defined by the following files (For other files, please refer to the guidance provided in the section discussing [Storage Format](/ml/model#storage-format)):\n\n- `python_env.yaml` - This file contains the information required to restore the model environment using virtualenv (1) python version (2) build tools like pip, setuptools, and wheel (3) pip requirements of the model (a reference to requirements.txt)\n- `requirements.txt` - Defines the set of pip dependencies required to run the model.\n- `c"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/projects/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/projects/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1867,
+      "excerpt": "ncies needed to run the project. MLflow supports multiple environment types:\n\n| Environment                    | Use Case                         | Dependencies      |\n| ------------------------------ | -------------------------------- | ----------------- |\n| **Virtualenv** _(Recommended)_ | Python packages from PyPI        | `python_env.yaml` |\n| **Conda**                      | Python + native libraries        | `conda.yaml`      |\n| **Docker**                     | Complex dependencies, non-Python | Dockerfile        |\n| **System**                     | Use current environment          | None              |\n\n## Project Structure & Configuration\n\n### Convention-Based Projects\n\nProjects without an `MLproject` file use these conventions:\n\n```\nmy-project/\n├── train.py              # Executable entry point\n├── validate.sh           # Shell script entry point\n├── conda.yaml           # Optional: Conda environment\n├── python_env.yaml      # Optional: Python environment\n└── data/                # Project data and assets\n```\n\n**Default Behavior:**\n\n- **Name**: Directory name\n- **Entry Points**: Any `.py` or `.sh` file\n- **Environment**: Conda environment from `conda.yaml`, or Python-only environment\n- **Parameters**: Passed via command line as `--key value`\n\n### MLproject File Configuration\n\nFor advanced control, create an `MLproject` file:\n\n```yaml\nname: My ML Project\n\n# Environment specification (choose one)\npython_env: python_env.yaml\n# conda_env: conda.yaml\n# docker_env:\n#   image: python:3.9\n\nentry_points:\n  main:\n    parameters:\n      data_file: path\n      regularization: {type: float, default: 0.1}\n      max_epochs: {type: int, default: 100}\n    command: \"python train.py --reg {regularization} --epochs {max_epochs} {data_file}\"\n\n  validate:\n    parameters:\n      model_path: path\n      test_data: path\n    command: \"python validate.py {model_path} {test_data}\"\n\n  hyperparameter_search:\n    parameters:\n      search_space: uri\n      n_trials: {type: int, default: 50}\n    command: \"python hyperparam_search.py --trials {n_trials} --config {search_space}\"\n```\n\n### Parameter Types\n\nMLflow supports four parameter types with automatic validation and transformation:\n\n| Type       | Description      | Example                        | Special Handling                     |\n| ---------- | ---------------- | ------------------------------ | -------------------------------"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 56802,
+      "excerpt": " allow submitting the project for remote execution on Databricks and Kubernetes. Important By default, MLflow uses a new, temporary working directory for Git projects. This means that you should generally pass any file arguments to MLflow project using absolute, not relative, paths. If your project declares its parameters, MLflow automatically makes paths absolute for parameters of type path. Specifying Projects By default, any Git repository or local directory can be treated as an MLflow project; you can invoke any bash or Python script contained in the directory as a project entry point. The Project Directories section describes how MLflow interprets directories as projects. To provide\",1,projects.html\nWhat are the project environments supported by MLflow?,\"MLflow currently supports the following project environments: Virtualenv environment, conda environment, Docker container environment, and system environment. Virtualenv environments support Python packages available on PyPI. Docker containers allow you to capture non-Python dependencies such as Java libraries.\",\"you can invoke any bash or Python script contained in the directory as a project entry point. The Project Directories section describes how MLflow interprets directories as projects. To provide additional control over a project's attributes, you can also include an MLproject file in your project's repository or directory. Finally, MLflow projects allow you to specify the software environment that is used to execute project entry points. Project Environments MLflow currently supports the following project environments: Virtualenv environment, conda environment, Docker container environment, and system environment. Virtualenv environment (preferred)Virtualenv environments support Python packages available on PyPI. When an MLflow Project specifies a Virtualenv environment, MLflow will download the specified version of Python by using pyenv and create an isolated environment that contains the project dependencies using virtualenv, activating it as the execution environment prior to running the project code. You can specify a Virtualenv environment for your MLflow Project by including a python_env entry in your MLproject file. For details, see the Project Directories and Specifying an Environment sections. Docker container environmentDocker containers allow you to capture non-Python dependencies suc"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+      "kind": "File",
+      "path": "mlflow/environment_variables.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 17057,
+      "excerpt": "NAI_SECRET_SCOPE\", str, None)\n\n#: (Experimental, may be changed or removed)\n#: Specifies the download options to be used by pip wheel when `add_libraries_to_model` is used to\n#: create and log model dependencies as model artifacts. The default behavior only uses dependency\n#: binaries and no source packages.\n#: (default: ``--only-binary=:all:``).\nMLFLOW_WHEELED_MODEL_PIP_DOWNLOAD_OPTIONS = _EnvironmentVariable(\n    \"MLFLOW_WHEELED_MODEL_PIP_DOWNLOAD_OPTIONS\", str, \"--only-binary=:all:\"\n)\n\n# Specifies whether or not to use multipart download when downloading a large file on Databricks.\nMLFLOW_ENABLE_MULTIPART_DOWNLOAD = _BooleanEnvironmentVariable(\n    \"MLFLOW_ENABLE_MULTIPART_DOWNLOAD\", True\n)\n\n# Specifies whether or not to use multipart upload when uploading large artifacts.\nMLFLOW_ENABLE_MULTIPART_UPLOAD = _BooleanEnvironmentVariable(\"MLFLOW_ENABLE_MULTIPART_UPLOAD\", True)\n\n#: Specifies whether or not to use multipart upload for proxied artifact access.\n#: (default: ``False``)\nMLFLOW_ENABLE_PROXY_MULTIPART_UPLOAD = _BooleanEnvironmentVariable(\n    \"MLFLOW_ENABLE_PROXY_MULTIPART_UPLOAD\", False\n)\n\n#: Specifies whether or not to use multipart download for proxied artifact access.\n#: When enabled, large files (>= MLFLOW_MULTIPART_DOWNLOAD_MINIMUM_FILE_SIZE) are downloaded\n#: in parallel chunks directly from cloud storage using presigned URLs, bypassing the tracking\n#: server. This reduces load on the tracking server for large artifact downloads.\n#: (default: ``False``)\nMLFLOW_ENABLE_PROXY_MULTIPART_DOWNLOAD = _BooleanEnvironmentVariable(\n    \"MLFLOW_ENABLE_PROXY_MULTIPART_DOWNLOAD\", False\n)\n\n#: Server-side: Time-to-live in seconds for presigned download URLs generated by the\n#: MLflow tracking server. (default: ``300``)\nMLFLOW_PRESIGNED_DOWNLOAD_URL_TTL_SECONDS = _EnvironmentVariable(\n    \"MLFLOW_PRESIGNED_DOWNLOAD_URL_TTL_SECONDS\", int, 300\n)\n\n#: Private environment variable that's set to ``True`` while running tests.\n_MLFLOW_TESTING = _BooleanEnvironmentVariable(\"MLFLOW_TESTING\", False)\n\n#: Specifies the username used to authenticate with a tracking server.\n#: (default: ``None``)\nMLFLOW_TRACKING_USERNAME = _EnvironmentVariable(\"MLFLOW_TRACKING_USERNAME\", str, None)\n\n#: Specifies the password used to authenticate with a tracking server.\n#: (default: ``None``)\nMLFLOW_TRACKING_PASSWORD = _EnvironmentVariable(\"MLFLOW_TRACKING_PASSWORD\", str, None)\n\n#: Specifies "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/uv_utils.py",
+      "kind": "File",
+      "path": "mlflow/utils/uv_utils.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14232,
+      "excerpt": "ject_dir}\")\n        _logger.debug(f\"uv sync command: {' '.join(str(c) for c in cmd)}\")\n\n        subprocess.run(\n            cmd,\n            cwd=project_dir,\n            capture_output=capture_output,\n            check=True,\n            text=True,\n            # Set UV_PROJECT_ENVIRONMENT to install packages into python environment at\n            # `project_dir` path instead of the default `{cwd}/.venv` path.\n            env={**os.environ, \"UV_PROJECT_ENVIRONMENT\": str(project_dir)},\n        )\n\n        _logger.info(\"uv sync completed successfully\")\n        return True\n\n    except subprocess.CalledProcessError as e:\n        _logger.warning(f\"uv sync failed with exit code {e.returncode}: {e.stderr}\")\n        return False\n    except Exception as e:\n        _logger.warning(f\"uv sync failed: {e}\")\n        return False\n\n\ndef has_uv_lock_artifact(model_path: str | Path) -> bool:\n    \"\"\"Check if a model has a uv.lock artifact.\"\"\"\n    return (Path(model_path) / _UV_LOCK_FILE).exists()\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25641",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 25641,
+      "title": "[BUG] mlflow-skinny builds an empty wheel on Windows checkouts without symlink privilege",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1616,
+      "excerpt": " a file, not a package directory, so discovery finds nothing:\n\n>>> find_packages(where=\"libs/skinny\", include=[\"mlflow\", \"mlflow.*\"])\n[]\nExpected: the build fails, or resolves the real package tree.\n\nActual: the build exits 0 and produces a wheel containing no Python modules at all. The wheel still declares the mlflow console entry point, so installing it yields a working-looking install whose CLI cannot import anything.\n\nPublished PyPI artifacts are unaffected — they are built on Linux. The impact is on anyone building or installing from source on Windows.\n\nWhy CI does not catch it\n.github/workflows/build-wheel.yml builds the skinny and tracing variants on runs-on: ubuntu-latest, where symlinks resolve normally. No job builds either variant on Windows, so this is invisible to CI by construction — it is not a gap that a green Windows job would close, because the wheel build never runs there at all.\n\nNote on a recent migration\nThese two packages moved from setup.py to a generated pyproject.toml, and the behaviour carried straight through the migration: [tool.setuptools.packages.find] with where = [\".\"] fails exactly the way the previous build did.\n\n### Tracking information\n\nNot applicable — this is a build/packaging defect, not a tracking one.\n\n### Code to reproduce issue\n\nOn Windows, as a normal (non-elevated) user with Developer Mode off:\n\ngit clone https://github.com/mlflow/mlflow\ncd mlflow\\libs\\skinny\npython -c \"from setuptools import build_meta; print(build_meta.build_wheel('dist'))\"\npython -c \"import zipfile,glob; w=glob.glob('dist/*.whl')[0]; n=zipfile.ZipFile(w).namelist(); print(len([x for x in n if x.endswith('.py')]), 'py files')\"\nPrints 0 py files. pip install ./libs/skinny reproduces the same way, as does libs/tracing.\n\n### Stack trace\n\nThere is no stack trace, and that is the defect being reported: the build does not raise, it exits 0 and silently produces an empty wheel. The closest thing to a traceback is the build output and the resulting wheel contents:\n\nbuilt: mlflow_skinny-3.16.1.dev0-py3-none-any.whl\n  entries: 6 | .py files: 0\n    mlflow_skinny-3.16.1.dev0.dist-info/licenses/LICENSE.txt\n    mlflow_skinny-3.16.1.dev0.dist-info/METADATA\n    mlflow_skinny-3.16.1.dev0.dist-info/WHEEL\n    mlflow_skinny-3.16.1.dev0.dist-info/entry_points.txt\n    mlflow_skinny-3.16.1.dev0.dist-info/top_level.txt\n    mlflow_skinny-3.16.1.dev0.dist-info/RECORD\nA "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26536",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26536,
+      "title": "Build the sandbox fallback image from the server's own source",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1592,
+      "excerpt": "ent build installs from its own source.** `MLFLOW_HOME` still takes precedence for any version, as before. Without it, a development build installs from the source checkout the server runs from. A checkout is detected from the `mlflow` package's location, when its parent has a `pyproject.toml` that declares `name = \"mlflow\"`. Only a development build installed into site-packages still falls back to the development branch, and it now logs a warning saying so. Released versions are unchanged and still install `mlflow==<version>`.\n- **Only the package is copied.** The build context gets `pyproject.toml`, `README.md`, `LICENSE.txt` and the `mlflow/` package. It skips the non-Python parts of the package (the frontend and the Java and R clients), caches, and SQLite files (`*.db`, `*.db-*`, `*.sqlite*`). Symlinks are kept as links, so a link pointing outside the tree never copies its target. A checkout a server runs from can also hold that server's local data, such as `mlflow.db` (the default tracking store), `basic_auth.db` or `mlartifacts/`. Those must never end up in an image that runs untrusted code. Copying the whole checkout (with `.dockerignore`) would include them, and would also follow the `libs/*/mlflow` symlinks. On a checkout this makes the context 19 MB, compared with 290 MB for a full copy.\n- **A failed build shows its output.** The error now includes the last 30 lines of the `docker build` output, so pip's actual error reaches the user.\n- **The `MLFLOW_SANDBOX_DOCKER_IMAGE` docstring now describes this.** It also notes that an existing image is not rebuilt when MLflow changes, so it has to be deleted to pick up new code.\n\nThe model-build path (`mlflow models build-docker`) shares `_pip_mlflow_install_step` and is unchanged. It still copies the whole `MLFLOW_HOME` tree, and fixing that belongs in a separate PR.\n\nOne behavior change for `MLFLOW_HOME`: it must now be an MLflow repository root containing `pyproject.toml`, `README.md`, `LICENSE.txt` and `mlflow/`. Before, only `pyproject.toml` was required, and the whole tree minus `.dockerignore` was copied.\n\n### How is this PR tested?\n\n- [x] Existing unit/integration tests\n- [x] New unit/integration tests\n- [x] Manual tests\n\n- `tests/server/sandbox/test_container.py`: 58 passed, both with `MLFLOW_HOME` unset and with it set to the repository (as CI sets it). New tests cover:\n  - installing from `MLFLOW_"
+    }
+  ]
+}

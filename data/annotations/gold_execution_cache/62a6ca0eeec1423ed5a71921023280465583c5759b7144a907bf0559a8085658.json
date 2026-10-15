@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/fab/src/airflow/providers/fab/auth_manager/security_manager/override.py",
+        "path": "providers/fab/src/airflow/providers/fab/auth_manager/security_manager/override.py",
+        "offset": 70851,
+        "line": 1740
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/taskinstance.py",
+        "path": "airflow-core/src/airflow/models/taskinstance.py",
+        "offset": 60411,
+        "line": 1481
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/definitions/dag.py",
+        "path": "task-sdk/src/airflow/sdk/definitions/dag.py",
+        "offset": 825,
+        "line": 20
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:devel-common/src/tests_common/pytest_plugin.py",
+        "path": "devel-common/src/tests_common/pytest_plugin.py",
+        "offset": 35249,
+        "line": 885
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/core-concepts/tasks.rst",
+        "path": "airflow-core/docs/core-concepts/tasks.rst",
+        "offset": 3410,
+        "line": 66
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/execution_time/task_runner.py",
+        "path": "task-sdk/src/airflow/sdk/execution_time/task_runner.py",
+        "offset": 627,
+        "line": 14
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+        "path": "java-sdk/README.md",
+        "offset": 4998,
+        "line": 149
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/bases/operator.py",
+        "path": "task-sdk/src/airflow/sdk/bases/operator.py",
+        "offset": 608,
+        "line": 13
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/core-concepts/tasks.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/core-concepts/tasks.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3410,
+      "excerpt": "antiated into a :ref:`Dag Run <concepts-dag-run>` each time it runs, the tasks under a Dag are instantiated into *Task Instances*.\n\nAn instance of a Task is a specific run of that task for a given Dag (and thus for a given data interval). They are also the representation of a Task that has *state*, representing what stage of the lifecycle it is in.\n\n.. _concepts:task-states:\n\nThe possible states for a Task Instance are:\n\n* ``none``: The Task has not yet been queued for execution (its dependencies are not yet met)\n* ``scheduled``: The scheduler has determined the Task's dependencies are met and it should run\n* ``queued``: The task has been assigned to an Executor and is awaiting a worker\n* ``running``: The task is running on a worker (or on a local/synchronous executor)\n* ``success``: The task finished running without errors\n* ``restarting``: The task was externally requested to restart when it was running\n* ``failed``: The task had an error during execution and failed to run\n* ``skipped``: The task was skipped due to branching, LatestOnly, or similar.\n* ``upstream_failed``: An upstream task failed and the :ref:`Trigger Rule <concepts:trigger-rules>` says we needed it\n* ``up_for_retry``: The task failed, but has retry attempts left and will be rescheduled.\n* ``up_for_reschedule``: The task is a :doc:`Sensor <sensors>` that is in ``reschedule`` mode\n* ``deferred``: The task has been :doc:`deferred to a trigger <../authoring-and-scheduling/deferring>`\n* ``awaiting_input``: The task is a :doc:`Human-in-the-loop <../tutorial/hitl>` task waiting for a human response. It is managed by the scheduler and uses neither a worker slot nor the triggerer.\n* ``removed``: The task has vanished from the Dag since the run started\n\n.. image:: /img/diagram_task_lifecycle.png\n\nIdeally, a task should flow from ``none``, to ``scheduled``, to ``queued``, to ``running``, and finally to ``success``.\n\nWhen any custom Task (Operator) is running, it will get a copy of the task instance passed to it; as well as being able to inspect task metadata, it also contains methods for things like :doc:`xcoms`.\n\n\nRelationship Terminology\n~~~~~~~~~~~~~~~~~~~~~~~~\n\nFor any given Task Instance, there are two types of relationships it has with other instances.\n\nFirstly, it can have *upstream* and *downstream* tasks::\n\n    task1 >> task2 >> task3\n\nWhen a Dag runs, it will create instances for each of th"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/taskinstance.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/models/taskinstance.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 60411,
+      "excerpt": "       test_mode=test_mode,\n            hostname=get_hostname(),\n            pool=pool,\n            external_executor_id=external_executor_id,\n            session=session,\n        )\n\n    def emit_state_change_metric(self, new_state: TaskInstanceState) -> None:\n        \"\"\"\n        Send a time metric representing how much time a given state transition took.\n\n        The previous state and metric name is deduced from the state the task was put in.\n\n        :param new_state: The state that has just been set for this task.\n            We do not use `self.state`, because sometimes the state is updated directly in the DB and not in\n            the local TaskInstance object.\n            Supported states: QUEUED and RUNNING\n        \"\"\"\n        if self.end_date:\n            # if the task has an end date, it means that this is not its first round.\n            # we send the state transition time metric only on the first try, otherwise it gets more complex.\n            return\n\n        # switch on state and deduce which metric to send\n        if new_state == TaskInstanceState.RUNNING:\n            metric_name = \"queued_duration\"\n            if self.queued_dttm is None:\n                # this should not really happen except in tests or rare cases,\n                # but we don't want to create errors just for a metric, so we just skip it\n                self.log.warning(\n                    \"cannot record %s for task %s because previous state change time has not been saved\",\n                    metric_name,\n                    self.task_id,\n                )\n                return\n            timing = timezone.utcnow() - self.queued_dttm\n        elif new_state == TaskInstanceState.QUEUED:\n            metric_name = \"scheduled_duration\"\n            if self.scheduled_dttm is None:\n                self.log.warning(\n                    \"cannot record %s for task %s because previous state change time has not been saved\",\n                    metric_name,\n                    self.task_id,\n                )\n                return\n            timing = timezone.utcnow() - self.scheduled_dttm\n        else:\n            raise NotImplementedError(\"no metric emission setup for state %s\", new_state)\n\n        stats.timing(\n            f\"task.{metric_name}\",\n            timing,\n            tags={**self.stats_tags, \"queue\": self.queue},\n        )\n\n    def clear_next_method_args(self) -> None:\n "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:devel-common/src/tests_common/pytest_plugin.py",
+      "kind": "File",
+      "path": "devel-common/src/tests_common/pytest_plugin.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 35249,
+      "excerpt": " it can only be dropped after the last referencing Dag is gone.\n    \"\"\"\n    from sqlalchemy import delete, func, select\n\n    from airflow.models.dag import DagModel\n    from airflow.models.dagbundle import DagBundleModel\n\n    if not session.scalar(\n        select(func.count()).select_from(DagModel).where(DagModel.bundle_name == bundle_name)\n    ):\n        session.execute(delete(DagBundleModel).where(DagBundleModel.name == bundle_name))\n\n\n@pytest.fixture\ndef dag_maker(request) -> Generator[DagMaker, None, None]:\n    \"\"\"\n    Fixture to help create DAG, DagModel, and SerializedDAG automatically.\n\n    You have to use the dag_maker as a context manager and it takes\n    the same argument as DAG::\n\n        with dag_maker(dag_id=\"mydag\") as dag:\n            task1 = EmptyOperator(task_id=\"mytask\")\n            task2 = EmptyOperator(task_id=\"mytask2\")\n\n    If the DagModel you want to use needs different parameters than the one\n    automatically created by the dag_maker, you have to update the DagModel as below::\n\n        dag_maker.dag_model.is_active = False\n        session.merge(dag_maker.dag_model)\n        session.commit()\n\n    For any test you use the dag_maker, make sure to create a DagRun::\n\n        dag_maker.create_dagrun()\n\n    The dag_maker.create_dagrun takes the same arguments as dag.create_dagrun\n\n    If you want to operate on serialized DAGs, then either pass\n    ``serialized=True`` to the ``dag_maker()`` call, or you can mark your\n    test/class/file with ``@pytest.mark.need_serialized_dag(True)``. In both of\n    these cases the ``dag`` returned by the context manager will be a\n    lazily-evaluated proxy object to the SerializedDAG.\n    \"\"\"\n    import lazy_object_proxy\n\n    # IMPORTANT: Delay _all_ imports from `airflow.*` to _inside a method_.\n    # This fixture is \"called\" early on in the pytest collection process, and\n    # if we import airflow.* here the wrong (non-test) config will be loaded\n    # and \"baked\" in to various constants\n    from tests_common.test_utils.version_compat import (\n        AIRFLOW_V_3_0_PLUS,\n        AIRFLOW_V_3_1_PLUS,\n        AIRFLOW_V_3_2_PLUS,\n        AIRFLOW_V_3_3_PLUS,\n        NOTSET,\n    )\n\n    want_serialized = False\n    want_activate_assets = True  # Only has effect if want_serialized=True on Airflow 3.\n\n    # Allow changing default serialized behaviour with `@pytest.mark.need_serialized_dag` or\n    # `@pytest.mark.nee"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+      "kind": "File",
+      "path": "java-sdk/README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4998,
+      "excerpt": "g the vote so reviewers can check out the\nexact source being voted on.\n\n```bash\ngit tag -s java-sdk/<VERSION>-rc<N> -m \"Java SDK <VERSION> RC <N>\"\ngit push upstream java-sdk/<VERSION>-rc<N>\n```\n\n### Verify the POM locally\n\nBefore touching any remote repository, publish to your local Maven cache and\ninspect the generated POM:\n\n```bash\nrm -rf ~/.m2/repository/org/apache/airflow/  # Start clean.\n\n./gradlew publishToMavenLocal -PskipSigning=true\n\n# The airflow-sdk runtime.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk/*/airflow-sdk-*.pom\n\n# The bill of materials of airflow-sdk\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-bom/*/*.pom\n\n# The annotation processor for the builder pattern.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-processor/*/airflow-sdk-*.pom\n\n# The Gradle plugin for bundling.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-gradle-plugin/*/airflow-sdk-*.pom\n\n# The Gradle plugin's registration.\nless ~/.m2/repository/org/apache/airflow/sdk/org.apache.airflow.sdk.gradle.plugin/*/*.pom\n```\n\nCheck that the coordinates, description, license, SCM, and organization fields\nlook correct.\n\n### Dry-run against a local repository\n\nTo test the full publish flow without touching ASF infrastructure, override the\nrepository URL to a local directory\n\n```bash\nrm -rf /tmp/local-maven-repo  # Start clean.\n./gradlew publish -PmavenUrl=file:///tmp/local-maven-repo -PskipSigning=true\nls /tmp/local-maven-repo/org/apache/airflow/\n# This should contain the same components in ~/.m2 as inspected in the previous step.\n```\n\n*NOTE:* Signing is not required since nothing goes to Maven Central. If you want\nto test signing, set the GPG private key and passphrase as described in the next\nsection, and remove `-PskipSigning=true` from the above command.\n\n### Publish to ASF Nexus staging\n\nStore the credentials in `~/.gradle/gradle.properties` so they are not exposed\nin your shell history:\n\n```properties\nmavenUsername=your-asf-nexus-token-username\nmavenPassword=your-asf-nexus-token-password\nsigning.password=your-gpg-key-passphrase\n```\n\nThen stage and close the release. The\n[Gradle Nexus Publish Plugin](https://github.com/gradle-nexus/publish-plugin)\n(applied in the root `build.gradle.kts`) gathers every module into one staging\nrepository, so there is no per-module fan-out to reconcile.\n\n```bash\n./gradlew publishToApache closeApacheStagingRepository \\\n  --no-"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/fab/src/airflow/providers/fab/auth_manager/security_manager/override.py",
+      "kind": "File",
+      "path": "providers/fab/src/airflow/providers/fab/auth_manager/security_manager/override.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 70851,
+      "excerpt": "        )\n                .unique()\n                .one_or_none()\n            )\n\n        return None\n\n    def get_resource_permissions(self, resource: Resource) -> Permission:\n        \"\"\"\n        Retrieve permission pairs associated with a specific resource object.\n\n        :param resource: Object representing a single resource.\n        \"\"\"\n        return self.session.scalars(select(self.permission_model).filter_by(resource_id=resource.id)).all()\n\n    def create_permission(self, action_name, resource_name) -> Permission | None:\n        \"\"\"\n        Add a permission on a resource to the backend.\n\n        :param action_name:\n            name of the action to add: 'can_add','can_edit' etc...\n        :param resource_name:\n            name of the resource to add\n        \"\"\"\n        if not (action_name and resource_name):\n            return None\n        perm = self.get_permission(action_name, resource_name)\n        if perm:\n            return perm\n        resource = self.create_resource(resource_name)\n        if resource is None:\n            log.error(const.LOGMSG_ERR_SEC_ADD_PERMVIEW, \"Resource creation failed %s\", resource_name)\n            return None\n        action = self.create_action(action_name)\n        perm = self.permission_model()\n        perm.resource_id, perm.action_id = resource.id, action.id\n        try:\n            self.session.add(perm)\n            self.session.commit()\n            log.info(const.LOGMSG_INF_SEC_ADD_PERMVIEW, perm)\n            return perm\n        except IntegrityError:\n            self.session.rollback()\n            existing = self.get_permission(action_name, resource_name)\n            if existing is not None:\n                log.info(\n                    \"Permission '%s'->'%s' was created by a concurrent worker, using existing record\",\n                    action_name,\n                    resource_name,\n                )\n                return existing\n            raise\n        except Exception as e:\n            log.error(const.LOGMSG_ERR_SEC_ADD_PERMVIEW, e)\n            self.session.rollback()\n            return None\n\n    def delete_permission(self, action_name: str, resource_name: str) -> None:\n        \"\"\"\n        Delete the permission linking an action->resource pair.\n\n        Doesn't delete the underlying action or resource.\n\n        :param action_name: Name of existing action\n        :param resource_name: Name of existing resou"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/bases/operator.py",
+      "kind": "File",
+      "path": "task-sdk/src/airflow/sdk/bases/operator.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 608,
+      "excerpt": "THOUT WARRANTIES OR CONDITIONS OF ANY\n# KIND, either express or implied.  See the License for the\n# specific language governing permissions and limitations\n# under the License.\n\nfrom __future__ import annotations\n\nimport abc\nimport asyncio\nimport collections.abc\nimport contextlib\nimport copy\nimport inspect\nimport sys\nimport warnings\nfrom asyncio import AbstractEventLoop\nfrom collections.abc import Callable, Collection, Generator, Iterable, Mapping, Sequence\nfrom contextvars import ContextVar\nfrom dataclasses import dataclass, field\nfrom datetime import datetime, timedelta\nfrom enum import Enum\nfrom functools import total_ordering, wraps\nfrom types import FunctionType\nfrom typing import TYPE_CHECKING, Any, ClassVar, Final, NoReturn, TypeVar, cast\n\nimport attrs\n\nfrom airflow.sdk import TriggerRule, timezone\nfrom airflow.sdk._shared.secrets_masker import redact\nfrom airflow.sdk.definitions._internal.abstractoperator import (\n    DEFAULT_EMAIL_ON_FAILURE,\n    DEFAULT_EMAIL_ON_RETRY,\n    DEFAULT_IGNORE_FIRST_DEPENDS_ON_PAST,\n    DEFAULT_OWNER,\n    DEFAULT_POOL_NAME,\n    DEFAULT_POOL_SLOTS,\n    DEFAULT_PRIORITY_WEIGHT,\n    DEFAULT_QUEUE,\n    DEFAULT_RETRIES,\n    DEFAULT_RETRY_DELAY,\n    DEFAULT_TASK_EXECUTION_TIMEOUT,\n    DEFAULT_TRIGGER_RULE,\n    DEFAULT_WAIT_FOR_PAST_DEPENDS_BEFORE_SKIPPING,\n    DEFAULT_WEIGHT_RULE,\n    AbstractOperator,\n    DependencyMixin,\n    TaskStateChangeCallback,\n)\nfrom airflow.sdk.definitions._internal.decorators import fixup_decorator_warning_stack\nfrom airflow.sdk.definitions._internal.node import validate_key\nfrom airflow.sdk.definitions._internal.setup_teardown import SetupTeardownContext\nfrom airflow.sdk.definitions._internal.types import NOTSET, validate_instance_args\nfrom airflow.sdk.definitions.edges import EdgeModifier\nfrom airflow.sdk.definitions.mappedoperator import OperatorPartial, validate_mapping_kwargs\nfrom airflow.sdk.definitions.param import ParamsDict\nfrom airflow.sdk.exceptions import RemovedInAirflow4Warning\n\n# Databases do not support arbitrary precision integers, so we need to limit the range of priority weights.\n# postgres: -2147483648 to +2147483647 (see https://www.postgresql.org/docs/current/datatype-numeric.html)\n# mysql: -2147483648 to +2147483647 (see https://dev.mysql.com/doc/refman/8.4/en/integer-types.html)\n# sqlite: -9223372036854775808 to +9223372036854775807 (see https://sqlite.org/datatype3.html)\nDB_S"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/definitions/dag.py",
+      "kind": "File",
+      "path": "task-sdk/src/airflow/sdk/definitions/dag.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 825,
+      "excerpt": "port copy\nimport enum\nimport functools\nimport itertools\nimport json\nimport logging\nimport os\nimport sys\nimport warnings\nimport weakref\nfrom collections import abc, defaultdict, deque\nfrom collections.abc import Callable, Collection, Iterable, MutableSet\nfrom datetime import datetime, timedelta\nfrom inspect import signature\nfrom typing import TYPE_CHECKING, Any, ClassVar, TypeGuard, Union, cast, overload\nfrom urllib.parse import urlsplit\nfrom uuid import UUID\n\nimport attrs\nimport jinja2\nfrom dateutil.relativedelta import relativedelta\n\nfrom airflow import settings\nfrom airflow.sdk import TaskInstanceState, TriggerRule, XComArg\nfrom airflow.sdk.bases.operator import BaseOperator\nfrom airflow.sdk.bases.timetable import BaseTimetable\nfrom airflow.sdk.definitions._internal.node import DAGNode, validate_key\nfrom airflow.sdk.definitions._internal.types import NOTSET, ArgNotSet, is_arg_set\nfrom airflow.sdk.definitions.asset import AssetAll, BaseAsset\nfrom airflow.sdk.definitions.context import Context\nfrom airflow.sdk.definitions.deadline import DeadlineAlert\nfrom airflow.sdk.definitions.param import DagParam, ParamsDict\nfrom airflow.sdk.definitions.timetables.assets import AssetTriggeredTimetable\nfrom airflow.sdk.definitions.timetables.simple import ContinuousTimetable, NullTimetable, OnceTimetable\nfrom airflow.sdk.exceptions import (\n    AirflowDagCycleException,\n    DuplicateTaskIdFound,\n    FailFastDagInvalidTriggerRule,\n    NodeNotFound,\n    ParamValidationError,\n    RemovedInAirflow4Warning,\n    TaskNotFound,\n)\n\nif TYPE_CHECKING:\n    from re import Pattern\n    from typing import TypeAlias, TypeVar\n\n    from pendulum.tz.timezone import FixedTimezone, Timezone\n    from typing_extensions import Self, TypeIs\n\n    from airflow.models.taskinstance import TaskInstance as SchedulerTaskInstance\n    from airflow.sdk.api.datamodels._generated import DagRunType\n    from airflow.sdk.definitions.decorators import TaskDecoratorCollection\n    from airflow.sdk.definitions.edges import EdgeInfoType\n    from airflow.sdk.definitions.mappedoperator import MappedOperator\n    from airflow.sdk.definitions.taskgroup import TaskGroup\n    from airflow.sdk.definitions.xcom_arg import PlainXComArg\n    from airflow.sdk.execution_time.supervisor import TaskRunResult\n    from airflow.timetables.base import DataInterval, Timetable as CoreTimetable\n\n    Operator: TypeAlias = BaseOperator | Map"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/execution_time/task_runner.py",
+      "kind": "File",
+      "path": "task-sdk/src/airflow/sdk/execution_time/task_runner.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 627,
+      "excerpt": "OR CONDITIONS OF ANY\n# KIND, either express or implied.  See the License for the\n# specific language governing permissions and limitations\n# under the License.\n\"\"\"The entrypoint for the actual task execution process.\"\"\"\n\nfrom __future__ import annotations\n\nimport contextvars\nimport functools\nimport inspect\nimport os\nimport sys\nimport time\nfrom collections.abc import Callable, Iterable, Iterator, Mapping\nfrom contextlib import ExitStack, contextmanager, suppress\nfrom datetime import datetime, timedelta, timezone\nfrom itertools import product\nfrom pathlib import Path\nfrom typing import TYPE_CHECKING, Annotated, Any, Literal\nfrom urllib.parse import quote\n\nimport attrs\nimport lazy_object_proxy\nimport structlog\nfrom opentelemetry import trace\nfrom opentelemetry.trace import INVALID_SPAN, Status, StatusCode\nfrom opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator\nfrom pydantic import AwareDatetime, ConfigDict, Field, JsonValue, TypeAdapter\nfrom structlog.contextvars import bind_contextvars\n\nfrom airflow.dag_processing.bundles.base import BaseDagBundle, BundleVersionLock\nfrom airflow.dag_processing.bundles.manager import DagBundlesManager\nfrom airflow.sdk._shared.observability.metrics import stats\nfrom airflow.sdk._shared.observability.traces import get_task_span_detail_level\nfrom airflow.sdk._shared.template_rendering import truncate_rendered_value\nfrom airflow.sdk.api.client import get_hostname, getuser\nfrom airflow.sdk.api.datamodels._generated import (\n    AssetProfile,\n    DagRun,\n    PreviousTIResponse,\n    TaskInstance,\n    TaskInstanceState,\n    TIRunContext,\n)\nfrom airflow.sdk.bases.operator import BaseOperator, ExecutorSafeguard\nfrom airflow.sdk.bases.xcom import BaseXCom\nfrom airflow.sdk.configuration import conf\nfrom airflow.sdk.definitions._internal.dag_parsing_context import _airflow_parsing_context_manager\nfrom airflow.sdk.definitions._internal.types import NOTSET, ArgNotSet, is_arg_set\nfrom airflow.sdk.definitions.asset import (\n    Asset,\n    AssetAlias,\n    AssetNameRef,\n    AssetUniqueKey,\n    AssetUriRef,\n)\nfrom airflow.sdk.definitions.mappedoperator import MappedOperator\nfrom airflow.sdk.definitions.param import process_params\nfrom airflow.sdk.exceptions import (\n    AirflowException,\n    AirflowInactiveAssetInInletOrOutletException,\n    AirflowRescheduleException,\n    AirflowRuntimeError,\n    AirflowTaskTimeout,\n"
+    }
+  ]
+}

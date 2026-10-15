@@ -1,0 +1,82 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)<-[:DL_AUTHORED_COMMIT]-(d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(other:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND c<>other AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id)+collect(DISTINCT d.id)+collect(DISTINCT other.id) AS evidence RETURN b.path AS entity,b.path+': '+split(b.content,'\\n')[0] AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "path": "mlflow/agent/agents.py"
+  },
+  "rows": [
+    {
+      "entity": ".claude/rules/github-actions.md",
+      "fact": ".claude/rules/github-actions.md: ---",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/agent/agents.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:040e3ba23b7f7dfa9062d5cde2a8646d7a6203ef",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:77f4a12bb40578fc450e836ddb0e6632af14b89b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:f370961ba04b289b0ae27795542394506ff1094b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:developer:email:hkawamura0130@gmail.com",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:3c36d3df2e2dc8e4389541b6e3d6298a3659d868",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:8dcceb02c983d4a38f4636ce2bcaf5bf255ba1ad",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:bc65f3bf0017a8a51ec501f7b5664c72e0d88939",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:.claude/rules/github-actions.md"
+      ]
+    },
+    {
+      "entity": ".claude/scripts/install-claude.sh",
+      "fact": ".claude/scripts/install-claude.sh: #!/usr/bin/env bash",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/agent/agents.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:040e3ba23b7f7dfa9062d5cde2a8646d7a6203ef",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:77f4a12bb40578fc450e836ddb0e6632af14b89b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:f370961ba04b289b0ae27795542394506ff1094b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:developer:email:hkawamura0130@gmail.com",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:89e7dd0af6fe7fe1a840c00038ff3355c220a3fb",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:c2b617f683f3f4e18e164aeb0c393e53b8160606",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:f2c348eeb43b5d3df1cdaae65e1e0a15c7f060f8",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:.claude/scripts/install-claude.sh"
+      ]
+    },
+    {
+      "entity": ".claude/scripts/stream.sh",
+      "fact": ".claude/scripts/stream.sh: #!/usr/bin/env bash",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/agent/agents.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:040e3ba23b7f7dfa9062d5cde2a8646d7a6203ef",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:77f4a12bb40578fc450e836ddb0e6632af14b89b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:f370961ba04b289b0ae27795542394506ff1094b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:developer:email:hkawamura0130@gmail.com",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:4e2a2f3fa36f48898d1178dba6a509f09423e5f0",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:7346cc8bc9144e05b46112928036d19f4829a904",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:d71da60cdd24143d4f8cf026b90158009d453f03",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:.claude/scripts/stream.sh"
+      ]
+    },
+    {
+      "entity": ".claude/settings.json",
+      "fact": ".claude/settings.json: {",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/agent/agents.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:040e3ba23b7f7dfa9062d5cde2a8646d7a6203ef",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:77f4a12bb40578fc450e836ddb0e6632af14b89b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:f370961ba04b289b0ae27795542394506ff1094b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:developer:email:hkawamura0130@gmail.com",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:143cc4fff5d13ac820934d32abf52df356fc7b7c",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:.claude/settings.json"
+      ]
+    },
+    {
+      "entity": ".claude/skills/README.md",
+      "fact": ".claude/skills/README.md: # Skills CLI",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/agent/agents.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:040e3ba23b7f7dfa9062d5cde2a8646d7a6203ef",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:77f4a12bb40578fc450e836ddb0e6632af14b89b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:f370961ba04b289b0ae27795542394506ff1094b",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:developer:email:hkawamura0130@gmail.com",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:d072ed421bf1cbef6130ca0132abddd63338255e",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:.claude/skills/README.md"
+      ]
+    }
+  ]
+}

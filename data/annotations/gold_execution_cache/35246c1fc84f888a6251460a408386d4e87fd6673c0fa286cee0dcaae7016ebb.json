@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+        "path": "README.md",
+        "offset": 2957,
+        "line": 61
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+        "path": null,
+        "offset": 772,
+        "line": 20
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+        "path": null,
+        "offset": 758,
+        "line": 20
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+        "path": null,
+        "offset": 758,
+        "line": 20
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1053",
+        "path": null,
+        "offset": 740,
+        "line": 20
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 9868,
+        "line": 146
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+        "path": null,
+        "offset": 23778,
+        "line": 363
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:355",
+        "path": null,
+        "offset": 21,
+        "line": 1
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2957,
+      "excerpt": "n running on Mac with Apple Silicon (M series processor), Rosetta 2 for grpc-tools. \n\n### Running the solution\n\n> [!WARNING]\n> Remember to ensure that Docker is started\n\n* (Windows only) Run the application from Visual Studio:\n - Open the `eShop.Web.slnf` file in Visual Studio\n - Ensure that `eShop.AppHost.csproj` is your startup project\n - Hit Ctrl-F5 to launch Aspire\n\n* Or run the application from your terminal:\n```powershell\ndotnet run --project src/eShop.AppHost/eShop.AppHost.csproj\n```\nthen look for lines like this in the console output in order to find the URL to open the Aspire dashboard:\n```sh\nLogin to the dashboard at: http://localhost:19888/login?t=uniquelogincodeforyou\n```\n\n> You may need to install ASP.NET Core HTTPS development certificates first, and then close all browser tabs. Learn more at https://aka.ms/aspnet/https-trust-dev-cert\n\n### Azure Open AI\n\nWhen using Azure OpenAI, inside *eShop.AppHost/appsettings.json*, add the following section:\n\n```json\n  \"ConnectionStrings\": {\n    \"OpenAi\": \"Endpoint=xxx;Key=xxx;\"\n  }\n```\n\nReplace the values with your own. Then, in the eShop.AppHost *Program.cs*, set this value to **true**\n\n```csharp\nbool useOpenAI = false;\n```\n\nHere's additional guidance on the [.NET Aspire OpenAI component](https://learn.microsoft.com/dotnet/aspire/azureai/azureai-openai-component?tabs=dotnet-cli). \n\n### Use Azure Developer CLI\n\nYou can use the [Azure Developer CLI](https://aka.ms/azd) to run this project on Azure with only a few commands. Follow the next instructions:\n\n- Install the latest or update to the latest [Azure Developer CLI (azd)](https://aka.ms/azure-dev/install).\n- Log in `azd` (if you haven't done it before) to your Azure account:\n```sh\nazd auth login\n```\n- Initialize `azd` from the root of the repo.\n```sh\nazd init\n```\n- During init:\n  - Select `Use code in the current directory`. Azd will automatically detect the .NET Aspire project.\n  - Confirm `.NET (Aspire)` and continue.\n  - Select which services to expose to the Internet (exposing `webapp` is enough to test the sample).\n  - Finalize the initialization by giving a name to your environment.\n\n- Create Azure resources and deploy the sample by running:\n```sh\nazd up\n```\nNotes:\n  - The operation takes a few minutes the first time it is ever run for an environment.\n  - At the end of the process, `azd` will display the `url` for the webapp. Follow that link to te"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:355",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 355,
+      "title": "Repo does not build under macOS via the command line",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 21,
+      "excerpt": "ild on the command line per instructions. Docker is running.\r\n(macOS, Intel, .NET 8.0.204, Sonoma 14.4.1)\r\n\r\n---\r\n```\r\n❯ git pull\r\nAlready up to date.\r\n❯ dotnet restore eShop.Web.slnf\r\n  Determining projects to restore...\r\n  All projects are up-to-date for restore.\r\n❯ dotnet run --project src/eShop.AppHost/eShop.AppHost.csproj\r\nBuilding...\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(22,47): error CS0234: The type or namespace name 'Identity_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(28,45): error CS0234: The type or namespace name 'Basket_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(33,46): error CS0234: The type or namespace name 'Catalog_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(37,47): error CS0234: The type or namespace name 'Ordering_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(42,29): error CS0234: The type or namespace name 'OrderProcessor' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(46,29): error CS0234: The type or namespace name 'PaymentProcessor' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(49,47): error CS0234: The type or namespace name 'Webhooks_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(55,29): error CS0234: The type or namespac"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1022,
+      "title": "Bump the microsoftextensions group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23778,
+      "excerpt": " retired on July 30, 2026](https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/). The `--provider` option is now required with no default ([#​7667](https://github.com/dotnet/extensions/pull/7667)).\n- Updated AI template dependencies — bumped `Aspire.Hosting.AppHost` to `13.4.6` and `CommunityToolkit.VectorData.SqliteVec` to `1.0.0-preview.4` (aligned `System.Linq.AsyncEnumerable` to `10.0.9`), replacing earlier workaround package pins ([#​7639](https://github.com/dotnet/extensions/pull/7639)).\n\n## Full Changelog\n\n- https://github.com/dotnet/extensions/compare/v10.8.3...v10.8.4\n\n\n## 10.8.3\n\n## Packages in this release\n\n| Package | Version |\n|---|---|\n| Microsoft.Extensions.AI | 10.8.3 |\n| Microsoft.Extensions.AI.Abstractions | 10.8.3 |\n| Microsoft.Extensions.AI.OpenAI | 10.8.3 |\n\n## Experimental API Changes\n\n### Experimental API behavior updates\n\n- Updated serialization behavior for experimental `ToolApprovalRequestContent.RequiresConfirmation` so it no longer leaks into consumer source-generated `AIContent` JSON metadata unless approval APIs are intentionally used ([#​7659](https://github.com/dotnet/extensions/pull/7659)).\n\n## What's Changed\n\n### AI abstractions and serialization\n\n- Fixed MEAI001 leakage from `RequiresConfirmation` in source-generated `AIContent` contexts by using an internal JSON-included backing member while keeping the public experimental member ignored for source-generation metadata ([#​7659](https://github.com/dotnet/extensions/pull/7659)).\n\n## Test Improvements\n\n- Added stabilization regression coverage to verify consumer source-generated `List<AIContent>` contexts compile and round-trip without requiring MEAI001 suppression ([#​7659](https://github.com/dotnet/extensions/pull/7659)).\n\n## Full Changelog\n\n- https://github.com/dotnet/extensions/compare/v10.8.2...v10.8.3\n\n\n## 10.8.2\n\nThis servicing release updates Microsoft.Extensions.VectorData.ConformanceTests to 10.8.2 and includes targeted test framework migration fixes.\n\n## Packages in this release\n\n| Package | Version | Note |\n|---------|---------|---------|\n| Microsoft.Extensions.VectorData.Abstractions | 10.8.2 | Published August 7, 2026 |\n| Microsoft.Extensions.VectorData.ConformanceTests | 10.8.2 | |\n\n**Update: August 7, 2026**\nThe Microsoft.Extensions.VectorData.Abstractions package was initially excluded from this release by mistake. Be"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1043,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 772,
+      "excerpt": "otnet/maui/issues/37430)\n  - [[aw] CI Failure Fixer (net11.0) failed](https://github.com/dotnet/maui/issues/37431)\n  - [[aw] Memory Leak Fixer failed](https://github.com/dotnet/maui/issues/37432)\n  - [[aw] Daily Memory Leak Hunter failed](https://github.com/dotnet/maui/issues/37435)\n  - [[aw] Daily Repo Status failed](https://github.com/dotnet/maui/issues/37442)\n  </details>\n\n- [release-readiness] Add RC release support by @​PureWeen in https://github.com/dotnet/maui/pull/37856\n\n- Update Vally to 0.14.0 by @​PureWeen in https://github.com/dotnet/maui/pull/37907\n\n- Fix CI scanner threat-detection contract by @​PureWeen in https://github.com/dotnet/maui/pull/38196\n\n## Blazor\n- [tizen] align BlazorWebView TizenMauiAssetFileProvider with other platforms by @​jonathanpeppers in https://github.com/dotnet/maui/pull/37972\n\n- [Android] Fix: WebView clamping small CSS font sizes by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/36559\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Font Size of span Element Not Rendering Correctly in Mobile Mode in .NET MAUI Blazor](https://github.com/dotnet/maui/issues/26924)\n  </details>\n\n## BlazorWebView\n- [Android] BlazorWebView: Simplify Blazor startup scripts by @​mattleibow in https://github.com/dotnet/maui/pull/35053\n\n- [Candidate] Fix Build failure in MauiBlazorWebView DeviceTests by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/37669\n\n## Border\n- [Windows] Fix: StrokeLineCap values have no effect on Windows platform   by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/36442\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [StrokeLineCap values have no effect on Windows platform](https://github.com/dotnet/maui/issues/29741)\n  </details>\n\n## Button\n- [iOS] Fix Button Content Overlap in RTL Layout by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/38339\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.101\n\n# .NET MAUI 10.0.101 Release Notes\n\n.NET MAUI 10.0.101 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 17 commits with various improvements, bug fixes, and enhancements.\n\n\n## Button\n- [release/10.0.1xx-sr10] Preserve custom iOS button styling by @​kubaflo in https://github.com/dotnet/maui/pull/37726\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] ButtonHandler now clears"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9868,
+      "excerpt": "-us/dotnet/communitytoolkit/maui/views/popup#lifecycle-behavior\n\n```csharp\nprotected override void OnNavigatingFrom(NavigatingFromEventArgs args)\n{\n    base.OnNavigatingFrom(args);\n    if (args.IsDestinationPageACommunityToolkitPopupPage())\n    {\n        // If true, `OnNavigatingFrom` was called by starting a Popup\n    }\n}\n```\n\n### SpeechToText Bug Fix\n* Fix AutoStopSilenceTimeout for SpeechToTextOptions doesn't work on iOS\n\n### StatusBar Bug Fix\n- Fix `StatusBar.SetColor()` when using `StatusBarBehavior`\n- Update StatusBar Size On Device Orientation Change\n\n### Microsoft.Maui.Controls Dependency\n- Increase dependency to Microsoft.Maui.Controls v10.0.60\n\n## What's Changed\n* Added OnNavigatingFrom extension for popup related navigation  by @​dartasen in https://github.com/CommunityToolkit/Maui/pull/3099\n* Remove `RestartTimer()` from `AvAudioNode` Callback by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3196\n* FIX: [BUG] Using StatusBarBehavior Breaks StatusBar.SetColor() #​3197 API36 by @​Pastajello in https://github.com/CommunityToolkit/Maui/pull/3202\n* Add compile-time property initializer for default values in BindableProperty source generator by @​matt-goldman in https://github.com/CommunityToolkit/Maui/pull/3204\n* Update StatusBar Size On Device Orientation Change by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3208\n\n## Housekeeping\n* Explicitly target iOS and macOS to osx and Windows platforms (only) by @​matt-goldman in https://github.com/CommunityToolkit/Maui/pull/3186\n* Bump Microsoft.Testing.Extensions.CodeCoverage from 18.5.2 to 18.6.2 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3193\n* Bump System.Formats.Asn1 from 10.0.6 to 10.0.7 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3209\n* Bump Microsoft.Extensions.Http.Resilience from 10.4.0 to 10.5.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3199\n* Bump System.Formats.Asn1 from 10.0.5 to 10.0.6 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3201\n* Bump Microsoft.Extensions.Logging.Debug from 10.0.5 to 10.0.6 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3200\n\n## New Contributors\n* @​dartasen made their first contribution in https://github.com/CommunityToolkit/Maui/pull/3099\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1051,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 758,
+      "excerpt": "otnet/maui/issues/37430)\n  - [[aw] CI Failure Fixer (net11.0) failed](https://github.com/dotnet/maui/issues/37431)\n  - [[aw] Memory Leak Fixer failed](https://github.com/dotnet/maui/issues/37432)\n  - [[aw] Daily Memory Leak Hunter failed](https://github.com/dotnet/maui/issues/37435)\n  - [[aw] Daily Repo Status failed](https://github.com/dotnet/maui/issues/37442)\n  </details>\n\n- [release-readiness] Add RC release support by @​PureWeen in https://github.com/dotnet/maui/pull/37856\n\n- Update Vally to 0.14.0 by @​PureWeen in https://github.com/dotnet/maui/pull/37907\n\n- Fix CI scanner threat-detection contract by @​PureWeen in https://github.com/dotnet/maui/pull/38196\n\n## Blazor\n- [tizen] align BlazorWebView TizenMauiAssetFileProvider with other platforms by @​jonathanpeppers in https://github.com/dotnet/maui/pull/37972\n\n- [Android] Fix: WebView clamping small CSS font sizes by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/36559\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Font Size of span Element Not Rendering Correctly in Mobile Mode in .NET MAUI Blazor](https://github.com/dotnet/maui/issues/26924)\n  </details>\n\n## BlazorWebView\n- [Android] BlazorWebView: Simplify Blazor startup scripts by @​mattleibow in https://github.com/dotnet/maui/pull/35053\n\n- [Candidate] Fix Build failure in MauiBlazorWebView DeviceTests by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/37669\n\n## Border\n- [Windows] Fix: StrokeLineCap values have no effect on Windows platform   by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/36442\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [StrokeLineCap values have no effect on Windows platform](https://github.com/dotnet/maui/issues/29741)\n  </details>\n\n## Button\n- [iOS] Fix Button Content Overlap in RTL Layout by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/38339\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.101\n\n# .NET MAUI 10.0.101 Release Notes\n\n.NET MAUI 10.0.101 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 17 commits with various improvements, bug fixes, and enhancements.\n\n\n## Button\n- [release/10.0.1xx-sr10] Preserve custom iOS button styling by @​kubaflo in https://github.com/dotnet/maui/pull/37726\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] ButtonHandler now clears"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1052,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.40 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 758,
+      "excerpt": "otnet/maui/issues/37430)\n  - [[aw] CI Failure Fixer (net11.0) failed](https://github.com/dotnet/maui/issues/37431)\n  - [[aw] Memory Leak Fixer failed](https://github.com/dotnet/maui/issues/37432)\n  - [[aw] Daily Memory Leak Hunter failed](https://github.com/dotnet/maui/issues/37435)\n  - [[aw] Daily Repo Status failed](https://github.com/dotnet/maui/issues/37442)\n  </details>\n\n- [release-readiness] Add RC release support by @​PureWeen in https://github.com/dotnet/maui/pull/37856\n\n- Update Vally to 0.14.0 by @​PureWeen in https://github.com/dotnet/maui/pull/37907\n\n- Fix CI scanner threat-detection contract by @​PureWeen in https://github.com/dotnet/maui/pull/38196\n\n## Blazor\n- [tizen] align BlazorWebView TizenMauiAssetFileProvider with other platforms by @​jonathanpeppers in https://github.com/dotnet/maui/pull/37972\n\n- [Android] Fix: WebView clamping small CSS font sizes by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/36559\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Font Size of span Element Not Rendering Correctly in Mobile Mode in .NET MAUI Blazor](https://github.com/dotnet/maui/issues/26924)\n  </details>\n\n## BlazorWebView\n- [Android] BlazorWebView: Simplify Blazor startup scripts by @​mattleibow in https://github.com/dotnet/maui/pull/35053\n\n- [Candidate] Fix Build failure in MauiBlazorWebView DeviceTests by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/37669\n\n## Border\n- [Windows] Fix: StrokeLineCap values have no effect on Windows platform   by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/36442\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [StrokeLineCap values have no effect on Windows platform](https://github.com/dotnet/maui/issues/29741)\n  </details>\n\n## Button\n- [iOS] Fix Button Content Overlap in RTL Layout by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/38339\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.101\n\n# .NET MAUI 10.0.101 Release Notes\n\n.NET MAUI 10.0.101 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 17 commits with various improvements, bug fixes, and enhancements.\n\n\n## Button\n- [release/10.0.1xx-sr10] Preserve custom iOS button styling by @​kubaflo in https://github.com/dotnet/maui/pull/37726\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] ButtonHandler now clears"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1053",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1053,
+      "title": "Bump Microsoft.Maui.Controls.Maps from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 740,
+      "excerpt": "otnet/maui/issues/37430)\n  - [[aw] CI Failure Fixer (net11.0) failed](https://github.com/dotnet/maui/issues/37431)\n  - [[aw] Memory Leak Fixer failed](https://github.com/dotnet/maui/issues/37432)\n  - [[aw] Daily Memory Leak Hunter failed](https://github.com/dotnet/maui/issues/37435)\n  - [[aw] Daily Repo Status failed](https://github.com/dotnet/maui/issues/37442)\n  </details>\n\n- [release-readiness] Add RC release support by @​PureWeen in https://github.com/dotnet/maui/pull/37856\n\n- Update Vally to 0.14.0 by @​PureWeen in https://github.com/dotnet/maui/pull/37907\n\n- Fix CI scanner threat-detection contract by @​PureWeen in https://github.com/dotnet/maui/pull/38196\n\n## Blazor\n- [tizen] align BlazorWebView TizenMauiAssetFileProvider with other platforms by @​jonathanpeppers in https://github.com/dotnet/maui/pull/37972\n\n- [Android] Fix: WebView clamping small CSS font sizes by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/36559\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Font Size of span Element Not Rendering Correctly in Mobile Mode in .NET MAUI Blazor](https://github.com/dotnet/maui/issues/26924)\n  </details>\n\n## BlazorWebView\n- [Android] BlazorWebView: Simplify Blazor startup scripts by @​mattleibow in https://github.com/dotnet/maui/pull/35053\n\n- [Candidate] Fix Build failure in MauiBlazorWebView DeviceTests by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/37669\n\n## Border\n- [Windows] Fix: StrokeLineCap values have no effect on Windows platform   by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/36442\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [StrokeLineCap values have no effect on Windows platform](https://github.com/dotnet/maui/issues/29741)\n  </details>\n\n## Button\n- [iOS] Fix Button Content Overlap in RTL Layout by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/38339\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.101\n\n# .NET MAUI 10.0.101 Release Notes\n\n.NET MAUI 10.0.101 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 17 commits with various improvements, bug fixes, and enhancements.\n\n\n## Button\n- [release/10.0.1xx-sr10] Preserve custom iOS button styling by @​kubaflo in https://github.com/dotnet/maui/pull/37726\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] ButtonHandler now clears"
+    }
+  ]
+}

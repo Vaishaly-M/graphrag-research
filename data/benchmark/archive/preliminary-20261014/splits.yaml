@@ -1,0 +1,41 @@
+schema_version: 1
+seed: 42
+dataset_id: rebuild-20261014
+unseen_repo: apache/airflow
+development:
+  repos: &id001
+  - spring-projects/spring-petclinic
+  - openmrs/openmrs-core
+  - dotnet/eShop
+  - mlflow/mlflow
+  families:
+  - directory_listing
+  - commit_file
+validation:
+  repos: *id001
+  families:
+  - developer_history
+test:
+  repos:
+  - spring-projects/spring-petclinic
+  - openmrs/openmrs-core
+  - dotnet/eShop
+  - apache/airflow
+  - mlflow/mlflow
+  - synthetic-org/platform
+  families:
+  - text_location
+  - issue_lookup
+  - developer_file
+questions_per_repo_family: 5
+question_sets:
+  T:
+    status: deterministic_generation
+  P:
+    status: reserved_not_collected
+  H:
+    status: pending_user_csv_with_gold
+    independent_authors_required: 5
+    human_gold_verification_required: true
+family_policy: disjoint globally, including Airflow; variants and paraphrases inherit
+  group, never split independently

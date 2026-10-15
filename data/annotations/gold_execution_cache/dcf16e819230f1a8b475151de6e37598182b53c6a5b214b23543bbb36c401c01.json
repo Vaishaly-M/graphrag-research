@@ -1,0 +1,83 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id) AS evidence RETURN b.path AS entity,b.path AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "path": ".editorconfig"
+  },
+  "rows": [
+    {
+      "entity": ".gitattributes",
+      "fact": ".gitattributes",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.editorconfig",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.gitattributes"
+      ]
+    },
+    {
+      "entity": ".gitignore",
+      "fact": ".gitignore",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.editorconfig",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.gitignore"
+      ]
+    },
+    {
+      "entity": "Directory.Build.props",
+      "fact": "Directory.Build.props",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.editorconfig",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Build.props"
+      ]
+    },
+    {
+      "entity": "Directory.Packages.props",
+      "fact": "Directory.Packages.props",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.editorconfig",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Packages.props"
+      ]
+    },
+    {
+      "entity": "LICENSE",
+      "fact": "LICENSE",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.editorconfig",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:LICENSE"
+      ]
+    },
+    {
+      "entity": "README.md",
+      "fact": "README.md",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.editorconfig",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md"
+      ]
+    },
+    {
+      "entity": "eShop.Web.slnf",
+      "fact": "eShop.Web.slnf",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.editorconfig",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.Web.slnf"
+      ]
+    },
+    {
+      "entity": "global.json",
+      "fact": "global.json",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.editorconfig",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:fc61f9091f6abb6983bb0aaa03a5f086e7c0a66d",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:global.json"
+      ]
+    }
+  ]
+}

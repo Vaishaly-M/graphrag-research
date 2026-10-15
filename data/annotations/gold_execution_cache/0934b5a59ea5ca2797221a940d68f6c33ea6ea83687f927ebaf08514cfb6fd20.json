@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+        "path": null,
+        "offset": 2102,
+        "line": 41
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+        "offset": 1406,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "offset": 1182,
+        "line": 29
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:339",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+        "path": null,
+        "offset": 413,
+        "line": 7
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2469",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1729",
+        "path": null,
+        "offset": 574,
+        "line": 8
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2337",
+        "path": null,
+        "offset": 90,
+        "line": 3
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1182,
+      "excerpt": "ind.annotation.PostMapping;\n\nimport jakarta.validation.Valid;\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Michael Isvy\n * @author Dave Syer\n * @author Wick Dynex\n */\n@Controller\nclass VisitController {\n\n\tprivate final OwnerRepository owners;\n\n\tpublic VisitController(OwnerRepository owners) {\n\t\tthis.owners = owners;\n\t}\n\n\t@InitBinder\n\tpublic void setAllowedFields(WebDataBinder dataBinder) {\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t/**\n\t * Called before each and every @RequestMapping annotated method. 2 goals: - Make sure\n\t * we always have fresh data - Since we do not use the session scope, make sure that\n\t * Pet object always has an id (Even though id is not part of the form fields)\n\t * @param petId\n\t * @return Pet\n\t */\n\t@ModelAttribute(\"visit\")\n\tpublic Visit loadPetWithVisit(@PathVariable(\"ownerId\") int ownerId, @PathVariable(\"petId\") int petId,\n\t\t\tMap<String, Object> model) {\n\t\tOptional<Owner> optionalOwner = owners.findById(ownerId);\n\t\tOwner owner = optionalOwner.orElseThrow(() -> new IllegalArgumentException(\n\t\t\t\t\"Owner not found with id: \" + ownerId + \". Please ensure the ID is correct \"));\n\n\t\tPet pet = owner.getPet(petId);\n\t\tif (pet == null) {\n\t\t\tthrow new IllegalArgumentException(\n\t\t\t\t\t\"Pet with id \" + petId + \" not found for owner with id \" + ownerId + \".\");\n\t\t}\n\t\tmodel.put(\"pet\", pet);\n\t\tmodel.put(\"owner\", owner);\n\n\t\tVisit visit = new Visit();\n\t\tpet.addVisit(visit);\n\t\treturn visit;\n\t}\n\n\t@ModelAttribute(\"minVisitDate\")\n\tpublic LocalDate minVisitDate() {\n\t\treturn LocalDate.now().plusDays(1);\n\t}\n\n\t// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is\n\t// called\n\t@GetMapping(\"/owners/{ownerId}/pets/{petId}/visits/new\")\n\tpublic String initNewVisitForm() {\n\t\treturn \"pets/createOrUpdateVisitForm\";\n\t}\n\n\t// Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is\n\t// called\n\t@PostMapping(\"/owners/{ownerId}/pets/{petId}/visits/new\")\n\tpublic String processNewVisitForm(@ModelAttribute Owner owner, @PathVariable int petId, @Valid Visit visit,\n\t\t\tBindingResult result, RedirectAttributes redirectAttributes) {\n\t\tif (visit.getDate() != null && !visit.getDate().isAfter(LocalDate.now())) {\n\t\t\tresult.rejectValue(\"date\", \"typeMismatch.visitDate\");\n\t\t}\n\n\t\tif (result.hasErrors()) {\n\t\t\treturn \"pets/createOrU"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1406,
+      "excerpt": "oconfigure.WebMvcTest;\nimport org.springframework.test.context.aot.DisabledInAotMode;\nimport org.springframework.test.context.bean.override.mockito.MockitoBean;\nimport org.springframework.test.web.servlet.MockMvc;\n\nimport java.time.LocalDate;\nimport java.util.Optional;\n\n/**\n * Test class for {@link VisitController}\n *\n * @author Colin But\n * @author Wick Dynex\n */\n@WebMvcTest(VisitController.class)\n@DisabledInNativeImage\n@DisabledInAotMode\nclass VisitControllerTests {\n\n\tprivate static final int TEST_OWNER_ID = 1;\n\n\tprivate static final int TEST_PET_ID = 1;\n\n\t@Autowired\n\tprivate MockMvc mockMvc;\n\n\t@MockitoBean\n\tprivate OwnerRepository owners;\n\n\t@BeforeEach\n\tvoid init() {\n\t\tOwner owner = new Owner();\n\t\tPet pet = new Pet();\n\t\towner.addPet(pet);\n\t\tpet.setId(TEST_PET_ID);\n\t\tgiven(this.owners.findById(TEST_OWNER_ID)).willReturn(Optional.of(owner));\n\t}\n\n\t@Test\n\tvoid initNewVisitForm() throws Exception {\n\t\tmockMvc.perform(get(\"/owners/{ownerId}/pets/{petId}/visits/new\", TEST_OWNER_ID, TEST_PET_ID))\n\t\t\t.andExpect(status().isOk())\n\t\t\t.andExpect(view().name(\"pets/createOrUpdateVisitForm\"));\n\t}\n\n\t@Test\n\tvoid processNewVisitFormSuccess() throws Exception {\n\t\tmockMvc\n\t\t\t.perform(post(\"/owners/{ownerId}/pets/{petId}/visits/new\", TEST_OWNER_ID, TEST_PET_ID)\n\t\t\t\t.param(\"name\", \"George\")\n\t\t\t\t.param(\"date\", LocalDate.now().plusDays(1).toString())\n\t\t\t\t.param(\"description\", \"Visit Description\"))\n\t\t\t.andExpect(status().is3xxRedirection())\n\t\t\t.andExpect(view().name(\"redirect:/owners/{ownerId}\"));\n\t}\n\n\t@Test\n\tvoid processNewVisitFormHasErrors() throws Exception {\n\t\tmockMvc\n\t\t\t.perform(post(\"/owners/{ownerId}/pets/{petId}/visits/new\", TEST_OWNER_ID, TEST_PET_ID).param(\"name\",\n\t\t\t\t\t\"George\"))\n\t\t\t.andExpect(model().attributeHasErrors(\"visit\"))\n\t\t\t.andExpect(status().isOk())\n\t\t\t.andExpect(view().name(\"pets/createOrUpdateVisitForm\"));\n\t}\n\n\t@Test\n\tvoid processNewVisitFormHasErrorsWhenVisitDateIsNotInFuture() throws Exception {\n\t\tmockMvc\n\t\t\t.perform(post(\"/owners/{ownerId}/pets/{petId}/visits/new\", TEST_OWNER_ID, TEST_PET_ID)\n\t\t\t\t.param(\"name\", \"George\")\n\t\t\t\t.param(\"date\", LocalDate.now().toString())\n\t\t\t\t.param(\"description\", \"Visit Description\"))\n\t\t\t.andExpect(model().attributeHasFieldErrors(\"visit\", \"date\"))\n\t\t\t.andExpect(model().attributeHasFieldErrorCode(\"visit\", \"date\", \"typeMismatch.visitDate\"))\n\t\t\t.andExpect(status().isOk())\n\t\t\t.andExpect(view().name(\"pets/createOrUpdateVisitForm\")"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1729",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1729,
+      "title": "Refactor Owner Directory Structure for Component Separation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 574,
+      "excerpt": "ty.\r\nvisits: For all visit-related classes and functionality.\r\nMove the relevant classes and files into their respective directories.\r\nExample:\r\n\r\nMove Pet.java, PetController.java, etc., to the pets directory.\r\nMove Owner.java, OwnerController.java, etc., to the owners directory.\r\nMove Visit.java, VisitController.java, etc., to the visits directory.\r\nUpdate imports throughout the project to reflect the new structure.\r\n\r\n### Benefits:\r\nImproved Readability: Each directory will contain only the files relevant to its component, making it easier for developers to find and understand code.\r\nBetter Scalability: As new features or functionality are added, the modular structure will help maintain organization.\r\nEasier Maintenance: Fixes or updates related to a specific component can be implemented and tested more efficiently.\r\n\r\nI recommend performing this refactoring as a separate commit to make the changes easier to track.\r\nLet me know if there's any feedback or additional considerations before I start working on this!"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2337",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2337,
+      "title": "Future Visit Booking Validation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 90,
+      "excerpt": "There is no validation to prevent booking visits in the past.\n\n## ✅ Expected Behavior\n- New visits should only be allowed **from tomorrow onwards**.\n- Past dates should trigger validation errors.\n- Validation should be applied in both:\n  - Frontend (`<input type=\"date\" min=\"...\">`)\n  - Backend (in `VisitController.processNewVisitForm`).\n\n## 📍 Affected Areas\n- `pets/createOrUpdateVisitForm.html`: add `min` attribute to date input.\n- `VisitController.java`: add check\n```java\nif (visit.getDate() != null && !visit.getDate().isAfter(LocalDate.now())) {\n    result.rejectValue(\"date\", \"invalid\", \"Visit date must be in the future\");\n} \n```\n## 🧪 Testing\n- ❌ Past date → error\n- ✅ Future date → allowed"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:339",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 339,
+      "title": "Dockerfile and instructions for building/running with Docker",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Hi,\r\n\r\nI submitted what I thought would be an noncontroversial PR (#338) for adding a Dockerfile and basic instructions on how to run petclinic in Docker.  To my surprise it was closed rather than merged in.\r\n\r\nI thought I should open an issue to explain my case more thoroughly for adding it in.  I'm working on doing demos and tutorials for Kubernetes and tooling around it like Spinnaker and Knative of which I'll be presenting at conferences and other events such as Spring One Tour in [Chicago](https://springonetour.io/2018/chicago) and [Istanbul](https://springonetour.io/2018/istanbul).\r\n\r\nGiven I'll be presenting at some Spring events I feel its important to showcase Spring applications in my demonstrations, but at minimum to do this I need a Dockerfile in the repository (yes I could fork it and use my own version of the repo, but I'd rather people be able to replicate what I do using the original repos).\r\n\r\nThat aside as somebody who is not a Java developer let alone spring, I had no idea where to even start building this application into a `.jar`,  let alone running it on a container platform like Kubernetes.  I had to guess my way through compatible versions of `openjdk` and `maven` in order to be able to build it into a .jar and then run it. This is not the best experience for a new user or somebody interested in seeing what this whole Spring thing is all about.\r\n\r\nAt this stage most people have a familiarity with Docker and can run Docker images fairly simply in their development environments (Even Windows Laptops!) and having a Docker option means they don't need to install a JDK, Maven, Eclipse, etc on their machine just to start kicking the tires.\r\n\r\nHopefully I've made my case successfully and we can look at merging in my Dockerfile and instructions, or at least have a fruitful code review of it so that I can help in some way to make Spring a more approachable language to run on various cloud native platforms."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2434,
+      "title": "Refactor: remove unnecessary imports and redundant intermediate variables",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 413,
+      "excerpt": "ControllerTests.java` both had a class-level import for `MockMvcRequestBuilders` despite already having static imports for the individual methods (`get`, `post`) from the same class. This made the class-level import redundant and unused. Similarly, `OwnerController.java`, `PetController.java`, and `VisitController.java` each imported `java.util.Optional` which was only needed to hold an intermediate variable that was immediately unwrapped on the next line.\r\n\r\n**Redundant intermediate variables** - In `OwnerController.java`, `PetController.java`, and `VisitController.java`, the pattern of assigning `owners.findById(...)` to an `optionalOwner` variable and then calling `.orElseThrow(...)` on the very next line served no purpose. SonarQube flags this under `java:S1488` - local variables should not be declared and then immediately returned or used.\r\n\r\n## Changes\r\n- Replaced `MockMvcRequestBuilders.post(...)` and `MockMvcRequestBuilders.get(...)` with the already-imported static equivalents in `OwnerControllerTests.java` and `VetControllerTests.java`, and removed the now-unused class-level imports\r\n- Collapsed all `optionalOwner` intermediate variable declarations into single chained expressions using `.orElseThrow(...)` directly on the repository call in `OwnerController.java`, `PetController.java`, and `VisitController.java`\r\n- Removed the `java.util.Optional` import from each controller where it was no longer referenced\r\n\r\n## Sustainability Impact\r\nRedundant code and unnecessary imports increase the noise developers must read through when understanding or modifying a file. Unused imports can mislead future contributors into thinking a type is meaningfully used, and they accumulate silently over time if not caught early.\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/VisitController.java`\r\n- `src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java`\r\n- `src/test/java/org/springframework/samples/petclinic/vet/VetControllerTests.java`"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2469",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2469,
+      "title": "fix: prevent in-memory visit list contamination & add validation tests",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "### Description\r\n- **VisitController Refactoring**: Removed eager list addition in the `@ModelAttribute` method to prevent transient validation failures from polluting the database entity's in-memory collections.\r\n- - **Unit Testing**:\r\n-   - Added new validation test cases verifying that the new visit is not associated with the pet on the initialization of the form.\r\n-   - Added tests to verify no eager contamination occurs on the edit form initialization in `VisitControllerTests.java`."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2542,
+      "title": "Upgrade/java17 spring boot 3",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2102,
+      "excerpt": "sistence.*`\r\n- `vet/Vet.java` — `jakarta.persistence.*`, `jakarta.xml.bind.*`\r\n- `vet/Specialty.java` — `jakarta.persistence.*`\r\n- `vet/Vets.java` — `jakarta.xml.bind.*`\r\n- `owner/OwnerController.java` — `jakarta.validation.Valid`\r\n- `owner/PetController.java` — `jakarta.validation.Valid`\r\n- `owner/VisitController.java` — `jakarta.validation.Valid`\r\n\r\n**Test sources**\r\n- `model/ValidatorTests.java` — `jakarta.validation.*`\r\n\r\n> **Note:** `javax.cache` (JCache/JSR-107) is intentionally unchanged — its groupId remains `javax.cache` and was not moved to the Jakarta namespace.\r\n\r\n### Code formatting\r\n\r\nRan `./mvnw spring-javaformat:apply` to satisfy the stricter import-ordering and blank-line rules enforced by spring-format 0.0.42. This touched several test files with no logic changes.\r\n\r\n---\r\n\r\n## Test results\r\n\r\n```\r\nTests run: 41, Failures: 0, Errors: 0, Skipped: 1\r\nBUILD SUCCESS\r\n```\r\n"
+    }
+  ]
+}

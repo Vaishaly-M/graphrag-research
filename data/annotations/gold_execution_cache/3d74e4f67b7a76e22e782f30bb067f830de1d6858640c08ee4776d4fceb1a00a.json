@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/part1-child-runs/index.mdx",
+        "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/part1-child-runs/index.mdx",
+        "offset": 1867,
+        "line": 41
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/assessments/feedback.mdx",
+        "path": "docs/docs/genai/assessments/feedback.mdx",
+        "offset": 7494,
+        "line": 176
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "offset": 73821,
+        "line": 960
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 54304,
+        "line": 29
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26560",
+        "path": null,
+        "offset": 905,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/projects/index.mdx",
+        "path": "docs/docs/classic-ml/projects/index.mdx",
+        "offset": 29,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/parent-child-runs.ipynb",
+        "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/parent-child-runs.ipynb",
+        "offset": 16190,
+        "line": 278
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/paraphrase-mining/paraphrase-mining-sentence-transformers.ipynb",
+        "path": "docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/paraphrase-mining/paraphrase-mining-sentence-transformers.ipynb",
+        "offset": 22763,
+        "line": 477
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/paraphrase-mining/paraphrase-mining-sentence-transformers.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/paraphrase-mining/paraphrase-mining-sentence-transformers.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22763,
+      "excerpt": "ustrate the real-world application of the Paraphrase Mining Model by loading it with MLflow and executing a prediction.\\n\",\n    \"    \\n\",\n    \"#### Loading the Model for Inference\\n\",\n    \"\\n\",\n    \"- Utilize MLflow's `load_model` function to retrieve and prepare the model for inference.\\n\",\n    \"- Locate and load the model using its unique URI within the MLflow registry.\\n\",\n    \"\\n\",\n    \"#### Executing a Paraphrase Mining Prediction\\n\",\n    \"\\n\",\n    \"- Make a prediction using the model's `predict` method, applying the paraphrase mining logic embedded in the model class.\\n\",\n    \"- Pass a representative query with a set `similarity_threshold` to find matching paraphrases in the corpus.\\n\",\n    \"\\n\",\n    \"#### Interpreting the Model Output\\n\",\n    \"\\n\",\n    \"- Review the list of semantically similar sentences to the query, highlighting the model's paraphrase identification capabilities.\\n\",\n    \"- Analyze the similarity scores to understand the degree of semantic relatedness between the query and corpus sentences.\\n\",\n    \"\\n\",\n    \"#### Conclusion\\n\",\n    \"This demonstration validates the Paraphrase Mining Model's effectiveness in real-world scenarios, underscoring its utility in content recommendation, information retrieval, and conversational AI.\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 7,\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"data\": {\n      \"text/plain\": [\n       \"{'Studying the stars helps us understand our universe.': '0.8207424879074097',\\n\",\n       \" 'The history of space exploration is filled with remarkable achievements.': '0.7770636677742004',\\n\",\n       \" 'Exploring ancient cities in Europe offers a glimpse into history.': '0.7461957335472107',\\n\",\n       \" 'Space travel advancements could lead to interplanetary exploration.': '0.7090306282043457',\\n\",\n       \" 'Space exploration continues to push the boundaries of human knowledge.': '0.6893945932388306',\\n\",\n       \" 'The mysteries of the universe are unveiled through space missions.': '0.6830739974975586',\\n\",\n       \" 'The study of celestial bodies helps us understand the cosmos.': '0.671358048915863'}\"\n      ]\n     },\n     \"execution_count\": 7,\n     \"metadata\": {},\n     \"output_type\": \"execute_result\"\n    }\n   ],\n   \"source\": [\n    \"# Load our model by supplying the uri that was used to save the model artifacts\\n\",\n    \"loaded_dynamic = mlflow.pyfunc.load_model("
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/projects/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/projects/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 29,
+      "excerpt": "ption: Package and reproduce ML code with MLflow Projects for portable, shareable experiment workflows.\n---\n\n# MLflow Projects\n\nMLflow Projects provide a standard format for packaging and sharing reproducible data science code. Based on simple conventions, Projects enable seamless collaboration and automated execution across different environments and platforms.\n\n## Quick Start\n\n### Running Your First Project\n\nExecute any Git repository or local directory as an MLflow Project:\n\n```bash\n# Run a project from GitHub\nmlflow run https://github.com/mlflow/mlflow-example.git -P alpha=0.5\n\n# Run a local project\nmlflow run . -P data_file=data.csv -P regularization=0.1\n\n# Run with specific entry point\nmlflow run . -e validate -P data_file=data.csv\n```\n\n```python\n# Run projects programmatically\nimport mlflow\n\n# Execute remote project\nresult = mlflow.run(\n    \"https://github.com/mlflow/mlflow-example.git\",\n    parameters={\"alpha\": 0.5, \"l1_ratio\": 0.01},\n    experiment_name=\"elasticnet_experiment\",\n)\n\n# Execute local project\nresult = mlflow.run(\".\", entry_point=\"train\", parameters={\"epochs\": 100}, synchronous=True)\n```\n\n:::tip[Project Structure]\nAny directory with a `MLproject` file or containing `.py`/`.sh` files can be run as an MLflow Project. No complex setup required!\n:::\n\n## Core Concepts\n\n### Project Components\n\nEvery MLflow Project consists of three key elements:\n\n#### **Project Name**\n\nA human-readable identifier for your project, typically defined in the `MLproject` file.\n\n#### **Entry Points**\n\nCommands that can be executed within the project. Entry points define:\n\n- **Parameters** - Inputs with types and default values\n- **Commands** - What gets executed when the entry point runs\n- **Environment** - The execution context and dependencies\n\n#### **Environment**\n\nThe software environment containing all dependencies needed to run the project. MLflow supports multiple environment types:\n\n| Environment                    | Use Case                         | Dependencies      |\n| ------------------------------ | -------------------------------- | ----------------- |\n| **Virtualenv** _(Recommended)_ | Python packages from PyPI        | `python_env.yaml` |\n| **Conda**                      | Python + native libraries        | `conda.yaml`      |\n| **Docker**                     | Complex dependencies, non-Python | Dockerfile        |\n| **System**                     |"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 73821,
+      "excerpt": "hyperparameters and metrics (`mse` and `rmse`) are logged to MLflow for later analysis and comparison.\\n\",\n    \"\\n\",\n    \"- `mlflow.log_params`: Logs the hyperparameters.\\n\",\n    \"- `mlflow.log_metric`: Logs the metrics.\\n\",\n    \"\\n\",\n    \"##### Why This Function is Important\\n\",\n    \"\\n\",\n    \"- **Automated Tuning**: Optuna automates the process of finding the best hyperparameters.\\n\",\n    \"- **Experiment Tracking**: MLflow allows us to keep track of each run's hyperparameters and performance metrics, making it easier to analyze, compare, and reproduce experiments later.\\n\",\n    \"\\n\",\n    \"In the next step, this objective function will be used by Optuna to find the optimal set of hyperparameters for our XGBoost model.\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"fdb722d7\",\n   \"metadata\": {},\n   \"source\": [\n    \"#### Housekeeping: Streamlining Logging for Optuna Trials\\n\",\n    \"\\n\",\n    \"As we embark on our hyperparameter tuning journey with Optuna, it's essential to understand that the process can generate a multitude of runs. In fact, so many that the standard output (stdout) from the default logger can quickly become inundated, producing pages upon pages of log reports. \\n\",\n    \"\\n\",\n    \"While the verbosity of the default logging configuration is undeniably valuable during the code development phase, initiating a full-scale trial can result in an overwhelming amount of information. Considering this, logging every single detail to stdout becomes less practical, especially when we have dedicated tools like MLflow to meticulously track our experiments.\\n\",\n    \"\\n\",\n    \"To strike a balance, we'll utilize callbacks to tailor our logging behavior.\\n\",\n    \"\\n\",\n    \"##### Implementing a Logging Callback:\\n\",\n    \"\\n\",\n    \"The callback we're about to introduce will modify the default reporting behavior. Instead of logging every trial, we'll only receive updates when a new hyperparameter combination yields an improvement over the best metric value recorded thus far.\\n\",\n    \"\\n\",\n    \"This approach offers two salient benefits:\\n\",\n    \"\\n\",\n    \"1. **Enhanced Readability**: By filtering out the extensive log details and focusing only on the trials that show improvement, we can gauge the efficacy of our hyperparameter search. For instance, if we observe a diminishing frequency of 'best result' reports early on, it might suggest that fewer iterations"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/parent-child-runs.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/parent-child-runs.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 16190,
+      "excerpt": "    \"**Hint:** You might want to return values from the `log_run` function and use these returned values in the `execute_tuning` function to keep track of the best metrics and parameters.\\n\",\n    \"\\n\",\n    \"#### Note:\\n\",\n    \"Before moving on to the solution below, **give it a try yourself!** This exercise is a great opportunity to familiarize yourself with advanced features of MLflow and improve your MLOps skills. If you get stuck or want to compare your solution, you can scroll down to see a possible implementation.\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 7,\n   \"id\": \"d1a6e57b\",\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"# Define a function to log parameters and metrics and add tag\\n\",\n    \"# logging for search_runs functionality\\n\",\n    \"def log_run(run_name, test_no, param1_choices, param2_choices, tag_ident):\\n\",\n    \"    with mlflow.start_run(run_name=run_name, nested=True) as run:\\n\",\n    \"        param1 = random.choice(param1_choices)\\n\",\n    \"        param2 = random.choice(param2_choices)\\n\",\n    \"        metric1 = random.uniform(0, 1)\\n\",\n    \"        metric2 = abs(random.gauss(5, 2.5))\\n\",\n    \"\\n\",\n    \"        mlflow.log_param(\\\"param1\\\", param1)\\n\",\n    \"        mlflow.log_param(\\\"param2\\\", param2)\\n\",\n    \"        mlflow.log_metric(\\\"metric1\\\", metric1)\\n\",\n    \"        mlflow.log_metric(\\\"metric2\\\", metric2)\\n\",\n    \"        mlflow.set_tag(\\\"test_identifier\\\", tag_ident)\\n\",\n    \"\\n\",\n    \"        return run.info.run_id, metric1, param1, param2\\n\",\n    \"\\n\",\n    \"\\n\",\n    \"# Generate run names\\n\",\n    \"def generate_run_names(test_no, num_runs=5):\\n\",\n    \"    return (f\\\"run_{i}_test_{test_no}\\\" for i in range(num_runs))\\n\",\n    \"\\n\",\n    \"\\n\",\n    \"# Execute tuning function, allowing for param overrides,\\n\",\n    \"# run_name disambiguation, and tagging support\\n\",\n    \"def execute_tuning(\\n\",\n    \"    test_no,\\n\",\n    \"    param1_choices=(\\\"a\\\", \\\"b\\\", \\\"c\\\"),\\n\",\n    \"    param2_choices=(\\\"d\\\", \\\"e\\\", \\\"f\\\"),\\n\",\n    \"    test_identifier=\\\"\\\",\\n\",\n    \"    num_child_runs=5,\\n\",\n    \"):\\n\",\n    \"    ident = \\\"default\\\" if not test_identifier else test_identifier\\n\",\n    \"    best_metric1 = float(\\\"inf\\\")\\n\",\n    \"    best_params = None\\n\",\n    \"    # Use a parent run to encapsulate the child runs\\n\",\n    \"    with mlflow.start_run(run_name=f\\\"parent_run_test_{ident}_{test_no}\\\"):\\n\",\n    \"        # Partial"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/part1-child-runs/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/part1-child-runs/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1867,
+      "excerpt": "l suffices for introductory purposes, real-world scenarios introduce complexities. One such complexity arises when tuning models.\n\nModel tuning is paramount. Methods range from grid search (though typically not recommended due to\ninefficiencies) to random searches, and more advanced approaches like automated hyperparameter tuning.\nThe objective remains the same: to optimally traverse the model's parameter space.\n\n### Benefits of Hyperparameter Tuning\n\n- **Loss Metric Relationship**: By analyzing the relationship between hyperparameters and optimization loss metrics, we can discern potentially irrelevant parameters.\n\n- **Parameter Space Analysis**: Monitoring the range of tested values can indicate if we need to constrict or expand our search space.\n\n- **Model Sensitivity Analysis**: Estimating how a model reacts to specific parameters can pinpoint potential feature set issues.\n\nBut here lies the challenge: How do we systematically store the extensive data produced during hyperparameter tuning?\n\n<figure className=\"center-div\" style={{ width: 1024, maxWidth: \"100%\", textAlign: \"center\" }}>\n  ![Challenges with hyperparameter data storage](/images/guides/introductory/hyperparameter-tuning-with-child-runs/what-to-do-with-hyperparam-runs.svg)\n  <figcaption>The quandary of storing hyperparameter data</figcaption>\n</figure>\n\nIn the upcoming sections, we'll delve deeper, exploring MLflow's capabilities to address this\nchallenge, focusing on the concepts of Parent and Child Runs.\n\n## What are Parent and Child Runs?\n\nAt its core, MLflow allows users to track experiments, which are essentially named groups of runs.\nA \"run\" in this context refers to a single execution of a model training event, where you can log\nparameters, metrics, tags, and artifacts associated with the training process.\nThe concept of Parent and Child Runs introduces a hierarchical structure to these runs.\n\nImagine a scenario where you're testing a deep learning model with different architectures. Each\narchitecture can be considered a parent run, and every iteration of hyperparameter tuning for that\narchitecture becomes a child run nested under its respective parent.\n\n## Benefits\n\n1. **Organizational Clarity**: By using Parent and Child Runs, you can easily group related runs together. For instance, if you're running a hyperparameter search using a Bayesian approach on a particular model architecture,"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/assessments/feedback.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/assessments/feedback.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7494,
+      "excerpt": "trace with your user information as the source.\n\n#### Editing Existing Feedback\n\nTo refine evaluations or correct mistakes:\n\n<CollapsibleSection\n  title=\"Show Step-by-Step Instructions (5 steps)\"\n  defaultExpanded={false}\n>\n  <WorkflowSteps\n    steps={[\n      {\n        icon: Search,\n        title: \"Locate the feedback entry you want to modify\",\n        description: \"Find the specific feedback on the trace detail page that needs updating\"\n      },\n      {\n        icon: MoreVertical,\n        title: \"Click the hamburger menu (⋮) next to the feedback entry\",\n        description: \"Access the feedback options dropdown menu\"\n      },\n      {\n        icon: Edit,\n        title: \"Select \\\"Edit\\\" from the dropdown menu\",\n        description: \"Choose the edit option to access the feedback modification form\"\n      },\n      {\n        icon: Settings,\n        title: \"Modify the value, rationale, or other fields\",\n        description: \"Update rating, explanation, or other feedback details as needed\"\n      },\n      {\n        icon: Save,\n        title: \"Click \\\"Save\\\" to update the feedback\",\n        description: \"Save your changes to preserve the updated evaluation, or click \\\"Cancel\\\" to discard changes\"\n      }\n    ]}\n    screenshot={{\n      src: EditFeedbackImageUrl,\n      alt: \"Edit Feedback\"\n    }}\n  />\n</CollapsibleSection>\n\n#### Adding Additional Feedback to Existing Entries\n\nWhen multiple reviewers want to provide feedback on the same aspect, or when you want to add corrections to automated evaluations:\n\n<CollapsibleSection\n  title=\"Show Step-by-Step Instructions (4 steps)\"\n  defaultExpanded={false}\n>\n  <WorkflowSteps\n    steps={[\n      {\n        icon: Search,\n        title: \"Find the existing feedback name you want to add to\",\n        description: \"Locate the feedback category where you want to add another perspective\"\n      },\n      {\n        icon: Plus,\n        title: \"Click the plus (+) icon next to the feedback name\",\n        description: \"Access the additional feedback form for the same quality aspect\"\n      },\n      {\n        icon: FileInput,\n        title: \"Enter your additional evaluation with appropriate rationale\",\n        description: \"Provide your assessment and explanation from your perspective\"\n      },\n      {\n        icon: Save,\n        title: \"Click \\\"Create\\\" to add your feedback alongside existing entries\",\n        description: \"Your evaluation wil"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 54304,
+      "excerpt": " it possible to chain together projects into workflows. Table of Contents Overview Specifying Projects Running Projects Iterating Quickly Building Multistep Workflows Overview At the core, MLflow Projects are just a convention for organizing and describing your code to let other data scientists (or automated tools) run it. Each project is simply a directory of files, or a Git repository, containing your code. MLflow can run some projects based on a convention for placing files in this directory (for example, a conda.yaml file is treated as a Conda environment), but you can describe your project in more detail by adding a MLproject file, which is a YAML formatted text file. Each project can specify several properties: NameA human-readable name for the project. Entry PointsCommands that can be run within the project, and information about their parameters. Most projects contain at least one entry point that you want other users to call. Some projects can also contain more than one entry point: for example, you might have a single Git repository containing multiple featurization algorithms. You can also call any .py or .sh file in the project as an entry point. If you list your entry points in a MLproject\",0,projects.html\nWhat are the entry points in a MLproject file and how can you specify parameters for them?,\"The entry points in a MLproject file are the .py or .sh files in the project that can be called as an entry point. By listing the entry points in a MLproject file, you can specify parameters for them, including data types and default values. This allows you to customize the behavior of the entry points and pass different inputs to them when running the project.\",\"might have a single Git repository containing multiple featurization algorithms. You can also call any .py or .sh file in the project as an entry point. If you list your entry points in a MLproject file, however, you can also specify parameters for them, including data types and default values. EnvironmentThe software environment that should be used to execute project entry points. This includes all library dependencies required by the project code. See Project Environments for more information about the software environments supported by MLflow Projects, including Conda environments, Virtualenv environments, and Docker containers. You can run any project from a Git URI or from a local director"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26560",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26560,
+      "title": "[BUG] NaN metric values pass min_relative_change model validation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 905,
+      "excerpt": ". With `MetricThreshold(min_relative_change=0.05, greater_is_better=True)`, a candidate metric of NaN against a finite baseline of 0.8 returns normally and logs **Model validation passed!** A finite candidate against a NaN baseline also passes. Both metric directions are affected.\n\nThis matters for automated model-promotion gates: a run with no usable numeric scores can pass a requirement to improve by 5%. NaN is an ordinary outcome of unscorable evaluation metrics; it is not evidence of improvement. The reproduction below uses MLflow's real `MetricValue` aggregation over stub scorer outputs and its public validation API, with no model calls or API keys. It also includes finite passing and failing controls.\n\n| Candidate | Baseline | Required improvement | Current result | Expected |\n|---:|---:|---:|---|---|\n| 0.90 | 0.80 | 5% | Pass | Pass |\n| 0.81 | 0.80 | 5% | Fail | Fail |\n| NaN | 0.80 | 5% | **Pass** | Fail |\n| 0.90 | NaN | 5% | **Pass** | Fail |\n\nIn [`validation.py` at the reproduced commit](https://github.com/mlflow/mlflow/blob/1f66a68f5baa3b50c005f0dc1def513d8fc9026b/mlflow/models/evaluation/validation.py#L426-L428), `relative_change < min_relative_change` is False when the computed change is NaN. The failure flag therefore stays False. The absolute-value threshold already uses a positive-comparison form (`not comparator_fn(...)`). Applying the same principle here, `not (relative_change >= min_relative_change)`, rejects an undefined change while preserving finite comparisons.\n\nA local patch changes that predicate and adds ten parameterized regression cases to `tests/evaluate/test_validation.py`: NaN in either/both arms and same-sign infinities producing NaN, for both metric directions. The full validation test module passes after the fix: 79 tests, including the ten new cases that fail before the fix. This does not redefine how missing judge scores should be aggregated.\n\n### Tracking information\n\nNo tracking server, database, network service or model endpoint is needed.\n\n### Code to reproduce issue\n\nInstall `mlflow==3.17.0`, then run this offline:\n\n```python\n\"\"\"Offline reproduction: public MLflow quality gate, no model calls or tracking server.\"\"\"\nimport json\nimport logging\nimport math\nimport os\n\nos.environ['MLFLOW_ENABLE_TELEMETRY'] = 'false'\nos.environ['MLFLOW_DISABLE_AGENT_HINT'] = '1'\n\nimport mlflow\nfrom mlflow.metrics import MetricValue\nfrom mlfl"
+    }
+  ]
+}

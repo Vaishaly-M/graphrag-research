@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 23513,
+        "line": 577
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26395",
+        "path": null,
+        "offset": 2212,
+        "line": 28
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/sklearn/__init__.py",
+        "path": "mlflow/sklearn/__init__.py",
+        "offset": 28095,
+        "line": 714
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 56769,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 2003,
+        "line": 37
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+        "path": "changelogs/v0.x.md",
+        "offset": 23023,
+        "line": 253
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+        "path": "examples/llms/RAG/_cache.json",
+        "offset": 35126,
+        "line": 183
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/pytorch/__init__.py",
+        "path": "mlflow/pytorch/__init__.py",
+        "offset": 31282,
+        "line": 760
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+      "kind": "File",
+      "path": "changelogs/v0.x.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23023,
+      "excerpt": "R snapshots are now available and linked from https://github.com/mlflow/mlflow (#352, @aarondav)\n\nBug fixes and documentation updates:\n\n- [Python] `mlflow run` now logs default parameters, in addition to explicitly provided ones (#392, @mparkhe)\n- [Python] `log_artifact` in FileStore now requires a relative path as the artifact path (#439, @mparkhe)\n- [Python] Fixed string representation of Python entities, so they now display both their type and serialized fields (#371, @smurching)\n- [UI] Entry point name is now shown in MLflow UI (#345, @aarondav)\n- [Models] Keras model export now includes TensorFlow graph explicitly to ensure the model can always be loaded at deployment time (#440, @tomasatdatabricks)\n- [Python] Fixed issue where FileStore ignored provided Run Name (#358, @adrian555)\n- [Python] Fixed an issue where any `mlflow run` failing printed an extraneous exception (#365, @smurching)\n- [Python] uuid dependency removed (#351, @antonpaquin)\n- [Python] Fixed issues with remote execution on Databricks (#357, #361, @smurching; #383, #387, @aarondav)\n- [Docs] Added [comprehensive example](https://github.com/mlflow/mlflow/tree/master/examples/multistep_workflow) of doing a multistep workflow, chaining MLflow runs together and reusing results (#338, @aarondav)\n- [Docs] Added [comprehensive example](https://github.com/mlflow/mlflow/tree/master/examples/hyperparam) of doing hyperparameter tuning (#368, @tomasatdatabricks)\n- [Docs] Added code examples to `mlflow.keras` API (#341, @dmatrix)\n- [Docs] Significant improvements to Python API documentation (#454, @stbof)\n- [Docs] Examples folder refactored to improve readability. The examples now reside in `examples/` instead of `example/`, too (#399, @mparkhe)\n- Small bug fixes and doc updates (#328, #363, @ToonKBC; #336, #411, @aarondav; #284, @smurching; #377, @mparkhe; #389, gioa; #408, @aadamson; #397, @vfdev-5; #420, @adrian555; #459, #463, @stbof)\n\n## 0.5.2 (2018-08-24)\n\nMLflow 0.5.2 is a patch release on top of 0.5.1 containing only bug fixes and no breaking changes or features.\n\nBug fixes:\n\n- Fix a bug with ECR client creation that caused `mlflow.sagemaker.deploy()` to fail when searching for a deployment Docker image (#366, @dbczumar)\n\n## 0.5.1 (2018-08-23)\n\nMLflow 0.5.1 is a patch release on top of 0.5.0 containing only bug fixes and no breaking changes or features.\n\nBug fixes:\n\n- Fix `with mlflow.start_r"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23513,
+      "excerpt": " not code/src/utils.py\n    )\n\n# => Model serving will fail with ModuleNotFoundError: No module named 'src'\n```\n\nThis limitation is due to how MLflow saves and loads the specified files and directories. When it copies the specified files or directories in `code/` target,\nit does **not** preserve the relative paths that they were originally residing within. For instance, in the above example, MLflow will copy `utils.py` to `code/utils.py`, not\n`code/src/utils.py`. As a result, it has to be imported as `from utils import my_func`, instead of `from src.utils import my_func`.\nHowever, this may not be pleasant, as the import path is different from the original training script.\n\nTo workaround this issue, the `code_paths` should specify the parent directory, which is `code_paths=[\"src\"]` in this example.\nThis way, MLflow will copy the entire `src/` directory under `code/` and your model code will be able to import `src.utils`.\n\n```python\nclass MyModel(mlflow.pyfunc.PythonModel):\n    def predict(self, context, model_input):\n        from src.utils import my_func\n\n        # .. your prediction logic\n        return prediction\n\n\nwith mlflow.start_run() as run:\n    mlflow.pyfunc.log_model(\n        python_model=model,\n        name=\"model\",\n        input_example=input_data,\n        code_paths=[\"src\"],  # the whole /src directory will be saved at code/src\n    )\n```\n\n:::warning\nBy the same reason, the `code_paths` option doesn't handle the relative import of `code_paths=[\"../src\"]`.\n:::\n\n### Limitation of `code_paths` in loading multiple models with the same module name but different implementations\n\nThe current implementation of the `code_paths` option has a limitation that it doesn't support loading multiple models that depend on modules with the same name but different implementations within the same Python process, as illustrated in the following example:\n\n```python\nimport importlib\nimport sys\nimport tempfile\nfrom pathlib import Path\n\nimport mlflow\n\nwith tempfile.TemporaryDirectory() as tmpdir:\n    tmpdir = Path(tmpdir)\n    my_model_path = tmpdir / \"my_model.py\"\n    code_template = \"\"\"\nimport mlflow\n\nclass MyModel(mlflow.pyfunc.PythonModel):\n    def predict(self, context, model_input):\n        return [{n}] * len(model_input)\n\"\"\"\n\n    my_model_path.write_text(code_template.format(n=1))\n\n    sys.path.insert(0, str(tmpdir))\n    import my_model\n\n    # model 1\n    model1 = my_m"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2003,
+      "excerpt": "at just need to apply the model\n(for example, the `mlflow deployments` tool with the option `-t sagemaker` for deploying models\nto Amazon SageMaker).\n\n### MLmodel file\n\nAll of the flavors that a particular model supports are defined in its `MLmodel` file in YAML\nformat. For example, running `python examples/sklearn_logistic_regression/train.py` from within the\n[MLflow repo](https://github.com/mlflow/mlflow/blob/master/examples/sklearn_logistic_regression/train.py)\nwill create the following files under the `model` directory:\n\n```\n# Directory written by mlflow.sklearn.save_model(model, \"model\", input_example=...)\nmodel/\n├── MLmodel\n├── model.pkl\n├── conda.yaml\n├── python_env.yaml\n├── requirements.txt\n├── input_example.json (optional, only logged when input example is provided and valid during model logging)\n├── serving_input_example.json (optional, only logged when input example is provided and valid during model logging)\n└── environment_variables.txt (optional, only logged when environment variables are used during model inference)\n```\n\nAnd its `MLmodel` file describes two flavors:\n\n```yaml\ntime_created: 2018-05-25T17:28:53.35\n\nflavors:\n  sklearn:\n    sklearn_version: 0.19.1\n    pickled_model: model.pkl\n  python_function:\n    loader_module: mlflow.sklearn\n```\n\nApart from a **flavors** field listing the model flavors, the MLmodel YAML format can contain\nthe following fields:\n\n- `time_created`: Date and time when the model was created, in UTC ISO 8601 format.\n- `run_id`: ID of the run that created the model, if the model was saved using [tracking](/ml/tracking).\n- `signature`: [model signature](/ml/model/signatures) in JSON format.\n- `input_example`: reference to an artifact with [input example](/ml/model/signatures).\n- `databricks_runtime`: Databricks runtime version and type, if the model was trained in a Databricks notebook or job.\n- `mlflow_version`: The version of MLflow that was used to log the model.\n\n### Additional Logged Files\n\nFor environment recreation, we automatically log `conda.yaml`, `python_env.yaml`, and `requirements.txt` files whenever a model is logged.\nThese files can then be used to reinstall dependencies using `conda` or `virtualenv` with `pip`. Please see\n[How MLflow Model Records Dependencies](/ml/model/dependencies#how-mlflow-records-dependencies) for more details about these files.\n\nIf a model input example is provided when logging th"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+      "kind": "File",
+      "path": "examples/llms/RAG/_cache.json",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 35126,
+      "excerpt": "run() Python API. These APIs also allow submitting the project for remote execution on Databricks and Kubernetes. Important By default, MLflow uses a new, temporary working directory for Git projects. This means that you should generally pass any file arguments to MLflow project using absolute, not relative, paths. If your project declares its parameters, MLflow automatically makes paths absolute for parameters of type path. Specifying Projects By default, any Git repository or local directory can be treated as an MLflow project; you can invoke any bash or Python script contained in the directory as a project entry point. The Project Directories section describes how MLflow interprets directories as projects. To provide\\\\n    \\\\n    Please call the submit_function function to submit the generated question and answer.\\\\n    \\\"}], \\\"model\\\": \\\"gpt-3.5-turbo\\\", \\\"functions\\\": [{\\\"name\\\": \\\"submit_function\\\", \\\"description\\\": \\\"Call this function to submit the generated question and answer.\\\", \\\"parameters\\\": {\\\"type\\\": \\\"object\\\", \\\"properties\\\": {\\\"question\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The question asking for the key information in the given paragraph.\\\"}, \\\"answer\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The answer to the question using the information in the given paragraph.\\\"}}, \\\"required\\\": [\\\"question\\\", \\\"answer\\\"]}}], \\\"function_call\\\": \\\"auto\\\", \\\"temperature\\\": 0.0, \\\"seed\\\": 2023}\": {\n    \"id\": \"chatcmpl-8NPwTJHxFt4k8ZWsWOoMSCqRBag3k\",\n    \"object\": \"chat.completion\",\n    \"created\": 1700591957,\n    \"model\": \"gpt-3.5-turbo-0613\",\n    \"choices\": [\n      {\n        \"index\": 0,\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": null,\n          \"function_call\": {\n            \"name\": \"submit_function\",\n            \"arguments\": \"{\\n  \\\"question\\\": \\\"What can you specify for the entry points in a MLproject file?\\\",\\n  \\\"answer\\\": \\\"In a MLproject file, you can specify parameters for the entry points, including data types and default values.\\\"\\n}\"\n          }\n        },\n        \"finish_reason\": \"function_call\"\n      }\n    ],\n    \"usage\": { \"prompt_tokens\": 484, \"completion_tokens\": 54, \"total_tokens\": 538 }\n  },\n  \"{\\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Please generate a question asking for the key information in the given paragraph. \\\\n    Also answer the questions using the information in the given para"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 56769,
+      "excerpt": "run() Python API. These APIs also allow submitting the project for remote execution on Databricks and Kubernetes. Important By default, MLflow uses a new, temporary working directory for Git projects. This means that you should generally pass any file arguments to MLflow project using absolute, not relative, paths. If your project declares its parameters, MLflow automatically makes paths absolute for parameters of type path. Specifying Projects By default, any Git repository or local directory can be treated as an MLflow project; you can invoke any bash or Python script contained in the directory as a project entry point. The Project Directories section describes how MLflow interprets directories as projects. To provide\",1,projects.html\nWhat are the project environments supported by MLflow?,\"MLflow currently supports the following project environments: Virtualenv environment, conda environment, Docker container environment, and system environment. Virtualenv environments support Python packages available on PyPI. Docker containers allow you to capture non-Python dependencies such as Java libraries.\",\"you can invoke any bash or Python script contained in the directory as a project entry point. The Project Directories section describes how MLflow interprets directories as projects. To provide additional control over a project's attributes, you can also include an MLproject file in your project's repository or directory. Finally, MLflow projects allow you to specify the software environment that is used to execute project entry points. Project Environments MLflow currently supports the following project environments: Virtualenv environment, conda environment, Docker container environment, and system environment. Virtualenv environment (preferred)Virtualenv environments support Python packages available on PyPI. When an MLflow Project specifies a Virtualenv environment, MLflow will download the specified version of Python by using pyenv and create an isolated environment that contains the project dependencies using virtualenv, activating it as the execution environment prior to running the project code. You can specify a Virtualenv environment for your MLflow Project by including a python_env entry in your MLproject file. For details, see the Project Directories and Specifying an Environment sections. Docker container environmentDocker containers allow you to ca"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/pytorch/__init__.py",
+      "kind": "File",
+      "path": "mlflow/pytorch/__init__.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 31282,
+      "excerpt": ")\n    return pytorch_model\n\n\ndef load_model(model_uri, dst_path=None, **kwargs):\n    \"\"\"\n    Load a PyTorch model from a local file or a run.\n\n    Args:\n        model_uri: The location, in URI format, of the MLflow model, for example:\n\n            - ``/Users/me/path/to/local/model``\n            - ``relative/path/to/local/model``\n            - ``s3://my_bucket/path/to/model``\n            - ``runs:/<mlflow_run_id>/run-relative/path/to/model``\n            - ``models:/<model_name>/<model_version>``\n            - ``models:/<model_name>/<stage>``\n\n            For more information about supported URI schemes, see `Referencing Artifacts \\\n            <https://www.mlflow.org/docs/latest/concepts.html#artifact-locations>`_.\n        dst_path: The local filesystem path to which to download the model artifact.\n            This directory must already exist. If unspecified, a local output path will be created.\n        kwargs: kwargs to pass to ``torch.load`` method.\n\n    Returns:\n        A PyTorch model.\n\n    .. code-block:: python\n        :caption: Example\n\n        import torch\n        import mlflow.pytorch\n\n\n        model = nn.Linear(1, 1)\n\n        # Log the model\n        with mlflow.start_run() as run:\n            mlflow.pytorch.log_model(model, name=\"model\")\n\n        # Inference after loading the logged model\n        model_uri = f\"runs:/{run.info.run_id}/model\"\n        loaded_model = mlflow.pytorch.load_model(model_uri)\n        for x in [4.0, 6.0, 30.0]:\n            X = torch.Tensor([[x]])\n            y_pred = loaded_model(X)\n            print(f\"predict X: {x}, y_pred: {y_pred.data.item():.2f}\")\n\n    .. code-block:: text\n        :caption: Output\n\n        predict X: 4.0, y_pred: 7.57\n        predict X: 6.0, y_pred: 11.64\n        predict X: 30.0, y_pred: 60.48\n    \"\"\"\n    import torch\n\n    local_model_path = _download_artifact_from_uri(artifact_uri=model_uri, output_path=dst_path)\n    pytorch_conf = _get_flavor_configuration(model_path=local_model_path, flavor_name=FLAVOR_NAME)\n    _add_code_from_conf_to_system_path(local_model_path, pytorch_conf)\n\n    if torch.__version__ != pytorch_conf[\"pytorch_version\"]:\n        _logger.warning(\n            \"Stored model version '%s' does not match installed PyTorch version '%s'\",\n            pytorch_conf[\"pytorch_version\"],\n            torch.__version__,\n        )\n    torch_model_artifacts_path = os.path.join(local_model_path, pytor"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/sklearn/__init__.py",
+      "kind": "File",
+      "path": "mlflow/sklearn/__init__.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 28095,
+      "excerpt": "e=INTERNAL_ERROR,\n            )\n\n\ndef load_model(model_uri, dst_path=None):\n    \"\"\"\n    Load a scikit-learn model from a local file or a run.\n\n    Args:\n        model_uri: The location, in URI format, of the MLflow model, for example:\n\n            - ``/Users/me/path/to/local/model``\n            - ``relative/path/to/local/model``\n            - ``s3://my_bucket/path/to/model``\n            - ``runs:/<mlflow_run_id>/run-relative/path/to/model``\n            - ``models:/<model_name>/<model_version>``\n            - ``models:/<model_name>/<stage>``\n\n            For more information about supported URI schemes, see\n            `Referencing Artifacts <https://www.mlflow.org/docs/latest/concepts.html#\n            artifact-locations>`_.\n        dst_path: The local filesystem path to which to download the model artifact.\n            This directory must already exist. If unspecified, a local output\n            path will be created.\n\n    Returns:\n        A scikit-learn model.\n\n    .. code-block:: python\n        :caption: Example\n\n        import mlflow.sklearn\n\n        sk_model = mlflow.sklearn.load_model(\"runs:/96771d893a5e46159d9f3b49bf9013e2/sk_models\")\n\n        # use Pandas DataFrame to make predictions\n        pandas_df = ...\n        predictions = sk_model.predict(pandas_df)\n    \"\"\"\n    local_model_path = _download_artifact_from_uri(artifact_uri=model_uri, output_path=dst_path)\n    flavor_conf = _get_flavor_configuration(model_path=local_model_path, flavor_name=FLAVOR_NAME)\n    _add_code_from_conf_to_system_path(local_model_path, flavor_conf)\n    sklearn_model_artifacts_path = os.path.join(local_model_path, flavor_conf[\"pickled_model\"])\n    serialization_format = flavor_conf.get(\"serialization_format\", SERIALIZATION_FORMAT_PICKLE)\n    skops_trusted_types = flavor_conf.get(\"skops_trusted_types\", None)\n    return _load_model_from_local_file(\n        path=sklearn_model_artifacts_path,\n        serialization_format=serialization_format,\n        skops_trusted_types=skops_trusted_types,\n    )\n\n\n# The `_apis_autologging_disabled` contains APIs which is incompatible with autologging,\n# when user call these APIs, autolog is temporarily disabled.\n_apis_autologging_disabled = [\n    \"cross_validate\",\n    \"cross_val_predict\",\n    \"cross_val_score\",\n    \"learning_curve\",\n    \"permutation_test_score\",\n    \"validation_curve\",\n]\n\n\nclass _AutologgingMetricsManager:\n    \"\"\"\n    This class"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26395",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26395,
+      "title": "Rhaieng 7124 skill mlflowclient genai workflows",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2212,
+      "excerpt": "\r\n\r\nThe broad regression selection passed **3,058 tests with 68 skipped** across Skill content helpers, entities, server routes, SQL stores, REST/client workflows, workspace behavior, and related MCP code. After the final REST path-validation fix, the Skill client/REST integration and public-export suites passed **237 tests**.\r\n\r\nCoverage includes typed-source conversion, local multipart uploads, manifest validation, cleanup, parent metadata preservation, bulk selection and batch limits, pagination, error propagation, and reused-version status. Nine additional path regressions verify malformed identifiers fail before HTTP requests and leave stored parents, versions, and tags unchanged. Existing transport tests verify credential and workspace headers for JSON and multipart requests.\r\n\r\nRuff lint/format, Clint, typo, and whitespace checks passed. Existing deprecation warnings remain. These runs use SQLite and test HTTP routing in-process; they do not establish authenticated deployment readiness or exercise real authenticated Git/OCI services.\r\n\r\n### Does this PR require documentation update?\r\n\r\n- [x] Yes. I've updated:\r\n  - [x] API references\r\n\r\nAPI reference updates come from the new workflow docstrings and examples, consumed by the existing `mlflow.genai` automodule. No files under `docs/` were changed. A rendered Sphinx build was not run.\r\n\r\n### Does this PR require updating the [MLflow Skills](https://github.com/mlflow/skills) repository?\r\n\r\n- [x] No.\r\n\r\n### Release Notes\r\n\r\n#### Is this a user-facing change?\r\n\r\n- [x] Yes. Add Skill Registry management through `MlflowClient` and high-level registration, Git import, and search workflows through `mlflow.genai`.\r\n\r\n#### What component(s), interfaces, languages, and integrations does this PR affect?\r\n\r\nComponents\r\n\r\n- [x] `area/tracking`: Tracking Service, tracking client APIs, autologging\r\n\r\n<!--\r\nInsert an empty named anchor here to allow jumping to this section with a fragment URL\r\n(e.g. https://github.com/mlflow/mlflow/pull/123#user-content-release-note-category).\r\nNote that GitHub prefixes anchor names in markdown with \"user-content-\".\r\n-->\r\n\r\n<a name=\"release-note-category\"></a>\r\n\r\n#### How should the PR be classified in the release notes? Choose one:\r\n\r\n- [x] `rn/feature` - A new user-facing feature worth mentioning in the release notes\r\n\r\n#### Is this PR a critical bugfix or security fix that should go"
+    }
+  ]
+}

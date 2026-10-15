@@ -1,0 +1,91 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_HAS_ISSUE]->(i:DLIssue) WHERE r.dataset=$dataset AND r.repo=$repo AND i.state=$state RETURN toString(i.number) AS entity,i.title AS fact,[r.id,i.id] AS evidence_ids ORDER BY i.number LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "state": "open"
+  },
+  "rows": [
+    {
+      "entity": "6",
+      "fact": "Remove assembly scan for all event types in the integration log ",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:6"
+      ]
+    },
+    {
+      "entity": "8",
+      "fact": "Checkout process deletes the basket twice",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:8"
+      ]
+    },
+    {
+      "entity": "9",
+      "fact": "BasketService can be inconsistent about whether user is authenticated (or at least can disagree with WebApp)",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:9"
+      ]
+    },
+    {
+      "entity": "11",
+      "fact": "Reconsider when EF schema migrations are applied",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:11"
+      ]
+    },
+    {
+      "entity": "14",
+      "fact": "Pick a consistent name for the shopping cart/bag/basket",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:14"
+      ]
+    },
+    {
+      "entity": "17",
+      "fact": "Web app configures the exception handling middleware but no /Error endpoint exists",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:17"
+      ]
+    },
+    {
+      "entity": "18",
+      "fact": "Share model classes between projects",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:18"
+      ]
+    },
+    {
+      "entity": "19",
+      "fact": "Share integration events between projects",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:19"
+      ]
+    },
+    {
+      "entity": "20",
+      "fact": "Turn on nullable reference types",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:20"
+      ]
+    },
+    {
+      "entity": "23",
+      "fact": "Remove DDD boilerplate",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:23"
+      ]
+    }
+  ]
+}

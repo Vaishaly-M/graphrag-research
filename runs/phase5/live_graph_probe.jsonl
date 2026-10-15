@@ -1,0 +1,5 @@
+{"cypher_llm": "offline-fixture", "database": "live", "evidence_count": 12, "question_id": "T2-26534dce90f7def2dcbf", "repo": "spring-projects/spring-petclinic", "trace": ["graph:template"]}
+{"cypher_llm": "offline-fixture", "database": "live", "evidence_count": 4, "question_id": "T2-a6d0d7fc3625bd872809", "repo": "spring-projects/spring-petclinic", "trace": ["graph:template"]}
+{"cypher_llm": "offline-fixture", "database": "live", "evidence_count": 2, "question_id": "T2-b5d5e140ac8b8116f798", "repo": "spring-projects/spring-petclinic", "trace": ["graph:template"]}
+{"cypher_llm": "offline-fixture", "database": "live", "evidence_count": 2, "question_id": "T2-15de75d462f60776b266", "repo": "spring-projects/spring-petclinic", "trace": ["graph:template"]}
+{"cypher_llm": "offline-fixture", "database": "live", "evidence_count": 5, "question_id": "T2-cacf425d3d9b1c95d6e8", "repo": "spring-projects/spring-petclinic", "trace": ["graph:llm_cypher"]}

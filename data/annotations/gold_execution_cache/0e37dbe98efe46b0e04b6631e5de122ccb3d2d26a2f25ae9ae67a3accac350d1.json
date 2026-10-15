@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+        "path": ".agents/skills/magpie-setup/adopt.md",
+        "offset": 26196,
+        "line": 627
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 47299,
+        "line": 892
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 10237,
+        "line": 194
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 38809,
+        "line": 874
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 17957,
+        "line": 161
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:issue:74459",
+        "path": null,
+        "offset": 188,
+        "line": 4
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/microsoft/azure/docs/changelog.rst",
+        "path": "providers/microsoft/azure/docs/changelog.rst",
+        "offset": 22553,
+        "line": 675
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/openlineage/docs/changelog.rst",
+        "path": "providers/openlineage/docs/changelog.rst",
+        "offset": 27230,
+        "line": 801
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+      "kind": "File",
+      "path": ".agents/skills/magpie-setup/adopt.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26196,
+      "excerpt": "nly records the\nopt-in pick. Compute the family glob fresh from the snapshot\ncontents on disk — do not hard-code skill names.\n\nSymlink wiring (targets from [`agents.md`](agents.md)) — the\n**canonical-plus-relay** model, applied identically no matter\nwhat layout the adopter's `.claude/` / `.github/` were in before:\n\nEvery symlink is named `magpie-<n>` (the `magpie-` prefix\nnamespaces framework skills). Wire the **same set of skills**\ninto **every active target dir**, canonical first:\n\n- **Canonical target (`.agents/skills/`)** — one symlink per\n  skill at `.agents/skills/magpie-<n>` → relative path into the\n  snapshot (`../../.apache-magpie/skills/<n>/`). Gitignored. This\n  is the single placement that makes the framework discoverable to\n  Codex, Cursor, Gemini CLI, Copilot, OpenCode, and the rest of\n  the shared-path cluster, and the one source every relay points\n  at.\n\n- **Relay targets (`.claude/skills/`, `.github/skills/`, any\n  present holdout)** — one symlink per skill at\n  `<target>/skills/magpie-<n>` → `../../.agents/skills/magpie-<n>`\n  (pointing back at the canonical entry, **not** the snapshot).\n  Gitignored. The adopter's own native (non-`magpie-`) skills in\n  these dirs are left untouched.\n\n**Never overwrite an existing committed skill** of the same\nname. Surface conflicts and stop. The bootstrap `setup` skill\nis the one committed skill (as `magpie-setup`) — the symlink\nwiring step skips it by name; the committed copy is reconciled\nin\n[Step 3b](#step-3b--reconcile-the-committed-setup-with-the-new-snapshot--reload-in-flight),\nnot here.\n\nShow the symlinks the skill is about to create, grouped by\n*opt-in family* / *always-on family*, ask the user to\nconfirm, then create them. Always-on entries are surfaced\nread-only — the prompt is \"confirm this list\" not \"edit this\nlist\".\n\n## Step 8b — Wire up trusted external-source skills\n\nIf `<project-config>/skill-sources.md` (the adopter trust list)\nexists and lists any source, run the\n[`skill-sources`](skill-sources.md) sub-action now as a content\npass: fetch + verify each trusted source into\n`.apache-magpie-sources/<id>/`, write both source locks, and\ncreate the canonical + relay `magpie-<name>` symlinks for the\nskills each source `provides` — the same wiring Step 8 does for\nframework skills, just targeting the source snapshots. Nothing is\nfetched if the trust list is absent or empty (the common case);\nthis "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 17957,
+      "excerpt": "g` (which resolves to `cap_structlog` under structlog) are fine and preferred: `\"event name\" in caplog` or `{\"event\": ..., \"field\": ...} in caplog`.\n\n## Output conventions\n\n- Put any files you generate (PR reviews, reports, scratch output) under `files/`.\n- Create `files/` if it doesn't exist.\n\n\n## Commits and PRs\n\nWrite commit messages focused on user impact, not implementation details.\n\n- **Good:** `Fix airflow dags test command failure without serialized Dags`\n- **Good:** `UI: Fix Grid view not refreshing after task actions`\n- **Bad:** `Initialize Dag bundles in CLI get_dag function`\n- **Bad:** `fix(cli): dags test failure` — Airflow does not use Conventional Commits\n  (`feat:`, `fix:`, `chore:` …). Write the subject as plain prose. A `commit-msg`\n  prek hook (`check-no-conventional-commit-message`) rejects these, and CI checks\n  every commit of the PR.\n\n**Always run `prek install` before committing any code.** It installs the\n`commit-msg` hook (in addition to `pre-commit`) so the Conventional Commits guard\nruns locally; a clone that ran `prek install` before this hook existed must re-run\nit to pick up the new hook type.\n\nUse the **imperative mood** and a plain message — do **not** use Conventional Commits prefixes\n(`fix:`, `feat:`, `chore:`, `docs:`, `refactor:`, …). apache/airflow does not follow that\nconvention. (Area tags the project already uses, like `UI:` / `API:` / `Helm:`, are fine;\nConventional-Commit `type:` tokens are not.) The same rule applies to PR titles.\n\nThe commit message **body** should describe **why** the change is made — the motivation and\ncontext — and **never what** the change is. The diff already shows what changed; restating it in\nprose adds noise.\n\nFor `airflow-core` (and `chart/`, `dev/mypy/`) **user-facing** changes, add a newsfragment in that distribution's `newsfragments/` directory. **Golden rule: only add a newsfragment when you are certain the change is visible to users; when in doubt, do not add one** — a maintainer will request one in review if it is needed. Build/release tooling, CI, packaging, internal refactors, and dev-only scripts are not user-facing and must not get a newsfragment:\n`echo \"Brief description\" > airflow-core/newsfragments/{PR_NUMBER}.{bugfix|feature|improvement|doc|misc|significant}.rst`\n\n**Do not add newsfragments for `providers/` or `airflow-ctl/`** — their release managers regenerate the changelo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10237,
+      "excerpt": "#i18n Slack channel.\n5. PRs introducing translation updates may continue to be merged as usual until the RC is cut.\n\nThanks for your cooperation!\n<your name>\nEOF\n```\n\nWhen it is time to cut the RC, you should:\n\n1. Generate an additional completeness output:\n  a. If there are incomplete locales that were also incomplete in the previous major/minor release, please contact the code owner and ask them to act according to the [Relinquishing translation/code ownership procedure](../airflow-core/src/airflow/ui/public/i18n/README.md#relinquishing-translationcode-ownership) in the i18n policy.\n  b. If there are other incomplete locales, please write it as a reminder for the next major/minor release.\n2. Post the final completeness output on the same thread.\n\n> [!NOTE]\n> The release process should not be blocked solely because some locales remain incomplete at RC cut time. Missing translations fall back to English, and incomplete locales should be followed up after the release.\n\n## Selecting what to cherry-pick\n\nFor obvious reasons, you can't cherry-pick every change from `main` into the release branch -\nsome are incompatible without a large set of other changes, some are brand-new features, and some just don't need to be in a release.\n\nIn general only security fixes, data-loss bugs and regression fixes are essential to bring into a patch release;\nalso changes in dependencies (pyproject.toml) resulting from releasing newer versions of packages that Airflow depends on.\nOther bugfixes can be added on a best-effort basis, but if something is going to be very difficult to backport\n(maybe it has a lot of conflicts, or heavily depends on a new feature or API that's not being backported),\nit's OK to leave it out of the release at your sole discretion as the release manager -\nif you do this, update the milestone in the issue to the \"next\" minor release.\n\nMany issues will be marked with the target release as their Milestone; this is a good shortlist\nto start with for what to cherry-pick.\n\nFor a patch release, find out other bug fixes that are not marked with the target release as their Milestone\nand mark those as well. You can accomplish this by running the following command:\n\n```\n./dev/airflow-github needs-categorization 2.3.2 HEAD\n```\n\nYou are likely want to cherry-pick some of the latest doc changes in order to bring clarification and\nexplanations added to the documentation."
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 38809,
+      "excerpt": "RC_ISSUE} --repo apache/airflow \\\n    --body-file /tmp/rc-body-carried-over.md\n\n# Post a comment explaining what was carried over, so contributors who\n# signed the items off last time are not pinged to retest.\ngh issue comment ${NEW_RC_ISSUE} --repo apache/airflow --body \\\n\"Pre-checked N items that were already verified on the previous RC \\\n(#${PREVIOUS_RC_ISSUE}) and are present in this RC unchanged — direct \\\ncherry-picks or \\`[v3-2-test]\\` backports of the same fix. Items left \\\nunchecked are either new in this RC or were not verified on the previous \\\none.\"\n```\n\nReview the diff after the edit — occasionally a v3-2-test backport PR\nnumber does not appear on the same line as the original main-branch PR\n(e.g. when the original was squashed to hide its number), in which case\nthe carry-over misses it and the release manager must check the box\nmanually.\n\n## Prepare voting email for airflow-ctl release candidate\n\nMake sure the packages are in https://dist.apache.org/repos/dist/dev/airflow/airflow-ctl/\n\n\nSubject:\n\n```shell script\ncat <<EOF\n[VOTE] Release Airflow CTL ${VERSION} from ${VERSION_RC}\nEOF\n```\n\nBody:\n\n```shell script\ncat <<EOF\nThe release candidate for **Apache Airflow Ctl**: ${VERSION_RC}  is now available for testing!\n\nThis email is calling for a vote on the release, which will last at least until the\nDATE_HERE and until 3 binding +1 votes have been received.\n\nConsider this my +1 (binding) vote.\n\nThe apache-airflow-ctl ${VERSION_RC} package is available at: https://dist.apache.org/repos/dist/dev/airflow/airflow-ctl/${VERSION_RC}/\n\nThe \"apache-airflow-ctl\" packages are:\n\n   - *apache_airflow_ctl-${VERSION}-source.tar.gz* is a source release that comes\n     with INSTALL instructions.\n   - *apache_airflow_ctl-${VERSION}.tar.gz* is the binary Python \"sdist\" release.\n   - *apache_airflow_ctl-${VERSION}-py3-none-any.whl* is the binary Python wheel \"binary\" release.\n\nPublic keys are available at: https://dist.apache.org/repos/dist/release/airflow/KEYS\n\nPlease vote accordingly:\n\n[ ] +1 approve\n[ ] +0 no opinion\n[ ] -1 disapprove with the reason\n\nOnly votes from PMC members are binding, but all members of the community are encouraged to test the release and vote with \"(non-binding)\".\n\nThe test procedure for PMC members is described in: https://github.com/apache/airflow/blob/main/dev/README_RELEASE_AIRFLOWCTL.md#verify-the-release-candidate-by-pmc-members\n\nThe"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 47299,
+      "excerpt": "rks from the previous wave's testing issue\n\nWhenever a provider in this wave is a **re-cut** of one that already appeared in\nan earlier wave's testing issue — providers held back from the previous wave and\nreleased again at `rc2`/`rc3`, or any provider whose previous RC was cancelled —\nthe PRs that were already ticked `[x]` (verified) in that earlier issue must stay\nticked in the new one. Testers should not be asked to re-verify unchanged code;\nonly the genuinely new commits in the re-cut are left unchecked. **Do this every\ntime** before creating the issue.\n\nExtract the checked PRs from the previous issue and carry them over to the\ngenerated body:\n\n```shell script\n# PREV_ISSUE = the previous wave's testing-status issue number\ngh issue view PREV_ISSUE --repo apache/airflow --json body -q .body > /tmp/prev_issue.md\nchecked=$(grep -E '^\\s*- \\[x\\]' /tmp/prev_issue.md | grep -oE '#[0-9]+' | tr -d '#' | sort -u | paste -sd '|' -)\n# macOS sed: `sed -i ''`; GNU/Linux sed: `sed -i`\nsed -i '' -E \"s/- \\[ \\] (.*\\(#(${checked})\\))/- [x] \\1/\" files/provider_issue.md\n```\n\nReview the resulting `[x]` lines (PRs only present in the new wave stay\nunchecked), then create the issue as below. If the issue was already created,\napply the same edit to the file and run `gh issue edit <ISSUE> --body-file ...`.\n\nthen create it from the file:\n\n```shell script\ngh issue create --repo apache/airflow \\\n    --title \"Status of testing Providers that were prepared on <MONTH DD, YYYY>\" \\\n    --body-file files/provider_issue.md --label \"testing status,kind:meta\"\n```\n\n## Prepare voting email for Providers release candidate\n\nMake sure the packages are in https://dist.apache.org/repos/dist/dev/airflow/providers/\n\n* Before sending the vote email, gate on the same completeness check the PMC verifiers run, so a\n  missing artifact (e.g. the `-source.tar.gz` tarball) fails here instead of in the vote thread.\n  `files/packages.txt` was already generated by the PyPI upload step (\"Publish the Regular\n  distributions to PyPI\" above); run the check against it:\n\n```shell script\ncd \"$AIRFLOW_REPO_ROOT\"\nbreeze release-management check-release-files providers --release-date \"${RELEASE_DATE}\" \\\n  --packages-file ./files/packages.txt \\\n  --path-to-airflow-svn \"$(cd ../asf-dist/dev/airflow && pwd -P)\"\n```\n\n  It exits non-zero and lists every missing file (including `.asc`/`.sha512` variants) if anything is\n  absent"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/microsoft/azure/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/microsoft/azure/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22553,
+      "excerpt": "e/airflow/blob/main/PROVIDERS.rst#minimum-supported-version-of-airflow-for-community-managed-providers>`_.\n\nBreaking changes\n~~~~~~~~~~~~~~~~\n\n.. warning::\n  All deprecated classes, parameters and features have been removed from the microsoft azure provider package.\n  The following breaking changes were introduced:\n\n    * Removed deprecated ``extra__azure_data_explorer__foo`` in azure connection extra.\n    * Removed deprecated ``extra__azure__tenantId`` in azure connection extra. Use ``tenantId`` instead.\n    * Removed deprecated ``get_state_exitcode_details`` method. Use ``get_state`` instead.\n    * Removed deprecated ``get_messages`` method. Use ``get_state`` instead.\n    * Removed deprecated ``extra__azure_data_factory__foo`` in azure connection extra.\n    * Usage of `default_conn_name=azure_synapse_connection` is deprecated in ``AzureSynapsePipelineHook``. Use ``default_conn_name=azure_synapse_default`` instead.\n    * Removed deprecated method ``get_hook`` to get instance of ``AzureDataExplorerHook``. Use ``hook`` property instead.\n    * Removed deprecated method ``get_hook`` to get instance of ``AzureBatchHook``. Use ``hook`` property instead.\n    * Removed deprecated method ``AzureKeyVaultBackend.get_conn_uri``. Use ``get_conn_value`` instead.\n    * Removed deprecated class ``WasbBlobAsyncSensor``. Use ``WasbBlobSensor`` with ``deferrable=True`` instead.\n    * Removed deprecated operator `AzureBlobStorageToGCSOperator`. Use ``airflow.providers.google.cloud.transfers.azure_blob_to_gcs.AzureBlobStorageToGCSOperator`` instead.\n\n* ``Remove Provider Deprecations in Microsoft-AZURE (#44763)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``fix callable values in path and query parameters of MSGraphAsyncOperator (#43799)``\n* ``PowerBIDatasetRefreshOperator should fail when refresh fails (#44696)``\n\nMisc\n~~~~\n\n* ``Bump minimum Airflow version in providers to Airflow 2.9.0 (#44956)``\n* ``Move triggers to standard provider (#43608)``\n* ``Remove XCom pickling (#43905)``\n* ``Update DAG example links in multiple providers documents (#44034)``\n* ``Update path of example dags in docs (#45069)``\n* ``Avoid 1.1.8 version of msgraph-core (#45044)``\n* ``refactor: Added MS Graph connection type (#45006)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Use Python 3.9 as target version for Ruff & Black rul"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/openlineage/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/openlineage/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27230,
+      "excerpt": "che/airflow/blob/main/PROVIDERS.rst#minimum-supported-version-of-airflow-for-community-managed-providers>`_.\n\nBreaking changes\n~~~~~~~~~~~~~~~~\n\n.. warning::\n   All deprecated classes, parameters and features have been removed from the OpenLineage provider package.\n   The following breaking changes were introduced:\n\n   * Utils\n\n      * Removed ``normalize_sql`` function from ``openlineage.utils`` module.\n\n* ``Remove Provider Deprecations in OpenLineage (#44636)``\n\nFeatures\n~~~~~~~~\n\n* ``add clear_number to OpenLineage's dagrun-level event run id generation (#44617)``\n* ``utilize more information to deterministically generate OpenLineage run_id (#43936)``\n* ``feat: automatically inject OL info into spark job in DataprocSubmitJobOperator (#44477)``\n\nMisc\n~~~~\n\n* ``Remove references to AIRFLOW_V_2_9_PLUS (#44987)``\n* ``Bump minimum Airflow version in providers to Airflow 2.9.0 (#44956)``\n* ``Consistent way of checking Airflow version in providers (#44686)``\n* ``add basic system tests for OpenLineage (#43643)``\n* ``Move Asset user facing components to task_sdk (#43773)``\n* ``Rename execution_date to logical_date across codebase (#43902)``\n\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Use Python 3.9 as target version for Ruff & Black rules (#44298)``\n\n1.14.0\n......\n\nFeatures\n~~~~~~~~\n\n* ``Add support for semicolon stripping to DbApiHook, PrestoHook, and TrinoHook (#41916)``\n* ``Add ProcessingEngineRunFacet to OL DAG Start event (#43213)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``serialize asset/dataset timetable conditions in OpenLineage info also for Airflow 2 (#43434)``\n* ``OpenLineage: accept whole config when instantiating OpenLineageClient. (#43740)``\n\nMisc\n~~~~\n\n* ``Temporarily limit openlineage to <1.24.0 (#43732)``\n* ``Move python operator to Standard provider (#42081)``\n\n1.13.0\n......\n\nFeatures\n~~~~~~~~\n\n* ``feat(providers/openlineage): Use asset in common provider (#43111)``\n\nMisc\n~~~~\n\n* ``Ignore attr-defined for compat import (#43301)``\n* ``nit: remove taskgroup's tooltip from OL's AirflowJobFacet (#43152)``\n* ``require 1.2.1 common.compat for openlineage provider (#43039)``\n\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Split providers out of the main \"airflow/\" tree into a UV work"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:issue:74459",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 74459,
+      "title": "Status of testing Providers that were prepared on October 06, 2026",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 188,
+      "excerpt": "st providers can be found in\n\n[Verify providers by contributors](https://github.com/apache/airflow/blob/main/dev/README_RELEASE_PROVIDERS.md#verify-the-release-candidate-by-contributors)\n\nLet us know in the comments, whether the issue is addressed.\n\nThese are providers that require testing as there were some substantial changes introduced:\n\n\n## Provider [airbyte: 6.2.0rc1](https://pypi.org/project/apache-airflow-providers-airbyte/6.2.0rc1)\n   - [ ] [Add configurable request timeout for the Airbyte API (#71092)](https://github.com/apache/airflow/pull/71092): @filipeaaoliveira\n## Provider [akeyless: 0.3.2rc1](https://pypi.org/project/apache-airflow-providers-akeyless/0.3.2rc1)\n   - [ ] [Refuse nested secret ids looked up with no team in multi-team mode (#73789)](https://github.com/apache/airflow/pull/73789): @potiuk\n## Provider [amazon: 9.38.0rc1](https://pypi.org/project/apache-airflow-providers-amazon/9.38.0rc1)\n   - [ ] [Bind the AWS auth manager SAML response to the browser that started the login (#73698)](https://github.com/apache/airflow/pull/73698): @potiuk\n     Linked issues:\n       - [Linked Issue #72647](https://github.com/apache/airflow/pull/72647): @potiuk\n   - [ ] [Carry task attempt UUIDs through executor providers (#73917)](https://github.com/apache/airflow/pull/73917): @ashb\n   - [ ] [Add a vendor-neutral managed-agent hook contract to Common AI (#73532)](https://github.com/apache/airflow/pull/73532): @kaxil\n     Linked issues:\n       - [Linked Issue #71946](https://github.com/apache/airflow/pull/71946): @vikramkoka\n   - [ ] [Add DuckDB support to the Amazon provider (#73301)](https://github.com/apache/airflow/pull/73301): @o-nikolas\n   - [ ] [Add EmrServerlessStartSessionOperator to Amazon provider (#70763)](https://github.com/apache/airflow/pull/70763): @vgkowski\n     Linked issues:\n       - [Linked Issue #69207](https://github.com/apache/airflow/pull/69207): @vgkowski\n   - [x] [AIP-82: Add KinesisMessageQueueProvider (#73509)](https://github.com/apache/airflow/pull/73509): @aaron-y-chen\n     Linked issues:\n       - [Linked Issue #52712](https://github.com/apache/airflow/issues/52712): @jason810496\n   - [ ] [Support unexposed CreateWorkflow and UpdateWorkflow inputs in MWAA Serverless operators (#73408)](https://github.com/apache/airflow/pull/73408): @yamakazushi\n     Linked issues:\n       - [Linked Issue #72622](https://github.com/apache/air"
+    }
+  ]
+}

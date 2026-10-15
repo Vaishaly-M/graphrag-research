@@ -1,0 +1,116 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id IN $evidence_ids\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nsubstring(coalesce(n.content,n.body,n.message,''),0,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_ids": [
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1729",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252"
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)\n\n[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)\n\n## Understanding the Spring Petclinic application with a few diagrams\n\nSee the presentation here:  \n[Spring Petclinic Sample Application (legacy slides)](https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20)\n\n> **Note:** These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.  \n> For up-to-date information, please refer to this repository and its documentation.\n\n\n## Run Petclinic locally\n\nSpring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).\nJava 17 or later is required for the build, and the application can run with Java 17 or newer.\n\nYou first need to clone the project locally:\n\n```bash\ngit clone https://github.com/spring-projects/spring-petclinic.git\ncd spring-petclinic\n```\nIf you are using Maven, you can start the application on the command-line as follows:\n\n```bash\n./mvnw spring-boot:run\n```\nWith Gradle, the command is as follows:\n\n```bash\n./gradlew bootRun\n```\n\nYou can then access the Petclinic at <http://localhost:8080/>.\n\n<img width=\"1042\" alt=\"petclinic-screenshot\" src=\"https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png\">\n\nYou can, of course, run Petclinic in your favorite IDE.\nSee below for more details.\n\n## Building a Container\n\nThere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/*\n * Copyright 2012-2025 the original author or authors.\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *      https://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.springframework.samples.petclinic.owner;\n\nimport java.time.LocalDate;\nimport java.util.Collection;\nimport java.util.Objects;\nimport java.util.Optional;\n\nimport org.springframework.dao.DataIntegrityViolationException;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.ModelMap;\nimport org.springframework.util.Assert;\nimport org.springframework.util.StringUtils;\nimport org.springframework.validation.BindingResult;\nimport org.springframework.web.bind.WebDataBinder;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.InitBinder;\nimport org.springframework.web.bind.annotation.ModelAttribute;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestMapping;\n\nimport jakarta.validation.Valid;\n\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Wick Dynex\n */\n@Controller\n@RequestMapping(\"/owners/{ownerId}\")\nclass PetController {\n\n\tprivate static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = \"pets/createOrUpdatePetForm\";\n\n\tprivate final OwnerRepository owners;\n\n\tprivate final PetTypeRepository types;\n\n\tpublic PetController(OwnerRepository owners, PetTypeRepository types) {\n\t\tthis.owners = owners;\n\t\tthis.types = types;\n\t}\n\n\t@ModelAttribute(\"types\")\n\tpublic Collection<PetType> populatePetTypes() {\n\t\treturn this.types.findPetTypes();\n\t}\n\n\t@ModelAttribute(\"owner\")\n\tpublic Owner findOwner(@PathVariable(\"ownerId\") int ownerId) {\n\t\tOptional<Owner> optionalOwner = this.owners.findById(ownerId);\n\t\tOwner owner = optionalOwner.orElseThrow(() -> new Il"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/*\n * Copyright 2012-2025 the original author or authors.\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *      https://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\npackage org.springframework.samples.petclinic.owner;\n\nimport org.junit.jupiter.api.BeforeEach;\nimport org.junit.jupiter.api.Nested;\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.api.condition.DisabledInNativeImage;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;\nimport org.springframework.context.annotation.ComponentScan;\nimport org.springframework.context.annotation.FilterType;\nimport org.springframework.test.context.aot.DisabledInAotMode;\nimport org.springframework.test.context.bean.override.mockito.MockitoBean;\nimport org.springframework.test.web.servlet.MockMvc;\n\nimport java.time.LocalDate;\nimport java.util.List;\nimport java.util.Optional;\n\nimport org.springframework.dao.DataIntegrityViolationException;\n\nimport static org.mockito.ArgumentMatchers.any;\nimport static org.mockito.BDDMockito.given;\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;\n\n/**\n * Test class for the {@link PetController}\n *\n * @author Colin But\n * @author Wick Dynex\n */\n@WebMvcTest(value = PetController.class,\n\t\tincludeFilters = @ComponentScan.Filter(value = PetTypeFormatter.class, type = FilterType.ASSIGNABLE_TYPE))\n@DisabledInNativeImage\n@DisabledInAotMode\nclass PetControllerTests {\n\n\tprivate static final int TEST_OWNER_ID = 1;\n\n\tprivate static final int TEST_PET_ID = 1;\n\n\t@Autowired\n\tprivate Mo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1729",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1729,
+      "title": "Refactor Owner Directory Structure for Component Separation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "### Current Implementation\r\nThe project structure places all classes related to pets, owners, and visits in a single directory. This organization can make the codebase harder to navigate and maintain as the project grows. To improve clarity and scalability, I propose refactoring the directory structure by segregating these classes into separate directories based on their functionality.\r\n\r\n### Proposed Solution:\r\nCreate distinct directories for each component:\r\n\r\npets: For all pet-related classes and functionality.\r\nowners: For all owner-related classes and functionality.\r\nvisits: For all visit-related classes and functionality.\r\nMove the relevant classes and files into their respective directories.\r\nExample:\r\n\r\nMove Pet.java, PetController.java, etc., to the pets directory.\r\nMove Owner.java, OwnerController.java, etc., to the owners directory.\r\nMove Visit.java, VisitController.java, etc., to the visits directory.\r\nUpdate imports throughout the project to reflect the new structure.\r\n\r\n### Benefits:\r\nImproved Readability: Each directory will contain only the files relevant to its component, making it easier for developers to find and understand code.\r\nBetter Scalability: As new features or functionality are added, the modular structure will help maintain organization.\r\nEasier Maintenance: Fixes or updates related to a specific component can be implemented and tested more efficiently.\r\n\r\nI recommend performing this refactoring as a separate commit to make the changes easier to track.\r\nLet me know if there's any feedback or additional considerations before I start working on this!"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2252,
+      "title": "[Feature] Add search pets by name screen",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\n\nAdd a new screen that allows users to search for pets by name, similar to the existing \"Find Owners\" functionality.\n\n## Motivation\n\n- Currently there is no way to search for a pet directly by name; users must first find the owner and then browse their pets.\n- A dedicated pet search screen would improve usability when the pet name is known but the owner is not.\n- Aligns the pet entity with the same search UX pattern already established for owners.\n\n## Proposed Solution\n\n1. **New Thymeleaf template** (`templates/pets/findPets.html`) with a search form and results list/table.\n2. **New controller** endpoint(s) in a `PetController` (or extend existing controller) to handle `GET /pets/find` and `GET /pets` with a `name` query parameter.\n3. **New repository method** `findByNameContainingIgnoreCase(String name)` (or equivalent Spring Data query) in `PetRepository`.\n4. **Navigation link** added to the main layout so users can access the pet search screen.\n5. **Accessibility**: the new page must meet WCAG 2.2 Level AA (keyboard navigation, visible focus, proper labels, contrast, landmarks, etc.).\n\n## Acceptance Criteria\n\n- [ ] A \"Find Pets\" link is available in the main navigation menu\n- [ ] Users can search for pets by entering a full or partial pet name (case-insensitive)\n- [ ] An empty search returns all pets\n- [ ] Search results display pet name, birth date, type, and owner name\n- [ ] Clicking a result navigates to the pet's or owner's detail page\n- [ ] The page is accessible (landmarks, labels, keyboard support, contrast)\n- [ ] Unit and integration tests cover the new controller and repository methods\n- [ ] Works with H2 (default), MySQL, and PostgreSQL profiles\n\n## Alternatives Considered\n\n- Extending the existing owner search to also filter by pet name — rejected because it conflates two different search intents.\n\n## Additional Context\n\nThe implementation should follow the same patterns used by the existing \"Find Owners\" feature (`OwnerController`, `findOwners.html`, `ownersList.html`)."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2410,
+      "title": "Fix/add service documentation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\nAdds comprehensive Javadoc to `OwnerController`, `PetController`, and `VetController` — covering class descriptions, constructors, and all methods. No behavioural changes.\r\n\r\n## The code issues\r\n- **`OwnerController.java`** — Class description absent; 9 of 10 methods had no Javadoc. Only `showOwner` carried a minimal comment.\r\n- **`PetController.java`** — Class description absent; 8 of 9 methods had no Javadoc. Only `updatePetDetails` was documented.\r\n- **`VetController.java`** — Class description absent; all 4 methods and the constructor had no Javadoc.\r\n\r\n## Why these matter\r\n- **Maintainability**: undocumented method contracts force developers to read the full implementation to understand expected inputs, outputs, and error conditions, increasing the cost of every future change.\r\n- **Onboarding**: controllers are the primary entry points into the application. New contributors encounter them first, yet had no inline guidance on routing behaviour, pagination conventions, or redirect semantics.\r\n- **Tooling**: IDEs surface Javadoc as hover tooltips and in auto-generated API docs. Without it, developers lose the fastest path to understanding method contracts.\r\n\r\n## What this PR does\r\n- Adds a class-level description to each controller explaining its responsibility and base URL scope.\r\n- Documents each constructor with `@param` tags describing injected dependencies and their roles.\r\n- Documents each method with a description of its behaviour, `@param` tags for all parameters, `@return` for all non-void methods, and `@throws` where applicable.\r\n\r\n## SonarQube findings addressed\r\n| Rule  | File                   | Change                                              |\r\n|-------|------------------------|-----------------------------------------------------|\r\n| S1176 | `OwnerController.java` | Javadoc added to class, constructor, and 9 methods  |\r\n| S1176 | `PetController.java`   | Javadoc added to class, constructor, and 8 methods  |\r\n| S1176 | `VetController.java`   | Javadoc added to class, constructor, and 4 methods  |\r\n\r\n## Verification\r\n- No logic was changed; all existing tests pass unchanged.\r\n- Each Javadoc addition was committed individually to allow per-method review."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2434,
+      "title": "Refactor: remove unnecessary imports and redundant intermediate variables",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\nThis PR removes unnecessary imports and eliminates redundant intermediate variables across three controllers and two test files, as part of the sustainable coding practices evaluation for SE754 Assignment 5.\r\n\r\n## Problem\r\nManual inspection and SonarQube analysis identified two categories of redundant code across the `owner` package.\r\n\r\n**Unnecessary imports** - `OwnerControllerTests.java` and `VetControllerTests.java` both had a class-level import for `MockMvcRequestBuilders` despite already having static imports for the individual methods (`get`, `post`) from the same class. This made the class-level import redundant and unused. Similarly, `OwnerController.java`, `PetController.java`, and `VisitController.java` each imported `java.util.Optional` which was only needed to hold an intermediate variable that was immediately unwrapped on the next line.\r\n\r\n**Redundant intermediate variables** - In `OwnerController.java`, `PetController.java`, and `VisitController.java`, the pattern of assigning `owners.findById(...)` to an `optionalOwner` variable and then calling `.orElseThrow(...)` on the very next line served no purpose. SonarQube flags this under `java:S1488` - local variables should not be declared and then immediately returned or used.\r\n\r\n## Changes\r\n- Replaced `MockMvcRequestBuilders.post(...)` and `MockMvcRequestBuilders.get(...)` with the already-imported static equivalents in `OwnerControllerTests.java` and `VetControllerTests.java`, and removed the now-unused class-level imports\r\n- Collapsed all `optionalOwner` intermediate variable declarations into single chained expressions using `.orElseThrow(...)` directly on the repository call in `OwnerController.java`, `PetController.java`, and `VisitController.java`\r\n- Removed the `java.util.Optional` import from each controller where it was no longer referenced\r\n\r\n## Sustainability Impact\r\nRedundant code and unnecessary imports increase the noise developers must read through when understanding or modifying a file. Unused imports can mislead future contributors into thinking a type is meaningfully used, and they accumulate silently over time if not caught early.\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclin"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2542,
+      "title": "Upgrade/java17 spring boot 3",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\n\r\nThis PR upgrades the application from Java 11 + Spring Boot 2.7.3 to **Java 17 + Spring Boot 3.3.6** (latest stable 3.x release). All 41 tests pass (0 failures, 0 errors, 1 skipped).\r\n\r\n---\r\n\r\n## Changes\r\n\r\n### `pom.xml`\r\n\r\n| What | Before | After | Why |\r\n|---|---|---|---|\r\n| `spring-boot-starter-parent` | 2.7.3 | 3.3.6 | Latest stable SB3 |\r\n| `java.version` | 11 | 17 | SB3 minimum; Java 11 is EOL |\r\n| MySQL connector | `mysql:mysql-connector-java` | `com.mysql:mysql-connector-j` | Artifact relocated in SB3 BOM |\r\n| Ehcache classifier | _(none)_ | `jakarta` | SB3 / EE 10 requires the Jakarta variant |\r\n| New dep: `jakarta.xml.bind-api` | _(absent)_ | added | Needed for `@XmlElement`/`@XmlRootElement` on `Vet`/`Vets` |\r\n| Git-commit-id plugin groupId | `pl.project13.maven` | `io.github.git-commit-id` | Plugin transferred to new groupId; old one fails with SB3 BOM |\r\n| `build-info` additional properties | `${maven.compiler.source}` | `${java.version}` | `maven.compiler.source` is null in SB3 parent POM |\r\n| JaCoCo | 0.8.7 | 0.8.11 | Java 17 bytecode support |\r\n| spring-format | 0.0.31 | 0.0.42 | Java 17 Eclipse JDT formatter |\r\n| nohttp-checkstyle | 0.0.10 | 0.0.11 | Compatibility |\r\n| maven-checkstyle-plugin / Checkstyle | 3.1.2 / 8.45.1 | 3.3.1 / 10.12.4 | Java 17 source compatibility |\r\n| Project version | 2.7.3 | 3.3.6 | Align with SB parent |\r\n\r\n### `.mvn/wrapper/maven-wrapper.properties`\r\n\r\n- Maven wrapper: **3.8.2 → 3.9.6** (recommended minimum for Spring Boot 3)\r\n\r\n### `javax` → `jakarta` namespace migration\r\n\r\nSpring Boot 3 moved from the Java EE `javax.*` namespace to Jakarta EE 10 `jakarta.*`. All affected files updated:\r\n\r\n**Main sources**\r\n- `model/BaseEntity.java` — `jakarta.persistence.*`\r\n- `model/NamedEntity.java` — `jakarta.persistence.*`\r\n- `model/Person.java` — `jakarta.persistence.*`, `jakarta.validation.*`\r\n- `owner/Owner.java` — `jakarta.persistence.*`, `jakarta.validation.*`\r\n- `owner/Pet.java` — `jakarta.persistence.*`\r\n- `owner/Visit.java` — `jakarta.persistence.*`, `jakarta.validation.*`\r\n- `owner/PetType.java` — `jakarta.persistence.*`\r\n- `vet/Vet.java` — `jakarta.persistence.*`, `jakarta.xml.bind.*`\r\n- `vet/Specialty.java` — `jakarta.persistence.*`\r\n- `vet/Vets.java` — `jakarta.xml.bind.*`\r\n- `owner/OwnerController.java` — `jakarta.validation.Valid`\r\n- `owner/PetController.java` — `jakarta.validation.Valid`\r\n- `owne"
+    }
+  ]
+}

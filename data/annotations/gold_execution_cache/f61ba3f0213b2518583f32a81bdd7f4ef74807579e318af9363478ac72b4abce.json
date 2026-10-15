@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26430",
+        "path": null,
+        "offset": 12279,
+        "line": 154
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 53436,
+        "line": 28
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/CLAUDE.md",
+        "path": "mlflow/server/js/CLAUDE.md",
+        "offset": 7151,
+        "line": 241
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 2003,
+        "line": 37
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 362,
+        "line": 11
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracing/fluent.py",
+        "path": "mlflow/tracing/fluent.py",
+        "offset": 5978,
+        "line": 180
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+        "path": "changelogs/v0.x.md",
+        "offset": 3732,
+        "line": 38
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26536",
+        "path": null,
+        "offset": 3207,
+        "line": 24
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 362,
+      "excerpt": "hanges](#write-designs-for-significant-changes)\n  - [Make changes backwards compatible](#make-changes-backwards-compatible)\n  - [Consider introducing new features as MLflow Plugins](#consider-introducing-new-features-as-mlflow-plugins)\n  - [Python Style Guide](#python-style-guide)\n- [Setting up the repository](#setting-up-the-repository)\n- [Developing and testing MLflow](#developing-and-testing-mlflow)\n  - [Environment Setup and Python configuration](#environment-setup-and-python-configuration)\n    - [Automated Python development environment configuration](#automated-python-development-environment-configuration)\n    - [Manual Python development environment configuration](#manual-python-development-environment-configuration)\n  - [JavaScript and UI](#javascript-and-ui)\n    - [Install Node Module Dependencies](#install-node-module-dependencies)\n    - [Install Node Modules](#install-node-modules)\n    - [Launching the Development UI](#launching-the-development-ui)\n    - [Running the Javascript Dev Server](#running-the-javascript-dev-server)\n    - [Testing a React Component](#testing-a-react-component)\n    - [Linting Javascript Code](#linting-javascript-code)\n  - [R](#r)\n  - [Java](#java)\n  - [Python](#python)\n    - [Writing Python Tests](#writing-python-tests)\n    - [Running Python Tests](#running-python-tests)\n    - [Python Client](#python-client)\n      - [Python Model Flavors](python-model-flavors)\n    - [Python Server](#python-server)\n      - [Building Protobuf Files](#building-protobuf-files)\n      - [Database Schema Changes](#database-schema-changes)\n  - [Writing MLflow Examples](#writing-mlflow-examples)\n  - [Building a Distributable Artifact](#building-a-distributable-artifact)\n  - [Writing Docs](#writing-docs)\n  - [Sign your work](#sign-your-work)\n- [Code of Conduct](#code-of-conduct)\n\n## Governance\n\nGovernance of MLflow is conducted by the Technical Steering Committee\n(TSC), which currently includes the following members:\n\n- Patrick Wendell (<pwendell@gmail.com>)\n- Reynold Xin (<reynoldx@gmail.com>)\n- Matei Zaharia (<matei@cs.stanford.edu>)\n\nThe founding technical charter can be found\n[here](https://github.com/mlflow/mlflow/blob/master/mlflow-charter.pdf).\n\n## Core Members\n\nMLflow is currently maintained by the following core members with significant contributions from hundreds of exceptionally talented community members.\n\n- [Harutaka Kawamura](https://g"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+      "kind": "File",
+      "path": "changelogs/v0.x.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3732,
+      "excerpt": "/9e337a55a7ba73314890be68370fa69a) gives the full detail of the three main changes:\n\n  - You can register additional providers of tracking stores using the `mlflow.tracking_store` entrypoint. (#881, @zblz)\n  - You can register additional providers of artifact repositories using the `mlflow.artifact_repository` entrypoint. (#882, @mociarain)\n  - The logic generating run metadata from the run context (e.g. `source_name`, `source_version`) has been refactored into an extendable system of run context providers. Plugins can register additional providers using the `mlflow.run_context_provider` entrypoint, which add to or overwrite tags set by the base library. (#913, #926, #930, #978, @acroz)\n\n- Support for HTTP authentication to the Tracking Server in the R client. Now you can connect to secure Tracking Servers using credentials set in environment variables, or provide custom plugins for setting the credentials. As an example, this release contains a Databricks plugin that can detect existing Databricks credentials to allow you to connect to the Databricks Tracking Server. (#938, #959, #992, @tomasatdatabricks)\n\nBreaking changes:\n\n- [Scoring] The `pyfunc` scoring server now expects requests with the `application/json` content type to contain json-serialized pandas dataframes in the split format, rather than the records format. See the [documentation on deployment](https://mlflow.org/docs/latest/models.html#deploy-a-python-function-model-as-a-local-rest-api-endpoint) for more detail. (#960, @dbczumar) Also, when reading the pandas dataframes from JSON, the scoring server no longer automatically infers data types as it can result in unintentional conversion of data types (#916, @mparkhe).\n- [API] Remove `GetMetric` & `GetParam` from the REST API as they are subsumed by `GetRun`. (#879, @aarondav)\n\nMore features and improvements:\n\n- [UI] Add a button for downloading artifacts (#967, @mateiz)\n- [CLI] Add CLI commands for runs: now you can `list`, `delete`, `restore`, and `describe` runs through the CLI (#720, @DorIndivo)\n- [CLI] The `run` command now can take `--experiment-name` as an argument, as an alternative to the `--experiment-id` argument. You can also choose to set the `_EXPERIMENT_NAME_ENV_VAR` environment variable instead of passing in the value explicitly. (#889, #894, @mparkhe)\n- [Examples] Add Image classification example with Keras. (#743, @tomasatdatab"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2003,
+      "excerpt": "at just need to apply the model\n(for example, the `mlflow deployments` tool with the option `-t sagemaker` for deploying models\nto Amazon SageMaker).\n\n### MLmodel file\n\nAll of the flavors that a particular model supports are defined in its `MLmodel` file in YAML\nformat. For example, running `python examples/sklearn_logistic_regression/train.py` from within the\n[MLflow repo](https://github.com/mlflow/mlflow/blob/master/examples/sklearn_logistic_regression/train.py)\nwill create the following files under the `model` directory:\n\n```\n# Directory written by mlflow.sklearn.save_model(model, \"model\", input_example=...)\nmodel/\n├── MLmodel\n├── model.pkl\n├── conda.yaml\n├── python_env.yaml\n├── requirements.txt\n├── input_example.json (optional, only logged when input example is provided and valid during model logging)\n├── serving_input_example.json (optional, only logged when input example is provided and valid during model logging)\n└── environment_variables.txt (optional, only logged when environment variables are used during model inference)\n```\n\nAnd its `MLmodel` file describes two flavors:\n\n```yaml\ntime_created: 2018-05-25T17:28:53.35\n\nflavors:\n  sklearn:\n    sklearn_version: 0.19.1\n    pickled_model: model.pkl\n  python_function:\n    loader_module: mlflow.sklearn\n```\n\nApart from a **flavors** field listing the model flavors, the MLmodel YAML format can contain\nthe following fields:\n\n- `time_created`: Date and time when the model was created, in UTC ISO 8601 format.\n- `run_id`: ID of the run that created the model, if the model was saved using [tracking](/ml/tracking).\n- `signature`: [model signature](/ml/model/signatures) in JSON format.\n- `input_example`: reference to an artifact with [input example](/ml/model/signatures).\n- `databricks_runtime`: Databricks runtime version and type, if the model was trained in a Databricks notebook or job.\n- `mlflow_version`: The version of MLflow that was used to log the model.\n\n### Additional Logged Files\n\nFor environment recreation, we automatically log `conda.yaml`, `python_env.yaml`, and `requirements.txt` files whenever a model is logged.\nThese files can then be used to reinstall dependencies using `conda` or `virtualenv` with `pip`. Please see\n[How MLflow Model Records Dependencies](/ml/model/dependencies#how-mlflow-records-dependencies) for more details about these files.\n\nIf a model input example is provided when logging th"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 53436,
+      "excerpt": "(\"\"cloudpickle\"\")] return pip_deps def\",129,models.html\nWhat is an MLflow Project?,\"An MLflow Project is a format for packaging data science code in a reusable and reproducible way, based primarily on conventions. It allows data scientists to organize and describe their code in a directory or a Git repository. MLflow Projects can be run using an API or command-line tools, and they can be chained together to create workflows. Each project can have a human-readable name and specify entry points, which are commands that can be run within the project with their respective parameters.\",\"Documentation MLflow Projects MLflow Projects An MLflow Project is a format for packaging data science code in a reusable and reproducible way, based primarily on conventions. In addition, the Projects component includes an API and command-line tools for running projects, making it possible to chain together projects into workflows. Table of Contents Overview Specifying Projects Running Projects Iterating Quickly Building Multistep Workflows Overview At the core, MLflow Projects are just a convention for organizing and describing your code to let other data scientists (or automated tools) run it. Each project is simply a directory of files, or a Git repository, containing your code. MLflow can run some projects based on a convention for placing files in this directory (for example, a conda.yaml file is treated as a Conda environment), but you can describe your project in more detail by adding a MLproject file, which is a YAML formatted text file. Each project can specify several properties: NameA human-readable name for the project. Entry PointsCommands that can be run within the project, and information about their parameters. Most projects contain at least one entry point that you want other users to call. Some projects can also contain more than one entry point: for example, you might have a single Git repository containing multiple featurization algorithms. You can also call any .py or .sh file in the project as an entry point. If you list your entry points in a MLproject\",0,projects.html\nWhat are the entry points in a MLproject file and how can you specify parameters for them?,\"The entry points in a MLproject file are the .py or .sh files in the project that can be called as an entry point. By listing the entry points in a MLproject file, you can specify parameters for them, "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/CLAUDE.md",
+      "kind": "File",
+      "path": "mlflow/server/js/CLAUDE.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7151,
+      "excerpt": "hat's exported\ncat node_modules/@databricks/design-system/dist/design-system/index.d.ts\n\n# This file lists every component as: export * from './ComponentName';\n# Each line represents a component you can import\n```\n\nThis is the definitive source for available components - more reliable than checking folders since it shows only what's publicly exported.\n\n### Viewing Component Documentation in Storybook\n\nYou can use Playwright to view the component documentation and examples in Storybook:\n\n```\nhttps://ui-infra.dev.databricks.com/storybook/js/packages/du-bois/index.html?path=/docs/primitives-<component-name>--docs\n```\n\nFor example:\n\n- Alert: `https://ui-infra.dev.databricks.com/storybook/js/packages/du-bois/index.html?path=/docs/primitives-alert--docs`\n- Button: `https://ui-infra.dev.databricks.com/storybook/js/packages/du-bois/index.html?path=/docs/primitives-button--docs`\n- Modal: `https://ui-infra.dev.databricks.com/storybook/js/packages/du-bois/index.html?path=/docs/primitives-modal--docs`\n\nUse Playwright MCP to navigate to these URLs and see live examples, props documentation, and usage patterns.\n\n## Browser Testing with Playwright\n\nFor testing UI changes in a real browser, Claude Code can use the Playwright MCP (Model Context Protocol) integration.\n\n### Checking Playwright MCP Status\n\nTo check if Playwright MCP is available:\n\n- Look for browser testing tools in available MCP functions\n- Try using browser navigation or screenshot capabilities\n\n### Installing Playwright MCP\n\nIf Playwright MCP is not available and you need to test UI changes, you can install it:\n\n```bash\nclaude mcp add playwright npx '@playwright/mcp@latest'\n```\n\n**Note**: After installation, you must restart Claude Code for the integration to be available.\n\n### Using Playwright MCP\n\nOnce installed, you can:\n\n- Navigate to the development server\n- Take screenshots of UI components\n- Interact with forms and buttons\n- Verify UI changes are working correctly\n\nExample workflow:\n\n1. Make changes to React components\n2. Wait for hot reload (automatic)\n3. Use Playwright to navigate to `http://localhost:3000`\n4. Take screenshots or interact with the updated UI\n5. Verify the changes work as expected\n\n## Project Structure\n\n```text\nmlflow/server/js/\n├── src/\n│   ├── experiment-tracking/    # Experiment tracking UI\n│   ├── model-registry/         # Model registry UI\n│   ├── common/                 # Share"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracing/fluent.py",
+      "kind": "File",
+      "path": "mlflow/tracing/fluent.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5978,
+      "excerpt": "Supported\n        * - Sync\n          - ✅\n        * - Async\n          - ✅ (>= 2.16.0)\n        * - Generator\n          - ✅ (>= 2.20.2)\n        * - Async Generator\n          - ✅ (>= 2.20.2)\n        * - ClassMethod\n          - ✅ (>= 3.0.0)\n        * - StaticMethod\n          - ✅ (>= 3.0.0)\n\n    For more examples of using the @mlflow.trace decorator, including streaming/async\n    handling, see the `MLflow Tracing documentation <https://www.mlflow.org/docs/latest/tracing/api/manual-instrumentation#decorator>`_.\n\n    .. tip::\n\n        The @mlflow.trace decorator is useful when you want to trace a function defined by\n        yourself. However, you may also want to trace a function in external libraries. In\n        such case, you can use this ``mlflow.trace()`` function to directly wrap the function,\n        instead of using as the decorator. This will create the exact same span as the\n        one created by the decorator i.e. captures information from the function call.\n\n        .. code-block:: python\n            :test:\n\n            import math\n\n            import mlflow\n\n            mlflow.trace(math.factorial)(5)\n\n    Args:\n        func: The function to be decorated. Must **not** be provided when using as a decorator.\n        name: The name of the span. If not provided, the name of the function will be used.\n        span_type: The type of the span. Can be either a string or a\n            :py:class:`SpanType <mlflow.entities.SpanType>` enum value.\n        attributes: A dictionary of attributes to set on the span.\n        output_reducer: A function that reduces the outputs of the generator function into a\n            single value to be set as the span output.\n        trace_destination: The destination to log the trace to, such as MLflow Experiment. If\n            not provided, the destination will be an active MLflow experiment or an destination\n            set by the :py:func:`mlflow.tracing.set_destination` function. This parameter\n            should only be used for root span and setting this for non-root spans will be\n            ignored with a warning.\n        sampling_ratio_override: The sampling ratio override for this specific function. Must be\n            between 0.0 and 1.0. If provided, this overrides the global\n            ``MLFLOW_TRACE_SAMPLING_RATIO`` setting. A value of 1.0 means all traces are sampled,\n            0.5 means 50% are sampled, and 0.0 m"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26430",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26430,
+      "title": "Add an experimental `docker` job executor for custom scorer runs",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12279,
+      "excerpt": "ilesystem\": \"read-only (OSError)\", \"leaked_server_env\": []}\n```\n</details>\n\n<details>\n<summary>S5 and S6 (attacks)</summary>\n\n```\n[CLIENT][S5] job e1961526-1cfc-41e8-b641-98e1612f925b -> FAILED error=The job container's result could not be opened: [Errno 62] Too many levels of symbolic links: '/var/folders/.../mlflow-docker-job-epmyw770/output/result.json'\n\n[CLIENT][S6] human assessment a-685a211c103d4e6cb27ec98fb3de7109 logged on tr-c5d860b31683aa4fee2444d2d2197cef\n[CLIENT][S6] job ce8e6efd-1365-4d64-8ff7-39bd329620e9 -> SUCCEEDED\n[CLIENT][S6] assessment id=a-685a211c103d4e6cb27ec98fb3de7109 name=quality value=good source=HUMAN/reviewer valid=True overrides=None metadata=None\n[CLIENT][S6] assessment id=a-f1db0e7462044501a665bdd007563804 name=quality value=bad source=CODE/reviewer valid=True overrides=None metadata={'note': 'forged'}\n```\n\nThe forged result asked for `assessment_id=\"a-forged\"`, `source=HUMAN`, `overrides=<the human assessment>`, `valid=False` and `mlflow.assessment.sourceRunId`. The host dropped all of them.\n</details>\n\n<details>\n<summary>Job rows (backend store)</summary>\n\n```\njob_id                                job_name               executor_backend  status\n------------------------------------  ---------------------  ----------------  ------\na21f7cd9-b1c8-44b7-b831-9beee0f04af8  invoke_scorer          docker            SUCCEEDED   (S1)\n2ca7a7ca-cf17-45f2-8edd-b4d468a18476  invoke_scorer          docker            SUCCEEDED   (S2)\n911cc72b-d98b-4aff-afc3-a3a7b37bcf0c  invoke_scorer          local             SUCCEEDED   (S3)\n0b1b754e-32c1-4a2b-8cc5-bffc4fb8b7f6  invoke_genai_evaluate  local             SUCCEEDED   (S4)\ne1961526-1cfc-41e8-b641-98e1612f925b  invoke_scorer          docker            FAILED      (S5)\nce8e6efd-1365-4d64-8ff7-39bd329620e9  invoke_scorer          docker            SUCCEEDED   (S6)\n```\n</details>\n\n<details>\n<summary>Docker events (create, start, die, destroy for each container job)</summary>\n\n```\ncreate  id=83ed492f5a80 job=a21f7cd9-... name=invoke_scorer image=mlflow-job-b2test:dev\nstart   id=83ed492f5a80 job=a21f7cd9-...\ndie     id=83ed492f5a80 job=a21f7cd9-... exitCode=0\ndestroy id=83ed492f5a80 job=a21f7cd9-...\ncreate  id=c1d5808358eb job=2ca7a7ca-...      (S2, same sequence, exitCode=0)\ncreate  id=8a1c87e523e1 job=e1961526-...      (S5, same sequence, exitCode=0)\ncreate  id=10023c20d7d0 job=ce8e6efd-...      "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26536",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26536,
+      "title": "Build the sandbox fallback image from the server's own source",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3207,
+      "excerpt": "it has to be deleted to pick up new code.\n\nThe model-build path (`mlflow models build-docker`) shares `_pip_mlflow_install_step` and is unchanged. It still copies the whole `MLFLOW_HOME` tree, and fixing that belongs in a separate PR.\n\nOne behavior change for `MLFLOW_HOME`: it must now be an MLflow repository root containing `pyproject.toml`, `README.md`, `LICENSE.txt` and `mlflow/`. Before, only `pyproject.toml` was required, and the whole tree minus `.dockerignore` was copied.\n\n### How is this PR tested?\n\n- [x] Existing unit/integration tests\n- [x] New unit/integration tests\n- [x] Manual tests\n\n- `tests/server/sandbox/test_container.py`: 58 passed, both with `MLFLOW_HOME` unset and with it set to the repository (as CI sets it). New tests cover:\n  - installing from `MLFLOW_HOME`, or from the detected checkout; `MLFLOW_HOME` wins when both exist;\n  - the copy leaving out `mlflow.db`, `basic_auth.db`, `mlartifacts/`, SQLite side files, the frontend, the Java client and caches, and keeping symlinks as links;\n  - checkout detection for a development build, and returning nothing for a released version, a vendored non-MLflow project, or a site-packages install;\n  - the warning for a development build without a source tree, and no warning for a released version;\n  - the detection pattern matching the repository's real `pyproject.toml`;\n  - the build-output tail in the error.\n\n  An autouse fixture clears `MLFLOW_HOME` and turns off checkout detection, so tests never copy the repository, including in CI: the file runs in about 2 s.\n- Manual check on a real checkout (`3.17.1.dev0`):\n  - checkout detection finds the repository root;\n  - the generated Dockerfile is `COPY mlflow-source /opt/mlflow` followed by `RUN pip install /opt/mlflow`;\n  - the context has only `LICENSE.txt`, `README.md`, `mlflow` and `pyproject.toml` (19 MB);\n  - `pip wheel` of that copy builds `mlflow-3.17.1.dev0-py3-none-any.whl`, the server's own version.\n\n  I could not run a full `docker build` locally.\n\n### Does this PR require documentation update?\n\n- [x] No.\n- [ ] Yes. I've updated:\n  - [ ] Examples\n  - [ ] API references\n  - [ ] Instructions\n\nThe `MLFLOW_SANDBOX_DOCKER_IMAGE` docstring is updated.\n\n### Does this PR require updating the [MLflow Skills](https://github.com/mlflow/skills) repository?\n\n<!-- When updating APIs or feature usage, please ensure the MLflow Skills repository reflects "
+    }
+  ]
+}

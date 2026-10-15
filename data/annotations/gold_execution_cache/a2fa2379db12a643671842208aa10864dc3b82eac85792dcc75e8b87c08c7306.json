@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:929",
+        "path": null,
+        "offset": 4946,
+        "line": 52
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:930",
+        "path": null,
+        "offset": 4940,
+        "line": 52
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+        "path": null,
+        "offset": 10424,
+        "line": 214
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+        "path": null,
+        "offset": 29691,
+        "line": 494
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+        "path": null,
+        "offset": 16247,
+        "line": 294
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.gitignore",
+        "path": ".gitignore",
+        "offset": 3186,
+        "line": 209
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 19193,
+        "line": 392
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 21926,
+        "line": 458
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.gitignore",
+      "kind": "File",
+      "path": ".gitignore",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3186,
+      "excerpt": "however generally it will be regenerated when needed\n#!**/[Pp]ackages/repositories.config\n# NuGet v3's project.json files produces more ignorable files\n*.nuget.props\n*.nuget.targets\n\n# Microsoft Azure Build Output\ncsx/\n*.build.csdef\n\n# Microsoft Azure Emulator\necf/\nrcf/\n\n# Windows Store app package directories and files\nAppPackages/\nBundleArtifacts/\nPackage.StoreAssociation.xml\n_pkginfo.txt\n*.appx\n*.appxbundle\n*.appxupload\n\n# Visual Studio cache files\n# files ending in .cache can be ignored\n*.[Cc]ache\n# but keep track of directories ending in .cache\n!?*.[Cc]ache/\n\n# Others\nClientBin/\n~$*\n*~\n*.dbmdl\n*.dbproj.schemaview\n*.jfm\n*.pfx\n*.publishsettings\norleans.codegen.cs\n\n# Including strong name files can present a security risk\n# (https://github.com/github/gitignore/pull/2483#issue-259490424)\n#*.snk\n\n# Since there are multiple workflows, uncomment next line to ignore bower_components\n# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)\n#bower_components/\n\n# RIA/Silverlight projects\nGenerated_Code/\n\n# Backup & report files from converting an old project file\n# to a newer Visual Studio version. Backup files are not needed,\n# because we have git ;-)\n_UpgradeReport_Files/\nBackup*/\nUpgradeLog*.XML\nUpgradeLog*.htm\nServiceFabricBackup/\n*.rptproj.bak\n\n# SQL Server files\n*.mdf\n*.ldf\n*.ndf\n\n# Business Intelligence projects\n*.rdl.data\n*.bim.layout\n*.bim_*.settings\n*.rptproj.rsuser\n*- [Bb]ackup.rdl\n*- [Bb]ackup ([0-9]).rdl\n*- [Bb]ackup ([0-9][0-9]).rdl\n\n# Microsoft Fakes\nFakesAssemblies/\n\n# GhostDoc plugin setting file\n*.GhostDoc.xml\n\n# Node.js Tools for Visual Studio\n.ntvs_analysis.dat\nnode_modules/\n\n# Visual Studio 6 build log\n*.plg\n\n# Visual Studio 6 workspace options file\n*.opt\n\n# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)\n*.vbw\n\n# Visual Studio 6 auto-generated project file (contains which files were open etc.)\n*.vbp\n\n# Visual Studio 6 workspace and project file (working project files containing files to include in project)\n*.dsw\n*.dsp\n\n# Visual Studio 6 technical files\n*.ncb\n*.aps\n\n# Visual Studio LightSwitch build output\n**/*.HTMLClient/GeneratedArtifacts\n**/*.DesktopClient/GeneratedArtifacts\n**/*.DesktopClient/ModelManifest.xml\n**/*.Server/GeneratedArtifacts\n**/*.Server/ModelManifest.xml\n_Pvt_Extensions\n\n# Paket dependency manager\n.paket/paket.exe\npaket-files/\n\n# FAKE - F# Make\n.fake/\n\n# CodeRush personal "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1020,
+      "title": "Bump the aspire group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10424,
+      "excerpt": "es\n\n* Update OTel GenAI conventions skill for standalone semconv-genai repo #​7519 by @​jeffhandley (co-authored by @​Copilot)\n* Bump dotnet-coverage from 18.7.0 to 18.8.0 #​7552\n* [main] Update dependencies from dotnet/arcade #​7559\n* Fix transitive MessagePack vulnerability in AI template AppHost projects #​7561 by @​adamsitnik (co-authored by @​Copilot)\n* Bump esbuild, @​vitejs/plugin-react and vite in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7564\n* Bump tmp from 0.2.6 to 0.2.7 in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7569\n* Bump js-yaml from 4.1.1 to 4.2.0 in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7570\n* Bump PowerShell from 7.6.2 to 7.6.3 #​7576\n* Remove duplicate 'WebAPI' classification from template #​7577 by @​danroth27\n* [main] Update dependencies from dotnet/arcade #​7590\n* Eliminate redundant Correctness CI stage by merging into Build #​7594 by @​adamsitnik (co-authored by @​Copilot)\n* Update Agent Framework to 1.13.0 #​7613 by @​jeffhandley (co-authored by @​Copilot)\n ... (truncated)\n\n## 10.7.0\n\nv10.7.0 graduates the [Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes) package to stable. The package registers a Kubernetes-aware `ResourceQuotaProvider` that reads the pod's CPU and memory requests and limits and exposes them to `Microsoft.Extensions.Diagnostics.ResourceMonitoring` as baseline and maximum quotas, which then feed the request and limit dimensions of the published resource utilization metrics. The companion `ResourceQuota` and `ResourceQuotaProvider` types in `Microsoft.Extensions.Diagnostics.ResourceMonitoring` graduate to stable in the same change so that consumers can implement custom quota providers without taking an experimental dependency.\n\nOn the AI side, `Microsoft.Extensions.AI.OpenAI` moves to OpenAI 2.11.0 and fixes a deserialization bug in `ToolJson.AdditionalProperties` so that JSON Schema `additionalProperties` values shaped as sub-schema objects (for example `{\"type\":\"string\"}`) are preserved instead of throwing during deserialization. `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` graduate to stable since both values are consistently available across hosted-file providers, while `Purpose` and `Sco"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19193,
+      "excerpt": "hub.com/dotnet/maui/pull/33699\n\n- [XEXPR] Refactor test skills/agents to dispatcher pattern by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33721\n\n- [ai] Skill for running device tests  by @​rmarinho in https://github.com/dotnet/maui/pull/33484\n\n- Add ai-summary-comment skill for automated PR review comments by @​kubaflo in https://github.com/dotnet/maui/pull/33585\n\n- Add PR label management to test verification skill by @​kubaflo in https://github.com/dotnet/maui/pull/33739\n\n- ai-summary-comment: Simplify PR finalize to two collapsible sections by @​kubaflo in https://github.com/dotnet/maui/pull/33771\n\n- Improve issue-triage skill: Add gh CLI checks and fix workflow by @​PureWeen in https://github.com/dotnet/maui/pull/33750\n\n- [ai] Add integration test runner skill by @​rmarinho in https://github.com/dotnet/maui/pull/33654\n\n- Improve PR Agent Gate verification to prevent result fabrication by @​PureWeen in https://github.com/dotnet/maui/pull/33806\n\n- Improve test report formatting and summary extraction by @​kubaflo in https://github.com/dotnet/maui/pull/33793\n\n- Improve try-fix comment parsing and summary by @​kubaflo in https://github.com/dotnet/maui/pull/33794\n\n- Enhance PR agent: multi-model workflow, blocker handling, shared rules extraction by @​PureWeen in https://github.com/dotnet/maui/pull/33813\n\n- Enhance pr-finalize skill with code review phase and safety rules by @​PureWeen in https://github.com/dotnet/maui/pull/33861\n\n- Remove Phase 2 (Tests) from PR agent workflow by @​kubaflo in https://github.com/dotnet/maui/pull/33905\n\n## Blazor\n ... (truncated)\n\n## 10.0.31\n\n## What's Changed\n* Increment patch version from 30 to 31 by @​PureWeen in https://github.com/dotnet/maui/pull/33752\n* Revert \"[Android] Fixed Label Overlapped by Android Status Bar When Using SafeAreaEdges=\\\"Container\\\" in .NET MAUI\" by @​PureWeen in https://github.com/dotnet/maui/pull/33753\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.30...10.0.31\n\n## 10.0.30\n\n## What's Changed\n\n.NET MAUI 10.0.30 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 106 commits with various improvements, bug fixes, and enhancements.\n\n## .NET 10 Features\n- [net10.0] Merge main to net10.0 by @​PureWeen in https://github.com/dotnet/maui/pull/33323\n\n## CollectionView\n- Fixed the N"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1022,
+      "title": "Bump the microsoftextensions group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 29691,
+      "excerpt": "es\n\n* Update OTel GenAI conventions skill for standalone semconv-genai repo #​7519 by @​jeffhandley (co-authored by @​Copilot)\n* Bump dotnet-coverage from 18.7.0 to 18.8.0 #​7552\n* [main] Update dependencies from dotnet/arcade #​7559\n* Fix transitive MessagePack vulnerability in AI template AppHost projects #​7561 by @​adamsitnik (co-authored by @​Copilot)\n* Bump esbuild, @​vitejs/plugin-react and vite in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7564\n* Bump tmp from 0.2.6 to 0.2.7 in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7569\n* Bump js-yaml from 4.1.1 to 4.2.0 in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7570\n* Bump PowerShell from 7.6.2 to 7.6.3 #​7576\n* Remove duplicate 'WebAPI' classification from template #​7577 by @​danroth27\n* [main] Update dependencies from dotnet/arcade #​7590\n* Eliminate redundant Correctness CI stage by merging into Build #​7594 by @​adamsitnik (co-authored by @​Copilot)\n* Update Agent Framework to 1.13.0 #​7613 by @​jeffhandley (co-authored by @​Copilot)\n ... (truncated)\n\n## 10.7.0\n\nv10.7.0 graduates the [Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes) package to stable. The package registers a Kubernetes-aware `ResourceQuotaProvider` that reads the pod's CPU and memory requests and limits and exposes them to `Microsoft.Extensions.Diagnostics.ResourceMonitoring` as baseline and maximum quotas, which then feed the request and limit dimensions of the published resource utilization metrics. The companion `ResourceQuota` and `ResourceQuotaProvider` types in `Microsoft.Extensions.Diagnostics.ResourceMonitoring` graduate to stable in the same change so that consumers can implement custom quota providers without taking an experimental dependency.\n\nOn the AI side, `Microsoft.Extensions.AI.OpenAI` moves to OpenAI 2.11.0 and fixes a deserialization bug in `ToolJson.AdditionalProperties` so that JSON Schema `additionalProperties` values shaped as sub-schema objects (for example `{\"type\":\"string\"}`) are preserved instead of throwing during deserialization. `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` graduate to stable since both values are consistently available across hosted-file providers, while `Purpose` and `Sco"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1034,
+      "title": "Bump the aspire group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 16247,
+      "excerpt": "es\n\n* Update OTel GenAI conventions skill for standalone semconv-genai repo #​7519 by @​jeffhandley (co-authored by @​Copilot)\n* Bump dotnet-coverage from 18.7.0 to 18.8.0 #​7552\n* [main] Update dependencies from dotnet/arcade #​7559\n* Fix transitive MessagePack vulnerability in AI template AppHost projects #​7561 by @​adamsitnik (co-authored by @​Copilot)\n* Bump esbuild, @​vitejs/plugin-react and vite in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7564\n* Bump tmp from 0.2.6 to 0.2.7 in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7569\n* Bump js-yaml from 4.1.1 to 4.2.0 in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7570\n* Bump PowerShell from 7.6.2 to 7.6.3 #​7576\n* Remove duplicate 'WebAPI' classification from template #​7577 by @​danroth27\n* [main] Update dependencies from dotnet/arcade #​7590\n* Eliminate redundant Correctness CI stage by merging into Build #​7594 by @​adamsitnik (co-authored by @​Copilot)\n* Update Agent Framework to 1.13.0 #​7613 by @​jeffhandley (co-authored by @​Copilot)\n ... (truncated)\n\n## 10.7.0\n\nv10.7.0 graduates the [Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes) package to stable. The package registers a Kubernetes-aware `ResourceQuotaProvider` that reads the pod's CPU and memory requests and limits and exposes them to `Microsoft.Extensions.Diagnostics.ResourceMonitoring` as baseline and maximum quotas, which then feed the request and limit dimensions of the published resource utilization metrics. The companion `ResourceQuota` and `ResourceQuotaProvider` types in `Microsoft.Extensions.Diagnostics.ResourceMonitoring` graduate to stable in the same change so that consumers can implement custom quota providers without taking an experimental dependency.\n\nOn the AI side, `Microsoft.Extensions.AI.OpenAI` moves to OpenAI 2.11.0 and fixes a deserialization bug in `ToolJson.AdditionalProperties` so that JSON Schema `additionalProperties` values shaped as sub-schema objects (for example `{\"type\":\"string\"}`) are preserved instead of throwing during deserialization. `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` graduate to stable since both values are consistently available across hosted-file providers, while `Purpose` and `Sco"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 21926,
+      "excerpt": "hub.com/dotnet/maui/pull/33699\n\n- [XEXPR] Refactor test skills/agents to dispatcher pattern by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33721\n\n- [ai] Skill for running device tests  by @​rmarinho in https://github.com/dotnet/maui/pull/33484\n\n- Add ai-summary-comment skill for automated PR review comments by @​kubaflo in https://github.com/dotnet/maui/pull/33585\n\n- Add PR label management to test verification skill by @​kubaflo in https://github.com/dotnet/maui/pull/33739\n\n- ai-summary-comment: Simplify PR finalize to two collapsible sections by @​kubaflo in https://github.com/dotnet/maui/pull/33771\n\n- Improve issue-triage skill: Add gh CLI checks and fix workflow by @​PureWeen in https://github.com/dotnet/maui/pull/33750\n\n- [ai] Add integration test runner skill by @​rmarinho in https://github.com/dotnet/maui/pull/33654\n\n- Improve PR Agent Gate verification to prevent result fabrication by @​PureWeen in https://github.com/dotnet/maui/pull/33806\n\n- Improve test report formatting and summary extraction by @​kubaflo in https://github.com/dotnet/maui/pull/33793\n\n- Improve try-fix comment parsing and summary by @​kubaflo in https://github.com/dotnet/maui/pull/33794\n\n- Enhance PR agent: multi-model workflow, blocker handling, shared rules extraction by @​PureWeen in https://github.com/dotnet/maui/pull/33813\n\n- Enhance pr-finalize skill with code review phase and safety rules by @​PureWeen in https://github.com/dotnet/maui/pull/33861\n\n- Remove Phase 2 (Tests) from PR agent workflow by @​kubaflo in https://github.com/dotnet/maui/pull/33905\n\n## Blazor\n ... (truncated)\n\n## 10.0.31\n\n## What's Changed\n* Increment patch version from 30 to 31 by @​PureWeen in https://github.com/dotnet/maui/pull/33752\n* Revert \"[Android] Fixed Label Overlapped by Android Status Bar When Using SafeAreaEdges=\\\"Container\\\" in .NET MAUI\" by @​PureWeen in https://github.com/dotnet/maui/pull/33753\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.30...10.0.31\n\n## 10.0.30\n\n## What's Changed\n\n.NET MAUI 10.0.30 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 106 commits with various improvements, bug fixes, and enhancements.\n\n## .NET 10 Features\n- [net10.0] Merge main to net10.0 by @​PureWeen in https://github.com/dotnet/maui/pull/33323\n\n## CollectionView\n- Fixed the N"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:929",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 929,
+      "title": "Bump CommunityToolkit.Aspire.Hosting.Ollama from 9.8.0-beta.395 to 13.0.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4946,
+      "excerpt": "github.com/CommunityToolkit/Aspire/pull/1000\n* chore(deps): bump actions/checkout from 5 to 6 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/1001\n* Update Ollama and OpenWebUI tags to latest versions by @​foxminchan in https://github.com/CommunityToolkit/Aspire/pull/1003\n* [Automated] Update API Surface Area by @​github-actions[bot] in https://github.com/CommunityToolkit/Aspire/pull/955\n\n## New Contributors\n* @​josemalm32 made their first contribution in https://github.com/CommunityToolkit/Aspire/pull/943\n* @​cdschneider made their first contribution in https://github.com/CommunityToolkit/Aspire/pull/978\n ... (truncated)\n\n## 9.9.0\n\nPretty big set of changes for the 9.9.0 release of the Community Toolkit with new integrations for flagd and Keycloak with PostgreSQL.\n\nWe've also deprecated the EventStore integration and replaced it with a new KurrentDB one, to reflect the new naming on the project.\n\nFull changelog below.\n\n## What's Changed\n* Enhance managed identity authentication logic by @​FullStackChef in https://github.com/CommunityToolkit/Aspire/pull/876\n* Fix dapr using the wrong component annotations by @​Sjark in https://github.com/CommunityToolkit/Aspire/pull/879\n* Add ability to set JVM args when using executable Java apps by @​marshalhayes in https://github.com/CommunityToolkit/Aspire/pull/888\n* updating Deno version by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/636\n* Suppressing some logs from mcp inspector. by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/892\n* Update copilot-instructions.md by @​Alirexaa in https://github.com/CommunityToolkit/Aspire/pull/897\n* Add WithLogLevel extension method by @​Odonno in https://github.com/CommunityToolkit/Aspire/pull/884\n* chore(deps): bump github/codeql-action from 3 to 4 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/898\n* Add flagd Aspire hosting by @​askpt in https://github.com/CommunityToolkit/Aspire/pull/827\n* chore(deps): bump danielpalme/ReportGenerator-GitHub-Action from 5.4.14 to 5.4.17 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/899\n* Add ability to skip .dacpac deployment  by @​ErikEJ in https://github.com/CommunityToolkit/Aspire/pull/896\n* Update some SqlProject integration dependencies by @​ErikEJ in https://github.com/CommunityToolkit/Aspire/pull/919\n* Add Keycloak with Postgre"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:930",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 930,
+      "title": "Bump CommunityToolkit.Aspire.OllamaSharp from 9.8.0-beta.395 to 13.0.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4940,
+      "excerpt": "github.com/CommunityToolkit/Aspire/pull/1000\n* chore(deps): bump actions/checkout from 5 to 6 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/1001\n* Update Ollama and OpenWebUI tags to latest versions by @​foxminchan in https://github.com/CommunityToolkit/Aspire/pull/1003\n* [Automated] Update API Surface Area by @​github-actions[bot] in https://github.com/CommunityToolkit/Aspire/pull/955\n\n## New Contributors\n* @​josemalm32 made their first contribution in https://github.com/CommunityToolkit/Aspire/pull/943\n* @​cdschneider made their first contribution in https://github.com/CommunityToolkit/Aspire/pull/978\n ... (truncated)\n\n## 9.9.0\n\nPretty big set of changes for the 9.9.0 release of the Community Toolkit with new integrations for flagd and Keycloak with PostgreSQL.\n\nWe've also deprecated the EventStore integration and replaced it with a new KurrentDB one, to reflect the new naming on the project.\n\nFull changelog below.\n\n## What's Changed\n* Enhance managed identity authentication logic by @​FullStackChef in https://github.com/CommunityToolkit/Aspire/pull/876\n* Fix dapr using the wrong component annotations by @​Sjark in https://github.com/CommunityToolkit/Aspire/pull/879\n* Add ability to set JVM args when using executable Java apps by @​marshalhayes in https://github.com/CommunityToolkit/Aspire/pull/888\n* updating Deno version by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/636\n* Suppressing some logs from mcp inspector. by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/892\n* Update copilot-instructions.md by @​Alirexaa in https://github.com/CommunityToolkit/Aspire/pull/897\n* Add WithLogLevel extension method by @​Odonno in https://github.com/CommunityToolkit/Aspire/pull/884\n* chore(deps): bump github/codeql-action from 3 to 4 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/898\n* Add flagd Aspire hosting by @​askpt in https://github.com/CommunityToolkit/Aspire/pull/827\n* chore(deps): bump danielpalme/ReportGenerator-GitHub-Action from 5.4.14 to 5.4.17 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/899\n* Add ability to skip .dacpac deployment  by @​ErikEJ in https://github.com/CommunityToolkit/Aspire/pull/896\n* Update some SqlProject integration dependencies by @​ErikEJ in https://github.com/CommunityToolkit/Aspire/pull/919\n* Add Keycloak with Postgre"
+    }
+  ]
+}

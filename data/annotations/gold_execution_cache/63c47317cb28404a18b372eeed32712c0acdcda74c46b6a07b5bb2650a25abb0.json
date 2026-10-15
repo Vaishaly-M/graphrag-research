@@ -1,0 +1,21 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(c:DLCommit)-[:DL_MODIFIED_FILE]->(f:DLFile) WHERE d.dataset=$dataset AND d.repo=$repo AND f.path STARTS WITH $prefix WITH d,collect(DISTINCT c.id)+collect(DISTINCT f.id) AS evidence RETURN coalesce(d.email,d.login,d.name) AS entity,coalesce(d.email,d.login,d.name) AS fact,[d.id]+evidence AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "prefix": "tests/optuna/"
+  },
+  "rows": [
+    {
+      "entity": "198982749+copilot@users.noreply.github.com",
+      "fact": "198982749+copilot@users.noreply.github.com",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:developer:email:198982749+copilot@users.noreply.github.com",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:068d1065ee3a623f75a0f8e67bc5f0c83b021439",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:cd708c240e8cb9a0d0b75ee1488bbd6915713b50",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:tests/optuna/test_storage.py"
+      ]
+    }
+  ]
+}

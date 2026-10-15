@@ -1,0 +1,116 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id IN $evidence_ids\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nsubstring(coalesce(n.content,n.body,n.message,''),0,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_ids": [
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2424",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2589",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1732",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1960"
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/*\n * Copyright 2012-2025 the original author or authors.\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *      https://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.springframework.samples.petclinic.owner;\n\nimport java.util.List;\nimport java.util.Objects;\nimport java.util.Optional;\n\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageRequest;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.Model;\nimport org.springframework.validation.BindingResult;\nimport org.springframework.web.bind.WebDataBinder;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.InitBinder;\nimport org.springframework.web.bind.annotation.ModelAttribute;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.servlet.ModelAndView;\n\nimport jakarta.validation.Valid;\n\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Michael Isvy\n * @author Wick Dynex\n */\n@Controller\nclass OwnerController {\n\n\tprivate static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = \"owners/createOrUpdateOwnerForm\";\n\n\tprivate final OwnerRepository owners;\n\n\tpublic OwnerController(OwnerRepository owners) {\n\t\tthis.owners = owners;\n\t}\n\n\t@InitBinder\n\tpublic void setAllowedFields(WebDataBinder dataBinder) {\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t@ModelAttribute(\"owner\")\n\tpublic Owner findOwner(@PathVariable(name = \"ownerId\", required = false) Integer ownerId) {\n\t\treturn ownerId == null ? new Owner()\n\t\t\t\t: this.owners.findById(ownerId)\n\t\t\t\t\t.orElseThrow(() -> new IllegalArgumentException(\"Owner not found with id: \" + owner"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/*\n * Copyright 2012-2025 the original author or authors.\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *      https://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\npackage org.springframework.samples.petclinic.owner;\n\nimport org.junit.jupiter.api.BeforeEach;\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.api.condition.DisabledInNativeImage;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageImpl;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.test.context.aot.DisabledInAotMode;\nimport org.springframework.test.context.bean.override.mockito.MockitoBean;\nimport org.springframework.test.web.servlet.MockMvc;\nimport org.springframework.test.web.servlet.request.MockMvcRequestBuilders;\n\nimport java.time.LocalDate;\nimport java.util.List;\nimport java.util.Optional;\n\nimport static org.hamcrest.Matchers.empty;\nimport static org.hamcrest.Matchers.greaterThan;\nimport static org.hamcrest.Matchers.hasItem;\nimport static org.hamcrest.Matchers.hasProperty;\nimport static org.hamcrest.Matchers.hasSize;\nimport static org.hamcrest.Matchers.is;\nimport static org.hamcrest.Matchers.not;\nimport static org.mockito.ArgumentMatchers.any;\nimport static org.mockito.ArgumentMatchers.anyString;\nimport static org.mockito.ArgumentMatchers.eq;\nimport static org.mockito.BDDMockito.given;\nimport static org.mockito.Mockito.when;\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;\n\n/**\n * Test class for {@link OwnerController}\n *\n * @author Colin But\n * @author Wick Dynex\n */\n@WebMvcTest(OwnerController.class)\n@DisabledInNativeImage\n@Dis"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1732",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1732,
+      "title": "Performance degradation with webjars locator",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Hello, \r\nwe see a significant regression on performance on some of Arm servers which is introduced by this patch (I didn't test on x86): \r\n\r\n```\r\ncommit 91f55a4f7134409a832435de2c6df231102d5898 (HEAD -> head-2)\r\nAuthor: Dave Syer <dsyer@vmware.com>\r\nDate:   Wed Nov 27 08:32:30 2024 +0000\r\n \r\n    Versionless webjars (again)\r\n \r\n    Spring Boot 3.4 supports the webjars-locator-lite which in turn\r\n    supports native images, so we are back to versionless URLs for\r\n    webjars assets in templates.\r\n```\r\n    \r\nThe performance drop introduced is quite severe, going from 3.3k req/s on this little test to about 0.7k req/s. \r\n   \r\n```\r\nuser@PetClinic-test:~$ numactl -C 16 wrk -c 1 -t 1 http://localhost:8080 -d 60\r\nRunning 1m test @ http://localhost:8080\r\n  1 threads and 1 connections\r\n  Thread Stats   Avg      Stdev     Max   +/- Stdev\r\n    Latency     1.36ms   15.88ms 359.72ms   99.44%\r\n    Req/Sec     3.37k   453.34     3.79k    93.80%\r\n  200156 requests in 1.00m, 579.75MB read\r\n**Requests/sec:   3335.91**\r\nTransfer/sec:      9.66MB\r\nuser@PetClinic-test:~$ numactl -C 16 wrk -c 1 -t 1 http://localhost:8080 -d 60\r\nRunning 1m test @ http://localhost:8080\r\n  1 threads and 1 connections\r\n  Thread Stats   Avg      Stdev     Max   +/- Stdev\r\n    Latency     2.59ms   16.94ms 374.89ms   99.41%\r\n    Req/Sec   700.85     80.00   780.00     93.13%\r\n  41660 requests in 1.00m, 120.67MB read\r\n**Requests/sec:    694.05**\r\nTransfer/sec:      2.01MB\r\nuser@PetClinic-test:~$\r\n```\r\n\r\nThese are the steps to repro on Ubuntu. \r\nServer: \r\n```\r\n    sudo apt update\r\n    sudo apt install numactl wrk maven openjdk-17-jdk\r\n    git clone https://github.com/spring-projects/spring-petclinic.git\r\n    cd spring-petclinic/\r\n    ./mvnw package\r\n    numactl -C 0-7 java -jar target/*.jar\r\n\r\n```\r\nClient: \r\n`    numactl -C 16 wrk -c 1 -t 1 http://localhost:8080 -d 60\r\n`\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1960",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1960,
+      "title": "Fix Feature Flag Integration Test Failures and Port Conflict",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "# CloudSmith Troubleshooting Summary\n## Trigger details\n| Workflow run  | Branch  | Commit  |\n|---|---|---|\n| [#15837158459](https://github.com/spring-projects/spring-petclinic/actions/runs/15837158459) |  ```facError``` |  ```25cf7e2c3fc337b119c09b5a102f0e5b6c829e6c``` |\n----\n## Detailed Findings\n### Issue 1\n\n\n**Problem**: The application fails to start because port 8080 is already in use. This is a port conflict issue where another process is already using the default port configured in application.properties.\n\n\n**File**: ```src/main/resources/application.properties```\n\n\n**Error Log**:\n```\n2025-06-23T23:16:02.8607484Z out: Description:\\n2025-06-23T23:16:02.8608003Z out: Web server failed to start. Port 8080 was already in use.\\n2025-06-23T23:16:02.8608706Z out: Action:\\n2025-06-23T23:16:02.8608706Z out: Identify and stop the process that\\'s listening on port 8080 or configure this application to listen on another port.\n```\n\n\n**Code snippet**:\n```\nserver.address=0.0.0.0\\nserver.port=8080\\n# Prefer IPv4 stack\\nserver.tomcat.protocol-header-https-value=java.net.preferIPv4Stack=true\n```\n\n\n**Solution Plan**:\n\n\n1. Modify the application.properties file to use a different port: Using port 0 will make Spring Boot automatically select an available port.\n```\n                   server.address=0.0.0.0\n                   server.port=0\n                   # Prefer IPv4 stack\n                   server.tomcat.protocol-header-https-value=java.net.preferIPv4Stack=true\n```\n2. Alternatively, you can specify a specific unused port like 8081:\n```\n                   server.port=8081\n```\n3. For the CI/CD environment, you can also add a step to kill any process using port 8080 before starting the application:\n```\n                   lsof -ti:8080 | xargs kill -9 || true\n```\n\n\n----\n\n# CloudSmith Troubleshooting Summary\n## Trigger details\n| Workflow run  | Branch  | Commit  |\n|---|---|---|\n| [#15837158459](https://github.com/spring-projects/spring-petclinic/actions/runs/15837158459) |  ```facError``` |  ```25cf7e2c3fc337b119c09b5a102f0e5b6c829e6c``` |\n----\n## Detailed Findings\n### Issue 2\n\n\n**Problem**: The integration test is failing with NullPointerException because the vet management feature is disabled in the main application.properties but the test is trying to access the vets endpoint. The test expects the feature to be enabled.\n\n\n**File**: ```src/main/resources/application.prop"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2424",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2424,
+      "title": "Provide adequate documentation for service classes ",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\n\r\nThis PR improves documentation for selected service-layer/business-logic classes in the current Spring PetClinic project.\r\n\r\n## Changes Made\r\n\r\n- Added class-level Javadoc to `OwnerController`, `PetController`, and `VetController`.\r\n- Added Javadoc to public constructors.\r\n- Added Javadoc to public controller methods.\r\n- Documented method responsibilities, parameters, return values, and applicable exceptions.\r\n- Improved clarity around owner, pet, and veterinarian workflows.\r\n- Preserved existing application logic without changing functionality.\r\n\r\n## Files Updated\r\n\r\n- `OwnerController.java`\r\n- `PetController.java`\r\n- `VetController.java`\r\n\r\n## Rationale\r\n\r\nThese documentation updates make the code easier for new contributors to understand and maintain. Clear Javadoc reduces onboarding time, lowers reliance on informal knowledge from existing developers, and helps prevent knowledge silos. It also supports technical sustainability by making controller responsibilities and expected behaviours easier to identify before future changes are made.\r\n\r\n## Testing\r\n\r\n- Documentation-only change.\r\n- No functional behaviour was changed.\r\n- Existing code structure and logic were preserved."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2434,
+      "title": "Refactor: remove unnecessary imports and redundant intermediate variables",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\nThis PR removes unnecessary imports and eliminates redundant intermediate variables across three controllers and two test files, as part of the sustainable coding practices evaluation for SE754 Assignment 5.\r\n\r\n## Problem\r\nManual inspection and SonarQube analysis identified two categories of redundant code across the `owner` package.\r\n\r\n**Unnecessary imports** - `OwnerControllerTests.java` and `VetControllerTests.java` both had a class-level import for `MockMvcRequestBuilders` despite already having static imports for the individual methods (`get`, `post`) from the same class. This made the class-level import redundant and unused. Similarly, `OwnerController.java`, `PetController.java`, and `VisitController.java` each imported `java.util.Optional` which was only needed to hold an intermediate variable that was immediately unwrapped on the next line.\r\n\r\n**Redundant intermediate variables** - In `OwnerController.java`, `PetController.java`, and `VisitController.java`, the pattern of assigning `owners.findById(...)` to an `optionalOwner` variable and then calling `.orElseThrow(...)` on the very next line served no purpose. SonarQube flags this under `java:S1488` - local variables should not be declared and then immediately returned or used.\r\n\r\n## Changes\r\n- Replaced `MockMvcRequestBuilders.post(...)` and `MockMvcRequestBuilders.get(...)` with the already-imported static equivalents in `OwnerControllerTests.java` and `VetControllerTests.java`, and removed the now-unused class-level imports\r\n- Collapsed all `optionalOwner` intermediate variable declarations into single chained expressions using `.orElseThrow(...)` directly on the repository call in `OwnerController.java`, `PetController.java`, and `VisitController.java`\r\n- Removed the `java.util.Optional` import from each controller where it was no longer referenced\r\n\r\n## Sustainability Impact\r\nRedundant code and unnecessary imports increase the noise developers must read through when understanding or modifying a file. Unused imports can mislead future contributors into thinking a type is meaningfully used, and they accumulate silently over time if not caught early.\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclin"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2542,
+      "title": "Upgrade/java17 spring boot 3",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\n\r\nThis PR upgrades the application from Java 11 + Spring Boot 2.7.3 to **Java 17 + Spring Boot 3.3.6** (latest stable 3.x release). All 41 tests pass (0 failures, 0 errors, 1 skipped).\r\n\r\n---\r\n\r\n## Changes\r\n\r\n### `pom.xml`\r\n\r\n| What | Before | After | Why |\r\n|---|---|---|---|\r\n| `spring-boot-starter-parent` | 2.7.3 | 3.3.6 | Latest stable SB3 |\r\n| `java.version` | 11 | 17 | SB3 minimum; Java 11 is EOL |\r\n| MySQL connector | `mysql:mysql-connector-java` | `com.mysql:mysql-connector-j` | Artifact relocated in SB3 BOM |\r\n| Ehcache classifier | _(none)_ | `jakarta` | SB3 / EE 10 requires the Jakarta variant |\r\n| New dep: `jakarta.xml.bind-api` | _(absent)_ | added | Needed for `@XmlElement`/`@XmlRootElement` on `Vet`/`Vets` |\r\n| Git-commit-id plugin groupId | `pl.project13.maven` | `io.github.git-commit-id` | Plugin transferred to new groupId; old one fails with SB3 BOM |\r\n| `build-info` additional properties | `${maven.compiler.source}` | `${java.version}` | `maven.compiler.source` is null in SB3 parent POM |\r\n| JaCoCo | 0.8.7 | 0.8.11 | Java 17 bytecode support |\r\n| spring-format | 0.0.31 | 0.0.42 | Java 17 Eclipse JDT formatter |\r\n| nohttp-checkstyle | 0.0.10 | 0.0.11 | Compatibility |\r\n| maven-checkstyle-plugin / Checkstyle | 3.1.2 / 8.45.1 | 3.3.1 / 10.12.4 | Java 17 source compatibility |\r\n| Project version | 2.7.3 | 3.3.6 | Align with SB parent |\r\n\r\n### `.mvn/wrapper/maven-wrapper.properties`\r\n\r\n- Maven wrapper: **3.8.2 → 3.9.6** (recommended minimum for Spring Boot 3)\r\n\r\n### `javax` → `jakarta` namespace migration\r\n\r\nSpring Boot 3 moved from the Java EE `javax.*` namespace to Jakarta EE 10 `jakarta.*`. All affected files updated:\r\n\r\n**Main sources**\r\n- `model/BaseEntity.java` — `jakarta.persistence.*`\r\n- `model/NamedEntity.java` — `jakarta.persistence.*`\r\n- `model/Person.java` — `jakarta.persistence.*`, `jakarta.validation.*`\r\n- `owner/Owner.java` — `jakarta.persistence.*`, `jakarta.validation.*`\r\n- `owner/Pet.java` — `jakarta.persistence.*`\r\n- `owner/Visit.java` — `jakarta.persistence.*`, `jakarta.validation.*`\r\n- `owner/PetType.java` — `jakarta.persistence.*`\r\n- `vet/Vet.java` — `jakarta.persistence.*`, `jakarta.xml.bind.*`\r\n- `vet/Specialty.java` — `jakarta.persistence.*`\r\n- `vet/Vets.java` — `jakarta.xml.bind.*`\r\n- `owner/OwnerController.java` — `jakarta.validation.Valid`\r\n- `owner/PetController.java` — `jakarta.validation.Valid`\r\n- `owne"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2589",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2589,
+      "title": "Fix owner search with surrounding whitespace",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\n\r\nTrim surrounding whitespace from the owner last-name search input before querying the repository.\r\n\r\n## Problem\r\n\r\nOwner searches containing leading or trailing whitespace did not behave like the equivalent trimmed search.\r\n\r\n## Changes\r\n\r\n- normalize the submitted last name with `String.strip()`;\r\n- preserve the existing behavior for a missing search value;\r\n- add regression coverage for leading, trailing, and combined surrounding whitespace;\r\n- add coverage for whitespace-only searches.\r\n\r\n## Testing\r\n\r\n- focused `OwnerControllerTests`: 15 passed;\r\n- Maven validation: passed;\r\n- Gradle validation: passed;\r\n- independent technical review: approved.\r\n\r\n## Acceptance criteria\r\n\r\n- leading whitespace is ignored;\r\n- trailing whitespace is ignored;\r\n- surrounding whitespace is ignored;\r\n- existing trimmed-input behavior is preserved;\r\n- whitespace-only input follows the empty-search behavior.\r\n\r\n## Scope\r\n\r\nChanged files:\r\n\r\n- `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n- `src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java`\r\n\r\nNo database, migration, API-contract, dependency, infrastructure, or configuration change.\r\n\r\n## Commit\r\n\r\n`4b7371f6b963302a0ef53b681ff9a61d83f4ed89`\r\n\r\n## DCO\r\n\r\nThe commit contains a valid `Signed-off-by` trailer.\r\n\r\n## Reviewer focus\r\n\r\n- whether `String.strip()` is the appropriate normalization method;\r\n- whether whitespace-only input should continue to behave as an empty search;\r\n- whether the regression tests cover the intended behavior sufficiently;\r\n- whether the change preserves existing owner-search behavior.\r\n"
+    }
+  ]
+}

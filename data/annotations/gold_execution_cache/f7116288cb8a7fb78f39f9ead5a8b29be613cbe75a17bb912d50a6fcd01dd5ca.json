@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 11714,
+        "line": 253
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/cli/__init__.py",
+        "path": "mlflow/cli/__init__.py",
+        "offset": 6100,
+        "line": 171
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 3395,
+        "line": 75
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 7174,
+        "line": 171
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 95307,
+        "line": 50
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tensorflow/__init__.py",
+        "path": "mlflow/tensorflow/__init__.py",
+        "offset": 1114,
+        "line": 33
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/guide/index.mdx",
+        "path": "docs/docs/classic-ml/deep-learning/transformers/guide/index.mdx",
+        "offset": 18436,
+        "line": 453
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+        "path": "examples/llms/RAG/_cache.json",
+        "offset": 62111,
+        "line": 330
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11714,
+      "excerpt": " and reduce\nerrors in creating the environment.\n\n#### GitHub Codespaces\n\n<img src=\"./assets/create-codespace.png\" width=\"60%\"/>\n\n1. Navigate to https://github.com/mlflow/mlflow.git.\n2. Above the file list, click `Code`, then select `Create codespace` and wait for your codespace to be created.\n\nSee [Quickstart for GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) for more information.\n\n#### Automated Python development environment configuration\n\nThe automated development environment setup script\n([dev-env-setup.sh](https://github.com/mlflow/mlflow/tree/master/dev/dev-env-setup.sh))\ncan be used to setup a development environment that is configured with\nall of the dependencies required and the environment configuration\nneeded to develop and locally test the Python code portions of MLflow.\nThis CLI tool's readme can be accessed via the root of the mlflow\nrepository as follows:\n\n```bash\ndev/dev-env-setup.sh -h\n```\n\nAn example usage of this script that will build a development\nenvironment using `virtualenv` and the minimum supported Python version\n(to ensure compatibility) is:\n\n```bash\ndev/dev-env-setup.sh -d .venvs/mlflow-dev -q\n```\n\nThe `-q` parameter is to \"quiet\" the pip install processes preventing\nstdout printing during installation.\n\nIt is advised to follow all of the prompts to ensure that the\nconfiguration of the environment, as well as git, are completed so that\nyour PR process is as effortless as possible.\n\n**Note**\n\nFrequently, a specific version of a library is required in order to\nvalidate a feature's compatibility with older versions. Modifying your\nprimary development environment to test one-off compatibility can be\nvery error-prone and result in an environment that is significantly\ndifferent from that of the CI test environment. To support this use\ncase, the automated script can be used to create an environment that can\nbe easily modified to support testing a particular version of a model\nflavor in an isolated environment. Simply run the `dev-env-setup.sh`\nscript, activate the new environment, and install the required version\nfor testing.\n\n</div>\n\nExample of installing an older version of `scikit-learn` to perform\nisolated testing:\n\n```bash\ndev/dev-env-setup.sh -d ~/.venvs/sklearn-test -q\nsource ~/.venvs/sklearn-test/bin/activate\npip freeze | grep \"scikit-learn\"\n>> scikit-learn==1.0.2\npip install scikit-learn==1."
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/guide/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deep-learning/transformers/guide/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18436,
+      "excerpt": "tadata and ModelCard logging\n\nIn order to provide as much information as possible for saved models, the `transformers` flavor will automatically fetch the `ModelCard` for any model or pipeline that\nis saved that has a stored card on the HuggingFace hub. This card will be logged as part of the model artifact, viewable at the same directory level as the `MLmodel` file and\nthe stored model object.\n\nIn addition to the `ModelCard`, the components that comprise any Pipeline (or the individual components if saving a dictionary of named components) will have their source types\nstored. The model type, pipeline type, task, and classes of any supplementary component (such as a `Tokenizer` or `ImageProcessor`) will be stored in the `MLmodel` file as well.\n\nIn order to preserve any attached legal requirements to the usage of any model that is hosted on the huggingface hub, a \"best effort\" attempt\nis made when logging a transformers model to retrieve and persist any license information. A file will be generated (`LICENSE.txt`) within the root of\nthe model directory. Within this file you will either find a copy of a declared license, the name of a common license type that applies to the model's use (i.e., 'apache-2.0', 'mit'),\nor, in the event that license information was never submitted to the huggingface hub when uploading a model repository, a link to the repository for you to use\nin order to determine what restrictions exist regarding the use of the model.\n\n## Automatic Signature inference\n\nFor pipelines that support `pyfunc`, there are 3 means of attaching a model signature to the `MLmodel` file.\n\n- Provide a model signature explicitly via setting a valid `ModelSignature` to the `signature` attribute.\n\n- Provide an `input_example`. The signature will be inferred and validated that it matches the appropriate input type. The output type will be validated by performing inference automatically (if the model is a `pyfunc` supported type).\n\n- Do nothing. The `transformers` flavor will automatically apply the appropriate general signature that the pipeline type supports (only for a single-entity; collections will not be inferred).\n\n## Scale Inference with Overriding Pytorch dtype \\{#scalability-for-inference}\n\nA common configuration for lowering the total memory pressure for pytorch models within `transformers` pipelines is to modify the\nprocessing data type. This is achieve"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7174,
+      "excerpt": "ter) is installed, MLflow runs `uv export` to produce a pinned requirements list from the lockfile. This list replaces the standard import-based dependency inference.\n\nMLflow also copies the uv project files (`uv.lock` and `pyproject.toml`) and, if present, the `.python-version` file into the model artifact directory. These files enable exact environment restoration with `uv sync` when the model is loaded later.\n\nThis works with all MLflow model flavors. For example, logging a scikit-learn model in a uv-managed project:\n\n```python\nimport mlflow\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.datasets import make_regression\n\nX, y = make_regression(n_samples=100, n_features=4)\nmodel = LinearRegression().fit(X, y)\n\n# uv.lock is auto-detected in the current directory\nmlflow.sklearn.log_model(model, name=\"model\")\n# Requirements are exported from uv.lock, not inferred from imports\n```\n\n### Auto-Detection\n\nBy default, uv project detection is enabled. MLflow looks for `uv.lock` and `pyproject.toml` in the current working directory when you log a model with any flavor, including <APILink fn=\"mlflow.sklearn.log_model\" />, <APILink fn=\"mlflow.pytorch.log_model\" />, <APILink fn=\"mlflow.transformers.log_model\" />, <APILink fn=\"mlflow.pyfunc.log_model\" />, and others. All flavors that call `infer_pip_requirements` benefit from uv auto-detection.\n\nTo disable auto-detection, set the `MLFLOW_UV_AUTO_DETECT` environment variable:\n\n```bash\nexport MLFLOW_UV_AUTO_DETECT=false\n```\n\nYou can also control whether uv project files (`uv.lock`, `pyproject.toml`, and `.python-version`) are saved as model artifacts with `MLFLOW_LOG_UV_FILES`:\n\n```bash\n# Disable copying uv.lock, pyproject.toml, and .python-version into model artifacts\nexport MLFLOW_LOG_UV_FILES=false\n```\n\n### Specifying a uv Project Path\n\nIf your uv project is not in the current working directory (common in monorepos or non-standard layouts), use the `uv_project_path` parameter to point to the correct directory:\n\n```python\nimport mlflow\n\nmlflow.pyfunc.log_model(\n    python_model=my_model,\n    name=\"model\",\n    input_example=input_data,\n    uv_project_path=\"/path/to/my-uv-project\",\n)\n```\n\nMLflow will look for `uv.lock` and `pyproject.toml` in the specified directory instead of the current working directory.\n\n### Including Dependency Groups\n\nuv supports [dependency groups](https://docs.astral.sh/uv/concepts/d"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3395,
+      "excerpt": "ds:\n\n- `time_created`: Date and time when the model was created, in UTC ISO 8601 format.\n- `run_id`: ID of the run that created the model, if the model was saved using [tracking](/ml/tracking).\n- `signature`: [model signature](/ml/model/signatures) in JSON format.\n- `input_example`: reference to an artifact with [input example](/ml/model/signatures).\n- `databricks_runtime`: Databricks runtime version and type, if the model was trained in a Databricks notebook or job.\n- `mlflow_version`: The version of MLflow that was used to log the model.\n\n### Additional Logged Files\n\nFor environment recreation, we automatically log `conda.yaml`, `python_env.yaml`, and `requirements.txt` files whenever a model is logged.\nThese files can then be used to reinstall dependencies using `conda` or `virtualenv` with `pip`. Please see\n[How MLflow Model Records Dependencies](/ml/model/dependencies#how-mlflow-records-dependencies) for more details about these files.\n\nIf a model input example is provided when logging the model, two additional files `input_example.json` and `serving_input_example.json` are logged.\nSee [Model Input Example](/ml/model/signatures) for more details.\n\nWhen logging a model, model metadata files (`MLmodel`, `conda.yaml`, `python_env.yaml`, `requirements.txt`) are copied to a subdirectory named `metadata`.\nFor wheeled models, `original_requirements.txt` file is also copied.\n\n:::note\nWhen a model registered in the MLflow Model Registry is downloaded, a YAML file named\n`registered_model_meta` is added to the model directory on the downloader's side.\nThis file contains the name and version of the model referenced in the MLflow Model Registry,\nand will be used for deployment and other purposes.\n:::\n\n:::warning[attention]\nIf you log a model within Databricks, MLflow also creates a `metadata` subdirectory within\nthe model directory. This subdirectory contains the lightweight copy of aforementioned\nmetadata files for internal use.\n:::\n\n### Environment variables file\n\nMLflow records the environment variables that are used during model inference in `environment_variables.txt`\nfile when logging a model.\n\n:::warning[attention]\n`environment_variables.txt` file **only contains names** of the environment variables that are used during\nmodel inference, **values are not stored**.\n:::\n\nCurrently MLflow only logs the environment variables whose name contains any of the followin"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+      "kind": "File",
+      "path": "examples/llms/RAG/_cache.json",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 62111,
+      "excerpt": " HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\\\\n    \\\\n    Please call the submit_function function to submit the generated question and answer.\\\\n    \\\"}], \\\"model\\\": \\\"gpt-3.5-turbo\\\", \\\"functions\\\": [{\\\"name\\\": \\\"submit_function\\\", \\\"description\\\": \\\"Call this function to submit the generated question and answer.\\\", \\\"parameters\\\": {\\\"type\\\": \\\"object\\\", \\\"properties\\\": {\\\"question\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The question asking for the key information in the given paragraph.\\\"}, \\\"answer\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The answer to the question using the information in the given paragraph.\\\"}}, \\\"required\\\": [\\\"question\\\", \\\"answer\\\"]}}], \\\"function_call\\\": \\\"auto\\\", \\\"temperature\\\": 0.0, \\\"seed\\\": 2023}\": {\n    \"id\": \"chatcmpl-8NQ05ACacakGcfO01w48OAU3VRsY9\",\n    \"object\": \"chat.completion\",\n    \"created\": 1700592181,\n    \"model\": \"gpt-3.5-turbo-0613\",\n    \"choices\": [\n      {\n        \"index\": 0,\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": null,\n          \"function_call\": {\n            \"name\": \"submit_function\",\n            \"arguments\": \"{\\n  \\\"question\\\": \\\"How can you create an experiment in MLflow?\\\",\\n  \\\"answer\\\": \\\"You can create an experiment in MLflow using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters.\\\"\\n}\"\n          }\n        },\n        \"finish_reason\": \"function_call\"\n      }\n    ],\n    \"usage\": { \"prompt_tokens\": 528, \"completion_tokens\": 56, \"total_tokens\": 584 }\n  }\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 95307,
+      "excerpt": " HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nHow can you create an experiment using MLflow?,\"You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters.\",\"runs into experiments, which group together runs for a specific task. You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters. The MLflow API and UI let you create and search for experiments. Once your runs have been recorded, you can query them using the Tracking UI or the MLflow API. Where Runs Are Recorded MLflow runs can be recorded to local files, to a SQLAlchemy-compatible database, or remotely to a tracking server. By default, the MLflow Python API logs runs locally to files in an mlruns directory wherever you ran your program. You can then run mlflow ui to see the logged runs. To log runs remotely, set the MLFLOW_TRACKING_URI environment variable to a tracking server's URI or call mlflow.set_tracking_uri(). There are different kinds of remote tracking URIs: Local file path (specified as file:/my/local/dir), where data is just directly stored locally. Database encoded as <dialect>+<driver>://<username>:<password>@<host>:<port>/<database>. MLflow supports the dialects mysql, mssql, sqlite, and postgresql. For more details, see SQLAlchemy database uri. HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nWhat are the two components used by MLflow for storage?,\"MLflow uses two components for storage: backend store and artifact store. The backend store persists MLflow entities such as runs, parameters, metrics, tags, notes, and metadata. On the other hand, the artifact store persists artifacts such as files, models, images, in-mem"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/cli/__init__.py",
+      "kind": "File",
+      "path": "mlflow/cli/__init__.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6100,
+      "excerpt": "I profile.\",\n)\n@click.option(\n    \"--backend-config\",\n    \"-c\",\n    metavar=\"FILE\",\n    help=\"Path to JSON file (must end in '.json') or JSON string which will be passed \"\n    \"as config to the backend. The exact content which should be \"\n    \"provided is different for each execution backend and is documented \"\n    \"at https://www.mlflow.org/docs/latest/projects.html.\",\n)\n@cli_args.ENV_MANAGER_PROJECTS\n@click.option(\n    \"--storage-dir\",\n    envvar=\"MLFLOW_TMP_DIR\",\n    help=\"Only valid when ``backend`` is local. \"\n    \"MLflow downloads artifacts from distributed URIs passed to parameters of \"\n    \"type 'path' to subdirectories of storage_dir.\",\n)\n@click.option(\n    \"--run-id\",\n    metavar=\"RUN_ID\",\n    help=\"If specified, the given run ID will be used instead of creating a new run. \"\n    \"Note: this argument is used internally by the MLflow project APIs \"\n    \"and should not be specified.\",\n)\n@click.option(\n    \"--run-name\",\n    metavar=\"RUN_NAME\",\n    help=\"The name to give the MLflow Run associated with the project execution. If not specified, \"\n    \"the MLflow Run name is left unset.\",\n)\n@click.option(\n    \"--build-image\",\n    is_flag=True,\n    default=False,\n    show_default=True,\n    help=(\n        \"Only valid for Docker projects. If specified, build a new Docker image that's based on \"\n        \"the image specified by the `image` field in the MLproject file, and contains files in the \"\n        \"project directory.\"\n    ),\n)\ndef run(\n    uri,\n    entry_point,\n    version,\n    param_list,\n    docker_args,\n    experiment_name,\n    experiment_id,\n    backend,\n    backend_config,\n    env_manager,\n    storage_dir,\n    run_id,\n    run_name,\n    build_image,\n):\n    \"\"\"\n    Run an MLflow project from the given URI.\n\n    For local runs, the run will block until it completes.\n    Otherwise, the project will run asynchronously.\n\n    If running locally (the default), the URI can be either a Git repository URI or a local path.\n    If running on Databricks, the URI must be a Git repository.\n\n    By default, Git projects run in a new working directory with the given parameters, while\n    local projects run from the project's root directory.\n    \"\"\"\n    if experiment_id is not None and experiment_name is not None:\n        raise click.UsageError(\"Specify only one of 'experiment-name' or 'experiment-id' options.\")\n\n    param_dict = _user_args_to_dict(param_list)\n    args_"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tensorflow/__init__.py",
+      "kind": "File",
+      "path": "mlflow/tensorflow/__init__.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1114,
+      "excerpt": "dels.signature import _infer_signature_from_input_example\nfrom mlflow.models.utils import _save_example\nfrom mlflow.tensorflow.callback import MlflowCallback, MlflowModelCheckpointCallback  # noqa: F401\nfrom mlflow.tracking._model_registry import DEFAULT_AWAIT_MAX_SLEEP_SECONDS\nfrom mlflow.tracking.artifact_utils import _download_artifact_from_uri\nfrom mlflow.tracking.context import registry as context_registry\nfrom mlflow.tracking.fluent import _initialize_logged_model, _shut_down_async_logging\nfrom mlflow.types.schema import TensorSpec\nfrom mlflow.utils import is_iterator\nfrom mlflow.utils.autologging_utils import (\n    autologging_integration,\n    get_autologging_config,\n    log_fn_args_as_params,\n    picklable_exception_safe_function,\n    resolve_input_example_and_signature,\n    safe_patch,\n)\nfrom mlflow.utils.checkpoint_utils import (\n    _WEIGHT_ONLY_CHECKPOINT_SUFFIX,\n    download_checkpoint_artifact,\n)\nfrom mlflow.utils.databricks_utils import (\n    is_in_databricks_model_serving_environment,\n    is_in_databricks_runtime,\n)\nfrom mlflow.utils.docstring_utils import LOG_MODEL_PARAM_DOCS, format_docstring\nfrom mlflow.utils.environment import (\n    _CONDA_ENV_FILE_NAME,\n    _CONSTRAINTS_FILE_NAME,\n    _PYTHON_ENV_FILE_NAME,\n    _REQUIREMENTS_FILE_NAME,\n    _mlflow_conda_env,\n    _process_conda_env,\n    _process_pip_requirements,\n    _PythonEnv,\n    _validate_env_arguments,\n)\nfrom mlflow.utils.file_utils import TempDir, get_total_file_size, write_to\nfrom mlflow.utils.model_utils import (\n    _add_code_from_conf_to_system_path,\n    _copy_extra_files,\n    _get_flavor_configuration,\n    _validate_and_copy_code_paths,\n    _validate_and_prepare_target_save_path,\n)\nfrom mlflow.utils.requirements_utils import _get_pinned_requirement\n\nFLAVOR_NAME = \"tensorflow\"\n\n_logger = logging.getLogger(__name__)\n\n# For tracking if the run was started by autologging.\n_AUTOLOG_RUN_ID = None\n\n# File name to which custom objects cloudpickle is saved - used during save and load\n_CUSTOM_OBJECTS_SAVE_PATH = \"custom_objects.cloudpickle\"\n# File name to which custom objects stored in tensorflow _GLOBAL_CUSTOM_OBJECTS\n# is saved - it is automatically detected and used during save and load\n_GLOBAL_CUSTOM_OBJECTS_SAVE_PATH = \"global_custom_objects.cloudpickle\"\n_KERAS_MODULE_SPEC_PATH = \"keras_module.txt\"\n_KERAS_SAVE_FORMAT_PATH = \"save_format.txt\"\n# File name to which keras model is saved"
+    }
+  ]
+}

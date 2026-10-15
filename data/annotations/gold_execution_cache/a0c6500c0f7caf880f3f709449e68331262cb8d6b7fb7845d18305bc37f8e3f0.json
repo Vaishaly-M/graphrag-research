@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "offset": 26493,
+        "line": 595
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb",
+        "path": "docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb",
+        "offset": 53455,
+        "line": 1160
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/experiment-tracking/pages/experiment-review-queue/ExperimentReviewQueuePage.tsx",
+        "path": "mlflow/server/js/src/experiment-tracking/pages/experiment-review-queue/ExperimentReviewQueuePage.tsx",
+        "offset": 15691,
+        "line": 302
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26430",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26450",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25963",
+        "path": null,
+        "offset": 4969,
+        "line": 73
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26444",
+        "path": null,
+        "offset": 3768,
+        "line": 49
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/scorers/llm-judge/guidelines.mdx",
+        "path": "docs/docs/genai/eval-monitor/scorers/llm-judge/guidelines.mdx",
+        "offset": 14041,
+        "line": 357
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 53455,
+      "excerpt": " issues, such as a \\\"ValueError: We need an `offload_dir` to dispatch this model according to this `decide_map`.\\\" If you encounter this error, consider restarting the Python Kernel and loading the model again.\\n\",\n    \"\\n\",\n    \"**CAUTION**: Restarting the Python Kernel will erase all intermediate states and variables from the above cells. Ensure that the trained PEFT model is properly logged in MLflow before restarting.\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"metadata\": {\n    \"application/vnd.databricks.v1+cell\": {\n     \"cellMetadata\": {\n      \"byteLimit\": 2048000,\n      \"rowLimit\": 10000\n     },\n     \"inputWidgets\": {},\n     \"nuid\": \"59df3b6d-e5f6-4274-a624-19dc767769bc\",\n     \"showTitle\": false,\n     \"title\": \"\"\n    }\n   },\n   \"outputs\": [],\n   \"source\": [\n    \"# You can find the ID of run in the Run detail page on MLflow UI\\n\",\n    \"mlflow_model = mlflow.pyfunc.load_model(\\\"runs:/YOUR_RUN_ID/model\\\")\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"data\": {\n      \"text/html\": [\n       \"<style> .dataframe th, .dataframe tbody td { text-align: left; padding-right: 30px; } </style> <table border=\\\"1\\\" class=\\\"dataframe\\\">\\n\",\n       \"  <thead>\\n\",\n       \"    <tr style=\\\"text-align: right;\\\">\\n\",\n       \"      <th></th>\\n\",\n       \"      <th>prompt</th>\\n\",\n       \"      <th>generated_query</th>\\n\",\n       \"    </tr>\\n\",\n       \"  </thead>\\n\",\n       \"  <tbody>\\n\",\n       \"    <tr>\\n\",\n       \"      <th>0</th>\\n\",\n       \"      <td><br>### Table:<br>CREATE TABLE table_name_50 (venue VARCHAR, away_team VARCHAR)<br><br>### Question:<br>When Essendon played away; where did they play?<br></td>\\n\",\n       \"      <td>SELECT venue FROM table_name_50 WHERE away_team = \\\"essendon\\\"</td>\\n\",\n       \"    </tr>\\n\",\n       \"  </tbody>\\n\",\n       \"</table>\"\n      ],\n      \"text/plain\": [\n       \"<IPython.core.display.HTML object>\"\n      ]\n     },\n     \"metadata\": {},\n     \"output_type\": \"display_data\"\n    }\n   ],\n   \"source\": [\n    \"# We only input table and question, since system prompt is adeed in the prompt template.\\n\",\n    \"test_prompt = \\\"\\\"\\\"\\n\",\n    \"### Table:\\n\",\n    \"CREATE TABLE table_name_50 (venue VARCHAR, away_team VARCHAR)\\n\",\n    \"\\n\",\n    \"### Question:\\n\",\n    \"When Essendon played away; where did they play?\\n\",\n    \"\\\"\\\"\\\"\\n\",\n    \"\\n\",\n    \"# Inference "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26493,
+      "excerpt": "If you rerun portions of your notebook, the plot displayed could become outdated or misleading, posing a risk when interpreting results.\\n\",\n    \"  \\n\",\n    \"- **Loss of Previous State**: If you happen to rerun the entire notebook, the plot will be lost. While some plugins can recover previous cell states, setting this up can be cumbersome and time-consuming.\\n\",\n    \"\\n\",\n    \"In contrast, logging the plot to MLflow ensures that we have a permanent, easily accessible record that correlates directly with other experiment data. This is invaluable for maintaining the integrity and reproducibility of your machine learning experiments.\\n\",\n    \"\\n\",\n    \"##### Displaying the Plot for This Guide\\n\",\n    \"\\n\",\n    \"For the purposes of this guide, we'll still take a moment to examine the plot. We can do this by explicitly calling the figure object we've returned from our function.\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 6,\n   \"id\": \"db24d7d2\",\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"data\": {\n      \"image/png\": \"iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjcuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/OQEPoAAAACXBIWXMAAAsTAAALEwEAmpwYAABZj0lEQVR4nO3debymc/3H8dcwmWma8kuylIqKT0qWxpIypSIqKm20S5sUJaWFULZW+5KSlLIlSgkVqRlLM2SXT8hoIYrIFMcy5/fH93tzz+2cmfvMXOfc55x5PR+P8zjnvtbPdZ3bcb/nu1wT+vv7kSRJkiQtvqV6XYAkSZIkjRcGLEmSJElqiAFLkiRJkhpiwJIkSZKkhhiwJEmSJKkhBixJkiRJasjEXhcgSVK7iHgi8CHg7cDqlP9XXQscCxybmfN6WN58ImIOMCczN12EfVcA/puZ/62vjwfem5kTmqyxaRGxD7A3sFpmzqnLlgKe2fZ6e+C7wCsy84IhHn9V4OaOxfOAuUACJwBHZebDi3gJo9pA91fS2GILliRp1IiIAC4FDgSuBj4PfAG4HzgG+H5EjOoA0o2IeA0lLDy1bfExwLt7U9GQnE6p858AEfEk4BJg+4bPM6Oe593ADsAXgbuBw4CfRsTSDZ9PkhphC5YkaVSIiMnAT4HlgfUz86q21QdFxJHATsAsyofssWwj4P/aF2TmxcDFPalmCOrvpf13sxywAfCLhk/158z8QceygyLiAOBzwG7AVxs+pyQtNluwJEmjxU5AALt2hKuWTwH/BnYc0ao02uxFaf3bLSL8h2JJo45/mCRJo8V2lHE2Jw20MjPvi4iNgFval0fEdMqYlRfXRbOAfTLzd23bzAF+RfmHxXcAdwLrUrojPmZ5Zv4rIjYGvtR23IuBPTNz1mAXULsvfpjSpW1N4HHAHMp4pK9mZn9rrFXd5eaI+G1mbjrQGKyIeBawH7Al8ERKsDgiM7/dts3xtcZ3A1+ntCbdC5wCfCYz7xuk1oOBjwPLZ+ZdddlalK6ZP8vM17dtewjwPkrr4h7UMULAqsBv6mZ7R0RrecuKEfEDYCvKPT4P+Hhm/mWwe7gwmflQRJxCCVovovy+Wy2gewLvBJ4O/A34AbBfZj5Qt9me8rtYl9L1dAtK99Pjgc8C76J0S10FuALYKTOvbLsPL6rXvwml5e7fwK+B3TPzb3WbfeqxXggcDLwceAg4E/hkZt7ZdrznUFrhXgk8XOt4YFHvjaTRwRYsSVLP1WCyHnBZZj442HaZeUPrw3Ld7/XABcAzgX3r1zOB8+q6dm8H1gY+AXw7M/812PKI2Bz4LbAs5YP4fvW4v6uBbjD7Ak"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/scorers/llm-judge/guidelines.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/eval-monitor/scorers/llm-judge/guidelines.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14041,
+      "excerpt": "h their full legal names and entity types (Inc., LLC, etc.)\n               - Must identify party roles (buyer/seller, licensee/licensor, employer/employee)\n               - Must extract any parent company relationships or guarantors mentioned\n               - Must capture all representatives, their titles, and authority to sign\n               - Must identify jurisdiction for each party if specified\"\"\",\n                \"\"\"Critical dates and terms extraction:\n               - Must differentiate between: execution date, effective date, and expiration date\n               - Must extract notice periods for termination (e.g., \"30 days written notice\")\n               - Must identify any automatic renewal clauses and their conditions\n               - Must extract all milestone dates and deliverable deadlines\n               - For amendments, must note which version/date of original contract is modified\"\"\",\n                \"\"\"Obligations and risk analysis:\n               - Must extract all payment terms, amounts, and schedules\n               - Must identify liability caps, indemnification clauses, and insurance requirements\n               - Must flag any non-standard clauses that deviate from typical contracts\n               - Must extract all conditions precedent and subsequent\n               - Must identify dispute resolution mechanism (arbitration, litigation, jurisdiction)\n               - Must extract any non-compete, non-solicitation, or confidentiality periods\"\"\",\n            ]\n        },\n    },\n    {\n        \"inputs\": {\n            \"document_type\": \"medical_record\",\n            \"document_text\": \"Patient: John Doe\\nDOB: 1985-06-15\\nDiagnosis: Type 2 Diabetes\\nMedications: Metformin 500mg\",\n        },\n        \"outputs\": {\n            \"patient_name\": \"John Doe\",\n            \"date_of_birth\": \"1985-06-15\",\n            \"diagnoses\": [\"Type 2 Diabetes\"],\n            \"medications\": [{\"name\": \"Metformin\", \"dosage\": \"500mg\"}],\n        },\n        \"expectations\": {\n            \"guidelines\": [\n                \"\"\"HIPAA compliance and privacy protection:\n               - Must never extract full SSN (only last 4 digits if needed for matching)\n               - Must never include full insurance policy numbers or member IDs\n               - Must redact or generalize sensitive mental health or substance abuse information\n               - For minors, must flag records requiring addi"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/experiment-tracking/pages/experiment-review-queue/ExperimentReviewQueuePage.tsx",
+      "kind": "File",
+      "path": "mlflow/server/js/src/experiment-tracking/pages/experiment-review-queue/ExperimentReviewQueuePage.tsx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 15691,
+      "excerpt": " }\n  };\n\n  const setOpenStatus = async (status: ReviewStatus) => {\n    if (!selectedQueueId || !openItem) {\n      return;\n    }\n    await setReviewQueueItemStatusAsync({\n      queue_id: selectedQueueId,\n      item_id: openItem.item_id,\n      status,\n      // Attribution only applies to the terminal states; reopen clears it.\n      completed_by: status === 'PENDING' ? undefined : reviewer,\n    });\n  };\n\n  let rightContent: React.ReactNode;\n  if (queuesLoading) {\n    rightContent = <TableSkeleton lines={6} />;\n  } else if (reviewQueues.length === 0) {\n    rightContent = (\n      <ReviewQueueEmptyState\n        title={\n          <FormattedMessage\n            defaultMessage=\"Set up human review for your traces\"\n            description=\"Review queue: empty state title when no queues exist\"\n          />\n        }\n        description={\n          <FormattedMessage\n            defaultMessage=\"Review queues let your team evaluate trace quality with structured questions. Add traces to a queue from the Traces tab, or create a new queue to get started.\"\n            description=\"Review queue: empty state description when no queues exist\"\n          />\n        }\n        button={\n          <Button\n            componentId=\"mlflow.experiment-review-queue.empty-state-new-queue\"\n            type=\"primary\"\n            icon={<PlusIcon />}\n            onClick={() => setCreateOpen(true)}\n          >\n            <FormattedMessage\n              defaultMessage=\"New queue\"\n              description=\"Review queue: empty state button to create a new queue\"\n            />\n          </Button>\n        }\n      />\n    );\n  } else if (!selectedQueue) {\n    rightContent = (\n      <ReviewQueueEmptyState\n        title={\n          <FormattedMessage\n            defaultMessage=\"Select a queue to get started\"\n            description=\"Review queue: empty state title when no queue selected\"\n          />\n        }\n        description={\n          <FormattedMessage\n            defaultMessage=\"Review queues let you organize traces for human evaluation. Select a queue from the sidebar, or create a new one to start reviewing traces.\"\n            description=\"Review queue: empty state description when no queue selected\"\n          />\n        }\n      />\n    );\n  } else if (openItemId && openItem) {\n    rightContent = (\n      <FocusedReview\n        // Remount per trace so answer state never bleeds across traces.\n   "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25963",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 25963,
+      "title": "[BUG][FR] Assessment columns are limited to the first 100 traces, even after all trace pages are loaded",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4969,
+      "excerpt": "lable.\n5. Scroll inside the table until **220 of 220** traces are loaded, then return to the top and open **Columns**.\n6. Observe that `judge_a` is still absent from the assessment options.\n\nScreenshots from the standalone reproduction, using synthetic data:\n\nAnimated sequence of the three captured states (not a continuous screen recording):\n\n![Initial load, fully loaded table, and diagnostic patch comparison](https://github.com/user-attachments/assets/6e092578-cd2a-42bd-b6b1-5257b42e97bb)\n\n**Initial load: only one assessment is discovered.**\n\n![Unpatched MLflow: 100 of 220 traces and one assessment](https://github.com/user-attachments/assets/f9ed7cbd-5dab-4a28-a80d-aa1066a8d0c8)\n\n**After loading all traces: the column selector still only offers `judge_b`.**\n\n![Unpatched MLflow: 220 of 220 traces, but only judge_b in Columns](https://github.com/user-attachments/assets/3d9937ba-6284-430d-bd6e-337754407637)\n\n**Same data after the diagnostic metadata-query patch: both columns appear before scrolling.**\n\n![Diagnostic patch: 100 of 220 traces and both assessment columns](https://github.com/user-attachments/assets/06ab543c-18ed-42c5-a819-15e30c14347a)\n\n### Code to generate data required to reproduce the bug\n\n```python\nimport os\n\nos.environ[\"MLFLOW_ENABLE_ASYNC_TRACE_LOGGING\"] = \"false\"\n\nimport mlflow\n\nmlflow.set_tracking_uri(\"http://127.0.0.1:5015\")\nmlflow.set_experiment(\"assessment-column-pagination-repro\")\n\nwith mlflow.start_run(run_name=\"Two judges on separate trace batches\") as run:\n    mlflow.set_tag(\"mlflow.runType\", \"genai_eval\")\n    for judge in (\"judge_a\", \"judge_b\"):\n        for i in range(110):\n            with mlflow.start_span(name=\"synthetic-prediction\") as span:\n                span.set_inputs({\"id\": f\"{judge}-{i}\"})\n                span.set_outputs(\"ok\")\n            mlflow.log_feedback(\n                trace_id=span.trace_id,\n                name=judge,\n                value=True,\n                metadata={\"mlflow.assessment.sourceRunId\": run.info.run_id},\n            )\n        mlflow.log_metric(f\"{judge}/mean\", 1.0)\n    print(f\"Experiment ID: {run.info.experiment_id}; run ID: {run.info.run_id}\")\n```\n\n### Is the console panel in DevTools showing errors relevant to the bug? Type 'N/A' if not applicable.\n\nN/A. No relevant console errors were observed in the standalone reproduction. There was an unrelated HTTP 404 for `/ajax-api/2.0/mlflow/users/curre"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26430",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26430,
+      "title": "Add an experimental `docker` job executor for custom scorer runs",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "<!--\nDo not remove any sections. Remove unused checkboxes except for the patch release section at the bottom.\nUse backticks for code references and file paths in the PR title (e.g., `ClassName`, `function_name`, `utils.py`).\n-->\n\n### Related Issues/PRs\n\n<!-- 🚨 Choose either \"Closes\" (auto-close on merge) or \"Relates to\" (reference only). 🚨 -->\n\nRelates to #26225 and [RFC-0014 (job executor remote plugins)](https://github.com/mlflow/rfcs/blob/main/rfcs/0014-job-executor-remote-plugins/0014-job-executor-remote-plugins.md)\n\n### What changes are proposed in this pull request?\n\n#26225 confined custom `@scorer` code execution to the job executor process. This PR adds an **experimental `docker` job executor backend**, so that on-demand custom scorer runs can run in a hardened container instead of on the server host.\n\n**Per-job backend dispatch.** The executor engine (`MLFLOW_SERVER_JOB_EXECUTION_ENGINE=executor`) now runs each job on the backend recorded on its job row.\n- The runner starts every configured backend: `MLFLOW_JOB_DEFAULT_EXECUTOR_BACKEND`, plus `MLFLOW_JOB_CUSTOM_SCORER_EXECUTOR_BACKEND` when it is different.\n- Cancel and startup recovery go to each job's own backend.\n- A job whose backend is not served fails closed.\n- The old submit-time rule that the two settings must be equal is removed. Instead, setting a custom scorer backend other than `local` without the executor engine now refuses to start the server, even when the default backend names the same backend, so custom scorers cannot silently run somewhere else.\n\n**Routing.** `AbstractJobExecutor.supports_job(job_name, params)` has a default of `True`. A custom scorer job that the custom scorer backend does not support stays on the default backend, and the router logs it.\n\n**`DockerJobExecutor`** (`mlflow/server/jobs/docker_executor.py`). Job containers have no network, so they cannot reach the server either. Data moves through bind-mounted files:\n1. On the host, the job's planner fetches the traces into a read-only input mount.\n2. The container runs only the scorer (`_score_traces_from_file`) and writes its result to an output mount.\n3. The host treats that output as untrusted:\n   - It opens the result with `O_NOFOLLOW`, rejects anything that is not a regular file, caps the read at 8 MiB (which also bounds the memory the host uses to parse it), and type-checks every field.\n   - It rejects results "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26444",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26444,
+      "title": "Implement source-aware, verified, all-or-nothing Skill pull",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3768,
+      "excerpt": " OCI registry with basic auth, an HTTP ZIP server, and MLflow run artifacts. It covers:\n  - every source type, with and without a persisted subpath\n  - publishing into an absent destination and into an existing empty one (inode and permissions kept)\n  - digest mismatch with both initial destination states\n  - a missing digest skipping verification; deprecated versions pulling; deleted versions refused\n  - auth failures (Git HTTP 401, OCI 401, ZIP 401) and unavailable sources (missing ref, tag, file, or artifact; unreachable host), with their error codes\n  - credential redaction\n  - symlink, hard link, and FIFO rejection for every source type, plus real Git and ZIP symlinks\n  - every rejected destination state, left untouched with nothing fetched\n  - missing parent directories created and rolled back, and `..` normalization\n  - a destination that appears during the fetch, failed and partial moves into an empty directory being rolled back, and a cross-device copy\n  - local-path Git and MLflow sources being refused\n  - URI resolution (version, alias, latest, organization) and invalid URIs\n  - registry permission denial\n- `tests/genai/test_skills_pull.py` runs a live `mlflow server` with artifact serving and checks:\n  - an uploaded skill pulled by version, alias, and latest, with latest re-resolved after the newest version becomes a draft\n  - a Git-registered skill whose branch moved after registration, giving a digest mismatch and no output\n  - a deprecated version pulling, and an unknown skill writing nothing\n  - CLI positional, `--skill-uri`, default-destination, and usage-error paths\n\n### Does this PR require documentation update?\n\n- [x] No.\n- [ ] Yes. I've updated:\n  - [ ] Examples\n  - [ ] API references\n  - [ ] Instructions\n\nThe API reference picks up the new docstrings.\n\n### Does this PR require updating the [MLflow Skills](https://github.com/mlflow/skills) repository?\n\n- [x] No.\n- [ ] Yes. Please link the corresponding PR or explain how you plan to update it.\n\n### Release Notes\n\n#### Is this a user-facing change?\n\n- [ ] No.\n- [x] Yes. Give a description of this change to be included in the release notes for MLflow users.\n\nAdds `mlflow.genai.pull()` and `mlflow skills pull` to download a registered skill version from its source. Output is verified against the recorded digest, and nothing is written unless the pull succeeds.\n\n#### What component(s), interf"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26450",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26450,
+      "title": "Add live-server user-journey tests for the Skill Registry",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "<!--\nDo not remove any sections. Remove unused checkboxes except for the patch release section at the bottom.\nUse backticks for code references and file paths in the PR title (e.g., `ClassName`, `function_name`, `utils.py`).\n-->\n\n### Related Issues/PRs\n\nRelates to [RFC-0008: MVP Skill Registry](https://github.com/mlflow/rfcs/tree/main/rfcs/0008-mvp-skill-registry). Builds on #26306 (Skill Registry REST APIs). Complements #26340, which covers the same registry at the store layer.\n\n### What changes are proposed in this pull request?\n\nThis PR adds four **user-journey tests** for the Skill Registry, in one new file: `tests/server/skill_registry/test_user_journeys.py`. No production code changes.\n\nA user-journey test uses the registry the way a person would: several API calls in a row against a real, running MLflow server, checking that what one step did is what the next step sees. The existing tests each check one layer (store, router, registration service) on its own. Until now, nothing checked that those layers work together over real HTTP.\n\n#### The four journeys\n\n| Test | The story | What it catches that other tests can't |\n|---|---|---|\n| `test_teams_in_different_organizations_publish_the_same_skill_name` | Teams `acme` and `globex`, plus the unscoped namespace, each publish `code-review`. `acme` searches, adds a version, sets an alias, then deletes its skill. | The three skills never mix over HTTP, and `globex` is exactly as it was after everything `acme` did. |\n| `test_publish_promote_and_retire_versions` | A team ships v1, stages v2 as a draft, promotes it, moves its `stable` alias, then retires v1. | `latest` and aliases follow the user's actions step by step, and the UI's URL prefix (`/ajax-api`) sees the same state the program's prefix (`/api`) wrote. |\n| `test_uploaded_skill_content_is_served_back_and_reclaimed_on_delete` | A user uploads a skill from disk, an agent resolves it and downloads its files, then the user deletes it. | Upload works end to end through the real app. Today the router tests mock the registration service and the service tests don't use HTTP. The downloaded bytes match, and delete removes them. |\n| `test_teams_in_separate_workspaces_never_see_each_others_skills` | With workspaces on, two teams publish `reviewer` in their own workspace, one by upload and one from git. | Search, resolve and delete stay in the caller's workspace, a"
+    }
+  ]
+}

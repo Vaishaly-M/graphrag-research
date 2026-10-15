@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1056",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+        "path": null,
+        "offset": 2289,
+        "line": 28
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+        "path": null,
+        "offset": 3804,
+        "line": 74
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1045",
+        "path": null,
+        "offset": 19726,
+        "line": 331
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:tests/Catalog.FunctionalTests/CatalogApiTests.cs",
+        "path": "tests/Catalog.FunctionalTests/CatalogApiTests.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 13466,
+        "line": 275
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 16199,
+        "line": 341
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:tests/Catalog.FunctionalTests/CatalogApiTests.cs",
+      "kind": "File",
+      "path": "tests/Catalog.FunctionalTests/CatalogApiTests.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using System.Net.Http.Json;\nusing System.Text.Json;\nusing Asp.Versioning;\nusing Asp.Versioning.Http;\nusing eShop.Catalog.API.Model;\nusing Microsoft.AspNetCore.Mvc.Testing;\n\nnamespace eShop.Catalog.FunctionalTests;\n\npublic sealed class CatalogApiTests : IClassFixture<CatalogApiFixture>\n{\n    private readonly WebApplicationFactory<Program> _webApplicationFactory;\n    private readonly JsonSerializerOptions _jsonSerializerOptions = new(JsonSerializerDefaults.Web);\n\n    public CatalogApiTests(CatalogApiFixture fixture)\n    {\n        _webApplicationFactory = fixture;\n    }\n\n    private HttpClient CreateHttpClient(ApiVersion apiVersion)\n    {\n        var handler = new ApiVersionHandler(new QueryStringApiVersionWriter(), apiVersion);\n        return _webApplicationFactory.CreateDefaultClient(handler);\n    }\n\n    [Theory]\n    [InlineData(1.0)]\n    [InlineData(2.0)]\n    public async Task GetCatalogItemsRespectsPageSize(double version)\n    {\n        var _httpClient = CreateHttpClient(new ApiVersion(version));\n\n        // Act\n        var response = await _httpClient.GetAsync(\"/api/catalog/items?pageIndex=0&pageSize=5\", TestContext.Current.CancellationToken);\n\n        // Assert\n        response.EnsureSuccessStatusCode();\n        var body = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);\n        var result = JsonSerializer.Deserialize<PaginatedItems<CatalogItem>>(body, _jsonSerializerOptions);\n\n        // Assert 103 total items (101 seeded + 2 added by AddCatalogItem tests) with 5 retrieved from index 0\n        Assert.Equal(103, result.Count);\n        Assert.Equal(0, result.PageIndex);\n        Assert.Equal(5, result.PageSize);\n    }\n\n    [Theory]\n    [InlineData(1.0)]\n    [InlineData(2.0)]\n    public async Task UpdateCatalogItemWorksWithoutPriceUpdate(double version)\n    {\n        var _httpClient = CreateHttpClient(new ApiVersion(version));\n\n        // Act - 1\n        var response = await _httpClient.GetAsync(\"/api/catalog/items/1\", TestContext.Current.CancellationToken);\n        response.EnsureSuccessStatusCode();\n        var body = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);\n        var itemToUpdate = JsonSerializer.Deserialize<CatalogItem>(body, _jsonSerializerOptions);\n\n        // Act - 2\n        var priorAvailableStock = itemToUpdate.AvailableStock;\n        itemToUpdate.AvailableStock -= 1;\n        "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 920,
+      "title": "Referential integrity bugs related to catalog, basket, and order",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2289,
+      "excerpt": "4f2586c87022c431/src/WebApp/Services/BasketState.cs#L117)  expects that every basket item is present in the returned catalog items, and during iteration, a `key not found` error occurs, causing the web app to crash and remain unavailable.\n\n**2. Concurrent operations:** even if cascading effects are implemented, bugs may still occur if the admin deletes the item from the catalog concurrently with the client adding the item to the basket.\n\nIn particular, if the deletion in the catalog (fig. call 7) occurs after the client obtains the item ID to add the item to the basket (which requires reading the catalog prior to fig. call 1), and before the write to the basket database to add the item (fig. call 3), the cascading effects would take action on the basket database before the association would be successfuly established, and the (invalid) reference would still be created upon the write operation (fig. call 3).\n\n### Scenario 2: Catalog-Basket-Order\n\n**Steps to reproduce bugs:**\n\nConsider a client that manages its cart items via the Web App and an administrator who manages the catalog via the REST API.\n\nThe flow of requests is illustrated in a shared [figure](https://drive.google.com/file/d/1a5ZzuV6skA8iXDsXGxWiboOfPRX3UMb-/view?usp=sharing). For simplicity, we omit the two initial steps below from the figure, as they are identical to those in the previous scenario.\n\n- The client adds items to the basket.\n- The admin lists all items from the catalog to get the IDs of the items.\n- The client completes the checkout. _(fig. calls 1-3)_\n- The admin deletes an item from the catalog. _(fig. calls 4-5)_\n- The catalog event handler is eventually triggered when the order state changes from `submitted` to `awaiting validation`, and proceeds to check if the stock is available. _(fig. calls 6-9)_\n\n**Description of the bugs:**\n\n**1. Absence of cascading delete:** each order item contains the ID of the corresponding catalog item, resembling a foreign key. However, when the catalog item is deleted (fig. call 5), this action is not propagated to the order, leaving a reference that is no longer valid.\n\nWhen checking the available stock, the catalog [event handler](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/Catalog.API/IntegrationEvents/EventHandling/OrderStatusChangedToAwaitingValidationIntegrationEventHandler.cs#L9) receives data (fig. call"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "…ging coverage\r\n\r\nIntroduce pluggable functional test modes (Aspire, RepositoryMock, EfCoreInMemory, Testcontainers, and messaging variants) for Catalog and Ordering via a shared Testing.Common library. Extract ICatalogRepository from Catalog.API to enable in-memory persistence swaps, add Serilog logging to ServiceDefaults, fix integration event type discovery under WebApplicationFactory, and add runsettings plus xUnit traits for filtering tests by mode.\r\n\r\n# eShop Multi-Mode Functional Testing\r\n\r\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontaine"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13466,
+      "excerpt": "ndering mode in Button.ResizeImageIfNecessary by @​kubaflo in https://github.com/dotnet/maui/pull/25107\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] TintColor on UIButton image no longer working when button made visible](https://github.com/dotnet/maui/issues/25093)\n  </details>\n\n- [Android] Implemented Material3 support for  ImageButton by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/33649\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Implement Material3 support for ImageButton](https://github.com/dotnet/maui/issues/33648)\n  </details>\n\n- Fixed CI failure : Restore BackButtonBehavior IsEnabled after CanExecute changes by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/34668\n\n## Checkbox\n- [iOS/MacCatalyst] Fix CheckBox foreground color not resetting when set to null by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/34284\n  <details>\n ... (truncated)\n\n## 10.0.51\n\n## What's Changed\n* Increment patch version from 50 to 51 by @​PureWeen in https://github.com/dotnet/maui/pull/34458\n* [release/10.0.1xx-sr5] [Regression] Fix TypedBinding nested property re-subscription (#​34428) by @​github-actions[bot] in https://github.com/dotnet/maui/pull/34450\n* [backport 10.0.1xx-sr5] Fix MAUIG2045 false positive with x:Reference source in DataTemplate by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/34525\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.50...10.0.51\n\n## 10.0.50\n\n## What's Changed\n\n.NET MAUI 10.0.50 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 78 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Enable packing and independent preview versioning for Essentials.AI by @​mattleibow in https://github.com/dotnet/maui/pull/33976\n\n- Move Essentials.AI preview iteration to eng/Versions.props by @​mattleibow in https://github.com/dotnet/maui/pull/34025\n\n- [Feature] Add Microsoft.Maui.Essentials.AI - Apple Intelligence by @​mattleibow in https://github.com/dotnet/maui/pull/33519\n\n- [AI] Fix multi-turn tool calling, add chat overlay, upgrade Agent Framework to rc2, and add CI pipelines by @​mattleibow in https://github.com/dotnet/maui/pull/34124\n\n## Ai Agents\n- Copilot agent infrastructure, emulator reliability, and try-fix workflow improvements by @​PureWeen via @​Copilot in https://github.co"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 16199,
+      "excerpt": "ndering mode in Button.ResizeImageIfNecessary by @​kubaflo in https://github.com/dotnet/maui/pull/25107\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] TintColor on UIButton image no longer working when button made visible](https://github.com/dotnet/maui/issues/25093)\n  </details>\n\n- [Android] Implemented Material3 support for  ImageButton by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/33649\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Implement Material3 support for ImageButton](https://github.com/dotnet/maui/issues/33648)\n  </details>\n\n- Fixed CI failure : Restore BackButtonBehavior IsEnabled after CanExecute changes by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/34668\n\n## Checkbox\n- [iOS/MacCatalyst] Fix CheckBox foreground color not resetting when set to null by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/34284\n  <details>\n ... (truncated)\n\n## 10.0.51\n\n## What's Changed\n* Increment patch version from 50 to 51 by @​PureWeen in https://github.com/dotnet/maui/pull/34458\n* [release/10.0.1xx-sr5] [Regression] Fix TypedBinding nested property re-subscription (#​34428) by @​github-actions[bot] in https://github.com/dotnet/maui/pull/34450\n* [backport 10.0.1xx-sr5] Fix MAUIG2045 false positive with x:Reference source in DataTemplate by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/34525\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.50...10.0.51\n\n## 10.0.50\n\n## What's Changed\n\n.NET MAUI 10.0.50 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 78 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Enable packing and independent preview versioning for Essentials.AI by @​mattleibow in https://github.com/dotnet/maui/pull/33976\n\n- Move Essentials.AI preview iteration to eng/Versions.props by @​mattleibow in https://github.com/dotnet/maui/pull/34025\n\n- [Feature] Add Microsoft.Maui.Essentials.AI - Apple Intelligence by @​mattleibow in https://github.com/dotnet/maui/pull/33519\n\n- [AI] Fix multi-turn tool calling, add chat overlay, upgrade Agent Framework to rc2, and add CI pipelines by @​mattleibow in https://github.com/dotnet/maui/pull/34124\n\n## Ai Agents\n- Copilot agent infrastructure, emulator reliability, and try-fix workflow improvements by @​PureWeen via @​Copilot in https://github.co"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1045",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1045,
+      "title": "Bump the duende group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19726,
+      "excerpt": "* The default implementation, `DefaultUiLocalsService.cs`, delegates to the `CookieRequestCultureProvider` if it is present and any of the values passed in the `ui_locales parameter` match a supported UI culture.\n  * If the default implementation does not meet your needs, `IUiLocalesService` can be implemented and registered with DI.\n* RFC 8414 support by @​bhazen in #​2189 \n  * Adds out of box support for OAuth 2.0 Authorization Server Metadata as defined in RFC 8414\n* Support for custom parameters in authorize response by @​bhazen in #​2206\n  * Adds a new `CustomParameters` property to `AuthorizeResponse` to support adding custom query parameters to the redirect uri. This will typically be used in conjunction with a custom `IAuthorizeResponseGenerator`. \n* Use Customizable Filter to Persist Session Claims in ASP.NET Identity by @​bhazen in #​2213\n  * The ASP.NET Identity integration package now persists session claims based on `ISessionClaimsFilter.FilterToSessionClaimsAsync` which comes with a default implementation.\n ... (truncated)\n\n## 7.4.0-rc.1\n\nThis is the first release candidate of IdentityServer 7.4.0. The changes since the last preview release are:\n- Add service for diagnostic data by @​josephdecock in #​2252 \n- Trigger Back Channel Logout Earlier in Pipeline by @​bhazen in #​2258\n- Enable Customizing ErrorMessage on Redirect to Error Page by @​bhazen  in #​2263 \n- Better DCR Support for Public Clientsby @​bhazen in #​2264  \n- Update .NET 10 from Release Candidate to GA by @​pgermishuys in #​2267 \n\nIdentityServer 7.4.0 is a significant release that includes:\n\n- Support for .NET 10 (this preview targets .NET10 RC2)\n- Support for OAuth 2.0 Authorization Server Metadata (RFC 8414)\n- New Callback option for path detection in Dynamic Providers\n- Improved UI locales support\n- Support for custom parameters in the Authorize Redirect Uri \n- Identity package now persists session claims based on an interface\n- Skipping front-channel logout iframe when unnecessary\n- Set HTTP activity name on routing\n\n## Breaking Changes\nThere are no schema changes needed for IdentityServer 7.4.0. Small code changes maybe be required for some users to upgrade.\n\n- Removed the unused `Duende.IdentityServer.Models.DiscoveryDocument` class which was public\n- Marked static properties referring to counters in `Telemetry.cs` as readonly\n\n### Removed the unused `Duende.IdentityServer."
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1056",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1056,
+      "title": "Reserve catalog stock when an order is validated",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Problem\r\n#732 \r\n#888 \r\nWhen the Catalog handles `OrderStatusChangedToAwaitingValidationIntegrationEvent` it only reads `AvailableStock` and compares it to the ordered units. The stock is removed later, when `OrderStatusChangedToPaidIntegrationEvent` arrives. Between those two points nothing holds the stock, so several orders for the same last units can all be confirmed and paid. The later ones then hit `RemoveStock`, which either throws on empty stock or silently removes fewer units than were ordered.\r\n\r\n## Change\r\n\r\n- **Validation** now checks and decrements stock in a single conditional `UPDATE` per item (`WHERE AvailableStock >= units`), so the database decides who gets the last units. It is all or nothing per order: if one item is short, the decrements for the other items are rolled back and the order is rejected.\r\n- **New `StockReservation` table** (migration `AddStockReservation`), one row per order with a status (reserved, committed, released) and the items held. The primary key on `OrderId` keeps a redelivered event from taking stock twice.\r\n- **Cancellation**: the Catalog now subscribes to `OrderStatusChangedToCancelledIntegrationEvent` and returns the reserved stock once. This also covers payment failure, since Ordering cancels the order in that case.\r\n- **Paid** only marks the reservation as committed. Orders validated before this change have no reservation, so their stock is still removed at payment as before.\r\n- The stock change, the reservation and the outgoing confirm/reject event are saved in one local transaction.\r\n\r\n## Behaviour changes\r\n\r\n- An order containing a product id that does not exist is now rejected. Previously that item was skipped and the order confirmed.\r\n- Available stock drops when the order is validated rather than when it is paid.\r\n- An order cancelled before its validation event is handled leaves a released marker, so the late validation reserves nothing and publishes nothing.\r\n\r\n## Not addressed\r\n\r\n- Reservations do not expire. An order stuck between validation and payment holds its stock until it is paid or cancelled.\r\n- The RabbitMQ event bus acks a message even when its handler throws, so a failed cancellation is not retried and its stock stays reserved.\r\n- `CatalogItem.RemoveStock` no longer has callers (`AddStock` already had none). Both are left in place.\r\n\r\n## Testing\r\n\r\nAdded `StockReservationTests` to `Catalog"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 940,
+      "title": "Fix KeyNotFoundException and NullReferenceException when catalog items are deleted",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3804,
+      "excerpt": "4f2586c87022c431/src/WebApp/Services/BasketState.cs#L117)  expects that every basket item is present in the returned catalog items, and during iteration, a `key not found` error occurs, causing the web app to crash and remain unavailable.\n\n**2. Concurrent operations:** even if cascading effects are implemented, bugs may still occur if the admin deletes the item from the catalog concurrently with the client adding the item to the basket.\n\nIn particular, if the deletion in the catalog (fig. call 7) occurs after the client obtains the item ID to add the item to the basket (which requires reading the catalog prior to fig. call 1), and before the write to the basket database to add the item (fig. call 3), the cascading effects would take action on the basket database before the association would be successfuly established, and the (invalid) reference would still be created upon the write operation (fig. call 3).\n\n### Scenario 2: Catalog-Basket-Order\n\n**Steps to reproduce bugs:**\n\nConsider a client that manages its cart items via the Web App and an administrator who manages the catalog via the REST API.\n\nThe flow of requests is illustrated in a shared [figure](https://drive.google.com/file/d/1a5ZzuV6skA8iXDsXGxWiboOfPRX3UMb-/view?usp=sharing). For simplicity, we omit the two initial steps below from the figure, as they are identical to those in the previous scenario.\n\n- The client adds items to the basket.\n- The admin lists all items from the catalog to get the IDs of the items.\n- The client completes the checkout. _(fig. calls 1-3)_\n- The admin deletes an item from the catalog. _(fig. calls 4-5)_\n- The catalog event handler is eventually triggered when the order state changes from `submitted` to `awaiting validation`, and proceeds to check if the stock is available. _(fig. calls 6-9)_\n\n**Description of the bugs:**\n\n**1. Absence of cascading delete:** each order item contains the ID of the corresponding catalog item, resembling a foreign key. However, when the catalog item is deleted (fig. call 5), this action is not propagated to the order, leaving a reference that is no longer valid.\n\nWhen checking the available stock, the catalog [event handler](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/Catalog.API/IntegrationEvents/EventHandling/OrderStatusChangedToAwaitingValidationIntegrationEventHandler.cs#L9) receives data (fig. call"
+    }
+  ]
+}

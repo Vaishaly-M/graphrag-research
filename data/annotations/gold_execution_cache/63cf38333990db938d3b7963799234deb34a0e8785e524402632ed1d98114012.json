@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+        "path": "mlflow/store/tracking/abstract_store.py",
+        "offset": 29786,
+        "line": 781
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+        "path": "changelogs/v0.x.md",
+        "offset": 36088,
+        "line": 435
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 28561,
+        "line": 595
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:tests/tracking/fluent/test_fluent.py",
+        "path": "tests/tracking/fluent/test_fluent.py",
+        "offset": 47351,
+        "line": 1239
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracking/_tracking_service/client.py",
+        "path": "mlflow/tracking/_tracking_service/client.py",
+        "offset": 12492,
+        "line": 325
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 10951,
+        "line": 7
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/rest_store.py",
+        "path": "mlflow/store/tracking/rest_store.py",
+        "offset": 48155,
+        "line": 1281
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/sklearn/__init__.py",
+        "path": "mlflow/sklearn/__init__.py",
+        "offset": 42751,
+        "line": 1046
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+      "kind": "File",
+      "path": "changelogs/v0.x.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 36088,
+      "excerpt": "-06-27)\n\n- Added `mlflow server` to provide a remote tracking server. This is akin to `mlflow ui` with new options:\n\n  - `--host` to allow binding to any ports (#27, @mdagost)\n  - `--artifact-root` to allow storing artifacts at a remote location, S3 only right now (#78, @mateiz)\n  - Server now runs behind gunicorn to allow concurrent requests to be made (#61, @mateiz)\n\n- TensorFlow integration: we now support logging TensorFlow Models directly in the log_model API, model format, and serving APIs (#28, @juntai-zheng)\n- Added `experiments.list_experiments` as part of experiments API (#37, @mparkhe)\n- Improved support for unicode strings (#79, @smurching)\n- Diabetes progression example dataset and training code (#56, @dennyglee)\n- Miscellaneous bug and documentation fixes from @Jeffwan, @yupbank, @ndjido, @xueyumusic, @manugarri, @tomasatdatabricks, @stbof, @andyk, @andrewmchen, @jakeret, @0wu, @aarondav\n\n## 0.1.0 (2018-06-05)\n\n- Initial version of mlflow.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 28561,
+      "excerpt": " metrics = glm_classifier.model_performance()\n    metrics_to_track = [\"MSE\", \"RMSE\", \"r2\", \"logloss\"]\n    metrics_to_log = {\n        key: value for key, value in metrics._metric_json.items() if key in metrics_to_track\n    }\n    params = glm_classifier.params\n    mlflow.log_params(params)\n    mlflow.log_metrics(metrics_to_log)\n    model_info = mlflow.h2o.log_model(glm_classifier, name=\"h2o_model_info\")\n\n# load h2o model and make a prediction\nh2o_pyfunc = mlflow.pyfunc.load_model(model_uri=model_info.model_uri)\ntest_df = test.as_data_frame()\npredictions = h2o_pyfunc.predict(test_df)\nprint(predictions)\n\n# it is also possible to load the model and predict using h2o methods on the h2o frame\n\n# h2o_model = mlflow.h2o.load_model(model_info.model_uri)\n# predictions = h2o_model.predict(test)\n```\n\n### Keras (`keras`) \\{#tf-keras-example}\n\nThe full guide for using the `keras` flavor [can be viewed here](/ml/deep-learning/keras/).\n\n### PyTorch (`pytorch`)\n\nThe full guide for using the `pytorch` flavor [can be viewed here](/ml/deep-learning/pytorch/).\n\nFor more information, see <APILink fn=\"mlflow.pytorch\">mlflow.pytorch</APILink>.\n\n### Scikit-learn (`sklearn`)\n\nThe full guide for using the `sklearn` flavor [can be viewed here](/ml/traditional-ml/sklearn/).\n\nFor API information, see <APILink fn=\"mlflow.sklearn\">mlflow.sklearn</APILink>.\n\n### Spark MLlib (`spark`)\n\nThe full guide for using the `spark` flavor [can be viewed here](/ml/traditional-ml/sparkml/).\n\nFor more information, see <APILink fn=\"mlflow.spark\">mlflow.spark</APILink>.\n\n### TensorFlow (`tensorflow`)\n\nThe full guide for the `tensorflow` integration [can be viewed here](/ml/deep-learning/tensorflow/).\n\n### ONNX (`onnx`)\n\nThe `onnx` model flavor enables logging of [ONNX models](http://onnx.ai/) in MLflow format via\nthe <APILink fn=\"mlflow.onnx.save_model\" /> and <APILink fn=\"mlflow.onnx.log_model\"/> methods. These\nmethods also add the `python_function` flavor to the MLflow Models that they produce, allowing the\nmodels to be interpreted as generic Python functions for inference via <APILink fn=\"mlflow.pyfunc.load_model\" />.\nThis loaded PyFunc model can be scored with both DataFrame input and numpy array input. The `python_function`\nrepresentation of an MLflow ONNX model uses the [ONNX Runtime execution engine](https://github.com/microsoft/onnxruntime)\nfor evaluation. Finally, you can use the <APILink fn=\"mlflo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10951,
+      "excerpt": "s = {\"\"max_depth\"\": 2, \"\"random_state\"\": 42} model = RandomForestRegressor(**params) model.fit(X_train, y_train) # Infer the model signature y_pred = model.predict(X_test) signature = infer_signature(X_test, y_pred) # Log parameters and metrics using the MLflow APIs mlflow.log_params(params) mlflow.log_metrics({\"\"mse\"\": mean_squared_error(y_test, y_pred)}) # Log the sklearn model and register as version 1 mlflow.sklearn.log_model( sk_model=model, artifact_path=\"\"sklearn-model\"\", signature=signature, registered_model_name=\"\"sk-learn-random-forest-reg-model\"\", ) In the above code snippet, if a registered model with the name doesn't exist, the method registers a new model and creates Version 1. If a registered model with the name exists, the method creates a new model version. The second way is to use the mlflow.register_model() method, after all your experiment runs complete and when you have decided which model is most suitable to add to the registry. For this method, you will need the run_id as part of the runs:URI argument. result =\",5,model-registry.html\nWhat method do you use to create a new registered model?,\"To create a new registered model, you can use the create_registered_model() method. If the model name already exists, this method will throw an MlflowException because creating a new registered model requires a unique name. The create_registered_model() method creates an empty registered model with no version associated.\",\"all your experiment runs complete and when you have decided which model is most suitable to add to the registry. For this method, you will need the run_id as part of the runs:URI argument. result = mlflow.register_model( \"\"runs:/d16076a3ec534311817565e6527539c0/sklearn-model\"\", \"\"sk-learn-random-forest-reg\"\" ) If a registered model with the name doesn't exist, the method registers a new model, creates Version 1, and returns a ModelVersion MLflow object. If a registered model with the name exists, the method creates a new model version and returns the version object. And finally, you can use the create_registered_model() to create a new registered model. If the model name exists, this method will throw an MlflowException because creating a new registered model requires a unique name. from mlflow import MlflowClient client = MlflowClient() client.create_registered_model(\"\"sk-learn-random-forest-reg-model\"\") The method above creates "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/sklearn/__init__.py",
+      "kind": "File",
+      "path": "mlflow/sklearn/__init__.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 42751,
+      "excerpt": " also update the metric_info artifact if needed.\n        If model_id is not None, metrics are logged into the model as well.\n        \"\"\"\n        # Note: if the case log the same metric key multiple times,\n        #  newer value will overwrite old value\n        client = MlflowClient()\n        client.log_metric(run_id=run_id, key=key, value=value, model_id=model_id)\n        if self._metric_info_artifact_need_update[run_id]:\n            call_commands_list = []\n            for v in self._metric_api_call_info[run_id].values():\n                call_commands_list.extend(v)\n\n            call_commands_list.sort(key=lambda x: x[0])\n            dict_to_log = OrderedDict(call_commands_list)\n            client.log_dict(run_id=run_id, dictionary=dict_to_log, artifact_file=\"metric_info.json\")\n            self._metric_info_artifact_need_update[run_id] = False\n\n\n# The global `_AutologgingMetricsManager` instance which holds information used in\n# post-training metric autologging. See doc of class `_AutologgingMetricsManager` for details.\n_AUTOLOGGING_METRICS_MANAGER = _AutologgingMetricsManager()\n\n\n_metric_api_excluding_list = [\"check_scoring\", \"get_scorer\", \"make_scorer\", \"get_scorer_names\"]\n\n\ndef _get_metric_name_list():\n    \"\"\"\n    Return metric function name list in `sklearn.metrics` module\n    \"\"\"\n    from sklearn import metrics\n\n    metric_list = []\n    for metric_method_name in metrics.__all__:\n        # excludes plot_* methods\n        # exclude class (e.g. metrics.ConfusionMatrixDisplay)\n        metric_method = getattr(metrics, metric_method_name)\n        if (\n            metric_method_name not in _metric_api_excluding_list\n            and not inspect.isclass(metric_method)\n            and callable(metric_method)\n            and not metric_method_name.startswith(\"plot_\")\n        ):\n            metric_list.append(metric_method_name)\n    return metric_list\n\n\ndef _patch_estimator_method_if_available(\n    flavor_name, class_def, func_name, patched_fn, manage_run, extra_tags=None\n):\n    if not hasattr(class_def, func_name):\n        return\n\n    original = gorilla.get_original_attribute(\n        class_def, func_name, bypass_descriptor_protocol=False\n    )\n    # Retrieve raw attribute while bypassing the descriptor protocol\n    raw_original_obj = gorilla.get_original_attribute(\n        class_def, func_name, bypass_descriptor_protocol=True\n    )\n    if raw_original_obj == orig"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+      "kind": "File",
+      "path": "mlflow/store/tracking/abstract_store.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 29786,
+      "excerpt": "ntities to the tracking store.\n\n        Args:\n            location: The location to log spans to.\n            spans: List of Span entities to log. Spans may belong to different traces.\n\n        Returns:\n            List of logged Span entities.\n        \"\"\"\n        raise NotImplementedError\n\n    def log_metric(self, run_id, metric):\n        \"\"\"\n        Log a metric for the specified run\n\n        Args:\n            run_id: String id for the run\n            metric: `mlflow.entities.Metric` instance to log\n        \"\"\"\n        self.log_batch(run_id, metrics=[metric], params=[], tags=[])\n\n    def log_metric_async(self, run_id, metric) -> RunOperations:\n        \"\"\"\n        Log a metric for the specified run in async fashion.\n\n        Args:\n            run_id: String id for the run\n            metric: `mlflow.entities.Metric` instance to log\n        \"\"\"\n        return self.log_batch_async(run_id, metrics=[metric], params=[], tags=[])\n\n    def log_param(self, run_id, param):\n        \"\"\"\n        Log a param for the specified run\n\n        Args:\n            run_id: String id for the run\n            param: :py:class:`mlflow.entities.Param` instance to log\n        \"\"\"\n        self.log_batch(run_id, metrics=[], params=[param], tags=[])\n\n    def log_param_async(self, run_id, param) -> RunOperations:\n        \"\"\"\n        Log a param for the specified run in async fashion.\n\n        Args:\n            run_id: String id for the run.\n            param: :py:class:`mlflow.entities.Param` instance to log.\n        \"\"\"\n        return self.log_batch_async(run_id, metrics=[], params=[param], tags=[])\n\n    def set_experiment_tag(self, experiment_id, tag):\n        \"\"\"\n        Set a tag for the specified experiment\n\n        Args:\n            experiment_id: String id for the experiment.\n            tag: :py:class:`mlflow.entities.ExperimentTag` instance to set.\n        \"\"\"\n\n    def delete_experiment_tag(self, experiment_id, key):\n        \"\"\"\n        Delete a tag from the specified experiment\n\n        Args:\n            experiment_id: String id for the experiment.\n            key: String name of the tag to be deleted.\n        \"\"\"\n\n    def set_tag(self, run_id, tag):\n        \"\"\"\n        Set a tag for the specified run\n\n        Args:\n            run_id: String id for the run.\n            tag: :py:class:`mlflow.entities.RunTag` instance to set.\n        \"\"\"\n        self.log_batch(run_id, metrics=[]"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/rest_store.py",
+      "kind": "File",
+      "path": "mlflow/store/tracking/rest_store.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 48155,
+      "excerpt": "y = completed_by\n        response_proto = self._call_endpoint(\n            SetReviewQueueItemStatus,\n            message_to_json(req),\n            endpoint=f\"{_V3_REVIEW_QUEUES_REST_API_PATH_PREFIX}/items/set-status\",\n        )\n        return ReviewQueueItem.from_proto(response_proto.item)\n\n    def log_metric(self, run_id: str, metric: Metric):\n        \"\"\"\n        Log a metric for the specified run\n\n        Args:\n            run_id: String id for the run\n            metric: Metric instance to log\n        \"\"\"\n        req_body = message_to_json(\n            LogMetric(\n                run_uuid=run_id,\n                run_id=run_id,\n                key=metric.key,\n                value=metric.value,\n                timestamp=metric.timestamp,\n                step=metric.step,\n                model_id=metric.model_id,\n                dataset_name=metric.dataset_name,\n                dataset_digest=metric.dataset_digest,\n            )\n        )\n        self._call_endpoint(LogMetric, req_body)\n\n    def log_param(self, run_id, param):\n        \"\"\"\n        Log a param for the specified run\n\n        Args:\n            run_id: String id for the run\n            param: Param instance to log\n        \"\"\"\n        req_body = message_to_json(\n            LogParam(run_uuid=run_id, run_id=run_id, key=param.key, value=param.value)\n        )\n        self._call_endpoint(LogParam, req_body)\n\n    def set_experiment_tag(self, experiment_id, tag):\n        \"\"\"\n        Set a tag for the specified experiment\n\n        Args:\n            experiment_id: String ID of the experiment\n            tag: ExperimentRunTag instance to log\n        \"\"\"\n        req_body = message_to_json(\n            SetExperimentTag(experiment_id=experiment_id, key=tag.key, value=tag.value)\n        )\n        self._call_endpoint(SetExperimentTag, req_body)\n\n    def delete_experiment_tag(self, experiment_id, key):\n        \"\"\"\n        Delete a tag from the specified experiment\n\n        Args:\n            experiment_id: String ID of the experiment\n            key: String name of the tag to be deleted\n        \"\"\"\n        req_body = message_to_json(DeleteExperimentTag(experiment_id=experiment_id, key=key))\n        self._call_endpoint(DeleteExperimentTag, req_body)\n\n    def set_tag(self, run_id, tag):\n        \"\"\"\n        Set a tag for the specified run\n\n        Args:\n            run_id: String ID of the run\n            tag: RunT"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracking/_tracking_service/client.py",
+      "kind": "File",
+      "path": "mlflow/tracking/_tracking_service/client.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12492,
+      "excerpt": "he new name must be unique.\n\n        Args:\n            experiment_id: The experiment ID returned from ``create_experiment``.\n            new_name: New name for the experiment.\n\n        \"\"\"\n        self.store.rename_experiment(experiment_id, new_name)\n\n    @record_usage_event(LogMetricEvent)\n    def log_metric(\n        self,\n        run_id,\n        key,\n        value,\n        timestamp=None,\n        step=None,\n        synchronous=True,\n        dataset_name: str | None = None,\n        dataset_digest: str | None = None,\n        model_id: str | None = None,\n    ) -> RunOperations | None:\n        \"\"\"Log a metric against the run ID.\n\n        Args:\n            run_id: The run id to which the metric should be logged.\n            key: Metric name. This string may only contain alphanumerics, underscores (_),\n                dashes (-), periods (.), spaces ( ), and slashes (/). All backend stores will\n                support keys up to length 250, but some may support larger keys.\n            value: Metric value or single-item ndarray / tensor. Note that some special values such\n                as +/- Infinity may be replaced by other values depending on the store. For example,\n                the SQLAlchemy store replaces +/- Inf with max / min float values. All backend\n                stores will support values up to length 5000, but some may support larger values.\n            timestamp: Time when this metric was calculated. Defaults to the current system time.\n            step: Training step (iteration) at which was the metric calculated. Defaults to 0.\n            synchronous: *Experimental* If True, blocks until the metric is logged successfully. If\n                False, logs the metric asynchronously and returns a future representing the logging\n                operation.\n            dataset_name: The name of the dataset associated with the metric. If specified,\n                ``dataset_digest`` must also be provided.\n            dataset_digest: The digest of the dataset associated with the metric. If specified,\n                ``dataset_name`` must also be provided.\n            model_id: The ID of the model associated with the metric.\n\n        Returns:\n            When synchronous=True, returns None. When synchronous=False, returns\n            :py:class:`mlflow.RunOperations` that represents future for logging operation.\n\n        \"\"\"\n        timestamp = timest"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:tests/tracking/fluent/test_fluent.py",
+      "kind": "File",
+      "path": "tests/tracking/fluent/test_fluent.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 47351,
+      "excerpt": "e_run():\n    run_id = mlflow.start_run().info.run_id\n    last_active_run_id = mlflow.last_active_run().info.run_id\n    mlflow.end_run()\n    assert run_id == last_active_run_id\n\n\ndef test_last_active_run_returns_most_recently_ended_active_run():\n    run_id = mlflow.start_run().info.run_id\n    mlflow.log_metric(\"a\", 1.0)\n    mlflow.log_param(\"b\", 2)\n    mlflow.end_run()\n    last_active_run = mlflow.last_active_run()\n    assert last_active_run.info.run_id == run_id\n    assert last_active_run.data.metrics == {\"a\": 1.0}\n    assert last_active_run.data.params == {\"b\": \"2\"}\n\n\ndef test_set_experiment_tag():\n    test_tags = {\"new_test_tag_1\": \"abc\", \"new_test_tag_2\": 5, \"new/nested/tag\": \"cbd\"}\n    tag_counter = 0\n    with start_run() as active_run:\n        test_experiment = active_run.info.experiment_id\n        current_experiment = mlflow.tracking.MlflowClient().get_experiment(test_experiment)\n        assert len(current_experiment.tags) == 0\n        for tag_key, tag_value in test_tags.items():\n            mlflow.set_experiment_tag(tag_key, tag_value)\n            tag_counter += 1\n            current_experiment = mlflow.tracking.MlflowClient().get_experiment(test_experiment)\n            assert tag_counter == len(current_experiment.tags)\n        finished_experiment = mlflow.tracking.MlflowClient().get_experiment(test_experiment)\n        assert len(finished_experiment.tags) == len(test_tags)\n        for tag_key, tag_value in test_tags.items():\n            assert str(test_tags[tag_key] == tag_value)\n\n\ndef test_set_experiment_tags():\n    exact_expected_tags = {\"name_1\": \"c\", \"name_2\": \"b\", \"nested/nested/name\": 5}\n    with start_run() as active_run:\n        test_experiment = active_run.info.experiment_id\n        current_experiment = mlflow.tracking.MlflowClient().get_experiment(test_experiment)\n        assert len(current_experiment.tags) == 0\n        mlflow.set_experiment_tags(exact_expected_tags)\n    finished_experiment = mlflow.tracking.MlflowClient().get_experiment(test_experiment)\n    # Validate tags\n    assert len(finished_experiment.tags) == len(exact_expected_tags)\n    for tag_key, tag_value in finished_experiment.tags.items():\n        assert str(exact_expected_tags[tag_key]) == tag_value\n\n\ndef test_delete_experiment_tag():\n    with start_run() as active_run:\n        test_experiment = active_run.info.experiment_id\n        mlflow.set_experiment_tag(\"a\", \"b\")\n       "
+    }
+  ]
+}

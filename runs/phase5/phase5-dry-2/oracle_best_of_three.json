@@ -1,0 +1,707 @@
+[
+  {
+    "question_id": "T2-26534dce90f7def2dcbf",
+    "selected_route": "graph",
+    "record": {
+      "abstained": true,
+      "answer": "not found",
+      "answerable": true,
+      "cache_key": "a6e3b2089f083493973b8ce9ffb1313e3052f49abc873d565a84a1a03a3453a8",
+      "config": {
+        "backoff": 1.0,
+        "dry_run": true,
+        "freeze_revision": null,
+        "precision_threshold": 0.8,
+        "question_hash": "eeec2f137451f92206a5b6c71f4822d77e4f9b4a67e589518b23af0064148616",
+        "retries": 2,
+        "seed": 42,
+        "source_hash": "7daea6835595987a1e307341194fc794951ddde2c5b475f28fa99a499c33a331",
+        "system_config": {
+          "answer_prompt_sha256": "32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31",
+          "dataset": "rebuild-20261014",
+          "dry_run": true,
+          "fallback": "none",
+          "fusion": "stable_evidence_union_no_branch_truncation",
+          "graph": {
+            "cypher_subset": "single bounded MATCH, explicit DL labels; no subqueries/procedures",
+            "row_limit": 20,
+            "scope": "dataset+repository",
+            "template_policy": "generic_identifier_lookup_then_llm"
+          },
+          "implementation_sha256": {
+            "__init__.py": "f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c",
+            "engine.py": "a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41",
+            "frameworks.py": "875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976",
+            "run.py": "f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27",
+            "shared.py": "fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f",
+            "smoke.py": "1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320",
+            "vector.py": "49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02"
+          },
+          "max_output_tokens": 1024,
+          "model": "gemini-2.5-flash",
+          "oracle_policy": null,
+          "router": null,
+          "system": "fixed_graph_rag",
+          "temperature": 0.2,
+          "vector": {
+            "selection_status": "pending_development_grid"
+          },
+          "version": "phase5-rebuild-1"
+        },
+        "throttle": 0
+      },
+      "config_hash": "b4d436395468db8f1a05b5a0c6fe0fc97961db0e5403b845b7104b6f4df3c72e",
+      "config_yaml": "answer_prompt_sha256: 32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31\ndataset: rebuild-20261014\ndry_run: true\nfallback: none\nfusion: stable_evidence_union_no_branch_truncation\ngraph:\n  cypher_subset: single bounded MATCH, explicit DL labels; no subqueries/procedures\n  row_limit: 20\n  scope: dataset+repository\n  template_policy: generic_identifier_lookup_then_llm\nimplementation_sha256:\n  __init__.py: f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c\n  engine.py: a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41\n  frameworks.py: 875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976\n  run.py: f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27\n  shared.py: fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f\n  smoke.py: 1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320\n  vector.py: 49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02\nmax_output_tokens: 1024\nmodel: gemini-2.5-flash\noracle_policy: null\nrouter: null\nsystem: fixed_graph_rag\ntemperature: 0.2\nvector:\n  selection_status: pending_development_grid\nversion: phase5-rebuild-1\n",
+      "dry_run": true,
+      "errors": [],
+      "framework_intermediate": [],
+      "model": "offline-fixture",
+      "predicted_entities": [],
+      "question_id": "T2-26534dce90f7def2dcbf",
+      "question_set": "T",
+      "ranked_evidence_ids": [
+        "rebuild:fixture:spring-projects/spring-petclinic:file:example.py"
+      ],
+      "repo": "spring-projects/spring-petclinic",
+      "retries": [],
+      "retrieval_path": [
+        "selected:graph",
+        "graph:template"
+      ],
+      "retrieved_evidence": [
+        {
+          "id": "rebuild:fixture:spring-projects/spring-petclinic:file:example.py",
+          "repo": "spring-projects/spring-petclinic",
+          "source": "graph",
+          "text": "Example fixture file"
+        }
+      ],
+      "route": "graph",
+      "router_status": null,
+      "run_id": "phase5-dry-2",
+      "seed": 42,
+      "split": "development",
+      "system": "fixed_graph_rag",
+      "timings": {
+        "contaminated": false,
+        "end_to_end_seconds": 0.003757700000278419,
+        "excluded_wait_seconds": 0.0,
+        "generation_seconds": 1.5200001143966801e-05,
+        "rate_limit": false,
+        "retrieval_seconds": 4.900000931229442e-06,
+        "retry_count": 0,
+        "timeout": false,
+        "wall_seconds": 0.003757700000278419
+      },
+      "tokens": {
+        "calls": []
+      }
+    },
+    "metrics": {
+      "entity_precision": 0.0,
+      "entity_recall": 0.0,
+      "entity_f1": 0.0,
+      "strict_accuracy": 0,
+      "lenient_coverage": 0,
+      "evidence_recall@10": 0.0,
+      "mrr": 0.0,
+      "ndcg@10": 0.0
+    },
+    "candidate_metrics": {
+      "graph": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "vector": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "hybrid": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    }
+  },
+  {
+    "question_id": "T2-a6d0d7fc3625bd872809",
+    "selected_route": "graph",
+    "record": {
+      "abstained": true,
+      "answer": "not found",
+      "answerable": true,
+      "cache_key": "2c69b277ee38283fd84fc4d17ff7a759876643c5a8aa55489cb1d6863d2fce41",
+      "config": {
+        "backoff": 1.0,
+        "dry_run": true,
+        "freeze_revision": null,
+        "precision_threshold": 0.8,
+        "question_hash": "eeec2f137451f92206a5b6c71f4822d77e4f9b4a67e589518b23af0064148616",
+        "retries": 2,
+        "seed": 42,
+        "source_hash": "7daea6835595987a1e307341194fc794951ddde2c5b475f28fa99a499c33a331",
+        "system_config": {
+          "answer_prompt_sha256": "32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31",
+          "dataset": "rebuild-20261014",
+          "dry_run": true,
+          "fallback": "none",
+          "fusion": "stable_evidence_union_no_branch_truncation",
+          "graph": {
+            "cypher_subset": "single bounded MATCH, explicit DL labels; no subqueries/procedures",
+            "row_limit": 20,
+            "scope": "dataset+repository",
+            "template_policy": "generic_identifier_lookup_then_llm"
+          },
+          "implementation_sha256": {
+            "__init__.py": "f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c",
+            "engine.py": "a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41",
+            "frameworks.py": "875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976",
+            "run.py": "f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27",
+            "shared.py": "fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f",
+            "smoke.py": "1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320",
+            "vector.py": "49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02"
+          },
+          "max_output_tokens": 1024,
+          "model": "gemini-2.5-flash",
+          "oracle_policy": null,
+          "router": null,
+          "system": "fixed_graph_rag",
+          "temperature": 0.2,
+          "vector": {
+            "selection_status": "pending_development_grid"
+          },
+          "version": "phase5-rebuild-1"
+        },
+        "throttle": 0
+      },
+      "config_hash": "b4d436395468db8f1a05b5a0c6fe0fc97961db0e5403b845b7104b6f4df3c72e",
+      "config_yaml": "answer_prompt_sha256: 32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31\ndataset: rebuild-20261014\ndry_run: true\nfallback: none\nfusion: stable_evidence_union_no_branch_truncation\ngraph:\n  cypher_subset: single bounded MATCH, explicit DL labels; no subqueries/procedures\n  row_limit: 20\n  scope: dataset+repository\n  template_policy: generic_identifier_lookup_then_llm\nimplementation_sha256:\n  __init__.py: f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c\n  engine.py: a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41\n  frameworks.py: 875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976\n  run.py: f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27\n  shared.py: fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f\n  smoke.py: 1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320\n  vector.py: 49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02\nmax_output_tokens: 1024\nmodel: gemini-2.5-flash\noracle_policy: null\nrouter: null\nsystem: fixed_graph_rag\ntemperature: 0.2\nvector:\n  selection_status: pending_development_grid\nversion: phase5-rebuild-1\n",
+      "dry_run": true,
+      "errors": [],
+      "framework_intermediate": [],
+      "model": "offline-fixture",
+      "predicted_entities": [],
+      "question_id": "T2-a6d0d7fc3625bd872809",
+      "question_set": "T",
+      "ranked_evidence_ids": [
+        "rebuild:fixture:spring-projects/spring-petclinic:file:example.py"
+      ],
+      "repo": "spring-projects/spring-petclinic",
+      "retries": [],
+      "retrieval_path": [
+        "selected:graph",
+        "graph:template"
+      ],
+      "retrieved_evidence": [
+        {
+          "id": "rebuild:fixture:spring-projects/spring-petclinic:file:example.py",
+          "repo": "spring-projects/spring-petclinic",
+          "source": "graph",
+          "text": "Example fixture file"
+        }
+      ],
+      "route": "graph",
+      "router_status": null,
+      "run_id": "phase5-dry-2",
+      "seed": 42,
+      "split": "development",
+      "system": "fixed_graph_rag",
+      "timings": {
+        "contaminated": false,
+        "end_to_end_seconds": 0.006178600000566803,
+        "excluded_wait_seconds": 0.0,
+        "generation_seconds": 2.970000059576705e-05,
+        "rate_limit": false,
+        "retrieval_seconds": 7.599999662488699e-06,
+        "retry_count": 0,
+        "timeout": false,
+        "wall_seconds": 0.006178600000566803
+      },
+      "tokens": {
+        "calls": []
+      }
+    },
+    "metrics": {
+      "entity_precision": 0.0,
+      "entity_recall": 0.0,
+      "entity_f1": 0.0,
+      "strict_accuracy": 0,
+      "lenient_coverage": 0,
+      "evidence_recall@10": 0.0,
+      "mrr": 0.0,
+      "ndcg@10": 0.0
+    },
+    "candidate_metrics": {
+      "graph": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "vector": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "hybrid": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    }
+  },
+  {
+    "question_id": "T2-b5d5e140ac8b8116f798",
+    "selected_route": "graph",
+    "record": {
+      "abstained": true,
+      "answer": "not found",
+      "answerable": true,
+      "cache_key": "79ccd57a91079e6daa9aabc75b4b49fd12684e8f28f91aa3ba29c9b8a29622a8",
+      "config": {
+        "backoff": 1.0,
+        "dry_run": true,
+        "freeze_revision": null,
+        "precision_threshold": 0.8,
+        "question_hash": "eeec2f137451f92206a5b6c71f4822d77e4f9b4a67e589518b23af0064148616",
+        "retries": 2,
+        "seed": 42,
+        "source_hash": "7daea6835595987a1e307341194fc794951ddde2c5b475f28fa99a499c33a331",
+        "system_config": {
+          "answer_prompt_sha256": "32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31",
+          "dataset": "rebuild-20261014",
+          "dry_run": true,
+          "fallback": "none",
+          "fusion": "stable_evidence_union_no_branch_truncation",
+          "graph": {
+            "cypher_subset": "single bounded MATCH, explicit DL labels; no subqueries/procedures",
+            "row_limit": 20,
+            "scope": "dataset+repository",
+            "template_policy": "generic_identifier_lookup_then_llm"
+          },
+          "implementation_sha256": {
+            "__init__.py": "f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c",
+            "engine.py": "a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41",
+            "frameworks.py": "875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976",
+            "run.py": "f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27",
+            "shared.py": "fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f",
+            "smoke.py": "1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320",
+            "vector.py": "49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02"
+          },
+          "max_output_tokens": 1024,
+          "model": "gemini-2.5-flash",
+          "oracle_policy": null,
+          "router": null,
+          "system": "fixed_graph_rag",
+          "temperature": 0.2,
+          "vector": {
+            "selection_status": "pending_development_grid"
+          },
+          "version": "phase5-rebuild-1"
+        },
+        "throttle": 0
+      },
+      "config_hash": "b4d436395468db8f1a05b5a0c6fe0fc97961db0e5403b845b7104b6f4df3c72e",
+      "config_yaml": "answer_prompt_sha256: 32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31\ndataset: rebuild-20261014\ndry_run: true\nfallback: none\nfusion: stable_evidence_union_no_branch_truncation\ngraph:\n  cypher_subset: single bounded MATCH, explicit DL labels; no subqueries/procedures\n  row_limit: 20\n  scope: dataset+repository\n  template_policy: generic_identifier_lookup_then_llm\nimplementation_sha256:\n  __init__.py: f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c\n  engine.py: a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41\n  frameworks.py: 875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976\n  run.py: f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27\n  shared.py: fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f\n  smoke.py: 1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320\n  vector.py: 49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02\nmax_output_tokens: 1024\nmodel: gemini-2.5-flash\noracle_policy: null\nrouter: null\nsystem: fixed_graph_rag\ntemperature: 0.2\nvector:\n  selection_status: pending_development_grid\nversion: phase5-rebuild-1\n",
+      "dry_run": true,
+      "errors": [],
+      "framework_intermediate": [],
+      "model": "offline-fixture",
+      "predicted_entities": [],
+      "question_id": "T2-b5d5e140ac8b8116f798",
+      "question_set": "T",
+      "ranked_evidence_ids": [
+        "rebuild:fixture:spring-projects/spring-petclinic:file:example.py"
+      ],
+      "repo": "spring-projects/spring-petclinic",
+      "retries": [],
+      "retrieval_path": [
+        "selected:graph",
+        "graph:template"
+      ],
+      "retrieved_evidence": [
+        {
+          "id": "rebuild:fixture:spring-projects/spring-petclinic:file:example.py",
+          "repo": "spring-projects/spring-petclinic",
+          "source": "graph",
+          "text": "Example fixture file"
+        }
+      ],
+      "route": "graph",
+      "router_status": null,
+      "run_id": "phase5-dry-2",
+      "seed": 42,
+      "split": "development",
+      "system": "fixed_graph_rag",
+      "timings": {
+        "contaminated": false,
+        "end_to_end_seconds": 0.0037377999997261213,
+        "excluded_wait_seconds": 0.0,
+        "generation_seconds": 1.5100000382517464e-05,
+        "rate_limit": false,
+        "retrieval_seconds": 3.99999953515362e-06,
+        "retry_count": 0,
+        "timeout": false,
+        "wall_seconds": 0.0037377999997261213
+      },
+      "tokens": {
+        "calls": []
+      }
+    },
+    "metrics": {
+      "entity_precision": 0.0,
+      "entity_recall": 0.0,
+      "entity_f1": 0.0,
+      "strict_accuracy": 0,
+      "lenient_coverage": 0,
+      "evidence_recall@10": 0.0,
+      "mrr": 0.0,
+      "ndcg@10": 0.0
+    },
+    "candidate_metrics": {
+      "graph": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "vector": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "hybrid": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    }
+  },
+  {
+    "question_id": "T2-15de75d462f60776b266",
+    "selected_route": "graph",
+    "record": {
+      "abstained": true,
+      "answer": "not found",
+      "answerable": true,
+      "cache_key": "c06963665fcd17be1c7a2b61d57ad6b34452d3c93421864205353d335053da3e",
+      "config": {
+        "backoff": 1.0,
+        "dry_run": true,
+        "freeze_revision": null,
+        "precision_threshold": 0.8,
+        "question_hash": "eeec2f137451f92206a5b6c71f4822d77e4f9b4a67e589518b23af0064148616",
+        "retries": 2,
+        "seed": 42,
+        "source_hash": "7daea6835595987a1e307341194fc794951ddde2c5b475f28fa99a499c33a331",
+        "system_config": {
+          "answer_prompt_sha256": "32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31",
+          "dataset": "rebuild-20261014",
+          "dry_run": true,
+          "fallback": "none",
+          "fusion": "stable_evidence_union_no_branch_truncation",
+          "graph": {
+            "cypher_subset": "single bounded MATCH, explicit DL labels; no subqueries/procedures",
+            "row_limit": 20,
+            "scope": "dataset+repository",
+            "template_policy": "generic_identifier_lookup_then_llm"
+          },
+          "implementation_sha256": {
+            "__init__.py": "f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c",
+            "engine.py": "a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41",
+            "frameworks.py": "875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976",
+            "run.py": "f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27",
+            "shared.py": "fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f",
+            "smoke.py": "1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320",
+            "vector.py": "49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02"
+          },
+          "max_output_tokens": 1024,
+          "model": "gemini-2.5-flash",
+          "oracle_policy": null,
+          "router": null,
+          "system": "fixed_graph_rag",
+          "temperature": 0.2,
+          "vector": {
+            "selection_status": "pending_development_grid"
+          },
+          "version": "phase5-rebuild-1"
+        },
+        "throttle": 0
+      },
+      "config_hash": "b4d436395468db8f1a05b5a0c6fe0fc97961db0e5403b845b7104b6f4df3c72e",
+      "config_yaml": "answer_prompt_sha256: 32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31\ndataset: rebuild-20261014\ndry_run: true\nfallback: none\nfusion: stable_evidence_union_no_branch_truncation\ngraph:\n  cypher_subset: single bounded MATCH, explicit DL labels; no subqueries/procedures\n  row_limit: 20\n  scope: dataset+repository\n  template_policy: generic_identifier_lookup_then_llm\nimplementation_sha256:\n  __init__.py: f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c\n  engine.py: a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41\n  frameworks.py: 875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976\n  run.py: f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27\n  shared.py: fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f\n  smoke.py: 1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320\n  vector.py: 49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02\nmax_output_tokens: 1024\nmodel: gemini-2.5-flash\noracle_policy: null\nrouter: null\nsystem: fixed_graph_rag\ntemperature: 0.2\nvector:\n  selection_status: pending_development_grid\nversion: phase5-rebuild-1\n",
+      "dry_run": true,
+      "errors": [],
+      "framework_intermediate": [],
+      "model": "offline-fixture",
+      "predicted_entities": [],
+      "question_id": "T2-15de75d462f60776b266",
+      "question_set": "T",
+      "ranked_evidence_ids": [
+        "rebuild:fixture:spring-projects/spring-petclinic:file:example.py"
+      ],
+      "repo": "spring-projects/spring-petclinic",
+      "retries": [],
+      "retrieval_path": [
+        "selected:graph",
+        "graph:template"
+      ],
+      "retrieved_evidence": [
+        {
+          "id": "rebuild:fixture:spring-projects/spring-petclinic:file:example.py",
+          "repo": "spring-projects/spring-petclinic",
+          "source": "graph",
+          "text": "Example fixture file"
+        }
+      ],
+      "route": "graph",
+      "router_status": null,
+      "run_id": "phase5-dry-2",
+      "seed": 42,
+      "split": "development",
+      "system": "fixed_graph_rag",
+      "timings": {
+        "contaminated": false,
+        "end_to_end_seconds": 0.0031584999996994156,
+        "excluded_wait_seconds": 0.0,
+        "generation_seconds": 1.6199999663513154e-05,
+        "rate_limit": false,
+        "retrieval_seconds": 4.19999923906289e-06,
+        "retry_count": 0,
+        "timeout": false,
+        "wall_seconds": 0.0031584999996994156
+      },
+      "tokens": {
+        "calls": []
+      }
+    },
+    "metrics": {
+      "entity_precision": 0.0,
+      "entity_recall": 0.0,
+      "entity_f1": 0.0,
+      "strict_accuracy": 0,
+      "lenient_coverage": 0,
+      "evidence_recall@10": 0.0,
+      "mrr": 0.0,
+      "ndcg@10": 0.0
+    },
+    "candidate_metrics": {
+      "graph": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "vector": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "hybrid": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    }
+  },
+  {
+    "question_id": "T2-cacf425d3d9b1c95d6e8",
+    "selected_route": "graph",
+    "record": {
+      "abstained": true,
+      "answer": "not found",
+      "answerable": true,
+      "cache_key": "392de2c0f5bb9b65b06ea1a57e3af583ac271db00b8bef22568e996d579c0f8f",
+      "config": {
+        "backoff": 1.0,
+        "dry_run": true,
+        "freeze_revision": null,
+        "precision_threshold": 0.8,
+        "question_hash": "eeec2f137451f92206a5b6c71f4822d77e4f9b4a67e589518b23af0064148616",
+        "retries": 2,
+        "seed": 42,
+        "source_hash": "7daea6835595987a1e307341194fc794951ddde2c5b475f28fa99a499c33a331",
+        "system_config": {
+          "answer_prompt_sha256": "32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31",
+          "dataset": "rebuild-20261014",
+          "dry_run": true,
+          "fallback": "none",
+          "fusion": "stable_evidence_union_no_branch_truncation",
+          "graph": {
+            "cypher_subset": "single bounded MATCH, explicit DL labels; no subqueries/procedures",
+            "row_limit": 20,
+            "scope": "dataset+repository",
+            "template_policy": "generic_identifier_lookup_then_llm"
+          },
+          "implementation_sha256": {
+            "__init__.py": "f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c",
+            "engine.py": "a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41",
+            "frameworks.py": "875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976",
+            "run.py": "f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27",
+            "shared.py": "fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f",
+            "smoke.py": "1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320",
+            "vector.py": "49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02"
+          },
+          "max_output_tokens": 1024,
+          "model": "gemini-2.5-flash",
+          "oracle_policy": null,
+          "router": null,
+          "system": "fixed_graph_rag",
+          "temperature": 0.2,
+          "vector": {
+            "selection_status": "pending_development_grid"
+          },
+          "version": "phase5-rebuild-1"
+        },
+        "throttle": 0
+      },
+      "config_hash": "b4d436395468db8f1a05b5a0c6fe0fc97961db0e5403b845b7104b6f4df3c72e",
+      "config_yaml": "answer_prompt_sha256: 32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31\ndataset: rebuild-20261014\ndry_run: true\nfallback: none\nfusion: stable_evidence_union_no_branch_truncation\ngraph:\n  cypher_subset: single bounded MATCH, explicit DL labels; no subqueries/procedures\n  row_limit: 20\n  scope: dataset+repository\n  template_policy: generic_identifier_lookup_then_llm\nimplementation_sha256:\n  __init__.py: f5a96b8705c23df3a2908c669c9b1f25e2d00a3f50cdb1f9fe5209d693878d6c\n  engine.py: a14affdd30d8188a2866b969f0f6d7db4ec44749687d58ecc28cce082f0ffe41\n  frameworks.py: 875b496d3535693764e1087551204636ad50b6a6e32a143cfc3850743ccab976\n  run.py: f2795d1dd92d8df531d73b6e376b283352fc822d5d7f1823671bd7bfa9352d27\n  shared.py: fd0d9ba4da2e7befa13311aa5b3caca138c16e85ef177d62ba63d579b390e13f\n  smoke.py: 1c828b786e48fd80f5d63e7417ec5b30dda4e0db635fa679f9e59849728b2320\n  vector.py: 49184f84dc2578206f78f4d3117a7df800e7042d0c64169b80fe765107514e02\nmax_output_tokens: 1024\nmodel: gemini-2.5-flash\noracle_policy: null\nrouter: null\nsystem: fixed_graph_rag\ntemperature: 0.2\nvector:\n  selection_status: pending_development_grid\nversion: phase5-rebuild-1\n",
+      "dry_run": true,
+      "errors": [],
+      "framework_intermediate": [],
+      "model": "offline-fixture",
+      "predicted_entities": [],
+      "question_id": "T2-cacf425d3d9b1c95d6e8",
+      "question_set": "T",
+      "ranked_evidence_ids": [
+        "rebuild:fixture:spring-projects/spring-petclinic:file:example.py"
+      ],
+      "repo": "spring-projects/spring-petclinic",
+      "retries": [],
+      "retrieval_path": [
+        "selected:graph",
+        "graph:llm_cypher"
+      ],
+      "retrieved_evidence": [
+        {
+          "id": "rebuild:fixture:spring-projects/spring-petclinic:file:example.py",
+          "repo": "spring-projects/spring-petclinic",
+          "source": "graph",
+          "text": "Example fixture file"
+        }
+      ],
+      "route": "graph",
+      "router_status": null,
+      "run_id": "phase5-dry-2",
+      "seed": 42,
+      "split": "development",
+      "system": "fixed_graph_rag",
+      "timings": {
+        "contaminated": false,
+        "end_to_end_seconds": 0.004070500001034816,
+        "excluded_wait_seconds": 0.0,
+        "generation_seconds": 1.7099999240599573e-05,
+        "rate_limit": false,
+        "retrieval_seconds": 6.299998858594336e-06,
+        "retry_count": 0,
+        "timeout": false,
+        "wall_seconds": 0.004070500001034816
+      },
+      "tokens": {
+        "calls": []
+      }
+    },
+    "metrics": {
+      "entity_precision": 0.0,
+      "entity_recall": 0.0,
+      "entity_f1": 0.0,
+      "strict_accuracy": 0,
+      "lenient_coverage": 0,
+      "evidence_recall@10": 0.0,
+      "mrr": 0.0,
+      "ndcg@10": 0.0
+    },
+    "candidate_metrics": {
+      "graph": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "vector": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      },
+      "hybrid": {
+        "entity_precision": 0.0,
+        "entity_recall": 0.0,
+        "entity_f1": 0.0,
+        "strict_accuracy": 0,
+        "lenient_coverage": 0,
+        "evidence_recall@10": 0.0,
+        "mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    }
+  }
+]

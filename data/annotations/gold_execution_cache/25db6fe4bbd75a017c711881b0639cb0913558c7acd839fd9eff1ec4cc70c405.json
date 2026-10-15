@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/chat-model-guide/chat-model-tool-calling.ipynb",
+        "path": "docs/docs/genai/flavors/chat-model-guide/chat-model-tool-calling.ipynb",
+        "offset": 14908,
+        "line": 323
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/cli/__init__.py",
+        "path": "mlflow/cli/__init__.py",
+        "offset": 6100,
+        "line": 171
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/demo/data.py",
+        "path": "mlflow/demo/data.py",
+        "offset": 25929,
+        "line": 634
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 95307,
+        "line": 50
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 3395,
+        "line": 75
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26334",
+        "path": null,
+        "offset": 327,
+        "line": 12
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "offset": 65784,
+        "line": 786
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 7174,
+        "line": 171
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7174,
+      "excerpt": "ter) is installed, MLflow runs `uv export` to produce a pinned requirements list from the lockfile. This list replaces the standard import-based dependency inference.\n\nMLflow also copies the uv project files (`uv.lock` and `pyproject.toml`) and, if present, the `.python-version` file into the model artifact directory. These files enable exact environment restoration with `uv sync` when the model is loaded later.\n\nThis works with all MLflow model flavors. For example, logging a scikit-learn model in a uv-managed project:\n\n```python\nimport mlflow\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.datasets import make_regression\n\nX, y = make_regression(n_samples=100, n_features=4)\nmodel = LinearRegression().fit(X, y)\n\n# uv.lock is auto-detected in the current directory\nmlflow.sklearn.log_model(model, name=\"model\")\n# Requirements are exported from uv.lock, not inferred from imports\n```\n\n### Auto-Detection\n\nBy default, uv project detection is enabled. MLflow looks for `uv.lock` and `pyproject.toml` in the current working directory when you log a model with any flavor, including <APILink fn=\"mlflow.sklearn.log_model\" />, <APILink fn=\"mlflow.pytorch.log_model\" />, <APILink fn=\"mlflow.transformers.log_model\" />, <APILink fn=\"mlflow.pyfunc.log_model\" />, and others. All flavors that call `infer_pip_requirements` benefit from uv auto-detection.\n\nTo disable auto-detection, set the `MLFLOW_UV_AUTO_DETECT` environment variable:\n\n```bash\nexport MLFLOW_UV_AUTO_DETECT=false\n```\n\nYou can also control whether uv project files (`uv.lock`, `pyproject.toml`, and `.python-version`) are saved as model artifacts with `MLFLOW_LOG_UV_FILES`:\n\n```bash\n# Disable copying uv.lock, pyproject.toml, and .python-version into model artifacts\nexport MLFLOW_LOG_UV_FILES=false\n```\n\n### Specifying a uv Project Path\n\nIf your uv project is not in the current working directory (common in monorepos or non-standard layouts), use the `uv_project_path` parameter to point to the correct directory:\n\n```python\nimport mlflow\n\nmlflow.pyfunc.log_model(\n    python_model=my_model,\n    name=\"model\",\n    input_example=input_data,\n    uv_project_path=\"/path/to/my-uv-project\",\n)\n```\n\nMLflow will look for `uv.lock` and `pyproject.toml` in the specified directory instead of the current working directory.\n\n### Including Dependency Groups\n\nuv supports [dependency groups](https://docs.astral.sh/uv/concepts/d"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3395,
+      "excerpt": "ds:\n\n- `time_created`: Date and time when the model was created, in UTC ISO 8601 format.\n- `run_id`: ID of the run that created the model, if the model was saved using [tracking](/ml/tracking).\n- `signature`: [model signature](/ml/model/signatures) in JSON format.\n- `input_example`: reference to an artifact with [input example](/ml/model/signatures).\n- `databricks_runtime`: Databricks runtime version and type, if the model was trained in a Databricks notebook or job.\n- `mlflow_version`: The version of MLflow that was used to log the model.\n\n### Additional Logged Files\n\nFor environment recreation, we automatically log `conda.yaml`, `python_env.yaml`, and `requirements.txt` files whenever a model is logged.\nThese files can then be used to reinstall dependencies using `conda` or `virtualenv` with `pip`. Please see\n[How MLflow Model Records Dependencies](/ml/model/dependencies#how-mlflow-records-dependencies) for more details about these files.\n\nIf a model input example is provided when logging the model, two additional files `input_example.json` and `serving_input_example.json` are logged.\nSee [Model Input Example](/ml/model/signatures) for more details.\n\nWhen logging a model, model metadata files (`MLmodel`, `conda.yaml`, `python_env.yaml`, `requirements.txt`) are copied to a subdirectory named `metadata`.\nFor wheeled models, `original_requirements.txt` file is also copied.\n\n:::note\nWhen a model registered in the MLflow Model Registry is downloaded, a YAML file named\n`registered_model_meta` is added to the model directory on the downloader's side.\nThis file contains the name and version of the model referenced in the MLflow Model Registry,\nand will be used for deployment and other purposes.\n:::\n\n:::warning[attention]\nIf you log a model within Databricks, MLflow also creates a `metadata` subdirectory within\nthe model directory. This subdirectory contains the lightweight copy of aforementioned\nmetadata files for internal use.\n:::\n\n### Environment variables file\n\nMLflow records the environment variables that are used during model inference in `environment_variables.txt`\nfile when logging a model.\n\n:::warning[attention]\n`environment_variables.txt` file **only contains names** of the environment variables that are used during\nmodel inference, **values are not stored**.\n:::\n\nCurrently MLflow only logs the environment variables whose name contains any of the followin"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 65784,
+      "excerpt": "nt\\n\",\n    \"\\n\",\n    \"Before we start our hyperparameter tuning process, we need to designate a specific \\\"experiment\\\" within MLflow to track and log our results. An experiment in MLflow is essentially a named set of runs. Each run within an experiment tracks its own parameters, metrics, tags, and artifacts.\\n\",\n    \"\\n\",\n    \"#### Why create a new experiment?\\n\",\n    \"\\n\",\n    \"1. **Organization**: It helps in keeping our runs organized under a specific task or project, making it easier to compare and analyze results.\\n\",\n    \"2. **Isolation**: By isolating different tasks or projects into separate experiments, we prevent accidental overwrites or misinterpretations of results.\\n\",\n    \"\\n\",\n    \"The `get_or_create_experiment` function we've defined below aids in this process. It checks if an experiment with the specified name already exists. If yes, it retrieves its ID. If not, it creates a new experiment and returns its ID.\\n\",\n    \"\\n\",\n    \"#### How will we use the experiment_id?\\n\",\n    \"The retrieved or created experiment_id becomes crucial when we initiate our hyperparameter tuning. As we start the parent run for tuning, the experiment_id ensures that the run, along with its nested child runs, gets logged under the correct experiment. It provides a structured way to navigate, compare, and analyze our tuning results within the MLflow UI.\\n\",\n    \"\\n\",\n    \"When we want to try additional parameter ranges, different parameters, or a slightly modified dataset, we can use this Experiment to log all parent runs to keep our MLflow Tracking UI clean and easy to navigate.\\n\",\n    \"\\n\",\n    \"Let's proceed and set up our experiment!\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 9,\n   \"id\": \"4a3606e7\",\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"def get_or_create_experiment(experiment_name):\\n\",\n    \"    \\\"\\\"\\\"\\n\",\n    \"    Retrieve the ID of an existing MLflow experiment or create a new one if it doesn't exist.\\n\",\n    \"\\n\",\n    \"    This function checks if an experiment with the given name exists within MLflow.\\n\",\n    \"    If it does, the function returns its ID. If not, it creates a new experiment\\n\",\n    \"    with the provided name and returns its ID.\\n\",\n    \"\\n\",\n    \"    Parameters:\\n\",\n    \"    - experiment_name (str): Name of the MLflow experiment.\\n\",\n    \"\\n\",\n    \"    Returns:\\n\",\n    \"    - str: ID of the existing or new"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/chat-model-guide/chat-model-tool-calling.ipynb",
+      "kind": "File",
+      "path": "docs/docs/genai/flavors/chat-model-guide/chat-model-tool-calling.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14908,
+      "excerpt": " \"source\": [\n    \"### Step 5: Logging the model\\n\",\n    \"\\n\",\n    \"Finally, we need to log the model. This saves the model as an artifact in MLflow Tracking, and allows us to load and serve it later on.\\n\",\n    \"\\n\",\n    \"(Note: this is a fundamental pattern in MLflow. To learn more, check out the [Quickstart guide](https://mlflow.org/docs/latest/getting-started/intro-quickstart/index.html)!)\\n\",\n    \"\\n\",\n    \"In order to do this, we need to do a few things:\\n\",\n    \"\\n\",\n    \"1. Define an input example to inform users about the input we expect\\n\",\n    \"2. Instantiate the model\\n\",\n    \"3. Call `mlflow.pyfunc.log_model()` with the above as arguments\\n\",\n    \"\\n\",\n    \"Take note of the Model URI printed out at the end of the cell—we'll need it when serving the model later!\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 6,\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"name\": \"stderr\",\n     \"output_type\": \"stream\",\n     \"text\": [\n      \"2024/10/29 09:30:14 INFO mlflow.pyfunc: Predicting on input example to validate output\\n\"\n     ]\n    },\n    {\n     \"name\": \"stdout\",\n     \"output_type\": \"stream\",\n     \"text\": [\n      \"Received a tool call, calling the weather tool...\\n\"\n     ]\n    },\n    {\n     \"data\": {\n      \"application/vnd.jupyter.widget-view+json\": {\n       \"model_id\": \"7efce7f1f8e64673ab381052e5b02499\",\n       \"version_major\": 2,\n       \"version_minor\": 0\n      },\n      \"text/plain\": [\n       \"Downloading artifacts:   0%|          | 0/7 [00:00<?, ?it/s]\"\n      ]\n     },\n     \"metadata\": {},\n     \"output_type\": \"display_data\"\n    },\n    {\n     \"name\": \"stdout\",\n     \"output_type\": \"stream\",\n     \"text\": [\n      \"Received a tool call, calling the weather tool...\\n\",\n      \"Successfully logged the model at the following URI:  runs:/8051850efa194a3b8b2450c4c9f4d42f/weather-model\\n\"\n     ]\n    }\n   ],\n   \"source\": [\n    \"# messages to use as input examples\\n\",\n    \"messages = [\\n\",\n    \"    {\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"Please use the provided tools to answer user queries.\\\"},\\n\",\n    \"    {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"What's the weather in Singapore?\\\"},\\n\",\n    \"]\\n\",\n    \"\\n\",\n    \"input_example = {\\n\",\n    \"    \\\"messages\\\": messages,\\n\",\n    \"}\\n\",\n    \"\\n\",\n    \"# instantiate the model\\n\",\n    \"model = WeatherModel()\\n\",\n    \"\\n\",\n    \"# log the model\\n\",\n    \"with mlflow.start_run():\\n\",\n    \"    model_info = mlflow.pyfunc."
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 95307,
+      "excerpt": " HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nHow can you create an experiment using MLflow?,\"You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters.\",\"runs into experiments, which group together runs for a specific task. You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters. The MLflow API and UI let you create and search for experiments. Once your runs have been recorded, you can query them using the Tracking UI or the MLflow API. Where Runs Are Recorded MLflow runs can be recorded to local files, to a SQLAlchemy-compatible database, or remotely to a tracking server. By default, the MLflow Python API logs runs locally to files in an mlruns directory wherever you ran your program. You can then run mlflow ui to see the logged runs. To log runs remotely, set the MLFLOW_TRACKING_URI environment variable to a tracking server's URI or call mlflow.set_tracking_uri(). There are different kinds of remote tracking URIs: Local file path (specified as file:/my/local/dir), where data is just directly stored locally. Database encoded as <dialect>+<driver>://<username>:<password>@<host>:<port>/<database>. MLflow supports the dialects mysql, mssql, sqlite, and postgresql. For more details, see SQLAlchemy database uri. HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nWhat are the two components used by MLflow for storage?,\"MLflow uses two components for storage: backend store and artifact store. The backend store persists MLflow entities such as runs, parameters, metrics, tags, notes, and metadata. On the other hand, the artifact store persists artifacts such as files, models, images, in-mem"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/cli/__init__.py",
+      "kind": "File",
+      "path": "mlflow/cli/__init__.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6100,
+      "excerpt": "I profile.\",\n)\n@click.option(\n    \"--backend-config\",\n    \"-c\",\n    metavar=\"FILE\",\n    help=\"Path to JSON file (must end in '.json') or JSON string which will be passed \"\n    \"as config to the backend. The exact content which should be \"\n    \"provided is different for each execution backend and is documented \"\n    \"at https://www.mlflow.org/docs/latest/projects.html.\",\n)\n@cli_args.ENV_MANAGER_PROJECTS\n@click.option(\n    \"--storage-dir\",\n    envvar=\"MLFLOW_TMP_DIR\",\n    help=\"Only valid when ``backend`` is local. \"\n    \"MLflow downloads artifacts from distributed URIs passed to parameters of \"\n    \"type 'path' to subdirectories of storage_dir.\",\n)\n@click.option(\n    \"--run-id\",\n    metavar=\"RUN_ID\",\n    help=\"If specified, the given run ID will be used instead of creating a new run. \"\n    \"Note: this argument is used internally by the MLflow project APIs \"\n    \"and should not be specified.\",\n)\n@click.option(\n    \"--run-name\",\n    metavar=\"RUN_NAME\",\n    help=\"The name to give the MLflow Run associated with the project execution. If not specified, \"\n    \"the MLflow Run name is left unset.\",\n)\n@click.option(\n    \"--build-image\",\n    is_flag=True,\n    default=False,\n    show_default=True,\n    help=(\n        \"Only valid for Docker projects. If specified, build a new Docker image that's based on \"\n        \"the image specified by the `image` field in the MLproject file, and contains files in the \"\n        \"project directory.\"\n    ),\n)\ndef run(\n    uri,\n    entry_point,\n    version,\n    param_list,\n    docker_args,\n    experiment_name,\n    experiment_id,\n    backend,\n    backend_config,\n    env_manager,\n    storage_dir,\n    run_id,\n    run_name,\n    build_image,\n):\n    \"\"\"\n    Run an MLflow project from the given URI.\n\n    For local runs, the run will block until it completes.\n    Otherwise, the project will run asynchronously.\n\n    If running locally (the default), the URI can be either a Git repository URI or a local path.\n    If running on Databricks, the URI must be a Git repository.\n\n    By default, Git projects run in a new working directory with the given parameters, while\n    local projects run from the project's root directory.\n    \"\"\"\n    if experiment_id is not None and experiment_name is not None:\n        raise click.UsageError(\"Specify only one of 'experiment-name' or 'experiment-id' options.\")\n\n    param_dict = _user_args_to_dict(param_list)\n    args_"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/demo/data.py",
+      "kind": "File",
+      "path": "mlflow/demo/data.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 25929,
+      "excerpt": " How do I get started with experiment tracking?\",\n        v1_response=(\n            \"To get started with MLflow, first install it with pip. Then you can \"\n            \"start using the tracking API to log your experiments.\"\n        ),\n        v2_response=(\n            \"Welcome to MLflow! Here's your quickstart:\\n\\n\"\n            \"1. Install: `pip install mlflow`\\n\"\n            \"2. Start the UI: `mlflow server --port 5000`\\n\"\n            \"3. In your code:\\n\"\n            \"```python\\n\"\n            \"import mlflow\\n\"\n            \"with mlflow.start_run():\\n\"\n            \"    mlflow.log_param('learning_rate', 0.01)\\n\"\n            \"    mlflow.log_metric('accuracy', 0.95)\\n\"\n            \"```\\n\"\n            \"Open http://localhost:5000 to see your experiments!\"\n        ),\n        expected_response=(\n            \"Install with `pip install mlflow`, run `mlflow server`, then use \"\n            \"mlflow.start_run() with log_param() and log_metric() to track experiments.\"\n        ),\n        trace_type=\"session\",\n        session_id=\"session-mlflow-setup\",\n        session_user=\"alice@example.com\",\n        turn_index=1,\n    ),\n    DemoTrace(\n        query=\"Great! How do I log a trained model so I can deploy it later?\",\n        v1_response=(\n            \"You can use mlflow.sklearn.log_model() or similar functions to log models. \"\n            \"They get saved with the run.\"\n        ),\n        v2_response=(\n            \"After training, log your model with the appropriate flavor:\\n\\n\"\n            \"```python\\n\"\n            \"# For scikit-learn\\n\"\n            \"mlflow.sklearn.log_model(model, 'model')\\n\\n\"\n            \"# For PyTorch\\n\"\n            \"mlflow.pytorch.log_model(model, 'model')\\n\"\n            \"```\\n\\n\"\n            \"The model is saved with your run and can be loaded later with:\\n\"\n            \"`mlflow.sklearn.load_model('runs:/<run_id>/model')`\\n\\n\"\n            \"Ready to register it for deployment?\"\n        ),\n        expected_response=(\n            \"Use mlflow.<flavor>.log_model() (e.g., sklearn, pytorch) to save models. \"\n            \"Load later with mlflow.<flavor>.load_model('runs:/<run_id>/model').\"\n        ),\n        trace_type=\"session\",\n        session_id=\"session-mlflow-setup\",\n        session_user=\"alice@example.com\",\n        turn_index=2,\n    ),\n    # Session 2: Debugging a RAG Application (3 turns)\n    DemoTrace(\n        query=\"My RAG application is giving inconsisten"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26334",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26334,
+      "title": "[BUG] Concurrent background child export can strand a completed deferred trace",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 327,
+      "excerpt": "ve read and agree to submit bug reports in accordance with the [issues policy](https://github.com/mlflow/mlflow/blob/master/ISSUE_POLICY.md).\n\n### Where did you encounter this bug?\n\nLocal machine. Found while inspecting concurrent trace export and reproduced with exporter-level regression tests, as documented in #26331.\n\n### MLflow version\n\n- Client: source checkout at `c233876f76ff86ff461544ac2b77a6e01a4a308e` (the upstream base of #26331).\n- Tracking server: not required for this reproduction; backend client calls are mocked.\n- Affected released versions have not been established.\n\n### System information\n\n- OS: Windows (original regression run recorded in #26331; exact Windows release was not recorded).\n- Python: 3.12.10.\n- Ubuntu / Python 3.10.21 was used for the lint checks recorded in that PR, not for the reported regression run.\n\n### Describe the problem\n\n`MlflowV3SpanExporter` can leave a completed trace unexported when a background child span finishes concurrently with the root span's export.\n\nThe upstream exporter protects access to `_deferred_root_spans`, but the decision to defer a root and the child's scan of deferred roots are not serialized. This ordering is possible:\n\n1. The root exporter calls `manager.has_open_spans(trace_id)` and gets `True`.\n2. Before the root is added to `_deferred_root_spans`, the background child ends and exports.\n3. The child exporter scans deferred roots, finds none, and returns.\n4. The root exporter uses the earlier result and adds the root to the deferred dictionary.\n5. Both spans have ended and both export calls have finished, but nothing triggers another scan.\n\n**Expected:** once both export calls complete, the completed trace is submitted exactly once, both incremental span payloads have been collected, and no root remains deferred.\n\n**Actual:** no full trace submission occurs and the root remains deferred until an unrelated export or exporter shutdown. If the in-memory trace expires before that, the completed trace can be lost.\n\nThe relevant upstream code is [mlflow_v3.py at the affected commit](https://github.com/mlflow/mlflow/blob/c233876f76ff86ff461544ac2b77a6e01a4a308e/mlflow/tracing/export/mlflow_v3.py#L189-L226). This affects the existing background-child deferral behavior; it is not a request for a new tracing feature.\n\n### Tracking information\n\nThe deterministic unit reproduction uses the existing tracin"
+    }
+  ]
+}

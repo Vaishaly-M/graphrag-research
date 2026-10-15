@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+        "path": "mlflow/store/tracking/abstract_store.py",
+        "offset": 4876,
+        "line": 131
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26114",
+        "path": null,
+        "offset": 655,
+        "line": 18
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+        "path": "docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+        "offset": 42427,
+        "line": 800
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26321",
+        "path": null,
+        "offset": 2061,
+        "line": 42
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/chat-model-guide/index.mdx",
+        "path": "docs/docs/genai/flavors/chat-model-guide/index.mdx",
+        "offset": 34198,
+        "line": 631
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/community/usage-tracking.mdx",
+        "path": "docs/docs/community/usage-tracking.mdx",
+        "offset": 1086,
+        "line": 17
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/semantic-search/semantic-search-sentence-transformers.ipynb",
+        "path": "docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/semantic-search/semantic-search-sentence-transformers.ipynb",
+        "offset": 16296,
+        "line": 265
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26279",
+        "path": null,
+        "offset": 3295,
+        "line": 40
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/semantic-search/semantic-search-sentence-transformers.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/semantic-search/semantic-search-sentence-transformers.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 16296,
+      "excerpt": "nment. Sustainable gardening is not \\\"\\n\",\n    \"    \\\"just about growing plants; it's about cultivating an ecosystem. By embracing \\\"\\n\",\n    \"    \\\"environmentally friendly practices, gardeners can have a positive impact on the \\\"\\n\",\n    \"    \\\"planet.\\\",\\n\",\n    \"    \\\"The Smartphone Revolution: Changing Communication. Smartphones have transformed \\\"\\n\",\n    \"    \\\"how we communicate, offering unprecedented connectivity and convenience. This \\\"\\n\",\n    \"    \\\"technology continues to evolve, shaping our daily interactions.\\\",\\n\",\n    \"    \\\"Experiencing African Safaris: Wildlife and Wilderness. An African safari is an \\\"\\n\",\n    \"    \\\"unforgettable experience that brings you face-to-face with the wonders of \\\"\\n\",\n    \"    \\\"wildlife. It's a journey that connects you with the raw beauty of nature.\\\",\\n\",\n    \"    \\\"Graphic Novels: A Blend of Art and Story. Graphic novels offer a unique medium \\\"\\n\",\n    \"    \\\"where art and narrative intertwine to tell compelling stories. They challenge \\\"\\n\",\n    \"    \\\"traditional forms of storytelling, offering visual and textual richness.\\\",\\n\",\n    \"    \\\"Addressing Ocean Pollution: A Call to Action. The increasing levels of pollution \\\"\\n\",\n    \"    \\\"in our oceans are a pressing environmental concern. Protecting marine life and \\\"\\n\",\n    \"    \\\"ecosystems requires concerted global efforts.\\\",\\n\",\n    \"    \\\"The Origins of Hip Hop: A Cultural Movement. Hip hop music, originating from the \\\"\\n\",\n    \"    \\\"streets of New York, has grown into a powerful cultural movement. Its beats and \\\"\\n\",\n    \"    \\\"lyrics reflect the experiences and voices of a community.\\\",\\n\",\n    \"    \\\"Swimming: A Comprehensive Workout. Swimming offers a full-body workout that is \\\"\\n\",\n    \"    \\\"both challenging and refreshing. It's an exercise that enhances cardiovascular \\\"\\n\",\n    \"    \\\"health, builds muscle, and improves endurance.\\\",\\n\",\n    \"    \\\"The Fall of the Berlin Wall: A Historical Turning Point. The fall of the Berlin \\\"\\n\",\n    \"    \\\"Wall was not just a physical demolition; it was a symbol of political and social \\\"\\n\",\n    \"    \\\"change. This historic event marked the end of an era and the beginning of a new \\\"\\n\",\n    \"    \\\"chapter in world history.\\\",\\n\",\n    \"]\\n\",\n    \"\\n\",\n    \"# Write the corpus to a file\\n\",\n    \"corpus_file = \\\"/tmp/search_corpus.txt\\\"\\n\",\n    \"with open(corpus_file, \\\"w\\\") as file:\\n\",\n    \"    "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/community/usage-tracking.mdx",
+      "kind": "File",
+      "path": "docs/docs/community/usage-tracking.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1086,
+      "excerpt": "ses, you can choose to opt out by following the guidance provided in our documentation.\n:::\n\n## Why is data being collected?\n\nMLflow uses anonymous telemetry to understand feature usage, which helps guide development priorities and improve the library.\nThis data helps us identify which features are most valuable and where to focus on bug fixes or enhancements.\n\n### GDPR Compliance\n\nUnder the General Data Protection Regulation (GDPR), data controllers and processors are responsible for handling personal data with care, transparency, and accountability.\n\nMLflow complies with GDPR in the following ways:\n\n- **No Personal Data Collected**: The telemetry data collected is fully anonymized and does not include any personal or sensitive information (e.g., usernames, IP addresses, file names, parameters, or model content). MLflow generates a random UUID for each session for aggregating usage events, which cannot be used to identify or track individual users.\n- **Purpose Limitation**: Data is only used to improve the MLflow project based on aggregate feature usage patterns.\n- **Data Minimization**: Only the minimum necessary metadata is collected to inform project priorities (e.g., feature toggle state, SDK/platform used, version info).\n- **User Control**: Users can opt out of telemetry at any time by setting the environment variable **MLFLOW_DISABLE_TELEMETRY=true** or **DO_NOT_TRACK=true**. MLflow respects these settings immediately without requiring a restart.\n- **Transparency**: Telemetry endpoints and behavior are documented publicly, and MLflow users can inspect or block the relevant network calls.\n\nFor further inquiries or data protection questions, users can file an issue on the [MLflow GitHub repository](https://github.com/mlflow/mlflow/issues).\n\n## What data is collected?\n\nMLflow collects only non-sensitive, anonymized data to help us better understand usage patterns.\nThe below section outlines the data currently collected in this version of MLflow. You can view the exact data collected [in the source code](https://github.com/mlflow/mlflow/blob/c71fd0d677c1806ba2d5928398435c4de2c25c0e/mlflow/telemetry/schemas.py).\n\n### Data Explanation\n\n<Table>\n  <thead>\n    <tr>\n      <th>Data Element</th>\n      <th>Explanation</th>\n      <th>Example</th>\n      <th>Why we track this</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Unique session ID</td>\n      <td>A ra"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/chat-model-guide/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/flavors/chat-model-guide/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 34198,
+      "excerpt": "uration?\n\nIn the context of LLM applications and AI agents, agent behavior can vary greatly depending on the instruction sets and parameters (such as `temperature` or\n`max_tokens`) given to each agent. If we hardcoded these configurations directly into our model's logic, each new test would require changing the\nmodel's source code, leading to:\n\n- **Inefficiency**: Changing source code for each test slows down the experimentation process.\n- **Increased Risk of Errors**: Constantly modifying the source increases the chance of introducing bugs or unintended side effects.\n- **Lack of Reproducibility**: Without a clear separation between code and configuration, tracking and reproducing the exact configuration used for\n  a particular result becomes challenging.\n\nBy setting these values externally via the `model_config` parameter, we make the model flexible and adaptable to different test scenarios.\nThis approach also integrates seamlessly with MLflow's evaluation tools, such as <APILink fn=\"mlflow.genai.evaluate\" />, which allows you to compare model\noutputs across different configurations systematically.\n\n### Defining the Model Configuration\n\nThe configuration consists of two main sections:\n\n1. **Models**: This section defines agent-specific configurations, such as the `judge` and `oracle` roles in this example. Each agent has:\n   - An **endpoint**: Specifies the model type or service being used for this agent.\n   - An **instruction**: Defines the role and responsibilities of the agent (e.g., answering questions, evaluating responses).\n   - **Temperature and Max Tokens**: Controls the generation variability (`temperature`) and token limit for responses.\n\n2. **General Configuration**: Additional settings for the overall behavior of the model, such as how user responses should be framed for subsequent agents.\n\n:::note\nThere are two options available for setting a model configuration: directly within the logging code (shown below) or by writing a configuration file\nin `yaml` format to a local location whose path can be specified when defining the `model_config` argument during logging. To learn more about\nhow the `model_config` parameter is utilized, [see the guide on model_config usage](/ml/model#python-function-model-interfaces).\n:::\n\nHere's how we set the configuration for our agents:\n\n```python\nmodel_config = {\n    \"models\": {\n        \"judge\": {\n            \"end"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+      "kind": "File",
+      "path": "docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 42427,
+      "excerpt": "continues to evolve, MLflow stands out as a crucial tool for harnessing its power, making advanced NLP applications more accessible and efficient.\\n\\nIn summary, our journey through this tutorial has not only equipped us with the knowledge to develop and deploy RAG applications effectively but also opened our eyes to the vast possibilities that lie ahead in the realm of advanced NLP, all made more attainable through MLflow.\\n\\n## What's next?\\n\\nIf you'd like to learn more about how MLflow and LangChain integrate, see the other [advanced tutorials for MLflow's LangChain flavor](https://www.mlflow.org/docs/latest/llms/langchain/index.html#advanced-tutorials).\"\n  }\n ],\n \"metadata\": {\n  \"kernelspec\": {\n   \"display_name\": \"Python 3 (ipykernel)\",\n   \"language\": \"python\",\n   \"name\": \"python3\"\n  },\n  \"language_info\": {\n   \"codemirror_mode\": {\n    \"name\": \"ipython\",\n    \"version\": 3\n   },\n   \"file_extension\": \".py\",\n   \"mimetype\": \"text/x-python\",\n   \"name\": \"python\",\n   \"nbconvert_exporter\": \"python\",\n   \"pygments_lexer\": \"ipython3\",\n   \"version\": \"3.8.13\"\n  }\n },\n \"nbformat\": 4,\n \"nbformat_minor\": 4\n}"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+      "kind": "File",
+      "path": "mlflow/store/tracking/abstract_store.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4876,
+      "excerpt": " can contain an optional\n                ``DESC`` or ``ASC`` value (e.g., ``\"name DESC\"``). The default ordering is ``ASC``,\n                so ``\"name\"`` is equivalent to ``\"name ASC\"``. If unspecified, defaults to\n                ``[\"last_update_time DESC\"]``, which lists experiments updated most recently first.\n                The following fields are supported:\n\n                - ``experiment_id``: Experiment ID\n                - ``name``: Experiment name\n                - ``creation_time``: Experiment creation time\n                - ``last_update_time``: Experiment last update time\n\n            page_token: Token specifying the next page of results. It should be obtained from\n                a ``search_experiments`` call.\n\n        Returns:\n            A :py:class:`PagedList <mlflow.store.entities.PagedList>` of\n            :py:class:`Experiment <mlflow.entities.Experiment>` objects. The pagination token\n            for the next page can be obtained via the ``token`` attribute of the object.\n\n        \"\"\"\n\n    @abstractmethod\n    def create_experiment(self, name, artifact_location, tags):\n        \"\"\"\n        Create a new experiment.\n        If an experiment with the given name already exists, throws exception.\n\n        Args:\n            name: Desired name for an experiment.\n            artifact_location: Base location for artifacts in runs. May be None.\n            tags: Experiment tags to set upon experiment creation\n\n        Returns:\n            experiment_id (string) for the newly created experiment if successful, else None.\n\n        \"\"\"\n\n    @abstractmethod\n    def get_experiment(self, experiment_id):\n        \"\"\"\n        Fetch the experiment by ID from the backend store.\n\n        Args:\n            experiment_id: String id for the experiment\n\n        Returns:\n            A single :py:class:`mlflow.entities.Experiment` object if it exists,\n            otherwise raises an exception.\n        \"\"\"\n\n    def get_experiment_by_name(self, experiment_name):\n        \"\"\"\n        Fetch the experiment by name from the backend store.\n\n        Args:\n            experiment_name: Name of experiment\n\n        Returns:\n            A single :py:class:`mlflow.entities.Experiment` object if it exists.\n        \"\"\"\n\n    @abstractmethod\n    def delete_experiment(self, experiment_id):\n        \"\"\"\n        Delete the experiment from the backend store. Deleted experiments can be rest"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26114",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26114,
+      "title": "[FR] Make the experiment run Columns selector resizable",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 655,
+      "excerpt": "crolling. Long column names are also truncated, requiring users to hover over individual entries to determine their full names. This is particularly noticeable on large, ultrawide, and high-resolution displays where significantly more screen space is available but cannot be used by the selector.\n\nI propose allowing users to resize the Columns selector horizontally and vertically on desktop.\n\nProposed behavior:\n\n- Preserve approximately the current dimensions as the initial/default size.\n- Allow the panel to be resized horizontally and vertically.\n- Constrain resizing to the available viewport/popover area.\n- Keep the column tree scrollable within the resized panel.\n- Preserve the existing mobile/full-width behavior and disable manual resizing on small screens.\n- Preserve existing search, keyboard navigation, column selection, and **Reset to defaults** behavior.\n\nThis would be a frontend-only enhancement to `ExperimentViewRunsColumnSelector` and would not require changes to experiment data or MLflow APIs.\n\nA previous MLflow change, https://github.com/mlflow/mlflow/pull/2388, addressed aggressive truncation in this selector by increasing its width and improving hover behavior. Allowing user-controlled sizing would avoid requiring another globally fixed size while adapting better to different display sizes and experiment configurations.\n\nI am willing to contribute the implementation.\n\n### Motivation\n\n#### What is the use case for this feature?\n\nWhen analyzing experiments with a large number of parameters and metrics, users frequently need to enable and disable columns in the experiment runs table.\n\nFor larger experiments, the list in the **Columns** selector can contain dozens or hundreds of entries. Many parameter and metric names can also be relatively long, particularly when configuration values are represented using hierarchical names such as:\n\n`synthetic_augmentation.generator.candidate_location...`\n\nThe current selector provides a relatively small fixed viewing area regardless of the available screen space. As a result, users must scroll through a small portion of the available column list and often hover over truncated entries to determine their complete names.\n\nAllowing the panel to be resized would let users temporarily expand the selector while configuring their experiment table and then return to the normal interface afterward.\n\n#### Why is this use "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26279",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26279,
+      "title": "[FR] Deterministic OWASP Agent Memory Guard trace scorer for memory-defense regression evaluation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3295,
+      "excerpt": " do not provide enough information to reconstruct AMG's stateful write/read/integrity lifecycle. A lifecycle or conformance scorer would require a canonical, versioned memory trace schema; until that exists, content scanning and lifecycle conformance should remain separate outputs.\n\n### Details\n\n## Proposed initial scope: content-level trace scanning\n\nFor each mapped, evaluation-permitted memory payload, the scorer would run `agent_memory_guard.scan` and emit separate code-assessment feedback:\n\n- `amg_memory_trace_scan` — normalized scanner findings for the observed payload; and\n- `amg_memory_evidence_coverage` — whether the mapped evidence was available and evaluable.\n\nThe scorer should be optional-dependency based, use MLflow code assessment feedback, and normalize results into stable, non-secret fields such as detector, severity, action, operation, opaque key identifier, count, AMG version, and trace-schema version. It should not place raw payloads, raw keys, arbitrary span metadata, timestamps, UUIDs/event IDs, or measured latency in feedback metadata or rationales.\n\nThe trace mapping should be opt-in and versioned. Missing, redacted, hashed, encrypted/unavailable, malformed, or evaluation-disallowed payloads must produce an explicit `not_evaluable` result rather than a false clean result.\n\n## Synthetic fixtures and determinism\n\nAny contribution should use only synthetic, nonconfidential traces and fixtures:\n\n1. a clean mapped memory payload;\n2. a synthetic prompt-injection-like memory payload;\n3. a synthetic sensitive-data-like payload using placeholders, not real secrets;\n4. missing, redacted, and hashed/unavailable cases asserting `not_evaluable`;\n5. a malicious-looking final output outside a mapped memory span, asserting no memory-scan result; and\n6. repeat-run tests proving identical score, rationale, and stable metadata for the same trace.\n\nTests should also confirm that feedback never echoes the synthetic sensitive payload. An end-to-end `mlflow.genai.evaluate()` example could log the separate scan and evidence-coverage feedbacks for a trace-backed synthetic dataset.\n\n## Deliberately deferred lifecycle/conformance scoring\n\nI do **not** propose reconstructing AMG's stateful write/read/integrity lifecycle from generic traces in the first increment. A later lifecycle or conformance scorer would need a maintainer-approved canonical memory trace schema"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26321",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26321,
+      "title": "[BUG] Retriever metrics reject NumPy int32 document IDs and omit all evaluation scores",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2061,
+      "excerpt": "alse                  True\nint16   False                  True\nint32   False                  True\nint64   True                   True\n```\n\nThe [NumPy documentation](https://numpy.org/doc/stable/reference/generated/numpy.issubdtype.html) demonstrates `np.integer` for recognizing an `int32` array. A proposed narrow fix is to use the integer family in the ndarray branch, preserving the existing string branch and rejection of floating-point IDs. No public API or dependency change is needed. I can contribute the fix and regression tests once this issue is triaged and the approach is accepted.\n\nThese are legacy metrics deprecated since MLflow 3.4.0; this report concerns their currently documented behavior and does not propose a new evaluation API. The existing NDCG issue #24541 / PR #26125 concerns normalization when fewer than k documents are retrieved. This reproduction retrieves exactly k documents and fails before any score calculation, so it is separate.\n\nPrepared and tested with the help of Codex.\n\n### Tracking information\n\nThe minimal metric reproduction does not access a tracking backend. The end-to-end check used a temporary local SQLite database and local artifact files, without a tracking server.\n\n### Code to reproduce issue\n\n```python\nimport mlflow\nimport numpy as np\nimport pandas as pd\nfrom mlflow.metrics import ndcg_at_k, precision_at_k, recall_at_k\n\nprint(\"MLflow:\", mlflow.__version__)\nfor metric_factory in (precision_at_k, recall_at_k, ndcg_at_k):\n    metric = metric_factory(2)\n    for dtype in (np.int64, np.int32):\n        predictions = pd.Series([np.array([1, 2], dtype=dtype)])\n        targets = pd.Series([np.array([1, 2], dtype=dtype)])\n        result = metric.eval_fn(predictions, targets)\n        print(metric_factory.__name__, np.dtype(dtype),\n              None if result is None else result.scores)\n```\n\nExpected: `[1.0]` for both dtypes and all three metrics.\n\nActual:\n\n```text\nprecision_at_k int64 [1.0]\nprecision_at_k int32 None\nrecall_at_k int64 [1.0]\nrecall_at_k int32 None\nndcg_at_k int64 [1.0]\nndcg_at_k int32 None\n```\n\n### Stack trace\n\nNo exception is raised; the metrics return `None`. The validator logs this warning for each metric (shown for precision):\n\n```text\nWARNING mlflow.metrics.metric_definitions: Cannot calculate metric 'precision_at_k' for non-arraylike of string or int inputs. Non-arraylike of strings/ints found for the column "
+    }
+  ]
+}

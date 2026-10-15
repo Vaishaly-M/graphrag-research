@@ -1,0 +1,84 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)<-[:DL_AUTHORED_COMMIT]-(d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(other:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND c<>other AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id)+collect(DISTINCT d.id)+collect(DISTINCT other.id) AS evidence RETURN b.path AS entity,b.path+': '+split(b.content,'\\n')[0] AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "path": "Directory.Build.targets"
+  },
+  "rows": [
+    {
+      "entity": "Directory.Build.props",
+      "fact": "Directory.Build.props: <Project>",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Build.targets",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:55f0116146ebc3b4b7d451d4ec421800d32cb249",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:74f15b15cda981e22c04f2ee43a3b56028f1f932",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:eric.erhardt@microsoft.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:4fa8e426011360c12df8ef2d470ebd1d95d7e183",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:74f15b15cda981e22c04f2ee43a3b56028f1f932",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:e9ef88f1cd41c5a3c9d1af3d7f02f212c43a3ea8",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Build.props"
+      ]
+    },
+    {
+      "entity": "Directory.Packages.props",
+      "fact": "Directory.Packages.props: <Project>",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Build.targets",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:55f0116146ebc3b4b7d451d4ec421800d32cb249",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:74f15b15cda981e22c04f2ee43a3b56028f1f932",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:eric.erhardt@microsoft.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1acac04d4ad4247b6661103676718850e580c40b",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1b2698cd83ed5c9e00a2fa954f2586c87022c431",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1c90ec9ca81049409cf887291f455a33d2a7a8f5",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1e803b09ba8caa3702f037deac837fab956abe33",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:4fa8e426011360c12df8ef2d470ebd1d95d7e183",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:74f15b15cda981e22c04f2ee43a3b56028f1f932",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:b81ad9557090cc37233b9d1a0a729db7b44b6f14",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:e9ef88f1cd41c5a3c9d1af3d7f02f212c43a3ea8",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:ff80e3fd6522faa63b66b54bb6d564ccf13742de",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:55f0116146ebc3b4b7d451d4ec421800d32cb249",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Packages.props"
+      ]
+    },
+    {
+      "entity": "eShop.Web.slnf",
+      "fact": "eShop.Web.slnf: {",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Build.targets",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:55f0116146ebc3b4b7d451d4ec421800d32cb249",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:74f15b15cda981e22c04f2ee43a3b56028f1f932",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:eric.erhardt@microsoft.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1c90ec9ca81049409cf887291f455a33d2a7a8f5",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.Web.slnf"
+      ]
+    },
+    {
+      "entity": "eShop.slnx",
+      "fact": "eShop.slnx: <Solution>",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Build.targets",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:55f0116146ebc3b4b7d451d4ec421800d32cb249",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:74f15b15cda981e22c04f2ee43a3b56028f1f932",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:eric.erhardt@microsoft.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1c90ec9ca81049409cf887291f455a33d2a7a8f5",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.slnx"
+      ]
+    },
+    {
+      "entity": "global.json",
+      "fact": "global.json: {",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:Directory.Build.targets",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:55f0116146ebc3b4b7d451d4ec421800d32cb249",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:74f15b15cda981e22c04f2ee43a3b56028f1f932",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:eric.erhardt@microsoft.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1acac04d4ad4247b6661103676718850e580c40b",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:63e82c9e75b1a50cd28499240fcbc2942bdc6939",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:e9ef88f1cd41c5a3c9d1af3d7f02f212c43a3ea8",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:global.json"
+      ]
+    }
+  ]
+}

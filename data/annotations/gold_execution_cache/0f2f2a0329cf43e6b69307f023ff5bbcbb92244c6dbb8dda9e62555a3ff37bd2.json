@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_HAS_ISSUE]->(n:DLIssue) WHERE r.dataset=$dataset AND r.repo=$repo AND n.number=$value RETURN n.title AS entity,n.title AS fact,[r.id,n.id] AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "value": 221
+  },
+  "rows": [
+    {
+      "entity": "Proper documentation required ...",
+      "fact": "Proper documentation required ...",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:repository:spring-projects/spring-petclinic",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:221"
+      ]
+    }
+  ]
+}

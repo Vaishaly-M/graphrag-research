@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/microsoft/azure/docs/changelog.rst",
+        "path": "providers/microsoft/azure/docs/changelog.rst",
+        "offset": 63468,
+        "line": 1877
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/authoring-and-scheduling/language-sdks/go.rst",
+        "path": "airflow-core/docs/authoring-and-scheduling/language-sdks/go.rst",
+        "offset": 2949,
+        "line": 63
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/ci/04_selective_checks.md",
+        "path": "dev/breeze/doc/ci/04_selective_checks.md",
+        "offset": 40920,
+        "line": 549
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/12_provider_distributions.rst",
+        "path": "contributing-docs/12_provider_distributions.rst",
+        "offset": 9156,
+        "line": 180
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/apache/spark/docs/changelog.rst",
+        "path": "providers/apache/spark/docs/changelog.rst",
+        "offset": 13029,
+        "line": 407
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 77707,
+        "line": 1624
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/adr/0004-dag-parsing.md",
+        "path": "java-sdk/adr/0004-dag-parsing.md",
+        "offset": 7953,
+        "line": 102
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:pullrequest:74689",
+        "path": null,
+        "offset": 12461,
+        "line": 156
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/authoring-and-scheduling/language-sdks/go.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/authoring-and-scheduling/language-sdks/go.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2949,
+      "excerpt": "ng them again in Go. Those are\n  exactly the features the Edge Worker path is still missing.\n* **Edge Worker.** A long-running Go process (``airflow-go-edge-worker``) polls Airflow for work and runs\n  your bundle, with no Python in the data path. It runs end-to-end today but is missing the features listed\n  under :ref:`go-sdk/limitations`.\n\nThe rest of this guide covers the recommended coordinator path; see :ref:`go-sdk/edge-worker` for a summary\nof the Edge Worker.\n\nQuick start\n-----------\n\nThe following example shows the minimal moving parts: a Python Dag with two stub tasks, and a Go\nimplementation of those tasks.\n\nPython Dag (the scheduling side)\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n.. code-block:: python\n\n    from airflow.sdk import dag, task\n\n\n    @dag\n    def simple_dag():\n        @task.stub(queue=\"golang\")\n        def extract(): ...\n\n        @task.stub(queue=\"golang\")\n        def transform(): ...\n\n        extract() >> transform()\n\n\n    simple_dag()\n\n``@task.stub`` declares the *shape* of the Go tasks (their names and dependencies) without any Python\nimplementation. The ``queue`` value routes the task to the Go coordinator.\n\nGo implementation\n~~~~~~~~~~~~~~~~~~\n\nA task is an ordinary Go function. The runtime inspects its signature and injects arguments by type, so each\ntask declares only the parameters it needs.\n\n.. code-block:: go\n\n    import (\n        \"log/slog\"\n        \"runtime\"\n\n        \"github.com/apache/airflow/go-sdk/sdk\"\n    )\n\n    func extract(ctx sdk.TIRunContext, client sdk.Client, log *slog.Logger) (any, error) {\n        conn, err := client.GetConnection(ctx, \"test_http\")\n        if err != nil {\n            return nil, err\n        }\n        log.Info(\"fetched connection\", \"host\", conn.Host)\n        // ... do work, honour ctx cancellation ...\n        return map[string]any{\"go_version\": runtime.Version()}, nil\n    }\n\n    func transform(ctx sdk.TIRunContext, client sdk.VariableClient, log *slog.Logger) error {\n        val, err := client.GetVariable(ctx, \"my_variable\")\n        if err != nil {\n            return err\n        }\n        log.Info(\"obtained variable\", \"my_variable\", val)\n        return nil\n    }\n\n.. note::\n\n  As with the other language SDKs, XCom *dependencies* are declared in the Python stub Dag (they define task\n  order). The value must still be read explicitly in Go via ``client.GetXCom``, and produced either by the\n  task's ``(any"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/12_provider_distributions.rst",
+      "kind": "File",
+      "path": "contributing-docs/12_provider_distributions.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9156,
+      "excerpt": " extraction under ``/opt`` or ``/tmp``, and\n   env-var exports. Maintainers reviewing the manifest only need to verify that the URL and\n   ``sha256`` belong to a trusted upstream — the provider cannot run arbitrary shell, pipe\n   ``curl`` into ``bash``, exfiltrate secrets, or write outside the allowlisted prefixes:\n\n   .. code:: yaml\n\n       # providers/ibm/mq/pre_extras_install.yaml\n       downloads:\n         - url: https://public.dhe.ibm.com/.../9.4.0.0-IBM-MQC-Redist-LinuxX64.tar.gz\n           sha256: <64 lowercase hex chars>\n           extract_to: /opt/mqm\n           fallback_ips:                # optional, see schema below\n             - 170.225.126.18\n       env:\n         MQ_FILE_PATH: /opt/mqm\n\n   Schema (all fields required where listed):\n\n   - ``downloads`` (optional list): each entry has ``url`` (must start with ``https://``),\n     ``sha256`` (64 lowercase hex chars), and ``extract_to`` (must start with ``/opt/`` or\n     ``/tmp/`` and may not contain ``..``). Supported archive formats are ``.tar``,\n     ``.tar.gz``/``.tgz`` and ``.zip``; the extractor refuses any entry whose resolved path\n     escapes ``extract_to``.\n\n     Each ``downloads`` entry may also include ``fallback_ips`` (optional list of IPv4 or\n     IPv6 address strings). The interpreter tries the URL with normal DNS resolution first;\n     only on connection or resolution failure does it retry the same URL with each listed\n     IP, in order, by temporarily overriding ``socket.getaddrinfo`` for the hostname. The\n     TLS SNI and certificate verification stay bound to the URL hostname, and the\n     ``sha256`` check still runs end-to-end on whichever attempt succeeds, so a fallback\n     entry only changes *which IP is dialled*, not what is trusted. Use this when the\n     upstream publishes anycast IPs (e.g. IBM's notice at\n     https://www.ibm.com/support/pages/node/6826677) and the CI test container has been\n     observed to fail DNS resolution for that host.\n   - ``env`` (optional mapping): each name must match ``^[A-Z][A-Z0-9_]*$``, each value must\n     be a string. The interpreter writes ``export NAME='value'`` lines that the entrypoint\n     hook sources into the shell that subsequently runs ``uv sync --all-extras``.\n\n   Any unknown top-level or per-entry key is a hard error.\n\n4. **Mock the module in unit tests** by injecting ``sys.modules[\"<module>\"] = MagicMock()`` in\n   the provider"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 77707,
+      "excerpt": "commit again.\nYou can also add  `-m \"undeleted file\"` to the `svn copy` to commit in 1 step.\n\nThen remove from svn the files of the new provider version that you wanted to exclude from release.\nIf you had this issue you will need also to make adjustments in the next step to remove the provider from listed in twine check.\nThis is simply by removing the relevant files locally.\n\n\n## Publish the packages to PyPI\n\n> [!NOTE]\n> Under the [delegated process](#delegating-release-duties-to-a-non-pmc-committer) this final PyPI\n> upload is owned by the **PMC member**, using the same trusted publishing identity as the RC upload\n> — it is not delegated.\n\nBy that time the packages should be in your dist folder.\n\n```shell script\ncd \"$AIRFLOW_REPO_ROOT\"\ngit checkout providers/${RELEASE_DATE}\n```\n\nexample `git checkout providers/2025-10-31`\n\nNote you probably will see message `You are in 'detached HEAD' state.`\nThis is expected, the RC tag is most likely behind the main branch.\n\n* Remove source artifact:\n\n```shell script\nrm dist/apache_airflow_providers-${RELEASE_DATE}-source.tar.gz\n```\n\n* Verify the artifacts that would be uploaded:\n\n```shell script\ntwine check ${AIRFLOW_REPO_ROOT}/dist/*.whl ${AIRFLOW_REPO_ROOT}/dist/*.tar.gz\n```\n\n* Configure a short-lived PyPI token for this upload only. **Until Trusted\n  Publishing is deployed for the Airflow provider distributions on PyPI**,\n  the recommended practice is:\n\n  1. Log in to https://pypi.org and create an API token right before the\n     upload step. **Scope caveat:** you would ideally create a\n     project-scoped token, but PyPI only allows project-scoped tokens for\n     projects you already own/maintain on that account. Most Airflow\n     release managers do not have per-project owner rights on every\n     provider being released, so in practice you will need to create an\n     account-wide (\"all projects\") token. That is acceptable **only if**\n     you treat it as single-use and delete it immediately after the upload\n     (step 4 below). Never keep an all-projects token on disk longer than\n     the upload itself.\n  2. Put it in `~/.pypirc` (or export as `TWINE_USERNAME=__token__`\n     `TWINE_PASSWORD=pypi-...`).\n  3. Run the upload (below).\n  4. **Immediately delete the token** from the PyPI web UI after the upload\n     completes. Do not keep long-lived release-manager tokens on disk.\n\n  This is a defence-in-depth practice: t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/ci/04_selective_checks.md",
+      "kind": "File",
+      "path": "dev/breeze/doc/ci/04_selective_checks.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 40920,
+      "excerpt": "        | Whether to include outputs of successful parallel tests (\"true\"/\"false\")                                | false                                    |      |\n| individual-providers-test-types-list-as-strings-in-json | Which test types should be run for unit tests for providers (individually listed)                       | Providers[\\amazon\\] Providers\\[google\\]  | *    |\n| is-committer-build                                      | Whether the build is triggered by a committer                                                           | false                                    |      |\n| is-legacy-ui-api-labeled                                | Whether the PR is labeled as legacy UI/API                                                              | false                                    |      |\n| java-sdk-version                                        | JDK version used to build the lang-SDK Java artifacts natively in CI                                     | 17                                       |      |\n| kind-version                                            | Which Kind version to use for tests                                                                     | v0.24.0                                  |      |\n| kubernetes-combos-list-as-string                        | All combinations of Python version and Kubernetes version to use for tests as space-separated string    | 3.10-v1.25.2 3.11-v1.28.13               | *    |\n| kubernetes-versions                                     | All Kubernetes versions to use for tests as JSON array                                                  | \\['v1.25.2'\\]                            |      |\n| kubernetes-versions-list-as-string                      | All Kubernetes versions to use for tests as space-separated string                                      | v1.25.2                                  | *    |\n| latest-versions-only                                    | If set, the number of Python, Kubernetes, DB versions will be limited to the latest ones.               | false                                    |      |\n| mypy-checks                                             | List of folders to be considered for mypy checks                                                        | \\[\"airflow_aux\", \"airflow_core\"\\]        |      |\n| mysql-exclude                                           | Which version"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/adr/0004-dag-parsing.md",
+      "kind": "File",
+      "path": "java-sdk/adr/0004-dag-parsing.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7953,
+      "excerpt": "s are generated from OpenAPI specs). That approach was abandoned because the generated types miss the wrapping/unwrapping rules that distinguish \"decorated\" fields (kept as `{\"__type\", \"__var\"}`) from \"non-decorated\" fields (unwrapped to the bare value), as well as the timetable/task encoding rules listed below. Wiring an extra translation layer on top of generated types added more code than implementing the serializer directly per language.\n\n**Compatibility strategy.** Each language SDK ships its own serializer plus a cross-SDK validator:\n\n- A shared `test_dags.yaml` defines logical fixtures.\n- Python emits `serialized_python.json` via `DagSerialization.serialize_dag()`.\n- Each language SDK emits `serialized_<lang>.json` via its own serializer.\n- `compare.py` does a field-by-field comparison and fails on divergence.\n\nThis validator is planned to run as a CI gate (PR #65959). A complementary direction (suggested by reviewers, deferred): publish JSON schemas for the IPC envelope types themselves (`DagFileParsingResult`, `StartupDetails`, `TaskInstance`), which are currently undocumented because they were Python-to-Python only. That work is out of scope for the Java SDK PR but is a sensible next step once a second language SDK is in tree.\n\n### What the Base Class Handles Automatically\n\nThe matched coordinator's `run_dag_parsing()` (a concrete method on `BaseCoordinator`) delegates to `_runtime_subprocess_entrypoint()`, which handles all the TCP/process plumbing:\n\n1. Creates two TCP servers on `127.0.0.1` with random ports (comm + logs)\n2. Creates a stderr socketpair\n3. Calls `dag_parsing_cmd()` to get the command\n4. Spawns the subprocess with `stdin=DEVNULL` (does NOT inherit fd 0)\n5. Accepts TCP connections from the subprocess\n6. Wraps fd 0 as `supervisor_comm` via `os.dup(0)`\n7. Runs `_bridge()` — a raw byte forwarder between fd 0 and the TCP comm socket\n\n### Expected E2E Flow\n\n```\nAirflow Dag-Processor\n  │\n  ▼\nDagFileProcessorProcess.start(path, bundle_name, bundle_path)\n  │\n  ├─ _resolve_processor_target()\n  │   └─ iterates instances from [sdk] coordinators (airflow.cfg)\n  │   └─ first can_handle_dag_file() == True wins\n  │\n  ▼\nWatchedSubprocess.start(target=coordinator.run_dag_parsing)\n  │\n  [fork — child process gets fd 0 as Unix domain socket to supervisor]\n  │\n  ▼ (in child)\n<Lang>Coordinator.run_dag_parsing(path, bundle_name, bundle_path)\n  │\n  ▼\nBase"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/apache/spark/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/apache/spark/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13029,
+      "excerpt": "es, parameters and features have been removed from the Apache Spark provider package.\n  The following breaking changes were introduced:\n\n  * Operators\n\n    * Removed ``_sql()`` support for SparkSqlOperator. Please use ``sql`` attribute instead. ``_sql`` was\n      introduced in 2016 and since it was listed as templated field, which is no longer the case, we\n      handled it as public api despite the ``_`` prefix that marked it as private.\n\n* ``Remove deprecated code from apache spark provider (#44567)``\n\nMisc\n~~~~\n\n* ``Bump minimum Airflow version in providers to Airflow 2.9.0 (#44956)``\n* ``Fix failing mypy check on 'main' (#44191)``\n* ``spark-submit: replace 'principle' by 'principal' (#44150)``\n* ``Update DAG example links in multiple providers documents (#44034)``\n\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Use Python 3.9 as target version for Ruff & Black rules (#44298)``\n   * ``Update path of example dags in docs (#45069)``\n\n4.11.3\n......\n\nMisc\n~~~~\n\n* ``Move python operator to Standard provider (#42081)``\n\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n\n4.11.2\n......\n\nBug Fixes\n~~~~~~~~~\n\n* ``Changed conf property from str to dict in SparkSqlOperator (#42835)``\n\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Split providers out of the main \"airflow/\" tree into a UV workspace project (#42505)``\n\n4.11.1\n......\n\nMisc\n~~~~\n\n* ``Refactor function resolve_kerberos_principal (#42777)``\n\n4.11.0\n......\n\nFeatures\n~~~~~~~~\n\n* ``Add kerberos related connection fields(principal, keytab) on SparkSubmitHook (#40757)``\n\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n\n4.10.0\n......\n\n.. note::\n  This release of provider is only available for Airflow 2.8+ as explained in the\n  `Apache Airflow providers support policy <https://github.com/apache/airflow/blob/main/PROVIDERS.rst#minimum-supported-version-of-airflow-for-community-managed-providers>`_.\n\nMisc\n~~~~\n\n* ``Bump minimum Airflow version in providers to Airflow 2.8.0 (#41396)``\n* ``Resolve 'AirflowProviderDeprecationWarning' in 'SparkSqlOperator' (#41358)``\n\n4.9.0\n.."
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/microsoft/azure/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/microsoft/azure/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 63468,
+      "excerpt": "Hook (#18203)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Updating miscellaneous provider DAGs to use TaskFlow API where applicable (#18278)``\n\nMain\n....\n\nChanges in operators names and import paths are listed in the following table\nThis is a backward compatible change. Deprecated operators will be removed in the next major release.\n\n+------------------------------------+--------------------+---------------------------------------------------------+--------------------------------------------------+\n| Deprecated operator name           | New operator name  | Deprecated path                                         | New path                                         |\n+------------------------------------+--------------------+---------------------------------------------------------+--------------------------------------------------+\n| AzureDataLakeStorageListOperator   | ADLSListOperator   | airflow.providers.microsoft.azure.operators.adls_list   | airflow.providers.microsoft.azure.operators.adls |\n+------------------------------------+--------------------+---------------------------------------------------------+--------------------------------------------------+\n| AzureDataLakeStorageDeleteOperator | ADLSDeleteOperator | airflow.providers.microsoft.azure.operators.adls_delete | airflow.providers.microsoft.azure.operators.adls |\n+------------------------------------+--------------------+---------------------------------------------------------+--------------------------------------------------+\n\n3.1.1\n.....\n\nMisc\n~~~~\n\n* ``Optimise connection importing for Airflow 2.2.0``\n* ``Adds secrets backend/logging/auth information to provider yaml (#17625)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Update description about the new ''connection-types'' provider meta-data (#17767)``\n   * ``Import Hooks lazily individually in providers manager (#17682)``\n\n3.1.0\n.....\n\nFeatures\n~~~~~~~~\n\n* ``Add support for managed identity in WASB hook (#16628)``\n* ``Reduce log messages for happy path (#16626)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``Fix multiple issues in Microsoft AzureContainerInstancesOperator (#15634)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:pullrequest:74689",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 74689,
+      "title": "Add static check to keep @task decorator type hints in sync with their operators",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12461,
+      "excerpt": "p.\n- **Options shared by every operator** (`task_id`, `retries`, `pool`, …). The typing entries deliberately accept these through their trailing `**kwargs` instead of listing about 55 options in every entry. The check keeps that convention: it stops at `BaseOperator`, and it reports a shared option listed in a single entry as unexpected.\n- **`@task.run_if` and `@task.skip_if`.** They wrap another task rather than creating an operator, and their signatures are defined in the Task SDK itself.\n- **Decorators from providers outside this repository.** They still work at runtime, but this repository's typing file can't describe them.\n- **Options an operator reads from `**kwargs` without declaring them.** This happens in 3 operator classes across the providers (two Databricks sensors and one Cloud Composer sensor). None of them has a decorator today.\n- **Other decorator families**, such as `@dag`, `@task_group` and `@asset`.\n\n## Impact on CI and pre-commit\n\n- **CI:** the static checks job already runs `prek --all-files`, so this is one more hook taking about 2 seconds. It needs no Breeze image and imports no provider code.\n- **Local commits:** the hook uses `always_run: true`, so it runs on every commit, adding about 2 seconds. This is needed because deleted files are not passed to hooks, and removing a decorator's files would otherwise go unnoticed. The check always scans all decorators, because a change to one shared file, such as `PythonOperator`, the decorator factory or the typing file itself, can affect decorators in several providers.\n- **When it can block a PR:** when that PR leaves the typing file out of sync, which is the intended case. It can also block a PR when two open PRs each pass on their own but conflict once both are merged. For example, open PR #72033 registers a new `@task.eks_pod` decorator without a typing entry, so whichever of the two PRs merges second will need to add that entry. The error message lists exactly what to add.\n- **Coverage today:** all 25 `@task.<name>` decorators across 8 providers. Every module that builds a decorator with the shared factory is registered in a `provider.yaml`, so nothing is left unchecked.\n\n## Question for reviewers: newsfragment?\n\nThe typing changes alter what type checkers accept for `@task.<name>` calls. Twelve decorators now have typed signatures, and options the decorators don't accept were removed. Ru"
+    }
+  ]
+}

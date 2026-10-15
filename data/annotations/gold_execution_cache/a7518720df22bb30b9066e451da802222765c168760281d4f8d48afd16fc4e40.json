@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 70935,
+        "line": 37
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deployment/deploy-model-to-modal/index.mdx",
+        "path": "docs/docs/classic-ml/deployment/deploy-model-to-modal/index.mdx",
+        "offset": 10757,
+        "line": 305
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+        "path": "mlflow/environment_variables.py",
+        "offset": 29835,
+        "line": 668
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+        "path": "examples/llms/RAG/_cache.json",
+        "offset": 26968,
+        "line": 141
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:libs/typescript/scripts/check-min-mlflow-deps.sh",
+        "path": "libs/typescript/scripts/check-min-mlflow-deps.sh",
+        "offset": 453,
+        "line": 8
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/docstring_utils.py",
+        "path": "mlflow/utils/docstring_utils.py",
+        "offset": 11317,
+        "line": 297
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/models/utils.py",
+        "path": "mlflow/models/utils.py",
+        "offset": 26465,
+        "line": 732
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 3462,
+        "line": 77
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deployment/deploy-model-to-modal/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deployment/deploy-model-to-modal/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10757,
+      "excerpt": "w.server.cli\" hash=\"mlflow-deployments\">CLI Reference</APILink>\n- <APILink fn=\"mlflow.deployments\">Python API Documentation</APILink>\n\n## Useful Links \\{#deployment-modal-references}\n\n- [mlflow-modal-deploy GitHub Repository](https://github.com/debu-sinha/mlflow-modal-deploy) -\n  Source code, issue tracker, and contribution guidelines.\n- [Modal Documentation](https://modal.com/docs) -\n  Comprehensive Modal platform documentation.\n- [Modal GPU Guide](https://modal.com/docs/guide/gpu) -\n  Detailed information on GPU types and configuration.\n- [MLflow Model Format](/ml/model) -\n  Understanding MLflow model packaging and flavors.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3462,
+      "excerpt": " UTC ISO 8601 format.\n- `run_id`: ID of the run that created the model, if the model was saved using [tracking](/ml/tracking).\n- `signature`: [model signature](/ml/model/signatures) in JSON format.\n- `input_example`: reference to an artifact with [input example](/ml/model/signatures).\n- `databricks_runtime`: Databricks runtime version and type, if the model was trained in a Databricks notebook or job.\n- `mlflow_version`: The version of MLflow that was used to log the model.\n\n### Additional Logged Files\n\nFor environment recreation, we automatically log `conda.yaml`, `python_env.yaml`, and `requirements.txt` files whenever a model is logged.\nThese files can then be used to reinstall dependencies using `conda` or `virtualenv` with `pip`. Please see\n[How MLflow Model Records Dependencies](/ml/model/dependencies#how-mlflow-records-dependencies) for more details about these files.\n\nIf a model input example is provided when logging the model, two additional files `input_example.json` and `serving_input_example.json` are logged.\nSee [Model Input Example](/ml/model/signatures) for more details.\n\nWhen logging a model, model metadata files (`MLmodel`, `conda.yaml`, `python_env.yaml`, `requirements.txt`) are copied to a subdirectory named `metadata`.\nFor wheeled models, `original_requirements.txt` file is also copied.\n\n:::note\nWhen a model registered in the MLflow Model Registry is downloaded, a YAML file named\n`registered_model_meta` is added to the model directory on the downloader's side.\nThis file contains the name and version of the model referenced in the MLflow Model Registry,\nand will be used for deployment and other purposes.\n:::\n\n:::warning[attention]\nIf you log a model within Databricks, MLflow also creates a `metadata` subdirectory within\nthe model directory. This subdirectory contains the lightweight copy of aforementioned\nmetadata files for internal use.\n:::\n\n### Environment variables file\n\nMLflow records the environment variables that are used during model inference in `environment_variables.txt`\nfile when logging a model.\n\n:::warning[attention]\n`environment_variables.txt` file **only contains names** of the environment variables that are used during\nmodel inference, **values are not stored**.\n:::\n\nCurrently MLflow only logs the environment variables whose name contains any of the following keywords:\n\n```python\nRECORD_ENV_VAR_ALLOWLIST = {\n    # api key r"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+      "kind": "File",
+      "path": "examples/llms/RAG/_cache.json",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26968,
+      "excerpt": "the following fields: time_createdDate and time when the model was created, in UTC ISO 8601 format. run_idID of the run that created the model, if the model was saved using MLflow Tracking. signaturemodel signature in JSON format. input_examplereference to an artifact with input example. databricks_runtimeDatabricks runtime version and type, if the model was trained in a Databricks notebook or job. mlflow_versionThe version of MLflow that was used to log the model. Additional Logged Files For environment recreation, we automatically log conda.yaml, python_env.yaml, and requirements.txt files whenever a model is logged. These files can then be used to reinstall dependencies using conda or virtualenv with pip. Note Anaconda Inc. updated their terms of service for\\\\n    \\\\n    Please call the submit_function function to submit the generated question and answer.\\\\n    \\\"}], \\\"model\\\": \\\"gpt-3.5-turbo\\\", \\\"functions\\\": [{\\\"name\\\": \\\"submit_function\\\", \\\"description\\\": \\\"Call this function to submit the generated question and answer.\\\", \\\"parameters\\\": {\\\"type\\\": \\\"object\\\", \\\"properties\\\": {\\\"question\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The question asking for the key information in the given paragraph.\\\"}, \\\"answer\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The answer to the question using the information in the given paragraph.\\\"}}, \\\"required\\\": [\\\"question\\\", \\\"answer\\\"]}}], \\\"function_call\\\": \\\"auto\\\", \\\"temperature\\\": 0.0, \\\"seed\\\": 2023}\": {\n    \"id\": \"chatcmpl-8NPvELIPSgpg610gGtWVqM3W1mVL8\",\n    \"object\": \"chat.completion\",\n    \"created\": 1700591880,\n    \"model\": \"gpt-3.5-turbo-0613\",\n    \"choices\": [\n      {\n        \"index\": 0,\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": null,\n          \"function_call\": {\n            \"name\": \"submit_function\",\n            \"arguments\": \"{\\n  \\\"question\\\": \\\"What are the fields that can be contained in the MLmodel YAML format?\\\",\\n  \\\"answer\\\": \\\"The MLmodel YAML format can contain the following fields: time_created (date and time when the model was created), run_id (ID of the run that created the model), signature (model signature in JSON format), input_example (reference to an artifact with input example), databricks_runtime (Databricks runtime version and type, if the model was trained in a Databricks notebook or job), and mlflow_version (the version of MLflow that was used to log"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 70935,
+      "excerpt": " from Docker Hub if it's not present locally, and a new image is built based on it. The project is executed in a container created from this image. Command Syntax When specifying an entry point in an MLproject file, the command can be any string in Python format string syntax. All of the parameters declared in the entry point's parameters field are passed into this string for substitution. If you call the\",9,projects.html\nHow does MLflow run a Project on Kubernetes?,\"MLflow runs a Project on Kubernetes by pushing the new Project image to a specified Docker registry and starting a Kubernetes Job on a specified Kubernetes cluster. The Kubernetes Job then downloads the Project image and starts a corresponding Docker container. Finally, the container invokes the Project's entry point, logging parameters, tags, metrics, and artifacts to the MLflow tracking server.\",\"Docker environment. MLflow then pushes the new Project image to your specified Docker registry and starts a Kubernetes Job on your specified Kubernetes cluster. This Kubernetes Job downloads the Project image and starts a corresponding Docker container. Finally, the container invokes your Project's entry point, logging parameters, tags, metrics, and artifacts to your MLflow tracking server. Execution guide You can run your MLflow Project on Kubernetes by following these steps: Add a Docker environment to your MLflow Project, if one does not already exist. For reference, see Specifying an Environment. Create a backend configuration JSON file with the following entries: kube-context The Kubernetes context where MLflow will run the job. If not provided, MLflow will use the current context. If no context is available, MLflow will assume it is running in a Kubernetes cluster and it will use the Kubernetes service account running the current pod ('in-cluster' configuration). repository-uri The URI of the docker repository where the Project execution Docker image will be uploaded (pushed). Your Kubernetes cluster must have access to this repository in order to run your MLflow Project. kube-job-template-path The path to a YAML configuration file for your Kubernetes Job - a Kubernetes Job Spec. MLflow reads the Job Spec and replaces certain fields to facilitate job execution and monitoring; MLflow does not modify the original template file. For more information about writing\",14,projects.html\nWhat fields are r"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:libs/typescript/scripts/check-min-mlflow-deps.sh",
+      "kind": "File",
+      "path": "libs/typescript/scripts/check-min-mlflow-deps.sh",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 453,
+      "excerpt": "ss every CI gate -- while a\n# user running `npm install @mlflow/opencode @mlflow/core` gets the published\n# floor, where the symbol is missing, and crashes at runtime (see mlflow#24167).\n#\n# This gate reproduces the user's install: for each @mlflow/* dependency, it\n# resolves the lowest version the declared range allows, installs that published\n# version into the integration's own node_modules (shadowing the symlink), and\n# runs `tsc --noEmit`. A newer-than-floor symbol becomes a hard compile error.\n#\n# To stay immune to unrelated noise (a third-party module missing from a local\n# sandbox, a pre-existing type error), it type-checks TWICE -- once against\n# workspace-latest (the baseline) and once against the floor -- and treats only\n# errors that appear *exclusively* against the floor as floor violations. The\n# source is identical between runs, so error lines match exactly and a plain\n# set-difference isolates the version-specific breakage.\nset -euo pipefail\n\ncd \"$(dirname \"$0\")/..\"\nROOT=\"$PWD\"\nTSC=\"$ROOT/node_modules/.bin/tsc\"\nALLOWLIST=\"$ROOT/scripts/known-floor-violations.txt\"\n\n# Integrations grandfathered in: they violate the floor today (same class as\n# mlflow#24167) but must not fail the gate yet. New violations still fail.\nis_allowlisted() {\n  [[ -f \"$ALLOWLIST\" ]] || return 1\n  grep -vE '^[[:space:]]*(#|$)' \"$ALLOWLIST\" | grep -qxF \"$1\"\n}\n\n# Append markdown to the GitHub Actions run summary when available (a no-op\n# locally). Renders a result table on the run's page needing no token.\nsummary() {\n  [[ -n \"${GITHUB_STEP_SUMMARY:-}\" ]] && printf '%s\\n' \"$1\" >> \"$GITHUB_STEP_SUMMARY\"\n  return 0\n}\n\nnew_failures=()      # not allowlisted -> fail the build\nknown_failures=()    # allowlisted -> reported only\nstale_allowlist=()   # allowlisted but now passing -> fail, asking to remove\nsummary \"### Minimum-version floor check\"\nsummary \"| Integration | Result |\"\nsummary \"| --- | --- |\"\n\nfor pkg_json in integrations/*/package.json; do\n  dir=\"$(dirname \"$pkg_json\")\"\n  slug=\"$(basename \"$dir\")\"\n  name=\"$(node -p \"require('./$pkg_json').name\")\"\n\n  mlflow_deps=\"$(node -p \"\n    const d = require('./$pkg_json').dependencies || {};\n    Object.keys(d).filter((k) => k.startsWith('@mlflow/')).join('\\n')\n  \")\"\n  if [[ -z \"$mlflow_deps\" ]]; then\n    echo \"SKIP  $name (no @mlflow/* dependency)\"\n    continue\n  fi\n\n  echo \"CHECK $name\"\n\n  # tsc error lines with the source dir s"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+      "kind": "File",
+      "path": "mlflow/environment_variables.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 29835,
+      "excerpt": "al file paths.\n#: This is only enabled for the legacy YAML-config gateway (``mlflow gateway start``).\n#: (default: ``False``)\nMLFLOW_GATEWAY_RESOLVE_API_KEY_FROM_FILE = _BooleanEnvironmentVariable(\n    \"MLFLOW_GATEWAY_RESOLVE_API_KEY_FROM_FILE\", False\n)\n\n#: How often (in seconds) the gateway budget tracker re-fetches policies from the database.\n#: (default: ``600``)\nMLFLOW_GATEWAY_BUDGET_REFRESH_INTERVAL = _EnvironmentVariable(\n    \"MLFLOW_GATEWAY_BUDGET_REFRESH_INTERVAL\", int, 600\n)\n\n#: Redis URL for the gateway budget tracker. When set, budget tracking uses Redis\n#: instead of in-memory storage, enabling shared state across multiple gateway instances.\n#: Example: ``redis://localhost:6379/0``\n#: (default: ``None`` — uses in-memory tracker)\nMLFLOW_GATEWAY_BUDGET_REDIS_URL = _EnvironmentVariable(\"MLFLOW_GATEWAY_BUDGET_REDIS_URL\", str, None)\n\n#: Comma-separated list of provider names that are allowed in the AI Gateway.\n#: When set, only these providers will be available for endpoint creation and discovery.\n#: All other providers are rejected.\n#: Example: ``openai,anthropic,gemini``\n#: (default: ``None`` — all providers are allowed)\nMLFLOW_GATEWAY_ALLOWED_PROVIDERS = _EnvironmentVariable(\n    \"MLFLOW_GATEWAY_ALLOWED_PROVIDERS\", str, None\n)\n\n#: If True, MLflow fluent logging APIs, e.g., `mlflow.log_metric` will log asynchronously.\nMLFLOW_ENABLE_ASYNC_LOGGING = _BooleanEnvironmentVariable(\"MLFLOW_ENABLE_ASYNC_LOGGING\", False)\n\n#: Number of workers in the thread pool used for asynchronous logging, defaults to 10.\nMLFLOW_ASYNC_LOGGING_THREADPOOL_SIZE = _EnvironmentVariable(\n    \"MLFLOW_ASYNC_LOGGING_THREADPOOL_SIZE\", int, 10\n)\n\n#: Specifies whether or not to have mlflow configure logging on import.\n#: If set to True, mlflow will configure ``mlflow.<module_name>`` loggers with\n#: logging handlers and formatters.\n#: (default: ``True``)\nMLFLOW_CONFIGURE_LOGGING = _BooleanEnvironmentVariable(\"MLFLOW_CONFIGURE_LOGGING\", True)\n\n#: If set to True, the following entities will be truncated to their maximum length:\n#: - Param value\n#: - Tag value\n#: If set to False, an exception will be raised if the length of the entity exceeds the maximum\n#: length.\n#: (default: ``True``)\nMLFLOW_TRUNCATE_LONG_VALUES = _BooleanEnvironmentVariable(\"MLFLOW_TRUNCATE_LONG_VALUES\", True)\n\n# Whether to run slow tests with pytest. Default to False in normal runs,\n# but set to True in the weekly sl"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/models/utils.py",
+      "kind": "File",
+      "path": "mlflow/models/utils.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26465,
+      "excerpt": "al_type) != expected_type:\n        raise MlflowException(\n            f\"dtype of input {actual_type} does not match expected dtype {expected_type}\"\n        )\n    return values\n\n\ndef _enforce_mlflow_datatype(name, values: pd.Series, t: DataType):\n    \"\"\"\n    Enforce the input column type matches the declared in model input schema.\n\n    The following type conversions are allowed:\n\n    1. object -> string\n    2. int -> long (upcast)\n    3. float -> double (upcast)\n    4. int -> double (safe conversion)\n    5. np.datetime64[x] -> datetime (any precision)\n    6. object -> datetime\n\n    NB: pandas does not have native decimal data type, when user train and infer\n    model from pyspark dataframe that contains decimal type, the schema will be\n    treated as float64.\n    7. decimal -> double\n\n    Any other type mismatch will raise error.\n    \"\"\"\n\n    if values.dtype == object and t not in (DataType.binary, DataType.string):\n        values = values.infer_objects()\n\n    if t == DataType.string and (\n        values.dtype == object or isinstance(values.dtype, pd.StringDtype)\n    ):\n        # NB: the object can contain any type and we currently cannot cast to pandas Strings\n        # due to how None is cast\n        return values\n\n    # NB: Comparison of pandas and numpy data type fails when numpy data type is on the left hand\n    # side of the comparison operator. It works, however, if pandas type is on the left hand side.\n    # That is because pandas is aware of numpy.\n    if t.to_pandas() == values.dtype or t.to_numpy() == values.dtype:\n        # The types are already compatible => conversion is not necessary.\n        return values\n\n    if t == DataType.binary and values.dtype.kind == t.binary.to_numpy().kind:\n        # NB: bytes in numpy have variable itemsize depending on the length of the longest\n        # element in the array (column). Since MLflow binary type is length agnostic, we ignore\n        # itemsize when matching binary columns.\n        return values\n\n    if t == DataType.datetime and values.dtype.kind == t.to_numpy().kind:\n        # NB: datetime values have variable precision denoted by brackets, e.g. datetime64[ns]\n        # denotes nanosecond precision. Since MLflow datetime type is precision agnostic, we\n        # ignore precision when matching datetime columns.\n        try:\n            return values.astype(np.dtype(\"datetime64[ns]\"))\n        except Typ"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/docstring_utils.py",
+      "kind": "File",
+      "path": "mlflow/utils/docstring_utils.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11317,
+      "excerpt": "ers pipeline.\n    loaded_model.predict(\"What is experiment tracking?\")\n\"\"\"\n    ),\n    \"code_paths\": (\n        \"\"\"A list of local filesystem paths to Python file dependencies (or directories\ncontaining file dependencies). These files are *prepended* to the system path when the model\nis loaded. Files declared as dependencies for a given model should have relative\nimports declared from a common root path if multiple files are defined with import dependencies\nbetween them to avoid import errors when loading the model.\n\nFor a detailed explanation of ``code_paths`` functionality, recommended usage patterns and\nlimitations, see the\n`code_paths usage guide <https://mlflow.org/docs/latest/model/dependencies.html?highlight=code_paths#saving-extra-code-with-an-mlflow-model>`_.\n\"\"\"\n    ),\n    \"extra_files\": (\n        \"\"\"A list containing the paths to corresponding extra files, if ``None``, no\nextra files are added to the model. Remote URIs are resolved to absolute filesystem\npaths. For example, consider the following ``extra_files`` list:\n\n.. code-block:: python\n\n    extra_files = [\"s3://my-bucket/path/to/my_file1\", \"/local-path/to/my_file2\"]\n\nIn this case, the ``\"my_file1\"`` extra file is downloaded from S3.\nModel paths will be [\"extra_files/my_file1\", \"extra_files/my_file2\"] in the model directory.\n\"\"\"\n    ),\n    # Only pyfunc flavor supports `infer_code_paths`.\n    \"code_paths_pyfunc\": (\n        \"\"\"A list of local filesystem paths to Python file dependencies (or directories\ncontaining file dependencies). These files are *prepended* to the system path when the model\nis loaded. Files declared as dependencies for a given model should have relative\nimports declared from a common root path if multiple files are defined with import dependencies\nbetween them to avoid import errors when loading the model.\n\nYou can leave ``code_paths`` argument unset but set ``infer_code_paths`` to ``True`` to let MLflow\ninfer the model code paths. See ``infer_code_paths`` argument doc for details.\n\nFor a detailed explanation of ``code_paths`` functionality, recommended usage patterns and\nlimitations, see the\n`code_paths usage guide <https://mlflow.org/docs/latest/model/dependencies.html?highlight=code_paths#saving-extra-code-with-an-mlflow-model>`_.\n\"\"\"\n    ),\n    \"infer_code_paths\": (\n        \"\"\"If set to ``True``, MLflow automatically infers model code paths. The inferred\n            code "
+    }
+  ]
+}

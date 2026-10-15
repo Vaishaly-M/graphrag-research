@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "offset": 26493,
+        "line": 595
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb",
+        "path": "docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb",
+        "offset": 53455,
+        "line": 1160
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/index.mdx",
+        "path": "docs/docs/genai/flavors/langchain/index.mdx",
+        "offset": 14636,
+        "line": 279
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/scorers/llm-judge/guidelines.mdx",
+        "path": "docs/docs/genai/eval-monitor/scorers/llm-judge/guidelines.mdx",
+        "offset": 14041,
+        "line": 357
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/experiment-tracking/pages/experiment-review-queue/ExperimentReviewQueuePage.tsx",
+        "path": "mlflow/server/js/src/experiment-tracking/pages/experiment-review-queue/ExperimentReviewQueuePage.tsx",
+        "offset": 15691,
+        "line": 302
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+        "path": "docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+        "offset": 20923,
+        "line": 417
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/running-evaluation/traces.mdx",
+        "path": "docs/docs/genai/eval-monitor/running-evaluation/traces.mdx",
+        "offset": 3484,
+        "line": 84
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+        "path": "mlflow/store/tracking/abstract_store.py",
+        "offset": 78650,
+        "line": 2072
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 53455,
+      "excerpt": " issues, such as a \\\"ValueError: We need an `offload_dir` to dispatch this model according to this `decide_map`.\\\" If you encounter this error, consider restarting the Python Kernel and loading the model again.\\n\",\n    \"\\n\",\n    \"**CAUTION**: Restarting the Python Kernel will erase all intermediate states and variables from the above cells. Ensure that the trained PEFT model is properly logged in MLflow before restarting.\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"metadata\": {\n    \"application/vnd.databricks.v1+cell\": {\n     \"cellMetadata\": {\n      \"byteLimit\": 2048000,\n      \"rowLimit\": 10000\n     },\n     \"inputWidgets\": {},\n     \"nuid\": \"59df3b6d-e5f6-4274-a624-19dc767769bc\",\n     \"showTitle\": false,\n     \"title\": \"\"\n    }\n   },\n   \"outputs\": [],\n   \"source\": [\n    \"# You can find the ID of run in the Run detail page on MLflow UI\\n\",\n    \"mlflow_model = mlflow.pyfunc.load_model(\\\"runs:/YOUR_RUN_ID/model\\\")\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"data\": {\n      \"text/html\": [\n       \"<style> .dataframe th, .dataframe tbody td { text-align: left; padding-right: 30px; } </style> <table border=\\\"1\\\" class=\\\"dataframe\\\">\\n\",\n       \"  <thead>\\n\",\n       \"    <tr style=\\\"text-align: right;\\\">\\n\",\n       \"      <th></th>\\n\",\n       \"      <th>prompt</th>\\n\",\n       \"      <th>generated_query</th>\\n\",\n       \"    </tr>\\n\",\n       \"  </thead>\\n\",\n       \"  <tbody>\\n\",\n       \"    <tr>\\n\",\n       \"      <th>0</th>\\n\",\n       \"      <td><br>### Table:<br>CREATE TABLE table_name_50 (venue VARCHAR, away_team VARCHAR)<br><br>### Question:<br>When Essendon played away; where did they play?<br></td>\\n\",\n       \"      <td>SELECT venue FROM table_name_50 WHERE away_team = \\\"essendon\\\"</td>\\n\",\n       \"    </tr>\\n\",\n       \"  </tbody>\\n\",\n       \"</table>\"\n      ],\n      \"text/plain\": [\n       \"<IPython.core.display.HTML object>\"\n      ]\n     },\n     \"metadata\": {},\n     \"output_type\": \"display_data\"\n    }\n   ],\n   \"source\": [\n    \"# We only input table and question, since system prompt is adeed in the prompt template.\\n\",\n    \"test_prompt = \\\"\\\"\\\"\\n\",\n    \"### Table:\\n\",\n    \"CREATE TABLE table_name_50 (venue VARCHAR, away_team VARCHAR)\\n\",\n    \"\\n\",\n    \"### Question:\\n\",\n    \"When Essendon played away; where did they play?\\n\",\n    \"\\\"\\\"\\\"\\n\",\n    \"\\n\",\n    \"# Inference "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26493,
+      "excerpt": "If you rerun portions of your notebook, the plot displayed could become outdated or misleading, posing a risk when interpreting results.\\n\",\n    \"  \\n\",\n    \"- **Loss of Previous State**: If you happen to rerun the entire notebook, the plot will be lost. While some plugins can recover previous cell states, setting this up can be cumbersome and time-consuming.\\n\",\n    \"\\n\",\n    \"In contrast, logging the plot to MLflow ensures that we have a permanent, easily accessible record that correlates directly with other experiment data. This is invaluable for maintaining the integrity and reproducibility of your machine learning experiments.\\n\",\n    \"\\n\",\n    \"##### Displaying the Plot for This Guide\\n\",\n    \"\\n\",\n    \"For the purposes of this guide, we'll still take a moment to examine the plot. We can do this by explicitly calling the figure object we've returned from our function.\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 6,\n   \"id\": \"db24d7d2\",\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"data\": {\n      \"image/png\": \"iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjcuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/OQEPoAAAACXBIWXMAAAsTAAALEwEAmpwYAABZj0lEQVR4nO3debymc/3H8dcwmWma8kuylIqKT0qWxpIypSIqKm20S5sUJaWFULZW+5KSlLIlSgkVqRlLM2SXT8hoIYrIFMcy5/fH93tzz+2cmfvMXOfc55x5PR+P8zjnvtbPdZ3bcb/nu1wT+vv7kSRJkiQtvqV6XYAkSZIkjRcGLEmSJElqiAFLkiRJkhpiwJIkSZKkhhiwJEmSJKkhBixJkiRJasjEXhcgSVK7iHgi8CHg7cDqlP9XXQscCxybmfN6WN58ImIOMCczN12EfVcA/puZ/62vjwfem5kTmqyxaRGxD7A3sFpmzqnLlgKe2fZ6e+C7wCsy84IhHn9V4OaOxfOAuUACJwBHZebDi3gJo9pA91fS2GILliRp1IiIAC4FDgSuBj4PfAG4HzgG+H5EjOoA0o2IeA0lLDy1bfExwLt7U9GQnE6p858AEfEk4BJg+4bPM6Oe593ADsAXgbuBw4CfRsTSDZ9PkhphC5YkaVSIiMnAT4HlgfUz86q21QdFxJHATsAsyofssWwj4P/aF2TmxcDFPalmCOrvpf13sxywAfCLhk/158z8QceygyLiAOBzwG7AVxs+pyQtNluwJEmjxU5AALt2hKuWTwH/BnYc0ao02uxFaf3bLSL8h2JJo45/mCRJo8V2lHE2Jw20MjPvi4iNgFval0fEdMqYlRfXRbOAfTLzd23bzAF+RfmHxXcAdwLrUrojPmZ5Zv4rIjYGvtR23IuBPTNz1mAXULsvfpjSpW1N4HHAHMp4pK9mZn9rrFXd5eaI+G1mbjrQGKyIeBawH7Al8ERKsDgiM7/dts3xtcZ3A1+ntCbdC5wCfCYz7xuk1oOBjwPLZ+ZdddlalK6ZP8vM17dtewjwPkrr4h7UMULAqsBv6mZ7R0RrecuKEfEDYCvKPT4P+Hhm/mWwe7gwmflQRJxCCVovovy+Wy2gewLvBJ4O/A34AbBfZj5Qt9me8rtYl9L1dAtK99Pjgc8C76J0S10FuALYKTOvbLsPL6rXvwml5e7fwK+B3TPzb3WbfeqxXggcDLwceAg4E/hkZt7ZdrznUFrhXgk8XOt4YFHvjaTRwRYsSVLP1WCyHnBZZj442HaZeUPrw3Ld7/XABcAzgX3r1zOB8+q6dm8H1gY+AXw7M/812PKI2Bz4LbAs5YP4fvW4v6uBbjD7Ak"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/running-evaluation/traces.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/eval-monitor/running-evaluation/traces.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3484,
+      "excerpt": "\n            \"Ticket #456: Login issues (open - critical)\",\n            \"Ticket #457: Performance degradation reported\",\n            \"Ticket #458: Integration failing with their CRM\",\n        ],\n    },\n    \"Global Retail\": {\n        \"contact_name\": \"Carol Wang\",\n        \"recent_meeting\": \"Quarterly review yesterday, happy with platform performance\",\n        \"support_tickets\": [],\n    },\n}\n\n\n@mlflow.trace(span_type=\"RETRIEVER\")\ndef retrieve_customer_info(customer_name: str) -> list[Document]:\n    \"\"\"Retrieve customer information from CRM database\"\"\"\n    if data := CRM_DATA.get(customer_name):\n        return [\n            Document(\n                id=f\"{customer_name}_meeting\",\n                page_content=f\"Recent meeting: {data['recent_meeting']}\",\n            ),\n            Document(\n                id=f\"{customer_name}_tickets\",\n                page_content=f\"Support tickets: {', '.join(data['support_tickets']) if data['support_tickets'] else 'No open tickets'}\",\n            ),\n            Document(\n                id=f\"{customer_name}_contact\",\n                page_content=f\"Contact: {data['contact_name']}\",\n            ),\n        ]\n    return []\n\n\n@mlflow.trace(span_type=\"AGENT\")\ndef generate_sales_email(customer_name: str, user_instructions: str) -> dict[str, str]:\n    \"\"\"Generate personalized sales email based on customer data & given objective.\"\"\"\n    # Retrieve customer information\n    customer_docs = retrieve_customer_info(customer_name)\n    context = \"\\n\".join([doc.page_content for doc in customer_docs])\n\n    # Generate email using retrieved context\n    prompt = f\"\"\"You are a sales representative. Based on the customer information below,\n    write a brief follow-up email that addresses their request.\n\n    Customer Information: {context}\n\n    User instructions: {user_instructions}\"\"\"\n\n    response = client.chat.completions.create(\n        model=\"gpt-4o-mini\",\n        messages=[{\"role\": \"user\", \"content\": prompt}],\n        max_tokens=2000,\n    )\n    return {\"email\": response.choices[0].message.content}\n```\n\nLet's run the app and generate some traces.\n\n```python\ntest_requests = [\n    {\"customer_name\": \"Acme Corp\", \"user_instructions\": \"Follow up after product demo\"},\n    {\n        \"customer_name\": \"TechStart\",\n        \"user_instructions\": \"Check on support ticket status\",\n    },\n    {\n        \"customer_name\": \"Global Retail\",\n        \"user_instruction"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/scorers/llm-judge/guidelines.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/eval-monitor/scorers/llm-judge/guidelines.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14041,
+      "excerpt": "h their full legal names and entity types (Inc., LLC, etc.)\n               - Must identify party roles (buyer/seller, licensee/licensor, employer/employee)\n               - Must extract any parent company relationships or guarantors mentioned\n               - Must capture all representatives, their titles, and authority to sign\n               - Must identify jurisdiction for each party if specified\"\"\",\n                \"\"\"Critical dates and terms extraction:\n               - Must differentiate between: execution date, effective date, and expiration date\n               - Must extract notice periods for termination (e.g., \"30 days written notice\")\n               - Must identify any automatic renewal clauses and their conditions\n               - Must extract all milestone dates and deliverable deadlines\n               - For amendments, must note which version/date of original contract is modified\"\"\",\n                \"\"\"Obligations and risk analysis:\n               - Must extract all payment terms, amounts, and schedules\n               - Must identify liability caps, indemnification clauses, and insurance requirements\n               - Must flag any non-standard clauses that deviate from typical contracts\n               - Must extract all conditions precedent and subsequent\n               - Must identify dispute resolution mechanism (arbitration, litigation, jurisdiction)\n               - Must extract any non-compete, non-solicitation, or confidentiality periods\"\"\",\n            ]\n        },\n    },\n    {\n        \"inputs\": {\n            \"document_type\": \"medical_record\",\n            \"document_text\": \"Patient: John Doe\\nDOB: 1985-06-15\\nDiagnosis: Type 2 Diabetes\\nMedications: Metformin 500mg\",\n        },\n        \"outputs\": {\n            \"patient_name\": \"John Doe\",\n            \"date_of_birth\": \"1985-06-15\",\n            \"diagnoses\": [\"Type 2 Diabetes\"],\n            \"medications\": [{\"name\": \"Metformin\", \"dosage\": \"500mg\"}],\n        },\n        \"expectations\": {\n            \"guidelines\": [\n                \"\"\"HIPAA compliance and privacy protection:\n               - Must never extract full SSN (only last 4 digits if needed for matching)\n               - Must never include full insurance policy numbers or member IDs\n               - Must redact or generalize sensitive mental health or substance abuse information\n               - For minors, must flag records requiring addi"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/flavors/langchain/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14636,
+      "excerpt": "ing your model from a script file provides a simpler and more robust logging solution!\n:::\n\n- **Serialization Challenges with Cloudpickle**: Serialization with cloudpickle can encounter limitations depending on the complexity of the objects.\n\n  Some objects, especially those with intricate internal states or dependencies on external system resources, are not inherently pickleable. This limitation\n  arises because serialization essentially requires converting an object to a byte stream, which can be complex for objects tightly coupled with system states\n  or those having external I/O operations. Try upgrading PyDantic to 2.x version to resolve this issue.\n\n- **Verifying Native Serialization Support**: Ensure that the langchain object (chain, agent, or retriever) is serializable natively using langchain APIs if saving or logging with MLflow doesn't work.\n\n  Due to their complex structures, not all langchain components are readily serializable. If native serialization\n  is not supported and MLflow doesn't support saving the model, you can file an issue [in the LangChain repository](https://github.com/langchain-ai/langchain/issues) or\n  ask for guidance in the [LangChain Discussions board](https://github.com/langchain-ai/langchain/discussions).\n\n- **Keeping Up with New Features in MLflow**: MLflow might not immediately support the latest LangChain features immediately.\n\n  If a new feature is not supported in MLflow, consider [filing a feature request on the MLflow GitHub issues page](https://github.com/mlflow/mlflow/issues).\n  With the rapid pace of changes in libraries that are in heavy active development (such as [LangChain's release velocity](https://pypi.org/project/langchain/#history)),\n  breaking changes, API refactoring, and fundamental functionality support for even existing features can cause integration issues. If there is a chain, agent,\n  retriever, or any future structure within LangChain that you'd like to see supported, please let us know!\n\n### I'm getting an AttributeError when saving my model\n\n- **Handling Dependency Installation in LangChain and MLflow**: LangChain and MLflow do not automatically install all dependencies.\n\n  Other packages that might be required for specific agents, retrievers, or tools may need to be explicitly defined when saving or logging your model.\n  If your model relies on these external component libraries (particularly"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+      "kind": "File",
+      "path": "docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 20923,
+      "excerpt": "\\n\",\n    \"Let's try out our Retriever model by sending it a fairly simple but purposefully vague question.\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 8,\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"name\": \"stdout\",\n     \"output_type\": \"stream\",\n     \"text\": [\n      \"The document states that all persons who shall locate or settle upon or occupy \\n\",\n      \"the land reserved for the public park, except as provided, shall be considered \\n\",\n      \"trespassers and removed from the park. \\n\"\n     ]\n    }\n   ],\n   \"source\": [\n    \"answer1 = loaded_model.predict([{\\\"query\\\": \\\"What does the document say about trespassers?\\\"}])\\n\",\n    \"\\n\",\n    \"print_formatted_response(answer1)\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"metadata\": {},\n   \"source\": [\n    \"## Understanding the RetrievalQA Response\\n\",\n    \"\\n\",\n    \"With this model, our approach combines text retrieval from a database with language model generation to answer specific queries.\\n\",\n    \"\\n\",\n    \"### How It Works:\\n\",\n    \"\\n\",\n    \"- **RetrievalQA Model**: This model, a part of the LangChain suite, is designed to first retrieve relevant information from a predefined database and then use a language model to generate a response based on this information.\\n\",\n    \"- **Database Integration**: In this example, we've created a FAISS database from historical documents, such as the Act Establishing Yellowstone National Park. This database is used by the RetrievalQA model to find relevant sections of text.\\n\",\n    \"- **Query Processing**: When we execute `loaded_model.predict([{\\\"query\\\": \\\"What does the document say about trespassers?\\\"}])`, the model first searches the database for parts of the document that are most relevant to the query about trespassers.\\n\",\n    \"\\n\",\n    \"### Why Is This Response Different?\\n\",\n    \"\\n\",\n    \"- **Context-Specific Answers**: Unlike a direct query to GPT-3.5, which might generate an answer based on its training data without specific context, the RetrievalQA model provides a response directly derived from the specific documents in the database.\\n\",\n    \"- **Accurate and Relevant**: The response is more accurate and contextually relevant because it's based on the actual content of the specific document being queried.\\n\",\n    \"- **No Generalization**: There's less generalization or assumption in the response. The RetrievalQA model is not \\\"guessing\\\""
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/experiment-tracking/pages/experiment-review-queue/ExperimentReviewQueuePage.tsx",
+      "kind": "File",
+      "path": "mlflow/server/js/src/experiment-tracking/pages/experiment-review-queue/ExperimentReviewQueuePage.tsx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 15691,
+      "excerpt": " }\n  };\n\n  const setOpenStatus = async (status: ReviewStatus) => {\n    if (!selectedQueueId || !openItem) {\n      return;\n    }\n    await setReviewQueueItemStatusAsync({\n      queue_id: selectedQueueId,\n      item_id: openItem.item_id,\n      status,\n      // Attribution only applies to the terminal states; reopen clears it.\n      completed_by: status === 'PENDING' ? undefined : reviewer,\n    });\n  };\n\n  let rightContent: React.ReactNode;\n  if (queuesLoading) {\n    rightContent = <TableSkeleton lines={6} />;\n  } else if (reviewQueues.length === 0) {\n    rightContent = (\n      <ReviewQueueEmptyState\n        title={\n          <FormattedMessage\n            defaultMessage=\"Set up human review for your traces\"\n            description=\"Review queue: empty state title when no queues exist\"\n          />\n        }\n        description={\n          <FormattedMessage\n            defaultMessage=\"Review queues let your team evaluate trace quality with structured questions. Add traces to a queue from the Traces tab, or create a new queue to get started.\"\n            description=\"Review queue: empty state description when no queues exist\"\n          />\n        }\n        button={\n          <Button\n            componentId=\"mlflow.experiment-review-queue.empty-state-new-queue\"\n            type=\"primary\"\n            icon={<PlusIcon />}\n            onClick={() => setCreateOpen(true)}\n          >\n            <FormattedMessage\n              defaultMessage=\"New queue\"\n              description=\"Review queue: empty state button to create a new queue\"\n            />\n          </Button>\n        }\n      />\n    );\n  } else if (!selectedQueue) {\n    rightContent = (\n      <ReviewQueueEmptyState\n        title={\n          <FormattedMessage\n            defaultMessage=\"Select a queue to get started\"\n            description=\"Review queue: empty state title when no queue selected\"\n          />\n        }\n        description={\n          <FormattedMessage\n            defaultMessage=\"Review queues let you organize traces for human evaluation. Select a queue from the sidebar, or create a new one to start reviewing traces.\"\n            description=\"Review queue: empty state description when no queue selected\"\n          />\n        }\n      />\n    );\n  } else if (openItemId && openItem) {\n    rightContent = (\n      <FocusedReview\n        // Remount per trace so answer state never bleeds across traces.\n   "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+      "kind": "File",
+      "path": "mlflow/store/tracking/abstract_store.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 78650,
+      "excerpt": ",\n    ) -> \"ReviewQueueItem\":\n        \"\"\"Set the shared-pool status of an attached item.\n\n        Moving to ``complete`` / ``declined`` records ``completed_by`` and a\n        completion timestamp; moving back to ``pending`` (reopen) clears\n        both. ``completed_by`` is required for the terminal states and\n        rejected for ``pending``. This is an explicit reviewer action and is\n        never triggered by writing an assessment.\n\n        Raises:\n            MlflowException(RESOURCE_DOES_NOT_EXIST): if the queue or the\n                attached item doesn't exist.\n            MlflowException(INVALID_PARAMETER_VALUE): on validation failure.\n        \"\"\"\n        raise NotImplementedError(self.__class__.__name__)\n"
+    }
+  ]
+}

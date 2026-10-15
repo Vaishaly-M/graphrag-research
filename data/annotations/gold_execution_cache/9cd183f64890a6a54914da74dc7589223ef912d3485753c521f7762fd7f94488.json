@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (c:DLCommit)-[:DL_MODIFIED_FILE]->(f:DLFile) WHERE c.dataset=$dataset AND c.repo=$repo AND c.sha=$sha AND trim(f.content)<>'' WITH c,f,[line IN split(f.content,'\\n') WHERE trim(line)<>''] AS lines RETURN f.path+': '+trim(last(lines)) AS entity,f.path+': '+trim(last(lines)) AS fact,[c.id,f.id] AS evidence_ids ORDER BY f.path LIMIT 5",
+  "parameters": {
+    "sha": "aaf1857ec308726da3f2bcbc4f667c4486f7c91f",
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop"
+  },
+  "rows": [
+    {
+      "entity": ".spectral.yml: function: truthy",
+      "fact": ".spectral.yml: function: truthy",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:aaf1857ec308726da3f2bcbc4f667c4486f7c91f",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:.spectral.yml"
+      ]
+    }
+  ]
+}

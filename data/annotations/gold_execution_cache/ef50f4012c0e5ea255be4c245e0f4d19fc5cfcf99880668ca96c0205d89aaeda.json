@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 6794,
+        "line": 106
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/ci/04_selective_checks.md",
+        "path": "dev/breeze/doc/ci/04_selective_checks.md",
+        "offset": 20125,
+        "line": 327
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/12_provider_distributions.rst",
+        "path": "contributing-docs/12_provider_distributions.rst",
+        "offset": 1121,
+        "line": 24
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 5230,
+        "line": 80
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:Dockerfile",
+        "path": "Dockerfile",
+        "offset": 63631,
+        "line": 1599
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+        "path": "dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+        "offset": 60530,
+        "line": 1431
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 4608,
+        "line": 72
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/MANUALLY_GENERATING_IMAGE_CACHE_AND_CONSTRAINTS.md",
+        "path": "dev/MANUALLY_GENERATING_IMAGE_CACHE_AND_CONSTRAINTS.md",
+        "offset": 16351,
+        "line": 302
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:Dockerfile",
+      "kind": "File",
+      "path": "Dockerfile",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 63631,
+      "excerpt": "      echo \"Skipping user creation as auth manager different from Fab is used\"\n    fi\n}\n\nfunction create_system_user_if_missing() {\n    # This is needed in case of OpenShift-compatible container execution. In case of OpenShift random\n    # User id is used when starting the image, however group 0 is kept as the user group. Our production\n    # Image is OpenShift compatible, so all permissions on all folders are set so that 0 group can exercise\n    # the same privileges as the default \"airflow\" user, this code checks if the user is already\n    # present in /etc/passwd and will create the system user dynamically, including setting its\n    # HOME directory to the /home/airflow so that (for example) the ${HOME}/.local folder where airflow is\n    # Installed can be automatically added to PYTHONPATH\n    if ! whoami &> /dev/null; then\n      if [[ -w /etc/passwd ]]; then\n        echo \"${USER_NAME:-default}:x:$(id -u):0:${USER_NAME:-default} user:${AIRFLOW_USER_HOME_DIR}:/sbin/nologin\" \\\n            >> /etc/passwd\n      fi\n      export HOME=\"${AIRFLOW_USER_HOME_DIR}\"\n    fi\n}\n\nfunction set_pythonpath_for_root_user() {\n    # Airflow is installed as a local user application which means that if the container is running as root\n    # the application is not available. because Python then only load system-wide applications.\n    # Now also adds applications installed as local user \"airflow\".\n    if [[ $UID == \"0\" ]]; then\n        local python_major_minor\n        python_major_minor=$(python -c 'import sys; print(f\"{sys.version_info.major}.{sys.version_info.minor}\")')\n        export PYTHONPATH=\"${AIRFLOW_USER_HOME_DIR}/.local/lib/python${python_major_minor}/site-packages:${PYTHONPATH:-}\"\n        >&2 echo \"The container is run as root user. For security, consider using a regular user account.\"\n    fi\n}\n\nfunction wait_for_airflow_db() {\n    # Wait for the command to run successfully to validate the database connection.\n    run_check_with_retries \"airflow db check\"\n}\n\nfunction migrate_db() {\n    # Runs airflow db migrate\n    airflow db migrate || true\n}\n\nfunction wait_for_celery_broker() {\n    # Verifies connection to Celery Broker\n    local executor\n    executor=\"$(airflow config get-value core executor)\"\n    if [[ \"${executor}\" == \"CeleryExecutor\" ]]; then\n        local connection_url\n        connection_url=\"$(airflow config get-value celery broker_url)\"\n        wait_for_connec"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/12_provider_distributions.rst",
+      "kind": "File",
+      "path": "contributing-docs/12_provider_distributions.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1121,
+      "excerpt": "low (there are few more s separated)\n* ``apache-airflow-task-sdk`` - task-sdk distribution that are imported by the providers\n* ``apache-airflow-providers-*`` - More than 90 providers to communicate with external services\n\n.. contents:: Table of Contents\n   :depth: 2\n   :local:\n\nWhere providers are kept in our repository\n------------------------------------------\n\nAirflow Providers are stored in a separate tree other than the Airflow Core (under ``providers`` directory).\nAirflow's repository is a monorepo, that keeps multiple distributions in a single repository. This has a number\nof advantages, because code and CI infrastructure and tests can be shared. Also contributions are happening to a\nsingle repository - so no matter if you contribute to Airflow or Providers, you are contributing to the same\nrepository and project.\n\nThe tool ``uv`` is recommended to help manage this through it's ``workspace`` feature. While developing,\ndependencies and extras for a provider can be installed using ``uv``'s ``sync`` command. Here is an example\nfor the amazon provider:\n\n.. code:: bash\n\n    uv sync --package apache-airflow-providers-amazon\n\nThis will synchronize all extras that you need for development and testing of Airflow and the Amazon provider\ndependencies including runtime dependencies and all providers it depends on and its dependencies.\n\nSee `local virtualenv <../07_local_virtualenv.rst>`_ or the uv project for more information.\n\nEach provider is a separate python project, with its own ``pyproject.toml`` file and similar structure:\n\n.. code-block:: text\n\n  PROVIDER\n         |- pyproject.toml   # project configuration\n         |- provider.yaml    # additional metadata for provider\n         |- src\n         |.   \\- airflow.providers.PROVIDER\n         |                                \\ # here are hooks, operators, sensors, transfers\n         |- docs   # docs for provider are stored here\n         \\- tests\n                | -unit\n                |      | PROVIDER\n                |               \\ # here unit test code is present\n                | - integration\n                |             | PROVIDER\n                |                      \\ # here integration test code is present\n                \\- system\n                         | PROVIDER\n                                  \\ # here system test code is present\n\nPROVIDER is the name of the provider distribution. It might"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/MANUALLY_GENERATING_IMAGE_CACHE_AND_CONSTRAINTS.md",
+      "kind": "File",
+      "path": "dev/MANUALLY_GENERATING_IMAGE_CACHE_AND_CONSTRAINTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 16351,
+      "excerpt": "on we have in `pyproject.toml` files (note that provider\ndependencies in `pyproject.toml` are generated from provider.yaml files being the single source of truth for\nprovider dependencies). Also, the constraints are pushed without `--force` so there is no risk of destroying\nanything. The history is kept in Git, so you can always revert to the previous version if needed.\n\n# Manually updating already tagged constraint files\n\n## Why we need to update constraint files manually (very rarely)\n\nSometimes - very rarely - we need to fix historical constraint files when Airflow fails to install with the\nconstraints that were used in the past. This happened already several times and usually only happens when\nthere is a backwards-incompatible change in the build environment in Python installation toolchain\n(pip, setuptools, wheel, Cython etc.). The Python build environment is not controllable by us - by default\npip uses `build isolation` which means that it will install the latest version of the build tools. Those\ntools versions are chosen by `pip` separately for each package. However, this might mean that new versions of\nsuch tools, released after the package has been released can break the installation. This happened for\nexample in July 2023 when major (3.0.0) version of Cython has been released and it\nbroke `pymssql` installation. We had to update the constraint files to use `pymssql==2.2.8` instead\nof `pymssql==2.2.7` because version 2.2.7 did not limit but also did not work with the new version of Cython.\nVersion 2.2.8 of `pymssql` fixed compatibility with Cython 3.0.0, so replacing it in constraints brought back\nthe reproducibility of installation promised by constraints.\n\n## How to update the constraints\n\nBreeze has `update-constraints` command in `release-management` group that can be used to update the\nconstraints in bulk.\n\nThis is a step-by-step instruction on how to use it:\n\n1. You need to have \"airflow\" repository checked out separately from the repository you are working on. For\n   example in `/home/myuser/airflow-constraints` folder.\n2. You need to checkout `constraints-main` branch in this repository. By default the command expects that\n   there is a remote named \"upstream\" pointing to the `apache/airflow` repository (the standard remote\n   naming convention — see\n   [`contributing-docs/10_working_with_git.rst`](../contributing-docs/10_working_with_git.rs"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4608,
+      "excerpt": "elease (for a follow-up doc PR)\n\nThese instructions are imperfect. Every release uncovers at least one command\nthat has drifted, one step that is under-documented, or one automation that\nsilently did the wrong thing. As you run through this document, jot down any\nsuch observations in a scratch file kept **outside** the repo (anywhere that\nis not tracked by git — a note in your home directory, a scratchpad, a\ngist). Once the release has landed, turn those notes into a follow-up PR\nagainst this document.\n\nKeeping the scratch file out of the repo avoids accidentally committing\nrelease-manager notes along with the release-prep PR, and makes it obvious\nthat the notes are input to the next doc PR rather than something to keep\naround long-term.\n\n# Perform review of security issues that are marked for the release\n\nWe are keeping track of security issues in the [Security Issues](https://github.com/airflow-s/airflow-s/issues)\nrepository currently. As a release manager, you should have access to the repository.\nPlease review and ensure that all security issues marked for the release have been\naddressed and resolved. Ping security team (comment in the issues) if anything missing or\nthe issue does not seem to be addressed.\n\nAdditionally, the [dependabot alerts](https://github.com/apache/airflow/security/dependabot) and\ncode [scanning alerts](https://github.com/apache/airflow/security/code-scanning) should be reviewed\nand security team should be pinged to review and resolve them.\n\n# Selecting what to put into the release\n\nThe first step of a release is to work out what is being included. This differs based on whether it is a major/minor or a patch release.\n\n- For a *major* or *minor* release, you want to include everything in `main` at the time of release; you'll turn this into a new release branch as part of the rest of the process.\n\n- For a *patch* release, you will be selecting specific commits to cherry-pick and backport into the existing release branch.\n\n\n## i18n workflow\n\n> [!NOTE]\n>\n> 1. The instructions in this section should be applied only for major/minor releases.\n> 2. It is recommended to delegate all operations in this task to another committer.\n> 3. Except for the dev list announcements, it is recommended to communicate them via the #i18n Slack channel as well.\n\n### Validating completeness of locale files\n\nBefore cutting the release candidate (RC), you shoul"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5230,
+      "excerpt": "elease (for a follow-up doc PR)\n\nThese instructions are imperfect. Every release uncovers at least one command\nthat has drifted, one step that is under-documented, or one automation that\nsilently did the wrong thing. As you run through this document, jot down any\nsuch observations in a scratch file kept **outside** the repo (anywhere that\nis not tracked by git — a note in your home directory, a scratchpad, a\ngist). Once the release has landed, turn those notes into a follow-up PR\nagainst this document.\n\nKeeping the scratch file out of the repo avoids accidentally committing\nrelease-manager notes along with the release-prep PR, and makes it obvious\nthat the notes are input to the next doc PR rather than something to keep\naround long-term.\n\n# The airflow-ctl distributions\n\nThe prerequisites to release airflow-ctl are described in [README.md](README.md).\n\n# Perform review of security issues that are marked for the release\n\nWe are keeping track of security issues in the [Security Issues](https://github.com/airflow-s/airflow-s/issues)\nrepository currently. As a release manager, you should have access to the repository.\nPlease review and ensure that all security issues marked for the release have been\naddressed and resolved. Ping security team (comment in the issues) if anything missing or\nthe issue does not seem to be addressed.\n\nAdditionally, the [dependabot alerts](https://github.com/apache/airflow/security/dependabot) and\ncode [scanning alerts](https://github.com/apache/airflow/security/code-scanning) should be reviewed\nand security team should be pinged to review and resolve them.\n\n# Decide when to release\n\nYou can release `airflow-ctl` distributions separately from the main Airflow on an ad-hoc basis,\nwhenever we find that airflow-ctl needs to be released - due to new features or due to bug fixes.\n\n# Airflow-ctl release branches\n\nAirflow-ctl maintains its own pair of release branches per minor line,\nindependent from core Airflow's `vX-Y-test` / `vX-Y-stable` branches. This\ngives airflow-ctl its own release cadence (SEMVER, bumped separately from\nAirflow) without coupling to the core Airflow maintenance branches.\n\nThe branches are:\n\n- **`main`** — all airflow-ctl development happens here.\n- **`airflow-ctl/vX-Y-test`** — maintenance branch for the X.Y line. Bug\n  fixes that should land in an X.Y.Z patch release are cherry-picked from\n  `main` onto this branch."
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6794,
+      "excerpt": "eded. |\n| [Build](#build-provider-distributions-for-svn-apache-upload) + [sign](#build-and-sign-the-source-and-convenience-packages) + [commit to `dist/dev`](#commit-the-source-packages-to-apache-svn-repo) + [publish RC to PyPI](#publish-the-regular-distributions-to-pypi-release-candidates) | PMC | Kept as **one contiguous PMC block**: per [ASF release policy](https://www.apache.org/legal/release-policy.html#owned-controlled-hardware), a PMC member signing a release should build it themselves from source rather than sign artifacts someone else built, so they know what they're actually signing. The PMC member builds, signs with their own key (already in the project's `KEYS` file), commits packages + signatures to `dist/dev`, and uploads the RC to the `apache-airflow-providers-*` PyPI namespace under the PMC's trusted publishing identity. The PMC then hands `files/packages.txt` (the PyPI URLs) back to the Delegate for the vote email. |\n| [Push the RC tags](#push-the-rc-tags) | Delegate | Plain git tag push, no elevated access needed. |\n| [Prepare documentation in Staging](#prepare-documentation-in-staging) | Delegate | |\n| [Prepare issue in GitHub to keep status of testing](#prepare-issue-in-github-to-keep-status-of-testing) | Delegate | Delegate also tracks the issue, the vote thread, and related PRs throughout the release. |\n| [Prepare voting email for Providers release candidate](#prepare-voting-email-for-providers-release-candidate) | Delegate | Delegate may send the `[VOTE]` email, but must **not** claim a personal binding `+1` (see note in that section) — only PMC votes are binding. |\n| Casting the deciding vote(s) | PMC | At least 3 binding `+1` votes from PMC members are required for the release to pass; this cannot be delegated. |\n| [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release) (`[RESULT][VOTE]`) | Delegate | Only after at least 3 binding PMC `+1` votes are already visible in the thread — the Delegate is reporting a result the PMC already reached, not deciding it. |\n| [Publish release to SVN](#publish-release-to-svn) (`dist/release`) | PMC | Per [ASF Infra policy](https://infra.apache.org/release-publishing), `dist/release` write access is PMC-only by default (a project can request Infra to open it to all committers, but Airflow has not done so). |\n| [Publish the packages to PyPI](#publish-"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/ci/04_selective_checks.md",
+      "kind": "File",
+      "path": "dev/breeze/doc/ci/04_selective_checks.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 20125,
+      "excerpt": "ason is printed in the\n   provider-selection `[warning]` lines.\n5. **Want to confirm an optimisation is safe?** Remember the canary on `main` always runs everything —\n   the worst case of an over-aggressive *skip* is caught at merge time, not in production.\n\nThe authoritative, exhaustive rule list (kept in sync with the code) is in\n[Selective check decision rules](#selective-check-decision-rules) below; the sections above are the\n\"why\" and the shape, this is the \"what\" in full detail.\n\n## Groups of files that selective check make decisions on\n\nWe have the following Groups of files for CI that determine which tests are run:\n\n* `Environment files` - if any of those changes, that forces 'full tests needed' mode, because changes\n  there might simply change the whole environment of what is going on in CI (Container image, dependencies).\n  Two deliberate carve-outs do **not** force full tests: **static-check hooks** (`scripts/ci/prek/...`)\n  drive prek static checks rather than the test matrix, so they only trigger the CI image build (via the\n  `Prek files` group) — `mypy-scripts` and the image-based static checks still run, but the full test\n  matrix does not; and **non-test workflows** (`.github/workflows/` for security scans, doc publishing,\n  notifications, backporting, calendar/stale bots, …) cannot change test outcomes. Workflows that run or\n  configure the test suite (`ci-amd`, `ci-arm`, `run-unit-tests`, `k8s-tests`, `helm-tests`, image builds,\n  …) still force the full matrix.\n* `Prek files` - `scripts/ci/prek/...` static-check hooks. They do not force full tests, but they trigger\n  the CI image build so `mypy-scripts` and the image-based static checks run for a prek-only change.\n* `Python production files` and `Javascript production files` - this area is useful in CodeQL Security scanning\n  - if any of the python or javascript files for airflow \"production\" changed, this means that the security\n    scans should run\n* `Always test files` - Files that belong to \"Always\" run tests.\n* `API tests files` and `Codegen test files` - those are OpenAPI definition files that impact\n  Open API specification and determine that we should run dedicated API tests.\n* `Helm files` - change in those files impacts helm \"rendering\" tests - `chart` folder (which contains the chart sources and tests under `chart/tests/`).\n* `Build files` - change in the files indicates that we"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+      "kind": "File",
+      "path": "dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 60530,
+      "excerpt": "       if not additions:\n                    continue\n                current_test_types.remove(original)\n                current_test_types.add(f\"Providers[-{','.join(sorted(negated + additions))}]\")\n                continue\n            providers_in = [p for p in inner.split(\",\") if p]\n            kept = [p for p in providers_in if p not in excluded]\n            if kept == providers_in:\n                continue\n            current_test_types.remove(original)\n            if kept:\n                current_test_types.add(f\"Providers[{','.join(kept)}]\")\n\n    @cached_property\n    def providers_test_types_list_as_strings_in_json(self) -> str:\n        if not self.run_unit_tests:\n            return \"[]\"\n        current_test_types = set(self._get_providers_test_types_to_run())\n        if self._default_branch != \"main\":\n            test_types_to_remove: set[str] = set()\n            for test_type in current_test_types:\n                if test_type.startswith(\"Providers\"):\n                    console_print(\n                        f\"[warning]Removing {test_type} because the target branch \"\n                        f\"is {self._default_branch} and not main[/]\"\n                    )\n                    test_types_to_remove.add(test_type)\n            current_test_types = current_test_types - test_types_to_remove\n        self._extract_long_provider_tests(current_test_types)\n        self._filter_platform_excluded_test_types(current_test_types)\n        return json.dumps(_get_test_list_as_json([sorted(current_test_types)]))\n\n    def _get_individual_providers_list(self):\n        current_test_types = set(self._get_providers_test_types_to_run(split_to_individual_providers=True))\n        if \"Providers\" in current_test_types:\n            current_test_types.remove(\"Providers\")\n            current_test_types.update(\n                {f\"Providers[{provider}]\" for provider in get_available_distributions(include_not_ready=True)}\n            )\n        self._filter_platform_excluded_test_types(current_test_types)\n        return current_test_types\n\n    @cached_property\n    def individual_providers_test_types_list_as_strings_in_json(self) -> str | None:\n        \"\"\"Splits the list of test types into several lists of strings (to run them in parallel).\"\"\"\n        if not self.run_unit_tests:\n            return None\n        current_test_types = sorted(self._get_individual_providers_list())\n        "
+    }
+  ]
+}

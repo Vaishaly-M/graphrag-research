@@ -1,0 +1,91 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_HAS_ISSUE]->(i:DLIssue) WHERE r.dataset=$dataset AND r.repo=$repo AND i.state=$state RETURN toString(i.number) AS entity,toString(i.number) AS fact,[r.id,i.id] AS evidence_ids ORDER BY i.number LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "state": "open"
+  },
+  "rows": [
+    {
+      "entity": "25112",
+      "fact": "25112",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25112"
+      ]
+    },
+    {
+      "entity": "25149",
+      "fact": "25149",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25149"
+      ]
+    },
+    {
+      "entity": "25155",
+      "fact": "25155",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25155"
+      ]
+    },
+    {
+      "entity": "25170",
+      "fact": "25170",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25170"
+      ]
+    },
+    {
+      "entity": "25175",
+      "fact": "25175",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25175"
+      ]
+    },
+    {
+      "entity": "25176",
+      "fact": "25176",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25176"
+      ]
+    },
+    {
+      "entity": "25196",
+      "fact": "25196",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25196"
+      ]
+    },
+    {
+      "entity": "25206",
+      "fact": "25206",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25206"
+      ]
+    },
+    {
+      "entity": "25210",
+      "fact": "25210",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25210"
+      ]
+    },
+    {
+      "entity": "25233",
+      "fact": "25233",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25233"
+      ]
+    }
+  ]
+}

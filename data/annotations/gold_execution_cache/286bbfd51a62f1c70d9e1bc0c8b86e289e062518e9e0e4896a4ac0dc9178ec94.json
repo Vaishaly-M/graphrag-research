@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+        "path": "README.md",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2600",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1752",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2445",
+        "path": null,
+        "offset": 122,
+        "line": 7
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2671",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2678",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2670",
+        "path": null,
+        "offset": 106,
+        "line": 3
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)\n\n[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)\n\n## Understanding the Spring Petclinic application with a few diagrams\n\nSee the presentation here:  \n[Spring Petclinic Sample Application (legacy slides)](https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20)\n\n> **Note:** These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.  \n> For up-to-date information, please refer to this repository and its documentation.\n\n\n## Run Petclinic locally\n\nSpring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).\nJava 17 or later is required for the build, and the application can run with Java 17 or newer.\n\nYou first need to clone the project locally:\n\n```bash\ngit clone https://github.com/spring-projects/spring-petclinic.git\ncd spring-petclinic\n```\nIf you are using Maven, you can start the application on the command-line as follows:\n\n```bash\n./mvnw spring-boot:run\n```\nWith Gradle, the command is as follows:\n\n```bash\n./gradlew bootRun\n```\n\nYou can then access the Petclinic at <http://localhost:8080/>.\n\n<img width=\"1042\" alt=\"petclinic-screenshot\" src=\"https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png\">\n\nYou can, of course, run Petclinic in your favorite IDE.\nSee below for more details.\n\n## Building a Container\n\nThere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1752",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1752,
+      "title": "Pet details are not updated",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Example: go to first owner with pet Leo of type cat.\r\nClick on edit pet and change the type to bird or change the name.\r\nClick on Update pet.\r\nThe pet is not updated, even though a success message is shown.\r\nWhen I analysed the code, I found that the updated pet is given to the addPet method of the owner which does not change the pet in the owner list, as the pet is not new.\r\nIn PetController:\r\n![grafik](https://github.com/user-attachments/assets/3d33ef4c-5340-4dfc-8e1d-cdb1847d0df6)\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2252,
+      "title": "[Feature] Add search pets by name screen",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\nAdd a new screen that allows users to search for pets by name, similar to the existing \"Find Owners\" functionality.\n\n## Motivation\n\n- Currently there is no way to search for a pet directly by name; users must first find the owner and then browse their pets.\n- A dedicated pet search screen would improve usability when the pet name is known but the owner is not.\n- Aligns the pet entity with the same search UX pattern already established for owners.\n\n## Proposed Solution\n\n1. **New Thymeleaf template** (`templates/pets/findPets.html`) with a search form and results list/table.\n2. **New controller** endpoint(s) in a `PetController` (or extend existing controller) to handle `GET /pets/find` and `GET /pets` with a `name` query parameter.\n3. **New repository method** `findByNameContainingIgnoreCase(String name)` (or equivalent Spring Data query) in `PetRepository`.\n4. **Navigation link** added to the main layout so users can access the pet search screen.\n5. **Accessibility**: the new page must meet WCAG 2.2 Level AA (keyboard navigation, visible focus, proper labels, contrast, landmarks, etc.).\n\n## Acceptance Criteria\n\n- [ ] A \"Find Pets\" link is available in the main navigation menu\n- [ ] Users can search for pets by entering a full or partial pet name (case-insensitive)\n- [ ] An empty search returns all pets\n- [ ] Search results display pet name, birth date, type, and owner name\n- [ ] Clicking a result navigates to the pet's or owner's detail page\n- [ ] The page is accessible (landmarks, labels, keyboard support, contrast)\n- [ ] Unit and integration tests cover the new controller and repository methods\n- [ ] Works with H2 (default), MySQL, and PostgreSQL profiles\n\n## Alternatives Considered\n\n- Extending the existing owner search to also filter by pet name — rejected because it conflates two different search intents.\n\n## Additional Context\n\nThe implementation should follow the same patterns used by the existing \"Find Owners\" feature (`OwnerController`, `findOwners.html`, `ownersList.html`)."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2600",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2600,
+      "title": "Owner.addPet silently ignores persisted pets and PetValidator lacks name length check",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "The Owner.addPet(Pet pet) method in Owner.java contains a logic bug where it only adds a pet to the owner's pet list if pet.isNew() returns true (i.e., the pet has no ID). This means that any persisted pet (one that already has a database ID assigned) is silently ignored when added to an owner.\n\nThis bug manifests in PetController.updatePetDetails() where the else branch calls owner.addPet(pet) for a pet with an existing ID. Since the pet is not new, the call silently does nothing, and the pet is never associated with the owner.\n\nExpected behavior: The addPet method should add any pet that is not already present in the owner's pet list, regardless of whether the pet is new or persisted.\n\nActual behavior: Only pets with a null ID are added. Pets with a valid ID are silently dropped.\n\nAdditionally, the PetValidator class lacks a name length validation check. The Pet entity inherits from NamedEntity which has a @Column(length=30) constraint, but the validator does not enforce this at the form validation level. This means names exceeding 30 characters pass validation but fail at the database level with a hard-to-debug constraint violation.\n\nSteps to reproduce:\n\nCreate an Owner instance\nCreate a Pet instance and assign it an ID (e.g., pet.setId(5))\nCall owner.addPet(pet)\nObserve that owner.getPets() returns an empty list\nAcceptance criteria:\n\nOwner.addPet adds persisted pets that are not already in the list\nOwner.addPet does not add duplicate pets\nPetValidator rejects pet names longer than 30 characters\nAll existing tests continue to pass\nNew unit tests cover the fixed behavior\nWord count: ~240 RULE 7 status: PASS"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2445",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2445,
+      "title": "refactor: removing redundant code",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 122,
+      "excerpt": "ject that was constructed, populated via `vets.getVetList().addAll(paginated.toList())`, and then never read. The method's return value is built by `addPaginationModel(page, paginated, model)`, which consumes `paginated` directly and exposes its content as the `listVets` model attribute.\r\n\r\n### 2. `PetController.initCreationForm`\r\n\r\nThree related removals:\r\n\r\n- **`ModelMap model` parameter** - declared but never referenced.\r\n- **`Pet pet = new Pet(); owner.addPet(pet);`** - constructed a transient Pet that was never returned, never persisted (this is a `GET` handler that does not call `owners.save(...)`), and never reached the view (the `pet` model attribute is supplied by the `@ModelAttribute(\"pet\") findPet(...)` method, which constructs its own `new Pet()`). The mutation therefore had no observable effect.\r\n- **`Owner owner` parameter** - with the body emptied, this parameter is no longer referenced either. Spring still resolves the `owner` model attribute through `@ModelAttribute(\"owner\") findOwner(...)`, so the view receives the same data.\r\n- **`org.springframework.ui.ModelMap` import** - now unused following the parameter removal.\r\n\r\n## Verification\r\n\r\n`./mvnw test` passes unchanged. No tests were modified.\r\n\r\n## Review checklist\r\n\r\n- [ ] No surviving references to the deleted local `vets` variable in\r\n      `VetController`.\r\n- [ ] No surviving references to the deleted `ModelMap model` or\r\n      `Owner owner` parameters in `PetController.initCreationForm`.\r\n- [ ] `org.springframework.ui.ModelMap` import removed from\r\n      `PetController`.\r\n- [ ] Existing tests pass without modification."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2670",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2670,
+      "title": "Validate owner address and city length to match the database schema",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 106,
+      "excerpt": "as constrain them to `VARCHAR(255)` and `VARCHAR(80)`. Submitting a longer value through the create-owner form persisted past bean validation and failed with HTTP 500 (`DataIntegrityViolationException: Value too long for column ...`).\n\nThis follows the same pattern already used for person names and pet names:\n\n- #2350 (`@Size` on `Person.firstName` / `lastName`)\n- #2611 (pet name length aligned with the 30-character column)\n\n`@Size` is added on `Owner.address` (max 255) and `Owner.city` (max 80) so the form returns field errors instead of a 500. No schema or UI changes.\n\nOpen PR #2663 covers `Visit.description` only; it does not include these owner columns.\n\n## Reproduction (before)\n\n1. Run the app (`./mvnw spring-boot:run`) and open `http://localhost:8080/owners/new`\n2. Fill valid first name, last name, telephone, and a short address\n3. Set **City** to 81 characters and submit → HTTP 500, `Value too long for column \"CITY CHARACTER VARYING(80)\"`\n4. Repeat with **Address** of 256 characters → HTTP 500, `Value too long for column \"ADDRESS CHARACTER VARYING(255)\"`\n\n## Test plan\n\n- [x] `./mvnw -Dtest=OwnerControllerTests test`\n- [x] POST `/owners/new` with an 81-character city stays on the form (HTTP 200) with a `Size` field error on `city`\n- [x] POST `/owners/new` with a 256-character address stays on the form (HTTP 200) with a `Size` field error on `address`\n- [x] Existing owner create/update tests still pass\n- [x] Manual check on `/owners/new`: oversized city/address show the inline validation message and no longer hit the error page\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2671",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2671,
+      "title": "Delete functionality for Owners",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Description:\r\n\r\n- Adds the ability to delete an Owner from the Owner details page, along with all associated Pets and Visits (cascade delete).\r\n\r\nChanges:\r\n\r\n- Added deleteOwner() handler in OwnerController (POST /owners/{ownerId}/delete)\r\n- Added delete(Owner) to OwnerRepository\r\n- Added \"Delete Owner\" button to ownerDetails.html, with a JS confirm dialog to prevent accidental deletion\r\n- Cascade delete relies on existing CascadeType.ALL mapping on Owner.pets and Pet.visits\r\n- Added Javadoc comments for the new controller method and repository method\r\n\r\nTests:\r\n\r\n- Verified successful delete redirects to /owners/find with a flash success message\r\n- Verified the correct Owner (with pets) is passed to delete()\r\n- Verified deleting a non-existent owner throws/returns an error, and delete() is never called\r\n- Verified GET on the delete endpoint is rejected (405)\r\n\r\n<img width=\"2754\" height=\"1526\" alt=\"image\" src=\"https://github.com/user-attachments/assets/597ef4ff-c733-413e-883a-31efdfa56a63\" />\r\n<img width=\"1530\" height=\"820\" alt=\"image\" src=\"https://github.com/user-attachments/assets/daab6660-4ad2-4888-bc98-6cb62c460696\" />\r\n<img width=\"2880\" height=\"1572\" alt=\"image\" src=\"https://github.com/user-attachments/assets/41f5f5b5-cb6f-435e-86fe-41e8f0149cc7\" />\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2678",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2678,
+      "title": "Delete functionality for Owners",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Description:\r\n- Adds the ability to delete an Owner from the Owner details page, along with all associated Pets and Visits (cascade delete).\r\n\r\n\r\nChanges:\r\n- Added deleteOwner() handler in OwnerController (POST /owners/{ownerId}/delete)\r\n- Added delete(Owner) to OwnerRepository\r\n- Added \"Delete Owner\" button to ownerDetails.html, with a JS confirm dialog to prevent accidental deletion\r\n- Cascade delete relies on existing CascadeType.ALL mapping on Owner.pets and Pet.visits\r\n- Added Javadoc comments for the new controller method and repository method\r\n\r\nTests:\r\n- Verified successful delete redirects to /owners/find with a flash success message\r\n- Verified the correct Owner (with pets) is passed to delete()\r\n- Verified deleting a non-existent owner throws/returns an error, and delete() is never called\r\n- Verified GET on the delete endpoint is rejected (405)\r\n\r\n<img width=\"2754\" height=\"1526\" alt=\"image\" src=\"https://github.com/user-attachments/assets/532bcadc-6df7-407c-a3b3-9e14a2a14b27\" />\r\n<img width=\"1530\" height=\"820\" alt=\"image\" src=\"https://github.com/user-attachments/assets/d26e23dc-27b8-45ad-95f3-a0bd00b94498\" />\r\n<img width=\"2880\" height=\"1572\" alt=\"image\" src=\"https://github.com/user-attachments/assets/b72dbd05-4c8e-46da-b128-660ebba2fac4\" />\r\n"
+    }
+  ]
+}

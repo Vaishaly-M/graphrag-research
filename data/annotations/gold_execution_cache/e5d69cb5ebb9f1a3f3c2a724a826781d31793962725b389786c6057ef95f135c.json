@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+        "path": "README.md",
+        "offset": 6384,
+        "line": 157
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+        "path": null,
+        "offset": 1587,
+        "line": 18
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/release.yaml",
+        "path": ".github/workflows/release.yaml",
+        "offset": 8206,
+        "line": 130
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:liquibase/README.md",
+        "path": "liquibase/README.md",
+        "offset": 15373,
+        "line": 341
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6404",
+        "path": null,
+        "offset": 8024,
+        "line": 107
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 3538,
+        "line": 43
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/backfill-image-variants.yaml",
+        "path": ".github/workflows/backfill-image-variants.yaml",
+        "offset": 1858,
+        "line": 44
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+        "path": null,
+        "offset": 4441,
+        "line": 14
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/backfill-image-variants.yaml",
+      "kind": "File",
+      "path": ".github/workflows/backfill-image-variants.yaml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1858,
+      "excerpt": "\n    runs-on: ubuntu-latest\n    timeout-minutes: 120\n    # same reviewer-less environment as release.yaml's variants job: scopes the Docker\n    # Hub secrets and carries the *.*.x deployment-branch rule without an approval gate\n    environment: release-images\n    permissions:\n      contents: read # checkout of the release tag only\n    strategy:\n      fail-fast: false\n      matrix:\n        include:\n          - jdk: 8\n            dev_jdk: amazoncorretto-8\n            runtime_jdk: jdk8-corretto\n          - jdk: 11\n            dev_jdk: amazoncorretto-11\n            runtime_jdk: jdk11-corretto\n          - jdk: 17\n            dev_jdk: amazoncorretto-17\n            runtime_jdk: jdk17-corretto\n          - jdk: 21\n            dev_jdk: amazoncorretto-21\n            runtime_jdk: jdk21-corretto\n    env:\n      DEV_JDK: ${{ matrix.dev_jdk }}\n      RUNTIME_JDK: ${{ matrix.runtime_jdk }}\n    steps:\n      - name: Validate the version\n        run: |\n          if [[ ! \"${GITHUB_REF_NAME}\" =~ ^[0-9]+\\.[0-9]+\\.x$ ]]; then\n            echo \"::error::Dispatch this workflow on the maintenance branch the version belongs to (N.N.x), not '${GITHUB_REF_NAME}'\"\n            exit 1\n          fi\n          if [[ ! \"${OMRS_VERSION}\" =~ ^[0-9]+\\.[0-9]+\\.[0-9]+$ ]]; then\n            echo \"::error::version must look like 2.8.8, got '${OMRS_VERSION}'\"\n            exit 1\n          fi\n          BRANCH_PREFIX=\"${GITHUB_REF_NAME%.x}\"\n          if [[ \"${OMRS_VERSION}\" != \"${BRANCH_PREFIX}.\"* ]]; then\n            echo \"::error::version ${OMRS_VERSION} does not belong to the ${GITHUB_REF_NAME} branch\"\n            exit 1\n          fi\n\n      # never persist credentials: the Dockerfile copies the whole checkout (including\n      # .git) into the published dev images\n      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0\n        with:\n          # the tag of the already-released version; checkout fails if it does not exist\n          ref: refs/tags/${{ inputs.version }}\n          persist-credentials: false\n\n      - uses: docker/setup-qemu-action@96fe6ef7f33517b61c61be40b68a1882f3264fb8 # v4.2.0\n\n      - uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0\n\n      - uses: docker/login-action@af1e73f918a031802d376d3c8bbc3fe56130a9b0 # v4.4.0\n        with:\n          username: ${{ secrets.DOCKER_HUB_USERNAME }}\n          password: ${{ secrets.DOCKER_HUB_TOKEN"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/release.yaml",
+      "kind": "File",
+      "path": ".github/workflows/release.yaml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8206,
+      "excerpt": "APP_CREDS: ${{ secrets.OMRS_RELEASE_BOT_APP_ID != '' && secrets.OMRS_RELEASE_BOT_PRIVATE_KEY != '' }}\n      PARTIAL_APP_CREDS: ${{ (secrets.OMRS_RELEASE_BOT_APP_ID != '') != (secrets.OMRS_RELEASE_BOT_PRIVATE_KEY != '') }}\n    steps:\n      # never persist credentials: the Dockerfile copies the whole checkout (including\n      # .git) into the published dev image, so persisted credentials would ship in a\n      # public image; pushes authenticate via remote set-url after the images are built\n      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0\n        with:\n          persist-credentials: false\n\n      # prefer a short-lived App token over the long-lived PAT, like the shared\n      # module-release workflow (App token || OMRS_BOT_GH_TOKEN || github.token); the App\n      # must be a bypass actor on this branch's ruleset — the pre-flight below verifies\n      # the token authenticates and can reach the branch, but ruleset bypass is only\n      # exercised by the real pushes. App tokens expire after an hour — shorter than\n      # this job — so this one only serves the pre-flight; the push steps mint a fresh\n      # one just before they run\n      - name: Create release bot App token\n        id: app-token\n        if: ${{ env.HAS_APP_CREDS == 'true' }}\n        # a failed mint falls through to the PAT in the token chains instead of\n        # killing the release while a usable fallback exists\n        continue-on-error: true\n        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0\n        with:\n          app-id: ${{ secrets.OMRS_RELEASE_BOT_APP_ID }}\n          private-key: ${{ secrets.OMRS_RELEASE_BOT_PRIVATE_KEY }}\n          # least privilege: pushing commits and tags needs nothing else\n          permission-contents: write\n\n      - name: Warn about partially configured App credentials\n        if: ${{ env.PARTIAL_APP_CREDS == 'true' }}\n        run: echo \"::warning::Only one of OMRS_RELEASE_BOT_APP_ID/OMRS_RELEASE_BOT_PRIVATE_KEY is configured; falling back to OMRS_BOT_GH_TOKEN\"\n\n      - name: Setup JDK\n        uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5.6.0\n        with:\n          distribution: 'temurin'\n          java-version: 17\n          cache: 'maven'\n\n      - name: Validate the release preconditions\n        env:\n          BOT_TOKEN: ${{ steps.app-token.outputs.token || secrets.O"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3538,
+      "excerpt": "e repo](http://help.github.com/fork-a-repo) on which you're working, clone your forked repo to your local computer, and set up the upstream remote:\n\n        git clone git://github.com/YourGitHubUserName/openmrs-core.git\n        git remote add upstream https://github.com/openmrs/openmrs-core.git\n\n3. Checkout to a new local branch based on your master and update it to the latest. The convention is to name the branch after the current ticket, e.g. TRUNK-123:\n\n        git checkout -b TRUNK-123 master\n        git clean -df\n        git pull --rebase upstream master\n\n > Please keep your code clean. Name your branch after the JIRA issue or other description of the work being done. If you find another bug, you want to fix while being in a new branch, please fix it in a separated branch instead.\n\n\n4. Push the branch to your fork. Treat it as a backup.\n\n        git push origin TRUNK-123\n\n5. Code\n  * Adhere to common conventions you see in the existing code\n  * Include tests, and ensure they pass\n  * Search to see if your new functionality has been discussed using our [OpenMRS global search](http://search.openmrs.org), and include updates as appropriate\n\n6. Follow the [Coding Conventions described on our wiki](https://wiki.openmrs.org/x/MxEz).\n\n  > However, please note that **pull requests consisting entirely of style changes are not welcome on this project**. Style changes in the context of pull requests that also refactor code, fix bugs, improve functionality *are* welcome.\n\n7. Commit\n\n  For every commit please write a short (max 72 characters) summary in the first line followed with a blank line and then more detailed descriptions of the change. Use markdown syntax for simple styling. Please include any JIRA issue numbers in your summary.\n  \n        git commit -m \"TRUNK-123: Put change summary here (can be a ticket title)\"\n\n  **NEVER leave the commit message blank!** Provide a detailed, clear, and complete description of your commit!\n\n8. Issue a Pull Request\n\n  Before submitting a pull request, update your branch to the latest code.\n  \n        git pull --rebase upstream master\n\n  If you have made many commits, we ask you to squash them into atomic units of work. Most of tickets should have one commit only, especially bug fixes, which makes them easier to back port.\n\n        git checkout master\n        git pull --rebase upstream master\n        git checkout TRUNK-123\n "
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6384,
+      "excerpt": "any code changes require full restart and rebuild of the docker container. To speed up the process,\nplease use:\n\n```bash\ndocker compose build --build-arg MVN_ARGS='install -DskipTests'\ndocker compose up\n```\n\nWe are working towards providing support for Spring Boot auto-reload feature, which will be documented here once ready.\n\nIt is also possible to deploy an image built by our CI, which is published at\n[OpenMRS Core on Docker Hub](https://hub.docker.com/r/openmrs/openmrs-core).\n\nYou can run any tag available with:\n\n```bash\nTAG=nightly docker compose -f docker-compose.yml up\n```\n\nIt is also possible to run a development version of an image with:\n\n```bash\nTAG=dev docker compose up\n```\n\nAll development versions contain dev suffix. The cache suffix is for use by our CI.\n\n### Running with ElasticSearch\n\nOpenMRS can run with ElasticSearch backend instead of the in-built Lucene index. You can run it with:\n\n```bash\ndocker compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.es.yml up\n```\n\nIf you change backend, you need to rebuild the search index by going to Legacy UI -> Administration -> Search Index. Alternatively, you can rebuild the search index using the `searchindexupdate` REST endpoint.\n\n### Running with Grafana\n\nOpenMRS can run with Grafana for monitoring logs. You can run it with:\n\n```bash\ndocker compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.grafana.yml up\n```\n\nGrafana will be available at http://localhost:3000. Use admin as username and see docker-compose.grafana.yml for the initial password.\n\n### Scheduler Dashboard\n\nThe scheduler dashboard can be accessed at http://localhost:9000 by default (user: admin / password: Admin123). It is enabled by default when running `docker compose up` command. It is configured in `docker-compose.override.yml`.\n\nIf you want to enable it in other environments, you need to set the following properties in `openmrs-runtime.properties`:\n\n```bash\njobrunr.dashboard.enabled=true\njobrunr.dashboard.password=someStrongPassword\n```\n\n## Navigating the repository\n\nThe project tree is set up as follows:\n\n<table>\n <tr>\n  <td>api/</td>\n  <td>Java and resource files for building the java api jar file.</td>\n </tr>\n <tr>\n  <td>tools/</td>\n  <td>Meta code used during compiling and testing. Does not go into any released binary (like doclets).</td>\n </tr>\n <tr>\n  <td>web/</td>\n  <td>Jav"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:liquibase/README.md",
+      "kind": "File",
+      "path": "liquibase/README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 15373,
+      "excerpt": "* to run this script on a production database.\n\n#### Step 2 - Delete the OpenMRS folder in your profile\n\trm -r ~/.OpenMRS\n\nTake care **NOT** to do that on a production environment.\n\n#### Step 3 - Build, initialise and run an older OpenMRS version, e.g. 2.2.x\n\tcd <some root folder>/openmrs-core\n\tgit checkout 2.2.x\n\tmvn clean install\n\tcd webapp\n\tmvn jetty:run\n\nOpen [http://localhost:8080/openmrs/initialsetup](http://localhost:8080/openmrs/initialsetup) and choose the following \noptions:\n\n* **simple installation** in step 2 of the installation wizard\n\n* **not to add demo data** in step 3 of the installation wizard\n\n#### Step 4 - Stop OpenMRS after the initialisation\n\n#### Step 5 - Build, initialise and run a version of OpenMRS that uses Liquibase snapshots, e.g. master\n\tcd <some root folder>/openmrs-core\n\tgit checkout master\n\tmvn clean install\n\tcd webapp\n\tmvn jetty:run\n\nOpen [http://localhost:8080/openmrs](http://localhost:8080/openmrs) and do the following steps:\n\n* log in as administrator\n* review the list of Liquibase change sets that need to be run to update the OpenMRS database\n* run the pending change sets\n\n#### Step 6 - Check the OpenMRS log \nThe OpenMRS log file lists the change sets that were run. Validate that the expected change sets were executed.\n\n## References\n[https://issues.openmrs.org/browse/TRUNK-4830](https://issues.openmrs.org/browse/TRUNK-4830)\n\n[http://www.liquibase.org/documentation/maven](http://www.liquibase.org/documentation/maven)\n\n[https://dev.mysql.com/doc/refman/8.0/en/mysql-batch-commands.html](https://dev.mysql.com/doc/refman/8.0/en/mysql-batch-commands.html)\n\n## Appendix\n\nPlease note that all these corrections are automatically applied by `scripts/fix_liquibase_snapshots.sh`\n\n#### Corrections needed for `liquibase-schema-only-SNAPSHOT.xml`\n\nAfter generating the file `liquibase-schema-only-SNAPSHOT.xml`, a few changes need to be applied to that file.\n\nChange sets referring to **`liquibasechangelog`** and **`liquibasechangeloglock`** need to be removed.\n\nThe attribute **`value`** of the table **`clob_datatype_storage `** must be of type `CLOB` (and **not** `LONGTEXT`):\n\n    <changeSet ...>\n        <createTable tableName=\"clob_datatype_storage\">\n            ...\n            <column name=\"value\" type=\"CLOB\">\n            ...\n        </createTable>\n    </changeSet>\n\nWhen creating snapshots, Liquibase version 3.x  uses the types `BIT` o"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6404",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6404,
+      "title": "github-actions(deps): bump actions/stale from 10 to 11",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8024,
+      "excerpt": "//redirect.github.com/actions/stale/pull/1179\">actions/stale#1179</a></li>\n<li>Update undici from 5.28.2 to 5.28.4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1150\">actions/stale#1150</a></li>\n<li>Update actions/checkout from 3 to 4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1091\">actions/stale#1091</a></li>\n<li>Update actions/publish-action from 0.2.2 to 0.3.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1147\">actions/stale#1147</a></li>\n<li>Update ts-jest from 29.1.1 to 29.2.5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1175\">actions/stale#1175</a></li>\n<li>Update <code>@​actions/core</code> from 1.10.1 to 1.11.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1191\">actions/stale#1191</a></li>\n<li>Update <code>@​types/jest</code> from 29.5.11 to 29.5.14 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1193\">actions/stale#1193</a></li>\n<li>Update <code>@​actions/cache</code> from 3.2.2 to 4.0.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1194\">actions/stale#1194</a></li>\n</ul>\n<h1>[9.0.0]</h1>\n<h2>Breaking Changes</h2>\n<ol>\n<li>Action is now stateful: If the action ends because of <a href=\"https://github.com/actions/stale#operations-per-run\">operations-per-run</a> then the next run will start from the first unprocessed issue skipping the issues processed during the previous run(s). The state is reset when all the issues are processed. This should be considered for scheduling workflow runs.</li>\n<li>Version 9 of this action updated the runtime to Node.js 20. All scripts are now run with Node.js 20 instead of Node.js 16 and are affected by any breaking changes between Node.js 16 and 20.</li>\n</ol>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/stale/commit/"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6533,
+      "title": "TRUNK-6795: Populate obs reference ranges in a save handler so they survive validation.disable",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4441,
+      "excerpt": "ntouched observation and replace it with a revision differing only in the overwritten interpretation. An observation the caller has genuinely edited is already dirty by the time the handler sees it, so it is still re-interpreted.\n\nThe interpretation is therefore deliberately asymmetric, and this is documented on `ObsSaveHandler`: on a **new** observation an interpretation supplied by the caller is kept, so a client that computes its own interpretations wins; on an **amendment** it is overwritten, because a persisted observation offers no way to tell an interpretation the caller has just set from one derived on an earlier save, and re-interpreting an edited value is the more useful default. A client that maintains its own interpretations — a laboratory amending a result, say — has to set the interpretation again after every amendment.\n\nResolving a range is read-only, but it runs queries: the concept&#39;s ranges, and then whatever each range&#39;s criteria asks for (`$fn.getLatestObs` resolves a concept reference and searches observations). Because the handler now resolves a range while an edited `Obs` is still dirty in the Hibernate session, any of those queries would auto-flush that observation past `ImmutableEntityInterceptor`. `ConceptServiceImpl.getConceptReferenceRange` therefore holds the session in `FlushMode.MANUAL` for the whole resolution and restores the previous mode in a `finally`, the way `HibernateAdministrationDAO.validate` already did for the validator run that used to derive the range.\n\n**Behaviour change for a concept with no bounds configured.** `ObsValidator` used to fall back to the `ConceptNumeric`&#39;s own range fields when no `ConceptReferenceRange` matched, so a numeric observation whose concept has no bounds configured at all was saved with an all-null `obs_reference_range` row and an interpretation of `NORMAL`. Deriving the range through `ConceptService.getConceptReferenceRange` drops that fallback: its default range is null when every bound is null, so such an observation now gets neither a reference range nor an interpretation, since `NORMAL` derived from no bounds is not information. This will be most observations in an implementation that has not configured ranges. `handle_shouldSetNeitherReferenceRangeNorInterpretationForAConceptWithNoBoundsConfigured` pins it.\n\nThis also addresses **TRUNK-6442** (the validator overwriting a"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6648,
+      "title": "maven(deps): bump org.owasp.encoder:encoder from 1.4.1 to 1.5.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1587,
+      "excerpt": "e preserving the string value. Review byte snapshots, cache keys, signatures, and output-size budgets.</li>\n<li>CDATA preserves parsed text but can expand to 13 output characters per input character and can change parser event boundaries.</li>\n<li>XML-comment hyphens become <code>~</code> under the documented lossy policy.</li>\n</ul>\n<p>The optional ESAPI adapter is retired. Version 1.4.1 is its final published release and is unsupported; migrate to direct Java Encoder APIs. Mixing the 1.4.1 adapter with the 1.5 core is not a supported migration.</p>\n<p>See the <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/v1.5.0/docs/compatibility-decisions.md#15-parser-boundary-output-migration\">migration notes</a>, <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/v1.5.0/docs/encoder-esapi-retirement.md\">ESAPI retirement guide</a>, and <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/v1.5.0/CHANGELOG.md\">changelog</a>.</p>\n<h2>Maven artifacts</h2>\n<p>Use group <code>org.owasp.encoder</code> and version <code>1.5.0</code>:</p>\n<ul>\n<li><a href=\"https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder/1.5.0/\">encoder</a></li>\n<li><a href=\"https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder-jsp/1.5.0/\">encoder-jsp</a></li>\n<li><a href=\"https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder-jakarta-jsp/1.5.0/\">encoder-jakarta-jsp</a></li>\n<li><a href=\"https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder-parent/1.5.0/\">encoder-parent</a> (parent POM)</li>\n</ul>\n<p>The optional test WAR and retired ESAPI adapter are not published.</p>\n<h2>Verification</h2>\n<p>Exact release source: <code>3fbc5da5bcdc49a6e2b4f39d3df7410b7c13d07d</code>. The signed <code>v1.5.0</code> tag identifies this tested commit. PR <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/229\">#229</a>'s squash commit <code>030c137fc14f277afc5fbe303d2ca8a149f8068b</code> has the identical file tree.</p>\n<p>Release artifacts were built with Eclipse Temurin 17.0.20.1+1 and the committed Maven 3.9.16 wrapper. All 2,287 local reactor tests passed with zero failures, errors, or skips. All thirteen unsigned payload files matched two fresh source-export builds. Post-merge <a href=\"https://github.com/OWASP/owasp-java-encoder/actions/runs/36471162477\">Java CI</a>, <a href=\"https://github.com/OWASP/owasp-java-encoder/actions/runs/36471162240\">"
+    }
+  ]
+}

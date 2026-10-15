@@ -1,0 +1,116 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id IN $evidence_ids\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nsubstring(coalesce(n.content,n.body,n.message,''),0,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_ids": [
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1289",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:636",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:277",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:889",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:996",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:519"
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)\n\n[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)\n\n## Understanding the Spring Petclinic application with a few diagrams\n\nSee the presentation here:  \n[Spring Petclinic Sample Application (legacy slides)](https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20)\n\n> **Note:** These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.  \n> For up-to-date information, please refer to this repository and its documentation.\n\n\n## Run Petclinic locally\n\nSpring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).\nJava 17 or later is required for the build, and the application can run with Java 17 or newer.\n\nYou first need to clone the project locally:\n\n```bash\ngit clone https://github.com/spring-projects/spring-petclinic.git\ncd spring-petclinic\n```\nIf you are using Maven, you can start the application on the command-line as follows:\n\n```bash\n./mvnw spring-boot:run\n```\nWith Gradle, the command is as follows:\n\n```bash\n./gradlew bootRun\n```\n\nYou can then access the Petclinic at <http://localhost:8080/>.\n\n<img width=\"1042\" alt=\"petclinic-screenshot\" src=\"https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png\">\n\nYou can, of course, run Petclinic in your favorite IDE.\nSee below for more details.\n\n## Building a Container\n\nThere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1289",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1289,
+      "title": "Sonarcloud with Maven build failed using on Gthub actions",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "I am trying to do code quality analysis with Sonarcloud and build with Maven of this repo\r\n\r\nIt keeps on failing, find the screenshot for more info\r\n\r\nTried with Java 17 and Java 18 - didn't work\r\n\r\n![image](https://github.com/spring-projects/spring-petclinic/assets/48921568/1ce1a1f6-0d54-495f-a607-0387933257cd)\r\n\r\nworkflow file\r\n\r\n```\r\nname: Build\r\non:\r\n  push:\r\n    branches:\r\n      - main # the name of your main branch\r\n  pull_request:\r\n    types: [opened, synchronize, reopened]\r\njobs:\r\n  build:\r\n    name: Build\r\n    runs-on: ubuntu-latest\r\n    steps:\r\n      - uses: actions/checkout@v2\r\n        with:\r\n          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis\r\n      - name: Set up JDK 17\r\n        uses: actions/setup-java@v1\r\n        with:\r\n          java-version: 17 \r\n      - name: Cache SonarQube packages\r\n        uses: actions/cache@v1\r\n        with:\r\n          path: ~/.sonar/cache\r\n          key: ${{ runner.os }}-sonar\r\n          restore-keys: ${{ runner.os }}-sonar\r\n      - name: Cache Maven packages\r\n        uses: actions/cache@v1\r\n        with:\r\n          path: ~/.m2\r\n          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}\r\n          restore-keys: ${{ runner.os }}-m2\r\n      - name: Build and analyze\r\n        env:\r\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any\r\n          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}\r\n          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}\r\n        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar\r\n```"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:277",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 277,
+      "title": "Experiments running the build in parallel - Parallel tests fail",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Hello, \r\n\r\nI am trying to play around with maven to experiment where I could parallelize the builds in order to take advantage of the latest hardware (fast SSD, a lot of cores, etc.).\r\n\r\nFor that, I picked the Spring Pet Clinic to play around and I got issues when I try to run the tests in parallel through the maven-surefire-plugin.\r\n\r\nThis is repository and the branch I push the code: https://github.com/Leward/spring-petclinic/tree/parallel\r\n\r\n`mvn clean package` will trigger the error (given you have more than 1 core/thread available)\r\n\r\nThe test failture I encountered so far are due to: \r\n\r\n```\r\n017-10-30 22:42:52.797  WARN 20507 --- [pool-2-thread-4] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@13d9b21f] to process 'after' execution for test: method [public void org.springframework.samples.petclinic.vet.VetController7Tests.testShowVetListXml() throws java.lang.Exception], instance [org.springframework.samples.petclinic.vet.VetController7Tests@3ac4f0cc], exception [java.lang.AssertionError: Body content\r\nExpected: an XML document with XPath /vets/vetList[id=1]/id \r\n     but: xpath returned no results.]\r\n\r\njava.util.ConcurrentModificationException: null\r\n\tat java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901) ~[na:1.8.0_131]\r\n\tat java.util.ArrayList$Itr.next(ArrayList.java:851) ~[na:1.8.0_131]\r\n\tat org.springframework.boot.test.autoconfigure.web.servlet.SpringBootMockMvcBuilderCustomizer$SystemLinesWriter.write(SpringBootMockMvcBuilderCustomizer.java:307) ~[spring-boot-test-autoconfigure-1.5.4.RELEASE.jar:1.5.4.RELEASE]\r\n\tat org.springframework.boot.test.autoconfigure.web.servlet.SpringBootMockMvcBuilderCustomizer$DeferredLinesWriter.writeDeferredResult(SpringBootMockMvcBuilderCustomizer.java:257) ~[spring-boot-test-autoconfigure-1.5.4.RELEASE.jar:1.5.4.RELEASE]\r\n\tat org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener.afterTestMethod(MockMvcPrintOnlyOnFailureTestExecutionListener.java:38) ~[spring-boot-test-autoconfigure-1.5.4.RELEASE.jar:1.5.4.RELEASE]\r\n\tat org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:319) ~[spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.springframework.test.context.j"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:519",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 519,
+      "title": "Consider removing spring-java-format-maven-plugin",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "The presence of that plugin results in the dreaded 'plugin execution not covered by lifecycle error' in Eclipse workspace.\r\n\r\nConsumers of the spring-perclinic sample  (i.e users who want just want to explore the example code) probably do not care for the formatting validation so its probably best not to force this on them.\r\n\r\nIf you want to keep the plugin regardless, then perhaps consider adding this extra (yuck) XML to the pom instead to disable it inside of Eclipse:\r\n\r\n```\r\n    <pluginManagement>\r\n    \t<plugins>\r\n    \t\t<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->\r\n    \t\t<plugin>\r\n    \t\t\t<groupId>org.eclipse.m2e</groupId>\r\n    \t\t\t<artifactId>lifecycle-mapping</artifactId>\r\n    \t\t\t<version>1.0.0</version>\r\n    \t\t\t<configuration>\r\n    \t\t\t\t<lifecycleMappingMetadata>\r\n    \t\t\t\t\t<pluginExecutions>\r\n    \t\t\t\t\t\t<pluginExecution>\r\n    \t\t\t\t\t\t\t<pluginExecutionFilter>\r\n    \t\t\t\t\t\t\t\t<groupId>\r\n    \t\t\t\t\t\t\t\t\tio.spring.javaformat\r\n    \t\t\t\t\t\t\t\t</groupId>\r\n    \t\t\t\t\t\t\t\t<artifactId>\r\n    \t\t\t\t\t\t\t\t\tspring-javaformat-maven-plugin\r\n    \t\t\t\t\t\t\t\t</artifactId>\r\n    \t\t\t\t\t\t\t\t<versionRange>\r\n    \t\t\t\t\t\t\t\t\t[0.0.17,)\r\n    \t\t\t\t\t\t\t\t</versionRange>\r\n    \t\t\t\t\t\t\t\t<goals>\r\n    \t\t\t\t\t\t\t\t\t<goal>validate</goal>\r\n    \t\t\t\t\t\t\t\t</goals>\r\n    \t\t\t\t\t\t\t</pluginExecutionFilter>\r\n    \t\t\t\t\t\t\t<action>\r\n    \t\t\t\t\t\t\t\t<ignore></ignore>\r\n    \t\t\t\t\t\t\t</action>\r\n    \t\t\t\t\t\t</pluginExecution>\r\n    \t\t\t\t\t</pluginExecutions>\r\n    \t\t\t\t</lifecycleMappingMetadata>\r\n    \t\t\t</configuration>\r\n    \t\t</plugin>\r\n    \t</plugins>\r\n    </pluginManagement>\r\n```"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:636",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 636,
+      "title": "Add support for Postgres",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "in addition to h2, Petclinic app comes with support for mysql, it would be nice to have similar support for the second (maybe first ;-)) most popular open source database Postgres.\r\n\r\nSupport can be done along the same lines as the one for mysql, namely to add the following files and folders:\r\n+ resources/\r\n    - application-postgres.properties\r\n    + db/\r\n        + postgres/\r\n            - data.sql\r\n           - schema.sql\r\n\r\nAnd finally, posgres jdbc driver should be added to the runtime dependencies in pom.xml\r\n\r\nI have also attached to this issue all of the above files, for review.\r\n\r\n[resources.zip](https://github.com/spring-projects/spring-petclinic/files/4829935/resources.zip)\r\nschema.sql"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:889",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 889,
+      "title": "Generating war file for Weblogic fails",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Hello All,\r\n\r\nI'm tying to build petclinic for Weblogic 12C (12.2.1.4) but i get an error message:\r\n```\r\nActivating all your changes, this may take a while ... \r\nThe edit lock associated with this edit session is released once the activation is completed.\r\nThis Exception occurred at Mon Dec 20 16:45:05 CET 2021.\r\nweblogic.application.ModuleException: weblogic.descriptor.DescriptorException: VALIDATION PROBLEMS WERE FOUND\r\n  /u01/app/oracle/domains/dm-wls-o/weblogic.utils.classloaders.GenericClassLoader@34e6105 finder: weblogic.utils.classloaders.CodeGenClassFinder@4f38e33d annotation: spring-petclinic-O-7-3.1.0-SNAPSHOT@/WEB-INF/lib/tomcat-embed-el-9.0.55.jar!/META-INF/web-fragment.xml:18:3:18:3: problem: cvc-enumeration-valid: string value '4.0' is not a valid enumeration value for web-app-versionType in namespace http://xmlns.jcp.org/xml/ns/javaee\r\nactivation error\r\nNo stack trace available.\r\n```\r\n\r\nWhat ever i do does not solve it.\r\n\r\nWhat i notice is that in the war file 'tomcat-embed-el-9.0.55.jar' is included in the 'WEB-INF/lib' directory and not placed in 'WEB-INF/lib-provided' even though i have included:\r\n```\r\n<dependency>\r\n      <groupId>org.springframework.boot</groupId>\r\n      <artifactId>spring-boot-starter-tomcat</artifactId>\r\n      <scope>provided</scope>\r\n</dependency>\r\n```\r\nin the pom.xml file.\r\nThe contents of 'WEB-INF/lib-provided' is for this version:\r\n```\r\ntomcat-embed-core-9.0.55.jar\r\ntomcat-embed-websocket-9.0.55.jar\r\n```\r\nAnd \r\nWEB-INF/lib contains:\r\n```\r\ntomcat-embed-el-9.0.55.jar\r\n```\r\n\r\nBuilding it based on a much earlier commit 'https://github.com/spring-projects/spring-petclinic/commit/d2831f9bad3327c6c7b933f420b14fe528f98a4b' does not have this problem.\r\nFor this version the contents of WEB-INF/lib-provided is:\r\n```\r\nspring-boot-starter-tomcat-2.1.3.RELEASE.jar\r\ntomcat-embed-core-9.0.16.jar\r\ntomcat-embed-el-9.0.16.jar\r\ntomcat-embed-websocket-9.0.16.jar\r\n```\r\n\r\nWhat do i do wrong ?\r\n\r\nThanks in advance,\r\n\r\nKlaas Eenkhoorn"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:996",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 996,
+      "title": "Maven HTTP error for jaxb dependency",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Using OpenJDK 16 on Alpine 3.13 and running `./mvnw dependency:go-offline` results in the following error:\r\n\r\n```\r\nDownloaded from central: https://repo.maven.apache.org/maven2/org/ehcache/ehcache/3.10.0/ehcache-3.10.0.jar (1.8 MB at 3.1 MB/s)\r\n[INFO] ------------------------------------------------------------------------\r\n[INFO] BUILD FAILURE\r\n[INFO] ------------------------------------------------------------------------\r\n[INFO] Total time:  05:01 min\r\n[INFO] Finished at: 2022-06-17T19:59:09Z\r\n[INFO] ------------------------------------------------------------------------\r\n[ERROR] Failed to execute goal org.apache.maven.plugins:maven-dependency-plugin:3.3.0:go-offline (default-cli) on project spring-petclinic: org.eclipse.aether.resolution.DependencyResolutionException: Failed to collect dependencies at org.ehcache:ehcache:jar:3.10.0 -> org.glassfish.jaxb:jaxb-runtime:jar:2.3.0-b170127.1453 -> org.glassfish.jaxb:jaxb-core:jar:2.3.0-b170127.1453 -> javax.xml.bind:jaxb-api:jar:2.3.0-b161121.1438: Failed to read artifact descriptor for javax.xml.bind:jaxb-api:jar:2.3.0-b161121.1438: Could not transfer artifact javax.xml.bind:jaxb-api:pom:2.3.0-b161121.1438 from/to maven-default-http-blocker (http://0.0.0.0/): Blocked mirror for repositories: [releases.java.net (http://maven.java.net/content/repositories/releases/, default, releases+snapshots), shapshots.java.net (http://maven.java.net/content/repositories/snapshots/, default, releases+snapshots), jvnet-nexus-staging (http://maven.java.net/content/repositories/staging/, default, releases+snapshots), netbeans (http://bits.netbeans.org/nexus/content/groups/netbeans, default, releases)] -> [Help 1]\r\n```\r\n\r\nI found a workaround on [SO](https://stackoverflow.com/questions/67001968/how-to-disable-maven-blocking-external-http-repositories).\r\n\r\n1. Create .mvn/maven.config with the following:\r\n\r\n       --settings ./.mvn/local-settings.xml\r\n\r\n2. Create .mvn/local-settings.xml with the following:\r\n\r\n       <settings xmlns=\"https://maven.apache.org/SETTINGS/1.2.0\"\r\n                 xmlns:xsi=\"https://www.w3.org/2001/XMLSchema-instance\"\r\n                 xsi:schemaLocation=\"https://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd\">\r\n           <mirrors>\r\n               <mirror>\r\n                   <id>releases.java.net.ssl</id>\r\n                   <mirrorOf>releases.java.net</mirrorOf>\r\n    "
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2542,
+      "title": "Upgrade/java17 spring boot 3",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\n\r\nThis PR upgrades the application from Java 11 + Spring Boot 2.7.3 to **Java 17 + Spring Boot 3.3.6** (latest stable 3.x release). All 41 tests pass (0 failures, 0 errors, 1 skipped).\r\n\r\n---\r\n\r\n## Changes\r\n\r\n### `pom.xml`\r\n\r\n| What | Before | After | Why |\r\n|---|---|---|---|\r\n| `spring-boot-starter-parent` | 2.7.3 | 3.3.6 | Latest stable SB3 |\r\n| `java.version` | 11 | 17 | SB3 minimum; Java 11 is EOL |\r\n| MySQL connector | `mysql:mysql-connector-java` | `com.mysql:mysql-connector-j` | Artifact relocated in SB3 BOM |\r\n| Ehcache classifier | _(none)_ | `jakarta` | SB3 / EE 10 requires the Jakarta variant |\r\n| New dep: `jakarta.xml.bind-api` | _(absent)_ | added | Needed for `@XmlElement`/`@XmlRootElement` on `Vet`/`Vets` |\r\n| Git-commit-id plugin groupId | `pl.project13.maven` | `io.github.git-commit-id` | Plugin transferred to new groupId; old one fails with SB3 BOM |\r\n| `build-info` additional properties | `${maven.compiler.source}` | `${java.version}` | `maven.compiler.source` is null in SB3 parent POM |\r\n| JaCoCo | 0.8.7 | 0.8.11 | Java 17 bytecode support |\r\n| spring-format | 0.0.31 | 0.0.42 | Java 17 Eclipse JDT formatter |\r\n| nohttp-checkstyle | 0.0.10 | 0.0.11 | Compatibility |\r\n| maven-checkstyle-plugin / Checkstyle | 3.1.2 / 8.45.1 | 3.3.1 / 10.12.4 | Java 17 source compatibility |\r\n| Project version | 2.7.3 | 3.3.6 | Align with SB parent |\r\n\r\n### `.mvn/wrapper/maven-wrapper.properties`\r\n\r\n- Maven wrapper: **3.8.2 → 3.9.6** (recommended minimum for Spring Boot 3)\r\n\r\n### `javax` → `jakarta` namespace migration\r\n\r\nSpring Boot 3 moved from the Java EE `javax.*` namespace to Jakarta EE 10 `jakarta.*`. All affected files updated:\r\n\r\n**Main sources**\r\n- `model/BaseEntity.java` — `jakarta.persistence.*`\r\n- `model/NamedEntity.java` — `jakarta.persistence.*`\r\n- `model/Person.java` — `jakarta.persistence.*`, `jakarta.validation.*`\r\n- `owner/Owner.java` — `jakarta.persistence.*`, `jakarta.validation.*`\r\n- `owner/Pet.java` — `jakarta.persistence.*`\r\n- `owner/Visit.java` — `jakarta.persistence.*`, `jakarta.validation.*`\r\n- `owner/PetType.java` — `jakarta.persistence.*`\r\n- `vet/Vet.java` — `jakarta.persistence.*`, `jakarta.xml.bind.*`\r\n- `vet/Specialty.java` — `jakarta.persistence.*`\r\n- `vet/Vets.java` — `jakarta.xml.bind.*`\r\n- `owner/OwnerController.java` — `jakarta.validation.Valid`\r\n- `owner/PetController.java` — `jakarta.validation.Valid`\r\n- `owne"
+    }
+  ]
+}

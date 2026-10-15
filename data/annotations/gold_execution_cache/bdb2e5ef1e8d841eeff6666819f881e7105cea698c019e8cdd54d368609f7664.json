@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/docstring_utils.py",
+        "path": "mlflow/utils/docstring_utils.py",
+        "offset": 11317,
+        "line": 297
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 70935,
+        "line": 37
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 32043,
+        "line": 673
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 18339,
+        "line": 430
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/guide/index.mdx",
+        "path": "docs/docs/classic-ml/deep-learning/transformers/guide/index.mdx",
+        "offset": 19255,
+        "line": 462
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:libs/typescript/scripts/check-min-mlflow-deps.sh",
+        "path": "libs/typescript/scripts/check-min-mlflow-deps.sh",
+        "offset": 453,
+        "line": 8
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26443",
+        "path": null,
+        "offset": 4250,
+        "line": 76
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/autologging_utils/__init__.py",
+        "path": "mlflow/utils/autologging_utils/__init__.py",
+        "offset": 10179,
+        "line": 257
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/guide/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deep-learning/transformers/guide/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19255,
+      "excerpt": "e of any model that is hosted on the huggingface hub, a \"best effort\" attempt\nis made when logging a transformers model to retrieve and persist any license information. A file will be generated (`LICENSE.txt`) within the root of\nthe model directory. Within this file you will either find a copy of a declared license, the name of a common license type that applies to the model's use (i.e., 'apache-2.0', 'mit'),\nor, in the event that license information was never submitted to the huggingface hub when uploading a model repository, a link to the repository for you to use\nin order to determine what restrictions exist regarding the use of the model.\n\n## Automatic Signature inference\n\nFor pipelines that support `pyfunc`, there are 3 means of attaching a model signature to the `MLmodel` file.\n\n- Provide a model signature explicitly via setting a valid `ModelSignature` to the `signature` attribute.\n\n- Provide an `input_example`. The signature will be inferred and validated that it matches the appropriate input type. The output type will be validated by performing inference automatically (if the model is a `pyfunc` supported type).\n\n- Do nothing. The `transformers` flavor will automatically apply the appropriate general signature that the pipeline type supports (only for a single-entity; collections will not be inferred).\n\n## Scale Inference with Overriding Pytorch dtype \\{#scalability-for-inference}\n\nA common configuration for lowering the total memory pressure for pytorch models within `transformers` pipelines is to modify the\nprocessing data type. This is achieved through setting the `torch_dtype` argument when creating a `Pipeline`.\nFor a full reference of these tunable arguments for configuration of pipelines, see the [training docs](https://huggingface.co/docs/transformers/v4.28.1/en/perf_train_gpu_one#floating-data-types).\n\n:::note\nThis feature does not exist in versions of `transformers` < 4.26.x\n:::\n\nIn order to apply these configurations to a saved or logged run, there are two options:\n\n- Save a pipeline with the _torch_dtype_ argument set to the encoding type of your choice.\n\nExample:\n\n```python\nimport transformers\nimport torch\nimport mlflow\n\ntask = \"translation_en_to_fr\"\n\nmy_pipeline = transformers.pipeline(\n    task=task,\n    model=transformers.T5ForConditionalGeneration.from_pretrained(\"t5-small\"),\n    tokenizer=transformers.T5TokenizerFast.from_pretraine"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18339,
+      "excerpt": "n pose a problem because they are not part of the standard module namespace and thus not\nstraightforward to serialize. To handle this situation, you should use `cloudpickle` to serialize your model instance. `cloudpickle` is an\nextended version of Python's `pickle` module that can serialize a wider range of Python objects, including functions and classes defined in\nthe `__main__` module.\n\n<dl>\n  <dt>\n    #### Why This Matters\n  </dt>\n  <dd>\n      - **Code Path Inference**: MLflow uses the code path to understand and log the code associated with your model. When the script is executed as **`__main__`**, the code path cannot be inferred, which complicates the tracking and reproducibility of your MLflow experiments.\n      - **Serialization**: Standard serialization methods like **`pickle`** may not work with **`__main__`** module objects, leading to issues when trying to save and load models. **`cloudpickle`** provides a workaround by enabling the serialization of these objects, ensuring that your model can be correctly saved and restored.\n\n  </dd>\n  <dt>\n    #### Best Practices\n  </dt>\n  <dd>\n      - Avoid defining critical functions and classes in the **`__main__`** module. Instead, place them in separate module files that can be imported as needed.\n      - If you must define functions and classes in the **`__main__`** module, use **`cloudpickle`** to serialize your model to ensure that all dependencies are correctly handled.\n\n  </dd>\n</dl>\n\n## Saving Extra Code with an MLflow Model - Manual Declaration\n\nMLflow also supports saving your custom Python code as dependencies to the model. This is particularly useful\nwhen you want to deploy your custom modules that are required for prediction with the model.\nTo do so, specify **code_paths** when logging the model. For example, if you have the following file structure in your project:\n\n```\nmy_project/\n├── utils.py\n└── train.py\n```\n\n```python title=\"train.py\"\nimport mlflow\n\n\nclass MyModel(mlflow.pyfunc.PythonModel):\n    def predict(self, context, model_input):\n        from utils import my_func\n\n        x = my_func(model_input)\n        # .. your prediction logic\n        return prediction\n\n\n# Log the model\nwith mlflow.start_run() as run:\n    mlflow.pyfunc.log_model(\n        python_model=MyModel(),\n        name=\"model\",\n        input_example=input_data,\n        code_paths=[\"utils.py\"],\n    )\n```\n\nThen MLflow will save "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 32043,
+      "excerpt": "m mlflow.models import infer_signature\nimport onnx\nimport torch\nfrom torch import nn\n\n# define a torch model\nnet = nn.Linear(6, 1)\nloss_function = nn.L1Loss()\noptimizer = torch.optim.Adam(net.parameters(), lr=1e-4)\n\nX = torch.randn(6)\ny = torch.randn(1)\n\n# run model training\nepochs = 5\nfor epoch in range(epochs):\n    optimizer.zero_grad()\n    outputs = net(X)\n\n    loss = loss_function(outputs, y)\n    loss.backward()\n\n    optimizer.step()\n\n# convert model to ONNX and load it\ntorch.onnx.export(net, X, \"model.onnx\")\nonnx_model = onnx.load_model(\"model.onnx\")\n\n# log the model into a mlflow run\nwith mlflow.start_run():\n    signature = infer_signature(X.numpy(), net(X).detach().numpy())\n    model_info = mlflow.onnx.log_model(onnx_model, name=\"model\", signature=signature)\n\n# load the logged model and make a prediction\nonnx_pyfunc = mlflow.pyfunc.load_model(model_info.model_uri)\n\npredictions = onnx_pyfunc.predict(X.numpy())\nprint(predictions)\n```\n\n### XGBoost (`xgboost`)\n\nThe full guide for the `xgboost` integration [can be viewed here](/ml/traditional-ml/xgboost/).\n\nFor more information, see <APILink fn=\"mlflow.xgboost\">mlflow.xgboost</APILink>.\n\n### LightGBM (`lightgbm`)\n\nThe `lightgbm` model flavor enables logging of [LightGBM models](https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.Booster.html#lightgbm-booster)\nin MLflow format via the <APILink fn=\"mlflow.lightgbm.save_model\" /> and <APILink fn=\"mlflow.lightgbm.log_model\" /> methods.\nThese methods also add the `python_function` flavor to the MLflow Models that they produce, allowing the\nmodels to be interpreted as generic Python functions for inference via <APILink fn=\"mlflow.pyfunc.load_model\" />.\nYou can also use the <APILink fn=\"mlflow.lightgbm.load_model\" /> method to load MLflow Models with the `lightgbm`\nmodel flavor in native LightGBM format.\n\nNote that the scikit-learn API for LightGBM is now supported. For more information, see <APILink fn=\"mlflow.lightgbm\">`mlflow.lightgbm`</APILink>.\n\n#### `LightGBM` pyfunc usage\n\nThe example below\n\n- Loads the IRIS dataset from `scikit-learn`\n- Trains a LightGBM `LGBMClassifier`\n- Logs the model and feature importance's using `mlflow`\n- Loads the logged model and makes predictions\n\n```python\nfrom lightgbm import LGBMClassifier\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nimport mlflow\nfrom mlflow.models impo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 70935,
+      "excerpt": " from Docker Hub if it's not present locally, and a new image is built based on it. The project is executed in a container created from this image. Command Syntax When specifying an entry point in an MLproject file, the command can be any string in Python format string syntax. All of the parameters declared in the entry point's parameters field are passed into this string for substitution. If you call the\",9,projects.html\nHow does MLflow run a Project on Kubernetes?,\"MLflow runs a Project on Kubernetes by pushing the new Project image to a specified Docker registry and starting a Kubernetes Job on a specified Kubernetes cluster. The Kubernetes Job then downloads the Project image and starts a corresponding Docker container. Finally, the container invokes the Project's entry point, logging parameters, tags, metrics, and artifacts to the MLflow tracking server.\",\"Docker environment. MLflow then pushes the new Project image to your specified Docker registry and starts a Kubernetes Job on your specified Kubernetes cluster. This Kubernetes Job downloads the Project image and starts a corresponding Docker container. Finally, the container invokes your Project's entry point, logging parameters, tags, metrics, and artifacts to your MLflow tracking server. Execution guide You can run your MLflow Project on Kubernetes by following these steps: Add a Docker environment to your MLflow Project, if one does not already exist. For reference, see Specifying an Environment. Create a backend configuration JSON file with the following entries: kube-context The Kubernetes context where MLflow will run the job. If not provided, MLflow will use the current context. If no context is available, MLflow will assume it is running in a Kubernetes cluster and it will use the Kubernetes service account running the current pod ('in-cluster' configuration). repository-uri The URI of the docker repository where the Project execution Docker image will be uploaded (pushed). Your Kubernetes cluster must have access to this repository in order to run your MLflow Project. kube-job-template-path The path to a YAML configuration file for your Kubernetes Job - a Kubernetes Job Spec. MLflow reads the Job Spec and replaces certain fields to facilitate job execution and monitoring; MLflow does not modify the original template file. For more information about writing\",14,projects.html\nWhat fields are r"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:libs/typescript/scripts/check-min-mlflow-deps.sh",
+      "kind": "File",
+      "path": "libs/typescript/scripts/check-min-mlflow-deps.sh",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 453,
+      "excerpt": "ss every CI gate -- while a\n# user running `npm install @mlflow/opencode @mlflow/core` gets the published\n# floor, where the symbol is missing, and crashes at runtime (see mlflow#24167).\n#\n# This gate reproduces the user's install: for each @mlflow/* dependency, it\n# resolves the lowest version the declared range allows, installs that published\n# version into the integration's own node_modules (shadowing the symlink), and\n# runs `tsc --noEmit`. A newer-than-floor symbol becomes a hard compile error.\n#\n# To stay immune to unrelated noise (a third-party module missing from a local\n# sandbox, a pre-existing type error), it type-checks TWICE -- once against\n# workspace-latest (the baseline) and once against the floor -- and treats only\n# errors that appear *exclusively* against the floor as floor violations. The\n# source is identical between runs, so error lines match exactly and a plain\n# set-difference isolates the version-specific breakage.\nset -euo pipefail\n\ncd \"$(dirname \"$0\")/..\"\nROOT=\"$PWD\"\nTSC=\"$ROOT/node_modules/.bin/tsc\"\nALLOWLIST=\"$ROOT/scripts/known-floor-violations.txt\"\n\n# Integrations grandfathered in: they violate the floor today (same class as\n# mlflow#24167) but must not fail the gate yet. New violations still fail.\nis_allowlisted() {\n  [[ -f \"$ALLOWLIST\" ]] || return 1\n  grep -vE '^[[:space:]]*(#|$)' \"$ALLOWLIST\" | grep -qxF \"$1\"\n}\n\n# Append markdown to the GitHub Actions run summary when available (a no-op\n# locally). Renders a result table on the run's page needing no token.\nsummary() {\n  [[ -n \"${GITHUB_STEP_SUMMARY:-}\" ]] && printf '%s\\n' \"$1\" >> \"$GITHUB_STEP_SUMMARY\"\n  return 0\n}\n\nnew_failures=()      # not allowlisted -> fail the build\nknown_failures=()    # allowlisted -> reported only\nstale_allowlist=()   # allowlisted but now passing -> fail, asking to remove\nsummary \"### Minimum-version floor check\"\nsummary \"| Integration | Result |\"\nsummary \"| --- | --- |\"\n\nfor pkg_json in integrations/*/package.json; do\n  dir=\"$(dirname \"$pkg_json\")\"\n  slug=\"$(basename \"$dir\")\"\n  name=\"$(node -p \"require('./$pkg_json').name\")\"\n\n  mlflow_deps=\"$(node -p \"\n    const d = require('./$pkg_json').dependencies || {};\n    Object.keys(d).filter((k) => k.startsWith('@mlflow/')).join('\\n')\n  \")\"\n  if [[ -z \"$mlflow_deps\" ]]; then\n    echo \"SKIP  $name (no @mlflow/* dependency)\"\n    continue\n  fi\n\n  echo \"CHECK $name\"\n\n  # tsc error lines with the source dir s"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/autologging_utils/__init__.py",
+      "kind": "File",
+      "path": "mlflow/utils/autologging_utils/__init__.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10179,
+      "excerpt": "        # Retrieving run_id from active mlflow run when run_id is empty.\n        current_run_id = mlflow.active_run().info.run_id if self.run_id is None else self.run_id\n\n        start = time.time()\n        metrics_slices = [\n            self.data[i : i + MAX_METRICS_PER_BATCH]\n            for i in range(0, len(self.data), MAX_METRICS_PER_BATCH)\n        ]\n        for metrics_slice in metrics_slices:\n            self.client.log_batch(run_id=current_run_id, metrics=metrics_slice)\n        end = time.time()\n        self.total_log_batch_time += end - start\n\n    def _should_flush(self):\n        target_training_to_logging_time_ratio = 10\n        if (\n            self.total_training_time\n            >= self.total_log_batch_time * target_training_to_logging_time_ratio\n        ):\n            return True\n\n        return False\n\n    def record_metrics(self, metrics, step=None):\n        \"\"\"\n        Submit a set of metrics to be logged. The metrics may not be immediately logged, as this\n        class will batch them in order to not increase execution time too much by logging\n        frequently.\n\n        Args:\n            metrics: Dictionary containing key, value pairs of metrics to be logged.\n            step: The training step that the metrics correspond to.\n        \"\"\"\n        current_timestamp = time.time()\n        if self.previous_training_timestamp is None:\n            self.previous_training_timestamp = current_timestamp\n\n        training_time = current_timestamp - self.previous_training_timestamp\n\n        self.total_training_time += training_time\n\n        # log_batch() requires step to be defined. Therefore will set step to 0 if not defined.\n        if step is None:\n            step = 0\n\n        for key, value in metrics.items():\n            self.data.append(\n                Metric(key, value, int(current_timestamp * 1000), step, model_id=self.model_id)\n            )\n\n        if self._should_flush():\n            self.flush()\n\n        self.previous_training_timestamp = current_timestamp\n\n\n@contextlib.contextmanager\ndef batch_metrics_logger(run_id: str | None = None, model_id: str | None = None):\n    \"\"\"\n    Context manager that yields a BatchMetricsLogger object, which metrics can be logged against.\n    The BatchMetricsLogger keeps metrics in a list until it decides they should be logged, at\n    which point the accumulated metrics will be batch logged. The BatchMetric"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/docstring_utils.py",
+      "kind": "File",
+      "path": "mlflow/utils/docstring_utils.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11317,
+      "excerpt": "ers pipeline.\n    loaded_model.predict(\"What is experiment tracking?\")\n\"\"\"\n    ),\n    \"code_paths\": (\n        \"\"\"A list of local filesystem paths to Python file dependencies (or directories\ncontaining file dependencies). These files are *prepended* to the system path when the model\nis loaded. Files declared as dependencies for a given model should have relative\nimports declared from a common root path if multiple files are defined with import dependencies\nbetween them to avoid import errors when loading the model.\n\nFor a detailed explanation of ``code_paths`` functionality, recommended usage patterns and\nlimitations, see the\n`code_paths usage guide <https://mlflow.org/docs/latest/model/dependencies.html?highlight=code_paths#saving-extra-code-with-an-mlflow-model>`_.\n\"\"\"\n    ),\n    \"extra_files\": (\n        \"\"\"A list containing the paths to corresponding extra files, if ``None``, no\nextra files are added to the model. Remote URIs are resolved to absolute filesystem\npaths. For example, consider the following ``extra_files`` list:\n\n.. code-block:: python\n\n    extra_files = [\"s3://my-bucket/path/to/my_file1\", \"/local-path/to/my_file2\"]\n\nIn this case, the ``\"my_file1\"`` extra file is downloaded from S3.\nModel paths will be [\"extra_files/my_file1\", \"extra_files/my_file2\"] in the model directory.\n\"\"\"\n    ),\n    # Only pyfunc flavor supports `infer_code_paths`.\n    \"code_paths_pyfunc\": (\n        \"\"\"A list of local filesystem paths to Python file dependencies (or directories\ncontaining file dependencies). These files are *prepended* to the system path when the model\nis loaded. Files declared as dependencies for a given model should have relative\nimports declared from a common root path if multiple files are defined with import dependencies\nbetween them to avoid import errors when loading the model.\n\nYou can leave ``code_paths`` argument unset but set ``infer_code_paths`` to ``True`` to let MLflow\ninfer the model code paths. See ``infer_code_paths`` argument doc for details.\n\nFor a detailed explanation of ``code_paths`` functionality, recommended usage patterns and\nlimitations, see the\n`code_paths usage guide <https://mlflow.org/docs/latest/model/dependencies.html?highlight=code_paths#saving-extra-code-with-an-mlflow-model>`_.\n\"\"\"\n    ),\n    \"infer_code_paths\": (\n        \"\"\"If set to ``True``, MLflow automatically infers model code paths. The inferred\n            code "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26443",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26443,
+      "title": "Add `session_level` to session-level scorers for hierarchical sessions",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4250,
+      "excerpt": "s unchanged.\n\n### Release Notes\n\n#### Is this a user-facing change?\n\n- [x] Yes. Give a description of this change to be included in the release notes for MLflow users.\n\nSession-level scorers accept `session_level=\"<level name>\"` to evaluate hierarchical sessions at a chosen level, using level names declared with `mlflow.genai.set_session_hierarchy`.\n\n#### What component(s), interfaces, languages, and integrations does this PR affect?\n\nComponents\n\n- [x] `area/evaluation`: MLflow model evaluation features, evaluation metrics, and evaluation workflows\n- [x] `area/tracing`: MLflow Tracing features, tracing APIs, and LLM tracing functionality\n\n<a name=\"release-note-category\"></a>\n\n#### How should the PR be classified in the release notes? Choose one:\n\n- [x] `rn/feature` - A new user-facing feature worth mentioning in the release notes\n\n#### Is this PR a critical bugfix or security fix that should go into the next patch release?\n\n<details>\n<summary>What is a minor/patch release?</summary>\n\n- Minor release: a release that increments the second part of the version number (e.g., 1.2.0 -> 1.3.0).\n  Minor releases are expected to contain larger changes, such as new features and improvements. Non-critical bug fixes and doc updates can be included as well. By default, your PR should target the next minor release.\n- Patch release: a release that increments the third part of the version number (e.g., 1.2.0 -> 1.2.1).\n  Patch releases are typically only performed when there has been a major regression or bug in the latest release. For the sake of stability, your PR should not be included in a patch release unless it is a critical fix, or if the risk level of your PR is exceedingly low.\n\n</details>\n\n<!-- Do not modify or remove any text inside the parentheses. Keep both checkboxes below. -->\n\n- [ ] This PR is critical and needs to be in the next patch release\n- [x] This PR can wait for the next minor release\n\nThis pull request and its description were written by Isaac.\n"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:README.md",
+        "path": "README.md",
+        "offset": 18307,
+        "line": 250
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 2988,
+        "line": 44
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/03_contributors_quick_start.rst",
+        "path": "contributing-docs/03_contributors_quick_start.rst",
+        "offset": 552,
+        "line": 12
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+        "path": ".agents/skills/magpie-setup/adopt.md",
+        "offset": 7411,
+        "line": 161
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 42123,
+        "line": 1077
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/MANAGING_PROVIDERS_LIFECYCLE.rst",
+        "path": "providers/MANAGING_PROVIDERS_LIFECYCLE.rst",
+        "offset": 2005,
+        "line": 45
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/10_working_with_git.rst",
+        "path": "contributing-docs/10_working_with_git.rst",
+        "offset": 13945,
+        "line": 300
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/01_installation.rst",
+        "path": "dev/breeze/doc/01_installation.rst",
+        "offset": 3798,
+        "line": 72
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+      "kind": "File",
+      "path": ".agents/skills/magpie-setup/adopt.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7411,
+      "excerpt": "` as a filter if it was passed; otherwise take\n   all of them.\n4. **Write the marker lock** at `<repo-root>/.apache-magpie.lock`:\n\n   ```text\n   # .apache-magpie.lock — committed. Local self-adoption marker.\n   # The framework checkout links its own skills/ source; there is\n   # no remote snapshot. Edited only by /magpie-setup.\n\n   method: local\n   source: skills/\n   ```\n\n5. **`.gitignore`.** Ensure each skills dir glob is ignored with\n   the `magpie-*` set un-ignored, in **every active target\n   location** ([`agents.md`](agents.md) — the always-on neutral\n   targets `.agents/skills/`, `.claude/skills/`, `.github/skills/`\n   plus any other registry dir already present). Idempotent — add\n   any missing line. For the default set:\n\n   ```text\n   .agents/skills/*\n   !/.agents/skills/magpie-*\n   .claude/skills/*\n   !/.claude/skills/magpie-*\n   .github/skills/*\n   !/.github/skills/magpie-*\n   ```\n\n   (Self-adoption symlinks are *committed*, not gitignored — see\n   the next step — so the `!…/magpie-*` negation here un-ignores\n   the whole set, not just `magpie-setup`.)\n\n6. **Create the symlinks** (canonical first, then relays). For\n   each enumerated skill `<n>`:\n   - **Canonical** — create `.agents/skills/magpie-<n>` →\n     `../../skills/<n>` (the in-repo source).\n   - **Relays** — for every *other* active target dir from\n     [`agents.md`](agents.md) (`.claude/skills/`, `.github/skills/`,\n     plus any present holdout), create `magpie-<n>` →\n     `../../.agents/skills/magpie-<n>` (pointing back at the\n     canonical entry).\n\n   Idempotent: re-point a pre-existing `magpie-<n>` symlink only\n   if it targets something else; never overwrite a non-symlink\n   (surface the conflict and stop). Show the full list and\n   confirm before writing.\n7. **Verify + stage.** Confirm every canonical `magpie-<n>`\n   symlink resolves to a directory containing `SKILL.md`, and\n   every relay resolves through `.agents/skills/magpie-<n>` to the\n   same, then suggest the user `git add` the symlinks,\n   `.apache-magpie.lock`, and `.gitignore`.\n\nSelf-adoption skips the adopter-only steps entirely: no snapshot\nfetch (Step 3), no committed-`setup` reconcile (Step 3b), no\nfit-signal probe (Step 4b), no family prompt (Step 5), no\n`.apache-magpie-overrides/` scaffold (Step 9), no `user.md`\n(Step 9b), no comdev MCP prereqs (Step 9c), no project-doc\nupdates (Step 11) — the framework repo *is* the "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18307,
+      "excerpt": "nment.\n\n  ![Home](https://raw.githubusercontent.com/apache/airflow/main/airflow-core/docs/img/ui-dark/home.png)\n\n- **Backfill**: Backfilling a Dag for a specific date range.\n\n  ![Backfill](https://raw.githubusercontent.com/apache/airflow/main/airflow-core/docs/img/ui-dark/backfill.png)\n\n- **Code**: Quick way to view source code of a Dag.\n\n  ![Code](https://raw.githubusercontent.com/apache/airflow/main/airflow-core/docs/img/ui-dark/code.png)\n\n## Semantic versioning\n\nAs of Airflow 2.0.0, we support a strict [SemVer](https://semver.org/) approach for all packages released.\n\nThere are few specific rules that we agreed to that define details of versioning of the different\npackages:\n\n* **Airflow**: SemVer rules apply to core airflow only (excludes any changes to providers).\n  Changing limits for versions of Airflow dependencies is not a breaking change on its own.\n* **Airflow Providers**: SemVer rules apply to changes in the particular provider's code only.\n  SemVer MAJOR and MINOR versions for the packages are independent of the Airflow version.\n  For example, `google 4.1.0` and `amazon 3.1.1` providers can happily be installed\n  with `Airflow 2.1.2`. If there are limits of cross-dependencies between providers and Airflow packages,\n  they are present in providers as `install_requires` limitations. We aim to keep backwards\n  compatibility of providers with all previously released Airflow 2 versions but\n  there will sometimes be breaking changes that might make some, or all\n  providers, have minimum Airflow version specified.\n* **Airflow Helm Chart**: SemVer rules apply to changes in the chart only. SemVer MAJOR and MINOR\n  versions for the chart are independent of the Airflow version. We aim to keep backwards\n  compatibility of the Helm Chart with all released Airflow 2 versions, but some new features might\n  only work starting from specific Airflow releases. We might however limit the Helm\n  Chart to depend on minimal Airflow version.\n* **Airflow API clients**: Their versioning is independent from Airflow versions. They follow their own\n  SemVer rules for breaking changes and new features - which for example allows to change the way we generate\n  the clients.\n\n## Version Life Cycle\n\nApache Airflow version life cycle:\n\n<!-- This table is automatically updated by prek scripts/ci/prek/supported_versions.py -->\n<!-- Beginning of auto-generated table -->\n\n| Version   "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/03_contributors_quick_start.rst",
+      "kind": "File",
+      "path": "contributing-docs/03_contributors_quick_start.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 552,
+      "excerpt": "are distributed under the License is distributed on an\n    \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n    KIND, either express or implied.  See the License for the\n    specific language governing permissions and limitations\n    under the License.\n\n*************************\nContributor's Quick Start\n*************************\n\n.. contents:: Table of Contents\n   :depth: 2\n   :local:\n\nNote to Starters\n################\n\nAirflow is a complex project, but setting up a working environment is quite simple\nif you follow the guide.\n\nThere are three ways you can run the Airflow dev env:\n\n1. With a local virtual environment (on your local machine)\n2. With Docker Containers and Docker Compose (on your local machine). This environment is managed\n   with the `Breeze <../dev/breeze/doc/README.rst>`_ tool written in Python that makes environment\n   management, yeah you guessed it - a breeze.\n3. With a remote, managed environment (via remote development environment)\n\nBefore deciding which method to choose, there are a couple of factors to consider:\n\n* In most cases, installing Airflow in a local environment might be sufficient.\n  For a comprehensive local virtualenv tutorial, visit `Local virtualenv <07_local_virtualenv.rst>`_\n* Running Airflow in a container is the most reliable and repeatable way: it provides a more consistent\n  environment - with almost no dependencies (except docker) on your Host OS / machine\n  and allows integration tests with a number of integrations (Cassandra, MongoDB, MySQL, etc.).\n  However, it also requires **4GB RAM, 40GB disk space and at least 2 cores**.\n* You need to have a (usually paid) account to access managed, remote virtual environments.\n\nLocal machine development\n#########################\n\nIf you do not work in a remote development environment, you will need these prerequisites:\n\n1. UV is recommended for managing Python versions and virtual environments\n2. Docker Community Edition (you can also use Colima or others, see instructions below)\n3. Docker buildx\n4. Docker Compose\n\nThe below setup describes `Ubuntu installation <https://docs.docker.com/engine/install/ubuntu/>`_.\nIt might be slightly different on different machines.\nFor Windows, click on Start menu and type WSL to enter Linux console. Please note, not doing this will result in errors in next steps.\n\nDocker Community Edition\n------------------------\n\n1. Installing requ"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/10_working_with_git.rst",
+      "kind": "File",
+      "path": "contributing-docs/10_working_with_git.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13945,
+      "excerpt": "   ``git rebase --continue``\n\n   And go to either point 6 or 7, depending on whether you have more commits that cause conflicts in your PR (rebasing applies each\n   commit from your PR one-by-one).\n\n\n\nSummary\n-------------\n\nUseful when you understand the flow but don't remember the steps and want a quick reference.\n\n.. code-block:: console\n\n    git fetch --all\n    git add .\n    git commit\n    git merge-base my-branch upstream/main\n    git checkout my-branch\n    git rebase HASH --onto upstream/main\n    git push --force-with-lease\n\n-------\n\nNow, once you know it all you can read more about how Airflow repository is a monorepo containing both Airflow package and\nmore than 80 `providers <11_documentation_building.rst>`__ and how to develop providers.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 42123,
+      "excerpt": "\" Helm Chart release, are available:\n\n📦   Official Sources: https://airflow.apache.org/docs/helm-chart/${VERSION}/installing-helm-chart-from-sources.html\n📦   ArtifactHub: https://artifacthub.io/packages/helm/apache-airflow/airflow\n📚   Docs: https://airflow.apache.org/docs/helm-chart/${VERSION}/\n🚀   Quick Start Installation Guide: https://airflow.apache.org/docs/helm-chart/${VERSION}/quick-start.html\n🛠️   Release Notes: https://airflow.apache.org/docs/helm-chart/${VERSION}/release_notes.html\n\nThanks to all the contributors who made this possible.\n\nCheers,\n<your name>\nEOF\n```\n\nSend the same email to announce@apache.org, except change the opening line to `Dear community,`.\nIt is more reliable to send it via the web ui at https://lists.apache.org/list.html?announce@apache.org\n(press \"c\" to compose a new thread)\n\n## Send announcements about security issues fixed in the release\n\nThe release manager should review and mark as READY all the security issues fixed in the release.\nSuch issues are marked as affecting `< <JUST_RELEASED_VERSION>` in the CVE management tool\nat https://cveprocess.apache.org/. Then the release manager should announced the issues via the tool.\n\nOnce announced, each of the issue should be linked with a 'reference' with tag 'vendor advisory' with the\nURL to the announcement published automatically by the CVE management tool.\nNote that the announce@apache.org is moderated, and the link to the email thread will not be published\nimmediately, that's why it is recommended to add the link to users@airflow.apache.org which takes usually\nfew seconds to be published after the CVE tool sends them.\n\nThe ASF Security will be notified and will submit to the CVE project and will set the state to 'PUBLIC'.\n\n## Add release data to Apache Committee Report Helper\n\nAdd the release data (version and date) at: https://reporter.apache.org/addrelease.html?airflow\n\n## Update Announcements page\n\nUpdate \"Announcements\" page at the [Official Airflow website](https://airflow.apache.org/announcements/)\n\n## Create release on GitHub\n\nCreate a new release on GitHub with the release notes and assets from the release svn.\n\n- Create a new release in https://github.com/apache/airflow/releases/new (\"Draft new release\" button)\n- Select the tag, e.g. `helm-chart/1.20.0`\n- Use title: Apache Airflow Helm Chart 1.20.0\n- Copy the release notes RST from the release. Need to convert all he"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2988,
+      "excerpt": "ing)\n  - [Prepare voting email for Providers release candidate](#prepare-voting-email-for-providers-release-candidate)\n- [Release verification](#release-verification)\n  - [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n- [Publish release](#publish-release)\n  - [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Publish the packages to PyPI](#publish-the-packages-to-pypi)\n  - [Add the final release tag in git](#add-the-final-release-tag-in-git)\n  - [Publish documentation](#publish-documentation)\n  - [Update providers metadata](#update-providers-metadata)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Announce about the release in social media](#announce-about-the-release-in-social-media)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Close the testing status issue](#close-the-testing-status-issue)\n  - [Remove Provider distributions scheduled for removal](#remove-provider-distributions-scheduled-for-removal)\n- [Misc / Post release Helpers](#misc--post-release-helpers)\n  - [Fixing released documentation](#fixing-released-documentation)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\n------------------------------------------------------------------------------------------------------------\n\n# Intro\n\n## What the provider distributions are\n\nThe Provider distributions are separate packages (one package per provider) that implement\nintegrations with external services for Airflow in the form of installable Python packages.\n\nThe Release Manager prepares packages separately from the main Airflow Release, using\n`breeze` commands and accompanying scripts. This document provides an overview of the command line tools\nneeded to prepare the packages.\n\nNOTE!! When you have problems with any of those commands that run inside `breeze` docker image, you\ncan run the command with `--debug` flag that will drop you in the shell inside the image and will\nprint the command that "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/01_installation.rst",
+      "kind": "File",
+      "path": "dev/breeze/doc/01_installation.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3798,
+      "excerpt": "n \"Advanced\" tab of \"Docker Desktop\" settings is checked-out\n\n    .. raw:: html\n\n        <div align=\"center\">\n            <img src=\"images/docker_socket.png\" width=\"640\" alt=\"Docker socket used\">\n        </div>\n\nNote: If you use Colima, please follow instructions in Colima section at:\n`Contributors Quick Start Guide </contributing-docs/03_contributors_quick_start.rst>`__\n\nDocker Compose\n--------------\n\n- **Version**: Install the latest stable `Docker Compose <https://docs.docker.com/compose/install/>`_\n  and add it to the PATH. ``Breeze`` detects if you are using version that is too old and warns you to upgrade.\n- **Permissions**: Configure permission to be able to run the ``docker-compose`` command by your user.\n\nDocker in WSL 2\n---------------\n\n- **WSL 2 installation** :\n    Install WSL 2 and a Linux Distro (e.g. Ubuntu) see\n    `WSL 2 Installation Guide <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`_ for details.\n\n- **Docker Desktop installation** :\n    Install Docker Desktop for Windows. For Windows Home follow the\n    `Docker Windows Home Installation Guide <https://docs.docker.com/docker-for-windows/install-windows-home>`_.\n    For Windows Pro, Enterprise, or Education follow the\n    `Docker Windows Installation Guide <https://docs.docker.com/docker-for-windows/install/>`_.\n\n- **Docker setting** :\n    WSL integration needs to be enabled\n\n.. raw:: html\n\n    <div align=\"center\">\n        <img src=\"images/docker_wsl_integration.png\" width=\"640\" alt=\"Airflow Breeze - Docker WSL2 integration\">\n    </div>\n\n- **WSL 2 Filesystem Performance** :\n    Accessing the host Windows filesystem incurs a performance penalty,\n    it is therefore recommended to do development on the Linux filesystem.\n    E.g. Run ``cd ~`` and create a development folder in your Linux distro home\n    and git pull the Airflow repo there.\n\n- **WSL 2 Docker mount errors**:\n    Another reason to use Linux filesystem, is that sometimes - depending on the length of\n    your path, you might get strange errors when you try start ``Breeze``, such as\n    ``caused: mount through procfd: not a directory: unknown:``. Therefore checking out\n    Airflow in Windows-mounted Filesystem is strongly discouraged.\n\n- **WSL 2 Docker volume remount errors**:\n    If you're experiencing errors such as ``ERROR: for docker-compose_airflow_run\n    Cannot create container for service airflow: not a direct"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/MANAGING_PROVIDERS_LIFECYCLE.rst",
+      "kind": "File",
+      "path": "providers/MANAGING_PROVIDERS_LIFECYCLE.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2005,
+      "excerpt": "order to develop a new provider.\n\nWe recommend looking at an existing provider similar to yours for reference on tests, dependencies,\nand structure.\n\n\nSetting up the development environment\n----------------------------------------\n\nFirst, set up your local development environment. See\n`Contributors Quick Start <../contributing-docs/03b_contributors_quick_start_seasoned_developers.rst>`_\nif you have not done so yet. We recommend using ``breeze`` to develop locally, as it provides an\nenvironment similar to the one used by GitHub CI workflows.\n\n.. code-block:: bash\n\n    ./breeze\n\nThis sets up Docker containers that mount your local code to internal volumes. Changes made in your\nIDE are immediately available inside the container, allowing tests to be run quickly.\n\nIn this guide, ``<PROVIDER>`` is used as a placeholder for your provider name.\n\n\nCode structure\n---------------\n\nBelow is the directory structure a provider may need. Not all providers require all components ---\nthe folders are optional: example_dags, hooks, links, logs, notifications, operators, secrets,\nsensors, transfers, triggers (and the list changes continuously).\n\n.. code-block:: bash\n\n    GIT apache/airflow/\n    └── providers/\n                 └── <PROVIDER>/\n                               ├── pyproject.toml\n                               ├── provider.yaml\n                               ├── src/\n                               │   └── airflow/\n                               │       └── providers/<PROVIDER>/\n                               │                               ├── __init__.py\n                               │                               ├── executors/\n                               │                               │   ├── __init__.py\n                               │                               │   └── *.py\n                               │                               ├── hooks/\n                               │                               │   ├── __init__.py\n                               │                               │   └── *.py\n                               │                               ├── notifications/\n                               │                               │   ├── __init__.py\n                               │                               │   └── *.py\n                               │                               ├── operators/\n                               │     "
+    }
+  ]
+}

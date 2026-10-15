@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26114",
+        "path": null,
+        "offset": 655,
+        "line": 18
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+        "path": "docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+        "offset": 42427,
+        "line": 800
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+        "path": "mlflow/store/tracking/abstract_store.py",
+        "offset": 4876,
+        "line": 131
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26052",
+        "path": null,
+        "offset": 1998,
+        "line": 66
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:tests/langchain/state_of_the_union.txt",
+        "path": "tests/langchain/state_of_the_union.txt",
+        "offset": 25780,
+        "line": 478
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26400",
+        "path": null,
+        "offset": 3608,
+        "line": 70
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26674",
+        "path": null,
+        "offset": 3215,
+        "line": 51
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25707",
+        "path": null,
+        "offset": 2499,
+        "line": 44
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+      "kind": "File",
+      "path": "docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 42427,
+      "excerpt": "continues to evolve, MLflow stands out as a crucial tool for harnessing its power, making advanced NLP applications more accessible and efficient.\\n\\nIn summary, our journey through this tutorial has not only equipped us with the knowledge to develop and deploy RAG applications effectively but also opened our eyes to the vast possibilities that lie ahead in the realm of advanced NLP, all made more attainable through MLflow.\\n\\n## What's next?\\n\\nIf you'd like to learn more about how MLflow and LangChain integrate, see the other [advanced tutorials for MLflow's LangChain flavor](https://www.mlflow.org/docs/latest/llms/langchain/index.html#advanced-tutorials).\"\n  }\n ],\n \"metadata\": {\n  \"kernelspec\": {\n   \"display_name\": \"Python 3 (ipykernel)\",\n   \"language\": \"python\",\n   \"name\": \"python3\"\n  },\n  \"language_info\": {\n   \"codemirror_mode\": {\n    \"name\": \"ipython\",\n    \"version\": 3\n   },\n   \"file_extension\": \".py\",\n   \"mimetype\": \"text/x-python\",\n   \"name\": \"python\",\n   \"nbconvert_exporter\": \"python\",\n   \"pygments_lexer\": \"ipython3\",\n   \"version\": \"3.8.13\"\n  }\n },\n \"nbformat\": 4,\n \"nbformat_minor\": 4\n}"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+      "kind": "File",
+      "path": "mlflow/store/tracking/abstract_store.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4876,
+      "excerpt": " can contain an optional\n                ``DESC`` or ``ASC`` value (e.g., ``\"name DESC\"``). The default ordering is ``ASC``,\n                so ``\"name\"`` is equivalent to ``\"name ASC\"``. If unspecified, defaults to\n                ``[\"last_update_time DESC\"]``, which lists experiments updated most recently first.\n                The following fields are supported:\n\n                - ``experiment_id``: Experiment ID\n                - ``name``: Experiment name\n                - ``creation_time``: Experiment creation time\n                - ``last_update_time``: Experiment last update time\n\n            page_token: Token specifying the next page of results. It should be obtained from\n                a ``search_experiments`` call.\n\n        Returns:\n            A :py:class:`PagedList <mlflow.store.entities.PagedList>` of\n            :py:class:`Experiment <mlflow.entities.Experiment>` objects. The pagination token\n            for the next page can be obtained via the ``token`` attribute of the object.\n\n        \"\"\"\n\n    @abstractmethod\n    def create_experiment(self, name, artifact_location, tags):\n        \"\"\"\n        Create a new experiment.\n        If an experiment with the given name already exists, throws exception.\n\n        Args:\n            name: Desired name for an experiment.\n            artifact_location: Base location for artifacts in runs. May be None.\n            tags: Experiment tags to set upon experiment creation\n\n        Returns:\n            experiment_id (string) for the newly created experiment if successful, else None.\n\n        \"\"\"\n\n    @abstractmethod\n    def get_experiment(self, experiment_id):\n        \"\"\"\n        Fetch the experiment by ID from the backend store.\n\n        Args:\n            experiment_id: String id for the experiment\n\n        Returns:\n            A single :py:class:`mlflow.entities.Experiment` object if it exists,\n            otherwise raises an exception.\n        \"\"\"\n\n    def get_experiment_by_name(self, experiment_name):\n        \"\"\"\n        Fetch the experiment by name from the backend store.\n\n        Args:\n            experiment_name: Name of experiment\n\n        Returns:\n            A single :py:class:`mlflow.entities.Experiment` object if it exists.\n        \"\"\"\n\n    @abstractmethod\n    def delete_experiment(self, experiment_id):\n        \"\"\"\n        Delete the experiment from the backend store. Deleted experiments can be rest"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:tests/langchain/state_of_the_union.txt",
+      "kind": "File",
+      "path": "tests/langchain/state_of_the_union.txt",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 25780,
+      "excerpt": "g line and see it for what it is: A God-awful disease.\n\nLet's stop seeing each other as enemies, and start seeing each other for who we really are: Fellow Americans.\n\nWe can't change how divided we've been. But we can change how we move forward—on COVID-19 and other issues we must face together.\n\nI recently visited the New York City Police Department days after the funerals of Officer Wilbert Mora and his partner, Officer Jason Rivera.\n\nThey were responding to a 9-1-1 call when a man shot and killed them with a stolen gun.\n\nOfficer Mora was 27 years old.\n\nOfficer Rivera was 22.\n\nBoth Dominican Americans who'd grown up on the same streets they later chose to patrol as police officers.\n\nI spoke with their families and told them that we are forever in debt for their sacrifice, and we will carry on their mission to restore the trust and safety every community deserves.\n\nI've worked on these issues a long time.\n\nI know what works: Investing in crime preventionand community police officers who'll walk the beat, who'll know the neighborhood, and who can restore trust and safety.\n\nSo let's not abandon our streets. Or choose between safety and equal justice.\n\nLet's come together to protect our communities, restore trust, and hold law enforcement accountable.\n\nThat's why the Justice Department required body cameras, banned chokeholds, and restricted no-knock warrants for its officers.\n\nThat's why the American Rescue Plan provided $350 Billion that cities, states, and counties can use to hire more police and invest in proven strategies like community violence interruption—trusted messengers breaking the cycle of violence and trauma and giving young people hope.\n\nWe should all agree: The answer is not to Defund the police. The answer is to FUND the police with the resources and training they need to protect our communities.\n\nI ask Democrats and Republicans alike: Pass my budget and keep our neighborhoods safe.\n\nAnd I will keep doing everything in my power to crack down on gun trafficking and ghost guns you can buy online and make at home—they have no serial numbers and can't be traced.\n\nAnd I ask Congress to pass proven measures to reduce gun violence. Pass universal background checks. Why should anyone on a terrorist list be able to purchase a weapon?\n\nBan assault weapons and high-capacity magazines.\n\nRepeal the liability shield that makes gun manufacturers the only in"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25707",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 25707,
+      "title": "[BUG] AI Gateway streaming passthrough calls made via plain REST (no MLflow SDK client) never get mlflow.chat.tokenUsage attached, so trace-level Tokens/Cost stay empty",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2499,
+      "excerpt": "n consumed, calls `_set_span_token_usage()` → `mlflow.get_current_active_span()` to attach `CHAT_USAGE`. That depends on the tracing contextvar staying correctly scoped for the *entire* lifetime of an async generator driven by Starlette's `StreamingResponse` — i.e. well after the route handler that opened the span has already returned control to the ASGI server.\n\nNotably, `mlflow/server/fastapi_app.py` already has a comment acknowledging this exact class of behavior for streaming responses:\n\n```python\n# Reset the ContextVar so the handler task starts at 0. The handler task\n# inherits a copy of this context (Starlette's call_next uses copy_context),\n# so the reset is visible to send_request inside the handler.\n...\n# For non-streaming responses, duration_ms covers the full round-trip.\n# For streaming responses, duration_ms covers only gateway setup time\n# (until the StreamingResponse object is returned, before the stream body\n# is iterated), so it reflects time-to-first-stream rather than total\n# streaming duration.\n# We can't read the ContextVar directly here because the handler runs in a\n# separate task and ContextVar mutations don't propagate back.\n```\n\nWe tried to reproduce this in isolation to narrow it down further — three variants, including one that mirrors `mlflow.gateway.tracing_utils.maybe_traced_gateway_call`'s actual wiring almost line-for-line (`mlflow.trace()` decorator around an async-gen wrapper, `output_reducer`, an explicit `trace_destination=MlflowExperimentLocation(...)`, `provider.passthrough()` nested inside it). **All three worked correctly** — `mlflow.chat.tokenUsage` attached fine every time (see repro script below). So whatever breaks context propagation in our real deployment is something a synthetic, instantly-yielding local generator doesn't trigger — most likely something about real network streaming timing through the actual provider HTTP client, or ASGI-level concurrency under real request load, that only shows up under production conditions.\n\nWe're actively trying to pin down the exact trigger with a temporary diagnostic (logging `mlflow.get_current_active_span()` at stream-start vs. stream-end in our own build) and will report back what we find, but wanted to file this now given how broadly it affects gateway users who don't use the MLflow SDK client.\n\n\n### Tracking information\n\nNot applicable — `mlflow.doctor()` requires the"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26052",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26052,
+      "title": "[BUG] Budget policy refresh deletes every other workspace's budget window",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1998,
+      "excerpt": "d against is global. Every refresh therefore treats every other workspace's policies as stale and deletes their window and policy keys.\n\n**Expected:** a refresh triggered by traffic in workspace A leaves workspace B's tracked window\nalone.\n\n**Actual:** workspace B's window is deleted. Only the most recently refreshed workspace has a tracked window at any moment, so a `REJECT` policy in any other workspace cannot be evaluated - `should_reject_request` iterates the policy set, finds nothing for that workspace, and returns `(False, None)`.\n\nObserved on a server with six workspace-scoped policies in `budget_policies`:\n\n```\nmlflow:budget:policies → 1 member\n  bp-25c0ffff…  my-budget  10000.0  1:DAYS  REJECT\n```\n\nThe other five workspaces had no window. Which workspace survives is simply whichever refreshed most recently, so the set changes hands as traffic moves between workspaces.\n\nBoth the spend and the `exceeded` flag do come back once the owning workspace refreshes again: the recreated window is returned as fresh, and `backfill_spend` re-derives spend from trace history and recomputes `exceeded` from it. The damage is the gap in between, and the gap is not short. A wipe also calls `mark_refreshed()`, so the owning workspace will not refresh again until `MLFLOW_GATEWAY_BUDGET_REFRESH_INTERVAL` (default 600s) has elapsed. On a server taking traffic in several workspaces the wipes keep alternating, so all but the most recently refreshed workspace sit unenforced more or less permanently.\n\nA second effect: after a wipe the next recorded cost flips `exceeded` from 0 to 1 again, so an `ALERT` policy fires its webhook a second time for the same window. That is the opposite failure to #26054, from the same lost flag.\n\n\n### Tracking information\n\n```shell\nmlflow server \\\n  --host 0.0.0.0 --port 8080 --workers 2 \\\n  --backend-store-uri postgresql://…\n\nMLFLOW_ENABLE_WORKSPACES=true\nMLFLOW_GATEWAY_BUDGET_REDIS_URL=rediss://…/0\n```\n\n### Code to reproduce issue\n\nReproduced on `master` at 13c981620, against both trackers. No external Redis is needed: `fakeredis[lua]` is already in `requirements/test-requirements.txt`.\n\n```python\n# `fakeredis[lua]` is already in requirements/test-requirements.txt. Swapping in\n# redis.Redis.from_url(...) runs the same thing against a real server.\nimport fakeredis\n\nfrom mlflow.entities.gateway_budget_policy import (\n    BudgetAction,\n    BudgetD"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26114",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26114,
+      "title": "[FR] Make the experiment run Columns selector resizable",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 655,
+      "excerpt": "crolling. Long column names are also truncated, requiring users to hover over individual entries to determine their full names. This is particularly noticeable on large, ultrawide, and high-resolution displays where significantly more screen space is available but cannot be used by the selector.\n\nI propose allowing users to resize the Columns selector horizontally and vertically on desktop.\n\nProposed behavior:\n\n- Preserve approximately the current dimensions as the initial/default size.\n- Allow the panel to be resized horizontally and vertically.\n- Constrain resizing to the available viewport/popover area.\n- Keep the column tree scrollable within the resized panel.\n- Preserve the existing mobile/full-width behavior and disable manual resizing on small screens.\n- Preserve existing search, keyboard navigation, column selection, and **Reset to defaults** behavior.\n\nThis would be a frontend-only enhancement to `ExperimentViewRunsColumnSelector` and would not require changes to experiment data or MLflow APIs.\n\nA previous MLflow change, https://github.com/mlflow/mlflow/pull/2388, addressed aggressive truncation in this selector by increasing its width and improving hover behavior. Allowing user-controlled sizing would avoid requiring another globally fixed size while adapting better to different display sizes and experiment configurations.\n\nI am willing to contribute the implementation.\n\n### Motivation\n\n#### What is the use case for this feature?\n\nWhen analyzing experiments with a large number of parameters and metrics, users frequently need to enable and disable columns in the experiment runs table.\n\nFor larger experiments, the list in the **Columns** selector can contain dozens or hundreds of entries. Many parameter and metric names can also be relatively long, particularly when configuration values are represented using hierarchical names such as:\n\n`synthetic_augmentation.generator.candidate_location...`\n\nThe current selector provides a relatively small fixed viewing area regardless of the available screen space. As a result, users must scroll through a small portion of the available column list and often hover over truncated entries to determine their complete names.\n\nAllowing the panel to be resized would let users temporarily expand the selector while configuring their experiment table and then return to the normal interface afterward.\n\n#### Why is this use "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26400",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26400,
+      "title": "[BUG] List-valued evaluation targets and predictions produce unstable hashes",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3608,
+      "excerpt": " a single row. PR #26311 addresses ragged NumPy arrays, while this issue is the Python-list branch and remains reproducible after that merge. No matching open repair was found.\n\nI would like to contribute this scoped fix if maintainers confirm the approach and mark the issue `ready`; no PR has been opened.\n\nCodex assisted with diagnosis, reproduction, the proposed patch, and test execution. These results describe assisted execution and do not claim independent manual testing or review by the human contributor.\n\n### What component(s) does this bug affect?\n\n- [x] `area/evaluation`: MLflow model evaluation features, evaluation metrics, and evaluation workflows.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26674",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26674,
+      "title": "Fix requirements inference for `loader_module` shipped in `code_paths`",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3215,
+      "excerpt": " the `scripted_model/model.pth` the reporter's script expects.\nimport torch\n\ntorch.jit.save(torch.jit.script(torch.nn.Linear(2, 1)), \"scripted_model/model.pth\")\nprint(\"saved scripted_model/model.pth\")\n```\n\n```python\n# show_requirements.py\n# Not part of the issue: prints requirements.txt of the most recently logged model.\nimport mlflow\n\nmodel = mlflow.search_logged_models(\n    experiment_ids=[\"0\"],\n    order_by=[{\"field_name\": \"creation_time\", \"ascending\": False}],\n    max_results=1,\n    output_format=\"list\",\n)[0]\npath = mlflow.pyfunc.get_model_dependencies(f\"models:/{model.model_id}\")\nprint(f\"requirements.txt of models:/{model.model_id}:\")\nprint(open(path).read())\n```\n\n</details>\n\n<details>\n<summary>Before (master): <code>log_pyfunc.py</code> fails</summary>\n\n```text\n$ $RUN log_pyfunc.py\nWARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.\nTraceback (most recent call last):\n  File \"log_pyfunc.py\", line 6, in <module>\n    mlflow.pyfunc.log_model(artifact_path=\"scripted_model\", loader_module=\"wrapper\", data_path=\"scripted_model/model.pth\", code_paths=[\"inference/wrapper.py\"])\n  File \"mlflow/tracing/provider.py\", line 1069, in wrapper\n    return f(*args, **kwargs)\n  File \"mlflow/pyfunc/__init__.py\", line 3701, in log_model\n    return Model.log(\n  File \"mlflow/telemetry/track.py\", line 24, in wrapper\n    return func(*args, **kwargs)\n  File \"mlflow/models/model.py\", line 1228, in log\n    flavor.save_model(path=local_path, mlflow_model=mlflow_model, **kwargs)\n  File \"mlflow/tracing/provider.py\", line 1069, in wrapper\n    return f(*args, **kwargs)\n  File \"mlflow/pyfunc/__init__.py\", line 3386, in save_model\n    return _save_model_with_loader_module_and_data_path(\n  File \"mlflow/pyfunc/__init__.py\", line 3843, in _save_model_with_loader_module_and_data_path\n    inferred_reqs = mlflow.models.infer_pip_requirements(\n  File \"mlflow/utils/environment.py\", line 497, in infer_pip_requirements\n    return _infer_requirements(\n  File \"mlflow/utils/requirements_utils.py\", line 499, in _infer_requirements\n    modules = _capture_imported_modules(model_uri, flavor, extra_env_vars=extra_env_vars)\n  File \"mlflow/utils/requirements_utils.py\", line 395, in _capture_imported_modules\n    _run_command(\n  File \"mlflow/utils/requirements_utils.py\", line 263, in _run_command\n    raise MlflowException(msg)\nmlflow.exceptions.MlflowException: Encountered an "
+    }
+  ]
+}

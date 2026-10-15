@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+        "path": "dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+        "offset": 6042,
+        "line": 170
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 1991,
+        "line": 37
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 54877,
+        "line": 1198
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/ci/04_selective_checks.md",
+        "path": "dev/breeze/doc/ci/04_selective_checks.md",
+        "offset": 21210,
+        "line": 344
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/prepare-providers-documentation/SKILL.md",
+        "path": ".agents/skills/prepare-providers-documentation/SKILL.md",
+        "offset": 33621,
+        "line": 735
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/docs/changelog.rst",
+        "path": "providers/cncf/kubernetes/docs/changelog.rst",
+        "offset": 18945,
+        "line": 479
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 24334,
+        "line": 391
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.github/workflows/ci-amd.yml",
+        "path": ".github/workflows/ci-amd.yml",
+        "offset": 962,
+        "line": 21
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/prepare-providers-documentation/SKILL.md",
+      "kind": "File",
+      "path": ".agents/skills/prepare-providers-documentation/SKILL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 33621,
+      "excerpt": "the incremental run bumped a provider to a *new* version (Incremental\nPhase 3.5), re-run Phase 4d (`update-providers-next-version`) as well — a\n`# use next version` pin on that provider must resolve to the freshly\nbumped version before the rebased PR is pushed.\n\n---\n\n## Cross-Cutting Rules\n\n### PRs covering multiple providers\n\nWhen a single PR touches several providers (e.g.\n`Add Python 3.14 Support (#63520)` touches dozens), classify it\n**independently per provider**. The same PR can be `feature` in one provider\n(a real new capability) and `misc` in another (just a constraint bump in\n`pyproject.toml`). Always scope the diff inspection (whether inline or in a\nper-provider sub-agent) to the current provider's path:\n\n```bash\ngh pr diff <NNNN> -- 'providers/<provider-path>/**'\n```\n\nIf the per-provider classifications come back different, do NOT try to\n\"reconcile\" them — that's a feature, not a bug. The release manager wants\neach provider's changelog to reflect what changed in *that* provider.\n\n### Asking the release manager — phrasing\n\nWhen you ask, state your best guess and the alternative explicitly:\n\n> Provider `amazon`, commit `4cd5678` (\"Remove deprecated `S3Hook.list_objects`\"\n> #65030): I classified this as **breaking** because the symbol is removed\n> from the public API in `providers/amazon/src/airflow/providers/amazon/aws/hooks/s3.py`,\n> even though the PR description says \"deprecated since 8.0.0\". Confirm\n> **breaking** (major bump 9.x → 10.0.0) or override to **misc** (patch)?\n\nDon't ask vague yes/no questions (\"is this breaking?\"); always offer the\ntwo alternatives with the version-bump consequence.\n\n### Things you must NOT do silently\n\n- Bump major version without explicit confirmation from the release manager.\n- Reclassify a commit the RM already confirmed.\n- Skip commits that don't fit a category — flag them as `?` and ask.\n- Edit `commits.rst`, `index.rst`, `__init__.py`, `README.rst`,\n  `pyproject.toml`, `conf.py`, `get_provider_info.py` directly. Those are\n  template-generated by breeze.\n- Run `git add` or `git commit` — the release manager owns the PR.\n\n### When to give up and fall back to interactive breeze\n\nIf the per-provider commit count is huge (50+) **and** the sub-agents come\nback with `low` confidence on most of them (typically because the diffs\nrequire deep domain knowledge), tell the release manager you're stopping\nthe AI classifica"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.github/workflows/ci-amd.yml",
+      "kind": "File",
+      "path": ".github/workflows/ci-amd.yml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 962,
+      "excerpt": "wo workflows are physical copies of each other\n# (GitHub Actions has no cross-file YAML include), differing only in their\n# trigger surface, the hardcoded `runner-type` / `platform` values in\n# `build-info`'s outputs, and the architecture-specific print-platform job.\n# Edit both files together when changing pipeline shape.\nname: Tests (AMD)\non:  # yamllint disable-line rule:truthy\n  schedule:\n    # AMD canary runs 2x/day (01:58, 13:58), interleaved with ARM's 2x/day (07:28, 19:28)\n    # in `ci-arm.yml` so a full-matrix canary still runs roughly every ~6h (alternating\n    # architecture) while halving the scheduled AMD compute. The `:58` vs ARM's `:28`\n    # offset keeps the two from competing for runners at exactly the same minute.\n    - cron: '58 1,13 * * *'\n  pull_request:\n    branches:\n      - main\n      - v[0-9]+-[0-9]+-test\n      - v[0-9]+-[0-9]+-stable\n      - providers-[a-z]+-?[a-z]*/v[0-9]+-[0-9]+\n      - chart/v[0-9]+-[0-9]+x-test\n      - chart/v[0-9]+-[0-9]+x-stable\n      - airflow-ctl/v[0-9]+-[0-9]+-test\n      - airflow-ctl/v[0-9]+-[0-9]+-stable\n    types: [opened, reopened, synchronize, ready_for_review]\n  push:\n    # Post-merge pushes to release-prep / providers branches run on both\n    # AMD and ARM (the matching block lives in the other wrapper too —\n    # `check-ci-workflows-in-sync` enforces they stay identical). `main` is\n    # intentionally NOT in this list: main pushes stay AMD-only via\n    # `ci-amd.yml`; ARM main coverage is the cron-driven canary above.\n    branches:\n      - v[0-9]+-[0-9]+-test\n      - providers-[a-z]+-?[a-z]*/v[0-9]+-[0-9]+\n      - chart/v[0-9]+-[0-9]+x-test\n      - airflow-ctl/v[0-9]+-[0-9]+-test\n  workflow_dispatch:\npermissions:\n  # All other permissions are set to none by default\n  contents: read\nenv:\n  GITHUB_REPOSITORY: ${{ github.repository }}\n  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n  GITHUB_USERNAME: ${{ github.actor }}\n  JAVA_VERSION: '11'\n  SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}\n  VERBOSE: \"true\"\n\nconcurrency:\n  group: ci-amd-${{ github.event.pull_request.number || github.ref }}\n  cancel-in-progress: true\n\njobs:\n  build-info:\n    name: \"Build info\"\n    # At build-info stage we do not yet have outputs so we need to hard-code the runs-on to public runners\n    runs-on: [\"ubuntu-22.04\"]\n    outputs:\n      all-python-versions-list-as-string: >-\n        ${{ steps.selective-checks.outputs.all-python-ver"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1991,
+      "excerpt": " in package:** `uv run --project <PROJECT> pytest path/to/package -xvs`\n- **If uv tests fail with missing system dependencies, run the tests with breeze**: `breeze run pytest <tests> -xvs`\n- **Run a Python script:** `uv run --project <PROJECT> python dev/my_script.py`\n- **Run core or provider tests suite in parallel:** `breeze testing <test_group> --run-in-parallel` (test groups: `core-tests`, `providers-tests`)\n- **Run core or provider db tests suite in parallel:** `breeze testing <test_group> --run-db-tests-only --run-in-parallel` (test groups: `core-tests`, `providers-tests`)\n- **Run core or provider non-db tests suite in parallel:** `breeze testing <test_group> --skip-db-tests --use-xdist` (test groups: `core-tests`, `providers-tests`)\n- **Run single provider complete test suite:** `breeze testing providers-tests --test-type \"Providers[PROVIDERS_LIST]\"` (e.g., `Providers[google]` or `Providers[amazon]` or \"Providers[amazon,google]\")\n- **Run Helm tests in parallel with xdist** `breeze testing helm-tests --use-xdist`\n- **Run Helm tests with specific K8s version:** `breeze testing helm-tests --use-xdist --kubernetes-version 1.35.0`\n- **Run specific Helm test type:** `breeze testing helm-tests --use-xdist --test-type <type>` (types: `airflow_aux`, `airflow_core`, `apiserver`, `dagprocessor`, `other`, `redis`, `security`, `statsd`, `webserver`)\n- **Run other suites of tests** `breeze testing <test_group>` (test groups: `airflow-ctl-tests`, `docker-compose-tests`, `task-sdk-tests`)\n- **Run scripts tests:** `uv run --project scripts pytest scripts/tests/ -xvs`\n- **Run Airflow CLI:** `breeze run airflow dags list`\n- **Type-check (non-providers):** run the prek hook — `prek run mypy-<project> --all-files` (e.g. `mypy-airflow-core`, `mypy-task-sdk`, `mypy-shared-logging`; each `shared/<dist>` workspace member has its own `mypy-shared-<dist>` hook). The hook uses a dedicated virtualenv and mypy cache under `.build/mypy-venvs/<hook>/` and `.build/mypy-caches/<hook>/`; mypy itself is installed from `uv.lock` via the `mypy` dependency group (`uv sync --group mypy`), so it never mutates your project `.venv`. The hook prefers `uv` from the project's main `.venv/bin/uv` (installed by `uv sync` — `uv` is part of the `dev` dependency group via the `all` extras) for a project-pinned uv version; it falls back to `uv` on `$PATH` with a warning if that binary is missing. Clear"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 54877,
+      "excerpt": "heck, use `breeze release-management verify-rc-by-pmc`.\n\nWhat the automation does (high level):\n\n* Validates expected SVN files, signatures, checksums, Apache RAT licenses, and reproducible builds.\n* Uses a detached git worktree for reproducible builds so it can build from the release tag without\n  changing your current checkout (and still use the latest Breeze code).\n* Fails early if the SVN working copy is locked (to avoid hanging on `svn` commands).\n\nIf the automation output disagrees with your manual verification, treat the manual results as authoritative and\nreport the discrepancy.\n\nFor the full command documentation see\n[Breeze Command to verify RC](breeze/doc/09_release_management_tasks.rst).\n\nExample (run all checks):\n\n```shell script\nbreeze release-management verify-rc-by-pmc \\\n  --distribution airflow \\\n  --version ${VERSION_RC} \\\n  --task-sdk-version ${TASK_SDK_VERSION_RC} \\\n  --path-to-airflow-svn ~/asf-dist/dev/airflow \\\n  --verbose\n```\n\nExample (only signatures + checksums):\n\n```shell script\nbreeze release-management verify-rc-by-pmc \\\n  --distribution airflow \\\n  --version ${VERSION_RC} \\\n  --task-sdk-version ${TASK_SDK_VERSION_RC} \\\n  --path-to-airflow-svn ~/asf-dist/dev/airflow \\\n  --checks signatures,checksums\n```\n\n\n# Verify the release candidate by Contributors\n\nThis can be done (and we encourage to) by any of the Contributors. In fact, it's best if the\nactual users of Apache Airflow test it in their own staging/test installations. Each release candidate\nis available on PyPI apart from SVN packages, so everyone should be able to install\nthe release candidate version.\n\nBut you can use any of the installation methods you prefer (you can even install it via the binary wheels\ndownloaded from the SVN).\n\n## Installing release candidate in your local virtual environment\n\n```shell script\npip install apache-airflow==<VERSION>rc<X>\n```\n\nOptionally it can be followed with constraints\n\n```shell script\npip install apache-airflow==<VERSION>rc<X> \\\n  --constraint \"https://raw.githubusercontent.com/apache/airflow/constraints-<VERSION>rc<X>/constraints-3.10.txt\"\n```\n\nNote that the constraints contain python version that you are installing it with.\n\nYou can use any of the installation methods you prefer (you can even install it via the binary wheel\ndownloaded from the SVN).\n\nThere is also an easy way of installation with Breeze if you have the latest source"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 24334,
+      "excerpt": "web\n```\n\n## Apply incremental changes and merge the PR\n\nWhen those changes are generated, you should commit the changes, create a PR and get it reviewed.\nThis usually takes some time, so before merging you need to rebase it to latest main and see if there\nare no new, incremental updates (one or two merged commits in the meantime). If there are - you still\nhave a chance to incorporate them via the **incremental update** flow.\n\n> [!IMPORTANT]\n> Whenever an incremental update bumps a provider's version, the [Update versions of dependent\n> providers to the next version](#update-versions-of-dependent-providers-to-the-next-version) step\n> must be applied **again** on the rebased branch — regardless of whether you prepared the docs with\n> the skill or the interactive breeze command. The skill re-runs it automatically; with the\n> interactive `--incremental-update` flow you must run the command yourself.\n\nThe recommended way is to invoke the same `prepare-providers-documentation` skill — it has a dedicated\n**Incremental Update** section that detects which commits on the rebased branch are not yet referenced\nin the existing `changelog.rst`, classifies only those new commits with the same per-PR sub-agent\nanalysis used in the initial run, and escalates the version bump in `provider.yaml` if (and only if) a\nnew commit changes the most-impactful classification:\n\n```text\n/prepare-providers-documentation\n```\n\nWhen invoked on a release-PR branch that already has classified entries in the changelogs, the skill\nrecognizes the incremental scenario and walks through:\n\n1. Refreshing the apache remote and regenerating templates.\n2. Detecting new commits per provider by comparing PR numbers to the existing changelog.\n3. Classifying only the new commits (with breaking-change scrutiny on the diff).\n4. Confirming any version-bump escalation with you explicitly before applying.\n5. Inserting the new entries under the correct sections of the existing latest-version block.\n6. Validating that no leftover `Please review` markers remain.\n7. Re-running [Update versions of dependent providers to the next\n   version](#update-versions-of-dependent-providers-to-the-next-version) when an incremental\n   bump raised a provider's version.\n\nIf you set ``DISTRIBUTIONS_LIST`` the incremental flow honors that scope automatically.\n\nOnce the new entries are applied, commit the changes and update the PR. Y"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/ci/04_selective_checks.md",
+      "kind": "File",
+      "path": "dev/breeze/doc/ci/04_selective_checks.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 21210,
+      "excerpt": "ripts` and the image-based static checks still run, but the full test\n  matrix does not; and **non-test workflows** (`.github/workflows/` for security scans, doc publishing,\n  notifications, backporting, calendar/stale bots, …) cannot change test outcomes. Workflows that run or\n  configure the test suite (`ci-amd`, `ci-arm`, `run-unit-tests`, `k8s-tests`, `helm-tests`, image builds,\n  …) still force the full matrix.\n* `Prek files` - `scripts/ci/prek/...` static-check hooks. They do not force full tests, but they trigger\n  the CI image build so `mypy-scripts` and the image-based static checks run for a prek-only change.\n* `Python production files` and `Javascript production files` - this area is useful in CodeQL Security scanning\n  - if any of the python or javascript files for airflow \"production\" changed, this means that the security\n    scans should run\n* `Always test files` - Files that belong to \"Always\" run tests.\n* `API tests files` and `Codegen test files` - those are OpenAPI definition files that impact\n  Open API specification and determine that we should run dedicated API tests.\n* `Helm files` - change in those files impacts helm \"rendering\" tests - `chart` folder (which contains the chart sources and tests under `chart/tests/`).\n* `Build files` - change in the files indicates that we should run  `upgrade to newer dependencies` -\n  build dependencies in `pyproject.toml` and  generated dependencies files in `generated` folder.\n  The dependencies are automatically generated from the `provider.yaml` files in provider by\n  the `hatch_build.py` build hook. The provider.yaml is a single source of truth for each\n  provider and `hatch_build.py` for all regular dependencies.\n* `DOC files` - change in those files indicate that we should run documentation builds (both airflow sources\n  and airflow documentation)\n* `UI files` - those are files for the new full React UI (useful to determine if UI tests should run)\n* `WWW files` - those are files for the WWW part of our UI (useful to determine if UI tests should run)\n* `System test files` - those are the files that are part of system tests (system tests are not automatically\n  run in our CI, but Airflow stakeholders are running the tests and expose dashboards for them at\n  [System Test Dashbards](https://airflow.apache.org/ecosystem/#airflow-provider-system-test-dashboards)\n* `Kubernetes files` - determine if an"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+      "kind": "File",
+      "path": "dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6042,
+      "excerpt": "stType)\n\n\nclass HashableDict(dict[T, list[str]]):\n    def __hash__(self):\n        return hash(frozenset(self))\n\n\nCI_FILE_GROUP_MATCHES: HashableDict[FileGroupForCi] = HashableDict(\n    {\n        FileGroupForCi.ENVIRONMENT_FILES: [\n            # Only workflows that actually run or configure the test suite force the full\n            # matrix. Non-test workflows (security scans, doc publishing, notifications,\n            # backporting, stale/calendar bots, …) cannot affect test outcomes, so they\n            # are excluded here to avoid accidental full-matrix runs.\n            r\"^\\.github/workflows/(?!(\"\n            r\"asf-allowlist-check|automatic-backport|backport-cli|ci-duration-monitor|ci-notification|\"\n            r\"codeql-analysis|e2e-flaky-tests-report|milestone-tag-assistant|notify-uv-lock-conflicts|\"\n            r\"publish-docs-to-s3|recheck-old-bug-report|scheduled-verify-release-calendar|stale\"\n            r\")\\.yml$)\",\n            r\"^dev/breeze/src\",\n            r\"^dev/breeze/pyproject\\.toml\",\n            r\"^dev/breeze/uv\\.lock\",\n            r\"^dev/(?!breeze/tests/).*\\.py$\",\n            r\"^Dockerfile\",\n            r\"^scripts/ci/docker-compose\",\n            r\"^scripts/ci/kubernetes\",\n            # NOTE: scripts/ci/prek (static-check hooks) is intentionally NOT here. prek\n            # hooks drive static checks, not the test matrix, so they must not force the\n            # full matrix. They still build the CI image via FileGroupForCi.PREK_FILES\n            # below (so mypy-scripts and all static checks still run).\n            r\"^scripts/docker\",\n            r\"^scripts/in_container\",\n        ],\n        FileGroupForCi.BREEZE_INTEGRATION_TEST_FILES: [\n            r\"^dev/breeze/src/.*\",\n            r\"^dev/breeze/tests/.*_integration\\.py\",\n            r\"^dev/breeze/pyproject\\.toml\",\n            r\"^dev/breeze/uv\\.lock\",\n        ],\n        FileGroupForCi.REMOTE_LOGGING_E2E_SHARED_FILES: [\n            r\"^airflow-core/src/airflow/config_templates/airflow_local_settings\\.py$\",\n            r\"^airflow-core/src/airflow/logging/.*\",\n            r\"^airflow-core/src/airflow/logging_config\\.py$\",\n            r\"^airflow-core/src/airflow/api_fastapi/core_api/routes/public/log\\.py$\",\n            r\"^airflow-core/src/airflow/api_fastapi/core_api/datamodels/log\\.py$\",\n            r\"^airflow-core/src/airflow/utils/log/.*\",\n            r\"^airflow-e2e-tests/.*\",\n            r\"^sha"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/cncf/kubernetes/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18945,
+      "excerpt": "7054)``\n\nMisc\n~~~~\n\n* ``Convert all airflow distributions to be compliant with ASF requirements (#58138)``\n* ``Unify Pod Startup Tracking: KubernetesPodTriggerer and KubernetesPodOperator Now Share Common Startup Logic (#56875)``\n* ``Relax Kubernetes client version support to <35.0.0 (#57413)``\n* ``Identify duplicate kubernetes section airflow configuration and mark them as deprecated (#57028)``\n\nDoc-only\n~~~~~~~~\n\n* ``CHG: image (#56593)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Fix main failing on cross-merged PR (#58270)``\n   * ``Delete all unnecessary LICENSE Files (#58191)``\n   * ``Enable PT006 rule to 19 files in providers (cncf,common) (#57995)``\n   * ``Fix docstring typos (#57840)``\n   * ``Fix MyPy type errors in providers in cncf/kubernetes provider  (#57563)``\n   * ``Fix mypy static errors in main (#57755)``\n   * ``Attempt to resolve pip \"ResolutionTooDeep\" on cffi conflict (#57697)``\n   * ``Enable ruff PLW1641 rule (#57679)``\n   * ``Fix code formatting via ruff preview (#57641)``\n   * ``Enable ruff PLW0129 rule (#57516)``\n\n\n10.9.0\n......\n\nFeatures\n~~~~~~~~\n\n* ``Move container-related functions from PodManager to a separate file (#56700)``\n* ``Add KubernetesPodOperator deferred callbacks (#47108)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``Fix KubernetesPodOperator termination_grace_period parameter not being applied to pod spec (#56402)``\n* ``SparkKubernetesOperator: preserve existing metadata labels in SparkApplication manifest (#56063)``\n\nMisc\n~~~~\n\n* ``Migrate cncf/kubernetes provider to ''common.compat'' (#57023)``\n\nDoc-only\n~~~~~~~~\n\n* ``Correct 'Dag' to 'DAG' for code snippets in provider docs (#56727)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Remove placeholder Release Date in changelog and index files (#56056)``\n   * ``Enable PT011 rule to provider tests (#56578)``\n\n10.8.2\n......\n\n\nBug Fixes\n~~~~~~~~~\n\n* ``Don't check db migration needlessly for 'airflow celery' cli commands. (#55878)``\n* ``Relax Kubernetes client version support to <34.0.0 (#55932)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n\n10.8.1\n......\n\n\nBug Fixes\n~~~~~~~~~\n\n* ``Fix: Add task context labels to driver "
+    }
+  ]
+}

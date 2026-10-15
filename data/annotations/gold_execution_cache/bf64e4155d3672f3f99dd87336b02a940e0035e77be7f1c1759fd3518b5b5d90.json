@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 11714,
+        "line": 253
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/datasets/index.mdx",
+        "path": "docs/docs/genai/datasets/index.mdx",
+        "offset": 1889,
+        "line": 31
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/quickstart.mdx",
+        "path": "docs/docs/genai/eval-monitor/quickstart.mdx",
+        "offset": 17,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/prompt-registry/prompt-engineering.mdx",
+        "path": "docs/docs/genai/prompt-registry/prompt-engineering.mdx",
+        "offset": 559,
+        "line": 9
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docusaurus.config.ts",
+        "path": "docs/docusaurus.config.ts",
+        "offset": 11996,
+        "line": 418
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 95307,
+        "line": 50
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model-registry/tutorial.mdx",
+        "path": "docs/docs/classic-ml/model-registry/tutorial.mdx",
+        "offset": 7000,
+        "line": 175
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/prompt-registry/evaluate-prompts.mdx",
+        "path": "docs/docs/genai/prompt-registry/evaluate-prompts.mdx",
+        "offset": 815,
+        "line": 12
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11714,
+      "excerpt": " and reduce\nerrors in creating the environment.\n\n#### GitHub Codespaces\n\n<img src=\"./assets/create-codespace.png\" width=\"60%\"/>\n\n1. Navigate to https://github.com/mlflow/mlflow.git.\n2. Above the file list, click `Code`, then select `Create codespace` and wait for your codespace to be created.\n\nSee [Quickstart for GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) for more information.\n\n#### Automated Python development environment configuration\n\nThe automated development environment setup script\n([dev-env-setup.sh](https://github.com/mlflow/mlflow/tree/master/dev/dev-env-setup.sh))\ncan be used to setup a development environment that is configured with\nall of the dependencies required and the environment configuration\nneeded to develop and locally test the Python code portions of MLflow.\nThis CLI tool's readme can be accessed via the root of the mlflow\nrepository as follows:\n\n```bash\ndev/dev-env-setup.sh -h\n```\n\nAn example usage of this script that will build a development\nenvironment using `virtualenv` and the minimum supported Python version\n(to ensure compatibility) is:\n\n```bash\ndev/dev-env-setup.sh -d .venvs/mlflow-dev -q\n```\n\nThe `-q` parameter is to \"quiet\" the pip install processes preventing\nstdout printing during installation.\n\nIt is advised to follow all of the prompts to ensure that the\nconfiguration of the environment, as well as git, are completed so that\nyour PR process is as effortless as possible.\n\n**Note**\n\nFrequently, a specific version of a library is required in order to\nvalidate a feature's compatibility with older versions. Modifying your\nprimary development environment to test one-off compatibility can be\nvery error-prone and result in an environment that is significantly\ndifferent from that of the CI test environment. To support this use\ncase, the automated script can be used to create an environment that can\nbe easily modified to support testing a particular version of a model\nflavor in an isolated environment. Simply run the `dev-env-setup.sh`\nscript, activate the new environment, and install the required version\nfor testing.\n\n</div>\n\nExample of installing an older version of `scikit-learn` to perform\nisolated testing:\n\n```bash\ndev/dev-env-setup.sh -d ~/.venvs/sklearn-test -q\nsource ~/.venvs/sklearn-test/bin/activate\npip freeze | grep \"scikit-learn\"\n>> scikit-learn==1.0.2\npip install scikit-learn==1."
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model-registry/tutorial.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model-registry/tutorial.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7000,
+      "excerpt": " errors, you can go to your web browser and visit `http://localhost:8080` to\nview the MLflow UI.\n\nFirst, let's leave the experiment tracking tab and visit the model registry.\n\n<div className=\"center-div\" style={{ width: 1024, maxWidth: \"100%\" }}>\n  ![Model information from the mlflow\n  ui.](/images/quickstart/model-registry-quickstart/model-registry-ui.png)\n</div>\n\nNext, let's add tags and a model version alias to\n[facilitate model deployment](/ml/model-registry/workflow/#deploy-and-organize-models-with-aliases-and-tags).\nYou can add or edit tags and aliases by clicking on the corresponding `Add` link or pencil icon in\nthe model version table. Let's...\n\n1. Add a model version tag with a key of `problem_type` and value of `regression`.\n2. Add a model version alias of `the_best_model_ever`.\n\n<div className=\"center-div\" style={{ width: 1024, maxWidth: \"100%\" }}>\n  ![Model information from the mlflow\n  ui.](/images/quickstart/model-registry-quickstart/model-alias-and-tags.png)\n</div>\n\n## Load a Registered Model\n\nTo perform inference on a registered model version, we need to load it into memory. There are many\nways to find our model version, but the best method differs depending on the information you have\navailable. However, in the spirit of a quickstart, the below code snippet shows the simplest way to\nload a model from the model registry via a specific model URI and perform inference.\n\n```python\nimport mlflow.sklearn\nfrom sklearn.datasets import make_regression\n\nmodel_name = \"sk-learn-random-forest-reg-model\"\nmodel_version = \"latest\"\n\n# Load the model from the Model Registry\nmodel_uri = f\"models:/{model_name}/{model_version}\"\nmodel = mlflow.sklearn.load_model(model_uri)\n\n# Generate a new dataset for prediction and predict\nX_new, _ = make_regression(n_features=4, n_informative=2, random_state=0, shuffle=False)\ny_pred_new = model.predict(X_new)\n\nprint(y_pred_new)\n```\n\nNote that if you're not using sklearn, if your model flavor is supported, you should use the\nspecific model flavor load method e.g. `mlflow.<flavor>.load_model()`. If the model flavor is\nnot supported, you should leverage <APILink fn=\"mlflow.pyfunc.load_model\" />. Throughout this tutorial\nwe leverage sklearn for demonstration purposes.\n\n### Example 0: Load via Tracking Server\n\nA model URI is a unique identifier for a serialized model. Given the model artifact is stored with\nexperiments in the track"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/datasets/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/datasets/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1889,
+      "excerpt": "FileStore (local file system-based tracking). If you need\na simple local configuration for MLflow, use the sqlite option when starting MLflow.\n:::\n\n- An evaluation dataset is attached to an MLflow experiment. If you do not already have an experiment, see [Create an MLflow Experiment](/genai/tracing/quickstart/) to create one.\n\n## Data sources for evaluation datasets\n\nYou can use any of the following to create an evaluation dataset:\n\n- Existing traces. If you have already captured traces from an LLM application or AI agent, you can use them to create an evaluation dataset based on real-world scenarios.\n- Manually created examples. Define test cases by hand using dictionaries or DataFrames. This is useful for targeting specific edge cases or creating \"golden\" test cases that must always pass.\n\nThis page describes how to create an MLflow evaluation dataset. You can create datasets from traces using either the MLflow Monitoring UI or the SDK. You can also use other types of datasets, such as Pandas DataFrames or a list of dictionaries. See [Evaluation examples](/genai/eval-monitor/running-evaluation/eval-examples) for more examples.\n\n## Create or update a dataset using the UI\n\nFollow these steps to use the UI to create a dataset or add to a dataset from existing traces.\n\n1. Click **Experiments** in the sidebar to display the Experiments page.\n1. In the table, click on the name of your experiment to open it.\n1. In the left sidebar, click **Traces**.\n\n   <ImageBox src=\"/images/genai/traces-tab.png\" alt=\"Traces tab in sidebar\" />\n\n1. Use the checkboxes to the left of the trace list to select traces to export to your dataset. To select all traces, click the box next to **Trace ID**.\n\n   <video src={useBaseUrl(\"/images/genai/select-traces.mp4\")} controls loop autoPlay muted aria-label=\"Selecting traces for eval dataset\" />\n\n1. Click **Actions**. From the drop-down menu, select **Add to evaluation dataset**.\n1. The **Export traces to evaluation dataset** dialog appears.\n\n   <ImageBox src=\"/images/genai/add-to-dataset-dialog.png\" alt=\"Add to dataset dialog\" width=\"50%\" />\n\n   If evaluation datasets exist for this experiment, they appear in the dialog.\n   1. Click **Export** next to the dataset you want to add these traces to.\n\n   If no evaluation dataset exists for the experiment:\n   1. Click **Create new dataset**.\n   1. In the **Create Dataset** dialog, enter a name "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/quickstart.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/eval-monitor/quickstart.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 17,
+      "excerpt": "} from \"@site/src/components/APILink\";\nimport ImageBox from '@site/src/components/ImageBox';\nimport ServerSetup from \"@site/src/content/setup_server.mdx\";\n\nimport Tabs from '@theme/Tabs';\nimport TabItem from '@theme/TabItem';\nimport TabsWrapper from '@site/src/components/TabsWrapper';\n\n# Evaluation Quickstart\n\n:::tip[MLflow Assistant]\nNeed help setting up evaluation? Try <ins>[MLflow Assistant](/genai/getting-started/try-assistant)</ins> - a powerful AI assistant that can help you set up evaluation for your project.\n:::\n\nThis quickstart guide will walk you through evaluating your LLM applications and AI agents with MLflow's comprehensive evaluation framework.\nIn less than 5 minutes, you'll learn how to evaluate LLM outputs, use built-in and custom evaluation criteria, and analyze results in the MLflow UI.\n\n<ImageBox src=\"/images/mlflow-3/eval-monitor/quickstart-eval-hero.png\" alt=\"Simple Evaluation Results\" />\n\n## Prerequisites\n\nDepending on your Python environment, you may want to install the required packages by running the following command:\n\n```bash\npip install openai\n```\n\n:::info\n\nThe code examples in this guide use the OpenAI SDK; however, MLflow's evaluation framework works with any LLM provider, including Anthropic, Google, Bedrock, and more.\n\n:::\n\n## Step 1: Set up your environment\n\nMLflow stores evaluation results in a [MLflow Tracking Server](/self-hosting/architecture/tracking-server/).\n\nStart a local MLflow Tracking Server by executing one of the following methods.\n\n<ServerSetup />\n\n## Step 2: Create an evaluation script\n\nCreate a file named `quickstart_eval.py`. This script will contain your mock agent, evaluation dataset, scorers, and the evaluation execution. Alternatively, you may run this in a [notebook](/genai/eval-monitor/notebooks/quickstart-eval).\n\nStart with the environment setup:\n\n```python\n# quickstart_eval.py\nimport os\nimport mlflow\n\n# Configure environment\nos.environ[\"OPENAI_API_KEY\"] = \"your-api-key-here\"  # Replace with your API key\nmlflow.set_experiment(\"Evaluation Quickstart\")\n```\n\n## Step 3: Define your mock agent's prediction function\n\nFirst, we need to create a prediction function that takes a question and returns an answer. Here we use OpenAI's gpt-4o-mini model to generate the answer, but you can use any other LLM provider if you prefer.\n\nAdd your mock agent implementation to `quickstart_eval.py`:\n\n```python\nfrom openai im"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/prompt-registry/evaluate-prompts.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/prompt-registry/evaluate-prompts.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 815,
+      "excerpt": " results with ease in the MLflow UI.\n- **Tracking Results**: Track evaluation results in MLflow Experiment to maintain the history of prompt performance and different evaluation settings.\n- **Tracing**: Inspect model behavior during inference deeply with traces generated during evaluation.\n\n:::\n\n## Quickstart\n\n### 1. Install Required Libraries\n\nFirst install MLflow and OpenAI SDK. If you use different LLM providers, install the corresponding SDK instead.\n\n```bash\npip install 'mlflow>=3.0.0' openai -qU\n```\n\nAlso set OpenAI API key (or any other LLM providers e.g. Anthropic).\n\n```python\nimport os\nfrom getpass import getpass\n\nos.environ[\"OPENAI_API_KEY\"] = getpass(\"Enter your OpenAI API key: \")\n```\n\n### 1. Create a Prompt\n\n<Tabs>\n  <TabItem value=\"ui\" label=\"UI\" default>\n    <div class=\"flex-column\">\n      <div style={{ width: \"70%\", margin: \"20px\" }}>\n        ![Create Prompt UI](/images/llms/prompt-registry/create-prompt-ui.png)\n      </div>\n\n      1. Run `mlflow server` in your terminal to start the MLflow UI.\n      2. Navigate to the **Prompts** tab in the MLflow UI.\n      3. Click on the **Create Prompt** button.\n      4. Fill in the prompt details such as name, prompt template text, and commit message (optional).\n      5. Click **Create** to register the prompt.\n\n    </div>\n\n  </TabItem>\n  <TabItem value=\"python\" label=\"Python\" default>\n    <div class=\"flex-column\">\n      To create a new prompt using the Python API, use <APILink fn=\"mlflow.genai.register_prompt\" /> API:\n\n      ```python\n      import mlflow\n\n      # Use double curly braces for variables in the template\n      initial_template = \"\"\"\\\n      Summarize content you are provided with in {{ num_sentences }} sentences.\n\n      Sentences: {{ sentences }}\n      \"\"\"\n\n      # Register a new prompt\n      prompt = mlflow.genai.register_prompt(\n          name=\"summarization-prompt\",\n          template=initial_template,\n          # Optional: Provide a commit message to describe the changes\n          commit_message=\"Initial commit\",\n      )\n\n      # The prompt object contains information about the registered prompt\n      print(f\"Created prompt '{prompt.name}' (version {prompt.version})\")\n      ```\n    </div>\n\n  </TabItem>\n</Tabs>\n\n### 2. Prepare Evaluation Data\n\nBelow, we create a small summarization dataset for demonstration purposes.\n\n```python\nimport pandas as pd\n\neval_data = [\n    {\n        \"inputs\": {\n  "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/prompt-registry/prompt-engineering.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/prompt-registry/prompt-engineering.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 559,
+      "excerpt": "s to select the best one.\nEvery model created with the prompt engineering UI is stored in the [MLflow Model](/ml/model)\nformat and can be deployed for batch or real time inference. All configurations (prompt templates,\nchoice of LLM, parameters, etc.) are tracked as [MLflow Runs](/ml/tracking).\n\n## Quickstart \\{#prompt-engineering-quickstart}\n\nThe following guide will get you started with MLflow's UI for prompt engineering.\n\n### Step 1: Create an MLflow AI Gateway Completions or Chat Endpoint\n\nTo use the prompt engineering UI, you need to create one or more [MLflow AI Gateway](/genai/governance/ai-gateway)\ncompletions or chat endpoints. Follow the\n[MLflow AI Gateway Quickstart guide](/genai/governance/ai-gateway) to easily create an endpoint in less than five\nminutes. If you already have access to an MLflow AI Gateway endpoint of type `llm/v1/completions`\nor `llm/v1/chat`, you can skip this step.\n\n```bash\nmlflow gateway start --config-path config.yaml --port 7000\n```\n\n### Step 2: Connect the MLflow AI Gateway to your MLflow Tracking Server\n\nThe prompt engineering UI also requires a connection between the MLflow AI Gateway and the MLflow\nTracking Server. To connect the MLflow AI Gateway with the MLflow Tracking Server, simply set the\n`MLFLOW_DEPLOYMENTS_TARGET` environment variable in the environment where the server is running and\nrestart the server. For example, if the MLflow AI Gateway is running at `http://localhost:7000`, you\ncan start an MLflow Tracking Server in a shell on your local machine and connect it to the\nMLflow AI Gateway using the <APILink fn=\"mlflow.server.cli\" hash=\"mlflow-server\">mlflow server</APILink> command as follows:\n\n```bash\nexport MLFLOW_DEPLOYMENTS_TARGET=\"http://127.0.0.1:7000\"\nmlflow server --port 5000\n```\n\n### Step 3: Create or find an MLflow Experiment\n\nNext, open an existing MLflow Experiment in the MLflow UI, or create a new experiment.\n\n<div className=\"center-div\" style={{ maxWidth: 650, width: \"100%\" }}>\n  ![](/images/experiment_page.png)\n</div>\n\n### Step 4: Create a run with prompt engineering\n\nOnce you have opened the Experiment, click the **New Run** button and select\n_using Prompt Engineering_. This will open the prompt engineering playground where you can try\nout different LLMs, parameters, and prompts.\n\n<div style={{ display: \"flex\", alignItems: \"center\", justifyContent: \"center\" }}>\n  <div style={{ width: \"25%\" }}>!"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docusaurus.config.ts",
+      "kind": "File",
+      "path": "docs/docusaurus.config.ts",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11996,
+      "excerpt": "    to: '/genai/getting-started/databricks-trial',\n            from: [\n              '/getting-started/databricks-trial',\n              '/getting-started/community-edition',\n              '/ml/getting-started/databricks-trial',\n            ],\n          },\n          {\n            to: '/genai/tracing/quickstart',\n            from: ['/genai/getting-started'],\n          },\n          // Redirect deleted data-model pages to GenAI main page\n          {\n            to: '/genai',\n            from: [\n              '/genai/data-model',\n              '/genai/data-model/index',\n              '/genai/data-model/app-versions',\n              '/genai/data-model/experiments',\n              '/genai/data-model/logged-model',\n              '/genai/data-model/model-registry',\n              '/genai/data-model/prompts',\n              '/genai/data-model/runs',\n              '/genai/data-model/traces',\n            ],\n          },\n          // Redirect moved concepts pages from tracing to top-level\n          {\n            to: '/genai/concepts/feedback',\n            from: ['/genai/tracing/concepts/feedback'],\n          },\n          {\n            to: '/genai/concepts/expectations',\n            from: ['/genai/tracing/concepts/expectations'],\n          },\n          {\n            to: '/genai/concepts/span',\n            from: ['/genai/tracing/concepts/span'],\n          },\n          {\n            to: '/genai/concepts/trace',\n            from: ['/genai/tracing/concepts/trace'],\n          },\n          // GenAI/LLM Related Redirects\n          {\n            to: '/genai/tracing',\n            from: ['/llms/llm-tracking', '/tracing', '/llms/tracing', '/tracing/api/how-to'],\n          },\n          {\n            to: '/genai/tracing/quickstart',\n            from: [\n              '/genai/tracing/quickstart/typescript-openai',\n              '/genai/tracing/quickstart/python-openai',\n              '/genai/tracing/app-instrumentation/typescript-sdk',\n              '/genai/tracing/app-instrumentation',\n              '/tracing/api',\n            ],\n          },\n          {\n            to: '/genai/tracing/faq',\n            from: ['/tracing/faq'],\n          },\n          {\n            to: '/genai/concepts/trace',\n            from: ['/tracing/tracing-schema', '/llms/tracing/tracing-schema'],\n          },\n          {\n            to: '/genai/tracing/prod-tracing',\n            from: ['/tracing/production'],\n       "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 95307,
+      "excerpt": " HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nHow can you create an experiment using MLflow?,\"You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters.\",\"runs into experiments, which group together runs for a specific task. You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters. The MLflow API and UI let you create and search for experiments. Once your runs have been recorded, you can query them using the Tracking UI or the MLflow API. Where Runs Are Recorded MLflow runs can be recorded to local files, to a SQLAlchemy-compatible database, or remotely to a tracking server. By default, the MLflow Python API logs runs locally to files in an mlruns directory wherever you ran your program. You can then run mlflow ui to see the logged runs. To log runs remotely, set the MLFLOW_TRACKING_URI environment variable to a tracking server's URI or call mlflow.set_tracking_uri(). There are different kinds of remote tracking URIs: Local file path (specified as file:/my/local/dir), where data is just directly stored locally. Database encoded as <dialect>+<driver>://<username>:<password>@<host>:<port>/<database>. MLflow supports the dialects mysql, mssql, sqlite, and postgresql. For more details, see SQLAlchemy database uri. HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nWhat are the two components used by MLflow for storage?,\"MLflow uses two components for storage: backend store and artifact store. The backend store persists MLflow entities such as runs, parameters, metrics, tags, notes, and metadata. On the other hand, the artifact store persists artifacts such as files, models, images, in-mem"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 29155,
+        "line": 16
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 10933,
+        "line": 240
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+        "path": "examples/llms/RAG/_cache.json",
+        "offset": 19657,
+        "line": 99
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llama_index/workflow/Tutorial.ipynb",
+        "path": "examples/llama_index/workflow/Tutorial.ipynb",
+        "offset": 8373,
+        "line": 196
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26536",
+        "path": null,
+        "offset": 2813,
+        "line": 22
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/tutorials/text-generation/text-generation.ipynb",
+        "path": "docs/docs/classic-ml/deep-learning/transformers/tutorials/text-generation/text-generation.ipynb",
+        "offset": 7307,
+        "line": 135
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/demos/pythonmodel_type_hints_quickstart.ipynb",
+        "path": "examples/demos/pythonmodel_type_hints_quickstart.ipynb",
+        "offset": 30139,
+        "line": 368
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/projects/index.mdx",
+        "path": "docs/docs/classic-ml/projects/index.mdx",
+        "offset": 17770,
+        "line": 718
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10933,
+      "excerpt": "advisable when working\non MLflow. Creating an environment that contains the required Python\npackages (and versions), linting tools, and environment configurations\nwill help to prevent unnecessary CI failures when filing a PR. A\ncorrectly configured local environment will also allow you to run tests\nlocally in an environment that mimics that of the CI execution\nenvironment.\n\nThere are three means of setting up a base Python development environment\nfor MLflow: GitHub Codespaces, automated (through the\n[dev-env-setup.sh](https://github.com/mlflow/mlflow/tree/master/dev/dev-env-setup.sh)\nscript) or manual. Even in a manual-based approach (i.e., testing\nfunctionality of a specific version of a model flavor's package\nversion), the automated script can save a great deal of time and reduce\nerrors in creating the environment.\n\n#### GitHub Codespaces\n\n<img src=\"./assets/create-codespace.png\" width=\"60%\"/>\n\n1. Navigate to https://github.com/mlflow/mlflow.git.\n2. Above the file list, click `Code`, then select `Create codespace` and wait for your codespace to be created.\n\nSee [Quickstart for GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) for more information.\n\n#### Automated Python development environment configuration\n\nThe automated development environment setup script\n([dev-env-setup.sh](https://github.com/mlflow/mlflow/tree/master/dev/dev-env-setup.sh))\ncan be used to setup a development environment that is configured with\nall of the dependencies required and the environment configuration\nneeded to develop and locally test the Python code portions of MLflow.\nThis CLI tool's readme can be accessed via the root of the mlflow\nrepository as follows:\n\n```bash\ndev/dev-env-setup.sh -h\n```\n\nAn example usage of this script that will build a development\nenvironment using `virtualenv` and the minimum supported Python version\n(to ensure compatibility) is:\n\n```bash\ndev/dev-env-setup.sh -d .venvs/mlflow-dev -q\n```\n\nThe `-q` parameter is to \"quiet\" the pip install processes preventing\nstdout printing during installation.\n\nIt is advised to follow all of the prompts to ensure that the\nconfiguration of the environment, as well as git, are completed so that\nyour PR process is as effortless as possible.\n\n**Note**\n\nFrequently, a specific version of a library is required in order to\nvalidate a feature's compatibility with older versions. Modifying your"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/tutorials/text-generation/text-generation.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deep-learning/transformers/tutorials/text-generation/text-generation.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7307,
+      "excerpt": "ated by MLflow's deployment tools.\\n\",\n    \"- **Signature Types**: Column-based for tabular data, tensor-based for tensor inputs/outputs, and with params for models requiring additional inference parameters.\\n\",\n    \"\\n\",\n    \"#### Understanding Model Signatures\\n\",\n    \"A model signature in MLflow describes the schema for inputs, outputs, and parameters of an ML model. It is a blueprint that details the expected data types and shapes, facilitating a clear interface for model usage. Signatures are particularly useful as they are:\\n\",\n    \"\\n\",\n    \"- Displayed in MLflow's UI for easy reference.\\n\",\n    \"- Employed by MLflow's deployment tools to validate inputs during inference.\\n\",\n    \"- Stored in a standardized JSON format alongside the model's metadata.\\n\",\n    \"\\n\",\n    \"#### The Role of Signatures in Code\\n\",\n    \"In the following section, we define the `input_example` along with inference parameters. When we pass `input_example` to `log_model()`, MLflow will automatically infer the model signature, including input types, output types, and any inference parameters.\\n\",\n    \"\\n\",\n    \"#### Types of Model Signatures\\n\",\n    \"Model signatures can be:\\n\",\n    \"\\n\",\n    \"- **Column-based**: Suitable for models that operate on tabular data, with each column having a specified data type and optional name.\\n\",\n    \"- **Tensor-based**: Designed for models that take tensors as inputs and outputs, with each tensor having a specified data type, shape, and optional name.\\n\",\n    \"- **With Params**: Some models require additional parameters for inference, which can also be included in the signature.\\n\",\n    \"\\n\",\n    \"For the transformers flavor, all input types are of the Column-based type (referred to within MLflow as `ColSpec` types).\\n\",\n    \"\\n\",\n    \"#### Signature Enforcement\\n\",\n    \"MLflow enforces the signature at the time of model inference, ensuring that the provided input and parameters match the expected schema. If there's a mismatch, MLflow will raise an exception or issue a warning, depending on the nature of the mismatch.\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"# The signature will be automatically inferred when input_example is provided to log_model.\\n\",\n    \"# We can define the input_example as a tuple of (data, params) to include inference parameters.\\n\",\n    \"inp"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/projects/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/projects/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 17770,
+      "excerpt": "git\n```\n\n**Kubernetes Job Fails**\n\n```bash\n# Debug: Check job status\nkubectl get jobs -n mlflow\nkubectl describe job <job-name> -n mlflow\nkubectl logs -n mlflow job/<job-name>\n```\n\n### Debugging Tips\n\n**Enable Verbose Logging:**\n\n```bash\nexport MLFLOW_LOGGING_LEVEL=DEBUG\nmlflow run . -v\n```\n\n**Test Locally First:**\n\n```bash\n# Test with local environment before remote deployment\nmlflow run . --env-manager local\n\n# Then test with environment isolation\nmlflow run . --env-manager virtualenv\n```\n\n**Validate Project Structure:**\n\n```python\nfrom mlflow.projects import load_project\n\n# Load and inspect project\nproject = load_project(\".\")\nprint(f\"Project name: {project.name}\")\nprint(f\"Entry points: {list(project._entry_points.keys())}\")\nprint(f\"Environment type: {project.env_type}\")\n```\n\n---\n\n**Ready to get started?** Check out our [MLflow Projects Examples](https://github.com/mlflow/mlflow/tree/master/examples) for hands-on tutorials and real-world use cases.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/demos/pythonmodel_type_hints_quickstart.ipynb",
+      "kind": "File",
+      "path": "examples/demos/pythonmodel_type_hints_quickstart.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 30139,
+      "excerpt": "ut_type\": \"stream\",\n     \"text\": [\n      \"runs:/33b7da4d1693490b97934a5781964766/model\\n\"\n     ]\n    }\n   ],\n   \"source\": [\n    \"model_info.model_uri\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"a4f72697-57c9-4a02-9c11-da35c277bab8\",\n   \"metadata\": {},\n   \"source\": [\n    \"## Serve the model locally\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"id\": \"44e0e4e4-372b-4176-85e5-6f624b728c34\",\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"# run below command to serve the model locally\\n\",\n    \"# mlflow models serve -m runs:/33b7da4d1693490b97934a5781964766/model -p 6666\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 19,\n   \"id\": \"85013e9c-fb42-4d8a-a8f1-5fb69f695b97\",\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"data\": {\n      \"text/plain\": [\n       \"b'{\\\"predictions\\\": \\\"British Shorthairs are generally considered to be intelligent cats, though their intelligence may manifest differently compared to some other breeds. They are known for their calm and laid-back demeanor, which can sometimes be mistaken for a lack of intelligence. In reality, they are capable of problem-solving and can be trained to perform basic commands or tricks, though they may not be as eager to please as some more active breeds.\\\\\\\\n\\\\\\\\nTheir intelligence is often reflected in their ability to adapt to their environment and their understanding of routines. British Shorthairs tend to be independent and may not seek out interaction as much as other, more playful breeds, but they can still form strong bonds with their owners. Essentially, while they might not be the most overtly intelligent cats, they possess a subtle understanding of their surroundings that reflects their adaptability and awareness.\\\"}'\"\n      ]\n     },\n     \"execution_count\": 19,\n     \"metadata\": {},\n     \"output_type\": \"execute_result\"\n    }\n   ],\n   \"source\": [\n    \"import requests\\n\",\n    \"\\n\",\n    \"from mlflow.models.utils import convert_input_example_to_serving_input\\n\",\n    \"\\n\",\n    \"payload = convert_input_example_to_serving_input([\\n\",\n    \"    {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Is British shorthair smart?\\\"}\\n\",\n    \"])\\n\",\n    \"resp = requests.post(\\n\",\n    \"    \\\"http://127.0.0.1:6666/invocations\\\", data=payload, headers={\\\"Content-Type\\\": \\\"application/json\\\"}\\n\",\n    \")\\n\",\n    \"resp.content\"\n   ]\n  }\n ],\n \"metadata\": {\n  \"kernelspec\": {\n   \"display_n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llama_index/workflow/Tutorial.ipynb",
+      "kind": "File",
+      "path": "examples/llama_index/workflow/Tutorial.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8373,
+      "excerpt": "e-large-en\\\")\\n\",\n    \"Settings.llm = Databricks(model=\\\"databricks-meta-llama-3-1-70b-instruct\\\")\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"e9b1fbb8-e3e3-46a9-9fbb-2244cc818d03\",\n   \"metadata\": {},\n   \"source\": [\n    \"### Option 3: Local Models\\n\",\n    \"\\n\",\n    \"LlamaIndex also support locally hosted LLMs. Please refer to the [Starter Tutorial (Local Models)](https://docs.llamaindex.ai/en/stable/getting_started/starter_example_local/) for how to set them up.\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"221e1c89-f046-4fb4-a7f3-c2460c2013a7\",\n   \"metadata\": {},\n   \"source\": [\n    \"## 4. Set Up Web Search API\\n\",\n    \"\\n\",\n    \"Later in this notebook, we will add web search capability to the QA bot. Tavily AI provides a search API\\n\",\n    \"optimized for LLM application and natively integrated with LlamaIndex. Visit [their website](https://tavily.com/) to\\n\",\n    \"get an API key for free-tier use, or use different search engine integrated with LlamaIndex, e.g. [GoogleSearchToolSpec](https://docs.llamaindex.ai/en/stable/api_reference/tools/google/#llama_index.tools.google.GoogleSearchToolSpec).\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"id\": \"09ed9c06-0501-4e80-91a3-3cc38402a1c3\",\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"import getpass\\n\",\n    \"import os\\n\",\n    \"\\n\",\n    \"os.environ[\\\"TAVILY_AI_API_KEY\\\"] = getpass.getpass(\\\"Enter your Tavily AI APi Key\\\")\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"34c673bf\",\n   \"metadata\": {},\n   \"source\": [\n    \"## 5. Set Up Document Indices for Retrieval\\n\",\n    \"\\n\",\n    \"The next step is to build a document index for retrieval from MLflow documentation. The `urls.txt` file in the `data` directory contains a list of MLflow documentation pages. These pages can be loaded as document objects using the web page reader utility.\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"id\": \"e7442b40\",\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"from llama_index.readers.web import SimpleWebPageReader\\n\",\n    \"\\n\",\n    \"with open(\\\"data/urls.txt\\\") as file:\\n\",\n    \"    urls = [line.strip() for line in file if line.strip()]\\n\",\n    \"\\n\",\n    \"documents = SimpleWebPageReader(html_to_text=True).load_data(urls)\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"48419c9f-5d3e-4ba4-a1b5-34b26d01c3e0\",\n   \"metadata\": {},\n   \"source\": "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+      "kind": "File",
+      "path": "examples/llms/RAG/_cache.json",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19657,
+      "excerpt": "del, which makes it possible to write tools that work with models from any ML library without having to integrate each tool with each library. MLflow defines several \\\\u201cstandard\\\\u201d flavors that all of its built-in deployment tools support, such as a \\\\u201cPython function\\\\u201d flavor that describes how to run the model as a Python function. However, libraries can also define and use other flavors. For example, MLflow\\\\u2019s mlflow.sklearn library allows loading models back as a scikit-learn Pipeline object for use in code that is aware of scikit-learn, or as a generic\\\\n    \\\\n    Please call the submit_function function to submit the generated question and answer.\\\\n    \\\"}], \\\"model\\\": \\\"gpt-3.5-turbo\\\", \\\"functions\\\": [{\\\"name\\\": \\\"submit_function\\\", \\\"description\\\": \\\"Call this function to submit the generated question and answer.\\\", \\\"parameters\\\": {\\\"type\\\": \\\"object\\\", \\\"properties\\\": {\\\"question\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The question asking for the key information in the given paragraph.\\\"}, \\\"answer\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The answer to the question using the information in the given paragraph.\\\"}}, \\\"required\\\": [\\\"question\\\", \\\"answer\\\"]}}], \\\"function_call\\\": \\\"auto\\\", \\\"temperature\\\": 0.0, \\\"seed\\\": 2023}\": {\n    \"id\": \"chatcmpl-8NPugLcpasx57CXfswBJVoyTLm140\",\n    \"object\": \"chat.completion\",\n    \"created\": 1700591846,\n    \"model\": \"gpt-3.5-turbo-0613\",\n    \"choices\": [\n      {\n        \"index\": 0,\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": null,\n          \"function_call\": {\n            \"name\": \"submit_function\",\n            \"arguments\": \"{\\n  \\\"question\\\": \\\"What is the purpose of an MLflow Model?\\\",\\n  \\\"answer\\\": \\\"An MLflow Model is a standard format for packaging machine learning models that can be used in a variety of downstream tools. It allows models to be served in real-time through a REST API or used for batch inference on Apache Spark. The format defines a convention that enables models to be saved in different 'flavors' that can be understood by different downstream tools.\\\"\\n}\"\n          }\n        },\n        \"finish_reason\": \"function_call\"\n      }\n    ],\n    \"usage\": { \"prompt_tokens\": 490, \"completion_tokens\": 100, \"total_tokens\": 590 }\n  },\n  \"{\\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Please generate a question asking for the key information"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 29155,
+      "excerpt": "use to understand the model, which makes it possible to write tools that work with models from any ML library without having to integrate each tool with each library. MLflow defines several \"standard\" flavors that all of its built-in deployment tools support, such as a \"Python function\" flavor that describes how to run the model as a Python function. However, libraries can also define and use other flavors. For example, MLflow's mlflow.sklearn library allows loading models back as a scikit-learn Pipeline object for use in code that is aware of scikit-learn, or as a generic\",0,models.html\nWhat are the flavors defined in the MLmodel file for the mlflow.sklearn library?,The flavors defined in the MLmodel file for the mlflow.sklearn library are sklearn and python_function. The sklearn flavor allows loading models back as a scikit-learn Pipeline object for use in code that is aware of scikit-learn. The python_function flavor allows loading models as a generic Python function for use in tools that just need to apply the model.,\"define and use other flavors. For example, MLflow's mlflow.sklearn library allows loading models back as a scikit-learn Pipeline object for use in code that is aware of scikit-learn, or as a generic Python function for use in tools that just need to apply the model (for example, the mlflow deployments tool with the option -t sagemaker for deploying models to Amazon SageMaker). All of the flavors that a particular model supports are defined in its MLmodel file in YAML format. For example, mlflow.sklearn outputs models as follows: # Directory written by mlflow.sklearn.save_model(model, \"\"my_model\"\") my_model/ ├── MLmodel ├── model.pkl ├── conda.yaml ├── python_env.yaml └── requirements.txt And its MLmodel file describes two flavors: time_created: 2018-05-25T17:28:53.35 flavors: sklearn: sklearn_version: 0.19.1 pickled_model: model.pkl python_function: loader_module: mlflow.sklearn This model can then be used with any tool that supports either the sklearn or python_function model flavor. For example, the mlflow models serve command can serve a model with the python_function or the crate (R Function) flavor: mlflow models serve -m my_model Note If you wish to serve a model from inside a docker container (or to query it from another machine), you need to change the network address to 0.0.0.0 using the -h argument. mlflow models serve -h 0.0.0.0 "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26536",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26536,
+      "title": "Build the sandbox fallback image from the server's own source",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2813,
+      "excerpt": "flow` symlinks. On a checkout this makes the context 19 MB, compared with 290 MB for a full copy.\n- **A failed build shows its output.** The error now includes the last 30 lines of the `docker build` output, so pip's actual error reaches the user.\n- **The `MLFLOW_SANDBOX_DOCKER_IMAGE` docstring now describes this.** It also notes that an existing image is not rebuilt when MLflow changes, so it has to be deleted to pick up new code.\n\nThe model-build path (`mlflow models build-docker`) shares `_pip_mlflow_install_step` and is unchanged. It still copies the whole `MLFLOW_HOME` tree, and fixing that belongs in a separate PR.\n\nOne behavior change for `MLFLOW_HOME`: it must now be an MLflow repository root containing `pyproject.toml`, `README.md`, `LICENSE.txt` and `mlflow/`. Before, only `pyproject.toml` was required, and the whole tree minus `.dockerignore` was copied.\n\n### How is this PR tested?\n\n- [x] Existing unit/integration tests\n- [x] New unit/integration tests\n- [x] Manual tests\n\n- `tests/server/sandbox/test_container.py`: 58 passed, both with `MLFLOW_HOME` unset and with it set to the repository (as CI sets it). New tests cover:\n  - installing from `MLFLOW_HOME`, or from the detected checkout; `MLFLOW_HOME` wins when both exist;\n  - the copy leaving out `mlflow.db`, `basic_auth.db`, `mlartifacts/`, SQLite side files, the frontend, the Java client and caches, and keeping symlinks as links;\n  - checkout detection for a development build, and returning nothing for a released version, a vendored non-MLflow project, or a site-packages install;\n  - the warning for a development build without a source tree, and no warning for a released version;\n  - the detection pattern matching the repository's real `pyproject.toml`;\n  - the build-output tail in the error.\n\n  An autouse fixture clears `MLFLOW_HOME` and turns off checkout detection, so tests never copy the repository, including in CI: the file runs in about 2 s.\n- Manual check on a real checkout (`3.17.1.dev0`):\n  - checkout detection finds the repository root;\n  - the generated Dockerfile is `COPY mlflow-source /opt/mlflow` followed by `RUN pip install /opt/mlflow`;\n  - the context has only `LICENSE.txt`, `README.md`, `mlflow` and `pyproject.toml` (19 MB);\n  - `pip wheel` of that copy builds `mlflow-3.17.1.dev0-py3-none-any.whl`, the server's own version.\n\n  I could not run a full `docker build` locally.\n\n###"
+    }
+  ]
+}

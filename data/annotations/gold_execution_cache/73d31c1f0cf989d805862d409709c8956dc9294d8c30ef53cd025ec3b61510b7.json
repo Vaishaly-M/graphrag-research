@@ -1,0 +1,114 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id) AS evidence RETURN b.path AS entity,b.path AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "path": "mlflow/server/auth/routes.py"
+  },
+  "rows": [
+    {
+      "entity": "docs/api_reference/api_inventory.txt",
+      "fact": "docs/api_reference/api_inventory.txt",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:1094ec1cf34be2cf2eba079ae486fbbf5c7d7884",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:40df9feda1a0699f996f2eabdb10dd4aac22ed19",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:d18b37b19ef5083ec0f1abfd2608eaf0e0508170",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:fc45c72e11301bd0321d748a59dbc8f450e2eca2",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/api_reference/api_inventory.txt"
+      ]
+    },
+    {
+      "entity": "mlflow/server/auth/client.py",
+      "fact": "mlflow/server/auth/client.py",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:1094ec1cf34be2cf2eba079ae486fbbf5c7d7884",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:38a3c8af3ac122421ceb5fd0cf934347adff31cb",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:40df9feda1a0699f996f2eabdb10dd4aac22ed19",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:d18b37b19ef5083ec0f1abfd2608eaf0e0508170",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:fc45c72e11301bd0321d748a59dbc8f450e2eca2",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/client.py"
+      ]
+    },
+    {
+      "entity": "mlflow/server/auth/entities.py",
+      "fact": "mlflow/server/auth/entities.py",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:40df9feda1a0699f996f2eabdb10dd4aac22ed19",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/entities.py"
+      ]
+    },
+    {
+      "entity": "mlflow/server/auth/sqlalchemy_store.py",
+      "fact": "mlflow/server/auth/sqlalchemy_store.py",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:1094ec1cf34be2cf2eba079ae486fbbf5c7d7884",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:40df9feda1a0699f996f2eabdb10dd4aac22ed19",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:6ce9cfc128fc1c1ab25be2470e3908e935e31192",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/sqlalchemy_store.py"
+      ]
+    },
+    {
+      "entity": "mlflow/server/js/src/MlflowRouter.tsx",
+      "fact": "mlflow/server/js/src/MlflowRouter.tsx",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:58c94e672e56994a04946b244f1d3bd581ffffd1",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:6ce9cfc128fc1c1ab25be2470e3908e935e31192",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/MlflowRouter.tsx"
+      ]
+    },
+    {
+      "entity": "mlflow/server/js/src/account/AccountPage.tsx",
+      "fact": "mlflow/server/js/src/account/AccountPage.tsx",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:40df9feda1a0699f996f2eabdb10dd4aac22ed19",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:6ce9cfc128fc1c1ab25be2470e3908e935e31192",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/account/AccountPage.tsx"
+      ]
+    },
+    {
+      "entity": "mlflow/server/js/src/account/PermissionsSection.test.tsx",
+      "fact": "mlflow/server/js/src/account/PermissionsSection.test.tsx",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:40df9feda1a0699f996f2eabdb10dd4aac22ed19",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:6ce9cfc128fc1c1ab25be2470e3908e935e31192",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/account/PermissionsSection.test.tsx"
+      ]
+    },
+    {
+      "entity": "mlflow/server/js/src/account/PermissionsSection.tsx",
+      "fact": "mlflow/server/js/src/account/PermissionsSection.tsx",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:40df9feda1a0699f996f2eabdb10dd4aac22ed19",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:6ce9cfc128fc1c1ab25be2470e3908e935e31192",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/account/PermissionsSection.tsx"
+      ]
+    },
+    {
+      "entity": "mlflow/server/js/src/account/api.ts",
+      "fact": "mlflow/server/js/src/account/api.ts",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:6ce9cfc128fc1c1ab25be2470e3908e935e31192",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/account/api.ts"
+      ]
+    },
+    {
+      "entity": "mlflow/server/js/src/account/auth-utils.ts",
+      "fact": "mlflow/server/js/src/account/auth-utils.ts",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/auth/routes.py",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:6ce9cfc128fc1c1ab25be2470e3908e935e31192",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/account/auth-utils.ts"
+      ]
+    }
+  ]
+}

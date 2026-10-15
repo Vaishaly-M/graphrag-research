@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 6289,
+        "line": 142
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/models/utils.py",
+        "path": "mlflow/models/utils.py",
+        "offset": 63364,
+        "line": 1531
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/models/evaluation/base.py",
+        "path": "mlflow/models/evaluation/base.py",
+        "offset": 30860,
+        "line": 762
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracing/fluent.py",
+        "path": "mlflow/tracing/fluent.py",
+        "offset": 22427,
+        "line": 591
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/semantic-search/semantic-search-sentence-transformers.ipynb",
+        "path": "docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/semantic-search/semantic-search-sentence-transformers.ipynb",
+        "offset": 23420,
+        "line": 409
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/tutorials/audio-transcription/whisper.ipynb",
+        "path": "docs/docs/classic-ml/deep-learning/transformers/tutorials/audio-transcription/whisper.ipynb",
+        "offset": 13860,
+        "line": 297
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/index.mdx",
+        "path": "docs/docs/genai/flavors/langchain/index.mdx",
+        "offset": 10932,
+        "line": 195
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+        "path": "docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+        "offset": 17922,
+        "line": 336
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/semantic-search/semantic-search-sentence-transformers.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deep-learning/sentence-transformers/tutorials/semantic-search/semantic-search-sentence-transformers.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23420,
+      "excerpt": "he Model with MLflow\\n\",\n    \"Discover the process of logging the model in MLflow, a crucial step for managing and deploying the model within the MLflow framework.\\n\",\n    \"\\n\",\n    \"#### Starting an MLflow Run\\n\",\n    \"\\n\",\n    \"- **Context Management**: Initiating an MLflow run using `with mlflow.start_run()`, essential for tracking and managing model-related operations.\\n\",\n    \"\\n\",\n    \"#### Logging the Model\\n\",\n    \"\\n\",\n    \"- **Model Logging**: Utilizing `mlflow.pyfunc.log_model` to log the custom `SemanticSearchModel`, including key arguments like model name, instance, input example, signature, artifacts, and requirements.\\n\",\n    \"\\n\",\n    \"#### Outcome of Model Logging\\n\",\n    \"\\n\",\n    \"- **Model Registration**: Ensures the model is registered with all necessary components in MLflow, ready for deployment.\\n\",\n    \"- **Reproducibility and Traceability**: Facilitates consistent model deployment and tracks versioning and associated data.\\n\",\n    \"\\n\",\n    \"#### Conclusion\\n\",\n    \"Completing this critical step transitions the model from development to a deployment-ready state, encapsulated within the MLflow ecosystem.\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 6,\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"data\": {\n      \"application/vnd.jupyter.widget-view+json\": {\n       \"model_id\": \"8642d786cb0d4f0b8a07689339885d45\",\n       \"version_major\": 2,\n       \"version_minor\": 0\n      },\n      \"text/plain\": [\n       \"Downloading artifacts:   0%|          | 0/11 [00:00<?, ?it/s]\"\n      ]\n     },\n     \"metadata\": {},\n     \"output_type\": \"display_data\"\n    },\n    {\n     \"name\": \"stderr\",\n     \"output_type\": \"stream\",\n     \"text\": [\n      \"2023/11/30 15:57:53 INFO mlflow.store.artifact.artifact_repo: The progress bar can be disabled by setting the environment variable MLFLOW_ENABLE_ARTIFACTS_PROGRESS_BAR to false\\n\"\n     ]\n    },\n    {\n     \"data\": {\n      \"application/vnd.jupyter.widget-view+json\": {\n       \"model_id\": \"b62ea1e304c34dfeb29813efb230cc48\",\n       \"version_major\": 2,\n       \"version_minor\": 0\n      },\n      \"text/plain\": [\n       \"Downloading artifacts:   0%|          | 0/1 [00:00<?, ?it/s]\"\n      ]\n     },\n     \"metadata\": {},\n     \"output_type\": \"display_data\"\n    }\n   ],\n   \"source\": [\n    \"with mlflow.start_run() as run:\\n\",\n    \"    model_info = mlflow.pyfunc.log_model(\\n\",\n    \"        name=\\\"semantic_search\\\",\\n\",\n  "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/deep-learning/transformers/tutorials/audio-transcription/whisper.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/deep-learning/transformers/tutorials/audio-transcription/whisper.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13860,
+      "excerpt": "umenting the default configurations that will be applied during inference.\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"# Log the pipeline. The signature is automatically inferred from input_example.\\n\",\n    \"with mlflow.start_run():\\n\",\n    \"    model_info = mlflow.transformers.log_model(\\n\",\n    \"        transformers_model=audio_transcription_pipeline,\\n\",\n    \"        name=\\\"whisper_transcriber\\\",\\n\",\n    \"        input_example=(audio, model_config),\\n\",\n    \"        model_config=model_config,\\n\",\n    \"        # Since MLflow 2.11.0, you can save the model in 'reference-only' mode to reduce storage usage by not saving\\n\",\n    \"        # the base model weights but only the reference to the HuggingFace model hub. To enable this, uncomment the\\n\",\n    \"        # following line:\\n\",\n    \"        # save_pretrained=False,\\n\",\n    \"    )\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"metadata\": {},\n   \"source\": [\n    \"### Loading and Using the Model Pipeline\\n\",\n    \"\\n\",\n    \"Explore how to load and use the Whisper model pipeline from MLflow.\\n\",\n    \"\\n\",\n    \"After logging the Whisper model in MLflow, the next crucial step is to load and use it for inference. This process ensures that our logged model operates as intended and can be effectively used for tasks like audio transcription.\\n\",\n    \"\\n\",\n    \"#### Loading the Model\\n\",\n    \"The model is loaded in its native format using MLflow's `load_model` function. This step verifies that the model can be retrieved and used seamlessly after being logged in MLflow.\\n\",\n    \"\\n\",\n    \"#### Using the Loaded Model\\n\",\n    \"Once loaded, the model is ready for inference. We demonstrate this by passing an MP3 audio file to the model and obtaining its transcription. This test is a practical demonstration of the model's capabilities post-logging.\\n\",\n    \"\\n\",\n    \"This step is a form of validation before moving to more complex deployment scenarios. Ensuring that the model functions correctly in its native format helps in troubleshooting and streamlines the deployment process, especially for large and complex models like Whisper.\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 8,\n   \"metadata\": {},\n   \"outputs\": [\n    {\n     \"name\": \"stderr\",\n     \"output_type\": \"stream\",\n     \"text\": [\n      \"2023/11/30 12:51:43 INFO mlflow.transf"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6289,
+      "excerpt": "rt mlflow\nimport os\n\nos.environ[\"TEST_API_KEY\"] = \"test_api_key\"\n\n\nclass MyModel(mlflow.pyfunc.PythonModel):\n    def predict(self, context, model_input, params=None):\n        if os.environ.get(\"TEST_API_KEY\"):\n            return model_input\n        raise Exception(\"API key not found\")\n\n\nwith mlflow.start_run():\n    model_info = mlflow.pyfunc.log_model(name=\"model\", python_model=MyModel(), input_example=\"data\")\n```\n\nEnvironment variable `TEST_API_KEY` is logged in the environment_variables.txt file like below\n\n```\n# This file records environment variable names that are used during model inference.\n# They might need to be set when creating a serving endpoint from this model.\n# Note: it is not guaranteed that all environment variables listed here are required\nTEST_API_KEY\n```\n\n:::warning[attention]\nBefore you deploy a model to a serving endpoint, **review the environment_variables.txt file** to ensure\nall necessary environment variables for model inference are set. Note that **not all environment variables\nlisted in the file are always required for model inference.** For detailed instructions on setting\nenvironment variables on a databricks serving endpoint, refer to\n[this guidance](https://docs.databricks.com/en/machine-learning/model-serving/store-env-variable-model-serving.html#add-plain-text-environment-variables).\n:::\n\n:::note\nTo disable this feature, set the environment variable `MLFLOW_RECORD_ENV_VARS_IN_MODEL_LOGGING` to `false`.\n:::\n\n## Managing Model Dependencies\n\nAn MLflow Model infers dependencies required for the model flavor and automatically logs them. However, it also allows\nyou to define extra dependencies or custom Python code, and offer a tool to validate them in a sandbox environment.\nPlease refer to [Managing Dependencies in MLflow Models](/ml/model/dependencies) for more details.\n\n## Model Signatures And Input Examples\n\nIn MLflow, understanding the intricacies of model signatures and input examples is crucial for\neffective model management and deployment.\n\n- **Model Signature**: Defines the schema for model inputs, outputs, and additional inference parameters,\n  promoting a standardized interface for model interaction.\n- **Model Input Example**: Provides a concrete instance of valid model input, aiding in understanding and\n  testing model requirements. Additionally, if an input example is provided when logging a model, a model\n  signature "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/flavors/langchain/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10932,
+      "excerpt": "       | model\n       | StrOutputParser()\n   )\n\n   mlflow.models.set_model(chain)\n   ```\n\n2. Then from the main notebook, log the model via supplying the path to the file that defines the chain:\n\n   ```python\n   from pprint import pprint\n\n   import mlflow\n\n   chain_path = \"chain.py\"\n\n   with mlflow.start_run():\n       info = mlflow.langchain.log_model(lc_model=chain_path, name=\"chain\")\n   ```\n\n3. The model defined in `chain.py` is now logged to MLflow. You can load the model back and run inference:\n\n   ```python\n   # Load the model and run inference\n   homework_chain = mlflow.langchain.load_model(model_uri=info.model_uri)\n\n   exam_question = {\n       \"messages\": [\n           {\n               \"role\": \"user\",\n               \"content\": {\n                   \"question\": \"What is the primary function of control rods in a nuclear reactor?\",\n                   \"answer\": \"To stir the primary coolant so that the neutrons are mixed well.\",\n               },\n           },\n       ]\n   }\n\n   response = homework_chain.invoke(exam_question)\n\n   pprint(response)\n   ```\n\n   You can see the model is logged as a code on MLflow UI:\n\n   ![Logging a LangChain model from a code script file](/images/tutorials/llms/langchain-code-model.png)\n\n:::warning\nWhen logging models from code, make sure that your code does not contain any sensitive information, such as API keys, passwords, or other confidential data. The code will be stored in plain text in the MLflow model artifact, and anyone with access to the artifact will be able to view the code.\n:::\n\n## [Detailed Documentation](/genai/flavors/langchain/guide/)\n\nTo learn more about the details of the MLflow LangChain flavor, read the detailed guide below.\n\n<Link to=\"/genai/flavors/langchain/guide/\">\n  <button className=\"button button--primary\">View the Comprehensive Guide</button>\n</Link>\n\n## FAQ\n\n### I can't load my chain!\n\n- **Allowing for Dangerous Deserialization**: Pickle opt-in logic in LangChain will prevent components from being loaded via MLflow. You might see an error like this:\n\n  ```\n  ValueError: This code relies on the pickle module. You will need to set allow_dangerous_deserialization=True if you want to opt-in to\n  allow deserialization of data using pickle. Data can be compromised by a malicious actor if not handled properly to include a malicious\n  payload that when deserialized with pickle can execute arbitrary code on "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+      "kind": "File",
+      "path": "docs/docs/genai/flavors/langchain/notebooks/langchain-retriever.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 17922,
+      "excerpt": "rstore = FAISS.load_local(\\n\",\n    \"        persist_directory,\\n\",\n    \"        embeddings,\\n\",\n    \"        allow_dangerous_deserialization=True,  # This is required to load the index from MLflow\\n\",\n    \"    )\\n\",\n    \"    return vectorstore.as_retriever()\\n\",\n    \"\\n\",\n    \"\\n\",\n    \"with mlflow.start_run() as run:\\n\",\n    \"    model_info = mlflow.langchain.log_model(\\n\",\n    \"        retrievalQA,\\n\",\n    \"        name=\\\"retrieval_qa\\\",\\n\",\n    \"        loader_fn=load_retriever,\\n\",\n    \"        persist_dir=persist_dir,\\n\",\n    \"    )\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"metadata\": {},\n   \"source\": [\n    \"> **IMPORTANT**: In order to load a stored vectorstore instance such as our FAISS instance above, we need to specify within the load function the argument `allow_dangeous_deserialization` to `True` in order for the load to succeed. This is due to a safety warning that was introduced in `langchain` for loading objects that have been serialized using `pickle` or `cloudpickle`. While this issue of remote code execution is not a risk with using MLflow, as the serialization and deserialization happens entirely via API and within your environment, the argument must be set in order to prevent an Exception from being thrown at load time. \"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"metadata\": {},\n   \"source\": [\n    \"## Our RAG application in the MLflow UI\\n\",\n    \"\\n\",\n    \"![Our Model in the UI](https://i.imgur.com/u9zdkmM.png)\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"metadata\": {},\n   \"source\": [\n    \"### Testing our RAG Model\\n\",\n    \"\\n\",\n    \"Now that we have the model stored in MLflow, we can load it back as a `pyfunc` and see how well it answers a few critically important questions about these acts of Congress in America.\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 6,\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"loaded_model = mlflow.pyfunc.load_model(model_info.model_uri)\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": 7,\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"def print_formatted_response(response_list, max_line_length=80):\\n\",\n    \"    \\\"\\\"\\\"\\n\",\n    \"    Formats and prints responses with a maximum line length for better readability.\\n\",\n    \"\\n\",\n    \"    Args:\\n\",\n    \"    response_list (list): A list of strings representing responses.\\n\",\n    \"    max_line_length (int): Ma"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/models/evaluation/base.py",
+      "kind": "File",
+      "path": "mlflow/models/evaluation/base.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 30860,
+      "excerpt": "e list for all available Evaluators.\n    \"\"\"\n    # import _model_evaluation_registry inside function to avoid circuit importing\n    from mlflow.models.evaluation.evaluator_registry import _model_evaluation_registry\n\n    return list(_model_evaluation_registry._registry.keys())\n\n\n@contextmanager\ndef _start_run_or_reuse_active_run():\n    \"\"\"\n    A manager context return:\n     - If there's an active run, return the active run.\n     - otherwise start a mflow run with the specified run_id,\n       if specified run_id is None, start a new run.\n    \"\"\"\n    active_run = mlflow.active_run()\n    if not active_run:\n        # Note `mlflow.start_run` throws if `run_id` is not found.\n        with mlflow.start_run() as run:\n            yield run\n    else:\n        yield active_run\n\n\n# NB: We often pass around evaluator name, config, and its instance together. Ideally, the\n# evaluator class should have name and config as class attributes, however, it was not\n# designed that way. Adding them while keeping backward compatibility is not trivial.\n# So, we use a dataclass to bundle them together.\n@dataclass\nclass EvaluatorBundle:\n    name: str\n    evaluator: ModelEvaluator\n    config: dict[str, Any]\n\n\ndef _resolve_default_evaluator(model_type, default_config) -> list[EvaluatorBundle]:\n    \"\"\"\n    Determine which built-in evaluators should be used for the given model type by default.\n\n    Previously, MLflow evaluate API only had a single \"default\" evaluator used for all models like\n    classifier, regressor, etc. We split it into multiple built-in evaluators for different model\n    types for maintainability, but in order to maintain backward compatibility, we need to map\n    the \"default\" provided by users to the correct built-in evaluators.\n\n    Args:\n        model_type: A string describing the model type (e.g., \"regressor\", \"classifier\", …).\n        default_config: A dictionary of configurations for the \"default\" evaluator. If any\n            non-default built-in evaluator is applicable, this config will be applied to them.\n    \"\"\"\n    from mlflow.models.evaluation.evaluator_registry import _model_evaluation_registry\n\n    builtin_evaluators = []\n    for name in _model_evaluation_registry._registry:\n        evaluator = _model_evaluation_registry.get_evaluator(name)\n        if (\n            name != \"default\"\n            and _model_evaluation_registry.is_builtin(name)\n            and"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/models/utils.py",
+      "kind": "File",
+      "path": "mlflow/models/utils.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 63364,
+      "excerpt": "     # Create and log a model to the Model Registry\n        import pandas as pd\n        from sklearn import datasets\n        from sklearn.ensemble import RandomForestClassifier\n        import mlflow\n        import mlflow.sklearn\n        from mlflow.models import infer_signature\n\n        with mlflow.start_run():\n            iris = datasets.load_iris()\n            iris_train = pd.DataFrame(iris.data, columns=iris.feature_names)\n            clf = RandomForestClassifier(max_depth=7, random_state=0)\n            clf.fit(iris_train, iris.target)\n            signature = infer_signature(iris_train, clf.predict(iris_train))\n            mlflow.sklearn.log_model(\n                clf,\n                name=\"iris_rf\",\n                signature=signature,\n                registered_model_name=\"model-with-libs\",\n            )\n\n        # model uri for the above model\n        model_uri = \"models:/model-with-libs/1\"\n\n        # Import utility\n        from mlflow.models.utils import add_libraries_to_model\n\n        # Log libraries to the original run of the model\n        add_libraries_to_model(model_uri)\n\n        # Log libraries to some run_id\n        existing_run_id = \"21df94e6bdef4631a9d9cb56f211767f\"\n        add_libraries_to_model(model_uri, run_id=existing_run_id)\n\n        # Log libraries to a new run\n        with mlflow.start_run():\n            add_libraries_to_model(model_uri)\n\n        # Log libraries to a new registered model named 'new-model'\n        with mlflow.start_run():\n            add_libraries_to_model(model_uri, registered_model_name=\"new-model\")\n    \"\"\"\n\n    import mlflow\n    from mlflow.models.wheeled_model import WheeledModel\n\n    if mlflow.active_run() is None:\n        if run_id is None:\n            run_id = get_model_version_from_model_uri(model_uri).run_id\n        with mlflow.start_run(run_id):\n            return WheeledModel.log_model(model_uri, registered_model_name)\n    else:\n        return WheeledModel.log_model(model_uri, registered_model_name)\n\n\ndef get_model_version_from_model_uri(model_uri):\n    \"\"\"\n    Helper function to fetch a model version from a model uri of the form\n    models:/<model_name>/<model_version/stage/latest>.\n    \"\"\"\n    import mlflow\n    from mlflow import MlflowClient\n\n    databricks_profile_uri = (\n        get_databricks_profile_uri_from_artifact_uri(model_uri) or mlflow.get_registry_uri()\n    )\n    client = MlflowClient(registry_u"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracing/fluent.py",
+      "kind": "File",
+      "path": "mlflow/tracing/fluent.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22427,
+      "excerpt": "e ID of the MLflow run to associate with the trace. This parameter is\n            only applied when creating a root span. If provided without an explicit\n            `trace_destination`, the trace will be logged to the run's experiment. If an\n            active MLflow run is already set via `mlflow.start_run()`, this parameter takes\n            precedence over the active run.\n        links: A list of :py:class:`Link <mlflow.entities.Link>` objects to associate with\n            the span.\n\n    Returns:\n        Yields an :py:class:`mlflow.entities.Span` that represents the created span.\n    \"\"\"\n    # If tracing is disabled via context(enabled=False), return NoOpSpan\n    config = _USER_TRACE_CONTEXT.get()\n    if config is not None and config.enabled is False:\n        yield NoOpSpan()\n        return\n\n    try:\n        experiment_id = getattr(trace_destination, \"experiment_id\", None)\n\n        otel_span = provider.start_span_in_context(\n            name,\n            experiment_id=experiment_id,\n        )\n\n        # If the span was dropped by the sampler (e.g., due to sampling ratio),\n        # still propagate the OTel context so that child spans inherit the same\n        # trace ID and are also consistently dropped.\n        if not otel_span.is_recording():\n            noop_span = NoOpSpan(otel_span=otel_span)\n        else:\n            noop_span = None\n\n            # Create a new MLflow span and register it to the in-memory trace manager\n            request_id = get_otel_attribute(otel_span, SpanAttributeKey.REQUEST_ID)\n\n            # SpanProcessor should have already registered the span in the in-memory trace manager\n            trace_manager = InMemoryTraceManager.get_instance()\n            mlflow_span = trace_manager.get_span_from_id(\n                request_id, encode_span_id(otel_span.context.span_id)\n            )\n            mlflow_span.set_span_type(span_type)\n            attributes = dict(attributes) if attributes is not None else {}\n            mlflow_span.set_attributes(attributes)\n            if log_level is not None:\n                mlflow_span.set_log_level(log_level)\n\n            if run_id is not None:\n                if mlflow_span.parent_id is not None:\n                    _logger.warning(\n                        \"The `run_id` parameter can only be used for root spans, but the span \"\n                        f\"`{name}` is not a root span. The specified"
+    }
+  ]
+}

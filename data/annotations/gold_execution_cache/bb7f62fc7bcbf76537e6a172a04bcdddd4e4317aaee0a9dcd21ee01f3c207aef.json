@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+        "path": null,
+        "offset": 903,
+        "line": 15
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+        "path": null,
+        "offset": 2418,
+        "line": 61
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 46147,
+        "line": 808
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 4157,
+        "line": 88
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 6890,
+        "line": 154
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+        "path": null,
+        "offset": 8888,
+        "line": 196
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+        "path": null,
+        "offset": 8874,
+        "line": 196
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+        "path": null,
+        "offset": 8874,
+        "line": 196
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 920,
+      "title": "Referential integrity bugs related to catalog, basket, and order",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 903,
+      "excerpt": "ruN8ydk3aSRd-IpnS0r/view?usp=sharing). The illustrated databases contain data from the original application. For simplicity, only the catalog and basket services are represented, along with the most relevant calls and arguments.\n\n- The client adds items to the basket. _(fig. calls 1-3)_\n- The admin lists all items from the catalog to get the IDs of the items. _(fig. calls 4-5)_\n- The admin deletes an item from the catalog. _(fig. calls 6-7)_\n- The client proceeds to the checkout. _(fig. calls 8-12)_\n\n**Description of the bugs:**\n\n**1. Absence of cascading delete:** each basket item contains the ID of the corresponding catalog item, resembling a foreign key. However, when the catalog item is deleted (fig. call 7), this action is not propagated to the basket, leaving a reference that is no longer valid.\n\nDuring checkout (or even when viewing the cart), the web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117) receives data from querying the basket (fig. calls 9-10, where the returned item IDs contain the deleted item ID) that is inconsistent with the data obtained from querying the catalog (fig. calls 11-12, where the returned items do not contain the deleted item).\n\nThe web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117)  expects that every basket item is present in the returned catalog items, and during iteration, a `key not found` error occurs, causing the web app to crash and remain unavailable.\n\n**2. Concurrent operations:** even if cascading effects are implemented, bugs may still occur if the admin deletes the item from the catalog concurrently with the client adding the item to the basket.\n\nIn particular, if the deletion in the catalog (fig. call 7) occurs after the client obtains the item ID to add the item to the basket (which requires reading the catalog prior to fig. call 1), and before the write to the basket database to add the item (fig. call 3), the cascading effects would take action on the basket database before the association would be successfuly established, and the (invalid) reference would still be created upon the write operation (fig. call 3).\n\n### Scenario 2: Catalog-Basket-Order\n\n**Steps to reproduce bugs:**\n\nConsider a client that m"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4157,
+      "excerpt": "API\n- Add delegate-based alert dialog extensibility convention (no public API changes) by @​Redth in https://github.com/dotnet/maui/pull/35095\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Alert/Dialog system (`DisplayAlert`, `DisplayActionSheet`, `DisplayPromptAsync`) needs a public extensibility point](https://github.com/dotnet/maui/issues/34104)\n  </details>\n\n## Blazor\n- [Android] Fix for BlazorWebView predictive back callback blocks Android back-to-home animation  by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/35538\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] BlazorWebView predictive back callback blocks Android back-to-home animation](https://github.com/dotnet/maui/issues/35397)\n  </details>\n\n- [Android] Fix BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/35611\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[inflight regression] Android BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled](https://github.com/dotnet/maui/issues/35573)\n  </details>\n\n- Skip request-interception tests that hit echo.free.beeceptor.com by @​akoeplinger in https://github.com/dotnet/maui/pull/35661\n\n## Border\n ... (truncated)\n\n## 10.0.80\n\n# .NET MAUI 10.0.80 Release Notes\n\n.NET MAUI 10.0.80 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 112 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- Add deep UI test execution to Copilot PR review pipeline by @​kubaflo in https://github.com/dotnet/maui/pull/35376\n\n- [CI] Refactor ci-copilot pipeline: scope env vars per task by @​T-Gro in https://github.com/dotnet/maui/pull/35324\n\n## Button\n- [Android, iOS] Button: Fix VisualState properties not restored when leaving custom state by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/33346\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Button VisualStates do not work](https://github.com/dotnet/maui/issues/19690)\n  </details>\n\n## CollectionView\n- Fix CollectionView grid spacing updates for first row and column by @​KarthikRajaKalaimani in https://github.com/dotnet/maui/pull/34527\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI] I2_Vertical grid for horizontal Item Spacing"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6890,
+      "excerpt": "API\n- Add delegate-based alert dialog extensibility convention (no public API changes) by @​Redth in https://github.com/dotnet/maui/pull/35095\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Alert/Dialog system (`DisplayAlert`, `DisplayActionSheet`, `DisplayPromptAsync`) needs a public extensibility point](https://github.com/dotnet/maui/issues/34104)\n  </details>\n\n## Blazor\n- [Android] Fix for BlazorWebView predictive back callback blocks Android back-to-home animation  by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/35538\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] BlazorWebView predictive back callback blocks Android back-to-home animation](https://github.com/dotnet/maui/issues/35397)\n  </details>\n\n- [Android] Fix BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/35611\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[inflight regression] Android BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled](https://github.com/dotnet/maui/issues/35573)\n  </details>\n\n- Skip request-interception tests that hit echo.free.beeceptor.com by @​akoeplinger in https://github.com/dotnet/maui/pull/35661\n\n## Border\n ... (truncated)\n\n## 10.0.80\n\n# .NET MAUI 10.0.80 Release Notes\n\n.NET MAUI 10.0.80 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 112 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- Add deep UI test execution to Copilot PR review pipeline by @​kubaflo in https://github.com/dotnet/maui/pull/35376\n\n- [CI] Refactor ci-copilot pipeline: scope env vars per task by @​T-Gro in https://github.com/dotnet/maui/pull/35324\n\n## Button\n- [Android, iOS] Button: Fix VisualState properties not restored when leaving custom state by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/33346\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Button VisualStates do not work](https://github.com/dotnet/maui/issues/19690)\n  </details>\n\n## CollectionView\n- Fix CollectionView grid spacing updates for first row and column by @​KarthikRajaKalaimani in https://github.com/dotnet/maui/pull/34527\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI] I2_Vertical grid for horizontal Item Spacing"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1043,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8888,
+      "excerpt": "API\n- Add delegate-based alert dialog extensibility convention (no public API changes) by @​Redth in https://github.com/dotnet/maui/pull/35095\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Alert/Dialog system (`DisplayAlert`, `DisplayActionSheet`, `DisplayPromptAsync`) needs a public extensibility point](https://github.com/dotnet/maui/issues/34104)\n  </details>\n\n## Blazor\n- [Android] Fix for BlazorWebView predictive back callback blocks Android back-to-home animation  by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/35538\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] BlazorWebView predictive back callback blocks Android back-to-home animation](https://github.com/dotnet/maui/issues/35397)\n  </details>\n\n- [Android] Fix BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/35611\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[inflight regression] Android BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled](https://github.com/dotnet/maui/issues/35573)\n  </details>\n\n- Skip request-interception tests that hit echo.free.beeceptor.com by @​akoeplinger in https://github.com/dotnet/maui/pull/35661\n\n## Border\n ... (truncated)\n\n## 10.0.80\n\n# .NET MAUI 10.0.80 Release Notes\n\n.NET MAUI 10.0.80 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 112 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- Add deep UI test execution to Copilot PR review pipeline by @​kubaflo in https://github.com/dotnet/maui/pull/35376\n\n- [CI] Refactor ci-copilot pipeline: scope env vars per task by @​T-Gro in https://github.com/dotnet/maui/pull/35324\n\n## Button\n- [Android, iOS] Button: Fix VisualState properties not restored when leaving custom state by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/33346\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Button VisualStates do not work](https://github.com/dotnet/maui/issues/19690)\n  </details>\n\n## CollectionView\n- Fix CollectionView grid spacing updates for first row and column by @​KarthikRajaKalaimani in https://github.com/dotnet/maui/pull/34527\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI] I2_Vertical grid for horizontal Item Spacing"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 46147,
+      "excerpt": "API\n- Add delegate-based alert dialog extensibility convention (no public API changes) by @​Redth in https://github.com/dotnet/maui/pull/35095\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Alert/Dialog system (`DisplayAlert`, `DisplayActionSheet`, `DisplayPromptAsync`) needs a public extensibility point](https://github.com/dotnet/maui/issues/34104)\n  </details>\n\n## Blazor\n- [Android] Fix for BlazorWebView predictive back callback blocks Android back-to-home animation  by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/35538\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] BlazorWebView predictive back callback blocks Android back-to-home animation](https://github.com/dotnet/maui/issues/35397)\n  </details>\n\n- [Android] Fix BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/35611\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[inflight regression] Android BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled](https://github.com/dotnet/maui/issues/35573)\n  </details>\n\n- Skip request-interception tests that hit echo.free.beeceptor.com by @​akoeplinger in https://github.com/dotnet/maui/pull/35661\n\n## Border\n ... (truncated)\n\n## 10.0.80\n\n# .NET MAUI 10.0.80 Release Notes\n\n.NET MAUI 10.0.80 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 112 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- Add deep UI test execution to Copilot PR review pipeline by @​kubaflo in https://github.com/dotnet/maui/pull/35376\n\n- [CI] Refactor ci-copilot pipeline: scope env vars per task by @​T-Gro in https://github.com/dotnet/maui/pull/35324\n\n## Button\n- [Android, iOS] Button: Fix VisualState properties not restored when leaving custom state by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/33346\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Button VisualStates do not work](https://github.com/dotnet/maui/issues/19690)\n  </details>\n\n## CollectionView\n- Fix CollectionView grid spacing updates for first row and column by @​KarthikRajaKalaimani in https://github.com/dotnet/maui/pull/34527\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI] I2_Vertical grid for horizontal Item Spacing"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1051,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8874,
+      "excerpt": "API\n- Add delegate-based alert dialog extensibility convention (no public API changes) by @​Redth in https://github.com/dotnet/maui/pull/35095\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Alert/Dialog system (`DisplayAlert`, `DisplayActionSheet`, `DisplayPromptAsync`) needs a public extensibility point](https://github.com/dotnet/maui/issues/34104)\n  </details>\n\n## Blazor\n- [Android] Fix for BlazorWebView predictive back callback blocks Android back-to-home animation  by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/35538\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] BlazorWebView predictive back callback blocks Android back-to-home animation](https://github.com/dotnet/maui/issues/35397)\n  </details>\n\n- [Android] Fix BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/35611\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[inflight regression] Android BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled](https://github.com/dotnet/maui/issues/35573)\n  </details>\n\n- Skip request-interception tests that hit echo.free.beeceptor.com by @​akoeplinger in https://github.com/dotnet/maui/pull/35661\n\n## Border\n ... (truncated)\n\n## 10.0.80\n\n# .NET MAUI 10.0.80 Release Notes\n\n.NET MAUI 10.0.80 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 112 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- Add deep UI test execution to Copilot PR review pipeline by @​kubaflo in https://github.com/dotnet/maui/pull/35376\n\n- [CI] Refactor ci-copilot pipeline: scope env vars per task by @​T-Gro in https://github.com/dotnet/maui/pull/35324\n\n## Button\n- [Android, iOS] Button: Fix VisualState properties not restored when leaving custom state by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/33346\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Button VisualStates do not work](https://github.com/dotnet/maui/issues/19690)\n  </details>\n\n## CollectionView\n- Fix CollectionView grid spacing updates for first row and column by @​KarthikRajaKalaimani in https://github.com/dotnet/maui/pull/34527\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI] I2_Vertical grid for horizontal Item Spacing"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1052,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.40 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8874,
+      "excerpt": "API\n- Add delegate-based alert dialog extensibility convention (no public API changes) by @​Redth in https://github.com/dotnet/maui/pull/35095\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Alert/Dialog system (`DisplayAlert`, `DisplayActionSheet`, `DisplayPromptAsync`) needs a public extensibility point](https://github.com/dotnet/maui/issues/34104)\n  </details>\n\n## Blazor\n- [Android] Fix for BlazorWebView predictive back callback blocks Android back-to-home animation  by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/35538\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Android] BlazorWebView predictive back callback blocks Android back-to-home animation](https://github.com/dotnet/maui/issues/35397)\n  </details>\n\n- [Android] Fix BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled by @​devanathan-vaithiyanathan in https://github.com/dotnet/maui/pull/35611\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[inflight regression] Android BlazorWebView back callback can swallow the first Back press when its callback is stale-enabled](https://github.com/dotnet/maui/issues/35573)\n  </details>\n\n- Skip request-interception tests that hit echo.free.beeceptor.com by @​akoeplinger in https://github.com/dotnet/maui/pull/35661\n\n## Border\n ... (truncated)\n\n## 10.0.80\n\n# .NET MAUI 10.0.80 Release Notes\n\n.NET MAUI 10.0.80 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 112 commits with various improvements, bug fixes, and enhancements.\n\n\n## Ai Agents\n- Add deep UI test execution to Copilot PR review pipeline by @​kubaflo in https://github.com/dotnet/maui/pull/35376\n\n- [CI] Refactor ci-copilot pipeline: scope env vars per task by @​T-Gro in https://github.com/dotnet/maui/pull/35324\n\n## Button\n- [Android, iOS] Button: Fix VisualState properties not restored when leaving custom state by @​BagavathiPerumal in https://github.com/dotnet/maui/pull/33346\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Button VisualStates do not work](https://github.com/dotnet/maui/issues/19690)\n  </details>\n\n## CollectionView\n- Fix CollectionView grid spacing updates for first row and column by @​KarthikRajaKalaimani in https://github.com/dotnet/maui/pull/34527\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[MAUI] I2_Vertical grid for horizontal Item Spacing"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 940,
+      "title": "Fix KeyNotFoundException and NullReferenceException when catalog items are deleted",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2418,
+      "excerpt": "ruN8ydk3aSRd-IpnS0r/view?usp=sharing). The illustrated databases contain data from the original application. For simplicity, only the catalog and basket services are represented, along with the most relevant calls and arguments.\n\n- The client adds items to the basket. _(fig. calls 1-3)_\n- The admin lists all items from the catalog to get the IDs of the items. _(fig. calls 4-5)_\n- The admin deletes an item from the catalog. _(fig. calls 6-7)_\n- The client proceeds to the checkout. _(fig. calls 8-12)_\n\n**Description of the bugs:**\n\n**1. Absence of cascading delete:** each basket item contains the ID of the corresponding catalog item, resembling a foreign key. However, when the catalog item is deleted (fig. call 7), this action is not propagated to the basket, leaving a reference that is no longer valid.\n\nDuring checkout (or even when viewing the cart), the web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117) receives data from querying the basket (fig. calls 9-10, where the returned item IDs contain the deleted item ID) that is inconsistent with the data obtained from querying the catalog (fig. calls 11-12, where the returned items do not contain the deleted item).\n\nThe web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117)  expects that every basket item is present in the returned catalog items, and during iteration, a `key not found` error occurs, causing the web app to crash and remain unavailable.\n\n**2. Concurrent operations:** even if cascading effects are implemented, bugs may still occur if the admin deletes the item from the catalog concurrently with the client adding the item to the basket.\n\nIn particular, if the deletion in the catalog (fig. call 7) occurs after the client obtains the item ID to add the item to the basket (which requires reading the catalog prior to fig. call 1), and before the write to the basket database to add the item (fig. call 3), the cascading effects would take action on the basket database before the association would be successfuly established, and the (invalid) reference would still be created upon the write operation (fig. call 3).\n\n### Scenario 2: Catalog-Basket-Order\n\n**Steps to reproduce bugs:**\n\nConsider a client that m"
+    }
+  ]
+}

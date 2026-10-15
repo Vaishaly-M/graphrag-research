@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_CONTAINS_FILE]->(f:DLFile) WHERE r.dataset=$dataset AND r.repo=$repo AND f.path=$path WITH r,f,[line IN split(f.content,'\\n') WHERE trim(line) STARTS WITH 'def ' OR trim(line) STARTS WITH 'class ' OR trim(line) STARTS WITH 'public ' OR trim(line) STARTS WITH 'function ' OR trim(line) STARTS WITH 'export '] AS declarations UNWIND CASE WHEN size(declarations)=0 THEN ['no matching declaration lines'] ELSE declarations[0..5] END AS line RETURN trim(line) AS entity,trim(line) AS fact,[r.id,f.id] AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "path": "mlflow/server/js/src/common/utils/toRGBA.ts"
+  },
+  "rows": [
+    {
+      "entity": "export const toRGBA = (color: string, alpha: number): string => {",
+      "fact": "export const toRGBA = (color: string, alpha: number): string => {",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:repository:mlflow/mlflow",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/common/utils/toRGBA.ts"
+      ]
+    }
+  ]
+}

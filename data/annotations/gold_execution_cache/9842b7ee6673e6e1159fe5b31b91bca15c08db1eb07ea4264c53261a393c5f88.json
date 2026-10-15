@@ -1,0 +1,116 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id IN $evidence_ids\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nsubstring(coalesce(n.content,n.body,n.message,''),0,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_ids": [
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:gradlew",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2439",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/resources/templates/fragments/layout.html",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2564",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2671",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2678"
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)\n\n[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)\n\n## Understanding the Spring Petclinic application with a few diagrams\n\nSee the presentation here:  \n[Spring Petclinic Sample Application (legacy slides)](https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20)\n\n> **Note:** These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.  \n> For up-to-date information, please refer to this repository and its documentation.\n\n\n## Run Petclinic locally\n\nSpring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).\nJava 17 or later is required for the build, and the application can run with Java 17 or newer.\n\nYou first need to clone the project locally:\n\n```bash\ngit clone https://github.com/spring-projects/spring-petclinic.git\ncd spring-petclinic\n```\nIf you are using Maven, you can start the application on the command-line as follows:\n\n```bash\n./mvnw spring-boot:run\n```\nWith Gradle, the command is as follows:\n\n```bash\n./gradlew bootRun\n```\n\nYou can then access the Petclinic at <http://localhost:8080/>.\n\n<img width=\"1042\" alt=\"petclinic-screenshot\" src=\"https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png\">\n\nYou can, of course, run Petclinic in your favorite IDE.\nSee below for more details.\n\n## Building a Container\n\nThere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:gradlew",
+      "kind": "File",
+      "path": "gradlew",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "#!/bin/sh\n\n#\n# Copyright © 2015 the original authors.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#      https://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\n# SPDX-License-Identifier: Apache-2.0\n#\n\n##############################################################################\n#\n#   Gradle start up script for POSIX generated by Gradle.\n#\n#   Important for running:\n#\n#   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is\n#       noncompliant, but you have some other compliant shell such as ksh or\n#       bash, then to run this script, type that shell name before the whole\n#       command line, like:\n#\n#           ksh Gradle\n#\n#       Busybox and similar reduced shells will NOT work, because this script\n#       requires all of these POSIX shell features:\n#         * functions;\n#         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,\n#           «${var#prefix}», «${var%suffix}», and «$( cmd )»;\n#         * compound commands having a testable exit status, especially «case»;\n#         * various built-in commands including «command», «set», and «ulimit».\n#\n#   Important for patching:\n#\n#   (2) This script targets any POSIX shell, so it avoids extensions provided\n#       by Bash, Ksh, etc; in particular arrays are avoided.\n#\n#       The \"traditional\" practice of packing multiple parameters into a\n#       space-separated string is a well documented source of bugs and security\n#       problems, so this is (mostly) avoided, by progressively accumulating\n#       options in \"$@\", and eventually passing that to Java.\n#\n#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,\n#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;\n#       see the in-line comments for details.\n#\n#       There are tweaks for specific operating systems such as AIX, CygWin,\n#       Darwin, MinGW, and NonStop.\n#\n#   (3) This script is generated from the Groovy template\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/resources/templates/fragments/layout.html",
+      "kind": "File",
+      "path": "src/main/resources/templates/fragments/layout.html",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "<!DOCTYPE html>\n\n<html th:fragment=\"layout (template, menu)\" xmlns:th=\"https://www.thymeleaf.org\">\n\n<head>\n\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n  <meta charset=\"utf-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"shortcut icon\" type=\"image/x-icon\" th:href=\"@{/resources/images/favicon.png}\">\n  <title th:text=\"#{layoutTitle}\">PetClinic :: a Spring Framework demonstration</title>\n  <link th:href=\"@{/webjars/font-awesome/css/font-awesome.min.css}\" rel=\"stylesheet\">\n  <link rel=\"stylesheet\" th:href=\"@{/resources/css/petclinic.css}\" />\n\n</head>\n\n<body>\n\n  <nav class=\"navbar navbar-expand-lg navbar-dark\" role=\"navigation\">\n    <div class=\"container-fluid\">\n      <a class=\"navbar-brand\" th:href=\"@{/}\"><span></span></a>\n      <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#main-navbar\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n      <div class=\"collapse navbar-collapse\" id=\"main-navbar\" style>\n\n        <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\" th:remove=\"all\">\n\n          <li th:fragment=\"menuItem (link,active,title,glyph,text)\" th:class=\"nav-item\">\n            <a th:class=\"${active==menu ? 'nav-link active' : 'nav-link'}\" th:href=\"@{__${link}__}\" th:title=\"${title}\">\n              <span th:class=\"'fa fa-'+${glyph}\" class=\"fa fa-home\"></span>\n              <span th:text=\"${text}\">Template</span>\n            </a>\n          </li>\n\n        </ul>\n\n        <ul class=\"nav navbar-nav me-auto\">\n\n          <li th:replace=\"~{::menuItem ('/','home','home page','home',#{home})}\">\n            <span class=\"fa fa-home\" aria-hidden=\"true\"></span>\n            <span th:text=\"#{home}\">Home</span>\n          </li>\n\n          <li th:replace=\"~{::menuItem ('/owners/find','owners','find owners','search',#{findOwners})}\">\n            <span class=\"fa fa-search\" aria-hidden=\"true\"></span>\n            <span th:text=\"#{findOwners}\">Find owners</span>\n          </li>\n\n          <li th:replace=\"~{::menuItem ('/vets.html','vets','veterinarians','th-list',#{vets})}\">\n            <span class=\"fa fa-th-list\" aria-hidden=\"true\"></span>\n            <span th:text=\"#{vets}\">Veterinarians</span>\n          </li>\n\n          <li\n            th:replace=\"~{::menuItem ('/oups','error','trigger a RuntimeException to se"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2252,
+      "title": "[Feature] Add search pets by name screen",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\n\nAdd a new screen that allows users to search for pets by name, similar to the existing \"Find Owners\" functionality.\n\n## Motivation\n\n- Currently there is no way to search for a pet directly by name; users must first find the owner and then browse their pets.\n- A dedicated pet search screen would improve usability when the pet name is known but the owner is not.\n- Aligns the pet entity with the same search UX pattern already established for owners.\n\n## Proposed Solution\n\n1. **New Thymeleaf template** (`templates/pets/findPets.html`) with a search form and results list/table.\n2. **New controller** endpoint(s) in a `PetController` (or extend existing controller) to handle `GET /pets/find` and `GET /pets` with a `name` query parameter.\n3. **New repository method** `findByNameContainingIgnoreCase(String name)` (or equivalent Spring Data query) in `PetRepository`.\n4. **Navigation link** added to the main layout so users can access the pet search screen.\n5. **Accessibility**: the new page must meet WCAG 2.2 Level AA (keyboard navigation, visible focus, proper labels, contrast, landmarks, etc.).\n\n## Acceptance Criteria\n\n- [ ] A \"Find Pets\" link is available in the main navigation menu\n- [ ] Users can search for pets by entering a full or partial pet name (case-insensitive)\n- [ ] An empty search returns all pets\n- [ ] Search results display pet name, birth date, type, and owner name\n- [ ] Clicking a result navigates to the pet's or owner's detail page\n- [ ] The page is accessible (landmarks, labels, keyboard support, contrast)\n- [ ] Unit and integration tests cover the new controller and repository methods\n- [ ] Works with H2 (default), MySQL, and PostgreSQL profiles\n\n## Alternatives Considered\n\n- Extending the existing owner search to also filter by pet name — rejected because it conflates two different search intents.\n\n## Additional Context\n\nThe implementation should follow the same patterns used by the existing \"Find Owners\" feature (`OwnerController`, `findOwners.html`, `ownersList.html`)."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2439",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2439,
+      "title": "Documentation: Improve documentation across classes",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\nThis PR improves documentation across three core classes in the PetClinic application as part of the sustainable coding practices evaluation for SE754 Assignment 5.\r\n\r\n## Problem\r\nManual review and SonarQube feedback showed that several important classes in the owner and vet areas were under-documented. While the code was functional, the intent of the domain objects and controller flows was not immediately clear to readers, especially around model preparation, pet ownership rules, and veterinarian specialty handling.\r\n\r\nThe `Owner` domain model, `PetController`, and `Vet` model each contain logic that benefits from clearer class-level and method-level documentation. Without that context, future contributors have to infer behavior from implementation details rather than from the API contract.\r\n\r\n## Changes\r\n- Expanded the class-level documentation in `Owner.java` to explain its role as the core owner entity and its relationship to pets\r\n- Added method-level documentation in `PetController.java` to clarify:\r\n  - model attribute preparation\r\n  - request binding\r\n  - validation flow\r\n  - pet create/update handling\r\n- Improved the class and method documentation in `Vet.java` to explain:\r\n  - specialty management\r\n  - the read-only sorted view exposed to callers\r\n\r\n## Sustainability Impact\r\nBetter documentation reduces cognitive load for future maintenance work. These classes are part of the main application flow, so clearer comments and Javadoc help new contributors understand why the code exists, not just what it does.\r\n\r\nThis improves long-term maintainability by:\r\n- reducing onboarding friction for new contributors\r\n- making controller and domain behavior easier to reason about\r\n- lowering the risk of incorrect future modifications\r\n- improving overall code readability and maintainability\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/Owner.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/vet/Vet.java`"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2564",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2564,
+      "title": "All visits section added",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\r\n\r\nThis PR adds a dedicated page to display all visits associated with a specific pet.\r\n\r\nPreviously, visit history was displayed only on the Owner Details page. With this change, users can click the **\"All Visits\"** link for a pet to navigate to a separate page containing the complete visit history.\r\n\r\n## Changes\r\n\r\n- Added an **\"All Visits\"** link for each pet on the Owner Details page.\r\n- Added a new controller endpoint to handle viewing all visits for a pet.\r\n- Created a new Thymeleaf template to display the visit history.\r\n- Added navigation back to the Owner Details page.\r\n\r\n## Screenshots\r\n\r\n### Before\r\n\r\n<img width=\"554\" height=\"127\" alt=\"Screenshot 2026-07-05 125913\" src=\"https://github.com/user-attachments/assets/01cd9237-a5f3-4707-a67d-8f6bc615acf9\" />\r\n\r\n### After\r\n<img width=\"629\" height=\"440\" alt=\"Screenshot 2026-07-05 175504\" src=\"https://github.com/user-attachments/assets/4a6e04a3-594c-4d5a-8d69-189cba4c47a3\" />\r\n<img width=\"627\" height=\"452\" alt=\"Screenshot 2026-07-05 175556\" src=\"https://github.com/user-attachments/assets/31778160-2dd8-4f2f-a653-300d5e550fbd\" />\r\n\r\n## Testing\r\n\r\n- Verified that the \"All Visits\" link opens the correct page.\r\n- Verified that only visits for the selected pet are displayed.\r\n- Verified navigation back to the Owner Details page"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2671",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2671,
+      "title": "Delete functionality for Owners",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Description:\r\n\r\n- Adds the ability to delete an Owner from the Owner details page, along with all associated Pets and Visits (cascade delete).\r\n\r\nChanges:\r\n\r\n- Added deleteOwner() handler in OwnerController (POST /owners/{ownerId}/delete)\r\n- Added delete(Owner) to OwnerRepository\r\n- Added \"Delete Owner\" button to ownerDetails.html, with a JS confirm dialog to prevent accidental deletion\r\n- Cascade delete relies on existing CascadeType.ALL mapping on Owner.pets and Pet.visits\r\n- Added Javadoc comments for the new controller method and repository method\r\n\r\nTests:\r\n\r\n- Verified successful delete redirects to /owners/find with a flash success message\r\n- Verified the correct Owner (with pets) is passed to delete()\r\n- Verified deleting a non-existent owner throws/returns an error, and delete() is never called\r\n- Verified GET on the delete endpoint is rejected (405)\r\n\r\n<img width=\"2754\" height=\"1526\" alt=\"image\" src=\"https://github.com/user-attachments/assets/597ef4ff-c733-413e-883a-31efdfa56a63\" />\r\n<img width=\"1530\" height=\"820\" alt=\"image\" src=\"https://github.com/user-attachments/assets/daab6660-4ad2-4888-bc98-6cb62c460696\" />\r\n<img width=\"2880\" height=\"1572\" alt=\"image\" src=\"https://github.com/user-attachments/assets/41f5f5b5-cb6f-435e-86fe-41e8f0149cc7\" />\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2678",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2678,
+      "title": "Delete functionality for Owners",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Description:\r\n- Adds the ability to delete an Owner from the Owner details page, along with all associated Pets and Visits (cascade delete).\r\n\r\n\r\nChanges:\r\n- Added deleteOwner() handler in OwnerController (POST /owners/{ownerId}/delete)\r\n- Added delete(Owner) to OwnerRepository\r\n- Added \"Delete Owner\" button to ownerDetails.html, with a JS confirm dialog to prevent accidental deletion\r\n- Cascade delete relies on existing CascadeType.ALL mapping on Owner.pets and Pet.visits\r\n- Added Javadoc comments for the new controller method and repository method\r\n\r\nTests:\r\n- Verified successful delete redirects to /owners/find with a flash success message\r\n- Verified the correct Owner (with pets) is passed to delete()\r\n- Verified deleting a non-existent owner throws/returns an error, and delete() is never called\r\n- Verified GET on the delete endpoint is rejected (405)\r\n\r\n<img width=\"2754\" height=\"1526\" alt=\"image\" src=\"https://github.com/user-attachments/assets/532bcadc-6df7-407c-a3b3-9e14a2a14b27\" />\r\n<img width=\"1530\" height=\"820\" alt=\"image\" src=\"https://github.com/user-attachments/assets/d26e23dc-27b8-45ad-95f3-a0bd00b94498\" />\r\n<img width=\"2880\" height=\"1572\" alt=\"image\" src=\"https://github.com/user-attachments/assets/b72dbd05-4c8e-46da-b128-660ebba2fac4\" />\r\n"
+    }
+  ]
+}

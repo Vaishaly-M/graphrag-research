@@ -1,0 +1,116 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id IN $evidence_ids\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nsubstring(coalesce(n.content,n.body,n.message,''),0,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_ids": [
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1898",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1961",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2641",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1732",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2460",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java"
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)\n\n[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)\n\n## Understanding the Spring Petclinic application with a few diagrams\n\nSee the presentation here:  \n[Spring Petclinic Sample Application (legacy slides)](https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20)\n\n> **Note:** These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.  \n> For up-to-date information, please refer to this repository and its documentation.\n\n\n## Run Petclinic locally\n\nSpring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).\nJava 17 or later is required for the build, and the application can run with Java 17 or newer.\n\nYou first need to clone the project locally:\n\n```bash\ngit clone https://github.com/spring-projects/spring-petclinic.git\ncd spring-petclinic\n```\nIf you are using Maven, you can start the application on the command-line as follows:\n\n```bash\n./mvnw spring-boot:run\n```\nWith Gradle, the command is as follows:\n\n```bash\n./gradlew bootRun\n```\n\nYou can then access the Petclinic at <http://localhost:8080/>.\n\n<img width=\"1042\" alt=\"petclinic-screenshot\" src=\"https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png\">\n\nYou can, of course, run Petclinic in your favorite IDE.\nSee below for more details.\n\n## Building a Container\n\nThere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "/*\n * Copyright 2012-2025 the original author or authors.\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *      https://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\npackage org.springframework.samples.petclinic.service;\n\nimport static org.assertj.core.api.Assertions.assertThat;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\n\nimport org.springframework.dao.DataIntegrityViolationException;\nimport java.time.LocalDate;\nimport java.util.Collection;\nimport java.util.Optional;\n\nimport org.junit.jupiter.api.Test;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;\nimport org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;\nimport org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase.Replace;\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.samples.petclinic.owner.Owner;\nimport org.springframework.samples.petclinic.owner.OwnerRepository;\nimport org.springframework.samples.petclinic.owner.Pet;\nimport org.springframework.samples.petclinic.owner.PetType;\nimport org.springframework.samples.petclinic.owner.PetTypeRepository;\nimport org.springframework.samples.petclinic.owner.Visit;\nimport org.springframework.samples.petclinic.vet.Vet;\nimport org.springframework.samples.petclinic.vet.VetRepository;\nimport org.springframework.transaction.annotation.Transactional;\n\n/**\n * Integration test of the Service and the Repository layer.\n * <p>\n * ClinicServiceSpringDataJpaTests subclasses benefit from the following services provided\n * by the Spring TestContext Framework:\n * </p>\n * <ul>\n * <li><strong>Spring IoC container caching</strong> which spares us unnecessary set up\n * time between test execution.</li>\n * <li><strong>Dependency Injection</strong> of test fixture instances, meaning that we\n * don't need to perform ap"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1732",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1732,
+      "title": "Performance degradation with webjars locator",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Hello, \r\nwe see a significant regression on performance on some of Arm servers which is introduced by this patch (I didn't test on x86): \r\n\r\n```\r\ncommit 91f55a4f7134409a832435de2c6df231102d5898 (HEAD -> head-2)\r\nAuthor: Dave Syer <dsyer@vmware.com>\r\nDate:   Wed Nov 27 08:32:30 2024 +0000\r\n \r\n    Versionless webjars (again)\r\n \r\n    Spring Boot 3.4 supports the webjars-locator-lite which in turn\r\n    supports native images, so we are back to versionless URLs for\r\n    webjars assets in templates.\r\n```\r\n    \r\nThe performance drop introduced is quite severe, going from 3.3k req/s on this little test to about 0.7k req/s. \r\n   \r\n```\r\nuser@PetClinic-test:~$ numactl -C 16 wrk -c 1 -t 1 http://localhost:8080 -d 60\r\nRunning 1m test @ http://localhost:8080\r\n  1 threads and 1 connections\r\n  Thread Stats   Avg      Stdev     Max   +/- Stdev\r\n    Latency     1.36ms   15.88ms 359.72ms   99.44%\r\n    Req/Sec     3.37k   453.34     3.79k    93.80%\r\n  200156 requests in 1.00m, 579.75MB read\r\n**Requests/sec:   3335.91**\r\nTransfer/sec:      9.66MB\r\nuser@PetClinic-test:~$ numactl -C 16 wrk -c 1 -t 1 http://localhost:8080 -d 60\r\nRunning 1m test @ http://localhost:8080\r\n  1 threads and 1 connections\r\n  Thread Stats   Avg      Stdev     Max   +/- Stdev\r\n    Latency     2.59ms   16.94ms 374.89ms   99.41%\r\n    Req/Sec   700.85     80.00   780.00     93.13%\r\n  41660 requests in 1.00m, 120.67MB read\r\n**Requests/sec:    694.05**\r\nTransfer/sec:      2.01MB\r\nuser@PetClinic-test:~$\r\n```\r\n\r\nThese are the steps to repro on Ubuntu. \r\nServer: \r\n```\r\n    sudo apt update\r\n    sudo apt install numactl wrk maven openjdk-17-jdk\r\n    git clone https://github.com/spring-projects/spring-petclinic.git\r\n    cd spring-petclinic/\r\n    ./mvnw package\r\n    numactl -C 0-7 java -jar target/*.jar\r\n\r\n```\r\nClient: \r\n`    numactl -C 16 wrk -c 1 -t 1 http://localhost:8080 -d 60\r\n`\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1898",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1898,
+      "title": "Feature: Add Medical History Tracking for Pets",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## User Story\n\n**As a** pet owner,  \n**I want to** view and manage the medical history of my pet (such as diagnoses, treatments, and vaccines),  \n**So that** I can track its health status and vaccination history over time.\n\n---\n\n## Acceptance Criteria \n\n### Viewing Medical History\n\n**Given** a pet with existing medical records  \n**When** I navigate to the pet's profile page  \n**Then** I should see a list of all diagnoses, treatments, and vaccinations recorded\n\n---\n\n### Adding a New Medical Record\n\n**Given** I am on the medical record creation form for a pet  \n**When** I fill in the diagnosis, treatment, vaccine, and date fields and submit  \n**Then** a new medical record should be saved and associated with the selected pet\n\n---\n\n### Validation\n\n**Given** I leave required fields empty  \n**When** I try to submit the form  \n**Then** I should see validation messages and the record should not be saved\n\n---\n\n## Notes\n- This feature will require extending the data model by introducing a new `MedicalRecord` entity.\n- UI support may include listing medical records on the pet detail page and a form to add a new record.\n- Spring Data JPA will be used to handle the entity relationships.\n\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1961",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1961,
+      "title": "Fix test failures due to feature flag configuration and port conflict",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "# CloudSmith Troubleshooting Summary\n## Trigger details\n| Workflow run  | Branch  | Commit  |\n|---|---|---|\n| [#15837158459](https://github.com/spring-projects/spring-petclinic/actions/runs/15837158459) |  ```main``` |  ```25cf7e2c3fc337b119c09b5a102f0e5b6c829e6c``` |\n----\n## Detailed Findings\n### Issue 1\n\n\n**Problem**: The application fails to start because port 8080 is already in use. This is preventing the tests from running properly as they depend on the application being available.\n\n\n**File**: ```src/main/resources/application.properties```\n\n\n**Error Log**:\n```\n***************************\nAPPLICATION FAILED TO START\n***************************\n\nDescription:\n\nWeb server failed to start. Port 8080 was already in use.\n\nAction:\n\nIdentify and stop the process that's listening on port 8080 or configure this application to listen on another port.\n```\n\n\n**Code snippet**:\n```\nserver.address=0.0.0.0\nserver.port=8080\n# Prefer IPv4 stack\nserver.tomcat.protocol-header-https-value=java.net.preferIPv4Stack=true\n```\n\n\n**Solution Plan**:\n\n\n1. Modify the application.properties file to use a dynamic port for tests instead of the fixed port 8080. \n2. Alternatively, create a separate application-test.properties file with server.port=0 to use a random available port during tests. \n3. If you need to keep port 8080 for production, ensure that no other processes are using this port before starting the application.\n\n\n----\n\n### Issue 2\n\n\n**Problem**: The integration tests are failing because feature flags for pet management and visit management are disabled in the main application.properties file, but the tests expect these features to be enabled.\n\n\n**File**: ```src/main/resources/application.properties```\n\n\n**Error Log**:\n```\n2025-06-23T23:16:59.7213403Z out: java.lang.NullPointerException: Cannot invoke \"org.springframework.http.ResponseEntity.getStatusCode()\" because \"this.lastResponse\" is null\n```\n\n\n**Code snippet**:\n```\n# Feature Flags\npetclinic.features.owner-management=true\npetclinic.features.pet-management=false\npetclinic.features.visit-management=false\npetclinic.features.vet-management=false\n```\n\n\n**Solution Plan**:\n\n\n1. Update the CucumberSpringConfiguration class to explicitly use the test properties profile. \n2. Ensure that the application-test.properties file is properly loaded during tests by moving it to the correct location if needed. \n3. Verify that the test conf"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2460",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2460,
+      "title": "[DEMO-001] The change involves adding a health check REST endpoint to an existing Java p...",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\n\n🤖 **Automated change** for Jira ticket [`DEMO-001`]\n\nThis PR was generated by an AI agent that:\n- Analyzed the Jira ticket requirements\n- Searched the codebase using semantic search (RAG)\n- Generated failing tests first (TDD approach)\n- Implemented the change to satisfy the tests\n- Created deployment artifacts if needed\n\n## Assessment\n\n\n# Change Assessment: DEMO-001\n\n## Executive Summary\nThe change involves adding a health check REST endpoint to an existing Java project. Complexity is LOW due to the straightforward nature of health check endpoints. The risk level is also LOW as it involves minimal impact on existing functionalities.\n\n## Requirement Analysis\n\n### Change Type\nFeature\n\n### Acceptance Criteria\n- Endpoint at /api/health returns 200 OK\n- Returns JSON with status field\n\n### Scope\nThe scope includes adding the new REST endpoint. Out of scope is any additional functionality beyond the health status check.\n\n## Current State Analysis\n\n### Project Info\n- Framework: Not Identified (Assumed Spring Boot based on standard practice for health checks)\n- Java version: Not Identified\n- Build system: Not Identified (Commonly Maven for Spring Boot projects)\n- Test framework: Not Identified\n\n### Affected Components\n- A new controller class for health check endpoint will be created (e.g., `HealthCheckController`)\n\n### Existing Patterns\nUnable to identify existing patterns due to lack of data, but typically, REST endpoints are implemented using Spring RestController annotations.\n\n## Implementation Plan\n\n1. Create a new class `HealthCheckController` under the package `com.example.controller` to define the health check endpoint.\n2. Implement a GET endpoint `/api/health` in `HealthCheckController` that returns a 200 OK status and JSON with a status field.\n3. Add unit tests for `HealthCheckController` to validate the new endpoint functionality.\n\n## Test Requirements\n\n- Unit tests for `HealthCheckController` covering the response status and JSON output.\n- Ensure tests are aligned with existing test practices in the codebase.\n\n## Vulnerability Findings\nNone, as no new dependencies or significant changes that impact security are introduced.\n\n## Items Flagged for Human Review\n- Verify if the project indeed uses Spring Boot.\n- Confirm if additional health indicators are needed beyond the basic status field.\n\n## Changes Made\n\n### Created (4)\n\n- `src/test/java/org/"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2519,
+      "title": "Upgrade to Spring Boot 4.1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "- Bump Spring Boot parent/plugin from 4.0.x to 4.1.0 (Maven + Gradle)\r\n- Update Gradle wrapper to 9.5.1\r\n- Update Maven wrapper to 3.9.16\r\n- Update checkstyle to 13.5.0, jacoco to 0.8.15\r\n- Replace deprecated RuntimeHints.serialization() with reflection().registerType(..., withJavaSerialization(true)) per Spring 7\r\n- Replace deprecated RestTemplateBuilder.rootUri() with baseUri() in PetClinicIntegrationTests, MySqlIntegrationTests and PostgresIntegrationTests\r\n- Sync docker-compose.yml, k8s/db.yml, README.md with new container image versions\r\n\r\nUnfortunately, GraalVM Native images do not work anymore. Which is eighter an issue with the Buildpack compatibility or an issue with GraalVM.\r\n\r\n- With Java 17 we get this message from Buildpacks \r\n```\r\n[INFO]     [creator]     Paketo Buildpack for Spring Boot 5.36.3\r\n[INFO]     [creator]       the Java version from the downloaded NIK/GraalVM is lower than 25 and the Spring Boot version is >= 4.0.0; this is not supported, more info at https://github.com/paketo-buildpacks/spring-boot/issues/562 - you can force the NIK JVM version using BP_JVM_VERSION=25, or with .sdkmanrc, etc\r\n[INFO]     [creator]     ERROR: failed to build: exit status 1\r\n```\r\n- With Java 25 we get a GraalVM Native incompatability\r\n````\r\n[INFO]     [creator]     Warning: Please re-evaluate whether any experimental option is required, and either remove or unlock it. The build output lists all active experimental options, including where they come from and possible alternatives. If you think an experimental option should be considered as stable, please file an issue.\r\n[INFO]     [creator]     Warning: Option 'DynamicProxyConfigurationResources' is deprecated and might be removed in a future release: This can be caused by a proxy-config.json file in your META-INF directory. Consider including proxy configuration in the reflection section of reachability-metadata.md instead.. Please refer to the GraalVM release notes.\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     GraalVM Native Image: Generating 'org.springframework.samples.petclinic.PetClinicApplication' (executable)...\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     For detailed information and explanations on the build output, visi"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2641",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2641,
+      "title": "Add vaccination management",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Add vaccination management"
+    }
+  ]
+}

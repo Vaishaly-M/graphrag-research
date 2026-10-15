@@ -15,3 +15,11 @@ results/v2/latency_probe/diagnostic_index/docs.json
 results/v2/latency_probe/diagnostic_index/index.faiss
 results/v2/vector_index/docs.json
 results/v2/vector_index/index.faiss
+
+# Rebuildable snapshot payloads and workspace-local inference dependencies.
+.data_runtime/
+.data_runtime_dml/
+data/snapshots/
+data/graph_exports/
+data/indexes/
+data/models/

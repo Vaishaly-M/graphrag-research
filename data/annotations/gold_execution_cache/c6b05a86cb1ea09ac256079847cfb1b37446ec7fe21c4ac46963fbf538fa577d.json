@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+        "path": null,
+        "offset": 89,
+        "line": 2
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+        "path": "api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+        "offset": 5387,
+        "line": 148
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6560",
+        "path": null,
+        "offset": 377,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6404",
+        "path": null,
+        "offset": 6933,
+        "line": 96
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 5430,
+        "line": 76
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+        "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+        "offset": 20785,
+        "line": 655
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6401",
+        "path": null,
+        "offset": 4397,
+        "line": 70
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+        "path": null,
+        "offset": 11315,
+        "line": 67
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5430,
+      "excerpt": "rovide a detailed, clear, and complete description of your commit!\n\n8. Issue a Pull Request\n\n  Before submitting a pull request, update your branch to the latest code.\n  \n        git pull --rebase upstream master\n\n  If you have made many commits, we ask you to squash them into atomic units of work. Most of tickets should have one commit only, especially bug fixes, which makes them easier to back port.\n\n        git checkout master\n        git pull --rebase upstream master\n        git checkout TRUNK-123\n        git rebase -i master\n\n  Make sure all unit tests still pass:\n\n        ./mvnw clean package\n\n  Push changes to your fork:\n\n        git push -f\n\n  In order to make a pull request,\n  * Navigate to the OpenMRS repository you just pushed to (e.g. https://github.com/your-user-name/openmrs-core)\n  * Click \"Pull Request\".\n  * Write your branch name in the branch field (this is filled with \"master\" by default)\n  * Click \"Update Commit Range\".\n  * Ensure the changesets you introduced are included in the \"Commits\" tab.\n  * Ensure that the \"Files Changed\" incorporate all of your changes.\n  * Fill in some details about your potential patch including a meaningful title.\n  * Click \"Send pull request\".\n  * In JIRA, open your issue and click the \"Request Code Review\" button to change the issue's status to \"Code Review\". Add a comment linking to the URL of the pull request.\n\n\n  Thanks for that -- we'll get to your pull request ASAP. We love pull requests!\n\n## Responding to Feedback\n\n  The OpenMRS team may recommend adjustments to your code. Part of interacting with a healthy open source community requires you to be open to learning new techniques and strategies; *don't get discouraged!* Remember: if the OpenMRS team suggests changes to your code, **they care enough about your work that they want to include it**, and hope that you can assist by implementing those revisions on your own.\n\n  > Though we ask you to clean your history and squash commit before submitting a pull-request, please do not change any commits you've submitted already (as other work might be build on top).\n\n## Other Resources\n\n* If you haven't already, get an [OpenMRS ID](https://id.openmrs.org)\n* Make sure you have a [GitHub account](https://github.com/signup/free)\n* Submit or select a [JIRA issue](https://issues.openmrs.org) or choose from the introductory issues on our [Getting Started as a Develope"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 20785,
+      "excerpt": "\t/**\n\t * Convenience method to allow us to change the configuration more easily. TODO See todo for message\n\t * sender.\n\t *\n\t * @return\n\t */\n\tprivate static MessagePreparator getMessagePreparator() throws MessageException {\n\t\treturn new VelocityMessagePreparator();\n\t}\n\n\t/**\n\t * @return \"active\" user who has been authenticated, otherwise <code>null</code>\n\t */\n\tpublic static User getAuthenticatedUser() {\n\t\tif (Daemon.isDaemonThread()) {\n\t\t\treturn Daemon.getDaemonThreadUser();\n\t\t}\n\n\t\treturn getUserContext().getAuthenticatedUser();\n\t}\n\n\t/**\n\t * @return true if user has been authenticated in this context\n\t */\n\tpublic static boolean isAuthenticated() {\n\t\tif (Daemon.isDaemonThread()) {\n\t\t\treturn true;\n\t\t} else {\n\t\t\ttry {\n\t\t\t\treturn getAuthenticatedUser() != null;\n\t\t\t} catch (APIException e) {\n\t\t\t\tlog.info(\n\t\t\t\t    \"Could not get authenticated user inside called to isAuthenticated(), assuming no user context has been defined\",\n\t\t\t\t    e);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t}\n\n\t/**\n\t * Used by {@link org.openmrs.aop.AuthorizationAdvice} to give access for unauthenticated users when\n\t * running initialization code with proxy privileges. See e.g.\n\t * {@link OutboxTaskSchedulerInitializer#afterSingletonsInstantiated()}.\n\t *\n\t * @return true if there are any proxy privileges\n\t * @since 2.9.0\n\t */\n\tpublic static boolean hasProxyPrivileges() {\n\t\treturn getUserContext().hasProxyPrivileges();\n\t}\n\n\t/**\n\t * logs out the \"active\" (authenticated) user within context\n\t * <p>\n\t * <strong>Should</strong> not fail if session hasn't been opened yet\n\t *\n\t * @see #authenticate\n\t */\n\tpublic static void logout() {\n\t\tif (!isSessionOpen()) {\n\t\t\treturn; // fail early if there isn't even a session open\n\t\t}\n\t\tlog.debug(\"Logging out : {}\", getAuthenticatedUser());\n\n\t\tgetUserContext().logout();\n\n\t\t// reset the UserContext object (usually cleared out by closeSession()\n\t\t// soon after this)\n\t\tsetUserContext(new UserContext(getAuthenticationScheme()));\n\t}\n\n\t/**\n\t * Convenience method. Passes through to userContext.getAllRoles(User)\n\t */\n\tpublic static Set<Role> getAllRoles(User user) throws Exception {\n\t\treturn getUserContext().getAllRoles();\n\t}\n\n\t/**\n\t * Tests whether the currently authenticated user has a particular privilege\n\t */\n\tpublic static boolean hasPrivilege(String privilege) {\n\t\t// the daemon threads have access to all things\n\t\tif (Daemon.isDaemonThread()) {\n\t\t\treturn true;\n\t\t}\n\n\t\treturn getUs"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/DatabaseUpdater.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5387,
+      "excerpt": "ngeLogs.isEmpty()) {\n\t\t\treturn;\n\t\t}\n\n\t\tfor (String changeLog : changeLogs) {\n\t\t\tlog.debug(\"applying Liquibase changelog '{}'\", changeLog);\n\t\t\texecuteChangelog(changeLog, (ChangeSetExecutorCallback) null);\n\t\t}\n\t}\n\n\t/**\n\t * Run changesets on database using Liquibase to get the database up to the most recent version\n\t *\n\t * @param changelog the liquibase changelog file to use (or null to use the default file)\n\t * @param userInput nullable map from question to user answer. Used if a call to update(null) threw\n\t *            an {@link InputRequiredException}\n\t * @throws DatabaseUpdateException if an error occurs\n\t * @deprecated as of 2.4 see {@link #executeChangelog(String, ChangeSetExecutorCallback)}\n\t */\n\t@Deprecated\n\tpublic static void executeChangelog(String changelog, Map<String, Object> userInput) throws DatabaseUpdateException {\n\t\tlog.debug(\"Executing changelog: {}\", changelog);\n\t\texecuteChangelog(changelog, (ChangeSetExecutorCallback) null);\n\t}\n\n\t/**\n\t * Executes the given changelog file. This file is assumed to be on the classpath.\n\t *\n\t * @param changelog The string filename of a liquibase changelog xml file to run\n\t * @return A list of messages or warnings generated by the executed changesets\n\t */\n\tpublic static List<String> executeChangelog(String changelog, ChangeSetExecutorCallback callback)\n\t        throws DatabaseUpdateException {\n\t\tlog.debug(\"installing the tables into the database\");\n\n\t\tif (changelog == null) {\n\t\t\tthrow new IllegalArgumentException(\"changelog must not be null\");\n\t\t}\n\n\t\ttry {\n\t\t\tlog.debug(\"executing liquibase changelog {}\", changelog);\n\t\t\treturn executeChangelog(changelog, new Contexts(CONTEXT), callback, null);\n\t\t} catch (Exception e) {\n\t\t\tthrow new DatabaseUpdateException(\"There was an error while updating the database to the latest. file: \"\n\t\t\t        + changelog + \". Error: \" + e.getMessage(), e);\n\t\t}\n\t}\n\n\t/**\n\t * This code was borrowed from the liquibase jar so that we can call the given callback function.\n\t *\n\t * @param changeLogFile the file to execute\n\t * @param contexts the liquibase changeset context\n\t * @param callback the function to call after every changeset\n\t * @return A list of messages or warnings generated by the executed changesets\n\t * @throws Exception\n\t */\n\tpublic static List<String> executeChangelog(String changeLogFile, Contexts contexts, ChangeSetExecutorCallback callback,\n\t        ClassLoader cl) throws E"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6401",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6401,
+      "title": "Stop the JVM aborting the openmrs-api test fork on Java 8 and 11",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4397,
+      "excerpt": ", bool&)\nCallGenerator::for_method_handle_call(...)\nCompile::call_generator(...)  ->  Parse::do_call()\n```\n\nC2 is inlining a MethodHandle call and reading a `MemberName`'s `vmtarget` off a bad pointer. In CI this only failed 2 runs in 3, which is too noisy to conclude anything from, and I initially wrote this PR saying it did **not** address Java 8. It reproduces deterministically outside CI though, aborting at the same test class each time, and there the before-and-after is clean: two crashes without the property, two full passes with it. That is what changed my mind.\n\nWhy a reflection property affects a JIT bug is **inference, not something I have proven**. Inflation defines a fresh accessor class per reflective member, so `ConstructorAccessor.newInstance` sees many receiver types and goes megamorphic; without it there is only `NativeConstructorAccessorImpl`. That changes what C2 chooses to inline around the neighbouring lambda call sites, and this bug only appears for some inlining shapes. The repeatable before-and-after is the evidence; the story is only a plausible reason for it.\n\n### Upgrading the test toolchain is not an alternative\n\nWorth recording, since it is the obvious next thing to reach for. With Mockito 4.11.0 and Byte Buddy 1.17.6 in place of 3.12.4 and 1.12.18, over the same test selection on Java 11:\n\n| | Mockito 3.12.4 + BB 1.12.18 | Mockito 4.11.0 + BB 1.17.6 |\n| --- | --- | --- |\n| `GeneratedConstructorAccessor` defined | 231 | 231 |\n| `__JVM_DefineClass__` defines | 919 | 931 |\n| accessor Mockito selects | `ReflectionMemberAccessor` | `ReflectionMemberAccessor` |\n\nUnchanged, and Java 8 still crashes at the same place with the newer toolchain, so the exposure is not a function of the Mockito version. 4.11.0 is also the ceiling while 2.8.x supports Java 8, since Mockito 5 is compiled to class file version 55.\n\n## Issue I worked on\n\nNo Jira issue yet; happy to file one if we would rather track it there. Related: #6399, which is what produced the diagnosis.\n\n## Checklist: I completed these to help reviewers :)\n\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n- [x] I have **added tests** to cover my changes. This changes a JVM flag for the test fork rather than product code, so the verification is the `-verbose:class` check above (the generated accessor is def"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6404",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6404,
+      "title": "github-actions(deps): bump actions/stale from 10 to 11",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6933,
+      "excerpt": "<li>Upgrade form-data to bring in fix for critical vulnerability by <a href=\"https://github.com/gowridurgad\"><code>@​gowridurgad</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1277\">actions/stale#1277</a></li>\n</ul>\n<h2>Documentation changes</h2>\n<ul>\n<li>Changelog update for recent releases by <a href=\"https://github.com/suyashgaonkar\"><code>@​suyashgaonkar</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1224\">actions/stale#1224</a></li>\n<li>Permissions update in Readme by <a href=\"https://github.com/ghadimir\"><code>@​ghadimir</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1248\">actions/stale#1248</a></li>\n</ul>\n<h1>[9.1.0]</h1>\n<h2>What's Changed</h2>\n<ul>\n<li>Documentation update by <a href=\"https://github.com/Marukome0743\"><code>@​Marukome0743</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1116\">actions/stale#1116</a></li>\n<li>Add workflow file for publishing releases to immutable action package by <a href=\"https://github.com/Jcambass\"><code>@​Jcambass</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1179\">actions/stale#1179</a></li>\n<li>Update undici from 5.28.2 to 5.28.4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1150\">actions/stale#1150</a></li>\n<li>Update actions/checkout from 3 to 4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1091\">actions/stale#1091</a></li>\n<li>Update actions/publish-action from 0.2.2 to 0.3.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1147\">actions/stale#1147</a></li>\n<li>Update ts-jest from 29.1.1 to 29.2.5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1175\">actions/stale#1175</a></li>\n<li>Update <code>@​actions/core</code> from 1.10.1 to 1.11.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1191\">actions/stale#1191</a></li>\n<li>Update <code>@​types/jest</code> from 29.5.11 to 29.5.14 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.githu"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6533,
+      "title": "TRUNK-6795: Populate obs reference ranges in a save handler so they survive validation.disable",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 89,
+      "excerpt": "K/p1788308814384069)_\n\n## Description of what I changed\n\n**Before:** `ObsValidator` did two unrelated jobs at once. As well as reporting values that fall outside a concept&#39;s absolute range, it was the only thing in core that worked out an observation&#39;s reference range and interpretation and wrote them onto the `Obs`. Validators are only ever reached through `ValidateUtil.validate`, which returns immediately when the `validation.disable` global property is switched on. An implementation running with that property therefore saved every observation with no reference range and no interpretation at all — no error, no warning, just missing data that cannot be reconstructed afterwards, because the range criteria are evaluated against the patient&#39;s state at the time of the observation. The validator also overwrote any reference range a caller had already set on the observation.\n\n**After:** deriving the reference range and the interpretation is a save-time concern, handled by a new `ObsSaveHandler`. Save handlers are dispatched by `RequiredDataAdvice` before, and independently of, validation, so an observation now gets its reference range whether validation is on or off. A reference range supplied by the caller is left alone rather than being replaced with a freshly derived one. `ObsValidator` keeps `validateAbsoluteRanges` and every `error.value.outOfRange.*` rejection; its remaining job is validation, and nothing else.\n\n**How:** `setObsReferenceRange(Obs, ConceptReferenceRange)`, `setObsReferenceRange(Obs)` and `setObsInterpretation(Obs)` moved out of `ObsValidator` into `ObsSaveHandler`, which is registered as `@Handler(supports = Obs.class, order = 50)` and implements `SaveHandler`. The handler reproduces the guards that used to gate the population inside the validator: it skips voided observations, obs groups, non-numeric datatypes, numeric observations with no value, and observations with a null concept. Group members are covered because `RequiredDataAdvice.recursivelyHandle` already walks the `Obs.groupMembers` collection — the field carries neither `@Independent` nor `@DisableHandlers` — so the handler does not recurse itself. `ObsValidator` still looks the `ConceptReferenceRange` up for itself; reusing the one the handler derived is not safe, because `Obs.getReferenceRange()` is an `ObsReferenceRange` rather than a `ConceptReferenceRange`, becaus"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6560",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6560,
+      "title": "maven(deps): bump com.github.spotbugs:spotbugs-maven-plugin from 4.10.4.0 to 4.10.4.1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 377,
+      "excerpt": "2>\n<h2>BREAKING</h2>\n<p>In 2014, maven reporting added various settings that should have resulted in removal here but had gone unseen.  These are now applied and therefore the state changed to immutable which will cause plugin to fail if users do not adjust configuration as noted here.</p>\n<p>Users who previously configured <code>outputEncoding</code> directly on the SpotBugs Maven Plugin must configure <code>project.reporting.outputEncoding</code> instead and remove it to avoid errors.\nUsers passing <code>fork</code> option should remove it to avoid warnings as support was gone in last release and it does nothing.\nUsers who previously configured <code>outputDirectory</code> directly on the SpotBugs Maven Plugin must configure <code>project.reporting.outputDirectory</code> instead and remove it to avoid errors.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Maven 4 rc 6 support, readme cleanup, use latest spotbugs in build, head tag, formatting by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1512\">spotbugs/spotbugs-maven-plugin#1512</a></li>\n<li>Fixes 1511, removed shaded 'outputEncoding' that maven reporting added in 2014 by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1513\">spotbugs/spotbugs-maven-plugin#1513</a></li>\n<li>Remove deprecated 'fork' option and update faq by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1514\">spotbugs/spotbugs-maven-plugin#1514</a></li>\n<li>Minor cleanups by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1515\">spotbugs/spotbugs-maven-plugin#1515</a></li>\n<li>Use super class outputDirectory removing all duplication by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1516\">spotbugs/spotbugs-maven-plugin#1516</a></li>\n<li>Make ownership explicit on xdocs report writer by <a href=\"https://github.com/hazendaz\"><code>@​hazendaz</code></a> in <a href=\"https://redirect.github.com/spotbugs/spotbugs-maven-plugin/pull/1517\">spotbugs/spotbugs-maven-plugin#1517</a></li>\n<li>Cleanu"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6648,
+      "title": "maven(deps): bump org.owasp.encoder:encoder from 1.4.1 to 1.5.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11315,
+      "excerpt": "deprecation: <code>Encoders.URI</code> and both <code>ForUriTag</code> classes are now deprecated like <code>Encode.forUri</code>, whose Javadoc now says what to use instead; the <code>forUri</code> TLD descriptions warn about double encoding, the adapter builds show deprecation call sites, and the README has a <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/main/README.md#migrating-from-foruri\">forUri migration section</a> <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/130\">#130</a>.</li>\n<li>fix: the JSP and Jakarta bundles now declare the core version they need (<code>[1.5,2)</code>, because the tags call <code>Encode.forJson</code>) and the JSP API ranges they support, instead of unversioned imports that could wire to an older core and fail when a tag ran. Bundle symbolic names are now declared explicitly and unchanged <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/137\">#137</a>.</li>\n<li>fix: <code>forHtmlUnquotedAttribute</code> now replaces U+0085 (NEL) with a hyphen like the other C1 control characters, instead of emitting <code>&amp;[#133](https://github.com/OWASP/owasp-java-encoder/issues/133);</code>, which HTML5 parsers decode as U+2026 <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/136\">#136</a>.</li>\n<li>fix: the XML 1.1 encoders (<code>forXml11</code>, <code>forXml11Content</code>, <code>forXml11Attribute</code>) now encode U+0085 (NEL) as <code>&amp;#x85;</code> and U+2028 (line separator) as <code>&amp;#x2028;</code>, so they are not normalized to a line feed <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/136\">#136</a>.</li>\n<li>maintenance: clarify output-context contracts and expand XML 1.1 tests, fix clean reactor compilation, and remove the obsolete benchmark profile.</li>\n</ul>\n<h3>Build, compatibility and maintenance</h3>\n<ul>\n<li>Preserve original-JAR consumers on Java 8/11/17/21/25, explicit/automatic JPMS\nand Felix R6/R8; add final TLD-surface/Writer contract checks (<a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/162\">#162</a>, <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/167\">#167</a>).</li>\n<li>Test packaged javax/Jakarta TLDs through isolated Tomcat/Jasper engines; retain\nrequired real-browser and executable-WAR checks with the modernized optional\nBoot 4.1.1 fixture (<a href=\"https://redi"
+    }
+  ]
+}

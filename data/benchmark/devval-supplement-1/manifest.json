@@ -1,0 +1,28 @@
+{
+  "version": "devval-supplement-1",
+  "seed": 42,
+  "source_sha256": "670895b09e3455d9945888450c8549f5091a7fb1ec38bf8db290b0ff216cb213",
+  "families": {
+    "development": [
+      "commit_file_tail"
+    ],
+    "validation": [
+      "markdown_headings",
+      "author_document_headings"
+    ]
+  },
+  "repos": [
+    "dotnet/eShop",
+    "mlflow/mlflow",
+    "openmrs/openmrs-core",
+    "spring-projects/spring-petclinic"
+  ],
+  "test_inputs": [],
+  "human_inputs": [],
+  "files": {
+    "combined_template\\development.jsonl": "5d8ed149fd1c9a3dd9d66ebadfdb261f0ac42c09eba2ce52fa7115034bc650d5",
+    "combined_template\\validation.jsonl": "afcf7b92abae7fcc298b785b0f7bcd744475bef4c27a5bda327a95786e2fc788",
+    "template\\development.jsonl": "0b3aff58b7c346c2d4f2d4b8c337475b8ebbc70f93506481e604f9f41087b17e",
+    "template\\validation.jsonl": "4aed1fc5aad3218a66df7abdae0f1f2968239137ddac8c5474adcb52a612d594"
+  }
+}

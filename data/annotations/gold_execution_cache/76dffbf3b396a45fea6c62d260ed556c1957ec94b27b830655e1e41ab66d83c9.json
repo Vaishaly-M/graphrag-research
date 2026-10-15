@@ -1,0 +1,14 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n:DLIssue) WHERE n.dataset=$dataset AND n.repo=$repo AND n.number=$value RETURN count(n) AS matches",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "value": 987654321
+  },
+  "rows": [
+    {
+      "matches": 0
+    }
+  ]
+}

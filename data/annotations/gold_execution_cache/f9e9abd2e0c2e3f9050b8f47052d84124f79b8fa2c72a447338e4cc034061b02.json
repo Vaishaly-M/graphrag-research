@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(c:DLCommit) WHERE d.dataset=$dataset AND d.repo=$repo AND d.id=$developer RETURN toString(count(DISTINCT c)) AS entity,toString(count(DISTINCT c)) AS fact,collect(DISTINCT d.id)+collect(DISTINCT c.id) AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "developer": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:pcorliss@drwholdings.com"
+  },
+  "rows": [
+    {
+      "entity": "1",
+      "fact": "1",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:developer:email:pcorliss@drwholdings.com",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:91ba4a23a89a6520f4ffec30990819641b084fc8"
+      ]
+    }
+  ]
+}

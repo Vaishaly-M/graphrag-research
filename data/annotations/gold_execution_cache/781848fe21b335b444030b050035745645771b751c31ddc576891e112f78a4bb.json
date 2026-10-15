@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "offset": 637,
+        "line": 16
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+        "path": null,
+        "offset": 301,
+        "line": 8
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2671",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2678",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2439",
+        "path": null,
+        "offset": 85,
+        "line": 2
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java",
+        "offset": 369,
+        "line": 11
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+        "offset": 1132,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+        "path": "README.md",
+        "offset": 2439,
+        "line": 52
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2439,
+      "excerpt": "un -p 8080:8080 docker.io/library/spring-petclinic:latest\n```\n\n## In case you find a bug/suggested improvement for Spring Petclinic\n\nOur issue tracker is available [here](https://github.com/spring-projects/spring-petclinic/issues).\n\n## Database configuration\n\nIn its default configuration, Petclinic uses an in-memory database (H2) which\ngets populated at startup with data. The h2 console is exposed at `http://localhost:8080/h2-console`,\nand it is possible to inspect the content of the database using the `jdbc:h2:mem:<uuid>` URL. The UUID is printed at startup to the console.\n\nA similar setup is provided for MySQL and PostgreSQL if a persistent database configuration is needed. Note that whenever the database type changes, the app needs to run with a different profile: `spring.profiles.active=mysql` for MySQL or `spring.profiles.active=postgres` for PostgreSQL. See the [Spring Boot documentation](https://docs.spring.io/spring-boot/how-to/properties-and-configuration.html#howto.properties-and-configuration.set-active-spring-profiles) for more detail on how to set the active profile.\n\nYou can start MySQL or PostgreSQL locally with whatever installer works for your OS or use docker:\n\n```bash\ndocker run -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:9.7\n```\n\nor\n\n```bash\ndocker run -e POSTGRES_USER=petclinic -e POSTGRES_PASSWORD=petclinic -e POSTGRES_DB=petclinic -p 5432:5432 postgres:18.4\n```\n\nFurther documentation is provided for [MySQL](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/mysql/petclinic_db_setup_mysql.txt)\nand [PostgreSQL](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/postgres/petclinic_db_setup_postgres.txt).\n\nInstead of vanilla `docker` you can also use the provided `docker-compose.yml` file to start the database containers. Each one has a service named after the Spring profile:\n\n```bash\ndocker compose up mysql\n```\n\nor\n\n```bash\ndocker compose up postgres\n```\n\n## Test Applications\n\nAt development time we recommend you use the test applications set up as `main()` methods in `PetClinicIntegrationTests` (using the default H2 database and also adding Spring Boot Devtools), `MySqlTestApplication` and `PostgresIntegrationTests`. These are set up so that you can run the apps in your IDE to get fast feedb"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 637,
+      "excerpt": "ingframework.samples.petclinic.owner;\n\nimport java.util.List;\nimport java.util.Objects;\nimport java.util.Optional;\n\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageRequest;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.Model;\nimport org.springframework.validation.BindingResult;\nimport org.springframework.web.bind.WebDataBinder;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.InitBinder;\nimport org.springframework.web.bind.annotation.ModelAttribute;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.servlet.ModelAndView;\n\nimport jakarta.validation.Valid;\n\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Michael Isvy\n * @author Wick Dynex\n */\n@Controller\nclass OwnerController {\n\n\tprivate static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = \"owners/createOrUpdateOwnerForm\";\n\n\tprivate final OwnerRepository owners;\n\n\tpublic OwnerController(OwnerRepository owners) {\n\t\tthis.owners = owners;\n\t}\n\n\t@InitBinder\n\tpublic void setAllowedFields(WebDataBinder dataBinder) {\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t@ModelAttribute(\"owner\")\n\tpublic Owner findOwner(@PathVariable(name = \"ownerId\", required = false) Integer ownerId) {\n\t\treturn ownerId == null ? new Owner()\n\t\t\t\t: this.owners.findById(ownerId)\n\t\t\t\t\t.orElseThrow(() -> new IllegalArgumentException(\"Owner not found with id: \" + ownerId\n\t\t\t\t\t\t\t+ \". Please ensure the ID is correct \" + \"and the owner exists in the database.\"));\n\t}\n\n\t@GetMapping(\"/owners/new\")\n\tpublic String initCreationForm() {\n\t\treturn VIEWS_OWNER_CREATE_OR_UPDATE_FORM;\n\t}\n\n\t@PostMapping(\"/owners/new\")\n\tpublic String processCreationForm(@Valid Owner owner, BindingResult result, RedirectAttributes redirectAttributes) {\n\t\tif (result.hasErrors()) {\n\t\t\tredirectAttributes.addFlashAttribute(\"error\", \"There was an error in creating the owner.\");\n\t\t\treturn VIEWS_OWNER_CREATE_OR_UPDATE_FORM;\n\t\t}\n\n\t\tthis.owners.save(owner);\n\t\tredirectAttributes.addFlashAttribute(\"message\", \"New Owner Created\");\n\t\treturn"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 369,
+      "excerpt": "* distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\npackage org.springframework.samples.petclinic.owner;\n\nimport org.junit.jupiter.api.BeforeEach;\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.api.condition.DisabledInNativeImage;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageImpl;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.test.context.aot.DisabledInAotMode;\nimport org.springframework.test.context.bean.override.mockito.MockitoBean;\nimport org.springframework.test.web.servlet.MockMvc;\nimport org.springframework.test.web.servlet.request.MockMvcRequestBuilders;\n\nimport java.time.LocalDate;\nimport java.util.List;\nimport java.util.Optional;\n\nimport static org.hamcrest.Matchers.empty;\nimport static org.hamcrest.Matchers.greaterThan;\nimport static org.hamcrest.Matchers.hasItem;\nimport static org.hamcrest.Matchers.hasProperty;\nimport static org.hamcrest.Matchers.hasSize;\nimport static org.hamcrest.Matchers.is;\nimport static org.hamcrest.Matchers.not;\nimport static org.mockito.ArgumentMatchers.any;\nimport static org.mockito.ArgumentMatchers.anyString;\nimport static org.mockito.ArgumentMatchers.eq;\nimport static org.mockito.BDDMockito.given;\nimport static org.mockito.Mockito.when;\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;\n\n/**\n * Test class for {@link OwnerController}\n *\n * @author Colin But\n * @author Wick Dynex\n */\n@WebMvcTest(OwnerController.class)\n@DisabledInNativeImage\n@DisabledInAotMode\nclass OwnerControllerTests {\n\n\tprivate static final int TEST_OWNER_ID = 1;\n\n\t@Autowired\n\tprivate MockMvc mockMvc;\n\n\t@MockitoBean\n\tprivate OwnerRepository owners;\n\n\tprivate Owner george() {\n\t\tOwner george = new Owner();\n\t\tgeorge.setId(TEST_OWNER_ID);\n\t\tgeorge.setFirstName(\"George\");\n\t\tgeorge.setLastName(\"Franklin\");\n\t\tgeorge.setAddress(\"110 W. Liberty S"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1132,
+      "excerpt": "ringframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;\nimport org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase.Replace;\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.samples.petclinic.owner.Owner;\nimport org.springframework.samples.petclinic.owner.OwnerRepository;\nimport org.springframework.samples.petclinic.owner.Pet;\nimport org.springframework.samples.petclinic.owner.PetType;\nimport org.springframework.samples.petclinic.owner.PetTypeRepository;\nimport org.springframework.samples.petclinic.owner.Visit;\nimport org.springframework.samples.petclinic.vet.Vet;\nimport org.springframework.samples.petclinic.vet.VetRepository;\nimport org.springframework.transaction.annotation.Transactional;\n\n/**\n * Integration test of the Service and the Repository layer.\n * <p>\n * ClinicServiceSpringDataJpaTests subclasses benefit from the following services provided\n * by the Spring TestContext Framework:\n * </p>\n * <ul>\n * <li><strong>Spring IoC container caching</strong> which spares us unnecessary set up\n * time between test execution.</li>\n * <li><strong>Dependency Injection</strong> of test fixture instances, meaning that we\n * don't need to perform application context lookups. See the use of\n * {@link Autowired @Autowired} on the <code> </code> instance variable, which uses\n * autowiring <em>by type</em>.\n * <li><strong>Transaction management</strong>, meaning each test method is executed in\n * its own transaction, which is automatically rolled back by default. Thus, even if tests\n * insert or otherwise change database state, there is no need for a teardown or cleanup\n * script.\n * <li>An {@link org.springframework.context.ApplicationContext ApplicationContext} is\n * also inherited and can be used for explicit bean lookup if necessary.</li>\n * </ul>\n *\n * @author Ken Krebs\n * @author Rod Johnson\n * @author Juergen Hoeller\n * @author Sam Brannen\n * @author Michael Isvy\n * @author Dave Syer\n */\n@DataJpaTest\n// Ensure that if the mysql profile is active we connect to the real database:\n@AutoConfigureTestDatabase(replace = Replace.NONE)\n// @TestPropertySource(\"/application-postgres.properties\")\nclass ClinicServiceTests {\n\n\t@Autowired\n\tprotected OwnerRepository owners;\n\n\t@Autowired\n\tprotected PetTypeRepository types;\n\n\t@Autowired\n\tprotected VetRepository vets;\n\n\tpri"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2252,
+      "title": "[Feature] Add search pets by name screen",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 301,
+      "excerpt": " would improve usability when the pet name is known but the owner is not.\n- Aligns the pet entity with the same search UX pattern already established for owners.\n\n## Proposed Solution\n\n1. **New Thymeleaf template** (`templates/pets/findPets.html`) with a search form and results list/table.\n2. **New controller** endpoint(s) in a `PetController` (or extend existing controller) to handle `GET /pets/find` and `GET /pets` with a `name` query parameter.\n3. **New repository method** `findByNameContainingIgnoreCase(String name)` (or equivalent Spring Data query) in `PetRepository`.\n4. **Navigation link** added to the main layout so users can access the pet search screen.\n5. **Accessibility**: the new page must meet WCAG 2.2 Level AA (keyboard navigation, visible focus, proper labels, contrast, landmarks, etc.).\n\n## Acceptance Criteria\n\n- [ ] A \"Find Pets\" link is available in the main navigation menu\n- [ ] Users can search for pets by entering a full or partial pet name (case-insensitive)\n- [ ] An empty search returns all pets\n- [ ] Search results display pet name, birth date, type, and owner name\n- [ ] Clicking a result navigates to the pet's or owner's detail page\n- [ ] The page is accessible (landmarks, labels, keyboard support, contrast)\n- [ ] Unit and integration tests cover the new controller and repository methods\n- [ ] Works with H2 (default), MySQL, and PostgreSQL profiles\n\n## Alternatives Considered\n\n- Extending the existing owner search to also filter by pet name — rejected because it conflates two different search intents.\n\n## Additional Context\n\nThe implementation should follow the same patterns used by the existing \"Find Owners\" feature (`OwnerController`, `findOwners.html`, `ownersList.html`)."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2439",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2439,
+      "title": "Documentation: Improve documentation across classes",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 85,
+      "excerpt": " application as part of the sustainable coding practices evaluation for SE754 Assignment 5.\r\n\r\n## Problem\r\nManual review and SonarQube feedback showed that several important classes in the owner and vet areas were under-documented. While the code was functional, the intent of the domain objects and controller flows was not immediately clear to readers, especially around model preparation, pet ownership rules, and veterinarian specialty handling.\r\n\r\nThe `Owner` domain model, `PetController`, and `Vet` model each contain logic that benefits from clearer class-level and method-level documentation. Without that context, future contributors have to infer behavior from implementation details rather than from the API contract.\r\n\r\n## Changes\r\n- Expanded the class-level documentation in `Owner.java` to explain its role as the core owner entity and its relationship to pets\r\n- Added method-level documentation in `PetController.java` to clarify:\r\n  - model attribute preparation\r\n  - request binding\r\n  - validation flow\r\n  - pet create/update handling\r\n- Improved the class and method documentation in `Vet.java` to explain:\r\n  - specialty management\r\n  - the read-only sorted view exposed to callers\r\n\r\n## Sustainability Impact\r\nBetter documentation reduces cognitive load for future maintenance work. These classes are part of the main application flow, so clearer comments and Javadoc help new contributors understand why the code exists, not just what it does.\r\n\r\nThis improves long-term maintainability by:\r\n- reducing onboarding friction for new contributors\r\n- making controller and domain behavior easier to reason about\r\n- lowering the risk of incorrect future modifications\r\n- improving overall code readability and maintainability\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/Owner.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/vet/Vet.java`"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2671",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2671,
+      "title": "Delete functionality for Owners",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Description:\r\n\r\n- Adds the ability to delete an Owner from the Owner details page, along with all associated Pets and Visits (cascade delete).\r\n\r\nChanges:\r\n\r\n- Added deleteOwner() handler in OwnerController (POST /owners/{ownerId}/delete)\r\n- Added delete(Owner) to OwnerRepository\r\n- Added \"Delete Owner\" button to ownerDetails.html, with a JS confirm dialog to prevent accidental deletion\r\n- Cascade delete relies on existing CascadeType.ALL mapping on Owner.pets and Pet.visits\r\n- Added Javadoc comments for the new controller method and repository method\r\n\r\nTests:\r\n\r\n- Verified successful delete redirects to /owners/find with a flash success message\r\n- Verified the correct Owner (with pets) is passed to delete()\r\n- Verified deleting a non-existent owner throws/returns an error, and delete() is never called\r\n- Verified GET on the delete endpoint is rejected (405)\r\n\r\n<img width=\"2754\" height=\"1526\" alt=\"image\" src=\"https://github.com/user-attachments/assets/597ef4ff-c733-413e-883a-31efdfa56a63\" />\r\n<img width=\"1530\" height=\"820\" alt=\"image\" src=\"https://github.com/user-attachments/assets/daab6660-4ad2-4888-bc98-6cb62c460696\" />\r\n<img width=\"2880\" height=\"1572\" alt=\"image\" src=\"https://github.com/user-attachments/assets/41f5f5b5-cb6f-435e-86fe-41e8f0149cc7\" />\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2678",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2678,
+      "title": "Delete functionality for Owners",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Description:\r\n- Adds the ability to delete an Owner from the Owner details page, along with all associated Pets and Visits (cascade delete).\r\n\r\n\r\nChanges:\r\n- Added deleteOwner() handler in OwnerController (POST /owners/{ownerId}/delete)\r\n- Added delete(Owner) to OwnerRepository\r\n- Added \"Delete Owner\" button to ownerDetails.html, with a JS confirm dialog to prevent accidental deletion\r\n- Cascade delete relies on existing CascadeType.ALL mapping on Owner.pets and Pet.visits\r\n- Added Javadoc comments for the new controller method and repository method\r\n\r\nTests:\r\n- Verified successful delete redirects to /owners/find with a flash success message\r\n- Verified the correct Owner (with pets) is passed to delete()\r\n- Verified deleting a non-existent owner throws/returns an error, and delete() is never called\r\n- Verified GET on the delete endpoint is rejected (405)\r\n\r\n<img width=\"2754\" height=\"1526\" alt=\"image\" src=\"https://github.com/user-attachments/assets/532bcadc-6df7-407c-a3b3-9e14a2a14b27\" />\r\n<img width=\"1530\" height=\"820\" alt=\"image\" src=\"https://github.com/user-attachments/assets/d26e23dc-27b8-45ad-95f3-a0bd00b94498\" />\r\n<img width=\"2880\" height=\"1572\" alt=\"image\" src=\"https://github.com/user-attachments/assets/b72dbd05-4c8e-46da-b128-660ebba2fac4\" />\r\n"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(c:DLCommit)-[:DL_MODIFIED_FILE]->(f:DLFile) WHERE d.dataset=$dataset AND d.repo=$repo AND f.path STARTS WITH $prefix WITH d,collect(DISTINCT c.id)+collect(DISTINCT f.id) AS evidence RETURN coalesce(d.email,d.login,d.name) AS entity,coalesce(d.email,d.login,d.name) AS fact,[d.id]+evidence AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "prefix": "api/src/main/java/org/openmrs/api/stream/"
+  },
+  "rows": [
+    {
+      "entity": "52504170+ibacher@users.noreply.github.com",
+      "fact": "52504170+ibacher@users.noreply.github.com",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:52504170+ibacher@users.noreply.github.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/stream/StreamDataService.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/stream/StreamDataWriter.java"
+      ]
+    },
+    {
+      "entity": "rafal.korytkowski@gmail.com",
+      "fact": "rafal.korytkowski@gmail.com",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:rafal.korytkowski@gmail.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:59f91b2c735d0fb9eeb317c48f6c23f875ca0b24",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:658a3df03c39450ab3acc7a1bbce9eb75285740b",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:689f752cfe69420eeaf018cfc34a7d1b20910837",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:80b4411f8dc460a89b5f6bd03d9b5aac46946a7c",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/stream/StreamDataService.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/stream/StreamDataWriter.java"
+      ]
+    }
+  ]
+}

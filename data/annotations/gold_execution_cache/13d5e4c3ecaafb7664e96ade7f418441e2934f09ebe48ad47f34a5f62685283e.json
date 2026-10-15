@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 28283,
+        "line": 467
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+        "path": "contributing-docs/testing/unit_tests.rst",
+        "offset": 6165,
+        "line": 128
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:Dockerfile",
+        "path": "Dockerfile",
+        "offset": 24768,
+        "line": 641
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:Dockerfile.ci",
+        "path": "Dockerfile.ci",
+        "offset": 21587,
+        "line": 581
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/docs/changelog.rst",
+        "path": "providers/cncf/kubernetes/docs/changelog.rst",
+        "offset": 37638,
+        "line": 993
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 31940,
+        "line": 649
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/security/security_model.rst",
+        "path": "airflow-core/docs/security/security_model.rst",
+        "offset": 6268,
+        "line": 138
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/databricks/docs/changelog.rst",
+        "path": "providers/databricks/docs/changelog.rst",
+        "offset": 37493,
+        "line": 1145
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:Dockerfile",
+      "kind": "File",
+      "path": "Dockerfile",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 24768,
+      "excerpt": "nt-core` -> `mariadb-client` or `mariadb-client-compat` (11+)\n    if [[ \"${1}\" == \"dev\" ]]; then\n        packages=(\"libmariadb-dev-compat\" \"mariadb-client\")\n    elif [[ \"${1}\" == \"prod\" ]]; then\n        packages=(\"libmariadb3-compat\" \"mariadb-client\")\n    else\n        echo\n        echo \"${COLOR_RED}Specify either prod or dev${COLOR_RESET}\"\n        echo\n        exit 1\n    fi\n\n    common::import_trusted_gpg \"0xF1656F24C74CD1D8\" \"mariadb\"\n\n    echo\n    echo \"${COLOR_BLUE}Installing MariaDB client version ${MARIADB_LTS_VERSION}: ${1}${COLOR_RESET}\"\n    echo \"${COLOR_YELLOW}MariaDB client protocol-compatible with MySQL client.${COLOR_RESET}\"\n    echo\n\n    echo \"deb [arch=amd64,arm64] https://archive.mariadb.org/mariadb-${MARIADB_LTS_VERSION}/repo/debian/ $(lsb_release -cs) main\" > \\\n        /etc/apt/sources.list.d/mariadb.list\n    # Make sure that dependencies from MariaDB repo are preferred over Debian dependencies\n    printf \"Package: *\\nPin: release o=MariaDB\\nPin-Priority: 999\\n\" > /etc/apt/preferences.d/mariadb\n    retry apt-get update\n    retry apt-get install --no-install-recommends -y \"${packages[@]}\"\n    apt-get autoremove -yqq --purge\n    apt-get clean && rm -rf /var/lib/apt/lists/*\n}\n\nif [[ ${INSTALL_MYSQL_CLIENT:=\"true\"} == \"true\" ]]; then\n    install_mariadb_client \"${@}\"\nfi\nEOF\n\n# The content below is automatically copied from scripts/docker/install_mssql.sh\nCOPY <<\"EOF\" /install_mssql.sh\n#!/usr/bin/env bash\n. \"$( dirname \"${BASH_SOURCE[0]}\" )/common.sh\"\n\nset -euo pipefail\n\ncommon::get_colors\ndeclare -a packages\n\n: \"${INSTALL_MSSQL_CLIENT:?Should be true or false}\"\n\n\nfunction install_mssql_client() {\n    # Install MsSQL client from Microsoft repositories\n    if [[ ${INSTALL_MSSQL_CLIENT:=\"true\"} != \"true\" ]]; then\n        echo\n        echo \"${COLOR_BLUE}Skip installing mssql client${COLOR_RESET}\"\n        echo\n        return\n    fi\n    packages=(\"msodbcsql18\")\n\n    common::import_trusted_gpg \"EB3E94ADBE1229CF\" \"microsoft\"\n\n    echo\n    echo \"${COLOR_BLUE}Installing mssql client${COLOR_RESET}\"\n    echo\n\n    echo \"deb [arch=amd64,arm64] https://packages.microsoft.com/debian/$(lsb_release -rs)/prod $(lsb_release -cs) main\" > \\\n        /etc/apt/sources.list.d/mssql-release.list &&\n    mkdir -p /opt/microsoft/msodbcsql18 &&\n    touch /opt/microsoft/msodbcsql18/ACCEPT_EULA &&\n    apt-get update -yqq &&\n    apt-get upgrade -yqq &&\n    apt-get -yqq install -"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:Dockerfile.ci",
+      "kind": "File",
+      "path": "Dockerfile.ci",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 21587,
+      "excerpt": "nt-core` -> `mariadb-client` or `mariadb-client-compat` (11+)\n    if [[ \"${1}\" == \"dev\" ]]; then\n        packages=(\"libmariadb-dev-compat\" \"mariadb-client\")\n    elif [[ \"${1}\" == \"prod\" ]]; then\n        packages=(\"libmariadb3-compat\" \"mariadb-client\")\n    else\n        echo\n        echo \"${COLOR_RED}Specify either prod or dev${COLOR_RESET}\"\n        echo\n        exit 1\n    fi\n\n    common::import_trusted_gpg \"0xF1656F24C74CD1D8\" \"mariadb\"\n\n    echo\n    echo \"${COLOR_BLUE}Installing MariaDB client version ${MARIADB_LTS_VERSION}: ${1}${COLOR_RESET}\"\n    echo \"${COLOR_YELLOW}MariaDB client protocol-compatible with MySQL client.${COLOR_RESET}\"\n    echo\n\n    echo \"deb [arch=amd64,arm64] https://archive.mariadb.org/mariadb-${MARIADB_LTS_VERSION}/repo/debian/ $(lsb_release -cs) main\" > \\\n        /etc/apt/sources.list.d/mariadb.list\n    # Make sure that dependencies from MariaDB repo are preferred over Debian dependencies\n    printf \"Package: *\\nPin: release o=MariaDB\\nPin-Priority: 999\\n\" > /etc/apt/preferences.d/mariadb\n    retry apt-get update\n    retry apt-get install --no-install-recommends -y \"${packages[@]}\"\n    apt-get autoremove -yqq --purge\n    apt-get clean && rm -rf /var/lib/apt/lists/*\n}\n\nif [[ ${INSTALL_MYSQL_CLIENT:=\"true\"} == \"true\" ]]; then\n    install_mariadb_client \"${@}\"\nfi\nEOF\n\n# The content below is automatically copied from scripts/docker/install_mssql.sh\nCOPY <<\"EOF\" /install_mssql.sh\n#!/usr/bin/env bash\n. \"$( dirname \"${BASH_SOURCE[0]}\" )/common.sh\"\n\nset -euo pipefail\n\ncommon::get_colors\ndeclare -a packages\n\n: \"${INSTALL_MSSQL_CLIENT:?Should be true or false}\"\n\n\nfunction install_mssql_client() {\n    # Install MsSQL client from Microsoft repositories\n    if [[ ${INSTALL_MSSQL_CLIENT:=\"true\"} != \"true\" ]]; then\n        echo\n        echo \"${COLOR_BLUE}Skip installing mssql client${COLOR_RESET}\"\n        echo\n        return\n    fi\n    packages=(\"msodbcsql18\")\n\n    common::import_trusted_gpg \"EB3E94ADBE1229CF\" \"microsoft\"\n\n    echo\n    echo \"${COLOR_BLUE}Installing mssql client${COLOR_RESET}\"\n    echo\n\n    echo \"deb [arch=amd64,arm64] https://packages.microsoft.com/debian/$(lsb_release -rs)/prod $(lsb_release -cs) main\" > \\\n        /etc/apt/sources.list.d/mssql-release.list &&\n    mkdir -p /opt/microsoft/msodbcsql18 &&\n    touch /opt/microsoft/msodbcsql18/ACCEPT_EULA &&\n    apt-get update -yqq &&\n    apt-get upgrade -yqq &&\n    apt-get -yqq install -"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/security/security_model.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/security/security_model.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6268,
+      "excerpt": "als stored in connections and can modify them, but cannot view them.\nAccess to write sensitive information through connection configuration\nshould be trusted not to be abused. They also have the ability to configure connections wrongly\nthat might create a API Server Denial of Service situations and specify insecure connection options\nwhich might create situations where executing Dags will lead to arbitrary Remote Code Execution\nfor some providers - either community released or custom ones.\n\nThose users should be highly trusted not to misuse this capability.\n\n.. note::\n\n   Before Airflow 3, the **Connection configuration users** role had also access to view the sensitive information this has\n   been changed in Airflow 3 to improve security of the accidental spilling of credentials of the connection configuration\n   users. Previously - in Airflow 2 - the **Connection configuration users** had deliberately access to view the\n   sensitive information and could either reveal it by using Inspect capabilities of the browser or they were plain visible in\n   case of the sensitive credentials stored in configuration extras. Airflow 3 and later versions mask these sensitive credentials\n   at the API level and do not return them in clear text.\n\nAbout Sensitive information\n...........................\n\nSensitive information consists of connection details, variables, and configuration. In versions later than Airflow 3.0\nsensitive information will not be exposed to users via API, UI, and ``airflowctl``.\nHowever, ``task-sdk`` still provides access to sensitive information (e.g., Use SDK API Client to get\nVariables with task-specific ``JWT`` token). Local CLI will only return keys except when using ``--show_values``.\nSensitive information has been masked in logs, UI, and API outputs. In case of Dag author expose sensitive\ninformation in other way (e.g., via environment variables), those values will not be masked.\n\nAudit log users\n...............\n\nThey can view audit events for the whole Airflow installation.\n\nRegular users\n.............\n\nThey can view and interact with the UI and API. They are able to view and edit Dags,\ntask instances, and Dag runs, and view task logs.\n\nViewer users\n............\n\nThey can view information related to Dags, in a read only fashion, task logs, and other relevant details.\nThis role is suitable for users who require read-only access without the ab"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+      "kind": "File",
+      "path": "contributing-docs/testing/unit_tests.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6165,
+      "excerpt": "ON__KEY`` pattern or using the ``conf_vars`` context manager.\n\nAirflow unit test types\n-----------------------\n\nAirflow tests in the CI environment are split into several test types. You can narrow down which\ntest types you want to use in various ``breeze testing`` sub-commands in three ways:\n\n* By specifying the ``--test-type`` when running a single test type in ``breeze testing core-tests``, ``breeze testing providers-tests``, or ``breeze testing integration-tests`` commands.\n* By specifying a space-separated list of test types via the ``--parallel-test-types`` or ``--excluded-parallel-test-types`` options when running tests in parallel.\n\nThe defined test types are:\n\n* ``Always`` - Tests that should always be executed (always sub-folder).\n* ``API`` - Tests for the Airflow API (api, api_internal, api_fastapi sub-folders).\n* ``CLI`` - Tests for the Airflow CLI (cli folder).\n* ``Core`` - Tests for core Airflow functionality (core, executors, jobs, models, ti_deps, utils sub-folders).\n* ``Operators`` - Tests for operators (operators folder).\n* ``WWW`` - Tests for the Airflow webserver (www folder).\n* ``Providers`` - Tests for all Airflow Providers (providers folder).\n* ``Other`` - All other tests remaining after the above tests are selected.\n\nWe also have types that run \"all\" tests (ignoring folders, but looking at ``pytest`` markers with filters applied):\n\n* ``All-Postgres`` - Tests that require a Postgres database. Only run when the backend is Postgres (``backend(\"postgres\")`` marker).\n* ``All-MySQL`` - Tests that require a MySQL database. Only run when the backend is MySQL (``backend(\"mysql\")`` marker).\n* ``All-Quarantined`` - Tests that are flaky and need to be fixed (``quarantined`` marker).\n* ``All`` - All tests are run (this is the default).\n\nWe also have ``Integration`` tests that run with external software via the ``--integration`` flag in the ``breeze`` environment (via ``breeze testing integration-tests``).\n\n* ``Integration`` - Tests that require external integration images running in docker-compose.\n\nThis structure exists for two reasons:\n\n1. To allow selectively running only a subset of test types for some PRs.\n2. To allow efficient parallel execution of tests on Self-Hosted runners.\n\nFor case 2: We can utilize the memory and CPUs available on both CI and local development machines to run\ntests in parallel. However, we cannot use the pytest xdist "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 31940,
+      "excerpt": " releases. the default option is `auto`\nif the tag is rc it publishes to `staging` bucket, otherwise it publishes to `live` bucket.\n\nOther available parameters can be found with:\n\n```shell script\nbreeze workflow-run publish-docs --help\n```\n\nIn case you publish the documentation from branch, you can specify `--airflow-version` and `--airflow-base-version`\nparameters to specify which version of airflow you want to build the documentation for - as it cannot\nbe automatically derived from tag name. Normally both are automatically derived from the tag name.\n\nOne of the interesting features of publishing this way is that you can also rebuild historical version of\nthe documentation with patches applied to the documentation (if they can be applied cleanly).\n\nYoy should specify the `--apply-commits` parameter with the list of commits you want to apply\nseparated by commas and the workflow will apply those commits to the documentation before\nbuilding it. (don't forget to add --skip-write-to-stable-folder if you are publishing\nprevious version of the distribution). Example:\n\n```shell script\nbreeze workflow-run publish-docs --ref 3.0.3 --site-env staging \\\n  --apply-commits 4ae273cbedec66c87dc40218c7a94863390a380d,e61e9618bdd6be8213d277b1427f67079fcb1d9b \\\n  --skip-write-to-stable-folder \\\n  apache-airflow docker-stack task-sdk\n```\n\n### Manually using GitHub Actions\n\nThere are two steps to publish the documentation:\n\n1. Publish the documentation to the `staging` S3 bucket.\n\nThe release manager publishes the documentation using GitHub Actions workflow\n[Publish Docs to S3](https://github.com/apache/airflow/actions/workflows/publish-docs-to-s3.yml). By default `auto` selection should publish to the `staging` bucket - based on\nthe tag you use - pre-release tags go to staging. But you can also override it and specify the destination\nmanually to be `live` or `staging`.\n\nYou should specify 'apache-airflow docker-stack task-sdk' passed as packages to be\nbuilt.\n\nAfter that step, the provider documentation should be available under https://airflow.stage.apache.org//\nURL (RC PyPI packages are build with the staging urls) but stable links and drop-down boxes are not updated yet.\n\n2. Invalidate Fastly cache, update version drop-down and stable links with the new versions of the documentation.\n\nIn order to do it, you need to run the [Build docs](https://github.com/apache/airflow-site/a"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 28283,
+      "excerpt": "at is in ``not-ready`` state (i.e. when\nyou want to release it before you switch their state to ``ready``), you need to pass\n``--include-not-ready-providers`` flag to the command above.\n\n> [!NOTE]\n> In case you prepare provider's documentation in a branch different than main, you need to manually\n> specify the base branch via `--base-branch` parameter.\n> For example if you try to build a `cncf.kubernetes` provider that is build from `provider-cncf-kubernetes/v4-4`\n> branch should be prepared like this:\n\n\n```shell script\nbreeze release-management prepare-provider-documentation --include-removed-providers \\\n --base-branch provider-cncf-kubernetes/v4-4 cncf.kubernetes\n```\n\n## (Optional) Apply template updates\n\nThis step should only be executed if we want to change template files for the providers, i.e. change\nsecurity information, commit/index/README content that is automatically generated.\n\nRegenerate the documentation templates by running the command with\n`--reapply-templates` flag to the command above. This refreshes the content of:\n\n* `__init__.py` in provider's package\n* Provider Commits\n* Provider index for the documentation\n* Provider README file used when publishing package in PyPI\n\n```shell script\nbreeze release-management prepare-provider-documentation --include-removed-providers --reapply-templates-only\n```\n\n## Build Provider distributions for SVN apache upload\n\n> [!NOTE]\n> Under the [delegated process](#delegating-release-duties-to-a-non-pmc-committer) this build step\n> begins the **PMC block**, together with signing, the `dist/dev` commit, and the PyPI RC upload.\n> Per [ASF release policy](https://www.apache.org/legal/release-policy.html#owned-controlled-hardware),\n> a PMC member should build the release themselves before signing it, rather than sign artifacts\n> built by someone else — otherwise they don't actually know what they're signing. So the PMC member\n> who signs also runs the build below, instead of the Delegate handing over pre-built artifacts.\n\nThose packages might get promoted  to \"final\" packages by just renaming the files, so internally they\nshould keep the final version number without the rc suffix, even if they are rc1/rc2/... candidates.\n\nThey also need to be signed and have checksum files. You can generate the checksum/signature files by running\nthe \"dev/sign.sh\" script (assuming you have the right PGP key set-up for signing). The"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/cncf/kubernetes/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 37638,
+      "excerpt": "rameter from ``PodManager``.\n     * Remove ``follow_container_logs`` method from ``PodManager``. Use ``fetch_container_logs`` instead.\n\n.. warning::\n  Set the default value of ``namespace`` in ``@task.kubernetes`` to ``None``, so it uses the cluster namespace when ``in_cluster`` is True. Be sure to specify a namespace when using this decorator. To retain the previous behavior, set ``namespace=\"default\"``\n\n* ``Remove deprecations cncf.kubernetes (#43689)``\n* ``Change default value of 'namespace' in 'task.kubernetes' to be None (#43402)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``Add random_name_suffix to SparkKubernetesOperator (#43847)``\n* ``terminate kubernetes watch in case of unknown error (#43645)``\n* ``Update 'namespace' priority for 'find_pod' function (#43762)``\n\nMisc\n~~~~\n\n* ``AIP-72: Remove DAG pickling (#43667)``\n\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Start porting DAG definition code to the Task SDK (#43076)``\n\n9.0.1\n.....\n\nBug Fixes\n~~~~~~~~~\n\n* ``(fix): HybridExecutor tasks of other executor rescheduled in kubernetes executor (#43003)``\n* ``(fix): use instance base_container_name to fetch logs on trigger_reentry (#42960)``\n\nMisc\n~~~~\n\n* ``Add kubernetes_conn_id to templated fields (#42786)``\n* ``Allow node_selector templating in KPO (#43051)``\n* ``Bump max version of Kubernetes Python SDK to 31.0.0 (#42907)``\n\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Split providers out of the main \"airflow/\" tree into a UV workspace project (#42624)``\n   * ``Split providers out of the main \"airflow/\" tree into a UV workspace project (#42505)``\n\n9.0.0\n.....\n\nBreaking changes\n~~~~~~~~~~~~~~~~\n\n.. warning::\n  Support for identifying pods by execution_date during the upgrade from Airflow 1 to 2 has been removed.\n  This may result in duplicate pods being launched for tasks originally started by Airflow 1, but only one of the task pods will succeed.\n\n* ``kubernetes executor cleanup_stuck_queued_tasks optimization (#41220)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``All executors should inherit from BaseExecutor (#41904)``\n* ``Fix mark as success when pod fails while fetching log (#42815)``\n* ``Fix SparkKubernetesOperator spark name. (#42427)``\n* ``KubernetesPodOperator never stops if credentials are ref"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/databricks/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/databricks/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 37493,
+      "excerpt": "e in smaller providers (#33234)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Ecldude databrick connector 2.9.0 due to a bug (#33311)``\n\n4.3.3\n.....\n\nMisc\n~~~~\n\n* ``Add a new parameter to SQL operators to specify conn id field (#30784)``\n\n4.3.2\n.....\n\nBug Fixes\n~~~~~~~~~\n\n* ``fix(providers/databricks): remove the execute method from to-be-deprecated DatabricksRunNowDeferrableOperator (#32806)``\n\nMisc\n~~~~\n\n* ``Add missing execute_complete method for 'DatabricksRunNowOperator' (#32689)``\n* ``Add more accurate typing for DbApiHook.run method (#31846)``\n\n4.3.1\n.....\n\nBug Fixes\n~~~~~~~~~\n\n* ``Modify 'template_fields' of 'DatabricksSqlOperator' to support parent class fields (#32253)``\n\nMisc\n~~~~\n\n* ``Add default_deferrable config (#31712)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``D205 Support - Providers: Databricks to Github (inclusive) (#32243)``\n   * ``Improve provider documentation and README structure (#32125)``\n   * ``Remove spurious headers for provider changelogs (#32373)``\n   * ``Prepare docs for July 2023 wave of Providers (#32298)``\n\n4.3.0\n.....\n\n.. note::\n  This release dropped support for Python 3.7\n\nFeatures\n~~~~~~~~\n\n* ``add a return when the event is yielded in a loop to stop the execution (#31985)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``Fix type annotation (#31888)``\n* ``Fix Databricks SQL operator serialization (#31780)``\n* ``Making Databricks run related multi-query string in one session again (#31898) (#31899)``\n\nMisc\n~~~~\n* ``Remove return statement after yield from triggers class (#31703)``\n* ``Remove Python 3.7 support (#30963)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Improve docstrings in providers (#31681)``\n   * ``Add discoverability for triggers in provider.yaml (#31576)``\n   * ``Add D400 pydocstyle check - Providers (#31427)``\n   * ``Add note about dropping Python 3.7 for providers (#32015)``\n\n4.2.0\n.....\n\n.. note::\n  This release of provider is only available for Airflow 2.4+ as explained in the\n  `Apache Airflow providers support policy <https://github.com/apache/airflow/blob/main/PROVIDERS.rst#minimum-supported-version-of-airflow-for-community-managed-pro"
+    }
+  ]
+}

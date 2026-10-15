@@ -1,0 +1,8 @@
+Grid did not produce a selected config; inspect runs/vector_tuning/build.stderr.log.
+At C:\Users\ADMIN\Documents\Sem\4-Research\My 
+Research\Experiment\graphrag-research-starter\graphrag-research\scripts\finalize_vector_tuning.ps1:8 char:5
++     throw 'Grid did not produce a selected config; inspect runs/vecto ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Grid did not pr...ild.stderr.log.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Grid did not produce a selected config; inspect runs/vector_tuning/build.stderr.log.
+ 

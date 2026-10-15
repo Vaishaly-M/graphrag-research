@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+        "path": "airflow-core/docs/best-practices.rst",
+        "offset": 11750,
+        "line": 308
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/05_pull_requests.rst",
+        "path": "contributing-docs/05_pull_requests.rst",
+        "offset": 8818,
+        "line": 148
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 52505,
+        "line": 995
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 8540,
+        "line": 105
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/openlineage/docs/troubleshooting.rst",
+        "path": "providers/openlineage/docs/troubleshooting.rst",
+        "offset": 4354,
+        "line": 88
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:README.md",
+        "path": "README.md",
+        "offset": 30339,
+        "line": 428
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 12591,
+        "line": 298
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 5757,
+        "line": 90
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8540,
+      "excerpt": ".rst`](airflow-core/docs/security/security_model.rst)\nand [`airflow-core/docs/security/jwt_token_authentication.rst`](airflow-core/docs/security/jwt_token_authentication.rst).\n\nParticularly, the intentional design choices, that are not security vulnerabilities and should not be\nreported as such are described in \"What is NOT considered a security vulnerability\" chapter of the security model.\n\n**When flagging security concerns, distinguish between:**\n\n1. **Actual vulnerabilities** — code that violates the documented security model (e.g., a worker\n   gaining database access it shouldn't have, a Scheduler executing user code, an unauthenticated\n   user accessing protected endpoints).\n2. **Known limitations** — documented gaps where the current implementation doesn't provide full\n   isolation (e.g., DFP/Triggerer database access, shared Execution API resources, multi-team\n   not enforcing task-level isolation). These are tracked for improvement in future versions and\n   should not be reported as new findings.\n3. **Deployment hardening opportunities** — measures a Deployment Manager can take to improve\n   isolation beyond what Airflow enforces natively (e.g., per-component configuration, asymmetric\n   JWT keys, network policies). These belong in deployment guidance, not as code-level issues.\n\n# Shared libraries\n\n- shared libraries provide implementation of some common utilities like logging, configuration where the code should be reused in different distributions (potentially in different versions)\n- we have a number of shared libraries that are separate, small Python distributions located under `shared` folder\n- each of the libraries has it's own src, tests, pyproject.toml and dependencies\n- sources of those libraries are symbolically linked to the distributions that are using them (`airflow-core`, `task-sdk` for example)\n- tests for the libraries (internal) are in the shared distribution's test and can be run from the shared distributions\n- tests of the consumers using the shared libraries are present in the distributions that use the libraries and can be run from there\n\n## Coding Standards\n\n- **Always format and check Python files with ruff immediately after writing or editing them:** `uv run ruff format <file_path>` and `uv run ruff check --fix <file_path>`. Do this for every Python file you create or modify, before moving on to the next step.\n- No `assert` in"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 30339,
+      "excerpt": "pull request guidelines.\n\nIf you can't wait to contribute, and want to get started asap, check out the [contribution quickstart](https://github.com/apache/airflow/blob/main/contributing-docs/03a_contributors_quick_start_beginners.rst) here!\n\nOfficial Docker (container) images for Apache Airflow are described in [images](https://github.com/apache/airflow/blob/main/dev/breeze/doc/ci/02_images.md).\n\n<!-- END Contributing, please keep comment here to allow auto update of PyPI readme.md -->\n\n## Community standards\n\nEveryone interacting with the Apache Airflow project — on GitHub, the\nmailing lists, Slack, the CWiki, or anywhere else — is expected to\nfollow the [Code of Conduct](CODE_OF_CONDUCT.md).\n\nWhen repeated Code of Conduct breaches, spamming, abuse of project\nresources, or other sustained disruptive behaviour cannot be resolved\nthrough normal review and mentoring, the project applies the\n[Community escalation process](COMMUNITY_ESCALATION.md). It describes\nthe steps maintainers and the PMC may take — from direct feedback,\nthrough closing PRs, up to PMC-level or ASF-Infrastructure-level\nblocks and reporting accounts to GitHub — and how affected\ncontributors can appeal a decision by emailing the PMC at\n`private@airflow.apache.org`.\n\n## Agent-assisted contribution (apache-magpie)\n\nThis repo adopts the [`apache/magpie`](https://github.com/apache/magpie)\nframework via a snapshot mechanism. The framework provides\nmaintainer-facing PR-management skills (`pr-management-triage`,\n`pr-management-code-review`, `pr-management-stats`, `pr-management-mentor`)\nthat are exposed as agent skills in agent harnesses such as Claude Code.\n\nThe framework is **not** vendored — it lives as a gitignored snapshot\nunder `.apache-magpie/`, fetched on demand from the version pinned in\nthe committed [`.apache-magpie.lock`](.apache-magpie.lock). The only\nframework artefact committed to this repo is the `magpie-setup` skill\nat [`.github/skills/magpie-setup/`](.github/skills/magpie-setup/);\neverything else is a gitignored symlink the setup skill wires up.\n\nA fresh clone needs the snapshot populated before any framework skill\nis invocable. In your agent harness, run:\n\n```text\n/magpie-setup\n```\n\n(or follow [`.claude/skills/magpie-setup/`](.claude/skills/magpie-setup/))\nto fetch the snapshot per the committed lock, scaffold the gitignored\nsymlinks, and install the post-checkout hook that re-cre"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/best-practices.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11750,
+      "excerpt": "ic best practices, including deprecated patterns and migration issues.\n   The full list is available in\n   `Airflow (AIR) <https://docs.astral.sh/ruff/rules/#airflow-air>`_.\n2. If you want to suggest a new Airflow best practice and add a matching Ruff ``AIR`` rule, follow the contributor\n   process described in\n   `Proposing Airflow Best Practices and Ruff AIR Rules <https://github.com/apache/airflow/blob/main/contributing-docs/24_proposing_best_practices_and_air_rules.rst>`_.\n\nInstalling and Using ruff\n-------------------------\n\n1. **Installation**: Install ``ruff`` using pip:\n\n   .. code-block:: bash\n\n      pip install \"ruff>=0.15.21\"\n\n2. **Running ruff**: Execute ``ruff`` to check your Dags for potential issues:\n\n   .. code-block:: bash\n\n      ruff check dags/ --select AIR3\n\n   This command will analyze your Dags located in the ``dags/`` directory and report any issues related to the specified rules.\n\nExample\n-------\n\nGiven a legacy Dag defined as:\n\n.. code-block:: python\n\n   from airflow import dag\n   from airflow.datasets import Dataset\n   from airflow.sensors.filesystem import FileSensor\n\n\n   @dag()\n   def legacy_dag():\n       FileSensor(task_id=\"wait_for_file\", filepath=\"/tmp/test_file\")\n\nRunning ``ruff`` will produce:\n\n.. code-block:: none\n\n   dags/legacy_dag.py:7:2: AIR301 Dag should have an explicit schedule argument\n   dags/legacy_dag.py:12:6: AIR302 schedule_interval is removed in Airflow 3.0\n   dags/legacy_dag.py:17:15: AIR302 airflow.datasets.Dataset is removed in Airflow 3.0\n   dags/legacy_dag.py:19:5: AIR303 airflow.sensors.filesystem.FileSensor is moved into ``standard`` provider in Airflow 3.0\n\nBy integrating ``ruff`` into your development workflow, you can proactively address deprecations and maintain code quality, facilitating smoother transitions between Airflow versions.\n\n.. _best_practices/static_type_checking:\n\nStatic Type Checking for Dags\n-----------------------------\n\nIf you type-check your Dags with ``mypy``, the optional\n`apache-airflow-mypy <https://pypi.org/project/apache-airflow-mypy/>`_ plugins give accurate results for\nAirflow-specific patterns such as typed decorators and operator outputs. See\n:doc:`/howto/static-type-checking` for installation and configuration.\n\n.. _best_practices/dynamic_dag_generation:\n\nDynamic Dag Generation\n----------------------\nSometimes writing Dags manually isn't practical.\nMaybe you have a lot of"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/05_pull_requests.rst",
+      "kind": "File",
+      "path": "contributing-docs/05_pull_requests.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8818,
+      "excerpt": "p`` output for\n    available test types for each of the testing commands) or you can run all tests, or eventually\n    you can push your code to PR and see results of the tests in the CI.\n\n-   You can use any supported python version to run the tests, but the best is to check\n    if it works for the oldest supported version (Python 3.10 currently). In rare cases\n    tests might fail with the oldest version when you use features that are available in newer Python\n    versions. For that purpose we have ``airflow.compat`` package where we keep back-ported\n    useful features from newer versions.\n\n-   Adhere to guidelines for commit messages described in this `article <https://cbea.ms/git-commit/>`_.\n    This makes the lives of those who come after you (and your future self) a lot easier.\n\n.. _pull-request-quality-criteria:\n\nPull Request quality criteria\n-----------------------------\n\nEvery open PR must meet the following minimum quality criteria before maintainers will review it.\nPRs that do not meet these criteria may be automatically converted to **draft** status by project\ntooling, with a comment explaining what needs to be fixed.\n\n1. **Descriptive title** — The PR title must clearly describe the change.\n   Generic titles such as \"Fix bug\", \"Update code\", \"Changes\", single-word titles, or titles\n   that only reference an issue number (e.g. \"Fixes #12345\") do not meet this bar.\n\n2. ** Golden Rule ** - in text descriptions - always use imperative mode, never use past\n   tense or conventional commits or any prefixes in the title take precious space and do not add any value, so they should be\n   avoided. For example, instead of \"feat: add new feature\" or \"Added this new feature\"\n   use \"Add new feature\". This is a common convention in many open source projects\n   and it makes the commit history more readable and consistent.\n\n3. **Meaningful description** — The PR body must contain a meaningful description of *what* the\n   PR does and *why*. An empty body, a body consisting only of the PR template\n   checkboxes/headers with no added text, or a body that merely repeats the title is not\n   sufficient.\n\n4. **Passing static checks** — The PR's static checks (pre-commit / ruff / mypy) must pass.\n   You can run them locally with ``prek run --from-ref main`` before pushing.\n\n5. **Gen-AI disclosure** — If the PR was created with the assistance of generative AI tools,\n   t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5757,
+      "excerpt": "h file out of the repo avoids accidentally committing\nrelease-manager notes along with the release-prep PR, and makes it obvious\nthat the notes are input to the next doc PR rather than something to keep\naround long-term.\n\n# The airflow-ctl distributions\n\nThe prerequisites to release airflow-ctl are described in [README.md](README.md).\n\n# Perform review of security issues that are marked for the release\n\nWe are keeping track of security issues in the [Security Issues](https://github.com/airflow-s/airflow-s/issues)\nrepository currently. As a release manager, you should have access to the repository.\nPlease review and ensure that all security issues marked for the release have been\naddressed and resolved. Ping security team (comment in the issues) if anything missing or\nthe issue does not seem to be addressed.\n\nAdditionally, the [dependabot alerts](https://github.com/apache/airflow/security/dependabot) and\ncode [scanning alerts](https://github.com/apache/airflow/security/code-scanning) should be reviewed\nand security team should be pinged to review and resolve them.\n\n# Decide when to release\n\nYou can release `airflow-ctl` distributions separately from the main Airflow on an ad-hoc basis,\nwhenever we find that airflow-ctl needs to be released - due to new features or due to bug fixes.\n\n# Airflow-ctl release branches\n\nAirflow-ctl maintains its own pair of release branches per minor line,\nindependent from core Airflow's `vX-Y-test` / `vX-Y-stable` branches. This\ngives airflow-ctl its own release cadence (SEMVER, bumped separately from\nAirflow) without coupling to the core Airflow maintenance branches.\n\nThe branches are:\n\n- **`main`** — all airflow-ctl development happens here.\n- **`airflow-ctl/vX-Y-test`** — maintenance branch for the X.Y line. Bug\n  fixes that should land in an X.Y.Z patch release are cherry-picked from\n  `main` onto this branch. PRs for backports (including\n  `backport-to-airflow-ctl-vX-Y-test` label-triggered automated backports)\n  target this branch.\n- **`airflow-ctl/vX-Y-stable`** — release-cut branch for the X.Y line.\n  Each RC at GA and each patch RC is cut from this branch after a sync\n  PR from `-test` → `-stable`. This branch is protected in `.asf.yaml` —\n  all merges require a reviewed PR and linear history.\n\nThe two branches start identical when they are cut and then diverge:\n`-test` continuously accumulates cherry-picks, while `-stabl"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12591,
+      "excerpt": " as we do not want it set and the flag defaults to the env var\n\nWarning: you need the `helm gpg` plugin to sign the chart (instructions to install it above)\n\nThis should generate two files:\n\n- `dist/airflow-${VERSION}.tgz`\n- `dist/airflow-${VERSION}.tgz.prov`\n\nThe second one is a provenance file as described in\nhttps://helm.sh/docs/topics/provenance/. It can be used to verify integrity of the Helm chart.\n\n- Generate SHA512/ASC\n\n```shell\npushd ${AIRFLOW_REPO_ROOT}/dist\n${AIRFLOW_REPO_ROOT}/dev/sign.sh airflow-*.tgz airflow-*-source.tar.gz\npopd\n```\n\n- Move the artifacts to ASF dev dist repo, Generate convenience `index.yaml` & Publish them\n\n  ```shell\n  # First clone the repo\n  cd ${AIRFLOW_REPO_ROOT}/..\n  [ -d asf-dist ] || svn checkout --depth=immediates https://dist.apache.org/repos/dist asf-dist\n  svn update --set-depth=infinity asf-dist/dev/airflow\n\n  # Create new folder for the release\n  cd asf-dist/dev/airflow/helm-chart\n  svn mkdir ${VERSION}${VERSION_SUFFIX}\n\n  # Move the artifacts to svn folder\n  mv ${AIRFLOW_REPO_ROOT}/dist/airflow-${VERSION}.tgz* ${VERSION}${VERSION_SUFFIX}/\n  mv ${AIRFLOW_REPO_ROOT}/dist/airflow-chart-${VERSION}-source.tar.gz* ${VERSION}${VERSION_SUFFIX}/\n  cd ${VERSION}${VERSION_SUFFIX}\n\n  ###### Generate index.yaml file - Start\n  # Download the latest index.yaml on Airflow Website\n  curl https://airflow.apache.org/index.yaml --output index.yaml\n\n  # Replace the URLs from \"https://downloads.apache.org\" to \"https://archive.apache.org\"\n  # as the downloads.apache.org only contains latest releases.\n  sed -i 's|https://downloads.apache.org/airflow/helm-chart/|https://archive.apache.org/dist/airflow/helm-chart/|' index.yaml\n\n  # Generate / Merge the new version with existing index.yaml\n  helm repo index --merge ./index.yaml . --url \"https://dist.apache.org/repos/dist/dev/airflow/helm-chart/${VERSION}${VERSION_SUFFIX}\"\n\n  ###### Generate index.yaml file - End\n\n  # Commit the artifacts\n  svn add *\n  svn commit -m \"Add artifacts for Helm Chart ${VERSION}${VERSION_SUFFIX}\"\n  ```\n\n- Remove old Helm Chart versions from the dev repo\n\n  ```shell\n  cd ..\n  export PREVIOUS_VERSION_WITH_SUFFIX=1.0.0rc1\n  svn rm ${PREVIOUS_VERSION_WITH_SUFFIX}\n  svn commit -m \"Remove old Helm Chart release: ${PREVIOUS_VERSION_WITH_SUFFIX}\"\n  ```\n\n- Push Tag for the release candidate\n\n  ```shell\n  cd ${AIRFLOW_REPO_ROOT}\n  git push upstream tag helm-chart/${VERSIO"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 52505,
+      "excerpt": "f provider's release.\n\n*apache-airflow-providers-<PROVIDER>-*.tar.gz* are the convenience python \"sdist\" distributions that we publish in PyPI\n\n*apache_airflow_providers_<PROVIDER>-*.whl are the convenience Python \"wheel\" distributions that we publish in PyPI.\n\nThe test procedure for PMC members is described in\nhttps://github.com/apache/airflow/blob/main/dev/README_RELEASE_PROVIDERS.md#verify-the-release-candidate-by-pmc-members\n\nThe test procedure for and Contributors who would like to test this RC is described in:\nhttps://github.com/apache/airflow/blob/main/dev/README_RELEASE_PROVIDERS.md#verify-the-release-candidate-by-contributors\n\n\nPublic keys are available at:\nhttps://dist.apache.org/repos/dist/release/airflow/KEYS\n\nPlease vote accordingly:\n\n[ ] +1 approve\n[ ] +0 no opinion\n[ ] -1 disapprove with the reason\n\nOnly votes from PMC members are binding, but members of the community are\nencouraged to test the release and vote with \"(non-binding)\".\n\nPlease note that the version number excludes the 'rcX' string.\nThis will allow us to rename the artifact without modifying\nthe artifact checksums when we actually release it.\n\nThe status of testing the providers by the community is kept here:\n$GITHUB_ISSUE_LINK\n\nThe issue is also the easiest way to see important PRs included in the RC candidates.\nDetailed changelog for the providers will be published in the documentation after the\nRC candidates are released.\n\nYou can find the RC packages in PyPI following these links:\n\n<PASTE TWINE UPLOAD LINKS HERE. SORT THEM BEFORE!>\n\nCheers,\n$RELEASE_MANAGER_NAME\n\nEOF\n```\n\nDue to the nature of packages, not all packages have to be released as convenience\npackages in the final release. During the voting process\nthe voting PMC members might decide to exclude certain packages from the release if some critical\nproblems have been found in some packages.\n\nPlease modify the message above accordingly to clearly exclude those packages.\n\nNote, For RC2/3 you may refer to shorten vote period as agreed in mailing list [thread](https://lists.apache.org/thread/cv194w1fqqykrhswhmm54zy9gnnv6kgm).\n\n# Release verification\n\n## Verify the release candidate by PMC members\n\nSet expected release tag (the same as announced in the vote email):\n\n```shell script\nexport RELEASE_DATE=2025-11-03\n````\n\nGo to the directory where you have airflow checked out and set AIRFLOW_REPO_ROOT variable\n\n```shell\nexport A"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/openlineage/docs/troubleshooting.rst",
+      "kind": "File",
+      "path": "providers/openlineage/docs/troubleshooting.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4354,
+      "excerpt": "age events will still be emitted, additional metadata (like input/output datasets) may be missing.\n\n**Possible Solution**\n\nUse :ref:`supported Hooks <supported_classes:openlineage>` within your PythonOperator to take advantage of Hook Level\nLineage. This feature is available on Airflow 2.10+ and is described in the\n`Lineage documentation <https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/lineage.html>`_.\nBy using hooks within Python operators, you can leverage their built-in OpenLineage support to automatically extract\nlineage information.\n\n\nLimited lineage from custom operators\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nCustom operators may have limited or no OpenLineage support, which can result in gaps in lineage tracking.\n\n**Possible Solution**\n\nImplement OpenLineage methods directly in your custom operator. See the :ref:`guides/developer:openlineage` for\ncomprehensive documentation on how to add OpenLineage support to custom operators.\n\n\nLimited lineage from KubernetesPodOperator\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nThe internals of the KubernetesPodOperator (KPO) are effectively a \"black box,\" complicating lineage tracking with\nOpenLineage. The operator runs arbitrary containers, making it difficult to automatically extract lineage information\nfrom the executed workloads. While OpenLineage events will still be emitted, additional metadata (like input/output\ndatasets) may be missing.\n\n**Possible Solution**\n\nThere is no native, supported, or recommended solution for full OpenLineage support for KPO at the moment. However,\nthere are some possible approaches you can take to fill in gaps in your lineage graph:\n\n- **Manual Annotation**: See :ref:`inlets_outlets:openlineage` for how to manually annotate tasks with datasets.\n- **Sidecar Container for Lineage Capture**: Introduce a sidecar container in the KPO pod to capture lineage data\n  directly from the operation modifying the data. This setup mirrors the XCom sidecar functionality, where a\n  separate container runs alongside the main KPO container, collecting lineage data as it's generated. This data can\n  then be forwarded to the OpenLineage backend with additional custom code.\n\n\nLimited lineage from other provider operators\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nCertain operators available in other Apache Airflow provider packages may lack OpenLineage suppor"
+    }
+  ]
+}

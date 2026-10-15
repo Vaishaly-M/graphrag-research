@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 91274,
+        "line": 48
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/ml-package-versions.yml",
+        "path": "mlflow/ml-package-versions.yml",
+        "offset": 33068,
+        "line": 950
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+        "path": "examples/llms/RAG/_cache.json",
+        "offset": 54111,
+        "line": 288
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25641",
+        "path": null,
+        "offset": 597,
+        "line": 21
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 10725,
+        "line": 234
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 153,
+        "line": 4
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:libs/typescript/integrations/openai/docs/index.html",
+        "path": "libs/typescript/integrations/openai/docs/index.html",
+        "offset": 4678,
+        "line": 113
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:libs/typescript/integrations/openai/README.md",
+        "path": "libs/typescript/integrations/openai/README.md",
+        "offset": 792,
+        "line": 7
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10725,
+      "excerpt": "itories (e.g., S3 or\nAzure Blob Storage backends), and of course the Python fluent, tracking,\nand model APIs.\n\n### Environment Setup and Python configuration\n\nHaving a standardized development environment is advisable when working\non MLflow. Creating an environment that contains the required Python\npackages (and versions), linting tools, and environment configurations\nwill help to prevent unnecessary CI failures when filing a PR. A\ncorrectly configured local environment will also allow you to run tests\nlocally in an environment that mimics that of the CI execution\nenvironment.\n\nThere are three means of setting up a base Python development environment\nfor MLflow: GitHub Codespaces, automated (through the\n[dev-env-setup.sh](https://github.com/mlflow/mlflow/tree/master/dev/dev-env-setup.sh)\nscript) or manual. Even in a manual-based approach (i.e., testing\nfunctionality of a specific version of a model flavor's package\nversion), the automated script can save a great deal of time and reduce\nerrors in creating the environment.\n\n#### GitHub Codespaces\n\n<img src=\"./assets/create-codespace.png\" width=\"60%\"/>\n\n1. Navigate to https://github.com/mlflow/mlflow.git.\n2. Above the file list, click `Code`, then select `Create codespace` and wait for your codespace to be created.\n\nSee [Quickstart for GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) for more information.\n\n#### Automated Python development environment configuration\n\nThe automated development environment setup script\n([dev-env-setup.sh](https://github.com/mlflow/mlflow/tree/master/dev/dev-env-setup.sh))\ncan be used to setup a development environment that is configured with\nall of the dependencies required and the environment configuration\nneeded to develop and locally test the Python code portions of MLflow.\nThis CLI tool's readme can be accessed via the root of the mlflow\nrepository as follows:\n\n```bash\ndev/dev-env-setup.sh -h\n```\n\nAn example usage of this script that will build a development\nenvironment using `virtualenv` and the minimum supported Python version\n(to ensure compatibility) is:\n\n```bash\ndev/dev-env-setup.sh -d .venvs/mlflow-dev -q\n```\n\nThe `-q` parameter is to \"quiet\" the pip install processes preventing\nstdout printing during installation.\n\nIt is advised to follow all of the prompts to ensure that the\nconfiguration of the environment, as well as git, are compl"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 153,
+      "excerpt": "aging, serving, and deployment.\n---\n\nimport Tabs from \"@theme/Tabs\";\nimport TabItem from \"@theme/TabItem\";\nimport TOCInline from \"@theme/TOCInline\";\nimport { APILink } from \"@site/src/components/APILink\";\n\n# Managing Dependencies in MLflow Models\n\n[MLflow Model](/ml/model) is a standard format that packages a machine learning model with its dependencies and other metadata.\nBuilding a model with its dependencies allows for reproducibility and portability across a variety of platforms and tools.\n\nWhen you create an MLflow model using the [MLflow Tracking APIs](/ml/tracking), for instance, <APILink fn=\"mlflow.pytorch.log_model\" />,\nMLflow automatically infers the required dependencies for the model flavor you're using and records them as a part of Model metadata. Then, when you\nserve the model for prediction, MLflow automatically installs the dependencies to the environment. Therefore, you normally won't need to\nworry about managing dependencies in MLflow Model.\n\nHowever, in some cases, you may need to add or modify some dependencies. This page provides a high-level description of how MLflow manages\ndependencies and guidance for how to customize dependencies for your use case.\n\n:::tip\nOne tip for improving MLflow's dependency inference accuracy is to add an `input_example` when saving your model. This enables MLflow to\nperform a model prediction before saving the model, thereby capturing the dependencies used during the prediction.\nPlease refer to [Model Input Example](/ml/model/signatures) for additional, detailed usage of this parameter.\n:::\n\n<TOCInline toc={toc} maxHeadingLevel={2} />\n\n## How MLflow Records Model Dependencies \\{#how-mlflow-records-dependencies}\n\nAn MLflow Model is saved within a specified directory with the following structure:\n\n```\nmy_model/\n├── MLmodel\n├── model.pkl\n├── conda.yaml\n├── python_env.yaml\n└── requirements.txt\n```\n\nModel dependencies are defined by the following files (For other files, please refer to the guidance provided in the section discussing [Storage Format](/ml/model#storage-format)):\n\n- `python_env.yaml` - This file contains the information required to restore the model environment using virtualenv (1) python version (2) build tools like pip, setuptools, and wheel (3) pip requirements of the model (a reference to requirements.txt)\n- `requirements.txt` - Defines the set of pip dependencies required to run the model.\n- `c"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+      "kind": "File",
+      "path": "examples/llms/RAG/_cache.json",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 54111,
+      "excerpt": "Organizing Runs in Experiments Managing Experiments and Runs with the Tracking Service API Tracking UI Querying Runs Programmatically MLflow Tracking Servers Storage Networking Using the Tracking Server for proxied artifact access Logging to a Tracking Server System Tags Concepts MLflow Tracking is organized around the concept of runs, which are executions of some piece of data science code. Each run records the following information: Code VersionGit commit hash\\\\n    \\\\n    Please call the submit_function function to submit the generated question and answer.\\\\n    \\\"}], \\\"model\\\": \\\"gpt-3.5-turbo\\\", \\\"functions\\\": [{\\\"name\\\": \\\"submit_function\\\", \\\"description\\\": \\\"Call this function to submit the generated question and answer.\\\", \\\"parameters\\\": {\\\"type\\\": \\\"object\\\", \\\"properties\\\": {\\\"question\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The question asking for the key information in the given paragraph.\\\"}, \\\"answer\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The answer to the question using the information in the given paragraph.\\\"}}, \\\"required\\\": [\\\"question\\\", \\\"answer\\\"]}}], \\\"function_call\\\": \\\"auto\\\", \\\"temperature\\\": 0.0, \\\"seed\\\": 2023}\": {\n    \"id\": \"chatcmpl-8NPzCtxAH1sGVA3lPlMeHNHRVqbyh\",\n    \"object\": \"chat.completion\",\n    \"created\": 1700592126,\n    \"model\": \"gpt-3.5-turbo-0613\",\n    \"choices\": [\n      {\n        \"index\": 0,\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": null,\n          \"function_call\": {\n            \"name\": \"submit_function\",\n            \"arguments\": \"{\\n  \\\"question\\\": \\\"What is the purpose of MLflow Tracking?\\\",\\n  \\\"answer\\\": \\\"The purpose of MLflow Tracking is to log parameters, code versions, metrics, and output files when running machine learning code and to visualize the results later. It provides an API and UI for logging and querying experiments using Python, REST, R API, and Java API. MLflow Tracking is used to organize runs, which are executions of data science code, and each run records information such as code version and Git commit hash.\\\"\\n}\"\n          }\n        },\n        \"finish_reason\": \"function_call\"\n      }\n    ],\n    \"usage\": { \"prompt_tokens\": 485, \"completion_tokens\": 112, \"total_tokens\": 597 }\n  },\n  \"{\\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Please generate a question asking for the key information in the given paragraph. \\\\n    Also answer the questions using "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 91274,
+      "excerpt": "Organizing Runs in Experiments Managing Experiments and Runs with the Tracking Service API Tracking UI Querying Runs Programmatically MLflow Tracking Servers Storage Networking Using the Tracking Server for proxied artifact access Logging to a Tracking Server System Tags Concepts MLflow Tracking is organized around the concept of runs, which are executions of some piece of data science code. Each run records the following information: Code VersionGit commit hash\",0,tracking.html\nWhat information does each run record in MLflow Tracking?,\"Each run in MLflow Tracking records the following information: code version (Git commit hash used for the run), start and end time of the run, source (name of the file or project name and entry point), input parameters (key-value pairs), metrics (key-value pairs where the value is numeric), and artifacts (output files in any format). MLflow allows you to record runs using Python, R, Java, and REST APIs from anywhere you run your code, such as in a standalone program, on a remote cloud machine, or in an interactive notebook. You can also organize runs into experiments to group together runs for a specific task.\",\"Tags Concepts MLflow Tracking is organized around the concept of runs, which are executions of some piece of data science code. Each run records the following information: Code VersionGit commit hash used for the run, if it was run from an MLflow Project. Start & End TimeStart and end time of the run SourceName of the file to launch the run, or the project name and entry point for the run if run from an MLflow Project. ParametersKey-value input parameters of your choice. Both keys and values are strings. MetricsKey-value metrics, where the value is numeric. Each metric can be updated throughout the course of the run (for example, to track how your model's loss function is converging), and MLflow records and lets you visualize the metric's full history. ArtifactsOutput files in any format. For example, you can record images (for example, PNGs), models (for example, a pickled scikit-learn model), and data files (for example, a Parquet file) as artifacts. You can record runs using MLflow Python, R, Java, and REST APIs from anywhere you run your code. For example, you can record them in a standalone program, on a remote cloud machine, or in an interactive notebook. If you record runs in an MLflow Project, MLflow remembers"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:libs/typescript/integrations/openai/README.md",
+      "kind": "File",
+      "path": "libs/typescript/integrations/openai/README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 792,
+      "excerpt": " OpenAI. |\n\n## Installation\n\n```bash\nnpm install @mlflow/openai\n```\n\nThe package includes the [`@mlflow/core`](https://github.com/mlflow/mlflow/tree/main/libs/typescript) package and `openai` package as peer dependencies. Depending on your package manager, you may need to install these two packages separately.\n\n## Quickstart\n\nStart MLflow Tracking Server. If you have a local Python environment, you can run the following command:\n\n```bash\npip install mlflow\nmlflow server --backend-store-uri sqlite:///mlruns.db --port 5000\n```\n\nIf you don't have Python environment locally, MLflow also supports Docker deployment or managed services. See [Self-Hosting Guide](https://mlflow.org/docs/latest/self-hosting/index.html) for getting started.\n\nInstantiate MLflow SDK in your application:\n\n```typescript\nimport * as mlflow from '@mlflow/core';\n\nmlflow.init({\n  trackingUri: 'http://localhost:5000',\n  experimentId: '<experiment-id>',\n});\n```\n\nCreate a trace:\n\n```typescript\nimport { OpenAI } from 'openai';\nimport { tracedOpenAI } from '@mlflow/openai';\n\n// Wrap the OpenAI client with the tracedOpenAI function\nconst client = tracedOpenAI(new OpenAI());\n\n// Invoke the client as usual\nconst response = await client.chat.completions.create({\n  model: 'o4-mini',\n  messages: [\n    { role: 'system', content: 'You are a helpful weather assistant.' },\n    { role: 'user', content: \"What's the weather like in Seattle?\" },\n  ],\n});\n```\n\nView traces in MLflow UI:\n\n![MLflow Tracing UI](https://github.com/mlflow/mlflow/blob/891fed9a746477f808dd2b82d3abb2382293c564/docs/static/images/llms/tracing/quickstart/single-openai-trace-detail.png?raw=true)\n\n## Documentation 📘\n\nOfficial documentation for MLflow Typescript SDK can be found [here](https://mlflow.org/docs/latest/genai/tracing/quickstart).\n\n## License\n\nThis project is licensed under the [Apache License 2.0](https://github.com/mlflow/mlflow/blob/master/LICENSE.txt).\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:libs/typescript/integrations/openai/docs/index.html",
+      "kind": "File",
+      "path": "libs/typescript/integrations/openai/docs/index.html",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4678,
+      "excerpt": "       <a href=\"https://github.com/mlflow/mlflow/tree/main/libs/typescript\"\n              ><code>mlflow-tracing</code></a\n            >\n            package and <code>openai</code> package as peer dependencies. Depending on your package\n            manager, you may need to install these two packages separately.\n          </p>\n          <h2 id=\"quickstart\" class=\"tsd-anchor-link\">\n            Quickstart<a href=\"#quickstart\" aria-label=\"Permalink\" class=\"tsd-anchor-icon\"\n              ><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\">\n                <use href=\"assets/icons.svg#icon-anchor\"></use></svg\n            ></a>\n          </h2>\n          <p>Start MLflow Tracking Server if you don't have one already:</p>\n          <pre><code class=\"bash\"><span class=\"hl-0\">pip</span><span class=\"hl-1\"> </span><span class=\"hl-2\">install</span><span class=\"hl-1\"> </span><span class=\"hl-2\">mlflow</span><br/><span class=\"hl-0\">mlflow</span><span class=\"hl-1\"> </span><span class=\"hl-2\">server</span><span class=\"hl-1\"> </span><span class=\"hl-3\">--backend-store-uri</span><span class=\"hl-1\"> </span><span class=\"hl-2\">sqlite:///mlruns.db</span><span class=\"hl-1\"> </span><span class=\"hl-3\">--port</span><span class=\"hl-1\"> </span><span class=\"hl-4\">5000</span>\n</code><button type=\"button\">Copy</button></pre>\n\n          <p>\n            Self-hosting MLflow server requires Python 3.10 or higher. If you don't have one, you\n            can also use <a href=\"https://mlflow.org/#get-started\">managed MLflow service</a> for\n            free to get started quickly.\n          </p>\n          <p>Instantiate MLflow SDK in your application:</p>\n          <pre><code class=\"typescript\"><span class=\"hl-5\">import</span><span class=\"hl-1\"> </span><span class=\"hl-3\">*</span><span class=\"hl-1\"> </span><span class=\"hl-5\">as</span><span class=\"hl-1\"> </span><span class=\"hl-6\">mlflow</span><span class=\"hl-1\"> </span><span class=\"hl-5\">from</span><span class=\"hl-1\"> </span><span class=\"hl-2\">&#39;mlflow-tracing&#39;</span><span class=\"hl-1\">;</span><br/><br/><span class=\"hl-6\">mlflow</span><span class=\"hl-1\">.</span><span class=\"hl-0\">init</span><span class=\"hl-1\">({</span><br/><span class=\"hl-1\">  </span><span class=\"hl-6\">trackingUri:</span><span class=\"hl-1\"> </span><span class=\"hl-2\">&#39;http://localhost:5000&#39;</span><span class=\"hl-1\">,</span><br/><span class=\"hl-1\">  </span><span class=\"hl-6\">experimen"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/ml-package-versions.yml",
+      "kind": "File",
+      "path": "mlflow/ml-package-versions.yml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 33068,
+      "excerpt": "SL https://deno.land/install.sh | sh -s -- -y --no-modify-path\n      # Update key libraries from source w/ no-deps\n      uv pip install --system --no-deps \\\n      # We need to install pydantic_graph and pydantic_ai_slim as pydantic_ai is dependent on both of them\n      # and we need to install them separately. Without pinning them separately would result in dependency\n      # conflict errors and the installation of pydantic_ai would get failed.\n      # Ref: https://github.com/pydantic/pydantic-ai/blob/main/pydantic_ai_slim/pyproject.toml#L45-L52\n        \"git+https://github.com/pydantic/pydantic-ai.git#egg=pydantic-graph&subdirectory=pydantic_graph\" \\\n        \"git+https://github.com/pydantic/pydantic-ai.git#egg=pydantic-ai-slim&subdirectory=pydantic_ai_slim\" \\\n        \"git+https://github.com/pydantic/pydantic-ai.git#egg=pydantic-ai\"\n  autologging:\n    minimum: \"0.2.19\"\n    # TODO: Bump past 1.94.0 once the tracing tests patch the right model request\n    # entrypoint. pydantic-ai >= 1.96 no longer routes through\n    # `InstrumentedModel.request`, so the mock is bypassed and tests hit the real API.\n    maximum: \"1.94.0\"\n    requirements:\n      \">= 0.0.0\": [\"mcp\"]\n    run: pytest tests/pydantic_ai\n    test_tracing_sdk: true\n    test_every_n_versions: 10\n\nsmolagents:\n  package_info:\n    genai: true\n    repo: https://github.com/huggingface/smolagents/tree/HEAD\n    pip_release: \"smolagents\"\n    module_name: \"smolagents\"\n    install_dev: |\n      uv pip install --system \"git+https://github.com/huggingface/smolagents\"\n  autologging:\n    minimum: \"1.19.0\"\n    maximum: \"1.26.0\"\n    requirements:\n      \"< 1.21.0\": [\"duckduckgo-search\"]\n      # `duckduckgo_search` has been renamed to `ddgs`:\n      # https://github.com/huggingface/smolagents/pull/1593\n      \">= 1.21.0\": [\"ddgs\"]\n    run: pytest tests/smolagents\n    test_tracing_sdk: true\n\nstrands:\n  package_info:\n    genai: true\n    repo: https://github.com/strands-agents/sdk-python/tree/HEAD\n    pip_release: \"strands-agents\"\n    module_name: \"strands\"\n    install_dev: |\n      uv pip install --system \"git+https://github.com/strands-agents/sdk-python\"\n  autologging:\n    minimum: \"1.4.0\"\n    maximum: \"1.42.0\"\n    run: pytest tests/strands\n    test_tracing_sdk: true\n\nhaystack:\n  package_info:\n    repo: https://github.com/deepset-ai/haystack/tree/HEAD\n    pip_release: \"haystack-ai\"\n    module_name: \"haystack\"\n    install_dev: "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25641",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 25641,
+      "title": "[BUG] mlflow-skinny builds an empty wheel on Windows checkouts without symlink privilege",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 597,
+      "excerpt": "d82aa580c8a0aafd46578d041c70d2537f29\n\n### System information\n\n- **OS Platform and Distribution (e.g., Linux Ubuntu 16.04)*OS: Windows 11 (Windows-11-10.0.26200-SP0)\nPython: 3.13.15\nInstalled from: source\ngit config core.symlinks: false   (the default for a non-elevated Windows user)\nsetuptools: per libs/skinny's own build-system requirement (<=82.0.1)\nShell: non-elevated, Developer Mode off*:\n- **Python version**:\n\n\n### Describe the problem\n\nlibs/skinny/ and libs/tracing/ reach the package source through symlinks committed to git — git ls-files -s reports mode 120000:\n\nlibs/skinny/mlflow   -> ../../mlflow\nlibs/tracing/mlflow  -> ../../mlflow\nOn Windows git sets core.symlinks=false unless the user is elevated or has Developer Mode enabled, and materialises those entries as regular text files containing the link target:\n\n> type libs\\skinny\\mlflow\n../../mlflow\nBoth packages then discover their modules with:\n\n[tool.setuptools.packages.find]\nwhere = [\".\"]\ninclude = [\"mlflow\", \"mlflow.*\"]\nlibs/skinny/mlflow is a file, not a package directory, so discovery finds nothing:\n\n>>> find_packages(where=\"libs/skinny\", include=[\"mlflow\", \"mlflow.*\"])\n[]\nExpected: the build fails, or resolves the real package tree.\n\nActual: the build exits 0 and produces a wheel containing no Python modules at all. The wheel still declares the mlflow console entry point, so installing it yields a working-looking install whose CLI cannot import anything.\n\nPublished PyPI artifacts are unaffected — they are built on Linux. The impact is on anyone building or installing from source on Windows.\n\nWhy CI does not catch it\n.github/workflows/build-wheel.yml builds the skinny and tracing variants on runs-on: ubuntu-latest, where symlinks resolve normally. No job builds either variant on Windows, so this is invisible to CI by construction — it is not a gap that a green Windows job would close, because the wheel build never runs there at all.\n\nNote on a recent migration\nThese two packages moved from setup.py to a generated pyproject.toml, and the behaviour carried straight through the migration: [tool.setuptools.packages.find] with where = [\".\"] fails exactly the way the previous build did.\n\n### Tracking information\n\nNot applicable — this is a build/packaging defect, not a tracking one.\n\n### Code to reproduce issue\n\nOn Windows, as a normal (non-elevated) user with Developer Mode off:\n\ngit clone https://"
+    }
+  ]
+}

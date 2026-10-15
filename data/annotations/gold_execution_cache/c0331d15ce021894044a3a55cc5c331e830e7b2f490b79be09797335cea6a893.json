@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:go-sdk/adr/0004-self-contained-executable-bundle.md",
+        "path": "go-sdk/adr/0004-self-contained-executable-bundle.md",
+        "offset": 4267,
+        "line": 97
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/core-concepts/dags.rst",
+        "path": "airflow-core/docs/core-concepts/dags.rst",
+        "offset": 23375,
+        "line": 533
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/ci/04_selective_checks.md",
+        "path": "dev/breeze/doc/ci/04_selective_checks.md",
+        "offset": 302,
+        "line": 7
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 407,
+        "line": 13
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+        "path": "contributing-docs/testing/unit_tests.rst",
+        "offset": 330,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/faq.rst",
+        "path": "airflow-core/docs/faq.rst",
+        "offset": 26604,
+        "line": 627
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/ui/src/layouts/Details/Graph/Graph.tsx",
+        "path": "airflow-core/src/airflow/ui/src/layouts/Details/Graph/Graph.tsx",
+        "offset": 5372,
+        "line": 127
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:chart/values.yaml",
+        "path": "chart/values.yaml",
+        "offset": 310,
+        "line": 6
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 407,
+      "excerpt": "ntifiers like `dag_id`, `dag`, `my_dag`.\n- CLI: `airflow dags list`, `airflow dags test`, etc.\n- Paths and config keys: `dag_processing/`, `dagprocessor`, `get_dag`, etc.\n- Anti-pattern quotes that show the wrong form to teach the rule itself\n  (e.g., `Use \"DAG\" — always write \"Dag\"`).\n\nDon't spell out **Directed Acyclic Graph** except for historical context.\n\n## Environment Setup\n\n- Install prek: `uv tool install prek`\n- Enable commit hooks: `prek install`\n- Install breeze shim (one-time, per machine): `scripts/tools/setup_breeze` — installs `~/.local/bin/breeze` that runs breeze via `uvx` from the current git worktree's `dev/breeze` (so each worktree, including ephemeral agent worktrees, gets its own breeze tied to its sources). See [ADR 0017](dev/breeze/doc/adr/0017-use-uvx-to-run-breeze-from-local-sources.md).\n- **Never run pytest, python, or airflow commands directly on the host** — always use `breeze`.\n- Place temporary scripts in `dev/` (mounted as `/opt/airflow/dev/` inside Breeze).\n\n## Commands\n\n`<PROJECT>` is folder where pyproject.toml of the package you want to test is located. For example, `airflow-core` or `providers/amazon`.\n`<target_branch>` is the branch the PR will be merged into — usually `main`, but could be `v3-1-test` when creating a PR for the 3.1 branch.\n\n<!-- START generated-commands, please keep comment here to allow auto update -->\n- **Run a single test:** `uv run --project <PROJECT> pytest path/to/test.py::TestClass::test_method -xvs`\n- **Run a test file:** `uv run --project <PROJECT> pytest path/to/test.py -xvs`\n- **Run all tests in package:** `uv run --project <PROJECT> pytest path/to/package -xvs`\n- **If uv tests fail with missing system dependencies, run the tests with breeze**: `breeze run pytest <tests> -xvs`\n- **Run a Python script:** `uv run --project <PROJECT> python dev/my_script.py`\n- **Run core or provider tests suite in parallel:** `breeze testing <test_group> --run-in-parallel` (test groups: `core-tests`, `providers-tests`)\n- **Run core or provider db tests suite in parallel:** `breeze testing <test_group> --run-db-tests-only --run-in-parallel` (test groups: `core-tests`, `providers-tests`)\n- **Run core or provider non-db tests suite in parallel:** `breeze testing <test_group> --skip-db-tests --use-xdist` (test groups: `core-tests`, `providers-tests`)\n- **Run single provider complete test suite:** `breeze testing pro"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/core-concepts/dags.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/core-concepts/dags.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23375,
+      "excerpt": "st = EmptyOperator(task_id=\"last\")\n\n        options = [\"branch_a\", \"branch_b\", \"branch_c\", \"branch_d\"]\n        for option in options:\n            t = EmptyOperator(task_id=option)\n            first >> t >> last\n\nIn general, we advise you to try and keep the *topology* (the layout) of your Dag tasks relatively stable; dynamic Dags are usually better used for dynamically loading configuration options or changing operator options.\n\n\nDag Visualization\n-----------------\n\nIf you want to see a visual representation of a Dag, you have two options:\n\n* You can load up the Airflow UI, navigate to your Dag, and select \"Graph\"\n* You can run ``airflow dags show``, which renders it out as an image file\n\nWe generally recommend you use the Graph view, as it will also show you the state of all the :ref:`Task Instances <concepts:task-instances>` within any Dag Run you select.\n\nOf course, as you develop out your Dags they are going to get increasingly complex, so we provide a few ways to modify these Dag views to make them easier to understand.\n\n\n.. _concepts:taskgroups:\n\nTaskGroups\n~~~~~~~~~~\n\nA TaskGroup can be used to organize tasks into hierarchical groups in Graph view. It is useful for creating repeating patterns and cutting down visual clutter.\n\nTasks in TaskGroups live on the same original Dag, and honor all the Dag settings and pool configurations.\n\n.. seealso::\n   API reference for :class:`~airflow.sdk.TaskGroup` and :class:`~airflow.sdk.task_group`\n\n.. image:: ../img/ui-light/task_group.gif\n\nDependency relationships can be applied across all tasks in a TaskGroup with the ``>>`` and ``<<`` operators. For example, the following code puts ``task1`` and ``task2`` in TaskGroup ``group1`` and then puts both tasks upstream of ``task3``:\n\n.. code-block:: python\n   :emphasize-lines: 4,12\n\n    from airflow.sdk import task_group\n\n\n    @task_group()\n    def group1():\n        task1 = EmptyOperator(task_id=\"task1\")\n        task2 = EmptyOperator(task_id=\"task2\")\n\n\n    task3 = EmptyOperator(task_id=\"task3\")\n\n    group1() >> task3\n\nTaskGroup also supports ``default_args`` like Dag, it will overwrite the ``default_args`` in Dag level:\n\n.. code-block:: python\n    :emphasize-lines: 15\n\n    import datetime\n\n    from airflow.sdk import DAG\n    from airflow.sdk import task_group\n    from airflow.providers.standard.operators.bash import BashOperator\n    from airflow.providers.standard.opera"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/faq.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/faq.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26604,
+      "excerpt": "----\n\n``TemplateNotFound`` errors are usually due to misalignment with user expectations when passing path to operator\nthat trigger Jinja templating. A common occurrence is with :class:`~airflow.providers.standard.operators.BashOperator`.\n\nAnother commonly missed fact is that the files are resolved relative to where the pipeline file lives. You can add\nother directories to the ``template_searchpath`` of the Dag object to allow for other non-relative location.\n\n\nHow to trigger tasks based on another task's failure?\n-----------------------------------------------------\n\nFor tasks that are related through dependency, you can set the ``trigger_rule`` to ``TriggerRule.ALL_FAILED`` if the\ntask execution depends on the failure of ALL its upstream tasks or ``TriggerRule.ONE_FAILED`` for just one of the\nupstream task.\n\n.. code-block:: python\n\n    import pendulum\n\n    from airflow.sdk import dag, task\n    from airflow.exceptions import AirflowException\n    from airflow.utils.trigger_rule import TriggerRule\n\n\n    @task()\n    def a_func():\n        raise AirflowException\n\n\n    @task(\n        trigger_rule=TriggerRule.ALL_FAILED,\n    )\n    def b_func():\n        pass\n\n\n    @dag(schedule=\"@once\", start_date=pendulum.datetime(2021, 1, 1, tz=\"UTC\"))\n    def my_dag():\n        a = a_func()\n        b = b_func()\n\n        a >> b\n\n\n    dag = my_dag()\n\nSee :ref:`concepts:trigger-rules` for more information.\n\nIf the tasks are not related by dependency, you will need to :ref:`build a custom Operator<custom_operator>`.\n\nAirflow UI\n^^^^^^^^^^\n\nWhy did my task fail with no logs in the UI?\n--------------------------------------------\n\nLogs are :ref:`typically served when a task reaches a terminal state <serving-worker-trigger-logs>`. Sometimes, a task's normal lifecycle is disrupted, and the task's\nworker is unable to write the task's logs. This typically happens for one of two reasons:\n\n1. :ref:`Task Instance Heartbeat Timeout <concepts:task-instance-heartbeat-timeout>`.\n2. Tasks failed after getting stuck in queued (Airflow 2.6.0+). Tasks that are in queued for longer than :ref:`scheduler.task_queued_timeout <config:scheduler__task_queued_timeout>` will be marked as failed, and there will be no task logs in the Airflow UI.\n\nSetting retries for each task drastically reduces the chance that either of these problems impact a workflow.\n\nHow do I stop the sync perms happening multiple times p"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/ui/src/layouts/Details/Graph/Graph.tsx",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/ui/src/layouts/Details/Graph/Graph.tsx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5372,
+      "excerpt": " } = useGridTiSummariesStream({\n    dagId,\n    runIds: runId ? [runId] : [],\n    states: dagRun ? [dagRun.state] : undefined,\n  });\n  const gridTISummaries = runId ? summariesByRunId.get(runId) : undefined;\n\n  // Add task instances to the node data but without having to recalculate how the graph is laid out\n  const nodesWithTI = data?.nodes.map((node) => {\n    const taskInstance = gridTISummaries?.task_instances.find((ti) => ti.task_id === node.id);\n\n    return {\n      ...node,\n      data: {\n        ...node.data,\n        isSelected: node.id === taskId || node.id === groupId || node.id === `dag:${dagId}`,\n        taskInstance,\n      },\n    };\n  });\n\n  const baseFilteredNodes = useGraphFilteredNodes(nodesWithTI, graphFilters);\n\n  const { edges, nodes } = useFilteredNodesAndEdges({\n    baseFilteredNodes,\n    dagId,\n    groupId,\n    layoutEdges: data?.edges ?? [],\n    taskId,\n  });\n\n  const selectedNodeId = taskId ?? groupId;\n\n  return (\n    <Box height=\"100%\" position=\"relative\" width=\"100%\">\n      {isPending ? (\n        <Box\n          alignItems=\"center\"\n          display=\"flex\"\n          height=\"100%\"\n          justifyContent=\"center\"\n          left={0}\n          position=\"absolute\"\n          top={0}\n          width=\"100%\"\n          zIndex={10}\n        >\n          <Spinner color=\"blue.500\" size=\"xl\" />\n        </Box>\n      ) : undefined}\n      <ReactFlow\n        colorMode={colorMode}\n        defaultEdgeOptions={defaultEdgeOptions}\n        edges={edges}\n        edgesFocusable={false}\n        edgeTypes={edgeTypes}\n        maxZoom={1.5}\n        minZoom={0.01}\n        nodes={nodes}\n        nodesConnectable={false}\n        nodesDraggable={false}\n        nodesFocusable={false}\n        nodeTypes={nodeTypes}\n        onlyRenderVisibleElements\n        style={getReactFlowThemeStyle(colorMode)}\n      >\n        <Background />\n        {/* Fit the viewport after each new ELK layout instead of using the\n            fitView prop, which re-fires on every re-mount even when nodes are\n            served from the React Query cache. */}\n        <FitViewOnLayout layoutData={data} />\n        <GraphControls selectedNodeId={selectedNodeId} />\n        {/* Hide the MiniMap for large graphs — it processes all nodes even when\n            onlyRenderVisibleElements is set, adding meaningful paint cost with\n            little benefit at 500+ nodes where the map is a near-solid blob. */}\n    "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:chart/values.yaml",
+      "kind": "File",
+      "path": "chart/values.yaml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 310,
+      "excerpt": " may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing,\n# software distributed under the License is distributed on an\n# \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n# KIND, either express or implied.  See the License for the\n# specific language governing permissions and limitations\n# under the License.\n---\n# Default values for Airflow.\n# This is a YAML-formatted file.\n# Declare variables to be passed into your templates.\n\n# Provide a name to substitute for the full names of resources\nfullnameOverride: \"\"\n\n# Provide a name to substitute for the name of the chart\nnameOverride: \"\"\n\n# Use standard naming for all resources using airflow.fullname template\n# Consider removing this later and default it to true\n# to make this chart follow standard naming conventions using the fullname template.\n# For now this is an opt-in switch for backwards compatibility to leverage the standard naming convention\n# and being able to use fully fullnameOverride and nameOverride in all resources\n# For new installations - it is recommended to set it to True to follow standard naming conventions\n# For existing installations, this will rename and redeploy your resources with the new names. Be aware that\n# this will recreate your Deployment/StatefulSets along with their persistent volume claims and data storage\n# migration may be needed to keep your old data\nuseStandardNaming: false\n\n# Max number of old replicasets to retain. Can be overridden by each Deployment's revisionHistoryLimit\nrevisionHistoryLimit: ~\n\n# User and group of Airflow user\nuid: 50000\ngid: 0\n\n# Detailed default security context for Airflow Deployments\nsecurityContexts:\n  pod: {}\n  containers: {}\n\n# Global container lifecycle hooks for Airflow containers\ncontainerLifecycleHooks: {}\n\n# Airflow home directory\n# Used for mount paths\nairflowHome: /opt/airflow\n\n# Default Airflow repository -- overridden by all the specific images below\ndefaultAirflowRepository: apache/airflow\n\n# Default Airflow tag to deploy\ndefaultAirflowTag: \"3.3.0\"\n\n# Default Airflow digest. If specified, it takes precedence over tag\ndefaultAirflowDigest: ~\n\n# Airflow version (Used to make some decisions based on Airflow Version being deployed)\n# Version 3.1.0 and above is supported.\nairfl"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+      "kind": "File",
+      "path": "contributing-docs/testing/unit_tests.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 330,
+      "excerpt": " use this file except in compliance\n    with the License.  You may obtain a copy of the License at\n\n ..   http://www.apache.org/licenses/LICENSE-2.0\n\n .. Unless required by applicable law or agreed to in writing,\n    software distributed under the License is distributed on an\n    \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n    KIND, either express or implied.  See the License for the\n    specific language governing permissions and limitations\n    under the License.\n\nAirflow Unit Tests\n==================\n\nAll unit tests for Apache Airflow are run using `pytest <http://doc.pytest.org/en/latest/>`_.\n\n.. contents:: Table of Contents\n   :depth: 2\n   :local:\n\nWriting Unit Tests\n------------------\n\nFollow these guidelines when writing unit tests:\n\n* For standard unit tests that do not require integration with external systems, ensure all communications are simulated (mocked).\n* All Airflow tests are run with ``pytest``. Ensure your IDE or runners (see below) are configured to use ``pytest`` by default.\n* For tests, use standard Python \"asserts\" and ``pytest`` decorators/context managers for testing rather than ``unittest`` ones. See `pytest docs <http://doc.pytest.org/en/latest/assert.html>`__ for details.\n* Use the ``pytest.mark.parametrize`` marker for tests that have variations in parameters. See `pytest docs <https://docs.pytest.org/en/latest/how-to/parametrize.html>`__ for details.\n* Use ``pytest.warns`` to capture warnings instead of the ``recwarn`` fixture. We aim for zero warnings in our tests; therefore, we run pytest with ``--disable-warnings`` and utilize a custom warning capture system.\n\nHandling warnings\n.................\n\nBy default, specific warnings are prohibited in new tests:\n\n* ``airflow.exceptions.AirflowProviderDeprecationWarning``\n\nAny test triggering this warning without capturing it will fail.\n\n.. code-block:: console\n\n    [Breeze:3.10.19] root@91e633d08aa8:/opt/airflow# pytest tests/models/test_dag.py::TestDag::test_clear_dag\n    ...\n    FAILED tests/models/test_dag.py::TestDag::test_clear_dag[None-None] - airflow.exceptions.RemovedInAirflow3Warning: Calling `DAG.create_dagrun()` without an explicit data interval is deprecated\n\n**NOTE:** As of Airflow 3.0, the test file ``tests/models/test_dag.py`` has been relocated to ``airflow-core/tests/unit/models/test_dag.py``.\n\nTo avoid this, ensure that:\n\n* Do not use deprecated methods, "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/ci/04_selective_checks.md",
+      "kind": "File",
+      "path": "dev/breeze/doc/ci/04_selective_checks.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 302,
+      "excerpt": "\"); you may not use this file except in compliance\n with the License.  You may obtain a copy of the License at\n\n   http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing,\n software distributed under the License is distributed on an\n \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n KIND, either express or implied.  See the License for the\n specific language governing permissions and limitations\n under the License.\n -->\n\n<!-- START doctoc generated TOC please keep comment here to allow auto update -->\n<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->\n**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*\n\n- [Selective CI Checks](#selective-ci-checks)\n  - [Why selective checks exist (the optimisation goal)](#why-selective-checks-exist-the-optimisation-goal)\n  - [Mental model: events, modes, file groups, outputs](#mental-model-events-modes-file-groups-outputs)\n  - [The decision pipeline](#the-decision-pipeline)\n  - [Individually simple rules](#individually-simple-rules)\n  - [Worked examples: pull requests, pushes, and canary runs](#worked-examples-pull-requests-pushes-and-canary-runs)\n  - [Troubleshooting: my CI run does too much](#troubleshooting-my-ci-run-does-too-much)\n  - [Groups of files that selective check make decisions on](#groups-of-files-that-selective-check-make-decisions-on)\n  - [Selective check decision rules](#selective-check-decision-rules)\n  - [Skipping prek hooks (Static checks)](#skipping-prek-hooks-static-checks)\n  - [Suspended providers](#suspended-providers)\n  - [Selective check outputs](#selective-check-outputs)\n  - [Committer vs. Non-committer PRs](#committer-vs-non-committer-prs)\n  - [Changing behaviours of the CI runs by setting labels](#changing-behaviours-of-the-ci-runs-by-setting-labels)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\n# Selective CI Checks\n\nIn order to optimise our CI jobs, we've implemented optimisations to only run selected checks for some\nkind of changes. The logic implemented reflects the internal architecture of Airflow 2.0 packages,\nand it helps to keep down both the usage of jobs in GitHub Actions and CI feedback time to\ncontributors in case of simpler changes.\n\n> [!NOTE]\n> All the logic described here lives in a single file:\n> [`dev/breeze/src/airflow_breeze/utils/selective_ch"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:go-sdk/adr/0004-self-contained-executable-bundle.md",
+      "kind": "File",
+      "path": "go-sdk/adr/0004-self-contained-executable-bundle.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4267,
+      "excerpt": "ame.)\n\n## Decision\n\nReplace the bundle's ZIP container with a footer appended to the\ncompiled executable. The executable's normal byte content is unchanged\nand it remains directly runnable; the footer is data that follows the\nlast byte the OS loader cares about.\n\n### Footer layout\n\nA bundle file is laid out as:\n\n```text\n+---------------------------------+\n| <native executable: ELF/Mach-O/PE,                                |\n|  including any code-signing structures>                           |\n+---------------------------------+   <- end of \"binary\" region\n| source bytes (variable length)  |   raw root source file, UTF-8,\n|                                 |   length = source_len; MAY be 0\n+---------------------------------+\n| metadata bytes (variable length)|   airflow-metadata.yaml content,\n|                                 |   UTF-8, length = metadata_len\n+---------------------------------+\n| trailer (64 bytes, little-endian fixed layout):                   |\n|   bytes  0..3  source_len    u32                                  |\n|   bytes  4..7  metadata_len  u32                                  |\n|   bytes  8..11 footer_ver    u32  (= 1)                           |\n|   bytes 12..43 binary_sha256 32 bytes (SHA-256 of binary region)  |\n|   bytes 44..55 reserved      12 bytes, zero                       |\n|   bytes 56..63 magic         8 bytes ASCII \"AFBNDL01\"             |\n+---------------------------------+   <- EOF\n```\n\n`AFBNDL01` is `0x41 0x46 0x42 0x4E 0x44 0x4C 0x30 0x31`. The two\ntrailing ASCII digits are the footer-format version, repeated for human\ninspection (`tail -c 8 ./mybundle | xxd`); the binary `footer_ver`\nfield is the source of truth for parsing.\n\n`binary_sha256` is computed over the binary region only — bytes\n`[0, source_start)` — because the hash field is itself in the trailer\nand cannot cover the bytes it occupies. It provides integrity (the\nbinary region has not been truncated, corrupted, or naively edited\nbetween packing and exec), not authenticity (see \"Out of scope\" for\nhow authenticity layers on top).\n\nReader algorithm:\n\n1. Open the file. Seek to `EOF - 64`. Read 64 bytes.\n2. Compare bytes 56..63 against `AFBNDL01`. If different, the file is\n   not a bundle; the scanner ignores it.\n3. Parse `footer_ver`. If unknown, fail with a versioning error.\n4. Compute `metadata_start = filesize - 64 - metadata_len` and\n   `source_start  = metadat"
+    }
+  ]
+}

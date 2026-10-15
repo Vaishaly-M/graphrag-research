@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1045",
+        "path": null,
+        "offset": 19726,
+        "line": 331
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 13466,
+        "line": 275
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 16199,
+        "line": 341
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+        "path": null,
+        "offset": 18197,
+        "line": 383
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+        "path": null,
+        "offset": 18183,
+        "line": 383
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+        "path": null,
+        "offset": 18183,
+        "line": 383
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1053",
+        "path": null,
+        "offset": 18165,
+        "line": 383
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "…ging coverage\r\n\r\nIntroduce pluggable functional test modes (Aspire, RepositoryMock, EfCoreInMemory, Testcontainers, and messaging variants) for Catalog and Ordering via a shared Testing.Common library. Extract ICatalogRepository from Catalog.API to enable in-memory persistence swaps, add Serilog logging to ServiceDefaults, fix integration event type discovery under WebApplicationFactory, and add runsettings plus xUnit traits for filtering tests by mode.\r\n\r\n# eShop Multi-Mode Functional Testing\r\n\r\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontaine"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13466,
+      "excerpt": "ndering mode in Button.ResizeImageIfNecessary by @​kubaflo in https://github.com/dotnet/maui/pull/25107\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] TintColor on UIButton image no longer working when button made visible](https://github.com/dotnet/maui/issues/25093)\n  </details>\n\n- [Android] Implemented Material3 support for  ImageButton by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/33649\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Implement Material3 support for ImageButton](https://github.com/dotnet/maui/issues/33648)\n  </details>\n\n- Fixed CI failure : Restore BackButtonBehavior IsEnabled after CanExecute changes by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/34668\n\n## Checkbox\n- [iOS/MacCatalyst] Fix CheckBox foreground color not resetting when set to null by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/34284\n  <details>\n ... (truncated)\n\n## 10.0.51\n\n## What's Changed\n* Increment patch version from 50 to 51 by @​PureWeen in https://github.com/dotnet/maui/pull/34458\n* [release/10.0.1xx-sr5] [Regression] Fix TypedBinding nested property re-subscription (#​34428) by @​github-actions[bot] in https://github.com/dotnet/maui/pull/34450\n* [backport 10.0.1xx-sr5] Fix MAUIG2045 false positive with x:Reference source in DataTemplate by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/34525\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.50...10.0.51\n\n## 10.0.50\n\n## What's Changed\n\n.NET MAUI 10.0.50 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 78 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Enable packing and independent preview versioning for Essentials.AI by @​mattleibow in https://github.com/dotnet/maui/pull/33976\n\n- Move Essentials.AI preview iteration to eng/Versions.props by @​mattleibow in https://github.com/dotnet/maui/pull/34025\n\n- [Feature] Add Microsoft.Maui.Essentials.AI - Apple Intelligence by @​mattleibow in https://github.com/dotnet/maui/pull/33519\n\n- [AI] Fix multi-turn tool calling, add chat overlay, upgrade Agent Framework to rc2, and add CI pipelines by @​mattleibow in https://github.com/dotnet/maui/pull/34124\n\n## Ai Agents\n- Copilot agent infrastructure, emulator reliability, and try-fix workflow improvements by @​PureWeen via @​Copilot in https://github.co"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 16199,
+      "excerpt": "ndering mode in Button.ResizeImageIfNecessary by @​kubaflo in https://github.com/dotnet/maui/pull/25107\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] TintColor on UIButton image no longer working when button made visible](https://github.com/dotnet/maui/issues/25093)\n  </details>\n\n- [Android] Implemented Material3 support for  ImageButton by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/33649\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Implement Material3 support for ImageButton](https://github.com/dotnet/maui/issues/33648)\n  </details>\n\n- Fixed CI failure : Restore BackButtonBehavior IsEnabled after CanExecute changes by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/34668\n\n## Checkbox\n- [iOS/MacCatalyst] Fix CheckBox foreground color not resetting when set to null by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/34284\n  <details>\n ... (truncated)\n\n## 10.0.51\n\n## What's Changed\n* Increment patch version from 50 to 51 by @​PureWeen in https://github.com/dotnet/maui/pull/34458\n* [release/10.0.1xx-sr5] [Regression] Fix TypedBinding nested property re-subscription (#​34428) by @​github-actions[bot] in https://github.com/dotnet/maui/pull/34450\n* [backport 10.0.1xx-sr5] Fix MAUIG2045 false positive with x:Reference source in DataTemplate by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/34525\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.50...10.0.51\n\n## 10.0.50\n\n## What's Changed\n\n.NET MAUI 10.0.50 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 78 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Enable packing and independent preview versioning for Essentials.AI by @​mattleibow in https://github.com/dotnet/maui/pull/33976\n\n- Move Essentials.AI preview iteration to eng/Versions.props by @​mattleibow in https://github.com/dotnet/maui/pull/34025\n\n- [Feature] Add Microsoft.Maui.Essentials.AI - Apple Intelligence by @​mattleibow in https://github.com/dotnet/maui/pull/33519\n\n- [AI] Fix multi-turn tool calling, add chat overlay, upgrade Agent Framework to rc2, and add CI pipelines by @​mattleibow in https://github.com/dotnet/maui/pull/34124\n\n## Ai Agents\n- Copilot agent infrastructure, emulator reliability, and try-fix workflow improvements by @​PureWeen via @​Copilot in https://github.co"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1043,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18197,
+      "excerpt": "ndering mode in Button.ResizeImageIfNecessary by @​kubaflo in https://github.com/dotnet/maui/pull/25107\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] TintColor on UIButton image no longer working when button made visible](https://github.com/dotnet/maui/issues/25093)\n  </details>\n\n- [Android] Implemented Material3 support for  ImageButton by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/33649\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Implement Material3 support for ImageButton](https://github.com/dotnet/maui/issues/33648)\n  </details>\n\n- Fixed CI failure : Restore BackButtonBehavior IsEnabled after CanExecute changes by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/34668\n\n## Checkbox\n- [iOS/MacCatalyst] Fix CheckBox foreground color not resetting when set to null by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/34284\n  <details>\n ... (truncated)\n\n## 10.0.51\n\n## What's Changed\n* Increment patch version from 50 to 51 by @​PureWeen in https://github.com/dotnet/maui/pull/34458\n* [release/10.0.1xx-sr5] [Regression] Fix TypedBinding nested property re-subscription (#​34428) by @​github-actions[bot] in https://github.com/dotnet/maui/pull/34450\n* [backport 10.0.1xx-sr5] Fix MAUIG2045 false positive with x:Reference source in DataTemplate by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/34525\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.50...10.0.51\n\n## 10.0.50\n\n## What's Changed\n\n.NET MAUI 10.0.50 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 78 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Enable packing and independent preview versioning for Essentials.AI by @​mattleibow in https://github.com/dotnet/maui/pull/33976\n\n- Move Essentials.AI preview iteration to eng/Versions.props by @​mattleibow in https://github.com/dotnet/maui/pull/34025\n\n- [Feature] Add Microsoft.Maui.Essentials.AI - Apple Intelligence by @​mattleibow in https://github.com/dotnet/maui/pull/33519\n\n- [AI] Fix multi-turn tool calling, add chat overlay, upgrade Agent Framework to rc2, and add CI pipelines by @​mattleibow in https://github.com/dotnet/maui/pull/34124\n\n## Ai Agents\n- Copilot agent infrastructure, emulator reliability, and try-fix workflow improvements by @​PureWeen via @​Copilot in https://github.co"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1045",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1045,
+      "title": "Bump the duende group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19726,
+      "excerpt": "* The default implementation, `DefaultUiLocalsService.cs`, delegates to the `CookieRequestCultureProvider` if it is present and any of the values passed in the `ui_locales parameter` match a supported UI culture.\n  * If the default implementation does not meet your needs, `IUiLocalesService` can be implemented and registered with DI.\n* RFC 8414 support by @​bhazen in #​2189 \n  * Adds out of box support for OAuth 2.0 Authorization Server Metadata as defined in RFC 8414\n* Support for custom parameters in authorize response by @​bhazen in #​2206\n  * Adds a new `CustomParameters` property to `AuthorizeResponse` to support adding custom query parameters to the redirect uri. This will typically be used in conjunction with a custom `IAuthorizeResponseGenerator`. \n* Use Customizable Filter to Persist Session Claims in ASP.NET Identity by @​bhazen in #​2213\n  * The ASP.NET Identity integration package now persists session claims based on `ISessionClaimsFilter.FilterToSessionClaimsAsync` which comes with a default implementation.\n ... (truncated)\n\n## 7.4.0-rc.1\n\nThis is the first release candidate of IdentityServer 7.4.0. The changes since the last preview release are:\n- Add service for diagnostic data by @​josephdecock in #​2252 \n- Trigger Back Channel Logout Earlier in Pipeline by @​bhazen in #​2258\n- Enable Customizing ErrorMessage on Redirect to Error Page by @​bhazen  in #​2263 \n- Better DCR Support for Public Clientsby @​bhazen in #​2264  \n- Update .NET 10 from Release Candidate to GA by @​pgermishuys in #​2267 \n\nIdentityServer 7.4.0 is a significant release that includes:\n\n- Support for .NET 10 (this preview targets .NET10 RC2)\n- Support for OAuth 2.0 Authorization Server Metadata (RFC 8414)\n- New Callback option for path detection in Dynamic Providers\n- Improved UI locales support\n- Support for custom parameters in the Authorize Redirect Uri \n- Identity package now persists session claims based on an interface\n- Skipping front-channel logout iframe when unnecessary\n- Set HTTP activity name on routing\n\n## Breaking Changes\nThere are no schema changes needed for IdentityServer 7.4.0. Small code changes maybe be required for some users to upgrade.\n\n- Removed the unused `Duende.IdentityServer.Models.DiscoveryDocument` class which was public\n- Marked static properties referring to counters in `Telemetry.cs` as readonly\n\n### Removed the unused `Duende.IdentityServer."
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1051,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18183,
+      "excerpt": "ndering mode in Button.ResizeImageIfNecessary by @​kubaflo in https://github.com/dotnet/maui/pull/25107\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] TintColor on UIButton image no longer working when button made visible](https://github.com/dotnet/maui/issues/25093)\n  </details>\n\n- [Android] Implemented Material3 support for  ImageButton by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/33649\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Implement Material3 support for ImageButton](https://github.com/dotnet/maui/issues/33648)\n  </details>\n\n- Fixed CI failure : Restore BackButtonBehavior IsEnabled after CanExecute changes by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/34668\n\n## Checkbox\n- [iOS/MacCatalyst] Fix CheckBox foreground color not resetting when set to null by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/34284\n  <details>\n ... (truncated)\n\n## 10.0.51\n\n## What's Changed\n* Increment patch version from 50 to 51 by @​PureWeen in https://github.com/dotnet/maui/pull/34458\n* [release/10.0.1xx-sr5] [Regression] Fix TypedBinding nested property re-subscription (#​34428) by @​github-actions[bot] in https://github.com/dotnet/maui/pull/34450\n* [backport 10.0.1xx-sr5] Fix MAUIG2045 false positive with x:Reference source in DataTemplate by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/34525\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.50...10.0.51\n\n## 10.0.50\n\n## What's Changed\n\n.NET MAUI 10.0.50 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 78 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Enable packing and independent preview versioning for Essentials.AI by @​mattleibow in https://github.com/dotnet/maui/pull/33976\n\n- Move Essentials.AI preview iteration to eng/Versions.props by @​mattleibow in https://github.com/dotnet/maui/pull/34025\n\n- [Feature] Add Microsoft.Maui.Essentials.AI - Apple Intelligence by @​mattleibow in https://github.com/dotnet/maui/pull/33519\n\n- [AI] Fix multi-turn tool calling, add chat overlay, upgrade Agent Framework to rc2, and add CI pipelines by @​mattleibow in https://github.com/dotnet/maui/pull/34124\n\n## Ai Agents\n- Copilot agent infrastructure, emulator reliability, and try-fix workflow improvements by @​PureWeen via @​Copilot in https://github.co"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1052",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1052,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.40 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18183,
+      "excerpt": "ndering mode in Button.ResizeImageIfNecessary by @​kubaflo in https://github.com/dotnet/maui/pull/25107\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] TintColor on UIButton image no longer working when button made visible](https://github.com/dotnet/maui/issues/25093)\n  </details>\n\n- [Android] Implemented Material3 support for  ImageButton by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/33649\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Implement Material3 support for ImageButton](https://github.com/dotnet/maui/issues/33648)\n  </details>\n\n- Fixed CI failure : Restore BackButtonBehavior IsEnabled after CanExecute changes by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/34668\n\n## Checkbox\n- [iOS/MacCatalyst] Fix CheckBox foreground color not resetting when set to null by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/34284\n  <details>\n ... (truncated)\n\n## 10.0.51\n\n## What's Changed\n* Increment patch version from 50 to 51 by @​PureWeen in https://github.com/dotnet/maui/pull/34458\n* [release/10.0.1xx-sr5] [Regression] Fix TypedBinding nested property re-subscription (#​34428) by @​github-actions[bot] in https://github.com/dotnet/maui/pull/34450\n* [backport 10.0.1xx-sr5] Fix MAUIG2045 false positive with x:Reference source in DataTemplate by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/34525\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.50...10.0.51\n\n## 10.0.50\n\n## What's Changed\n\n.NET MAUI 10.0.50 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 78 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Enable packing and independent preview versioning for Essentials.AI by @​mattleibow in https://github.com/dotnet/maui/pull/33976\n\n- Move Essentials.AI preview iteration to eng/Versions.props by @​mattleibow in https://github.com/dotnet/maui/pull/34025\n\n- [Feature] Add Microsoft.Maui.Essentials.AI - Apple Intelligence by @​mattleibow in https://github.com/dotnet/maui/pull/33519\n\n- [AI] Fix multi-turn tool calling, add chat overlay, upgrade Agent Framework to rc2, and add CI pipelines by @​mattleibow in https://github.com/dotnet/maui/pull/34124\n\n## Ai Agents\n- Copilot agent infrastructure, emulator reliability, and try-fix workflow improvements by @​PureWeen via @​Copilot in https://github.co"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1053",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1053,
+      "title": "Bump Microsoft.Maui.Controls.Maps from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18165,
+      "excerpt": "ndering mode in Button.ResizeImageIfNecessary by @​kubaflo in https://github.com/dotnet/maui/pull/25107\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] TintColor on UIButton image no longer working when button made visible](https://github.com/dotnet/maui/issues/25093)\n  </details>\n\n- [Android] Implemented Material3 support for  ImageButton by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/33649\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Implement Material3 support for ImageButton](https://github.com/dotnet/maui/issues/33648)\n  </details>\n\n- Fixed CI failure : Restore BackButtonBehavior IsEnabled after CanExecute changes by @​Shalini-Ashokan in https://github.com/dotnet/maui/pull/34668\n\n## Checkbox\n- [iOS/MacCatalyst] Fix CheckBox foreground color not resetting when set to null by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/34284\n  <details>\n ... (truncated)\n\n## 10.0.51\n\n## What's Changed\n* Increment patch version from 50 to 51 by @​PureWeen in https://github.com/dotnet/maui/pull/34458\n* [release/10.0.1xx-sr5] [Regression] Fix TypedBinding nested property re-subscription (#​34428) by @​github-actions[bot] in https://github.com/dotnet/maui/pull/34450\n* [backport 10.0.1xx-sr5] Fix MAUIG2045 false positive with x:Reference source in DataTemplate by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/34525\n\n\n**Full Changelog**: https://github.com/dotnet/maui/compare/10.0.50...10.0.51\n\n## 10.0.50\n\n## What's Changed\n\n.NET MAUI 10.0.50 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 78 commits with various improvements, bug fixes, and enhancements.\n\n\n## AI\n- Enable packing and independent preview versioning for Essentials.AI by @​mattleibow in https://github.com/dotnet/maui/pull/33976\n\n- Move Essentials.AI preview iteration to eng/Versions.props by @​mattleibow in https://github.com/dotnet/maui/pull/34025\n\n- [Feature] Add Microsoft.Maui.Essentials.AI - Apple Intelligence by @​mattleibow in https://github.com/dotnet/maui/pull/33519\n\n- [AI] Fix multi-turn tool calling, add chat overlay, upgrade Agent Framework to rc2, and add CI pipelines by @​mattleibow in https://github.com/dotnet/maui/pull/34124\n\n## Ai Agents\n- Copilot agent infrastructure, emulator reliability, and try-fix workflow improvements by @​PureWeen via @​Copilot in https://github.co"
+    }
+  ]
+}

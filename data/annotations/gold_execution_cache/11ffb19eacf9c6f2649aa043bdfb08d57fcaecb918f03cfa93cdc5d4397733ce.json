@@ -1,0 +1,116 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id IN $evidence_ids\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nsubstring(coalesce(n.content,n.body,n.message,''),0,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_ids": [
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/resources/db/mysql/petclinic_db_setup_mysql.txt",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:924",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:824",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:955",
+      "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:305"
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)\n\n[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)\n\n## Understanding the Spring Petclinic application with a few diagrams\n\nSee the presentation here:  \n[Spring Petclinic Sample Application (legacy slides)](https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20)\n\n> **Note:** These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.  \n> For up-to-date information, please refer to this repository and its documentation.\n\n\n## Run Petclinic locally\n\nSpring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).\nJava 17 or later is required for the build, and the application can run with Java 17 or newer.\n\nYou first need to clone the project locally:\n\n```bash\ngit clone https://github.com/spring-projects/spring-petclinic.git\ncd spring-petclinic\n```\nIf you are using Maven, you can start the application on the command-line as follows:\n\n```bash\n./mvnw spring-boot:run\n```\nWith Gradle, the command is as follows:\n\n```bash\n./gradlew bootRun\n```\n\nYou can then access the Petclinic at <http://localhost:8080/>.\n\n<img width=\"1042\" alt=\"petclinic-screenshot\" src=\"https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png\">\n\nYou can, of course, run Petclinic in your favorite IDE.\nSee below for more details.\n\n## Building a Container\n\nThere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/resources/db/mysql/petclinic_db_setup_mysql.txt",
+      "kind": "File",
+      "path": "src/main/resources/db/mysql/petclinic_db_setup_mysql.txt",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "================================================================================\n===        Spring PetClinic sample application - MySQL Configuration         ===\n================================================================================\n\n@author Sam Brannen\n@author Costin Leau\n@author Dave Syer\n\n--------------------------------------------------------------------------------\n\n1) Download and install the MySQL database (e.g., MySQL Community Server 5.1.x),\n   which can be found here: https://dev.mysql.com/downloads/. Or run the\n   \"docker-compose.yml\" from the root of the project (if you have docker installed\n   locally):\n\n        $ docker-compose up\n        ...\n        mysql_1_eedb4818d817 | MySQL init process done. Ready for start up.\n        ...\n\n2) (Once only) create the PetClinic database and user by executing the \"db/mysql/user.sql\"\n   scripts. You can connect to the database running in the docker container using \n   `mysql -u root -h localhost --protocol tcp`, but you don't need to run the script there\n   because the petclinic user is already set up if you use the provided `docker-compose.yml`.\n\n3) Run the app with `spring.profiles.active=mysql` (e.g. as a System property via the command\n   line, but any way that sets that property in a Spring Boot app should work). For example use\n   \n   mvn spring-boot:run -Dspring-boot.run.profiles=mysql\n\n   To activate the profile on the command line.\n\nN.B. the \"petclinic\" database has to exist for the app to work with the JDBC URL value\nas it is configured by default. This condition is taken care of automatically by the \ndocker-compose configuration provided, or by the `user.sql` script if you run that as\nroot.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:305",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 305,
+      "title": "Project fails to build",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "So I followed the instructions on the readme\r\n\r\n```\r\n\tgit clone https://github.com/spring-projects/spring-petclinic.git\r\n\tcd spring-petclinic\r\n\t./mvnw spring-boot:run\r\n```\r\n\r\nBut the last stage doesn't start instead I see\r\n\r\n```\r\n[ERROR] [ERROR] Some problems were encountered while processing the POMs:\r\n[ERROR] 'dependencies.dependency.version' for org.webjars:webjars-locator:jar is missing. @ line 85, column 17\r\n @ \r\n[ERROR] The build could not read 1 project -> [Help 1]\r\n[ERROR]   \r\n[ERROR]   The project org.springframework.samples:spring-petclinic:2.0.0 (/home/cody/Documents/java_stuff/spring-petclinic/pom.xml) has 1 error\r\n[ERROR]     'dependencies.dependency.version' for org.webjars:webjars-locator:jar is missing. @ line 85, column 17\r\n[ERROR] \r\n[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.\r\n[ERROR] Re-run Maven using the -X switch to enable full debug logging.\r\n[ERROR] \r\n[ERROR] For more information about the errors and possible solutions, please read the following articles:\r\n[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException\r\n```\r\n\r\nNot sure what is happening?"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 458,
+      "title": "Surefire failing on Java 13",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "How to reproduce\r\n\r\n```\r\ngit clone https://github.com/spring-projects/spring-petclinic.git\r\ncd spring-petclinic\r\n$ ./mvnw package\r\n[INFO] Scanning for projects...\r\n[INFO] \r\n[INFO] ------------< org.springframework.samples:spring-petclinic >------------\r\n[INFO] Building petclinic 2.1.0.BUILD-SNAPSHOT\r\n[INFO] --------------------------------[ jar ]---------------------------------\r\n[INFO] \r\n[INFO] --- jacoco-maven-plugin:0.8.2:prepare-agent (default) @ spring-petclinic ---\r\n[INFO] argLine set to -javaagent:/Users/pkumari/.m2/repository/org/jacoco/org.jacoco.agent/0.8.2/org.jacoco.agent-0.8.2-runtime.jar=destfile=/Users/pkumari/java/spring-petclinic/target/jacoco.exec\r\n[INFO] \r\n[INFO] --- git-commit-id-plugin:2.2.6:revision (default) @ spring-petclinic ---\r\n[INFO] dotGitDirectory /Users/pkumari/java/spring-petclinic/.git\r\n[INFO] git.build.user.name Priti Kumari\r\n[INFO] git.build.user.email pkumari@redhat.com\r\n[INFO] git.branch master\r\n[INFO] --always = true\r\n[INFO] --dirty = -dirty\r\n[INFO] --abbrev = 7\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] git.commit.id.describe f284b29\r\n[INFO] git.commit.id f284b29501946f933ee4473ecf59096d013df31c\r\n[INFO] git.commit.id.abbrev f284b29\r\n[INFO] git.dirty false\r\n[INFO] git.commit.user.name Stephane Nicoll\r\n[INFO] git.commit.user.email snicoll@pivotal.io\r\n[INFO] git.commit.message.full Upgrade to Spring Boot 2.1.9.RELEASE\r\n[INFO] git.commit.message.short Upgrade to Spring Boot 2.1.9.RELEASE\r\n[INFO] git.commit.time 2019-10-03T17:29:27+0530\r\n[INFO] git.remote.origin.url https://github.com/spring-projects/spring-petclinic.git\r\n[INFO] git.tags \r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] git.closest.tag.name \r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] git.closest.tag.commit.count \r\n[INFO] git.total.commit.count 665\r\n[INFO] git.build.time 2019-10-09T15:19:55+0530\r\n[INFO] git.build.version 2.1.0.BUILD-SNAPSHOT\r\n[INFO] git.build.host Pritis-MacBook-Pro\r\n[INFO] git.commit.id.describe-short f284b29\r\n[INFO] found property git.ta"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:824",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 824,
+      "title": "Test fail with profile MySQL",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "First thanks for this app which is versy cool to use.\r\n\r\n## Issue\r\nWhat is the ideal way to use the tests on this project with profiles?\r\nIf we launch a build with a mysql profile for example, the tests fail because they cannot reach the database even if it is accessible by docker.\r\n\r\n```\r\n./mvnw clean package -Dspring.profiles.active=mysql\r\n```\r\nIs it unit test or integration test for this project ? It seems that both exist.\r\n\r\nIf profil mysql is activated, then the test ClinicServiceTests fails. \r\n```\r\n-------------------------------------------------------------------------------\r\nTest set: org.springframework.samples.petclinic.service.ClinicServiceTests\r\n-------------------------------------------------------------------------------\r\nTests run: 11, Failures: 0, Errors: 11, Skipped: 0, Time elapsed: 7.888 s <<< FAILURE! - in org.springframework.samples.petclinic.service.ClinicServiceTests\r\nshouldFindVets  Time elapsed: 0.015 s  <<< ERROR!\r\njava.lang.IllegalStateException: Failed to load ApplicationContext\r\nCaused by: org.springframework.beans.factory.BeanCreationException: \r\nError creating bean with name 'scriptDataSourceInitializer' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceInitializationConfiguration$SharedCredentialsDataSourceInitializationConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.jdbc.datasource.init.ScriptStatementFailedException: Failed to execute SQL script statement #1 of URL [file:/home/lynchmaniac/dev/garbage/spring-petclinic/target/classes/db/mysql/schema.sql]: CREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB; nested exception is org.h2.jdbc.JdbcSQLNonTransientException: Type de données inconnu: \r\nUnknown data type: ; SQL statement:\r\nCREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB [50004-200]\r\nCaused by: org.springframework.jdbc.datasource.init.ScriptStatementFailedException: \r\nFailed to execute SQL script statement #1 of URL [file:/home/lynchmaniac/dev/garbage/spring-petclinic/target/classes/db/mysql/schema.sql]: CREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:924",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 924,
+      "title": "There are test failures",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Hi,\r\n\r\nI just try to use locally the project with the command below but It throws error indicating test failures.\r\n`./mvnw package`\r\n\r\n```\r\n[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.2:test (default-test) on project spring-petclinic: There are test failures.\r\n[ERROR]\r\n[ERROR] Please refer to C:\\Users\\trferreira\\projects\\spring-petclinic\\target\\surefire-reports for the individual test results\r\n.\r\n[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.\r\n[ERROR] The forked VM terminated without properly saying goodbye. VM crash or System.exit called?\r\n[ERROR] Command was cmd.exe /X /C \"\"C:\\Program Files\\Java\\jdk-15.0.1\\bin\\java\" \"-javaagent:C:\\\\Users\\\\trferreira\\\\.m2\\\\repository\\\\org\\\\jacoco\\\\org.jacoco.agent\\\\0\r\n.8.5\\\\org.jacoco.agent-0.8.5-runtime.jar=destfile=C:\\\\Users\\\\trferreira\\\\projects\\\\spring-petclinic\\\\target\\\\jacoco.exec\"\r\n -jar C:\\Users\\TRFERR~1\\AppData\\Local\\Temp\\surefire17085264595512365742\\surefirebooter18044573933901661620.jar C:\\Users\\trferreira\\AppData\\Local\\Temp\\surefire17085\r\n264595512365742 2022-02-22T11-03-19_493-jvmRun1 surefire7848170936633555332tmp surefire_066542577641701259tmp\"\r\n[ERROR] Error occurred in starting fork, check output in log\r\n[ERROR] Process Exit Code: 1\r\n[ERROR] org.apache.maven.surefire.booter.SurefireBooterForkException: The forked VM terminated without properly saying goodbye. VM crash or System.exit called?\r\n[ERROR] Command was cmd.exe /X /C \"\"C:\\Program Files\\Java\\jdk-15.0.1\\bin\\java\" \"-javaagent:C:\\\\Users\\\\trferreira\\\\.m2\\\\repository\\\\org\\\\jacoco\\\\org.jacoco.agent\\\\0\r\n.8.5\\\\org.jacoco.agent-0.8.5-runtime.jar=destfile=C:\\\\Users\\\\trferreira\\\\projects\\\\spring-petclinic\\\\target\\\\jacoco.exec\"\r\n -jar C:\\Users\\TRFERR~1\\AppData\\Local\\Temp\\surefire17085264595512365742\\surefirebooter18044573933901661620.jar C:\\Users\\trferreira\\AppData\\Local\\Temp\\surefire17085\r\n264595512365742 2022-02-22T11-03-19_493-jvmRun1 surefire7848170936633555332tmp surefire_066542577641701259tmp\"\r\n[ERROR] Error occurred in starting fork, check output in log\r\n[ERROR] Process Exit Code: 1\r\n[ERROR]         at org.apache.maven.plugin.surefire.booterclient.ForkStarter.fork(ForkStarter.java:669)\r\n[ERROR]         at org.apache.maven.plugin.surefire.booterclient.ForkStarter.run(ForkStarter.java:282)\r\n[ERROR]         at org.apache.maven.plugin.surefire.booterclient.Fork"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:955",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 955,
+      "title": "Proposal : Adds gitpod support for the repository for better DX",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Hey there, \r\n\r\nNot affiliated to the product in any way, I just love the product. \r\n\r\nI created #952 that adds support for gitpod in the repository. When merging the PR, clicking on the open with gitpod button in the README would clone the repository in an online vscode (or IntelliJ) editor, but also run the application directly without the user having to do anything. This is what it looks like for me right after clicking the link : \r\n\r\n<img width=\"1500\" alt=\"image\" src=\"https://user-images.githubusercontent.com/921666/162386477-b144e5e2-3f53-4629-b792-70aabd33ec65.png\">\r\n\r\nGiven that the petclinic is used a lot for proof of concepts, as a demo and for workshops, I believe that adding that capability greatly increases the developer experience because it allows folks to get running within seconds without even having to setup java.\r\n\r\n_Note that that the button as it stands in the README will not work as expected before the PR is merged_.\r\n\r\nTo test the feature, please use this link instead : https://gitpod.io/github.com/jlengrand/spring-petclinic/tree/feature/add-gitpod\r\n\r\nThis is a gentle proposal, feel free to refuse of course!\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2519,
+      "title": "Upgrade to Spring Boot 4.1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "- Bump Spring Boot parent/plugin from 4.0.x to 4.1.0 (Maven + Gradle)\r\n- Update Gradle wrapper to 9.5.1\r\n- Update Maven wrapper to 3.9.16\r\n- Update checkstyle to 13.5.0, jacoco to 0.8.15\r\n- Replace deprecated RuntimeHints.serialization() with reflection().registerType(..., withJavaSerialization(true)) per Spring 7\r\n- Replace deprecated RestTemplateBuilder.rootUri() with baseUri() in PetClinicIntegrationTests, MySqlIntegrationTests and PostgresIntegrationTests\r\n- Sync docker-compose.yml, k8s/db.yml, README.md with new container image versions\r\n\r\nUnfortunately, GraalVM Native images do not work anymore. Which is eighter an issue with the Buildpack compatibility or an issue with GraalVM.\r\n\r\n- With Java 17 we get this message from Buildpacks \r\n```\r\n[INFO]     [creator]     Paketo Buildpack for Spring Boot 5.36.3\r\n[INFO]     [creator]       the Java version from the downloaded NIK/GraalVM is lower than 25 and the Spring Boot version is >= 4.0.0; this is not supported, more info at https://github.com/paketo-buildpacks/spring-boot/issues/562 - you can force the NIK JVM version using BP_JVM_VERSION=25, or with .sdkmanrc, etc\r\n[INFO]     [creator]     ERROR: failed to build: exit status 1\r\n```\r\n- With Java 25 we get a GraalVM Native incompatability\r\n````\r\n[INFO]     [creator]     Warning: Please re-evaluate whether any experimental option is required, and either remove or unlock it. The build output lists all active experimental options, including where they come from and possible alternatives. If you think an experimental option should be considered as stable, please file an issue.\r\n[INFO]     [creator]     Warning: Option 'DynamicProxyConfigurationResources' is deprecated and might be removed in a future release: This can be caused by a proxy-config.json file in your META-INF directory. Consider including proxy configuration in the reflection section of reachability-metadata.md instead.. Please refer to the GraalVM release notes.\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     GraalVM Native Image: Generating 'org.springframework.samples.petclinic.PetClinicApplication' (executable)...\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     For detailed information and explanations on the build output, visi"
+    }
+  ]
+}

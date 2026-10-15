@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1057",
+        "path": null,
+        "offset": 1654,
+        "line": 23
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 13578,
+        "line": 329
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.Web.slnf",
+        "path": "eShop.Web.slnf",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+        "path": "src/eShop.AppHost/Program.cs",
+        "offset": 437,
+        "line": 15
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:playwright.config.ts",
+        "path": "playwright.config.ts",
+        "offset": 472,
+        "line": 15
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+        "path": null,
+        "offset": 16247,
+        "line": 294
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:929",
+        "path": null,
+        "offset": 4946,
+        "line": 52
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:930",
+        "path": null,
+        "offset": 4940,
+        "line": 52
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.Web.slnf",
+      "kind": "File",
+      "path": "eShop.Web.slnf",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "{\n  \"solution\": {\n    \"path\": \"eShop.slnx\",\n    \"projects\": [\n      \"src\\\\Basket.API\\\\Basket.API.csproj\",\n      \"src\\\\Catalog.API\\\\Catalog.API.csproj\",\n      \"src\\\\EventBusRabbitMQ\\\\EventBusRabbitMQ.csproj\",\n      \"src\\\\EventBus\\\\EventBus.csproj\",\n      \"src\\\\Identity.API\\\\Identity.API.csproj\",\n      \"src\\\\IntegrationEventLogEF\\\\IntegrationEventLogEF.csproj\",\n      \"src\\\\Ordering.API\\\\Ordering.API.csproj\",\n      \"src\\\\OrderProcessor\\\\OrderProcessor.csproj\",\n      \"src\\\\Ordering.Domain\\\\Ordering.Domain.csproj\",\n      \"src\\\\Ordering.Infrastructure\\\\Ordering.Infrastructure.csproj\",\n      \"src\\\\PaymentProcessor\\\\PaymentProcessor.csproj\",\n      \"src\\\\WebAppComponents\\\\WebAppComponents.csproj\",\n      \"src\\\\WebApp\\\\WebApp.csproj\",\n      \"src\\\\WebhookClient\\\\WebhookClient.csproj\",\n      \"src\\\\Webhooks.API\\\\Webhooks.API.csproj\",\n      \"src\\\\eShop.AppHost\\\\eShop.AppHost.csproj\",\n      \"src\\\\eShop.ServiceDefaults\\\\eShop.ServiceDefaults.csproj\",\n      \"tests\\\\Basket.UnitTests\\\\Basket.UnitTests.csproj\",\n      \"tests\\\\Catalog.FunctionalTests\\\\Catalog.FunctionalTests.csproj\",\n      \"tests\\\\Ordering.FunctionalTests\\\\Ordering.FunctionalTests.csproj\",\n      \"tests\\\\Ordering.UnitTests\\\\Ordering.UnitTests.csproj\"\n    ]\n  }\n}"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:playwright.config.ts",
+      "kind": "File",
+      "path": "playwright.config.ts",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 472,
+      "excerpt": " forbidOnly: !!process.env.CI,\n  /* Retry on CI only */\n  retries: process.env.CI ? 2 : 0,\n  /* Opt out of parallel tests on CI. */\n  workers: process.env.CI ? 1 : undefined,\n  /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n  reporter: 'html',\n  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n  use: {\n    /* Base URL to use in actions like `await page.goto('/')`. */\n    baseURL: 'http://localhost:5045',\n\n    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n    trace: 'on-first-retry',\n    ...devices['Desktop Chrome'],\n  },\n\n  /* Configure projects for major browsers */\n  projects: [\n    {\n      name: 'setup',\n      testMatch: '**/*.setup.ts',\n    },\n    {\n      name: 'e2e tests logged in',\n      testMatch: ['**/AddItemTest.spec.ts', '**/RemoveItemTest.spec.ts'],\n      dependencies: ['setup'],\n      use: {\n        storageState: STORAGE_STATE,\n      },\n    },\n    {\n      name: 'e2e tests without logged in',\n      testMatch: ['**/BrowseItemTest.spec.ts'],\n    }\n    // {\n    //   name: 'chromium',\n    //   use: { ...devices['Desktop Chrome'] },\n    // },\n\n    // {\n    //   name: 'firefox',\n    //   use: { ...devices['Desktop Firefox'] },\n    // },\n\n    // {\n    //   name: 'webkit',\n    //   use: { ...devices['Desktop Safari'] },\n    // },\n\n    /* Test against mobile viewports. */\n    // {\n    //   name: 'Mobile Chrome',\n    //   use: { ...devices['Pixel 5'] },\n    // },\n    // {\n    //   name: 'Mobile Safari',\n    //   use: { ...devices['iPhone 12'] },\n    // },\n\n    /* Test against branded browsers. */\n    // {\n    //   name: 'Microsoft Edge',\n    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },\n    // },\n    // {\n    //   name: 'Google Chrome',\n    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },\n    // },\n  ],\n\n  /* Run your local dev server before starting the tests */\n  webServer: {\n    command: 'dotnet run --project src/eShop.AppHost/eShop.AppHost.csproj',\n    url: 'http://localhost:5045',\n    reuseExistingServer: !process.env.CI,\n    stderr: 'pipe',\n    stdout: 'pipe',\n    timeout: process.env.CI ? (5 * 60_000) : 60_000,\n  },\n});\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+      "kind": "File",
+      "path": "src/eShop.AppHost/Program.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 437,
+      "excerpt": "tabase(\"catalogdb\");\nvar identityDb = postgres.AddDatabase(\"identitydb\");\nvar orderDb = postgres.AddDatabase(\"orderingdb\");\nvar webhooksDb = postgres.AddDatabase(\"webhooksdb\");\n\nvar launchProfileName = ShouldUseHttpForEndpoints() ? \"http\" : \"https\";\n\n// Services\nvar identityApi = builder.AddProject<Projects.Identity_API>(\"identity-api\", launchProfileName)\n    .WithExternalHttpEndpoints()\n    .WithReference(identityDb)\n    .WithHttpHealthCheck(\"/health\");\n\nvar identityEndpoint = identityApi.GetEndpoint(launchProfileName);\n\nvar basketApi = builder.AddProject<Projects.Basket_API>(\"basket-api\")\n    .WithReference(redis)\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\nredis.WithParentRelationship(basketApi);\n\nvar catalogApi = builder.AddProject<Projects.Catalog_API>(\"catalog-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(catalogDb);\n\nvar orderingApi = builder.AddProject<Projects.Ordering_API>(\"ordering-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb).WaitFor(orderDb)\n    .WithHttpHealthCheck(\"/health\")\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\nbuilder.AddProject<Projects.OrderProcessor>(\"order-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb)\n    .WaitFor(orderingApi); // wait for the orderingApi to be ready because that contains the EF migrations\n\nbuilder.AddProject<Projects.PaymentProcessor>(\"payment-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq);\n\nvar webHooksApi = builder.AddProject<Projects.Webhooks_API>(\"webhooks-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(webhooksDb)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\n// Reverse proxies\nbuilder.AddYarp(\"mobile-bff\")\n    .WithExternalHttpEndpoints()\n    .ConfigureMobileBffRoutes(catalogApi, orderingApi, identityApi);\n\n// Apps\nvar webhooksClient = builder.AddProject<Projects.WebhookClient>(\"webhooksclient\", launchProfileName)\n    .WithReference(webHooksApi)\n    .WithEnvironment(\"IdentityUrl\", identityEndpoint);\n\nvar webApp = builder.AddProject<Projects.WebApp>(\"webapp\", launchProfileName)\n    .WithExternalHttpEndpoints()\n    .WithUrls(c => c.Urls.ForEach(u => u.DisplayText = $\"Online Store ({u.Endpoint?.EndpointName})\"))\n    .WithReference(basketApi)\n    .WithReference(catalogApi)\n    .WithReference("
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13578,
+      "excerpt": "Testcontainers.PostgreSql`\r\n- `Aspire.Hosting.RabbitMQ` (via csproj refs)\r\n- Serilog stack (`Serilog.AspNetCore`, `Serilog.Extensions.Logging`, `Serilog.Settings.Configuration`, `Serilog.Sinks.Console`)\r\n- `MSTest.TestFramework`, `xunit.v3.common`\r\n\r\n**`tests/Directory.Build.props`:**\r\n\r\n- All test projects (except `Testing.Common`) auto-reference `Testing.Common`\r\n\r\n**Solution files:**\r\n\r\n- `eShop.slnx` and `eShop.Web.slnf` include `tests/Testing.Common`\r\n\r\n**Test project deps:**\r\n\r\n- Both functional test projects add EF InMemory, Testcontainers, Aspire RabbitMQ hosting, and `testconfig.json` copy-to-output\r\n\r\n---\r\n\r\n## Complete File Inventory\r\n\r\n### Modified Tracked Files (24)\r\n\r\n| Area | Files |\r\n|------|-------|\r\n| Build | `Directory.Packages.props`, `eShop.slnx`, `eShop.Web.slnf`, `tests/Directory.Build.props` |\r\n| Catalog API | `Apis/CatalogApi.cs`, `Extensions/Extensions.cs`, `GlobalUsings.cs`, `Infrastructure/CatalogContext.cs`, `Model/CatalogServices.cs`, `appsettings.json` |\r\n| Shared infra | `IntegrationEventLogEF/Services/IntegrationEventLogService.cs`, `eShop.ServiceDefaults/Extensions.cs`, `eShop.ServiceDefaults.csproj` |\r\n| Ordering | `Ordering.API/appsettings.json` |\r\n| Tests | `Catalog.FunctionalTests.csproj`, `CatalogApiTests.cs`, `Ordering.FunctionalTests.csproj`, `OrderingApiTests.cs`, `Basket.UnitTests/GlobalUsings.cs`, `Ordering.UnitTests/GlobalUsings.cs`, `Ordering.UnitTests/Application/NewOrderCommandHandlerTest.cs`, `tests/README.md` |\r\n\r\n### Deleted & Replaced\r\n\r\n- `tests/Catalog.FunctionalTests/CatalogApiFixture.cs` → rewritten under `Fixture/`\r\n- `tests/Ordering.FunctionalTests/OrderingApiFixture.cs` → rewritten under `Fixture/`\r\n\r\n### New Source (Untracked)\r\n\r\n| Path | Role |\r\n|------|------|\r\n| `tests/Testing.Common/**` | Shared test utilities + messaging helpers |\r\n| `src/Catalog.API/Infrastructure/Repositories/**` | Repository abstraction |\r\n| `src/eShop.ServiceDefaults/LoggingExtensions.cs` | Serilog setup |\r\n| `eShop.FunctionalTests*.runsettings` (7 files) | VS/CLI mode presets |\r\n| `tests/Catalog.FunctionalTests/AssemblyInfo.cs` | xUnit assembly fixtures + console capture |\r\n| `tests/Catalog.FunctionalTests/FlushTestLogsAttribute.cs` | Log flush hook |\r\n| `tests/Catalog.FunctionalTests/testconfig.json` | xUnit live output config |\r\n| `tests/Catalog.FunctionalTests/{Fixture,Configuration,Infrastructure,Mocks}/**` | Catalog t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1034,
+      "title": "Bump the aspire group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 16247,
+      "excerpt": "es\n\n* Update OTel GenAI conventions skill for standalone semconv-genai repo #​7519 by @​jeffhandley (co-authored by @​Copilot)\n* Bump dotnet-coverage from 18.7.0 to 18.8.0 #​7552\n* [main] Update dependencies from dotnet/arcade #​7559\n* Fix transitive MessagePack vulnerability in AI template AppHost projects #​7561 by @​adamsitnik (co-authored by @​Copilot)\n* Bump esbuild, @​vitejs/plugin-react and vite in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7564\n* Bump tmp from 0.2.6 to 0.2.7 in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7569\n* Bump js-yaml from 4.1.1 to 4.2.0 in /src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript #​7570\n* Bump PowerShell from 7.6.2 to 7.6.3 #​7576\n* Remove duplicate 'WebAPI' classification from template #​7577 by @​danroth27\n* [main] Update dependencies from dotnet/arcade #​7590\n* Eliminate redundant Correctness CI stage by merging into Build #​7594 by @​adamsitnik (co-authored by @​Copilot)\n* Update Agent Framework to 1.13.0 #​7613 by @​jeffhandley (co-authored by @​Copilot)\n ... (truncated)\n\n## 10.7.0\n\nv10.7.0 graduates the [Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes) package to stable. The package registers a Kubernetes-aware `ResourceQuotaProvider` that reads the pod's CPU and memory requests and limits and exposes them to `Microsoft.Extensions.Diagnostics.ResourceMonitoring` as baseline and maximum quotas, which then feed the request and limit dimensions of the published resource utilization metrics. The companion `ResourceQuota` and `ResourceQuotaProvider` types in `Microsoft.Extensions.Diagnostics.ResourceMonitoring` graduate to stable in the same change so that consumers can implement custom quota providers without taking an experimental dependency.\n\nOn the AI side, `Microsoft.Extensions.AI.OpenAI` moves to OpenAI 2.11.0 and fixes a deserialization bug in `ToolJson.AdditionalProperties` so that JSON Schema `additionalProperties` values shaped as sub-schema objects (for example `{\"type\":\"string\"}`) are preserved instead of throwing during deserialization. `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` graduate to stable since both values are consistently available across hosted-file providers, while `Purpose` and `Sco"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1057",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1057,
+      "title": "Treat a login cookie with an expired access token as logged out",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1654,
+      "excerpt": "` returns **500**, `Unauthenticated` in the WebApp and Basket API logs |\n| This PR | \"Log in to purchase\" | Redirected to the Identity login page, no `Unauthenticated` in the logs |\n\nThe existing Playwright suite (browse, cart, checkout) passes with the normal 2 hour lifetime.\n\n## Not covered\n\n- No automated test: the failure needs an access token to expire, and `Application.UnitTests` has no reference to the WebApp. I can add one if you prefer to expose the handler for testing.\n- A token that the API rejects for another reason while still unexpired (for example after Identity restarts with a new signing key) is not handled by this change.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:929",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 929,
+      "title": "Bump CommunityToolkit.Aspire.Hosting.Ollama from 9.8.0-beta.395 to 13.0.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4946,
+      "excerpt": "github.com/CommunityToolkit/Aspire/pull/1000\n* chore(deps): bump actions/checkout from 5 to 6 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/1001\n* Update Ollama and OpenWebUI tags to latest versions by @​foxminchan in https://github.com/CommunityToolkit/Aspire/pull/1003\n* [Automated] Update API Surface Area by @​github-actions[bot] in https://github.com/CommunityToolkit/Aspire/pull/955\n\n## New Contributors\n* @​josemalm32 made their first contribution in https://github.com/CommunityToolkit/Aspire/pull/943\n* @​cdschneider made their first contribution in https://github.com/CommunityToolkit/Aspire/pull/978\n ... (truncated)\n\n## 9.9.0\n\nPretty big set of changes for the 9.9.0 release of the Community Toolkit with new integrations for flagd and Keycloak with PostgreSQL.\n\nWe've also deprecated the EventStore integration and replaced it with a new KurrentDB one, to reflect the new naming on the project.\n\nFull changelog below.\n\n## What's Changed\n* Enhance managed identity authentication logic by @​FullStackChef in https://github.com/CommunityToolkit/Aspire/pull/876\n* Fix dapr using the wrong component annotations by @​Sjark in https://github.com/CommunityToolkit/Aspire/pull/879\n* Add ability to set JVM args when using executable Java apps by @​marshalhayes in https://github.com/CommunityToolkit/Aspire/pull/888\n* updating Deno version by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/636\n* Suppressing some logs from mcp inspector. by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/892\n* Update copilot-instructions.md by @​Alirexaa in https://github.com/CommunityToolkit/Aspire/pull/897\n* Add WithLogLevel extension method by @​Odonno in https://github.com/CommunityToolkit/Aspire/pull/884\n* chore(deps): bump github/codeql-action from 3 to 4 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/898\n* Add flagd Aspire hosting by @​askpt in https://github.com/CommunityToolkit/Aspire/pull/827\n* chore(deps): bump danielpalme/ReportGenerator-GitHub-Action from 5.4.14 to 5.4.17 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/899\n* Add ability to skip .dacpac deployment  by @​ErikEJ in https://github.com/CommunityToolkit/Aspire/pull/896\n* Update some SqlProject integration dependencies by @​ErikEJ in https://github.com/CommunityToolkit/Aspire/pull/919\n* Add Keycloak with Postgre"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:930",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 930,
+      "title": "Bump CommunityToolkit.Aspire.OllamaSharp from 9.8.0-beta.395 to 13.0.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4940,
+      "excerpt": "github.com/CommunityToolkit/Aspire/pull/1000\n* chore(deps): bump actions/checkout from 5 to 6 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/1001\n* Update Ollama and OpenWebUI tags to latest versions by @​foxminchan in https://github.com/CommunityToolkit/Aspire/pull/1003\n* [Automated] Update API Surface Area by @​github-actions[bot] in https://github.com/CommunityToolkit/Aspire/pull/955\n\n## New Contributors\n* @​josemalm32 made their first contribution in https://github.com/CommunityToolkit/Aspire/pull/943\n* @​cdschneider made their first contribution in https://github.com/CommunityToolkit/Aspire/pull/978\n ... (truncated)\n\n## 9.9.0\n\nPretty big set of changes for the 9.9.0 release of the Community Toolkit with new integrations for flagd and Keycloak with PostgreSQL.\n\nWe've also deprecated the EventStore integration and replaced it with a new KurrentDB one, to reflect the new naming on the project.\n\nFull changelog below.\n\n## What's Changed\n* Enhance managed identity authentication logic by @​FullStackChef in https://github.com/CommunityToolkit/Aspire/pull/876\n* Fix dapr using the wrong component annotations by @​Sjark in https://github.com/CommunityToolkit/Aspire/pull/879\n* Add ability to set JVM args when using executable Java apps by @​marshalhayes in https://github.com/CommunityToolkit/Aspire/pull/888\n* updating Deno version by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/636\n* Suppressing some logs from mcp inspector. by @​aaronpowell in https://github.com/CommunityToolkit/Aspire/pull/892\n* Update copilot-instructions.md by @​Alirexaa in https://github.com/CommunityToolkit/Aspire/pull/897\n* Add WithLogLevel extension method by @​Odonno in https://github.com/CommunityToolkit/Aspire/pull/884\n* chore(deps): bump github/codeql-action from 3 to 4 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/898\n* Add flagd Aspire hosting by @​askpt in https://github.com/CommunityToolkit/Aspire/pull/827\n* chore(deps): bump danielpalme/ReportGenerator-GitHub-Action from 5.4.14 to 5.4.17 by @​dependabot[bot] in https://github.com/CommunityToolkit/Aspire/pull/899\n* Add ability to skip .dacpac deployment  by @​ErikEJ in https://github.com/CommunityToolkit/Aspire/pull/896\n* Update some SqlProject integration dependencies by @​ErikEJ in https://github.com/CommunityToolkit/Aspire/pull/919\n* Add Keycloak with Postgre"
+    }
+  ]
+}

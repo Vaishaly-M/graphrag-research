@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+        "path": "README.md",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:221",
+        "path": null,
+        "offset": 12,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:824",
+        "path": null,
+        "offset": 705,
+        "line": 16
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:547",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+        "offset": 2098,
+        "line": 47
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/resources/db/mysql/petclinic_db_setup_mysql.txt",
+        "path": "src/main/resources/db/mysql/petclinic_db_setup_mysql.txt",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2384",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+        "path": null,
+        "offset": 204,
+        "line": 5
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)\n\n[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)\n\n## Understanding the Spring Petclinic application with a few diagrams\n\nSee the presentation here:  \n[Spring Petclinic Sample Application (legacy slides)](https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20)\n\n> **Note:** These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.  \n> For up-to-date information, please refer to this repository and its documentation.\n\n\n## Run Petclinic locally\n\nSpring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).\nJava 17 or later is required for the build, and the application can run with Java 17 or newer.\n\nYou first need to clone the project locally:\n\n```bash\ngit clone https://github.com/spring-projects/spring-petclinic.git\ncd spring-petclinic\n```\nIf you are using Maven, you can start the application on the command-line as follows:\n\n```bash\n./mvnw spring-boot:run\n```\nWith Gradle, the command is as follows:\n\n```bash\n./gradlew bootRun\n```\n\nYou can then access the Petclinic at <http://localhost:8080/>.\n\n<img width=\"1042\" alt=\"petclinic-screenshot\" src=\"https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png\">\n\nYou can, of course, run Petclinic in your favorite IDE.\nSee below for more details.\n\n## Building a Container\n\nThere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/resources/db/mysql/petclinic_db_setup_mysql.txt",
+      "kind": "File",
+      "path": "src/main/resources/db/mysql/petclinic_db_setup_mysql.txt",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "================================================================================\n===        Spring PetClinic sample application - MySQL Configuration         ===\n================================================================================\n\n@author Sam Brannen\n@author Costin Leau\n@author Dave Syer\n\n--------------------------------------------------------------------------------\n\n1) Download and install the MySQL database (e.g., MySQL Community Server 5.1.x),\n   which can be found here: https://dev.mysql.com/downloads/. Or run the\n   \"docker-compose.yml\" from the root of the project (if you have docker installed\n   locally):\n\n        $ docker-compose up\n        ...\n        mysql_1_eedb4818d817 | MySQL init process done. Ready for start up.\n        ...\n\n2) (Once only) create the PetClinic database and user by executing the \"db/mysql/user.sql\"\n   scripts. You can connect to the database running in the docker container using \n   `mysql -u root -h localhost --protocol tcp`, but you don't need to run the script there\n   because the petclinic user is already set up if you use the provided `docker-compose.yml`.\n\n3) Run the app with `spring.profiles.active=mysql` (e.g. as a System property via the command\n   line, but any way that sets that property in a Spring Boot app should work). For example use\n   \n   mvn spring-boot:run -Dspring-boot.run.profiles=mysql\n\n   To activate the profile on the command line.\n\nN.B. the \"petclinic\" database has to exist for the app to work with the JDBC URL value\nas it is configured by default. This condition is taken care of automatically by the \ndocker-compose configuration provided, or by the `user.sql` script if you run that as\nroot.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2098,
+      "excerpt": "vided\n * by the Spring TestContext Framework:\n * </p>\n * <ul>\n * <li><strong>Spring IoC container caching</strong> which spares us unnecessary set up\n * time between test execution.</li>\n * <li><strong>Dependency Injection</strong> of test fixture instances, meaning that we\n * don't need to perform application context lookups. See the use of\n * {@link Autowired @Autowired} on the <code> </code> instance variable, which uses\n * autowiring <em>by type</em>.\n * <li><strong>Transaction management</strong>, meaning each test method is executed in\n * its own transaction, which is automatically rolled back by default. Thus, even if tests\n * insert or otherwise change database state, there is no need for a teardown or cleanup\n * script.\n * <li>An {@link org.springframework.context.ApplicationContext ApplicationContext} is\n * also inherited and can be used for explicit bean lookup if necessary.</li>\n * </ul>\n *\n * @author Ken Krebs\n * @author Rod Johnson\n * @author Juergen Hoeller\n * @author Sam Brannen\n * @author Michael Isvy\n * @author Dave Syer\n */\n@DataJpaTest\n// Ensure that if the mysql profile is active we connect to the real database:\n@AutoConfigureTestDatabase(replace = Replace.NONE)\n// @TestPropertySource(\"/application-postgres.properties\")\nclass ClinicServiceTests {\n\n\t@Autowired\n\tprotected OwnerRepository owners;\n\n\t@Autowired\n\tprotected PetTypeRepository types;\n\n\t@Autowired\n\tprotected VetRepository vets;\n\n\tprivate final Pageable pageable = Pageable.unpaged();\n\n\t@Test\n\tvoid shouldFindOwnersByLastName() {\n\t\tPage<Owner> owners = this.owners.findByLastNameStartingWith(\"Davis\", pageable);\n\t\tassertThat(owners).hasSize(2);\n\n\t\towners = this.owners.findByLastNameStartingWith(\"Daviss\", pageable);\n\t\tassertThat(owners).isEmpty();\n\t}\n\n\t@Test\n\tvoid shouldFindSingleOwnerWithPet() {\n\t\tOptional<Owner> optionalOwner = this.owners.findById(1);\n\t\tassertThat(optionalOwner).isPresent();\n\t\tOwner owner = optionalOwner.get();\n\t\tassertThat(owner.getLastName()).startsWith(\"Franklin\");\n\t\tassertThat(owner.getPets()).hasSize(1);\n\t\tassertThat(owner.getPets().get(0).getType()).isNotNull();\n\t\tassertThat(owner.getPets().get(0).getType().getName()).isEqualTo(\"cat\");\n\t}\n\n\t@Test\n\t@Transactional\n\tvoid shouldInsertOwner() {\n\t\tPage<Owner> owners = this.owners.findByLastNameStartingWith(\"Schultz\", pageable);\n\t\tint found = (int) owners.getTotalElements();\n\n\t\tOwner owner = new Owner();\n\t\towner.setFi"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:221",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 221,
+      "title": "Proper documentation required ...",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12,
+      "excerpt": "inic previously had a really good [documentation](http://docs.spring.io/docs/petclinic.html) for beginners like me, but it`s outdated now. I have no idea on how it is working ... as it does not have proper documentation. Presentation attached is also very old one.\r\n\r\n**_WITHOUT PROPER DOCUMENTATION(README) ITS NOT VERY DEVELOPER AND BEGINNER FRIENDLY._**\r\nThis documentation must have all howtos and how is it working in boot app...\r\nFollowing can be some pointers....\r\n1. Testing(Types of testing done)\r\n2. Profiles\r\n3. Internationalization\r\n4. Validation\r\n5. Explaining package structure.\r\n6. SQL scripts\r\n7. Caching\r\n8. Templates\r\n9. Application Configuration\r\n10. JMX\r\n\r\n \r\nI think documentation must also have a section of what is the difference between legacy spring app and this one: \r\n\r\nFollowing can be noted differences:\r\n\r\n- Previously, app followed **3 layer architecture**, which is now outdated.(Why I don't know)\r\n- Current package structure is also very VERY different, previously all entities were stored in `org.springframework.samples.petclinic.model`.\r\n- Now, all settings are stored in application-* properties.\r\n- Where did many things go.... it seems magic.... \r\nand so on....\r\n\r\nPlease make sure the documentation is very detailed like [this](http://docs.spring.io/docs/petclinic.html). but with much more details."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:547",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 547,
+      "title": "Can not launch the app",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "I cloned the project by using Intellij but I can not run it. I am sending the log below.\r\n\r\nPlease help.\r\n\r\n```\r\n/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/bin/java \"-javaagent:/Applications/IntelliJ IDEA CE.app/Contents/lib/idea_rt.jar=58062:/Applications/IntelliJ IDEA CE.app/Contents/bin\" -Dfile.encoding=UTF-8 -classpath /Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/jaccess.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/lib/j"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:824",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 824,
+      "title": "Test fail with profile MySQL",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 705,
+      "excerpt": "-----------------------------------------\r\nTests run: 11, Failures: 0, Errors: 11, Skipped: 0, Time elapsed: 7.888 s <<< FAILURE! - in org.springframework.samples.petclinic.service.ClinicServiceTests\r\nshouldFindVets  Time elapsed: 0.015 s  <<< ERROR!\r\njava.lang.IllegalStateException: Failed to load ApplicationContext\r\nCaused by: org.springframework.beans.factory.BeanCreationException: \r\nError creating bean with name 'scriptDataSourceInitializer' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceInitializationConfiguration$SharedCredentialsDataSourceInitializationConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.jdbc.datasource.init.ScriptStatementFailedException: Failed to execute SQL script statement #1 of URL [file:/home/lynchmaniac/dev/garbage/spring-petclinic/target/classes/db/mysql/schema.sql]: CREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB; nested exception is org.h2.jdbc.JdbcSQLNonTransientException: Type de données inconnu: \r\nUnknown data type: ; SQL statement:\r\nCREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB [50004-200]\r\nCaused by: org.springframework.jdbc.datasource.init.ScriptStatementFailedException: \r\nFailed to execute SQL script statement #1 of URL [file:/home/lynchmaniac/dev/garbage/spring-petclinic/target/classes/db/mysql/schema.sql]: CREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB; nested exception is org.h2.jdbc.JdbcSQLNonTransientException: Type de données inconnu: \r\nUnknown data type: ; SQL statement:\r\nCREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB [50004-200]\r\nCaused by: org.h2.jdbc.JdbcSQLNonTransientException: \r\nType de données inconnu: \r\nUnknown data type: ; SQL statement:\r\nCREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB [50004-200]\r\n```\r\nAs you can see "
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2384",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2384,
+      "title": "Improve documentation for running container image",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "The README currently explains how to build a container image using\r\n`spring-boot:build-image`, but does not describe how to run it.\r\n\r\nThis PR adds a new section with instructions for:\r\n- verifying that the image was created\r\n- running the container\r\n- accessing the application"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2519,
+      "title": "Upgrade to Spring Boot 4.1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 204,
+      "excerpt": "ated RuntimeHints.serialization() with reflection().registerType(..., withJavaSerialization(true)) per Spring 7\r\n- Replace deprecated RestTemplateBuilder.rootUri() with baseUri() in PetClinicIntegrationTests, MySqlIntegrationTests and PostgresIntegrationTests\r\n- Sync docker-compose.yml, k8s/db.yml, README.md with new container image versions\r\n\r\nUnfortunately, GraalVM Native images do not work anymore. Which is eighter an issue with the Buildpack compatibility or an issue with GraalVM.\r\n\r\n- With Java 17 we get this message from Buildpacks \r\n```\r\n[INFO]     [creator]     Paketo Buildpack for Spring Boot 5.36.3\r\n[INFO]     [creator]       the Java version from the downloaded NIK/GraalVM is lower than 25 and the Spring Boot version is >= 4.0.0; this is not supported, more info at https://github.com/paketo-buildpacks/spring-boot/issues/562 - you can force the NIK JVM version using BP_JVM_VERSION=25, or with .sdkmanrc, etc\r\n[INFO]     [creator]     ERROR: failed to build: exit status 1\r\n```\r\n- With Java 25 we get a GraalVM Native incompatability\r\n````\r\n[INFO]     [creator]     Warning: Please re-evaluate whether any experimental option is required, and either remove or unlock it. The build output lists all active experimental options, including where they come from and possible alternatives. If you think an experimental option should be considered as stable, please file an issue.\r\n[INFO]     [creator]     Warning: Option 'DynamicProxyConfigurationResources' is deprecated and might be removed in a future release: This can be caused by a proxy-config.json file in your META-INF directory. Consider including proxy configuration in the reflection section of reachability-metadata.md instead.. Please refer to the GraalVM release notes.\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     GraalVM Native Image: Generating 'org.springframework.samples.petclinic.PetClinicApplication' (executable)...\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     For detailed information and explanations on the build output, visit:\r\n[INFO]     [creator]     https://github.com/oracle/graal/blob/master/docs/reference-manual/native-image/BuildOutput.md\r\n[INFO]     [creator]     -------------------------------------------------------"
+    }
+  ]
+}

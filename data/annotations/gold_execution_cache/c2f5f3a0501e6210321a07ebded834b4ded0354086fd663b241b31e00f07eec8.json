@@ -1,0 +1,43 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_CONTAINS_FILE]->(f:DLFile) WHERE r.dataset=$dataset AND r.repo=$repo AND f.path STARTS WITH $prefix AND (f.path ENDS WITH '.md' OR f.path ENDS WITH '.rst' OR f.path ENDS WITH '.adoc') RETURN f.path AS entity,f.path AS fact,[r.id,f.id] AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "prefix": ""
+  },
+  "rows": [
+    {
+      "entity": "CODE-OF-CONDUCT.md",
+      "fact": "CODE-OF-CONDUCT.md",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:CODE-OF-CONDUCT.md"
+      ]
+    },
+    {
+      "entity": "CONTRIBUTING.md",
+      "fact": "CONTRIBUTING.md",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:CONTRIBUTING.md"
+      ]
+    },
+    {
+      "entity": "README.md",
+      "fact": "README.md",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md"
+      ]
+    },
+    {
+      "entity": "tests/README.md",
+      "fact": "tests/README.md",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:repository:dotnet/eShop",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:tests/README.md"
+      ]
+    }
+  ]
+}

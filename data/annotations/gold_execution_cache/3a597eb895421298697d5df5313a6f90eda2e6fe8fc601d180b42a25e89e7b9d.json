@@ -1,0 +1,101 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id) AS evidence RETURN b.path AS entity,b.path AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "synthetic-org/platform",
+    "path": "src/module_0/component_0.py"
+  },
+  "rows": [
+    {
+      "entity": "src/module_0/component_1.py",
+      "fact": "src/module_0/component_1.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_1.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_2.py",
+      "fact": "src/module_0/component_2.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_2.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_3.py",
+      "fact": "src/module_0/component_3.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_3.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_4.py",
+      "fact": "src/module_0/component_4.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_4.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_5.py",
+      "fact": "src/module_0/component_5.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_5.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_6.py",
+      "fact": "src/module_0/component_6.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_6.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_7.py",
+      "fact": "src/module_0/component_7.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_7.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_8.py",
+      "fact": "src/module_0/component_8.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_8.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_9.py",
+      "fact": "src/module_0/component_9.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_9.py"
+      ]
+    },
+    {
+      "entity": "src/module_1/component_10.py",
+      "fact": "src/module_1/component_10.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_0.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_1/component_10.py"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "offset": 3959,
+        "line": 103
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/java/org/openmrs/test/jupiter/BaseContextSensitiveNonTransactionalTest.java",
+        "path": "api/src/test/java/org/openmrs/test/jupiter/BaseContextSensitiveNonTransactionalTest.java",
+        "offset": 25503,
+        "line": 680
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+        "path": "README.md",
+        "offset": 10651,
+        "line": 273
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+        "offset": 12295,
+        "line": 394
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 3008,
+        "line": 35
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6666",
+        "path": null,
+        "offset": 645,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:liquibase/README.md",
+        "path": "liquibase/README.md",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6680",
+        "path": null,
+        "offset": 3710,
+        "line": 32
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3008,
+      "excerpt": " to provide us with some advance documentation on the feature, which will help the community to better understand where it will fit.\n\n3. If you're an advanced programmer, build the feature yourself (refer to the \"Contributing (Step-by-step)\" section below).\n\n## Contributing (Step-by-step)\n\n1. After finding a JIRA issue for the \"Ready for Work\" bug or feature on which you'd like to work, claim the issue by clicking the \"Claim Issue\" button. This will assign the issue to you and change its status to \"In Progress\".\n\n2. [Fork the repo](http://help.github.com/fork-a-repo) on which you're working, clone your forked repo to your local computer, and set up the upstream remote:\n\n        git clone git://github.com/YourGitHubUserName/openmrs-core.git\n        git remote add upstream https://github.com/openmrs/openmrs-core.git\n\n3. Checkout to a new local branch based on your master and update it to the latest. The convention is to name the branch after the current ticket, e.g. TRUNK-123:\n\n        git checkout -b TRUNK-123 master\n        git clean -df\n        git pull --rebase upstream master\n\n > Please keep your code clean. Name your branch after the JIRA issue or other description of the work being done. If you find another bug, you want to fix while being in a new branch, please fix it in a separated branch instead.\n\n\n4. Push the branch to your fork. Treat it as a backup.\n\n        git push origin TRUNK-123\n\n5. Code\n  * Adhere to common conventions you see in the existing code\n  * Include tests, and ensure they pass\n  * Search to see if your new functionality has been discussed using our [OpenMRS global search](http://search.openmrs.org), and include updates as appropriate\n\n6. Follow the [Coding Conventions described on our wiki](https://wiki.openmrs.org/x/MxEz).\n\n  > However, please note that **pull requests consisting entirely of style changes are not welcome on this project**. Style changes in the context of pull requests that also refactor code, fix bugs, improve functionality *are* welcome.\n\n7. Commit\n\n  For every commit please write a short (max 72 characters) summary in the first line followed with a blank line and then more detailed descriptions of the change. Use markdown syntax for simple styling. Please include any JIRA issue numbers in your summary.\n  \n        git commit -m \"TRUNK-123: Put change summary here (can be a ticket title)\"\n\n  **NEVER leave the com"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 10651,
+      "excerpt": "ps://openmrs.org).\n\n## Contributing\n\nContributions are very welcome. We can definitely use your help!\n\nOpenMRS organizes the privileges of its contributors in developer stages which\nare documented [here](https://wiki.openmrs.org/display/RES/OpenMRS+Developer+Stages).\n\nRead the following sections to find out where you could help.\n\n### Code\n\nCheck out our [contributing guidelines](CONTRIBUTING.md), read through the [Developer guides](#developer-guides).\n\nAfter you've read up :eyeglasses: [grab an introductory issue](https://openmrs.atlassian.net/wiki/x/a8GEAQ) that is `Ready For Work`.\n\n### Code Reviews\n\nIf you do not have time to develop but have experience with OpenMRS or reviewing\ncode, your help with code reviews would be greatly appreciated!\n\nRead [the code review guide](https://openmrs.atlassian.net/wiki/x/-r_EAQ) and get started reviewing pull requests!\n\n### Translation\n\nWe use [Transifex](https://explore.transifex.com/openmrs/OpenMRS/) to manage our translations.\n\nThe `messages.properties` file in this repository is our single source of\ntruth. It contains key, value pairs for the English language which is the\ndefault.\n\nTransifex fetches updates to this file every night so they can be translated\non the Transifex website. At any time, we can pull new translations from Transifex\nback into this repository. Other languages, such as Spanish, will then be in\nthe `messages_es.properties` file.\n\nIf you would like to know how to help with translations, see\n[the OpenMRS translation guide](https://om.rs/translate).\n\n## Issues\n\nIf you want to help fix existing issues or have found a bug to report, please go to\n[the OpenMRS issue tracker](https://issues.openmrs.org).\n\n## Community\n\n[![OpenMRS Talk](https://img.shields.io/badge/OpenMRS_Talk-F26522?logo=discourse&logoColor=white)](https://talk.openmrs.org)\n[![OpenMRS Slack](https://img.shields.io/badge/OpenMRS_Slack-4A154B)](https://slack.openmrs.org/)\n[![OpenMRS Wiki](https://img.shields.io/badge/openmrs-wiki-5B57A6.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAiIGhlaWdodD0iMTQyIiB2aWV3Qm94PSIwIDAgMTYwIDE0MiI%2BPHBhdGggY2xhc3M9InN0MCIgZD0iTTExMy42MTUgOTQuNDk0Yy0yLjAxNi0zLjk3NC00LjQwNS03Ljk5LTcuMi0xMi4wNzctMi0yLjkzLTQuMTQ1LTUuNzc4LTYuMzg3LTguNTY3LS45MS0xLjEzNi0uNTMtMi41NDguMTY3LTMuMjUuNjg4LS43MDUgMS4zOC0xLjQxIDIuMDc2LTIuMTIgOS41OC05Ljc3IDE5LjQ5LTE5Ljg3M"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3959,
+      "excerpt": "String getVersion() {\n\t\treturn getOpenmrsProperty(\"openmrs.version\");\n\t}\n\n\tpublic static String getOpenmrsProperty(String property) {\n\t\tInputStream file = OpenmrsConstants.class.getClassLoader().getResourceAsStream(\"org/openmrs/api/openmrs.properties\");\n\t\tif (file == null) {\n\t\t\tlog.error(\"Unable to find the openmrs.properties file\");\n\t\t\treturn null;\n\t\t}\n\n\t\ttry {\n\t\t\tProperties props = new Properties();\n\t\t\tprops.load(file);\n\n\t\t\tfile.close();\n\n\t\t\treturn props.getProperty(property);\n\t\t} catch (IOException e) {\n\t\t\tlog.error(\"Unable to parse the openmrs.properties file\", e);\n\t\t} finally {\n\t\t\tIOUtils.closeQuietly(file);\n\t\t}\n\n\t\treturn null;\n\t}\n\n\tpublic static String DATABASE_NAME = \"openmrs\";\n\n\tpublic static String DATABASE_BUSINESS_NAME = \"openmrs\";\n\n\t/**\n\t * Set true from runtime configuration to obscure patients for system demonstrations\n\t */\n\tpublic static boolean OBSCURE_PATIENTS = false;\n\n\tpublic static String OBSCURE_PATIENTS_GIVEN_NAME = \"Demo\";\n\n\tpublic static String OBSCURE_PATIENTS_MIDDLE_NAME = null;\n\n\tpublic static String OBSCURE_PATIENTS_FAMILY_NAME = \"Person\";\n\n\tpublic static final String REGEX_LARGE = \"[!\\\"#\\\\$%&'\\\\(\\\\)\\\\*,+-\\\\./:;<=>\\\\?@\\\\[\\\\\\\\\\\\\\\\\\\\]^_`{\\\\|}~]\";\n\n\tpublic static final String REGEX_SMALL = \"[!\\\"#\\\\$%&'\\\\(\\\\)\\\\*,\\\\./:;<=>\\\\?@\\\\[\\\\\\\\\\\\\\\\\\\\]^_`{\\\\|}~]\";\n\n\tpublic static final Integer CIVIL_STATUS_CONCEPT_ID = 1054;\n\n\t/**\n\t * The directory which OpenMRS should attempt to use as its application data directory in case the\n\t * current users home dir is not writeable (e.g. when using application servers like tomcat to\n\t * deploy OpenMRS).\n\t *\n\t * @see #APPLICATION_DATA_DIRECTORY_RUNTIME_PROPERTY\n\t * @see OpenmrsUtil#getApplicationDataDirectory()\n\t */\n\tpublic static final String APPLICATION_DATA_DIRECTORY_FALLBACK_UNIX = \"/var/lib\";\n\n\tpublic static final String APPLICATION_DATA_DIRECTORY_FALLBACK_WIN = System.getenv(\"appdata\");\n\n\t/**\n\t * The name of the runtime property that a user can set that will specify where openmrs's\n\t * application directory is\n\t *\n\t * @see OpenmrsUtil#getApplicationDataDirectory()\n\t * @see OpenmrsUtil#startup(java.util.Properties)\n\t */\n\tpublic static final String APPLICATION_DATA_DIRECTORY_RUNTIME_PROPERTY = \"application_data_directory\";\n\n\t/**\n\t * The name of the runtime property that a user can set that will specify whether the database is\n\t * automatically updated on startup\n\t */\n\tpublic static final String AUTO_UPDA"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12295,
+      "excerpt": "oleAnnotation.core()) {\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\ttry {\n\t\t\t\tfieldValue = (String) fld.get(null);\n\t\t\t} catch (IllegalAccessException e) {\n\t\t\t\tlog.error(\"Field is inaccessible.\", e);\n\t\t\t}\n\t\t\troles.put(fieldValue, roleAnnotation.description());\n\t\t}\n\n\t\treturn roles;\n\t}\n\n\t/**\n\t * Initialize global settings Find and load modules\n\t *\n\t * @param p properties from runtime configuration\n\t */\n\tpublic static void startup(Properties p) {\n\n\t\t// Override global OpenMRS constants if specified by the user\n\n\t\t// Allow for \"demo\" mode where patient data is obscured\n\t\tString val = p.getProperty(\"obscure_patients\", null);\n\t\tif (val != null && \"true\".equalsIgnoreCase(val)) {\n\t\t\tOpenmrsConstants.OBSCURE_PATIENTS = true;\n\t\t}\n\n\t\tval = p.getProperty(\"obscure_patients.family_name\", null);\n\t\tif (val != null) {\n\t\t\tOpenmrsConstants.OBSCURE_PATIENTS_FAMILY_NAME = val;\n\t\t}\n\n\t\tval = p.getProperty(\"obscure_patients.given_name\", null);\n\t\tif (val != null) {\n\t\t\tOpenmrsConstants.OBSCURE_PATIENTS_GIVEN_NAME = val;\n\t\t}\n\n\t\tval = p.getProperty(\"obscure_patients.middle_name\", null);\n\t\tif (val != null) {\n\t\t\tOpenmrsConstants.OBSCURE_PATIENTS_MIDDLE_NAME = val;\n\t\t}\n\n\t\t// Override the default \"openmrs\" database name\n\t\tval = p.getProperty(\"connection.database_name\", null);\n\t\tif (val == null) {\n\t\t\t// the database name wasn't supplied explicitly, guess it\n\t\t\t// from the connection string\n\t\t\tval = p.getProperty(\"connection.url\", null);\n\n\t\t\tif (val != null) {\n\t\t\t\ttry {\n\t\t\t\t\tint endIndex = val.lastIndexOf(\"?\");\n\t\t\t\t\tif (endIndex == -1) {\n\t\t\t\t\t\tendIndex = val.length();\n\t\t\t\t\t}\n\t\t\t\t\tint startIndex = val.lastIndexOf(\"/\", endIndex);\n\t\t\t\t\tval = val.substring(startIndex + 1, endIndex);\n\t\t\t\t\tOpenmrsConstants.DATABASE_NAME = val;\n\t\t\t\t} catch (Exception e) {\n\t\t\t\t\tlog.error(MarkerFactory.getMarker(\"FATAL\"), \"Database name cannot be configured from 'connection.url' .\"\n\t\t\t\t\t        + \"Either supply 'connection.database_name' or correct the url\",\n\t\t\t\t\t    e);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\t// set the business database name\n\t\tval = p.getProperty(\"connection.database_business_name\", null);\n\t\tif (val == null) {\n\t\t\tval = OpenmrsConstants.DATABASE_NAME;\n\t\t}\n\t\tOpenmrsConstants.DATABASE_BUSINESS_NAME = val;\n\t}\n\n\t/**\n\t * Gets the in-memory log appender. This method needed to be added as it is much more difficult to\n\t * get a specific appender in the Log4J2 architecture. This method is called in places where we need\n\t * to display logging message.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/java/org/openmrs/test/jupiter/BaseContextSensitiveNonTransactionalTest.java",
+      "kind": "File",
+      "path": "api/src/test/java/org/openmrs/test/jupiter/BaseContextSensitiveNonTransactionalTest.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 25503,
+      "excerpt": "rt\n\t *            into the current database\n\t * @see #getConnection()\n\t * @see #executeDataSet(IDataSet)\n\t */\n\tpublic void executeDataSet(String datasetFilename) {\n\n\t\t// try to get the given filename from the cache\n\t\tIDataSet xmlDataSetToRun = cachedDatasets.get(datasetFilename);\n\n\t\t// if we didn't find it in the cache, load it\n\t\tif (xmlDataSetToRun == null) {\n\t\t\tFile file = new File(datasetFilename);\n\n\t\t\tInputStream fileInInputStreamFormat = null;\n\t\t\tReader reader = null;\n\t\t\ttry {\n\t\t\t\ttry {\n\t\t\t\t\t// try to load the file if its a straight up path to the file or\n\t\t\t\t\t// if its a classpath path to the file\n\t\t\t\t\tif (file.exists()) {\n\t\t\t\t\t\tfileInInputStreamFormat = new FileInputStream(datasetFilename);\n\t\t\t\t\t} else {\n\t\t\t\t\t\tfileInInputStreamFormat = getClass().getClassLoader().getResourceAsStream(datasetFilename);\n\t\t\t\t\t\tif (fileInInputStreamFormat == null)\n\t\t\t\t\t\t\tthrow new FileNotFoundException(\"Unable to find '\" + datasetFilename + \"' in the classpath\");\n\t\t\t\t\t}\n\n\t\t\t\t\treader = new InputStreamReader(fileInInputStreamFormat, StandardCharsets.UTF_8);\n\t\t\t\t\tReplacementDataSet replacementDataSet = new ReplacementDataSet(\n\t\t\t\t\t        new FlatXmlDataSet(reader, false, true, false));\n\t\t\t\t\treplacementDataSet.addReplacementObject(\"[NULL]\", null);\n\t\t\t\t\txmlDataSetToRun = replacementDataSet;\n\n\t\t\t\t\treader.close();\n\t\t\t\t} catch (DataSetException | IOException e) {\n\t\t\t\t\tthrow new DatabaseUnitRuntimeException(e);\n\t\t\t\t}\n\t\t\t} finally {\n\t\t\t\tIOUtils.closeQuietly(fileInInputStreamFormat);\n\t\t\t\tIOUtils.closeQuietly(reader);\n\t\t\t}\n\n\t\t\t// cache the xmldataset for future runs of this file\n\t\t\tcachedDatasets.put(datasetFilename, xmlDataSetToRun);\n\t\t}\n\n\t\texecuteDataSet(xmlDataSetToRun);\n\t}\n\n\t/**\n\t * Runs the large flat xml dataset. It does not cache the file as opposed to\n\t * {@link #executeDataSet(String)}.\n\t *\n\t * @param datasetFilename\n\t * @throws Exception\n\t * @since 1.10\n\t */\n\tpublic void executeLargeDataSet(String datasetFilename) throws Exception {\n\t\tInputStream inputStream = null;\n\t\ttry {\n\t\t\tfinal File file = new File(datasetFilename);\n\t\t\tif (file.exists()) {\n\t\t\t\tinputStream = new FileInputStream(datasetFilename);\n\t\t\t} else {\n\t\t\t\tinputStream = getClass().getClassLoader().getResourceAsStream(datasetFilename);\n\t\t\t\tif (inputStream == null)\n\t\t\t\t\tthrow new FileNotFoundException(\"Unable to find '\" + datasetFilename + \"' in the classpath\");\n\t\t\t}\n\n\t\t\tfinal FlatXmlProducer flatXmlProducer = new Fl"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:liquibase/README.md",
+      "kind": "File",
+      "path": "liquibase/README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "# Creating Liquibase snapshots for OpenMRS\nThis document explains why Liquibase snapshots are introduced to OpenMRS and how versioning of database changes is \naffected by snapshots. It also contains instructions for creating new Liquibase snapshots, running them from the \nconsole and adding them to the OpenMRS code base.\n\n## Why Liquibase snapshots?\nOpenMRS uses [Liquibase](http://www.liquibase.org/index.html) to evolve its database model. The respective change sets \nhave grown in the course of time and contain unneeded changes. E.g. there are tables or columns that are created, \nmodified and eventually deleted as they are no longer used.\n\nLarge and partly outdated Liquibase change sets affect OpenMRS in two ways:\n\n* Unneeded changes slow down the initialisation of OpenMRS\n* Liquibase change sets are hard to read and understand as they contain unused code.\n\nAn alternative model is based on snapshots where historic change sets are consolidated into smaller change sets.\n\n## Folder structure and naming conventions\nThis section describes the folder structure and naming conventions used for Liquibase snapshots and updates.\n\n**Before** the introduction of snapshots, all Liquibase change log files were located in the resources folder \nof `openmrs-api`:\n\n* `openmrs-core/api/src/main/resources`\n\n**Since** the introduction of snapshots, the respective change log files are no longer stored in \n`openmrs-core/api/src/main/resources` \nbut in the following subfolders:\n\n*  `openmrs-core/api/src/main/resources/org/openmrs/liquibase/snapshots` contains all Liquibase snapshot files.\n\n*  `openmrs-core/api/src/main/resources/org/openmrs/liquibase/updates` contains all Liquibase update files.\n\nVersion numbers are part of the change log file name: \n\n* `liquibase-update-to-latest-2.1.x.xml`.\n\n## Versioning of database changes with snapshots\nThis section compares Liquibase files before and after the introduction of Liquibase snapshots.\n\n### Change sets in [OpenMRS 2.1.x](https://github.com/openmrs/openmrs-core/tree/2.1.x/api/src/main/resources)\nOpenMRS 2.1.x is the **last version that contains the full history** of database changes. The respective Liquibase \nfiles are:\n\n* `org/openmrs/liquibase/snapshots/schema-only/liquibase-schema-only-1.9.x.xml` defines the OpenMRS schema\n\n* `org/openmrs/liquibase/snapshots/core-data/liquibase-core-data-1.9.x.xml` defines core data for OpenMRS\n\n*"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6666",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6666,
+      "title": "TRUNK-6708: Map uuid as a Hibernate natural id and serve by-uuid lookups from cache",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 645,
+      "excerpt": "<natural-id-cache>` in hbm.xml. The hbm.xml binder has no default region for natural ids (a bare `<natural-id-cache/>` silently caches nothing), so those mappings name the region the annotation would use, `org.openmrs.<Entity>##NaturalId`.\n- `HibernateUtil.getUniqueEntityByUUID` loads with `session.find(entityClass, uuid, KeyType.NATURAL)` when uuid is the only natural id of the entity. It keeps the existing query for a null uuid, for entities without that natural id (for example, module entities mapped without one), and when a filter enabled on the session restricts the entity. Loading by natural id does not apply Hibernate filters, not even on a cache hit, so without that last check, filters like the ones the Data Filter module defines would stop hiding records looked up by uuid. With no filter enabled, the check returns right away.\n- `Context.evictAllEntities(Class)` also evicts the natural id cache of the class.\n- `HibernateOrderDAO.deleteObsThatReference`: the bulk delete bypasses the session, and a natural id lookup checks the session first, so the deleted obs are now detached. Otherwise `getObsByUuid` could return an obs that was just deleted (caught by `OrderServiceTest.purgeOrder_shouldDeleteAnyObsAssociatedToTheOrderWhenCascadeIsTrue`).\n- The `OpenmrsObject.setUuid` javadoc now says the uuid is the natural id and cannot change once the object is saved, so an externally determined uuid has to be set before the first save.\n\nBehavior change: Hibernate now rejects a change to the uuid of an object that is already saved. Before, hbm.xml entities allowed it and annotated entities silently ignored it. No code in core changes a saved uuid (I went through every `setUuid` call), but two concept conversion tests did, by saving `new ConceptNumeric(22)` with a fresh random uuid over an existing concept. They now keep the uuid of the existing concept.\n\nBackport: 2.9.x is on Hibernate 5.6, which has no `KeyType.NATURAL` and a different metamodel API, so the backport needs its own change (`session.bySimpleNaturalId(entityClass).load(uuid)`). I'm happy to open that PR once this one is merged.\n\nTests:\n- `HibernateUtilTest` (new):\n  - cached lookups run no SQL statement, for an annotated entity (Location) and an hbm.xml one (Concept)\n  - a cached entity that changes is returned with its new state\n  - null after a delete, for an unknown uuid, for a null uuid, and for "
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6680",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6680,
+      "title": "TRUNK-6826: Request paths with a trailing slash find no handler on core 3.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3710,
+      "excerpt": "cation sees it, so the `//` cases were not run on a server.\n\nIf #6673 (TRUNK-6824) also merges, both PRs add a filter at the same place in `web.xml`, and `RepeatedSlashFilter` has to come first. In the other order, on Tomcat, `/openmrs//ws/rest/v1/session/` and `/openmrs/ws/rest/v1/session//` still find no handler.\n\nSeen while checking, left as they are:\n- An anonymous GET of `/ws/fhir2/R4/metadata/` now answers 200 instead of 401, the same as `/ws/fhir2/R4/metadata`, because fhir2's `endsWith(\"/metadata\")` check now sees the trimmed URI.\n- Multipart POSTs to `/ws/rest/v1/...` answer 500 with or without the slash: `ClassCastException` in legacyui's `XSSFilter` (`StrictHttpFirewall$StrictFirewalledRequest` is not a `MultipartHttpServletRequest`).\n- Anonymous `GET /ws/rest/v1/location` answers 500 (`AuthorizationDeniedException`, \"Privileges required: Get Locations\") with or without the slash.\n\n## Issue I worked on\n\nsee https://issues.openmrs.org/browse/TRUNK-6826\n\n## Checklist: I completed these to help reviewers :)\n\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n\n- [x] I have **added tests** to cover my changes.\n\n- [x] I ran `./mvnw clean package` right before creating this pull request and added all formatting changes to my commit.\n\n- [x] All new and existing **tests passed**.\n\n- [x] My pull request is **based on the latest changes** of the master branch.\n\n`mvn clean install` from the root on this head: all 13 modules pass, with 0 failures and 0 errors (api 5604 tests, web 321).\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    }
+  ]
+}

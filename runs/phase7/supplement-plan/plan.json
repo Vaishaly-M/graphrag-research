@@ -1,0 +1,34 @@
+[
+  {
+    "question_set": "T",
+    "split": "development",
+    "count": 32,
+    "ready": true,
+    "path": "data\\benchmark\\devval-supplement-1\\combined_template\\development.jsonl",
+    "sha256": "5d8ed149fd1c9a3dd9d66ebadfdb261f0ac42c09eba2ce52fa7115034bc650d5"
+  },
+  {
+    "question_set": "T",
+    "split": "validation",
+    "count": 32,
+    "ready": true,
+    "path": "data\\benchmark\\devval-supplement-1\\combined_template\\validation.jsonl",
+    "sha256": "afcf7b92abae7fcc298b785b0f7bcd744475bef4c27a5bda327a95786e2fc788"
+  },
+  {
+    "question_set": "P",
+    "split": "development",
+    "count": 10,
+    "ready": false,
+    "path": "data\\benchmark\\devval-supplement-1\\paraphrase\\development.jsonl",
+    "sha256": "098e70ff97329f90db9f30c0721d3f6e3da6e810bbf7a8c973835149e170bc34"
+  },
+  {
+    "question_set": "P",
+    "split": "validation",
+    "count": 0,
+    "ready": false,
+    "path": "data\\benchmark\\devval-supplement-1\\paraphrase\\validation.jsonl",
+    "sha256": null
+  }
+]

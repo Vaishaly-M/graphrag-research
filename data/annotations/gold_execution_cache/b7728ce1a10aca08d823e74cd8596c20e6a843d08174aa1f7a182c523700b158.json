@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 2832,
+        "line": 42
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1038",
+        "path": null,
+        "offset": 366,
+        "line": 10
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+        "path": null,
+        "offset": 17170,
+        "line": 306
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+        "path": null,
+        "offset": 30614,
+        "line": 506
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:756",
+        "path": null,
+        "offset": 22014,
+        "line": 119
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:712",
+        "path": null,
+        "offset": 492,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:726",
+        "path": null,
+        "offset": 342,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:736",
+        "path": null,
+        "offset": 323,
+        "line": 6
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1022,
+      "title": "Bump the microsoftextensions group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 30614,
+      "excerpt": "ness CI stage by merging into Build #​7594 by @​adamsitnik (co-authored by @​Copilot)\n* Update Agent Framework to 1.13.0 #​7613 by @​jeffhandley (co-authored by @​Copilot)\n ... (truncated)\n\n## 10.7.0\n\nv10.7.0 graduates the [Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes) package to stable. The package registers a Kubernetes-aware `ResourceQuotaProvider` that reads the pod's CPU and memory requests and limits and exposes them to `Microsoft.Extensions.Diagnostics.ResourceMonitoring` as baseline and maximum quotas, which then feed the request and limit dimensions of the published resource utilization metrics. The companion `ResourceQuota` and `ResourceQuotaProvider` types in `Microsoft.Extensions.Diagnostics.ResourceMonitoring` graduate to stable in the same change so that consumers can implement custom quota providers without taking an experimental dependency.\n\nOn the AI side, `Microsoft.Extensions.AI.OpenAI` moves to OpenAI 2.11.0 and fixes a deserialization bug in `ToolJson.AdditionalProperties` so that JSON Schema `additionalProperties` values shaped as sub-schema objects (for example `{\"type\":\"string\"}`) are preserved instead of throwing during deserialization. `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` graduate to stable since both values are consistently available across hosted-file providers, while `Purpose` and `Scope` remain experimental as provider-shaped vocabulary. `FunctionInvokingChatClient` drops a backward-compat path that auto-marked `ToolApprovalResponseContent` entries with `InformationalOnly: true`; consumers that need to continue accepting sessions serialized before #​7468 can use the sample `ApprovalHistoryNormalizingChatClient` middleware added in the test project.\n\n## Experimental API Changes\n\n### Now Stable\n\n* `Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes` package is now stable #​7253\n* Resource Monitoring `ResourceQuota` and `ResourceQuotaProvider` APIs are now stable (previously `EXTEXP0008`) #​7253\n* `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` are now stable (previously `MEAI001`) #​7513\n\n## What's Changed\n\n### AI\n\n* Graduate HostedFileContent.SizeInBytes and HostedFileContent.CreatedAt #​7513 by @​jozkee (co-authored by @​Copilot)\n* Remove backward-compat Infor"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1034,
+      "title": "Bump the aspire group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 17170,
+      "excerpt": "ness CI stage by merging into Build #​7594 by @​adamsitnik (co-authored by @​Copilot)\n* Update Agent Framework to 1.13.0 #​7613 by @​jeffhandley (co-authored by @​Copilot)\n ... (truncated)\n\n## 10.7.0\n\nv10.7.0 graduates the [Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes) package to stable. The package registers a Kubernetes-aware `ResourceQuotaProvider` that reads the pod's CPU and memory requests and limits and exposes them to `Microsoft.Extensions.Diagnostics.ResourceMonitoring` as baseline and maximum quotas, which then feed the request and limit dimensions of the published resource utilization metrics. The companion `ResourceQuota` and `ResourceQuotaProvider` types in `Microsoft.Extensions.Diagnostics.ResourceMonitoring` graduate to stable in the same change so that consumers can implement custom quota providers without taking an experimental dependency.\n\nOn the AI side, `Microsoft.Extensions.AI.OpenAI` moves to OpenAI 2.11.0 and fixes a deserialization bug in `ToolJson.AdditionalProperties` so that JSON Schema `additionalProperties` values shaped as sub-schema objects (for example `{\"type\":\"string\"}`) are preserved instead of throwing during deserialization. `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` graduate to stable since both values are consistently available across hosted-file providers, while `Purpose` and `Scope` remain experimental as provider-shaped vocabulary. `FunctionInvokingChatClient` drops a backward-compat path that auto-marked `ToolApprovalResponseContent` entries with `InformationalOnly: true`; consumers that need to continue accepting sessions serialized before #​7468 can use the sample `ApprovalHistoryNormalizingChatClient` middleware added in the test project.\n\n## Experimental API Changes\n\n### Now Stable\n\n* `Microsoft.Extensions.Diagnostics.ResourceMonitoring.Kubernetes` package is now stable #​7253\n* Resource Monitoring `ResourceQuota` and `ResourceQuotaProvider` APIs are now stable (previously `EXTEXP0008`) #​7253\n* `HostedFileContent.SizeInBytes` and `HostedFileContent.CreatedAt` are now stable (previously `MEAI001`) #​7513\n\n## What's Changed\n\n### AI\n\n* Graduate HostedFileContent.SizeInBytes and HostedFileContent.CreatedAt #​7513 by @​jozkee (co-authored by @​Copilot)\n* Remove backward-compat Infor"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1038",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1038,
+      "title": "Bump the opentelemetry group with 5 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 366,
+      "excerpt": "taining to this release see: [Release Notes > 1.19.0](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/RELEASENOTES.md#​1190).\n\nThe following changes are from the previous release [1.19.0-rc.1](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/core-1.19.0-rc.1).\n\n* NuGet: [OpenTelemetry v1.19.0](https://www.nuget.org/packages/OpenTelemetry/1.19.0)\n\n  * Added Schema URL to internally created `Resource` instances.\n    ([#​7726](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7726))\n  \n  * Reduced allocations when formatting self-diagnostics events with up to three parameters.\n    ([#​7730](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7730))\n  \n  * Added `AlwaysRecordSampler`.\n    ([#​7695](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7695))\n  \n  * Fixed `CircularBufferBuckets` so the first delta histogram insertion after a reset does not result in an unnecessary scale reduction.\n    ([#​7749](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7749))\n  \n  * Improved wildcard source/meter name matching to avoid excessive matching time at runtime.\n    ([#​7760](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7760))\n  \n  * Fixed lazy logger provider builds after a failure from reusing partially initialized provider state.\n    ([#​7761](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7761))\n\n  See [CHANGELOG](https://github.com/open-telemetry/opentelemetry-dotnet/blob/core-1.19.0/src/OpenTelemetry/CHANGELOG.md) for details.\n\n* NuGet: [OpenTelemetry.Api v1.19.0](https://www.nuget.org/packages/OpenTelemetry.Api/1.19.0)\n\n  * Reduced allocations when creating log record attributes from an array.\n    ([#​7699](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7699))\n  \n  * Reduced allocations when setting baggage through the `params` overload.\n    ([#​7697](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7697))\n  \n  * Reduced allocations when constructing `SpanAttributes` from an array.\n    ([#​7698](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7698))\n  \n  * Fixed parsing of an inbound `tracestate` header whose member value trimmed to an empty value that previously threw an `IndexOutOfRangeException` internally and could silently truncate the tracestate.\n    ([#​7756](https://github.com/open-telemetry/opentelemetry-dotnet/pull"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2832,
+      "excerpt": "T 11 install v15.0.1 (or later), before .NET 11 is released in November. Apps running `CommunityToolkit.Maui` v14.2.2 and earlier will not be compatible with .NET 11.\n\n## What's Changed\n* Remove MAUI internal API usage by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/3251\n* Hardcode NuGet trusted publishing user by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/3266\n\n## Housekeeping\n* Bump actions/setup-dotnet from 5.4.0 to 6.0.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3268\n* Bump actions/setup-java from 5.5.0 to 5.6.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3267\n\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/compare/14.2.2...14.2.3\n\n## 14.2.2\n\n**Note:** 14.2.2 supersedes 14.2.1, which was not published to NuGet.org due to an expired publishing credential.\n\nJust a couple bug fixes in this one!\n* Prevent Race Conditions when closing a Popup\n* Set initial folder for FilePicker and FolderPicker on Windows\n\n## What's Changed\n* Prevent Race Condition Allowing Simultaneous Calling of `Navigation.PushModalAsync()` / `Shell.GotoAsync()` in `PopupExtensions` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3234\n* Add `SemaphoreSlim` Support for `Popup` `CloseAsync` to Avoid Race Conditions by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3235\n* Set Windows Folder Picker Initial Path by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3078\n\n## Housekeeping\n* Bump actions/checkout from 6.0.2 to 6.0.3 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3236\n* Bump Microsoft.Testing.Extensions.CodeCoverage from 18.7.0 to 18.8.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3237\n* Bump System.Formats.Asn1 from 10.0.8 to 10.0.9 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3238\n* Bump actions/checkout from 6.0.3 to 7.0.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3245\n* Bump actions/setup-java from 5.2.0 to 5.3.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3246\n* Bump actions/setup-java from 5.3.0 to 5.4.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3256\n* Bump actions/setup-dotnet from 5.3.0 to 5.4.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/p"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:712",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 712,
+      "title": "Bump the duende group with 4 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 492,
+      "excerpt": "thub.com/DuendeSoftware/products/releases\">Duende.IdentityServer's releases</a>.</em></p>\n<blockquote>\n<p>IdentityServer 7.1.0 is a significant release that includes:</p>\n<ul>\n<li>.NET 9 support</li>\n<li>Use of Duende.IdentityModel</li>\n<li>New license usage helpers</li>\n<li>Friendly READMEs in the NuGet packages</li>\n<li>Improved log filtering when HTTP requests are aborted</li>\n<li>Redaction of the subject token during token exchange</li>\n<li>Improved extensibility of the <code>ClientConfigurationStore</code> in the Configuration API</li>\n<li>Several bug fixes</li>\n<li>Numerous small code quality and performance enhancements from the community</li>\n</ul>\n<h2>Breaking Changes</h2>\n<p>There are no schema changes needed for IdentityServer 7.1.0. Small code changes will be required for must users to upgrade.</p>\n<ul>\n<li>IdentityModel renamed Duende.IdentityModel</li>\n<li><code>ClientConfigurationStore</code> now uses IConfigurationDbContext</li>\n</ul>\n<h3>IdentityModel renamed Duende.IdentityModel</h3>\n<ul>\n<li>Use Duende.IdentityModel 7.0.0 by <a href=\"https://github.com/damianh\"><code>@​damianh</code></a> in <a href=\"https://redirect.github.com/DuendeSoftware/IdentityServer/pull/1621\">DuendeSoftware/IdentityServer#1621</a>\n<em>Our open source IdentityModel library has been renamed Duende.IdentityModel, and we now depend on Duende.IdentityModel instead of IdentityModel. Duende.IdentityModel is a drop-in replacement for IdentityModel with updated namespaces that include the Duende prefix. If you are using IdentityModel's types in your IdentityServer implementation, you will need to update references from IdentityModel to Duende.IdentityModel (replace &quot;using IdentityModel&quot; with &quot;using Duende.IdentityModel&quot;).</em></li>\n</ul>\n<h3>ClientConfigurationStore now uses IConfigurationDbContext</h3>\n<ul>\n<li>Use IConfigurationDbContext in ClientConfigurationStore by <a href=\"https://github.com/stefannikolei\"><code>@​stefannikolei</code></a> in <a href=\"https://redirect.github.com/DuendeSoftware/IdentityServer/pull/1624\">DuendeSoftware/IdentityServer#1624</a>\n<em>The <code>ClientConfigurationStore</code> in the <code>Duende.Configuration.EntityFramework</code> package now depends on <code>IConfigurationDbContext</code> instead of <code>ConfigurationDbContext</code> to allow for customization. If you have a customized store that derives from the defaul"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:726",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 726,
+      "title": "Bump the duende group across 1 directory with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 342,
+      "excerpt": "thub.com/DuendeSoftware/products/releases\">Duende.IdentityServer's releases</a>.</em></p>\n<blockquote>\n<p>IdentityServer 7.1.0 is a significant release that includes:</p>\n<ul>\n<li>.NET 9 support</li>\n<li>Use of Duende.IdentityModel</li>\n<li>New license usage helpers</li>\n<li>Friendly READMEs in the NuGet packages</li>\n<li>Improved log filtering when HTTP requests are aborted</li>\n<li>Redaction of the subject token during token exchange</li>\n<li>Improved extensibility of the <code>ClientConfigurationStore</code> in the Configuration API</li>\n<li>Several bug fixes</li>\n<li>Numerous small code quality and performance enhancements from the community</li>\n</ul>\n<h2>Breaking Changes</h2>\n<p>There are no schema changes needed for IdentityServer 7.1.0. Small code changes will be required for must users to upgrade.</p>\n<ul>\n<li>IdentityModel renamed Duende.IdentityModel</li>\n<li><code>ClientConfigurationStore</code> now uses IConfigurationDbContext</li>\n</ul>\n<h3>IdentityModel renamed Duende.IdentityModel</h3>\n<ul>\n<li>Use Duende.IdentityModel 7.0.0 by <a href=\"https://github.com/damianh\"><code>@​damianh</code></a> in <a href=\"https://redirect.github.com/DuendeSoftware/IdentityServer/pull/1621\">DuendeSoftware/IdentityServer#1621</a>\n<em>Our open source IdentityModel library has been renamed Duende.IdentityModel, and we now depend on Duende.IdentityModel instead of IdentityModel. Duende.IdentityModel is a drop-in replacement for IdentityModel with updated namespaces that include the Duende prefix. If you are using IdentityModel's types in your IdentityServer implementation, you will need to update references from IdentityModel to Duende.IdentityModel (replace &quot;using IdentityModel&quot; with &quot;using Duende.IdentityModel&quot;).</em></li>\n</ul>\n<h3>ClientConfigurationStore now uses IConfigurationDbContext</h3>\n<ul>\n<li>Use IConfigurationDbContext in ClientConfigurationStore by <a href=\"https://github.com/stefannikolei\"><code>@​stefannikolei</code></a> in <a href=\"https://redirect.github.com/DuendeSoftware/IdentityServer/pull/1624\">DuendeSoftware/IdentityServer#1624</a>\n<em>The <code>ClientConfigurationStore</code> in the <code>Duende.Configuration.EntityFramework</code> package now depends on <code>IConfigurationDbContext</code> instead of <code>ConfigurationDbContext</code> to allow for customization. If you have a customized store that derives from the defaul"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:736",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 736,
+      "title": "Bump the duende group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 323,
+      "excerpt": "thub.com/DuendeSoftware/products/releases\">Duende.IdentityServer's releases</a>.</em></p>\n<blockquote>\n<p>IdentityServer 7.1.0 is a significant release that includes:</p>\n<ul>\n<li>.NET 9 support</li>\n<li>Use of Duende.IdentityModel</li>\n<li>New license usage helpers</li>\n<li>Friendly READMEs in the NuGet packages</li>\n<li>Improved log filtering when HTTP requests are aborted</li>\n<li>Redaction of the subject token during token exchange</li>\n<li>Improved extensibility of the <code>ClientConfigurationStore</code> in the Configuration API</li>\n<li>Several bug fixes</li>\n<li>Numerous small code quality and performance enhancements from the community</li>\n</ul>\n<h2>Breaking Changes</h2>\n<p>There are no schema changes needed for IdentityServer 7.1.0. Small code changes will be required for must users to upgrade.</p>\n<ul>\n<li>IdentityModel renamed Duende.IdentityModel</li>\n<li><code>ClientConfigurationStore</code> now uses IConfigurationDbContext</li>\n</ul>\n<h3>IdentityModel renamed Duende.IdentityModel</h3>\n<ul>\n<li>Use Duende.IdentityModel 7.0.0 by <a href=\"https://github.com/damianh\"><code>@​damianh</code></a> in <a href=\"https://redirect.github.com/DuendeSoftware/IdentityServer/pull/1621\">DuendeSoftware/IdentityServer#1621</a>\n<em>Our open source IdentityModel library has been renamed Duende.IdentityModel, and we now depend on Duende.IdentityModel instead of IdentityModel. Duende.IdentityModel is a drop-in replacement for IdentityModel with updated namespaces that include the Duende prefix. If you are using IdentityModel's types in your IdentityServer implementation, you will need to update references from IdentityModel to Duende.IdentityModel (replace &quot;using IdentityModel&quot; with &quot;using Duende.IdentityModel&quot;).</em></li>\n</ul>\n<h3>ClientConfigurationStore now uses IConfigurationDbContext</h3>\n<ul>\n<li>Use IConfigurationDbContext in ClientConfigurationStore by <a href=\"https://github.com/stefannikolei\"><code>@​stefannikolei</code></a> in <a href=\"https://redirect.github.com/DuendeSoftware/IdentityServer/pull/1624\">DuendeSoftware/IdentityServer#1624</a>\n<em>The <code>ClientConfigurationStore</code> in the <code>Duende.Configuration.EntityFramework</code> package now depends on <code>IConfigurationDbContext</code> instead of <code>ConfigurationDbContext</code> to allow for customization. If you have a customized store that derives from the defaul"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:756",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 756,
+      "title": "Bump the microsoftextensions group across 1 directory with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22014,
+      "excerpt": "ons/pull/5841\">dotnet/extensions#5841</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/dotnet/extensions/compare/v9.1.0...v9.2.0\">https://github.com/dotnet/extensions/compare/v9.1.0...v9.2.0</a></p>\n<h2>.NET Extensions 9.1.0</h2>\n<p>9.1.0 packages are all pushed now to NuGet.org!</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Add NativeAOT testapp project for M.E.AI by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5573\">dotnet/extensions#5573</a></li>\n<li>Add changelogs for M.E.AI projects by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5577\">dotnet/extensions#5577</a></li>\n<li>Explicitly reference System.Memory.Data in OpenAI/AzureAIInference projects by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5576\">dotnet/extensions#5576</a></li>\n<li>Fix AzureAIInferenceEmbeddingGenerator to respect EmbeddingGenerationOptions.Dimensions by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5575\">dotnet/extensions#5575</a></li>\n<li>Merge ResourceMonitoringOptions.Linux.cs into ResourceMonitoringOptions.cs by <a href=\"https://github.com/makazeu\"><code>@​makazeu</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5580\">dotnet/extensions#5580</a></li>\n<li>Fix exception when generating boolean schemas by <a href=\"https://github.com/eiriktsarpalis\"><code>@​eiriktsarpalis</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5585\">dotnet/extensions#5585</a></li>\n<li>Add ImageContent integration test by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5586\">dotnet/extensions#5586</a></li>\n<li>Add ChatOptions.Seed by <a href=\"https://github.com/stephentoub\"><code>@​stephentoub</code></a> in <a href=\"https://redirect.github.com/dotnet/extensions/pull/5587\">dotnet/extensions#5587</a></li>\n<li>Lower <code>AIJsonUtilities</code> to STJv8 and move to Abstractions library. by <a href=\"https://github.com/eiriktsarpalis\"><code>@​eiriktsarpalis</code></a> in <a href=\"https://redirect.github.com"
+    }
+  ]
+}

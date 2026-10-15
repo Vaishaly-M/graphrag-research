@@ -1,0 +1,49 @@
+{
+  "count": 32,
+  "accuracy": 0.25,
+  "confusion_matrix": {
+    "graph": {
+      "graph": 0,
+      "vector": 0,
+      "hybrid": 16
+    },
+    "vector": {
+      "graph": 0,
+      "vector": 0,
+      "hybrid": 8
+    },
+    "hybrid": {
+      "graph": 0,
+      "vector": 0,
+      "hybrid": 8
+    }
+  },
+  "per_category": {
+    "issue_pr": {
+      "correct": 0,
+      "count": 4,
+      "accuracy": 0.0
+    },
+    "developer_activity": {
+      "correct": 0,
+      "count": 8,
+      "accuracy": 0.0
+    },
+    "multi_hop": {
+      "correct": 8,
+      "count": 12,
+      "accuracy": 0.6666666666666666
+    },
+    "documentation": {
+      "correct": 0,
+      "count": 8,
+      "accuracy": 0.0
+    }
+  },
+  "class_support": {
+    "graph": 16,
+    "vector": 8,
+    "hybrid": 8
+  },
+  "source_sha256": "afcf7b92abae7fcc298b785b0f7bcd744475bef4c27a5bda327a95786e2fc788"
+}

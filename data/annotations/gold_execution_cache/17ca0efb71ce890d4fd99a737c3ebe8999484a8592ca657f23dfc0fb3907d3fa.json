@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+        "path": null,
+        "offset": 6308,
+        "line": 122
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1023",
+        "path": null,
+        "offset": 24164,
+        "line": 422
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 502,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1038",
+        "path": null,
+        "offset": 34122,
+        "line": 580
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+        "path": null,
+        "offset": 96,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+        "path": null,
+        "offset": 872,
+        "line": 24
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 7118,
+        "line": 151
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:951",
+        "path": null,
+        "offset": 27191,
+        "line": 468
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 920,
+      "title": "Referential integrity bugs related to catalog, basket, and order",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 96,
+      "excerpt": "onsistencies during execution. I would like to share this to understand if the issues are valid in the context of the application, and whether these bugs could be addressed. Thank you in advance.\n\nThe issues are related to the data associations established across the catalog, basket, and order microservices, where the baskets and orders contain item IDs that reference the item IDs of the corresponding products in the catalog.\n\nBelow are the steps to reproduce the bugs and their potential impact on the system.\n\n### Scenario 1: Catalog-Basket\n\n**Steps to reproduce bugs:**\n\nConsider a client that manages its cart items via the Web App and an administrator who manages the catalog via the REST API.\n\nThe flow of requests is illustrated in a shared [figure](https://drive.google.com/file/d/1tvxXGYsScQAVJruN8ydk3aSRd-IpnS0r/view?usp=sharing). The illustrated databases contain data from the original application. For simplicity, only the catalog and basket services are represented, along with the most relevant calls and arguments.\n\n- The client adds items to the basket. _(fig. calls 1-3)_\n- The admin lists all items from the catalog to get the IDs of the items. _(fig. calls 4-5)_\n- The admin deletes an item from the catalog. _(fig. calls 6-7)_\n- The client proceeds to the checkout. _(fig. calls 8-12)_\n\n**Description of the bugs:**\n\n**1. Absence of cascading delete:** each basket item contains the ID of the corresponding catalog item, resembling a foreign key. However, when the catalog item is deleted (fig. call 7), this action is not propagated to the basket, leaving a reference that is no longer valid.\n\nDuring checkout (or even when viewing the cart), the web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117) receives data from querying the basket (fig. calls 9-10, where the returned item IDs contain the deleted item ID) that is inconsistent with the data obtained from querying the catalog (fig. calls 11-12, where the returned items do not contain the deleted item).\n\nThe web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117)  expects that every basket item is present in the returned catalog items, and during iteration, a `key not found` error occurs, causing the web app t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 502,
+      "excerpt": "\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontainers** | Testcontainers.PostgreSql | Real PostgreSQL in container | Fake AI, no-op event bus |\r\n| **AspireMessagingOutbox** | Aspire + Postgres | Real PostgreSQL | `CapturingEventBus` spy instead of RabbitMQ |\r\n| **AspireMessagingRabbitMq** | Aspire + Postgres + RabbitMQ | Real PostgreSQL | Real RabbitMQ + capture handlers |\r\n\r\n### Architecture (How It Works)\r\n\r\n```mermaid\r\nflowchart TB\r\n    subgraph TestLayer[\"Test class\"]\r\n        T[\"CatalogApiTests / OrderingApiTests\"]\r\n        A[\"[CatalogFunctio"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7118,
+      "excerpt": "ing doesn't work in Carousel View by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/30014\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [ItemSpacing on CarouselView is not applied on Windows.](https://github.com/dotnet/maui/issues/29772)\n  </details>\n\n- Fix CollectionView not scrolling to top on iOS status bar tap by @​jfversluis in https://github.com/dotnet/maui/pull/34687\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] UICollectionView ScrollToTop does not work](https://github.com/dotnet/maui/issues/19866)\n  </details>\n\n- [iOS] Fixed CollectionView Scroll Jitter for TextType HTML Labels by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/34383\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.71\n\n## What's Changed\n* [release/10.0.1xx-sr7] [Windows] Fix WebView blank rendering when used with HybridWebView by @​kubaflo in https://github.com/dotnet/maui/pull/35585\n* [release/10.0.1xx-sr7] Revert PR #​30068 — Fix FontImageSource centering regression on Windows by @​kubaflo in https://github.com/dotnet/maui/pull/35689\n* [release/10.0.1xx-sr7] Fix iOS/Catalyst MapPool retention with MapElements by @​kubaflo in https://github.com/dotnet/maui/pull/35690\n* [release/10.0.1xx-sr7] [iOS] Fix Shell - opened keyboard on modal page shifts parent page/frame behind modal after update to 10.0.60 by @​kubaflo in https://github.com/dotnet/maui/pull/35691\n* [release/10.0.1xx-sr7] [Android] Fix BottomNavigationView remaining visible for TabbedPage inside modal NavigationPage after PushAsync by @​kubaflo in https://github.com/dotnet/maui/pull/35692\n* [release/10.0.1xx-sr7] Gate SafeArea inset listeners in recycler items by @​kubaflo in https://github.com/dotnet/maui/pull/35693\n* [release/10.0.1xx-sr7] Revert - Fix TalkBack not correctly narrating RadioButtons with Content by @​kubaflo in https://github.com/dotnet/maui/pull/35694\n* [release/10.0.1xx-sr7] Revert - Fix Changing Shell.NavBarIsVisible does not update the nav bar  by @​Tamilarasan-Paranthaman in https://github.com/dotnet/maui/pull/35703\n* [Revert] - [Windows] Fix WebView blank rendering when used with HybridWebView by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/35744\n* Fix OnNavigatedTo not firing after PopModalAsync when tab is changed inside modal by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/35768\n* Increment patch version from 70 to 71 by @"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1023",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1023,
+      "title": "Bump the opentelemetry group with 5 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 24164,
+      "excerpt": "resolved from dependency injection\n    is now created lazily when the first logger is created rather than when\n    `ILoggerProvider` or `ILoggerFactory` is resolved. A consequence is that any\n    invalid configuration now surfaces when the first log record is written instead\n    of when the logging services are resolved.\n    ([#​7308](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7308))\n\n  See [CHANGELOG](https://github.com/open-telemetry/opentelemetry-dotnet/blob/core-1.16.0-rc.1/src/OpenTelemetry/CHANGELOG.md) for details.\n\n* NuGet: [OpenTelemetry.Api v1.16.0-rc.1](https://www.nuget.org/packages/OpenTelemetry.Api/1.16.0-rc.1)\n\n  * **Experimental (pre-release builds only):**\n    Add support for using environment variables as context propagation carriers.\n    ([#​7174](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7174))\n  \n  * Fix `BaggagePropagator` to correctly follow Key and Value Encoding rules as per\n ... (truncated)\n\n## 1.16.0-beta.1\n\nThe following changes are from the previous release [1.15.3-beta.1](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/coreunstable-1.15.3-beta.1).\n\n* NuGet: [OpenTelemetry.Exporter.Prometheus.AspNetCore v1.16.0-beta.1](https://www.nuget.org/packages/OpenTelemetry.Exporter.Prometheus.AspNetCore/1.16.0-beta.1)\n\n  * Fixed scrape response cache freshness using monotonic time so it is not\n    affected by NTP system clock adjustments.\n    ([#​7253](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7253))\n  \n  * **Breaking Change** Removed `DisableTimestamp` property from\n    `PrometheusAspNetCoreOptions`.\n    ([#​7176](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7176))\n  \n  * Fixed the serialization of `NaN`, `PositiveInfinity`, and `NegativeInfinity`\n    values in Prometheus metrics to be compliant with the specification.\n    ([#​7179](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7179))\n  \n  * Fixed loss of precision when serializing `double` and `float` values in\n    Prometheus metrics to be compliant with the specification by using 17\n    significant digits to represent such values.\n    ([#​7179](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7179))\n  \n  * Fix non-ASCII characters in metric names and unit strings not being sanitized\n    correctly during Prometheus serialization.\n    ([#​7184](https://github.com/open-telemetry"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1038",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1038,
+      "title": "Bump the opentelemetry group with 5 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 34122,
+      "excerpt": "resolved from dependency injection\n    is now created lazily when the first logger is created rather than when\n    `ILoggerProvider` or `ILoggerFactory` is resolved. A consequence is that any\n    invalid configuration now surfaces when the first log record is written instead\n    of when the logging services are resolved.\n    ([#​7308](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7308))\n\n  See [CHANGELOG](https://github.com/open-telemetry/opentelemetry-dotnet/blob/core-1.16.0-rc.1/src/OpenTelemetry/CHANGELOG.md) for details.\n\n* NuGet: [OpenTelemetry.Api v1.16.0-rc.1](https://www.nuget.org/packages/OpenTelemetry.Api/1.16.0-rc.1)\n\n  * **Experimental (pre-release builds only):**\n    Add support for using environment variables as context propagation carriers.\n    ([#​7174](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7174))\n  \n  * Fix `BaggagePropagator` to correctly follow Key and Value Encoding rules as per\n ... (truncated)\n\n## 1.16.0-beta.1\n\nThe following changes are from the previous release [1.15.3-beta.1](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/coreunstable-1.15.3-beta.1).\n\n* NuGet: [OpenTelemetry.Exporter.Prometheus.AspNetCore v1.16.0-beta.1](https://www.nuget.org/packages/OpenTelemetry.Exporter.Prometheus.AspNetCore/1.16.0-beta.1)\n\n  * Fixed scrape response cache freshness using monotonic time so it is not\n    affected by NTP system clock adjustments.\n    ([#​7253](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7253))\n  \n  * **Breaking Change** Removed `DisableTimestamp` property from\n    `PrometheusAspNetCoreOptions`.\n    ([#​7176](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7176))\n  \n  * Fixed the serialization of `NaN`, `PositiveInfinity`, and `NegativeInfinity`\n    values in Prometheus metrics to be compliant with the specification.\n    ([#​7179](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7179))\n  \n  * Fixed loss of precision when serializing `double` and `float` values in\n    Prometheus metrics to be compliant with the specification by using 17\n    significant digits to represent such values.\n    ([#​7179](https://github.com/open-telemetry/opentelemetry-dotnet/pull/7179))\n  \n  * Fix non-ASCII characters in metric names and unit strings not being sanitized\n    correctly during Prometheus serialization.\n    ([#​7184](https://github.com/open-telemetry"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 940,
+      "title": "Fix KeyNotFoundException and NullReferenceException when catalog items are deleted",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 872,
+      "excerpt": "tValue(item.ProductId, out var catalogItem))\n{\n    logger.LogWarning(\"Basket item with ProductId {ProductId} not found in catalog and will be skipped\", item.ProductId);\n    continue;\n}\n```\n\nThis defensive approach allows the system to continue functioning when data inconsistencies occur across microservices, avoiding the need for distributed transaction coordination.\n\n<!-- START COPILOT ORIGINAL PROMPT -->\n\n\n\n<details>\n\n<summary>Original prompt</summary>\n\n\n----\n\n*This section details on the original issue you should resolve*\n\n<issue_title>Referential integrity bugs related to catalog, basket, and order</issue_title>\n<issue_description>Hi,\n\nThere appears to be code logic that breaks referential integrity constraints and causes inconsistencies during execution. I would like to share this to understand if the issues are valid in the context of the application, and whether these bugs could be addressed. Thank you in advance.\n\nThe issues are related to the data associations established across the catalog, basket, and order microservices, where the baskets and orders contain item IDs that reference the item IDs of the corresponding products in the catalog.\n\nBelow are the steps to reproduce the bugs and their potential impact on the system.\n\n### Scenario 1: Catalog-Basket\n\n**Steps to reproduce bugs:**\n\nConsider a client that manages its cart items via the Web App and an administrator who manages the catalog via the REST API.\n\nThe flow of requests is illustrated in a shared [figure](https://drive.google.com/file/d/1tvxXGYsScQAVJruN8ydk3aSRd-IpnS0r/view?usp=sharing). The illustrated databases contain data from the original application. For simplicity, only the catalog and basket services are represented, along with the most relevant calls and arguments.\n\n- The client adds items to the basket. _(fig. calls 1-3)_\n- The admin lists all items from the catalog to get the IDs of the items. _(fig. calls 4-5)_\n- The admin deletes an item from the catalog. _(fig. calls 6-7)_\n- The client proceeds to the checkout. _(fig. calls 8-12)_\n\n**Description of the bugs:**\n\n**1. Absence of cascading delete:** each basket item contains the ID of the corresponding catalog item, resembling a foreign key. However, when the catalog item is deleted (fig. call 7), this action is not propagated to the basket, leaving a reference that is no longer valid.\n\nDuring checkout (or even when viewing th"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:951",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 951,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27191,
+      "excerpt": "Improve MSBuild Error Actionability in Resizetizer by @​jsuarezruiz in https://github.com/dotnet/maui/pull/28999\n* [NET10.0] Annotate converters for nullability 4/n by @​MartyIX in https://github.com/dotnet/maui/pull/29549\n* Fixed KeepLastItemInView Does Not Scroll to Last Item When Adding Items at Top by @​Dhivya-SF4094 in https://github.com/dotnet/maui/pull/29632\n* Apply nullability attributes to TimeChangedEventArgs by @​jsuarezruiz in https://github.com/dotnet/maui/pull/29572\n* [android] update AOT profiles for .NET 10 by @​jonathanpeppers in https://github.com/dotnet/maui/pull/29612\n* [NET10.0] Annotate converters for nullability 3/n by @​MartyIX in https://github.com/dotnet/maui/pull/29314\n* Include all platforms in multi project template by @​jfversluis in https://github.com/dotnet/maui/pull/28766\n* Make internal types used by MAUI Toolkit public by @​jfversluis in https://github.com/dotnet/maui/pull/29443\n* [net10.0] Trimmable view handlers by @​simonrozsival in https://github.com/dotnet/maui/pull/28357\n* Android Libraries Ecosystem Updates 20250502 by @​moljac in https://github.com/dotnet/maui/pull/29331\n* Revert \"[Android][NET 10] Fix: Ensure Image consumes touches  properly (#​28429)\" by @​kubaflo in https://github.com/dotnet/maui/pull/29363\n* Revert \"Remove InternalsVisibleTo for Toolkit (#​28994)\" by @​jfversluis in https://github.com/dotnet/maui/pull/29321\n* Add Accessibility Selected for iOS CollectionView by @​tj-devel709 in https://github.com/dotnet/maui/pull/29014\n* [Android] Fixed Setting a Label visible after having had focus on a InputView will increase the Label's height by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/29210\n* Remove by @​MartyIX in https://github.com/dotnet/maui/pull/29256\n* Update ListViewViewCellBinding.cs by @​HarishKumarSF4517 in https://github.com/dotnet/maui/pull/29409\n\n### Testing\n\n* [tests] Add coreclr test for SF sample by @​rmarinho in https://github.com/dotnet/maui/pull/29327\n* Run Categories Separately by @​PureWeen in https://github.com/dotnet/maui/pull/29362\n* [UI Test] Create a new UITest for ModalPageMarginCorrectAfterKeyboardOpens by @​jsuarezruiz in https://github.com/dotnet/maui/pull/21897\n* Fixed Test case failure in PR 29399 - Merge main to net10 by @​rmarinho in https://github.com/dotnet/maui/pull/29608\n* Fixed Test case failure in PR 29473 - [2025/05/19] Candidate by @​prakashKannanSf3972 i"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:953",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 953,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6308,
+      "excerpt": " avoid ContentPage from being allowed by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2715\n* [Popup] Properly handle Android Back Button pressed by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2716\n* Speech Recognition Windows Ensure unsubscribe from events on Stop Recording by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/2705\n* Prevent a tap inside the content from closing a popup by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2741\n* [Popup] Add `Popup.CanBeDismissedByTappingOutsideOfPopup` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2753\n* ShowPopupAsync will now correctly return once the popup is closed under heavy garbage collection by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2756\n* Remove exception swallowing and update tests to exhibit expected behaviour by @​bijington in https://github.com/CommunityToolkit/Maui/pull/2749\n* Fix: .UseMauiCommunityToolkit() Analyzer when wrapped in preprocessor directives by @​IeuanWalker in https://github.com/CommunityToolkit/Maui/pull/2769\n* Publish main to github nuget by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/2760\n* [Popup] Add `DefaultPopupOptionsSettings` and `DefaultPopupSettings` to `.UseMauiCommunityToolkit(Options)` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2759\n* [Popup] Add `ComplexPopup` to `CommunityToolkit.Maui.Sample` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/2771\n* Fix Windows Snackbar Registration by @​ne0rrmatrix in https://github.com/CommunityToolkit/Maui/pull/2755\n\n## Requirements\n\nThe following tools are now required for CommunityToolkit.Maui:\n\n- [ ] Download/install [.NET SDK v9.0.300](https://dotnet.microsoft.com/download/dotnet/)\n- [ ] Install Xcode 16.2.0 (or higher)\n  - Read the [latest .NET MAUI Release wiki](https://github.com/dotnet/maui/wiki/Release-Versions) to always find the latest-supported version) of Xcode for .NET MAUI \n  - We HIGHLY recommend using the open-source tool [Xcodes](https://github.com/XcodesOrg/XcodesApp) to easily manage your installed Xcode versions\n- [ ] Update to the latest stable version of Visual Studio (or Jet Brains Rider)\n- [ ] After installing the latest stable .NET SDK, update to the latest stable version of the .NET MAUI workload:\n  - On macOS, open th"
+    }
+  ]
+}

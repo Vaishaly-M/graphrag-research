@@ -1,0 +1,74 @@
+schema_version: 1
+seed: 42
+dataset_id: rebuild-20261014
+unseen_repo: apache/airflow
+development:
+  repos: &id001
+  - spring-projects/spring-petclinic
+  - openmrs/openmrs-core
+  - dotnet/eShop
+  - mlflow/mlflow
+  families:
+  - commit_file
+  - dependency_manifest
+  - directory_listing
+  - documentation_listing
+validation:
+  repos: *id001
+  families:
+  - developer_history
+  - directory_contributors
+  - issue_state
+test:
+  repos:
+  - spring-projects/spring-petclinic
+  - openmrs/openmrs-core
+  - dotnet/eShop
+  - apache/airflow
+  - mlflow/mlflow
+  - synthetic-org/platform
+  families:
+  - extension_summary
+  - file_declarations
+  - import_lines
+  - documentation_line
+  - pull_author
+  - developer_commit_count
+  - co_changed_files
+  - peer_author_documentation
+questions_per_repo_family: 2
+question_sets:
+  T:
+    status: deterministic_generation
+  P:
+    status: qwen_paraphrases
+    splits:
+    - test
+    model: qwen2.5:7b
+  H:
+    status: pending_human_verification
+    independent_authors_required: 5
+    human_gold_verification_required: true
+    source: data/benchmark/Repository_Questions_with_gold_answers.csv
+    source_sha256: c45d241bca0d8308772289476360f919ac10b9c3025783f93700ad64ac30b750
+    planned_test_count: 100
+    persona_is_author_id: true
+family_policy: disjoint globally, including Airflow; variants and paraphrases inherit
+  group, never split independently
+benchmark_version: benchmark-2
+family_quotas:
+  dependency_manifest: 1
+  issue_state: 1
+  documentation_listing: 1
+  directory_contributors: 1
+devval_supplement:
+  version: devval-supplement-1
+  directory: data/benchmark/devval-supplement-1
+  manifest_sha256: db172de2e4cea26e77615a62eb83e8ef28159f3d4a6c03137b14a2115ad08d18
+  families:
+    development:
+    - commit_file_tail
+    validation:
+    - markdown_headings
+    - author_document_headings
+  authorization: User approved versioned dev/validation supplement

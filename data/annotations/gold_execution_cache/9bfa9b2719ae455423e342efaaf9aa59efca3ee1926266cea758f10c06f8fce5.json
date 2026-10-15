@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1898",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2641",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:277",
+        "path": null,
+        "offset": 1392,
+        "line": 19
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2445",
+        "path": null,
+        "offset": 1067,
+        "line": 15
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+        "path": null,
+        "offset": 1427,
+        "line": 19
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:gradlew",
+        "path": "gradlew",
+        "offset": 1728,
+        "line": 47
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+        "path": null,
+        "offset": 1207,
+        "line": 27
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2454",
+        "path": null,
+        "offset": 149,
+        "line": 7
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:gradlew",
+      "kind": "File",
+      "path": "gradlew",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1728,
+      "excerpt": "      The \"traditional\" practice of packing multiple parameters into a\n#       space-separated string is a well documented source of bugs and security\n#       problems, so this is (mostly) avoided, by progressively accumulating\n#       options in \"$@\", and eventually passing that to Java.\n#\n#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,\n#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;\n#       see the in-line comments for details.\n#\n#       There are tweaks for specific operating systems such as AIX, CygWin,\n#       Darwin, MinGW, and NonStop.\n#\n#   (3) This script is generated from the Groovy template\n#       https://github.com/gradle/gradle/blob/3d91ce3b8caaf77ad09f381f43615b715b53f72c/platforms/jvm/plugins-application/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt\n#       within the Gradle project.\n#\n#       You can find Gradle at https://github.com/gradle/gradle/.\n#\n##############################################################################\n\n# Attempt to set APP_HOME\n\n# Resolve links: $0 may be a link\napp_path=$0\n\n# Need this for daisy-chained symlinks.\nwhile\n    APP_HOME=${app_path%\"${app_path##*/}\"}  # leaves a trailing /; empty if no leading path\n    [ -h \"$app_path\" ]\ndo\n    ls=$( ls -ld \"$app_path\" )\n    link=${ls#*' -> '}\n    case $link in             #(\n      /*)   app_path=$link ;; #(\n      *)    app_path=$APP_HOME$link ;;\n    esac\ndone\n\n# This is normally unused\n# shellcheck disable=SC2034\nAPP_BASE_NAME=${0##*/}\n# Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)\nAPP_HOME=$( cd -P \"${APP_HOME:-./}\" > /dev/null && printf '%s\\n' \"$PWD\" ) || exit\n\n# Use the maximum available, or set MAX_FD != -1 to use that value.\nMAX_FD=maximum\n\nwarn () {\n    echo \"$*\"\n} >&2\n\ndie () {\n    echo\n    echo \"$*\"\n    echo\n    exit 1\n} >&2\n\n# OS specific support (must be 'true' or 'false').\ncygwin=false\nmsys=false\ndarwin=false\nnonstop=false\ncase \"$( uname )\" in                #(\n  CYGWIN* )         cygwin=true  ;; #(\n  Darwin* )         darwin=true  ;; #(\n  MSYS* | MINGW* )  msys=true    ;; #(\n  NONSTOP* )        nonstop=true ;;\nesac\n\n\n\n# Determine the Java command to use to start the JVM.\nif [ -n \"$JAVA_HOME\" ] ; then\n    if [ -x \"$JAVA_HOME/jre/sh/java\" ] ; then\n        # IBM's JDK on AIX uses strange locations for the executables\n   "
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1898",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1898,
+      "title": "Feature: Add Medical History Tracking for Pets",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## User Story\n\n**As a** pet owner,  \n**I want to** view and manage the medical history of my pet (such as diagnoses, treatments, and vaccines),  \n**So that** I can track its health status and vaccination history over time.\n\n---\n\n## Acceptance Criteria \n\n### Viewing Medical History\n\n**Given** a pet with existing medical records  \n**When** I navigate to the pet's profile page  \n**Then** I should see a list of all diagnoses, treatments, and vaccinations recorded\n\n---\n\n### Adding a New Medical Record\n\n**Given** I am on the medical record creation form for a pet  \n**When** I fill in the diagnosis, treatment, vaccine, and date fields and submit  \n**Then** a new medical record should be saved and associated with the selected pet\n\n---\n\n### Validation\n\n**Given** I leave required fields empty  \n**When** I try to submit the form  \n**Then** I should see validation messages and the record should not be saved\n\n---\n\n## Notes\n- This feature will require extending the data model by introducing a new `MedicalRecord` entity.\n- UI support may include listing medical records on the pet detail page and a form to add a new record.\n- Spring Data JPA will be used to handle the entity relationships.\n\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:277",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 277,
+      "title": "Experiments running the build in parallel - Parallel tests fail",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1392,
+      "excerpt": "java:901) ~[na:1.8.0_131]\r\n\tat java.util.ArrayList$Itr.next(ArrayList.java:851) ~[na:1.8.0_131]\r\n\tat org.springframework.boot.test.autoconfigure.web.servlet.SpringBootMockMvcBuilderCustomizer$SystemLinesWriter.write(SpringBootMockMvcBuilderCustomizer.java:307) ~[spring-boot-test-autoconfigure-1.5.4.RELEASE.jar:1.5.4.RELEASE]\r\n\tat org.springframework.boot.test.autoconfigure.web.servlet.SpringBootMockMvcBuilderCustomizer$DeferredLinesWriter.writeDeferredResult(SpringBootMockMvcBuilderCustomizer.java:257) ~[spring-boot-test-autoconfigure-1.5.4.RELEASE.jar:1.5.4.RELEASE]\r\n\tat org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener.afterTestMethod(MockMvcPrintOnlyOnFailureTestExecutionListener.java:38) ~[spring-boot-test-autoconfigure-1.5.4.RELEASE.jar:1.5.4.RELEASE]\r\n\tat org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:319) ~[spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:94) [spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84) [spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325) [junit-4.12.jar:4.12]\r\n\tat org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252) [spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94) [spring-test-4.3.9.RELEASE.jar:4.3.9.RELEASE]\r\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]\r\n\tat org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387) [surefire-junit47-2.18.1.jar:2.18.1]\r\n\tat org.apache.maven.surefire.junitcore.pc.InvokerStrategy.schedule(InvokerStrategy.java:54) [surefire-junit47-2.18.1.jar:2.18.1]\r\n\tat org.apache.maven.surefire.junitcore.pc.Scheduler.schedule(Scheduler.java:346) [surefire-junit47-2.18.1.jar:2.18.1]\r\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]\r\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]\r\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:2"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:458",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 458,
+      "title": "Surefire failing on Java 13",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1207,
+      "excerpt": ".id.describe f284b29\r\n[INFO] git.commit.id f284b29501946f933ee4473ecf59096d013df31c\r\n[INFO] git.commit.id.abbrev f284b29\r\n[INFO] git.dirty false\r\n[INFO] git.commit.user.name Stephane Nicoll\r\n[INFO] git.commit.user.email snicoll@pivotal.io\r\n[INFO] git.commit.message.full Upgrade to Spring Boot 2.1.9.RELEASE\r\n[INFO] git.commit.message.short Upgrade to Spring Boot 2.1.9.RELEASE\r\n[INFO] git.commit.time 2019-10-03T17:29:27+0530\r\n[INFO] git.remote.origin.url https://github.com/spring-projects/spring-petclinic.git\r\n[INFO] git.tags \r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] git.closest.tag.name \r\n[INFO] evalCommit is [f284b29501946f933ee4473ecf59096d013df31c]\r\n[INFO] Tag refs [[Ref[refs/tags/1.5.x=c36452a2c34443ae26b4ecbba4f149906af14717]]]\r\n[INFO] Created map: [{}]\r\n[INFO] git.closest.tag.commit.count \r\n[INFO] git.total.commit.count 665\r\n[INFO] git.build.time 2019-10-09T15:19:55+0530\r\n[INFO] git.build.version 2.1.0.BUILD-SNAPSHOT\r\n[INFO] git.build.host Pritis-MacBook-Pro\r\n[INFO] git.commit.id.describe-short f284b29\r\n[INFO] found property git.tags\r\n[INFO] found property git.closest.tag.commit.count\r\n[INFO] found property git.build.version\r\n[INFO] found property git.commit.user.name\r\n[INFO] found property git.commit.id.abbrev\r\n[INFO] found property git.branch\r\n[INFO] found property git.build.host\r\n[INFO] found property git.commit.id.describe-short\r\n[INFO] found property git.total.commit.count\r\n[INFO] found property git.commit.id.describe\r\n[INFO] found property git.build.user.email\r\n[INFO] found property git.commit.id\r\n[INFO] found property git.commit.message.short\r\n[INFO] found property git.commit.user.email\r\n[INFO] found property git.closest.tag.name\r\n[INFO] found property git.commit.time\r\n[INFO] found property git.build.time\r\n[INFO] found property git.build.user.name\r\n[INFO] found property git.dirty\r\n[INFO] found property git.commit.message.full\r\n[INFO] found property git.remote.origin.url\r\n[INFO] Reading existing properties file [/Users/pkumari/java/spring-petclinic/target/classes/git.properties] (for module petclinic)...\r\n[INFO] Properties file [/Users/pkumari/java/spring-petclinic/target/classes/git.properties] is up-to-date (for module petclinic)...\r\n[INFO] \r\n[INFO] --- spring-boot-maven-plugin:2.1.9.RELEASE:build-info (def"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2445",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2445,
+      "title": "refactor: removing redundant code",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1067,
+      "excerpt": "the `owner` model attribute through `@ModelAttribute(\"owner\") findOwner(...)`, so the view receives the same data.\r\n- **`org.springframework.ui.ModelMap` import** - now unused following the parameter removal.\r\n\r\n## Verification\r\n\r\n`./mvnw test` passes unchanged. No tests were modified.\r\n\r\n## Review checklist\r\n\r\n- [ ] No surviving references to the deleted local `vets` variable in\r\n      `VetController`.\r\n- [ ] No surviving references to the deleted `ModelMap model` or\r\n      `Owner owner` parameters in `PetController.initCreationForm`.\r\n- [ ] `org.springframework.ui.ModelMap` import removed from\r\n      `PetController`.\r\n- [ ] Existing tests pass without modification."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2454",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2454,
+      "title": "refactor: redundant code sonar",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 149,
+      "excerpt": "al variable that was assigned the result of `optionalOwner.orElseThrow(...)` and then immediately returned without any intervening use. The return value is now produced directly, removing an unnecessary step.\r\n\r\n## Verification\r\n\r\n`./mvnw test` passes unchanged. No tests were modified.\r\n\r\n## Review checklist\r\n\r\n- [ ] No surviving references to the deleted `owner` local variable in\r\n      `PetController.findOwner`.\r\n- [ ] Existing tests pass without modification.\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2519",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2519,
+      "title": "Upgrade to Spring Boot 4.1",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1427,
+      "excerpt": "ive experimental options, including where they come from and possible alternatives. If you think an experimental option should be considered as stable, please file an issue.\r\n[INFO]     [creator]     Warning: Option 'DynamicProxyConfigurationResources' is deprecated and might be removed in a future release: This can be caused by a proxy-config.json file in your META-INF directory. Consider including proxy configuration in the reflection section of reachability-metadata.md instead.. Please refer to the GraalVM release notes.\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     GraalVM Native Image: Generating 'org.springframework.samples.petclinic.PetClinicApplication' (executable)...\r\n[INFO]     [creator]     ================================================================================\r\n[INFO]     [creator]     For detailed information and explanations on the build output, visit:\r\n[INFO]     [creator]     https://github.com/oracle/graal/blob/master/docs/reference-manual/native-image/BuildOutput.md\r\n[INFO]     [creator]     --------------------------------------------------------------------------------\r\n[INFO]     [creator]     [1/8] Initializing...                                            (7.3s @ 0.37GB)\r\n[INFO]     [creator]      Java version: 25.0.3+12-LTS, vendor version: Liberica-NIK-25.0.3-1\r\n[INFO]     [creator]      Graal compiler: optimization level: 2, target machine: x86-64-v3\r\n[INFO]     [creator]      C compiler: gcc (linux, x86_64, 13.3.0)\r\n[INFO]     [creator]      Garbage collector: Serial GC (max heap size: 80% of RAM)\r\n[INFO]     [creator]      4 user-specific feature(s):\r\n[INFO]     [creator]      - com.oracle.svm.thirdparty.gson.GsonFeature\r\n[INFO]     [creator]      - org.eclipse.angus.activation.nativeimage.AngusActivationFeature\r\n[INFO]     [creator]      - org.springframework.aot.nativex.feature.PreComputeFieldFeature\r\n[INFO]     [creator]      - org.springframework.data.core.TypedPropertyPathFeature\r\n[INFO]     [creator]     --------------------------------------------------------------------------------\r\n[INFO]     [creator]      2 experimental option(s) unlocked:\r\n[INFO]     [creator]      - '-H:Name' (alternative API option(s): -o org.springframework.samples.petclinic.PetClinicApplication; origin(s): command line)\r\n[INFO]     [creator]      - '-H:"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2641",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2641,
+      "title": "Add vaccination management",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Add vaccination management"
+    }
+  ]
+}

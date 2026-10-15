@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1035",
+        "path": null,
+        "offset": 21143,
+        "line": 218
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:987",
+        "path": null,
+        "offset": 8522,
+        "line": 100
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:968",
+        "path": null,
+        "offset": 5453,
+        "line": 70
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:981",
+        "path": null,
+        "offset": 5453,
+        "line": 70
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 22713,
+        "line": 463
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+        "path": null,
+        "offset": 25446,
+        "line": 529
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+        "path": null,
+        "offset": 27444,
+        "line": 571
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+        "path": null,
+        "offset": 27430,
+        "line": 571
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 22713,
+      "excerpt": " CarouselView2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/31336\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] Items are not updated properly in CarouselView2.](https://github.com/dotnet/maui/issues/31148)\n  </details>\n\n## Docs\n- Add comprehensive README to Microsoft.Maui.Controls NuGet package by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/32835\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Improve the MAUI Nuget readme.md file](https://github.com/dotnet/maui/issues/31969)\n  </details>\n\n- Improve Controls Core API docs 2 by @​jfversluis in https://github.com/dotnet/maui/pull/33243\n\n- Update investigations docs by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32949\n\n- Improve agent workflow documentation by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33434\n\n ... (truncated)\n\n## 10.0.20\n\n## What's Changed\n\n.NET MAUI 10.0.20 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 169 commits with various improvements, bug fixes, and enhancements.\n\n## AI\n- PR Reviewer Agent by @​PureWeen in https://github.com/dotnet/maui/pull/32340\n\n- [AI] Moved PR Reviewer Agent to File-Based Instruction System by @​kubaflo in https://github.com/dotnet/maui/pull/32659\n\n- Improved pr-reviewer AI agent and modified the usage instructions in README by @​kubaflo in https://github.com/dotnet/maui/pull/32718\n\n- Add checkpoint/resume system for PR review agent by @​kubaflo in https://github.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on Windows](https://github.com/dotne"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1035",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1035,
+      "title": "Bump Grpc.Net.Client, Grpc.Net.ClientFactory and Grpc.Tools",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 21143,
+      "excerpt": "Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2619\n* Fix race condition that caused inprogress connect to be canceled by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2618\n* Bump tools package to 2.71 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2621\n* Update NuGet package versions by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2620\n* bump version to 2.71.0-pre1 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2622\n* Bump version on 2.71 for final release by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2627\n\n\n**Full Changelog**: https://github.com/grpc/grpc-dotnet/compare/v2.70.0...v2.71.0\n\n## 2.71.0-pre1\n\n## What's Changed\n* Remove old dotnet-core feed by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2611\n* Bump axios from 1.7.4 to 1.8.4 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2615\n* Bump @​babel/helpers from 7.25.0 to 7.27.0 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2616\n* Bump tar-fs from 3.0.6 to 3.0.8 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2619\n* Fix race condition that caused inprogress connect to be canceled by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2618\n* Bump tools package to 2.71 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2621\n* Update NuGet package versions by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2620\n* bump version to 2.71.0-pre1 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2622\n\n\n**Full Changelog**: https://github.com/grpc/grpc-dotnet/compare/v2.70.0...v2.71.0-pre1\n\n## 2.70.0\n\n## What's Changed\n* update ArgumentNullException.ThrowIfNull usage by @​WeihanLi in https://github.com/grpc/grpc-dotnet/pull/2563\n* use nameof for CallerArgumentExpression by @​WeihanLi in https://github.com/grpc/grpc-dotnet/pull/2562\n* Correctness: Make some private & internal classes sealed where possible by @​Henr1k80 in https://github.com/grpc/grpc-dotnet/pull/2559\n* Bump vue from 2.6.14 to 3.0.0 in /examples/Spar/Server/ClientApp by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2565\n* Bump cross-spawn from 7.0.3 to 7.0.6 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1036",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1036,
+      "title": "Bump the aspnetcore group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 25446,
+      "excerpt": " CarouselView2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/31336\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] Items are not updated properly in CarouselView2.](https://github.com/dotnet/maui/issues/31148)\n  </details>\n\n## Docs\n- Add comprehensive README to Microsoft.Maui.Controls NuGet package by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/32835\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Improve the MAUI Nuget readme.md file](https://github.com/dotnet/maui/issues/31969)\n  </details>\n\n- Improve Controls Core API docs 2 by @​jfversluis in https://github.com/dotnet/maui/pull/33243\n\n- Update investigations docs by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32949\n\n- Improve agent workflow documentation by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33434\n\n ... (truncated)\n\n## 10.0.20\n\n## What's Changed\n\n.NET MAUI 10.0.20 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 169 commits with various improvements, bug fixes, and enhancements.\n\n## AI\n- PR Reviewer Agent by @​PureWeen in https://github.com/dotnet/maui/pull/32340\n\n- [AI] Moved PR Reviewer Agent to File-Based Instruction System by @​kubaflo in https://github.com/dotnet/maui/pull/32659\n\n- Improved pr-reviewer AI agent and modified the usage instructions in README by @​kubaflo in https://github.com/dotnet/maui/pull/32718\n\n- Add checkpoint/resume system for PR review agent by @​kubaflo in https://github.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on Windows](https://github.com/dotne"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1043",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1043,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27444,
+      "excerpt": " CarouselView2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/31336\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] Items are not updated properly in CarouselView2.](https://github.com/dotnet/maui/issues/31148)\n  </details>\n\n## Docs\n- Add comprehensive README to Microsoft.Maui.Controls NuGet package by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/32835\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Improve the MAUI Nuget readme.md file](https://github.com/dotnet/maui/issues/31969)\n  </details>\n\n- Improve Controls Core API docs 2 by @​jfversluis in https://github.com/dotnet/maui/pull/33243\n\n- Update investigations docs by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32949\n\n- Improve agent workflow documentation by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33434\n\n ... (truncated)\n\n## 10.0.20\n\n## What's Changed\n\n.NET MAUI 10.0.20 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 169 commits with various improvements, bug fixes, and enhancements.\n\n## AI\n- PR Reviewer Agent by @​PureWeen in https://github.com/dotnet/maui/pull/32340\n\n- [AI] Moved PR Reviewer Agent to File-Based Instruction System by @​kubaflo in https://github.com/dotnet/maui/pull/32659\n\n- Improved pr-reviewer AI agent and modified the usage instructions in README by @​kubaflo in https://github.com/dotnet/maui/pull/32718\n\n- Add checkpoint/resume system for PR review agent by @​kubaflo in https://github.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on Windows](https://github.com/dotne"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1051",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1051,
+      "title": "Bump Microsoft.Maui.Controls.Compatibility from 9.0.30 to 10.0.110",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27430,
+      "excerpt": " CarouselView2 by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/31336\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] Items are not updated properly in CarouselView2.](https://github.com/dotnet/maui/issues/31148)\n  </details>\n\n## Docs\n- Add comprehensive README to Microsoft.Maui.Controls NuGet package by @​jfversluis via @​Copilot in https://github.com/dotnet/maui/pull/32835\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [Improve the MAUI Nuget readme.md file](https://github.com/dotnet/maui/issues/31969)\n  </details>\n\n- Improve Controls Core API docs 2 by @​jfversluis in https://github.com/dotnet/maui/pull/33243\n\n- Update investigations docs by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32949\n\n- Improve agent workflow documentation by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/33434\n\n ... (truncated)\n\n## 10.0.20\n\n## What's Changed\n\n.NET MAUI 10.0.20 introduces significant improvements across all platforms with focus on quality, performance, and developer experience. This release includes 169 commits with various improvements, bug fixes, and enhancements.\n\n## AI\n- PR Reviewer Agent by @​PureWeen in https://github.com/dotnet/maui/pull/32340\n\n- [AI] Moved PR Reviewer Agent to File-Based Instruction System by @​kubaflo in https://github.com/dotnet/maui/pull/32659\n\n- Improved pr-reviewer AI agent and modified the usage instructions in README by @​kubaflo in https://github.com/dotnet/maui/pull/32718\n\n- Add checkpoint/resume system for PR review agent by @​kubaflo in https://github.com/dotnet/maui/pull/32774\n\n- [AI] The Issue-Resolver agent by @​kubaflo in https://github.com/dotnet/maui/pull/32804\n\n- [AI] Fixed links for agents by @​kubaflo in https://github.com/dotnet/maui/pull/32818\n\n- Agents scripts by @​PureWeen in https://github.com/dotnet/maui/pull/32819\n\n- Add Git workflow rules for Copilot CLI by @​StephaneDelcroix in https://github.com/dotnet/maui/pull/32873\n\n- Simplify agent instructions and consolidate sandbox testing workflow by @​PureWeen via @​Copilot in https://github.com/dotnet/maui/pull/32950\n\n## Animation\n- [Windows]Fixed the ViewExtensions RotateYTo and RotateXTo with length 0 crashes by @​Ahamed-Ali in https://github.com/dotnet/maui/pull/30167\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[Windows]ViewExtensions RotateYTo and RotateXTo with length 0 crashes on Windows](https://github.com/dotne"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:968",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 968,
+      "title": "Bump Grpc.Net.Client and Grpc.Tools",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5453,
+      "excerpt": "Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2619\n* Fix race condition that caused inprogress connect to be canceled by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2618\n* Bump tools package to 2.71 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2621\n* Update NuGet package versions by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2620\n* bump version to 2.71.0-pre1 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2622\n* Bump version on 2.71 for final release by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2627\n\n\n**Full Changelog**: https://github.com/grpc/grpc-dotnet/compare/v2.70.0...v2.71.0\n\n## 2.71.0-pre1\n\n## What's Changed\n* Remove old dotnet-core feed by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2611\n* Bump axios from 1.7.4 to 1.8.4 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2615\n* Bump @​babel/helpers from 7.25.0 to 7.27.0 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2616\n* Bump tar-fs from 3.0.6 to 3.0.8 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2619\n* Fix race condition that caused inprogress connect to be canceled by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2618\n* Bump tools package to 2.71 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2621\n* Update NuGet package versions by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2620\n* bump version to 2.71.0-pre1 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2622\n\n\n**Full Changelog**: https://github.com/grpc/grpc-dotnet/compare/v2.70.0...v2.71.0-pre1\n\n## 2.70.0\n\n## What's Changed\n* update ArgumentNullException.ThrowIfNull usage by @​WeihanLi in https://github.com/grpc/grpc-dotnet/pull/2563\n* use nameof for CallerArgumentExpression by @​WeihanLi in https://github.com/grpc/grpc-dotnet/pull/2562\n* Correctness: Make some private & internal classes sealed where possible by @​Henr1k80 in https://github.com/grpc/grpc-dotnet/pull/2559\n* Bump vue from 2.6.14 to 3.0.0 in /examples/Spar/Server/ClientApp by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2565\n* Bump cross-spawn from 7.0.3 to 7.0.6 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:981",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 981,
+      "title": "Bump Grpc.Net.Client and Grpc.Tools",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5453,
+      "excerpt": "Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2619\n* Fix race condition that caused inprogress connect to be canceled by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2618\n* Bump tools package to 2.71 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2621\n* Update NuGet package versions by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2620\n* bump version to 2.71.0-pre1 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2622\n* Bump version on 2.71 for final release by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2627\n\n\n**Full Changelog**: https://github.com/grpc/grpc-dotnet/compare/v2.70.0...v2.71.0\n\n## 2.71.0-pre1\n\n## What's Changed\n* Remove old dotnet-core feed by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2611\n* Bump axios from 1.7.4 to 1.8.4 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2615\n* Bump @​babel/helpers from 7.25.0 to 7.27.0 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2616\n* Bump tar-fs from 3.0.6 to 3.0.8 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2619\n* Fix race condition that caused inprogress connect to be canceled by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2618\n* Bump tools package to 2.71 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2621\n* Update NuGet package versions by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2620\n* bump version to 2.71.0-pre1 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2622\n\n\n**Full Changelog**: https://github.com/grpc/grpc-dotnet/compare/v2.70.0...v2.71.0-pre1\n\n## 2.70.0\n\n## What's Changed\n* update ArgumentNullException.ThrowIfNull usage by @​WeihanLi in https://github.com/grpc/grpc-dotnet/pull/2563\n* use nameof for CallerArgumentExpression by @​WeihanLi in https://github.com/grpc/grpc-dotnet/pull/2562\n* Correctness: Make some private & internal classes sealed where possible by @​Henr1k80 in https://github.com/grpc/grpc-dotnet/pull/2559\n* Bump vue from 2.6.14 to 3.0.0 in /examples/Spar/Server/ClientApp by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2565\n* Bump cross-spawn from 7.0.3 to 7.0.6 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:987",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 987,
+      "title": "Bump Grpc.Net.Client and Grpc.Tools",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 8522,
+      "excerpt": "Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2619\n* Fix race condition that caused inprogress connect to be canceled by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2618\n* Bump tools package to 2.71 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2621\n* Update NuGet package versions by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2620\n* bump version to 2.71.0-pre1 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2622\n* Bump version on 2.71 for final release by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2627\n\n\n**Full Changelog**: https://github.com/grpc/grpc-dotnet/compare/v2.70.0...v2.71.0\n\n## 2.71.0-pre1\n\n## What's Changed\n* Remove old dotnet-core feed by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2611\n* Bump axios from 1.7.4 to 1.8.4 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2615\n* Bump @​babel/helpers from 7.25.0 to 7.27.0 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2616\n* Bump tar-fs from 3.0.6 to 3.0.8 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2619\n* Fix race condition that caused inprogress connect to be canceled by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2618\n* Bump tools package to 2.71 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2621\n* Update NuGet package versions by @​JamesNK in https://github.com/grpc/grpc-dotnet/pull/2620\n* bump version to 2.71.0-pre1 by @​apolcyn in https://github.com/grpc/grpc-dotnet/pull/2622\n\n\n**Full Changelog**: https://github.com/grpc/grpc-dotnet/compare/v2.70.0...v2.71.0-pre1\n\n## 2.70.0\n\n## What's Changed\n* update ArgumentNullException.ThrowIfNull usage by @​WeihanLi in https://github.com/grpc/grpc-dotnet/pull/2563\n* use nameof for CallerArgumentExpression by @​WeihanLi in https://github.com/grpc/grpc-dotnet/pull/2562\n* Correctness: Make some private & internal classes sealed where possible by @​Henr1k80 in https://github.com/grpc/grpc-dotnet/pull/2559\n* Bump vue from 2.6.14 to 3.0.0 in /examples/Spar/Server/ClientApp by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/2565\n* Bump cross-spawn from 7.0.3 to 7.0.6 in /testassets/InteropTestsGrpcWebWebsite/Tests by @​dependabot in https://github.com/grpc/grpc-dotnet/pull/"
+    }
+  ]
+}

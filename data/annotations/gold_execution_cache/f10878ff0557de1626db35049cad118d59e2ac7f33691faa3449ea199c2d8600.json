@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+        "path": null,
+        "offset": 14544,
+        "line": 237
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+        "path": null,
+        "offset": 1177,
+        "line": 18
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 1237,
+        "line": 24
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Apis/CatalogApi.cs",
+        "path": "src/Catalog.API/Apis/CatalogApi.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1041",
+        "path": null,
+        "offset": 378,
+        "line": 11
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:93",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:997",
+        "path": null,
+        "offset": 217,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+        "path": null,
+        "offset": 466,
+        "line": 3
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Apis/CatalogApi.cs",
+      "kind": "File",
+      "path": "src/Catalog.API/Apis/CatalogApi.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using System.ComponentModel;\nusing System.ComponentModel.DataAnnotations;\nusing Microsoft.AspNetCore.Http.HttpResults;\nusing Microsoft.AspNetCore.Mvc;\nusing Microsoft.AspNetCore.Mvc.Infrastructure;\nusing Pgvector.EntityFrameworkCore;\n\nnamespace eShop.Catalog.API;\n\npublic static class CatalogApi\n{\n    public static IEndpointRouteBuilder MapCatalogApi(this IEndpointRouteBuilder app)\n    {\n        // RouteGroupBuilder for catalog endpoints\n        var vApi = app.NewVersionedApi(\"Catalog\");\n        var api = vApi.MapGroup(\"api/catalog\").HasApiVersion(1, 0).HasApiVersion(2, 0);\n        var v1 = vApi.MapGroup(\"api/catalog\").HasApiVersion(1, 0);\n        var v2 = vApi.MapGroup(\"api/catalog\").HasApiVersion(2, 0);\n\n        // Routes for querying catalog items.\n        v1.MapGet(\"/items\", GetAllItemsV1)\n            .WithName(\"ListItems\")\n            .WithSummary(\"List catalog items\")\n            .WithDescription(\"Get a paginated list of items in the catalog.\")\n            .WithTags(\"Items\");\n        v2.MapGet(\"/items\", GetAllItems)\n            .WithName(\"ListItems-V2\")\n            .WithSummary(\"List catalog items\")\n            .WithDescription(\"Get a paginated list of items in the catalog.\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/by\", GetItemsByIds)\n            .WithName(\"BatchGetItems\")\n            .WithSummary(\"Batch get catalog items\")\n            .WithDescription(\"Get multiple items from the catalog\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/{id:int}\", GetItemById)\n            .WithName(\"GetItem\")\n            .WithSummary(\"Get catalog item\")\n            .WithDescription(\"Get an item from the catalog\")\n            .WithTags(\"Items\");\n        v1.MapGet(\"/items/by/{name:minlength(1)}\", GetItemsByName)\n            .WithName(\"GetItemsByName\")\n            .WithSummary(\"Get catalog items by name\")\n            .WithDescription(\"Get a paginated list of catalog items with the specified name.\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/{id:int}/pic\", GetItemPictureById)\n            .WithName(\"GetItemPicture\")\n            .WithSummary(\"Get catalog item picture\")\n            .WithDescription(\"Get the picture for a catalog item\")\n            .WithTags(\"Items\");\n\n        // Routes for resolving catalog items using AI.\n        v1.MapGet(\"/items/withsemanticrelevance/{text:minlength(1)}\", GetItemsBySemanticRelevanceV1)\n        "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:93",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 93,
+      "title": "Required Clarification on Catalog.API",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Hi @davidfowl ,\r\nI was walking through the Catalog.API code. In this file https://github.com/dotnet/eShop/blob/main/src/Catalog.API/Apis/CatalogApi.cs I see a usage of `[AsParameters] CatalogServices services` as a second parameter in all methods. I'm at loss to understand where CatalogServices  is getting constructed. It is neither created in DI nor coming as a param. Can you please clarify? "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:997",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 997,
+      "title": "Catalog API admin mutation endpoints have no authentication - unauthenticated item creation, update, and deletion",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 217,
+      "excerpt": " delete catalog items. Unlike every other microservice in the application (Ordering, Basket, Webhooks), the Catalog API does not call `builder.AddDefaultAuthentication()` in its Extensions.cs and does not apply `.RequireAuthorization()` to its mutation routes.\n\n### Details\n\nIn `src/Catalog.API/Apis/CatalogApi.cs` (lines 92-110), the mutation routes are registered as:\n\n```csharp\nv1.MapPut(\"/items\", UpdateItemV1)\nv2.MapPut(\"/items/{id:int}\", UpdateItem)\napi.MapPost(\"/items\", CreateItem)\napi.MapDelete(\"/items/{id:int}\", DeleteItemById)\n```\n\nNone of these route registrations call `.RequireAuthorization()`.\n\nIn `src/Catalog.API/Program.cs`, neither `app.UseAuthentication()` nor `app.UseAuthorization()` is called, and there is no global authorization middleware.\n\nIn `src/Catalog.API/Extensions/Extensions.cs`, the `AddApplicationServices` method does not call `builder.AddDefaultAuthentication()`, unlike the Basket API (`src/Basket.API/Extensions/Extensions.cs` line 10: `builder.AddDefaultAuthentication()`), the Ordering API (`src/Ordering.API/Extensions/Extensions.cs` line 10: `builder.AddDefaultAuthentication()`), and the Webhooks API.\n\nThis is confirmed in the AppHost configuration (`src/eShop.AppHost/Program.cs`): the `catalogApi` resource is the only service not passed `Identity__Url` as an environment variable. The basket, ordering, and webhooks services all receive `.WithEnvironment(\"Identity__Url\", identityEndpoint)`, which is what triggers the JWT bearer middleware registration. Catalog receives no such configuration.\n\nAdditionally, `src/eShop.AppHost/Extensions.cs` registers a YARP catch-all route `/api/catalog/{*any}` in `ConfigureMobileBffRoutes` that forwards all catalog API requests (including mutations) from the mobile BFF without adding any authentication layer.\n\n### PoC\n\n(available upon request)\n\n### Impact\n\nAny unauthenticated attacker with network access to the Catalog API (directly or via the YARP mobile BFF) can add fraudulent products at arbitrary prices, modify existing product prices to cause financial loss, or delete all catalog items to cause a denial of service for the storefront. In a production deployment this would allow price manipulation attacks (creating $0.01 items), catalog defacement, and complete inventory destruction.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 998,
+      "title": "Insecure file-serving pattern: `GetItemPictureById` allows path traversal / arbitrary file read via `PictureFileName'",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 466,
+      "excerpt": "filesystem** (e.g. `appsettings.json`, project source, `/etc/passwd`).\n\nSince this is a **reference application** that many developers copy patterns from, the file-serving idiom here teaches an insecure practice (CWE-22). The fix is small and self-contained.\n\n## Affected code\n\n`src/Catalog.API/Apis/CatalogApi.cs`\n\n```csharp\n// GetItemPictureById (~line 205) — PictureFileName comes from the stored CatalogItem\nvar path = GetFullPath(environment.ContentRootPath, item.PictureFileName);\n...\nreturn TypedResults.PhysicalFile(path, mimetype, lastModified: lastModified);\n\n// ~line 420\npublic static string GetFullPath(string contentRootPath, string pictureFileName) =>\n    Path.Combine(contentRootPath, \"Pics\", pictureFileName);   // <-- no normalization / containment\n```\n\n`PictureFileName` is bound straight from the request body in `CreateItem`/`UpdateItem` (`product.PictureFileName`), so it is fully attacker-controlled.\n\n## Steps to reproduce\n\n\n\n**Observed scope:** any real on-disk file the process can read is returned. (`/proc/*` pseudo-files are *not* returned — `PhysicalFile` reports `Content-Length: 0` for procfs and Kestrel aborts the response — so process environment variables are not exfiltrable through this particular sink.)\n\n## Impact\n\nUnrestricted local file read of the `Catalog.API` host: `appsettings*.json`, mounted secret files, K8s service-account tokens (`/var/run/secrets/...`), data-protection keys, application source, etc. In the default topology `Catalog.API` is an internal service, so realistic exposure requires it to be network-reachable (direct exposure, misconfiguration, or via SSRF/lateral movement) — but the file-read defect itself is unconditional.\n\n## Suggested fix\n\nConstrain the filename to the `Pics` directory. Either reduce it to a bare filename, or verify the resolved path stays inside the base:\n\n```csharp\npublic static string GetFullPath(string contentRootPath, string pictureFileName)\n{\n    // Reject any directory component supplied by the caller.\n    var safeName = Path.GetFileName(pictureFileName);\n    var picsRoot = Path.Combine(contentRootPath, \"Pics\");\n    var full = Path.GetFullPath(Path.Combine(picsRoot, safeName));\n\n    // Defense in depth: ensure we never escape the Pics directory.\n    if (!full.StartsWith(picsRoot + Path.DirectorySeparatorChar, StringComparison.Ordinal))\n        throw new InvalidOperationException(\"Invalid pict"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1237,
+      "excerpt": " 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontainers** | Testcontainers.PostgreSql | Real PostgreSQL in container | Fake AI, no-op event bus |\r\n| **AspireMessagingOutbox** | Aspire + Postgres | Real PostgreSQL | `CapturingEventBus` spy instead of RabbitMQ |\r\n| **AspireMessagingRabbitMq** | Aspire + Postgres + RabbitMQ | Real PostgreSQL | Real RabbitMQ + capture handlers |\r\n\r\n### Architecture (How It Works)\r\n\r\n```mermaid\r\nflowchart TB\r\n    subgraph TestLayer[\"Test class\"]\r\n        T[\"CatalogApiTests / OrderingApiTests\"]\r\n        A[\"[CatalogFunctionalTestMode] attribute\"]\r\n    end\r\n\r\n    subgraph Session[\"CatalogApiTestSession (assembly fixture)\"]\r\n        M[\"Resolve mode from attribute + env override\"]\r\n        L[\"Lazy ConcurrentDictionary per mode\"]\r\n    end\r\n\r\n    subgraph Fixture[\"CatalogApiFixture (one per mode)\"]\r\n        WH[\"ConfigureWebHost → mode-specific DI\"]\r\n        IH[\"InitializeAsync → start infra + seed data\"]\r\n    end\r\n\r\n    subgraph Hosts[\"Infrastructure hosts\"]\r\n        Aspire[\"CatalogAspireTestHost\"]\r\n        TC[\"CatalogTestcontainersHost\"]\r\n        Mock[\"CatalogRepositoryMockStore\"]\r\n        Mem[\"InMemoryCatalogContext\"]\r\n    end\r\n\r\n    subgraph Runtime[\"Under test\"]\r\n        API[\"Catalog.API via WebApplicationFactory\"]\r\n    end\r\n\r\n    T --> A\r\n    "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1034,
+      "title": "Bump the aspire group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1177,
+      "excerpt": "unnels could fail when the region was selected automatically** — Tunnel setup and health checks now use the cluster-qualified tunnel ID returned by the DevTunnel CLI for port operations and access queries. This fixes failures when a bare tunnel ID cannot be resolved for those operations. Regression introduced in 13.3. Fixes [#​18790](https://github.com/microsoft/aspire/issues/18790). ([#​19853](https://github.com/microsoft/aspire/pull/19853), backport of [#​19230](https://github.com/microsoft/aspire/pull/19230), @​Vladipz)\n\n- ☁️ **Emulator-only AppHosts showed an unused Azure environment** — The dashboard now hides the `azure-environment` resource when no Azure resources require cloud provisioning, instead of leaving it visible in **Not started**. It remains visible for apps that combine local emulators with resources requiring Azure provisioning. No AppHost changes are needed. Fixes [#​19617](https://github.com/microsoft/aspire/issues/19617). ([#​19998](https://github.com/microsoft/aspire/pull/19998), backport of [#​19843](https://github.com/microsoft/aspire/pull/19843), @​eerhardt)\n\n- 🧩 **Starter app generation could alter unrelated JavaScript values** — Dynamic port replacement could also replace matching numeric literals in bundled JavaScript, including Bootstrap timing values. Port substitutions are now restricted to `localhost:` URLs, preserving the original library files while still configuring the requested ports. Fixes [#​20030](https://github.com/microsoft/aspire/issues/20030). ([#​20110](https://github.com/microsoft/aspire/pull/20110), backport of [#​20031](https://github.com/microsoft/aspire/pull/20031), @​bart-vmware, @​JamesNK)\n\n- 🍎 **Updated the Aspire Homebrew cask for Homebrew 6.x** — Replaced deprecated cask URL and post-install syntax with the supported equivalents, resolving compatibility issues with current Homebrew while preserving install-channel metadata. ([#​20119](https://github.com/microsoft/aspire/pull/20119), backport of [#​19965](https://github.com/microsoft/aspire/pull/19965), @​askpt, @​joperezr)\n\n- 🧪 **Radius cloud-provider callback interfaces now carry the experimental diagnostic** — `IAwsRadiusProviderBuilder` and `IAzureRadiusProviderBuilder` are now marked with `ASPIRERADIUS003`, matching the existing `WithAwsProvider` and `WithAzureProvider` methods. Code referencing these interfaces directly must now acknowledge the sam"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1041",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1041,
+      "title": "Use async EF Core calls in Catalog async handlers",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 378,
+      "excerpt": "e query runs.\r\n\r\n- `OrderStatusChangedToAwaitingValidationIntegrationEventHandler` and `OrderStatusChangedToPaidIntegrationEventHandler`: `CatalogItems.Find(...)` → `await CatalogItems.FindAsync(...)`. Both run inside the `foreach` over the order's items, so the blocking happened once per item.\r\n- `CatalogApi.DeleteItemById`: `SingleOrDefault(...)` → `await SingleOrDefaultAsync(...)`. This matches the other endpoints in the same file, which already use `SingleOrDefaultAsync`, and the `SaveChangesAsync` that follows.\r\n\r\nThere's no behavior change otherwise. The existing `DeleteCatalogItem` and `GetAndDeleteMissingCatalogItemReturnNotFound` functional tests cover the endpoint. The handlers could go further and load all of an order's items in one query instead of one per item. I kept this PR to the minimal change, and I'm happy to follow up with that if you'd like it.\r\n\r\nFound with [EFDoctor](https://github.com/vuglll/EFDoctor), an open-source EF Core analyzer I'm working on."
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14544,
+      "excerpt": "oolkit.Maui v14.0.1`\n\n### Bug Fixes\n* `NavigationBar`\n  * Add Support for `NavigationBar.SetColor(Color)` on Android 35+\n  * Fix duplicate values for `Color` Attached Property\n* `Popup`\n  * Fix duplicate instantiation of the ViewModel via `PopupService.ShowPopupAsync<T>`'\n  * Fix Padding regression introduced in v14.0.0\n* `StateContainer`\n  * Fix duplicate StateContainer ViewState bug\n* BindableProperty Attribute\n  * Resolve CS0436 Warning\n* `DateTimeOffsetConverter`\n  * Use `TimeZoneInfo` to calculate correct offset\n* Microsoft.Maui.Controls Dependency\n  * Increase dependency to `Microsoft.Maui.Controls v10.0.41`\n* Windows Apps\n  *  Downgrade `Microsoft.WindowsAppSDK` to v1.8.260101001 from 2.0.0-experimental\n\n## What's Changed\n* Add Support for `NavigationBar.SetColor(Color)` on Android 35+ by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3057\n* Bump Microsoft.Testing.Extensions.CodeCoverage from 18.3.2 to 18.4.1 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3062\n* Reorder popup/view model instantiation by @​bijington in https://github.com/CommunityToolkit/Maui/pull/3071\n* Resolve CS0436 Warning caused by `[BindableProperty]` and `[AttachedBindableProperty<T>]` by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3073\n* Downgrade Windows SDK by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/3076\n* Fix Popup Padding Regression Introduced in v14.0.0 by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3074\n* Fix DateTimeOffset Converter #​2582 by @​VladislavAntonyuk in https://github.com/CommunityToolkit/Maui/pull/3077\n* Bump Microsoft.Extensions.Http.Resilience from 10.2.0 to 10.3.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3086\n* Bump Microsoft.Extensions.Logging.Debug from 10.0.2 to 10.0.3 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3087\n* Bump System.Formats.Asn1 from 10.0.2 to 10.0.3 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3088\n* Fix duplicate state container view states by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3095\n* Increase `Microsoft.Maui.Controls` Dependency to v10.0.41 by @​TheCodeTraveler in https://github.com/CommunityToolkit/Maui/pull/3107\n\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/compare/14.0.0...14.0.1\n\n## 14.0."
+    }
+  ]
+}

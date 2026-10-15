@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 26605,
+        "line": 688
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 42685,
+        "line": 975
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 6984,
+        "line": 167
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 72846,
+        "line": 38
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+        "path": "mlflow/environment_variables.py",
+        "offset": 42648,
+        "line": 915
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:.github/workflows/nailaopus.yml",
+        "path": ".github/workflows/nailaopus.yml",
+        "offset": 1473,
+        "line": 37
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/api_reference/source/conf.py",
+        "path": "docs/api_reference/source/conf.py",
+        "offset": 3182,
+        "line": 90
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26413",
+        "path": null,
+        "offset": 3085,
+        "line": 57
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:.github/workflows/nailaopus.yml",
+      "kind": "File",
+      "path": ".github/workflows/nailaopus.yml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1473,
+      "excerpt": "able\n    # side effects, no review burden on each step before a runtime gate):\n    #   1. Comment author must be a maintainer (prevents random users from\n    #      triggering the bot via `/review-v2`).\n    #   2. PR author must be a maintainer (prevents review of community-\n    #      authored PRs whose diff content could contain prompt-injection\n    #      attempts against the LLM).\n    # `issue_comment` payloads expose both associations directly, so we\n    # can do this check without an extra `gh api` step.\n    if: |\n      github.event_name == 'issue_comment' &&\n      github.event.issue.pull_request != null &&\n      startsWith(github.event.comment.body, '/review-v2') &&\n      contains(fromJSON('[\"MEMBER\", \"COLLABORATOR\", \"OWNER\"]'), github.event.comment.author_association) &&\n      contains(fromJSON('[\"MEMBER\", \"COLLABORATOR\", \"OWNER\"]'), github.event.issue.author_association)\n    runs-on: ubuntu-latest\n    timeout-minutes: 15\n    steps:\n      - name: Resolve PR number\n        id: ctx\n        env:\n          ISSUE_PR: ${{ github.event.issue.number }}\n        run: echo \"pr=$ISSUE_PR\" >> \"$GITHUB_OUTPUT\"\n\n      - name: Generate App installation token (multi-repo)\n        id: app_token\n        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1\n        with:\n          client-id: ${{ vars.NAILAOPUS_APP_CLIENT_ID }}\n          private-key: ${{ secrets.NAILAOPUS_APP_KEY }}\n          owner: mlflow\n          # Least-privilege: explicitly request only what the workflow uses\n          # on each repo. The App's installation permissions are the upper\n          # bound; these inputs narrow the issued token further.\n          permission-contents: read\n          permission-pull-requests: write\n          permission-issues: write\n\n      - name: Annotate trigger comment with run URL\n        env:\n          GH_TOKEN: ${{ steps.app_token.outputs.token }}\n          REPO: ${{ github.repository }}\n          COMMENT_ID: ${{ github.event.comment.id }}\n          SERVER_URL: ${{ github.server_url }}\n          RUN_ID: ${{ github.run_id }}\n        # Mirrors review.yml's pattern: append a run-URL link to the trigger\n        # comment instead of leaving a separate reaction artifact on the PR.\n        # The maintainer who typed `/review-v2` sees a clickable \"🚀 running\"\n        # link to follow the job in real time.\n        run: |\n          run_url=\"$SERV"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26605,
+      "excerpt": "chema, run the\nfollowing from your checkout of MLflow:\n\n```bash\n# starting at the root of the project\n$ pwd\n~/mlflow\n$ cd mlflow\n# MLflow relies on Alembic (https://alembic.sqlalchemy.org) for schema migrations.\n$ alembic -c mlflow/store/db_migrations/alembic.ini revision -m \"add new field to db\"\n  Generating ~/mlflow/mlflow/store/db_migrations/versions/b446d3984cfa_add_new_field_to_db.py\n# Update schema files\n$ ./tests/db/update_schemas.sh\n```\n\nThese commands generate a new migration script (e.g., at\n`~/mlflow/mlflow/alembic/versions/12341123_add_new_field_to_db.py`) that\nyou should then edit to add migration logic.\n\n### Writing MLflow Examples\n\nThe `mlflow/examples` directory has a collection of quickstart tutorials\nand various simple examples that depict MLflow tracking, project, model\nflavors, model registry, and serving use cases. These examples provide\ndevelopers sample code, as a quick way to learn MLflow Python APIs.\n\nTo facilitate review, strive for brief examples that reflect real user\nworkflows, document how to run your example, and follow the recommended\nsteps below.\n\nIf you are contributing a new model flavor, follow these steps:\n\n1.  Follow instructions in [Python Model Flavors](#python-model-flavors)\n2.  Create a corresponding directory in\n    `mlflow/examples/new-model-flavor`\n3.  Implement your Python training `new-model-flavor` code in this\n    directory\n4.  Convert this directory's content into an [MLflow\n    Project](https://mlflow.org/docs/latest/projects.html) executable\n5.  Add `README.md`, `MLproject`, and `conda.yaml` files and your code\n6.  Read instructions in the `mlflow/test/examples/README.md` and add a\n    `pytest` entry in the `test/examples/test_examples.py`\n7.  Add a short description in the `mlflow/examples/README.md` file\n\nIf you are contributing to the quickstart directory, we welcome changes\nto the `quickstart/mlflow_tracking.py` that make it clearer or simpler.\n\nIf you'd like to provide an example of functionality that doesn't fit\ninto the above categories, follow these steps:\n\n1.  Create a directory with meaningful name in\n    `mlflow/examples/new-program-name` and implement your Python code\n2.  Create `mlflow/examples/new-program-name/README.md` with\n    instructions how to use it\n3.  Read instructions in the `mlflow/test/examples/README.md`, and add a\n    `pytest` entry in the `test/examples/test_examples.py`\n4.  Add"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/api_reference/source/conf.py",
+      "kind": "File",
+      "path": "docs/api_reference/source/conf.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3182,
+      "excerpt": "_encoding = 'utf-8-sig'\n\n# The master toctree document.\nmaster_doc = \"index\"\n\n# General information about the project.\nproject = \"MLflow\"\ncopyright = \"MLflow Project, a Series of LF Projects, LLC. All rights reserved\"\nauthor = \"MLflow\"\n\n# The version info for the project you're documenting, acts as replacement for\n# |version| and |release|, also used in various other places throughout the\n# built documents.\n#\n\nimport mlflow.version\n\n# The short X.Y version.\nversion = mlflow.version.VERSION\n# The full version, including alpha/beta/rc tags.\nrelease = mlflow.version.VERSION\n\n# The language for content autogenerated by Sphinx. Refer to documentation\n# for a list of supported languages.\n#\n# This is also used if you do content translation via gettext catalogs.\n# Usually you set \"language\" from the command line for these cases.\nlanguage = None\n\n# There are two options for replacing |today|: either, you set today to some\n# non-false value, then it is used:\n# today = ''\n# Else, today_fmt is used as the format for a strftime call.\n# today_fmt = '%B %d, %Y'\n\n# List of patterns, relative to source directory, that match files and\n# directories to ignore when looking for source files.\n# This patterns also effect to html_static_path and html_extra_path\n# We exclude \"registry.rst\" because it is an orphan redirect\nexclude_patterns = [\"registry.rst\"]\n\n# The reST default role (used for this markup: `text`) to use for all\n# documents.\n# default_role = None\n\n# If true, '()' will be appended to :func: etc. cross-reference text.\n# add_function_parentheses = True\n\n# If true, the current module name will be prepended to all description\n# unit titles (such as .. function::).\n# add_module_names = True\n\n# If true, sectionauthor and moduleauthor directives will be shown in the\n# output. They are ignored by default.\n# show_authors = False\n\n# The name of the Pygments (syntax highlighting) style to use.\npygments_style = \"sphinx\"\n\n# A list of ignored prefixes for module index sorting.\n# modindex_common_prefix = []\n\n# If true, keep warnings as \"system message\" paragraphs in the built documents.\n# keep_warnings = False\n\n# If true, `todo` and `todoList` produce output, else they produce nothing.\ntodo_include_todos = False\n\n\n# -- Options for HTML output ----------------------------------------------\n\n# The theme to use for HTML and HTML Help pages.  See the documentation for\n# a list of builtin"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6984,
+      "excerpt": "ration to work.\n\n### How It Works\n\nWhen you log a model, MLflow checks for a `uv.lock` and `pyproject.toml` in the current working directory. If both files exist and uv (version 0.6.10 or later) is installed, MLflow runs `uv export` to produce a pinned requirements list from the lockfile. This list replaces the standard import-based dependency inference.\n\nMLflow also copies the uv project files (`uv.lock` and `pyproject.toml`) and, if present, the `.python-version` file into the model artifact directory. These files enable exact environment restoration with `uv sync` when the model is loaded later.\n\nThis works with all MLflow model flavors. For example, logging a scikit-learn model in a uv-managed project:\n\n```python\nimport mlflow\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.datasets import make_regression\n\nX, y = make_regression(n_samples=100, n_features=4)\nmodel = LinearRegression().fit(X, y)\n\n# uv.lock is auto-detected in the current directory\nmlflow.sklearn.log_model(model, name=\"model\")\n# Requirements are exported from uv.lock, not inferred from imports\n```\n\n### Auto-Detection\n\nBy default, uv project detection is enabled. MLflow looks for `uv.lock` and `pyproject.toml` in the current working directory when you log a model with any flavor, including <APILink fn=\"mlflow.sklearn.log_model\" />, <APILink fn=\"mlflow.pytorch.log_model\" />, <APILink fn=\"mlflow.transformers.log_model\" />, <APILink fn=\"mlflow.pyfunc.log_model\" />, and others. All flavors that call `infer_pip_requirements` benefit from uv auto-detection.\n\nTo disable auto-detection, set the `MLFLOW_UV_AUTO_DETECT` environment variable:\n\n```bash\nexport MLFLOW_UV_AUTO_DETECT=false\n```\n\nYou can also control whether uv project files (`uv.lock`, `pyproject.toml`, and `.python-version`) are saved as model artifacts with `MLFLOW_LOG_UV_FILES`:\n\n```bash\n# Disable copying uv.lock, pyproject.toml, and .python-version into model artifacts\nexport MLFLOW_LOG_UV_FILES=false\n```\n\n### Specifying a uv Project Path\n\nIf your uv project is not in the current working directory (common in monorepos or non-standard layouts), use the `uv_project_path` parameter to point to the correct directory:\n\n```python\nimport mlflow\n\nmlflow.pyfunc.log_model(\n    python_model=my_model,\n    name=\"model\",\n    input_example=input_data,\n    uv_project_path=\"/path/to/my-uv-project\",\n)\n```\n\nMLflow will look for `uv.lock` an"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 42685,
+      "excerpt": "his loaded PyFunc model can only be scored with a DataFrame input.\nYou can also use the <APILink fn=\"mlflow.pmdarima.load_model\" /> method to load MLflow Models with the `pmdarima`\nmodel flavor in native pmdarima formats.\n\nThe interface for utilizing a `pmdarima` model loaded as a `pyfunc` type for generating forecast predictions uses\na _single-row_ `Pandas DataFrame` configuration argument. The following columns in this configuration\n`Pandas DataFrame` are supported:\n\n- `n_periods` (required) - specifies the number of future periods to generate starting from the last datetime value\n  of the training dataset, utilizing the frequency of the input training series when the model was trained\n  (for example, if the training data series elements represent one value per hour, in order to forecast 3 days of\n  future data, set the column `n_periods` to `72`)\n- `X` (optional) - exogenous regressor values (_only supported in pmdarima version >= 1.8.0_) a 2D array of values for\n  future time period events. For more information, read the underlying library\n  [explanation](https://www.statsmodels.org/stable/endog_exog.html).\n- `return_conf_int` (optional) - a boolean (Default: `False`) for whether to return confidence interval values.\n  See above note.\n- `alpha` (optional) - the significance value for calculating confidence intervals. (Default: `0.05`)\n\nAn example configuration for the `pyfunc` predict of a `pmdarima` model is shown below, with a future period\nprediction count of 100, a confidence interval calculation generation, no exogenous regressor elements, and a default\nalpha of `0.05`:\n\n<Table>\n  <thead>\n    <tr>\n      <th>Index</th>\n      <th>n-periods</th>\n      <th>return_conf_int</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>0</td>\n      <td>100</td>\n      <td>True</td>\n    </tr>\n  </tbody>\n</Table>\n\n:::warning\nThe `Pandas DataFrame` passed to a `pmdarima` `pyfunc` flavor must only contain 1 row.\n:::\n\n:::note\nWhen predicting a `pmdarima` flavor, the `predict` method's `DataFrame` configuration column\n`return_conf_int`'s value controls the output format. When the column's value is set to `False` or `None`\n(which is the default if this column is not supplied in the configuration `DataFrame`), the schema of the\nreturned `Pandas DataFrame` is a single column: `[\"yhat\"]`. When set to `True`, the schema of the returned\n`DataFrame` is: `[\"yhat\", \"yhat_lower\","
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 72846,
+      "excerpt": " the Project execution Docker image will be uploaded (pushed). Your Kubernetes cluster must have access to this repository in order to run your MLflow Project. kube-job-template-path The path to a YAML configuration file for your Kubernetes Job - a Kubernetes Job Spec. MLflow reads the Job Spec and replaces certain fields to facilitate job execution and monitoring; MLflow does not modify the original template file. For more information about writing\",14,projects.html\nWhat fields are replaced when MLflow creates a Kubernetes Job for an MLflow Project?,\"When MLflow creates a Kubernetes Job for an MLflow Project, the following fields are replaced: metadata.name is replaced with a string containing the name of the MLflow Project and the time of Project execution, spec.template.spec.container[0].name is replaced with the name of the MLflow Project, spec.template.spec.container[0].image is replaced with the URI of the Docker image created during Project execution (including the Docker image's digest hash), and spec.template.spec.container[0].command is replaced with the Project entry point command specified when executing the MLflow Project.\",\"by creating Kubernetes Job resources. MLflow creates a Kubernetes Job for an MLflow Project by reading a user-specified Job Spec. When MLflow reads a Job Spec, it formats the following fields: metadata.name Replaced with a string containing the name of the MLflow Project and the time of Project execution spec.template.spec.container[0].name Replaced with the name of the MLflow Project spec.template.spec.container[0].image Replaced with the URI of the Docker image created during Project execution. This URI includes the Docker image's digest hash. spec.template.spec.container[0].command Replaced with the Project entry point command specified when executing the MLflow Project. The following example shows a simple Kubernetes Job Spec that is compatible with MLflow Project execution. Replaced fields are indicated using bracketed text. Example Kubernetes Job Spec apiVersion: batch/v1 kind: Job metadata: name: \"\"{replaced with MLflow Project name}\"\" namespace: mlflow spec: ttlSecondsAfterFinished: 100 backoffLimit: 0 template: spec: containers: - name: \"\"{replaced with MLflow Project name}\"\" image: \"\"{replaced with URI of Docker image created during Project execution}\"\" command: [\"\"{replaced with MLflow Project entry point command}"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+      "kind": "File",
+      "path": "mlflow/environment_variables.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 42648,
+      "excerpt": "#: (default: ``1.0``)\nMLFLOW_TRACE_SAMPLING_RATIO = _EnvironmentVariable(\"MLFLOW_TRACE_SAMPLING_RATIO\", float, 1.0)\n\n#: When OTel export is configured and this is set to true, MLflow will write spans to BOTH\n#: MLflow Tracking Server and OpenTelemetry Collector. When false (default), OTel export\n#: replaces MLflow export.\n#: (default: ``False``)\nMLFLOW_TRACE_ENABLE_OTLP_DUAL_EXPORT = _BooleanEnvironmentVariable(\n    \"MLFLOW_TRACE_ENABLE_OTLP_DUAL_EXPORT\", False\n)\n\n#: Controls whether MLflow should export traces to OTLP endpoint when\n#: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT is set. This allows users to disable MLflow's OTLP\n#: export even when the OTEL endpoint is configured for other telemetry clients.\n#: (default: ``True``)\nMLFLOW_ENABLE_OTLP_EXPORTER = _BooleanEnvironmentVariable(\"MLFLOW_ENABLE_OTLP_EXPORTER\", True)\n\n#: By default, MLflow uses an isolated TracerProvider instance to generate traces, instead of the\n#: OpenTelemetry's singleton TracerProvider. Set this to False to let MLflow share the same OTel\n# TracerProvider and allow mixing MLflow SDK and Otel SDK to generate a single trace.\n#: (default: ``True``)\nMLFLOW_USE_DEFAULT_TRACER_PROVIDER = _BooleanEnvironmentVariable(\n    \"MLFLOW_USE_DEFAULT_TRACER_PROVIDER\", True\n)\n\n#: When set to ``True``, MLflow uses a private ``random.Random`` instance for trace/span ID\n#: generation, making it immune to ``random.seed()`` calls in user code.  Enable this when\n#: ``random.seed()`` causes duplicate trace/span ID errors.\n#:\n#: .. note::\n#:     In global-provider mode (``MLFLOW_USE_DEFAULT_TRACER_PROVIDER=false``), if an existing\n#:     ``TracerProvider`` is detected, setting ``MLFLOW_TRACE_USE_ISOLATED_RANDOM_ID_GENERATOR``\n#:     does not take effect.\n#:\n#: (default: ``False``)\nMLFLOW_TRACE_USE_ISOLATED_RANDOM_ID_GENERATOR = _BooleanEnvironmentVariable(\n    \"MLFLOW_TRACE_USE_ISOLATED_RANDOM_ID_GENERATOR\", False\n)\n\n#: When set to \"true\", MLflow translates span attributes from mlflow.* format\n#: to OpenTelemetry GenAI Semantic Convention format before OTLP export.\n#: (default: ``False``)\nMLFLOW_ENABLE_OTEL_GENAI_SEMCONV = _BooleanEnvironmentVariable(\n    \"MLFLOW_ENABLE_OTEL_GENAI_SEMCONV\", False\n)\n\n# Default addressing style to use for boto client\nMLFLOW_BOTO_CLIENT_ADDRESSING_STYLE = _EnvironmentVariable(\n    \"MLFLOW_BOTO_CLIENT_ADDRESSING_STYLE\", str, \"auto\"\n)\n\n#: Specify the timeout in seconds for Databricks en"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26413",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26413,
+      "title": "Allow `session_id` to be a list in `update_current_trace` and `tracing.context` to identify hierarchical sessions",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3085,
+      "excerpt": "input form; existing usage is unchanged.\n\n### Release Notes\n\n#### Is this a user-facing change?\n\n- [x] Yes. Give a description of this change to be included in the release notes for MLflow users.\n\n`mlflow.update_current_trace` and `mlflow.tracing.context` accept `session_id` as a list of strings to identify a session at multiple hierarchy levels, outermost first.\n\n#### What component(s), interfaces, languages, and integrations does this PR affect?\n\nComponents\n\n- [x] `area/tracing`: MLflow Tracing features, tracing APIs, and LLM tracing functionality\n\n<a name=\"release-note-category\"></a>\n\n#### How should the PR be classified in the release notes? Choose one:\n\n- [x] `rn/feature` - A new user-facing feature worth mentioning in the release notes\n\n#### Is this PR a critical bugfix or security fix that should go into the next patch release?\n\n<details>\n<summary>What is a minor/patch release?</summary>\n\n- Minor release: a release that increments the second part of the version number (e.g., 1.2.0 -> 1.3.0).\n  Minor releases are expected to contain larger changes, such as new features and improvements. Non-critical bug fixes and doc updates can be included as well. By default, your PR should target the next minor release.\n- Patch release: a release that increments the third part of the version number (e.g., 1.2.0 -> 1.2.1).\n  Patch releases are typically only performed when there has been a major regression or bug in the latest release. For the sake of stability, your PR should not be included in a patch release unless it is a critical fix, or if the risk level of your PR is exceedingly low.\n\n</details>\n\n<!-- Do not modify or remove any text inside the parentheses. Keep both checkboxes below. -->\n\n- [ ] This PR is critical and needs to be in the next patch release\n- [x] This PR can wait for the next minor release\n\nThis pull request and its description were written by Isaac.\n"
+    }
+  ]
+}

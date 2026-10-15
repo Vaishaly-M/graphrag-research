@@ -1,0 +1,17 @@
+{
+  "source": "data/benchmark/Repository_Questions_with_gold_answers.csv",
+  "sha256": "c45d241bca0d8308772289476360f919ac10b9c3025783f93700ad64ac30b750",
+  "count": 100,
+  "authors": {
+    "New contributor onboarding": 20,
+    "Maintainer doing triage": 20,
+    "Code reviewer": 20,
+    "QA / release engineer": 20,
+    "Student studying the project": 20
+  },
+  "original_wording_preserved": true,
+  "development_use": false,
+  "verified_count": 0,
+  "supplied_gold_human_verified_count": 76,
+  "verification_confirmation_sha256": "41b3b0c9c24ff7ae1cee7185bd79c2605b26f15eecce76ddfadeba19e041c9e7"
+}

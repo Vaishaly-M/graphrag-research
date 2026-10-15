@@ -1,0 +1,43 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n:DLCommit)-[:DL_MODIFIED_FILE]->(f:DLFile) WHERE n.dataset=$dataset AND n.repo=$repo AND n.sha=$value RETURN f.path AS entity,f.path AS fact,[n.id,f.id] AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "value": "007ce9d11eb2d5ff73a5a99b0eeb2bcfe6723cfb"
+  },
+  "rows": [
+    {
+      "entity": "docs/spelling_wordlist.txt",
+      "fact": "docs/spelling_wordlist.txt",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:007ce9d11eb2d5ff73a5a99b0eeb2bcfe6723cfb",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:docs/spelling_wordlist.txt"
+      ]
+    },
+    {
+      "entity": "providers/snowflake/docs/connections/snowflake.rst",
+      "fact": "providers/snowflake/docs/connections/snowflake.rst",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:007ce9d11eb2d5ff73a5a99b0eeb2bcfe6723cfb",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/snowflake/docs/connections/snowflake.rst"
+      ]
+    },
+    {
+      "entity": "providers/snowflake/src/airflow/providers/snowflake/hooks/snowflake.py",
+      "fact": "providers/snowflake/src/airflow/providers/snowflake/hooks/snowflake.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:007ce9d11eb2d5ff73a5a99b0eeb2bcfe6723cfb",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/snowflake/src/airflow/providers/snowflake/hooks/snowflake.py"
+      ]
+    },
+    {
+      "entity": "providers/snowflake/tests/unit/snowflake/hooks/test_snowflake.py",
+      "fact": "providers/snowflake/tests/unit/snowflake/hooks/test_snowflake.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:007ce9d11eb2d5ff73a5a99b0eeb2bcfe6723cfb",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/snowflake/tests/unit/snowflake/hooks/test_snowflake.py"
+      ]
+    }
+  ]
+}

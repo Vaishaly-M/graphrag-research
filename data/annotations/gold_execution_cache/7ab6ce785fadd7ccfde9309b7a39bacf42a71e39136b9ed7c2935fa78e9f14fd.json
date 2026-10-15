@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (d:DLDeveloper)-[:DL_AUTHORED_PR]->(p:DLPullRequest) WHERE p.dataset=$dataset AND p.repo=$repo AND p.number=$number RETURN coalesce(d.login,d.email,d.name) AS entity,coalesce(d.login,d.email,d.name) AS fact,[d.id,p.id] AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "synthetic-org/platform",
+    "number": 19
+  },
+  "rows": [
+    {
+      "entity": "synthetic-3",
+      "fact": "synthetic-3",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:developer:github:3",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:pullrequest:19"
+      ]
+    }
+  ]
+}

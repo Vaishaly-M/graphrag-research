@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 5232,
+        "line": 72
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6542",
+        "path": null,
+        "offset": 1317,
+        "line": 18
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6681",
+        "path": null,
+        "offset": 1179,
+        "line": 22
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6684",
+        "path": null,
+        "offset": 158,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6488",
+        "path": null,
+        "offset": 1738,
+        "line": 22
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6489",
+        "path": null,
+        "offset": 1468,
+        "line": 22
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6665",
+        "path": null,
+        "offset": 1258,
+        "line": 19
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6434",
+        "path": null,
+        "offset": 1534,
+        "line": 23
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5232,
+      "excerpt": "e styling. Please include any JIRA issue numbers in your summary.\n  \n        git commit -m \"TRUNK-123: Put change summary here (can be a ticket title)\"\n\n  **NEVER leave the commit message blank!** Provide a detailed, clear, and complete description of your commit!\n\n8. Issue a Pull Request\n\n  Before submitting a pull request, update your branch to the latest code.\n  \n        git pull --rebase upstream master\n\n  If you have made many commits, we ask you to squash them into atomic units of work. Most of tickets should have one commit only, especially bug fixes, which makes them easier to back port.\n\n        git checkout master\n        git pull --rebase upstream master\n        git checkout TRUNK-123\n        git rebase -i master\n\n  Make sure all unit tests still pass:\n\n        ./mvnw clean package\n\n  Push changes to your fork:\n\n        git push -f\n\n  In order to make a pull request,\n  * Navigate to the OpenMRS repository you just pushed to (e.g. https://github.com/your-user-name/openmrs-core)\n  * Click \"Pull Request\".\n  * Write your branch name in the branch field (this is filled with \"master\" by default)\n  * Click \"Update Commit Range\".\n  * Ensure the changesets you introduced are included in the \"Commits\" tab.\n  * Ensure that the \"Files Changed\" incorporate all of your changes.\n  * Fill in some details about your potential patch including a meaningful title.\n  * Click \"Send pull request\".\n  * In JIRA, open your issue and click the \"Request Code Review\" button to change the issue's status to \"Code Review\". Add a comment linking to the URL of the pull request.\n\n\n  Thanks for that -- we'll get to your pull request ASAP. We love pull requests!\n\n## Responding to Feedback\n\n  The OpenMRS team may recommend adjustments to your code. Part of interacting with a healthy open source community requires you to be open to learning new techniques and strategies; *don't get discouraged!* Remember: if the OpenMRS team suggests changes to your code, **they care enough about your work that they want to include it**, and hope that you can assist by implementing those revisions on your own.\n\n  > Though we ask you to clean your history and squash commit before submitting a pull-request, please do not change any commits you've submitted already (as other work might be build on top).\n\n## Other Resources\n\n* If you haven't already, get an [OpenMRS ID](https://id.openmrs.org)\n* Make sure "
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6434",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6434,
+      "title": "TRUNK-6702: Make UpdateFilter and InitializationFilter skip checks cheap after startup",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1534,
+      "excerpt": "le**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\r\n\r\n  No? Unsure? -> [configure your IDE](https://wiki.openmrs.org/display/docs/How-To+Setup+And+Use+Your+IDE), format the code and add the changes with `git add . && git commit --amend`\r\n\r\n- [ ] I have **added tests** to cover my changes. (If you refactored\r\n  existing code that was well tested you do not have to add tests)\r\n\r\n  No? -> write tests and add them to this commit `git add . && git commit --amend`\r\n\r\n- [ ] I ran `./mvnw clean package` right before creating this pull request and\r\n  added all formatting changes to my commit.\r\n\r\n  No? -> execute above command\r\n\r\n- [ ] All new and existing **tests passed**.\r\n\r\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\r\n\r\n- [ ] My pull request is **based on the latest changes** of the master branch.\r\n\r\n  No? Unsure? -> execute command `git pull --rebase upstream master`\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6488",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6488,
+      "title": "TRUNK-6784: LoggingAdvice should have a fast exit path",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1738,
+      "excerpt": "le**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\r\n\r\n  No? Unsure? -> [configure your IDE](https://wiki.openmrs.org/display/docs/How-To+Setup+And+Use+Your+IDE), format the code and add the changes with `git add . && git commit --amend`\r\n\r\n- [x] I have **added tests** to cover my changes. (If you refactored\r\n  existing code that was well tested you do not have to add tests)\r\n\r\n  No? -> write tests and add them to this commit `git add . && git commit --amend`\r\n\r\n- [x] I ran `./mvnw clean package` right before creating this pull request and\r\n  added all formatting changes to my commit.\r\n\r\n  No? -> execute above command\r\n\r\n- [x] All new and existing **tests passed**.\r\n\r\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\r\n\r\n- [x] My pull request is **based on the latest changes** of the master branch.\r\n\r\n  No? Unsure? -> execute command `git pull --rebase upstream master`\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6489",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6489,
+      "title": "TRUNK-6681: Avoid filtering all locations in  memory",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1468,
+      "excerpt": "le**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\r\n\r\n  No? Unsure? -> [configure your IDE](https://wiki.openmrs.org/display/docs/How-To+Setup+And+Use+Your+IDE), format the code and add the changes with `git add . && git commit --amend`\r\n\r\n- [x] I have **added tests** to cover my changes. (If you refactored\r\n  existing code that was well tested you do not have to add tests)\r\n\r\n  No? -> write tests and add them to this commit `git add . && git commit --amend`\r\n\r\n- [x] I ran `./mvnw clean package` right before creating this pull request and\r\n  added all formatting changes to my commit.\r\n\r\n  No? -> execute above command\r\n\r\n- [x] All new and existing **tests passed**.\r\n\r\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\r\n\r\n- [x] My pull request is **based on the latest changes** of the master branch.\r\n\r\n  No? Unsure? -> execute command `git pull --rebase upstream master`\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6542",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6542,
+      "title": "TRUNK-6754 Remove the deprecated methods from Attributable",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1317,
+      "excerpt": "le**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\r\n\r\n  No? Unsure? -> [configure your IDE](https://wiki.openmrs.org/display/docs/How-To+Setup+And+Use+Your+IDE), format the code and add the changes with `git add . && git commit --amend`\r\n\r\n- [x] I have **added tests** to cover my changes. (If you refactored\r\n  existing code that was well tested you do not have to add tests)\r\n\r\n  No? -> write tests and add them to this commit `git add . && git commit --amend`\r\n\r\n- [x] I ran `./mvnw clean package` right before creating this pull request and\r\n  added all formatting changes to my commit.\r\n\r\n  No? -> execute above command\r\n\r\n- [x] All new and existing **tests passed**.\r\n\r\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\r\n\r\n- [x] My pull request is **based on the latest changes** of the master branch.\r\n\r\n  No? Unsure? -> execute command `git pull --rebase upstream master`\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6665",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6665,
+      "title": "TRUNK-6750: Complete the Changeable refactor: move changedBy/dateChanged out of BaseOpenmrsData and BaseOpenmrsMetadata",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1258,
+      "excerpt": "it fields for objects implementing `Changeable`.\r\n- Updated `ProviderRole` to extend `BaseChangeableOpenmrsMetadata`, preserving its change-audit behavior.\r\n- Updated `HibernateSerializedObjectDAO` to depend on `Creatable` for creation-audit fields instead of `Auditable`.\r\n- Added and updated tests covering the `Changeable` implementation and `ProviderRole` behavior.\r\n\r\n## Issue I worked on\r\n<!--- This project only accepts pull requests related to open issues -->\r\n<!--- Want a new feature or change? Discuss it in an issue first! -->\r\n<!--- Found a bug? Point us to the issue/or create one so we can reproduce it! -->\r\n<!--- Just add the issue number at the end: -->\r\nsee https://issues.openmrs.org/browse/TRUNK-6750\r\n\r\n## Checklist: I completed these to help reviewers :)\r\n<!--- Put an `x` in the box if you did the task -->\r\n<!--- If you forgot a task please follow the instructions below -->\r\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\r\n\r\n  No? Unsure? -> [configure your IDE](https://wiki.openmrs.org/display/docs/How-To+Setup+And+Use+Your+IDE), format the code and add the changes with `git add . && git commit --amend`\r\n\r\n- [x] I have **added tests** to cover my changes. (If you refactored\r\n  existing code that was well tested you do not have to add tests)\r\n\r\n  No? -> write tests and add them to this commit `git add . && git commit --amend`\r\n\r\n- [x] I ran `./mvnw clean package` right before creating this pull request and\r\n  added all formatting changes to my commit.\r\n\r\n  No? -> execute above command\r\n\r\n- [x] All new and existing **tests passed**.\r\n\r\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\r\n\r\n- [x] My pull request is **based on the latest changes** of the master branch.\r\n\r\n  No? Unsure? -> execute command `git pull --rebase upstream master`\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6681",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6681,
+      "title": "Make password reset activation key single-use and keep the reset link out of translated mail text",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1179,
+      "excerpt": " style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n\n  No? Unsure? -> [configure your IDE](https://wiki.openmrs.org/display/docs/How-To+Setup+And+Use+Your+IDE), format the code and add the changes with `git add . && git commit --amend`\n\n- [ ] I have **added tests** to cover my changes. (If you refactored\n  existing code that was well tested you do not have to add tests)\n\n  No? -> write tests and add them to this commit `git add . && git commit --amend`\n\n- [ ] I ran `./mvnw clean package` right before creating this pull request and\n  added all formatting changes to my commit.\n\n  No? -> execute above command\n\n- [ ] All new and existing **tests passed**.\n\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\n\n- [ ] My pull request is **based on the latest changes** of the master branch.\n\n  No? Unsure? -> execute command `git pull --rebase upstream master`\n\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6684",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6684,
+      "title": "TRUNK-6828: Strip untranslated strings",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 158,
+      "excerpt": " JiraIssueTitle' -->\n## Description of what I changed\n<!--- Describe your changes in detail -->\n<!--- It can simply be your commit message, which you must have -->\n\nThis is part of a Transifex clean-up I did from the Transifex side. This adds a step to pull in only translated files with at least 1% coverage and remove empty keys from the file so things fallback correctly. \n\n## Issue I worked on\n<!--- This project only accepts pull requests related to open issues -->\n<!--- Want a new feature or change? Discuss it in an issue first! -->\n<!--- Found a bug? Point us to the issue/or create one so we can reproduce it! -->\n<!--- Just add the issue number at the end: -->\nsee https://issues.openmrs.org/browse/TRUNK-6828\n\n## Checklist: I completed these to help reviewers :)\n<!--- Put an `x` in the box if you did the task -->\n<!--- If you forgot a task please follow the instructions below -->\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n\n  No? Unsure? -> [configure your IDE](https://wiki.openmrs.org/display/docs/How-To+Setup+And+Use+Your+IDE), format the code and add the changes with `git add . && git commit --amend`\n\n- [ ] I have **added tests** to cover my changes. (If you refactored\n  existing code that was well tested you do not have to add tests)\n\n  No? -> write tests and add them to this commit `git add . && git commit --amend`\n\n- [ ] I ran `./mvnw clean package` right before creating this pull request and\n  added all formatting changes to my commit.\n\n  No? -> execute above command\n\n- [ ] All new and existing **tests passed**.\n\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\n\n- [ ] My pull request is **based on the latest changes** of the master branch.\n\n  No? Unsure? -> execute command `git pull --rebase upstream master`\n\n"
+    }
+  ]
+}

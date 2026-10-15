@@ -1,0 +1,116 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id IN $evidence_ids\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nsubstring(coalesce(n.content,n.body,n.message,''),0,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_ids": [
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:1017",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:355",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:756",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1c90ec9ca81049409cf887291f455a33d2a7a8f5"
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1c90ec9ca81049409cf887291f455a33d2a7a8f5",
+      "kind": "Commit",
+      "path": null,
+      "commit": "1c90ec9ca81049409cf887291f455a33d2a7a8f5",
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Update eshop to Aspire 9.4 (#858)\n\n* Update eshop to Aspire 9.4\n\nTake advantage of the new Aspire.Hosting.Yarp integration and remove the Mobile.Bff.Shopping service.\nRemove unnecessary package references and versions\n\n* Fix product images when https is enabled.\n\n* Update to .slnx\n\n* Refactor OpenAI configuration to use parameters\n\n* Apply suggestions from code review\n\n* Remove Mobile.Bff.Shopping project from solution file\n\n* Update Aspire.AppHost.Sdk version to 9.4.0 in project files\n\n---------\n\nCo-authored-by: Jose Perez Rodriguez <joperezr@microsoft.com>"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "# eShop Reference Application - \"AdventureWorks\"\n\nA reference .NET application implementing an e-commerce website using a services-based architecture using [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/).\n\n![eShop Reference Application architecture diagram](img/eshop_architecture.png)\n\n![eShop homepage screenshot](img/eshop_homepage.png)\n\n## Getting Started\n\nThis version of eShop is based on .NET 9. \n\nPrevious eShop versions:\n* [.NET 8](https://github.com/dotnet/eShop/tree/release/8.0)\n\n### Prerequisites\n\n- Clone the eShop repository: https://github.com/dotnet/eshop\n- [Install & start Docker Desktop](https://docs.docker.com/engine/install/)\n\n#### Windows with Visual Studio\n- Install [Visual Studio 2022 version 17.10 or newer](https://visualstudio.microsoft.com/vs/).\n  - Select the following workloads:\n    - `ASP.NET and web development` workload.\n    - `.NET Aspire SDK` component in `Individual components`.\n    - Optional: `.NET Multi-platform App UI development` to run client apps\n\nOr\n\n- Run the following commands in a Powershell & Terminal running as `Administrator` to automatically configure your environment with the required tools to build and run this application. (Note: A restart is required and included in the script below.)\n\n```powershell\ninstall-Module -Name Microsoft.WinGet.Configuration -AllowPrerelease -AcceptLicense -Force\n$env:Path = [System.Environment]::GetEnvironmentVariable(\"Path\",\"Machine\") + \";\" + [System.Environment]::GetEnvironmentVariable(\"Path\",\"User\")\nget-WinGetConfiguration -file .\\.configurations\\vside.dsc.yaml | Invoke-WinGetConfiguration -AcceptConfigurationAgreements\n```\n\nOr\n\n- From Dev Home go to `Machine Configuration -> Clone repositories`. Enter the URL for this repository. In the confirmation screen look for the section `Configuration File Detected` and click `Run File`.\n\n#### Mac, Linux, & Windows without Visual Studio\n- Install the latest [.NET 9 SDK](https://dot.net/download?cid=eshop)\n\nOr\n\n- Run the following commands in a Powershell & Terminal running as `Administrator` to automatically configuration your environment with the required tools to build and run this application. (Note: A restart is required after running the script below.)\n\n##### Install Visual Studio Code and related extensions\n```powershell\ninstall-Module -Name Microsoft.WinGet.Configuration -AllowPrerelease -AcceptLicense  -Force\n$env:Path = ["
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:1017",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1017,
+      "title": "Aspire deployment skill recommends duplicate restore and JavaScript install/build work",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\n\nThe Aspire deployment skill's CI/CD guidance recommends restoring/building the .NET workspace and installing/building JavaScript resources before invoking `aspire deploy`. For a C# AppHost containing an Aspire JavaScript resource, this can duplicate work that the Aspire deployment pipeline performs by default.\n\nSource:\n\n- [`references/cicd.md`](https://github.com/dotnet/eShop/blob/main/.github/skills/aspire-deployment/references/cicd.md)\n- [`github-actions-azure-csharp.yml`](https://github.com/dotnet/eShop/blob/main/.github/skills/aspire-deployment/references/github-actions-azure-csharp.yml)\n\n## Conflicting guidance\n\nThe generic workflow guidance says:\n\n> C# AppHost or .NET project resources: Install .NET with `actions/setup-dotnet`, then use the repo's restore/build command.\n\nand provides:\n\n```yaml\n- name: Restore and build .NET workspace\n  run: |\n    dotnet restore\n    dotnet build --no-restore\n```\n\nIt similarly recommends `npm ci` and `npm run build --if-present` for JavaScript resources. For a mixed C#/JavaScript graph, it says to use both setup blocks.\n\nHowever:\n\n1. The [`aspire deploy` CLI reference](https://aspire.dev/reference/cli/commands/aspire-deploy/) documents `--no-build` as:\n\n   > Don’t build or restore the AppHost project before running the command. Use this when you’ve already built the AppHost (for example, in a CI step) and want to skip the implicit build.\n\n   Therefore, running an explicit build and then `aspire deploy` without `--no-build` builds/restores the AppHost twice.\n\n2. The [JavaScript AppHost documentation](https://aspire.dev/get-started/app-host/javascript/) says package managers automatically install dependencies during publishing and that npm uses `npm ci` when a `package-lock.json` exists.\n\n   Therefore, running `npm ci` before deploying a JavaScript resource can repeat dependency installation. An explicit frontend build may also repeat the JavaScript publish build.\n\n3. The checked-in C# Azure example already omits explicit `dotnet restore`/`dotnet build` and relies on `aspire deploy`, which is inconsistent with the generic setup table.\n\n## Real-world impact\n\nFollowing the generic mixed-workspace guidance produced an Azure Pipelines deployment that ran:\n\n```text\nnpm ci\ndotnet restore <AppHost.csproj>\naspire deploy <AppHost.csproj>\n```\n\nThe AppHost used `AddViteApp(...)` and consumed its output with `PublishWithCo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:355",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 355,
+      "title": "Repo does not build under macOS via the command line",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Tried to clone and build on the command line per instructions. Docker is running.\r\n(macOS, Intel, .NET 8.0.204, Sonoma 14.4.1)\r\n\r\n---\r\n```\r\n❯ git pull\r\nAlready up to date.\r\n❯ dotnet restore eShop.Web.slnf\r\n  Determining projects to restore...\r\n  All projects are up-to-date for restore.\r\n❯ dotnet run --project src/eShop.AppHost/eShop.AppHost.csproj\r\nBuilding...\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(22,47): error CS0234: The type or namespace name 'Identity_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(28,45): error CS0234: The type or namespace name 'Basket_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(33,46): error CS0234: The type or namespace name 'Catalog_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(37,47): error CS0234: The type or namespace name 'Ordering_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(42,29): error CS0234: The type or namespace name 'OrderProcessor' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(46,29): error CS0234: The type or namespace name 'PaymentProcessor' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(49,47): error CS0234: The type or namespace name 'Webhooks_API' does not exist in the namespace 'Projects' (are you missing an assembly reference?) [/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/eShop.AppHost.csproj]\r\n/Users/ahill/dev/dotnet/eShop/src/eShop.AppHost/Program.cs(55,29): error CS0234:"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1020,
+      "title": "Bump the aspire group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Updated [Microsoft.Extensions.ServiceDiscovery.Yarp](https://github.com/dotnet/extensions) from 10.4.0 to 10.9.0.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [Microsoft.Extensions.ServiceDiscovery.Yarp's releases](https://github.com/dotnet/extensions/releases)._\n\n## 10.9.0\n\nVersion 10.9.0 is headlined by changes in these areas:\n\n* **AI:** New experimental routing APIs center on the abstract `RoutingChatClient` base class, with `SemanticRoutingChatClient` as a concrete semantic-routing implementation. Separately, the abstract `FailoverChatClient` specialization and its concrete `OrderedFailoverChatClient` implementation add failover routing.\n* **AI Evaluation:** The generated report gains redesigned Overview, Cases, History, and Comparison views.\n* **ASP.NET Core and HTTP diagnostics:** The release adds HTTP request latency log enrichment and fixes configuration binding, response-body logging, request-path redaction, and resilience package version handling.\n* **Source-generated logging and service discovery:** Fixes cover classification type qualification, thread-local state cleanup, and DNS query suffix handling.\n\n## Experimental API Changes\n\n### New Experimental APIs\n\n* New experimental API: HTTP request latency log enrichment (`EXTEXP0013`) #​7602\n* New experimental API: Chat client routing and failover (`MEAI001`) #​7662\n\n## What's Changed\n\n### AI (`Microsoft.Extensions.AI`, `Microsoft.Extensions.AI.Abstractions`, and `Microsoft.Extensions.AI.OpenAI`)\n\n* Add extensible chat client routing #​7662 by @​joshuajyue (co-authored by @​Copilot)\n* Pass the request's options to the selected client #​7685 by @​joshuajyue (co-authored by @​jozkee @​Copilot)\n* AI.Abstractions: fix ExcludeFromSchema dropped under concurrent AIFunction creation #​7677 by @​jozkee (co-authored by @​Copilot)\n* Cap OpenAI dependency version ([b10f9c0](https://github.com/dotnet/extensions/commit/b10f9c0a081b5dbb7755b8f5592e1d3c3f550a3a)) by @​jeffhandley (co-authored by @​Copilot)\n\n**Note: Microsoft.Extensions.AI.OpenAI constrains its dependency for OpenAI to 2.12.x, preventing OpenAI updates to 2.13.0+ due to an incompatibility. We expect to release Microsoft.Extensions.AI.OpenAI version 10.9.1 during the week of August 17 to address this issue.**\n\n### HTTP Resilience and Diagnostics (`Microsoft.Extensions.Http.Resilience` and `Microsoft.Extensions.Http.Diagnostics`)\n\n* Fix"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1022,
+      "title": "Bump the microsoftextensions group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Updated [Microsoft.Extensions.Http](https://github.com/dotnet/dotnet) from 9.0.0 to 10.0.11.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [Microsoft.Extensions.Http's releases](https://github.com/dotnet/dotnet/releases)._\n\n## 10.0.0-preview.6.25358.103\n\nYou can build .NET 10.0 Preview 6 from the repository by cloning the release tag `v10.0.0-preview.6.25358.103` and following the build instructions in the [main README.md](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.6.25358.103/README.md#building).\n\nAlternatively, you can build from the sources attached to this release directly.\nMore information on this process can be found in the [dotnet/dotnet repository](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.6.25358.103/README.md#building-from-released-sources).\n\nAttached are PGP signatures for the GitHub generated tarball and zipball. You can find the public key at https://dot.net/release-key-2023\n\n## 10.0.0-preview.5.25277.114\n\nYou can build .NET 10.0 Preview 5 from the repository by cloning the release tag `v10.0.0-preview.5.25277.114` and following the build instructions in the [main README.md](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.5.25277.114/README.md#building).\n\nAlternatively, you can build from the sources attached to this release directly.\nMore information on this process can be found in the [dotnet/dotnet repository](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.5.25277.114/README.md#building-from-released-sources).\n\nAttached are PGP signatures for the GitHub generated tarball and zipball. You can find the public key at https://dot.net/release-key-2023\n\n## 10.0.0-preview.4.25258.110\n\nYou can build .NET 10.0 Preview 4 from the repository by cloning the release tag `v10.0.0-preview.4.25258.110` and following the build instructions in the [main README.md](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.4.25258.110/README.md#building).\n\nAlternatively, you can build from the sources attached to this release directly.\nMore information on this process can be found in the [dotnet/dotnet repository](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.4.25258.110/README.md#building-from-released-sources).\n\nAttached are PGP signatures for the GitHub generated tarball and zipball. You can find the public key at https://dot.net/release-key-2023\n\n## 10.0.0-preview.3.25171.5\n\nYou can build .NET 10.0 Preview"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1034,
+      "title": "Bump the aspire group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Updated [Aspire.Hosting.Azure.AppContainers](https://github.com/microsoft/aspire) from 13.5.3 to 13.5.4.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [Aspire.Hosting.Azure.AppContainers's releases](https://github.com/microsoft/aspire/releases)._\n\n## 13.5.4\n\n## What's New in Aspire 13.5.4\n\nPatch release for Aspire 13.5 that fixes Kafka health-check resource leaks, DevTunnel errors with automatically selected regions, misleading Azure emulator dashboard entries, and unintended changes to generated starter apps, plus Homebrew compatibility and Radius API diagnostic updates.\n\n### 🐛 Fixes\n\n- 📨 **Kafka health checks leaked producers and polling threads** — Each AppHost health-check execution created a new Kafka producer without disposing it, accumulating background threads over time. Health checks now reuse a producer per Kafka resource and dispose it with the AppHost, while keeping multiple Kafka resources independently configured. Fixes [#​20091](https://github.com/microsoft/aspire/issues/20091). ([#​20094](https://github.com/microsoft/aspire/pull/20094), backport of [#​20092](https://github.com/microsoft/aspire/pull/20092), @​davidfowl)\n\n- 🌐 **DevTunnels could fail when the region was selected automatically** — Tunnel setup and health checks now use the cluster-qualified tunnel ID returned by the DevTunnel CLI for port operations and access queries. This fixes failures when a bare tunnel ID cannot be resolved for those operations. Regression introduced in 13.3. Fixes [#​18790](https://github.com/microsoft/aspire/issues/18790). ([#​19853](https://github.com/microsoft/aspire/pull/19853), backport of [#​19230](https://github.com/microsoft/aspire/pull/19230), @​Vladipz)\n\n- ☁️ **Emulator-only AppHosts showed an unused Azure environment** — The dashboard now hides the `azure-environment` resource when no Azure resources require cloud provisioning, instead of leaving it visible in **Not started**. It remains visible for apps that combine local emulators with resources requiring Azure provisioning. No AppHost changes are needed. Fixes [#​19617](https://github.com/microsoft/aspire/issues/19617). ([#​19998](https://github.com/microsoft/aspire/pull/19998), backport of [#​19843](https://github.com/microsoft/aspire/pull/19843), @​eerhardt)\n\n- 🧩 **Starter app generation could alter unrelated JavaScript values** — Dynamic port replacement could also replace matc"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:756",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 756,
+      "title": "Bump the microsoftextensions group across 1 directory with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Bumps the microsoftextensions group with 3 updates in the / directory: [Microsoft.Extensions.DependencyInjection.Abstractions](https://github.com/dotnet/runtime), [Microsoft.Extensions.Http.Resilience](https://github.com/dotnet/extensions) and [Microsoft.Extensions.ApiDescription.Server](https://github.com/dotnet/aspnetcore).\n\nUpdates `Microsoft.Extensions.DependencyInjection.Abstractions` from 9.0.1 to 9.0.2\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/dotnet/runtime/releases\">Microsoft.Extensions.DependencyInjection.Abstractions's releases</a>.</em></p>\n<blockquote>\n<h2>.NET 9.0.2</h2>\n<p><a href=\"https://github.com/dotnet/core/releases/tag/v9.0.2\">Release</a></p>\n<h2>What's Changed</h2>\n<ul>\n<li>[release/9.0-staging] Ensure Vector.Create is properly recognized as intrinsic by <a href=\"https://github.com/github-actions\"><code>@​github-actions</code></a> in <a href=\"https://redirect.github.com/dotnet/runtime/pull/109322\">dotnet/runtime#109322</a></li>\n<li>[release/9.0-staging] Fix return address hijacking with CET by <a href=\"https://github.com/github-actions\"><code>@​github-actions</code></a> in <a href=\"https://redirect.github.com/dotnet/runtime/pull/109548\">dotnet/runtime#109548</a></li>\n<li>[release/9.0] Fix FP state restore on macOS exception forwarding by <a href=\"https://github.com/github-actions\"><code>@​github-actions</code></a> in <a href=\"https://redirect.github.com/dotnet/runtime/pull/110163\">dotnet/runtime#110163</a></li>\n<li>[release/9.0-staging] [debugger] Fix a step that becomes a go by <a href=\"https://github.com/github-actions\"><code>@​github-actions</code></a> in <a href=\"https://redirect.github.com/dotnet/runtime/pull/110533\">dotnet/runtime#110533</a></li>\n<li>[release/9.0-staging] [debugger] Support step into a tail call by <a href=\"https://github.com/github-actions\"><code>@​github-actions</code></a> in <a href=\"https://redirect.github.com/dotnet/runtime/pull/110438\">dotnet/runtime#110438</a></li>\n<li>[release/9.0-staging] Fix Tizen linux-armel build by <a href=\"https://github.com/github-actions\"><code>@​github-actions</code></a> in <a href=\"https://redirect.github.com/dotnet/runtime/pull/110614\">dotnet/runtime#110614</a></li>\n<li>release/9.0-staging -- Update Alpine, Debian, and Fedora versions  by <a href=\"https://github.com/richlander\"><code>@​richlander</code></a> in <a href=\"https://red"
+    }
+  ]
+}

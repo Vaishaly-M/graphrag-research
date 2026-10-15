@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/pyproject.toml",
+        "path": "airflow-core/pyproject.toml",
+        "offset": 1106,
+        "line": 34
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/pyproject.toml",
+        "path": "task-sdk/pyproject.toml",
+        "offset": 823,
+        "line": 19
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:pyproject.toml",
+        "path": "pyproject.toml",
+        "offset": 1936,
+        "line": 51
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/microsoft/azure/docs/changelog.rst",
+        "path": "providers/microsoft/azure/docs/changelog.rst",
+        "offset": 63468,
+        "line": 1877
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/celery/docs/changelog.rst",
+        "path": "providers/celery/docs/changelog.rst",
+        "offset": 15212,
+        "line": 500
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/docs/changelog.rst",
+        "path": "providers/cncf/kubernetes/docs/changelog.rst",
+        "offset": 26646,
+        "line": 704
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/tests/unit/jobs/test_triggerer_job.py",
+        "path": "airflow-core/tests/unit/jobs/test_triggerer_job.py",
+        "offset": 1566,
+        "line": 46
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/extra-packages-ref.rst",
+        "path": "airflow-core/docs/extra-packages-ref.rst",
+        "offset": 778,
+        "line": 15
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/extra-packages-ref.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/extra-packages-ref.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 778,
+      "excerpt": "mitations\n    under the License.\n\nReference for package extras\n''''''''''''''''''''''''''''\n\nAirflow distribution packages\n-----------------------------\n\nWith Airflow 3, Airflow is now split into several independent and isolated distribution packages on top of\nalready existing ``providers`` and the dependencies are isolated and simplified across those distribution\npackages.\n\nWhile the original installation methods via ``apache-airflow`` distribution package and extras still\nwork as previously and it installs complete Airflow installation ready to serve as scheduler, webserver, triggerer\nand worker, the ``apache-airflow`` package is now a meta-package that installs all the other distribution\npackages, it's also possible to install only the distribution packages that are needed for a specific\ncomponent you want to run Airflow with.\n\nThe following distribution packages are available:\n\n+----------------------------+------------------------------------------------------------------+----------------------------------------------------------+\n| Distribution package       | Purpose                                                          |                      Optional extras                     |\n+----------------------------+------------------------------------------------------------------+----------------------------------------------------------+\n| apache-airflow-core        | This is the core distribution package that contains              | * Core extras that add optional functionality to Airflow |\n|                            | the Airflow scheduler, webserver, triggerer code.                |   core system - enhancing its functionality across       |\n|                            |                                                                  |   multiple providers.                                    |\n|                            |                                                                  |                                                          |\n|                            |                                                                  | * Group ``all`` extra that installs all optional         |\n|                            |                                                                  |   functionalities together.                              |\n+----------------------------+--------------------------------------------------------------"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/pyproject.toml",
+      "kind": "File",
+      "path": "airflow-core/pyproject.toml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1106,
+      "excerpt": "e = \"apache-airflow-core\"\ndescription = \"Core packages for Apache Airflow, schedule and API server\"\nreadme = { file = \"README.md\", content-type = \"text/markdown\" }\nlicense = \"Apache-2.0\"\nlicense-files = [\"LICENSE\", \"NOTICE\"]\n# Supporting new Python releases typically takes 4-7 months due to all our dependencies.\n# We proactively exclude the next major version to avoid dependency conflicts, then test it and\n# bump the upper binding once ready. Providers that don't support it yet are marked with\n# != constraint - until they support it - which also excludes resolving uv workspace dependencies.\nrequires-python = \">=3.10,!=3.15\"\nauthors = [\n    { name = \"Apache Software Foundation\", email = \"dev@airflow.apache.org\" },\n]\nmaintainers = [\n    { name = \"Apache Software Foundation\", email=\"dev@airflow.apache.org\" },\n]\nkeywords = [ \"airflow\", \"orchestration\", \"workflow\", \"dag\", \"pipelines\", \"automation\", \"data\" ]\nclassifiers = [\n    \"Development Status :: 5 - Production/Stable\",\n    \"Environment :: Console\",\n    \"Environment :: Web Environment\",\n    \"Framework :: Apache Airflow\",\n    \"Intended Audience :: Developers\",\n    \"Intended Audience :: System Administrators\",\n    \"Programming Language :: Python :: 3.10\",\n    \"Programming Language :: Python :: 3.11\",\n    \"Programming Language :: Python :: 3.12\",\n    \"Programming Language :: Python :: 3.13\",\n    \"Programming Language :: Python :: 3.14\",\n    \"Topic :: System :: Monitoring\",\n]\n\n# Version is defined in src/airflow/__init__.py and it is automatically synchronized by prek hook\nversion = \"3.4.0\"\n\ndependencies = [\n    \"a2wsgi>=1.10.8\",\n    \"cachetools>=6.0.0\",\n    # aiosqlite 0.22.0 has a problem with hanging pytest sessions and we excluded it\n    # See https://github.com/omnilib/aiosqlite/issues/369\n    # The thread hanging issue under SQLAlchemy 2 (sqlalchemy#13039) is resolved in\n    # SQLAlchemy 2.0.46+. Since our SQLAlchemy floor is >=2.0.48, we can safely allow 0.22.1+.\n    \"aiosqlite>=0.20.0,!=0.22.0\",\n    # Alembic is important to handle our migrations in predictable and performant way. It is developed\n    # together with SQLAlchemy. Our experience with Alembic is that it very stable in minor version\n    # The 1.13.0 of alembic marked some migration code as SQLAlchemy 2+ only so we limit it to 1.13.1\n    \"alembic>=1.13.1, <2.0\",\n    \"argcomplete>=1.10\",\n    \"asgiref>=2.3.0; python_version < '3.14'\",\n    \"asgiref"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/tests/unit/jobs/test_triggerer_job.py",
+      "kind": "File",
+      "path": "airflow-core/tests/unit/jobs/test_triggerer_job.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1566,
+      "excerpt": "Exporter\nfrom opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator\nfrom pydantic import TypeAdapter\nfrom structlog.typing import FilteringBoundLogger\n\nfrom airflow._shared.timezones import timezone\nfrom airflow.executors import workloads\nfrom airflow.executors.workloads.task import TaskInstanceDTO\nfrom airflow.executors.workloads.trigger import RunTrigger\nfrom airflow.jobs.job import Job\nfrom airflow.jobs.triggerer_job_runner import (\n    _USER_ACTION_CANCEL_MSG,\n    ToTriggerRunner,\n    ToTriggerSupervisor,\n    TriggerCommsDecoder,\n    TriggererJobRunner,\n    TriggerEventEntry,\n    TriggerLoggingFactory,\n    TriggerRunner,\n    TriggerRunnerSupervisor,\n    _make_trigger_span,\n    messages,\n)\nfrom airflow.models import Connection, DagModel, DagRun, Trigger, Variable\nfrom airflow.models.dag_version import DagVersion\nfrom airflow.models.dagbundle import DagBundleModel\nfrom airflow.models.serialized_dag import SerializedDagModel\nfrom airflow.models.xcom import XComModel\nfrom airflow.providers.standard.operators.empty import EmptyOperator\nfrom airflow.providers.standard.operators.python import PythonOperator\nfrom airflow.providers.standard.triggers.file import FileDeleteTrigger\nfrom airflow.providers.standard.triggers.temporal import DateTimeTrigger, TimeDeltaTrigger\nfrom airflow.sdk import DAG, Asset, BaseHook, BaseOperator\nfrom airflow.sdk.api.client import Client\nfrom airflow.sdk.api.datamodels._generated import AssetStateStoreResponse\nfrom airflow.sdk.exceptions import ErrorType\nfrom airflow.sdk.execution_time import supervisor\nfrom airflow.sdk.execution_time.comms import (\n    AssetStateStoreResult,\n    ClearAssetStateStoreByName,\n    ClearAssetStateStoreByUri,\n    DeleteAssetStateStoreByName,\n    DeleteAssetStateStoreByUri,\n    ErrorResponse,\n    GetAssetStateStoreByName,\n    GetAssetStateStoreByUri,\n    OKResponse,\n    SetAssetStateStoreByName,\n    SetAssetStateStoreByUri,\n    ToSupervisor,\n    ToTask,\n    _RequestFrame,\n    _ResponseFrame,\n)\nfrom airflow.sdk.execution_time.context import AssetStateStoreAccessors\nfrom airflow.serialization.serialized_objects import LazyDeserializedDAG\nfrom airflow.triggers.base import BaseEventTrigger, BaseTrigger, TriggerEvent\nfrom airflow.triggers.shared_stream import SharedStreamProducer\nfrom airflow.triggers.testing import FailureTrigger, SuccessTrigger\nfrom airflow.utils.state import State"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/celery/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/celery/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 15212,
+      "excerpt": "Airflow version in providers to 2.10 (#49843)``\n* ``Make default execution server URL be relative to API Base URL (#49747)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Update description of provider.yaml dependencies (#50231)``\n   * ``Revert \"Limit Celery to not include 5.5.2 (#49940)\" (#49951)``\n   * ``Limit Celery to not include 5.5.2 (#49940)``\n   * ``Avoid committing history for providers (#49907)``\n   * ``capitalize the term airflow (#49450)``\n   * ``Prepare docs for Apr 3rd wave of providers (#49338)``\n   * ``Move celery integration tests to celery provider. (#49178)``\n\n3.10.6\n......\n\nBug Fixes\n~~~~~~~~~\n\n* ``Bring back serve_logs to be in the core (#49031)``\n\nMisc\n~~~~\n\n* ``Remove fab from preinstalled providers (#48457)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Remove unnecessary entries in get_provider_info and update the schema (#48849)``\n   * ``Improve documentation building iteration (#48760)``\n\n3.10.5\n......\n\nBug Fixes\n~~~~~~~~~\n\n* ``Fix Celery Executor on Airflow 2.x again. (#48806)``\n\nMisc\n~~~~\n\n* ``Remove change_sensor_mode_to_reschedule from base executor (#48649)``\n* ``Update min version of Celery library to 5.5.0 (#43777)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Simplify tooling by switching completely to uv (#48223)``\n\n3.10.4\n......\n\nBug Fixes\n~~~~~~~~~\n\n* ``Scheduler shouldn't crash when 'executor_config' is passed for executors using task SDK (#47548)``\n\nMisc\n~~~~\n\n * ``AIP-81: Flatten core CLI commands (#48224)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Upgrade providers flit build requirements to 3.12.0 (#48362)``\n   * ``Move airflow sources to airflow-core package (#47798)``\n   * ``Bump various providers in preparation for Airflow 3.0.0b4 (#48013)``\n   * ``Remove links to x/twitter.com (#47801)``\n\n3.10.3\n......\n\nBug Fixes\n~~~~~~~~~\n\n* ``Avoid scheduler crash with passing executor_config with CeleryExecutor (#47375)``\n* ``bugfix: cannot import name 'workloads' for Airflow v2 (#47152)``\n\nMisc\n~~~~\n\n* ``Get rid of google-re2 as dependency (#47493)``\n*"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/cncf/kubernetes/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26646,
+      "excerpt": "al_container_state_reasons\" is parsed wrongly (#50931)``\n\nMisc\n~~~~\n\n* ``Relax Kubernetes client version support to <33.0.0 (#51195)``\n* ``Adjust code path in executors to be compatible with airflow task run (#51009)``\n* ``Port ''ti.run'' to Task SDK execution path (#50141)``\n* ``Bump some provider dependencies for faster resolution (#51727)``\n* ``Prevent legacy static hybrid executors to be running in Airflow 3 (#51733)``\n\nDoc-only\n~~~~~~~~\n\n* ``Update the executor and provider doc to highlight the two statically coded hybrid executors are no longer supported in Airflow 3.0.0+ (#51715)``\n* ``Update operators.rst - fix typo Kubernetes Pod Operator doc (#51574)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n\n10.5.0\n......\n\n.. note::\n    This release of provider is only available for Airflow 2.10+ as explained in the\n    Apache Airflow providers support policy <https://github.com/apache/airflow/blob/main/PROVIDERS.rst#minimum-supported-version-of-airflow-for-community-managed-providers>_.\n\nFeatures\n~~~~~~~~\n\n* ``Add fast fail for ErrImagePull and InvalidImageName for KubernetesPodOperator (#49867)``\n* ``KubernetesPodOperator uses different timeouts to check for schedule timeout and startup timeout (#49784)``\n* ``Add configurable automountServiceAccountToken for the KubernetesPodOperator (#50223)``\n* ``Add 'test_connection' method to 'KubernetesHook' (#47881)``\n* ``Add '@task.kuberenetes_cmd'  (#46913)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``Pass workload to KubernetesExecutor using command args instead of init container (#50448)``\n* ``Fix KubernetesPodOperator AutomountServiceAccountToken from Pod Template (#50800)``\n* ``Fix broken imports of cncf.kubernetes for Airflow 2 (#50651)``\n\nMisc\n~~~~\n\n* ``Move SQS message queue to Amazon provider (#50057)``\n* ``Remove AIRFLOW_2_10_PLUS conditions (#49877)``\n* ``Bump min Airflow version in providers to 2.10 (#49843)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Update description of provider.yaml dependencies (#50231)``\n   * ``Avoid committing history for providers (#49907)``\n   * ``capitalize the term airflow (#49450)``\n   * ``Prepare release for providers May 2025 (#50531)``\n\n10.4.3\n......\n\nBug Fixes\n~~~~~~~~~\n\n* ``Remove 'subdir' arg from CLI comma"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/microsoft/azure/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/microsoft/azure/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 63468,
+      "excerpt": "Hook (#18203)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Updating miscellaneous provider DAGs to use TaskFlow API where applicable (#18278)``\n\nMain\n....\n\nChanges in operators names and import paths are listed in the following table\nThis is a backward compatible change. Deprecated operators will be removed in the next major release.\n\n+------------------------------------+--------------------+---------------------------------------------------------+--------------------------------------------------+\n| Deprecated operator name           | New operator name  | Deprecated path                                         | New path                                         |\n+------------------------------------+--------------------+---------------------------------------------------------+--------------------------------------------------+\n| AzureDataLakeStorageListOperator   | ADLSListOperator   | airflow.providers.microsoft.azure.operators.adls_list   | airflow.providers.microsoft.azure.operators.adls |\n+------------------------------------+--------------------+---------------------------------------------------------+--------------------------------------------------+\n| AzureDataLakeStorageDeleteOperator | ADLSDeleteOperator | airflow.providers.microsoft.azure.operators.adls_delete | airflow.providers.microsoft.azure.operators.adls |\n+------------------------------------+--------------------+---------------------------------------------------------+--------------------------------------------------+\n\n3.1.1\n.....\n\nMisc\n~~~~\n\n* ``Optimise connection importing for Airflow 2.2.0``\n* ``Adds secrets backend/logging/auth information to provider yaml (#17625)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Update description about the new ''connection-types'' provider meta-data (#17767)``\n   * ``Import Hooks lazily individually in providers manager (#17682)``\n\n3.1.0\n.....\n\nFeatures\n~~~~~~~~\n\n* ``Add support for managed identity in WASB hook (#16628)``\n* ``Reduce log messages for happy path (#16626)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``Fix multiple issues in Microsoft AzureContainerInstancesOperator (#15634)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:pyproject.toml",
+      "kind": "File",
+      "path": "pyproject.toml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1936,
+      "excerpt": ":: 3.11\",\n    \"Programming Language :: Python :: 3.12\",\n    \"Programming Language :: Python :: 3.13\",\n    \"Programming Language :: Python :: 3.14\",\n    \"Topic :: System :: Monitoring\",\n]\n\n# Version is defined in src/airflow/__init__.py and it is automatically synchronized by prek\nversion = \"3.4.0\"\n\ndependencies = [\n    \"apache-airflow-task-sdk<1.5.0,>=1.4.0\",\n    \"apache-airflow-core==3.4.0\",\n]\n\npackages = []\n\n[project.scripts]\n# Definition allowing direct execution via `uvx apache-airflow ...`\napache-airflow = \"airflow.__main__:main\"\n\n[project.optional-dependencies]\n# Automatically generated airflow optional dependencies (update_airflow_pyproject_toml.py)\n\"all-core\" = [\n    \"apache-airflow-core[all]\"\n]\n\"async\" = [\n    \"apache-airflow-core[async]\"\n]\n\"graphviz\" = [\n    \"apache-airflow-core[graphviz]\"\n]\n\"gunicorn\" = [\n    \"apache-airflow-core[gunicorn]\"\n]\n\"kerberos\" = [\n    \"apache-airflow-core[kerberos]\"\n]\n\"memray\" = [\n    \"apache-airflow-core[memray]\"\n]\n\"otel\" = [\n    \"apache-airflow-core[otel]\"\n]\n\"statsd\" = [\n    \"apache-airflow-core[statsd]\"\n]\n\"all-task-sdk\" = [\n    \"apache-airflow-task-sdk[all]\"\n]\n\"airbyte\" = [\n    \"apache-airflow-providers-airbyte>=5.0.0\"\n]\n\"akeyless\" = [\n    \"apache-airflow-providers-akeyless>=0.1.0\"\n]\n\"alibaba\" = [\n    \"apache-airflow-providers-alibaba>=3.0.0\"\n]\n\"amazon\" = [\n    \"apache-airflow-providers-amazon>=9.0.0\"\n]\n\"anthropic\" = [\n    \"apache-airflow-providers-anthropic>=0.1.0\"\n]\n\"apache.cassandra\" = [\n    \"apache-airflow-providers-apache-cassandra>=3.7.0; python_version !=\\\"3.14\\\"\"\n]\n\"apache.drill\" = [\n    \"apache-airflow-providers-apache-drill>=2.8.1\"\n]\n\"apache.druid\" = [\n    \"apache-airflow-providers-apache-druid>=3.12.0\"\n]\n\"apache.flink\" = [\n    \"apache-airflow-providers-apache-flink>=1.6.0\"\n]\n\"apache.hdfs\" = [\n    \"apache-airflow-providers-apache-hdfs>=4.6.0\"\n]\n\"apache.hive\" = [\n    \"apache-airflow-providers-apache-hive>=8.2.1\"\n]\n\"apache.iceberg\" = [\n    \"apache-airflow-providers-apache-iceberg>=1.2.0\"\n]\n\"apache.impala\" = [\n    \"apache-airflow-providers-apache-impala>=1.5.2\"\n]\n\"apache.kafka\" = [\n    \"apache-airflow-providers-apache-kafka>=1.6.1\"\n]\n\"apache.kylin\" = [\n    \"apache-airflow-providers-apache-kylin>=3.8.0\"\n]\n\"apache.livy\" = [\n    \"apache-airflow-providers-apache-livy>=3.9.2\"\n]\n\"apache.pig\" = [\n    \"apache-airflow-providers-apache-pig>=4.6.0\"\n]\n\"apache.pinot\" = [\n    \"apache-airflow-providers-apache-pinot>=4.5.1\"\n]\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/pyproject.toml",
+      "kind": "File",
+      "path": "task-sdk/pyproject.toml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 823,
+      "excerpt": "-sdk\"\ndynamic = [\"version\"]\ndescription = \"Python Task SDK for Apache Airflow DAG Authors\"\nreadme = { file = \"README.md\", content-type = \"text/markdown\" }\nlicense = \"Apache-2.0\"\nlicense-files = [\"LICENSE\", \"NOTICE\"]\n# Supporting new Python releases typically takes 4-7 months due to all our provider dependencies.\n# We proactively limit the version to allow time for all dependencies to update.\nrequires-python = \">=3.10,!=3.15\"\n\nauthors = [\n    {name=\"Apache Software Foundation\", email=\"dev@airflow.apache.org\"},\n]\nmaintainers = [\n    {name=\"Apache Software Foundation\", email=\"dev@airflow.apache.org\"},\n]\nkeywords = [ \"airflow\", \"orchestration\", \"workflow\", \"dag\", \"pipelines\", \"automation\", \"data\" ]\nclassifiers = [\n    \"Development Status :: 5 - Production/Stable\",\n    \"Environment :: Console\",\n    \"Environment :: Web Environment\",\n    \"Intended Audience :: Developers\",\n    \"Intended Audience :: System Administrators\",\n    \"Framework :: Apache Airflow\",\n    \"Programming Language :: Python :: 3.10\",\n    \"Programming Language :: Python :: 3.11\",\n    \"Programming Language :: Python :: 3.12\",\n    \"Programming Language :: Python :: 3.13\",\n    \"Programming Language :: Python :: 3.14\",\n    \"Topic :: System :: Monitoring\",\n]\ndependencies = [\n    \"apache-airflow-core<3.5.0,>=3.4.0\",\n    \"asgiref>=2.3.0; python_version < '3.14'\",\n    \"asgiref>=3.11.1; python_version >= '3.14'\",\n    \"attrs>=24.2.0, !=25.2.0\",\n    \"babel>=2.17.0\",\n    \"fsspec>=2023.10.0\",\n    \"httpx>=0.27.0\",\n    \"jinja2>=3.1.5\",\n    \"methodtools>=0.4.7\",\n    \"msgspec>=0.19.0\",\n    \"python-dateutil>=2.7.0\",\n    \"psutil>=6.1.0\",\n    \"structlog>=25.4.0\",\n    \"greenback>=1.2.1\",\n    \"tenacity>=8.3.0\",\n    # Start of shared timezones dependencies\n    \"pendulum>=3.1.0\",\n    # End of shared timezones dependencies\n    # Start of shared secrets_masker dependencies\n    \"colorlog>=6.8.2\",\n    \"pydantic>2.11.0\",\n    # End of shared secrets_masker dependencies\n    # Start of shared logging dependencies\n    \"pygtrie>=2.5.0\",\n    # End of shared logging dependencies\n    # Start of shared configuration dependencies\n    \"packaging>=25.0\",\n    \"typing-extensions>=4.14.1\",\n    # End of shared configuration dependencies\n    # Start of shared listeners dependencies\n    \"pluggy>=1.5.0\",\n    # End of shared listeners dependencies\n    # Start of shared module-loading dependencies\n    'importlib_metadata>=6.5;python_version<\"3.12\"'"
+    }
+  ]
+}

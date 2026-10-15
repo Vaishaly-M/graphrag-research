@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/authoring-and-scheduling/assets.rst",
+        "path": "airflow-core/docs/authoring-and-scheduling/assets.rst",
+        "offset": 33267,
+        "line": 733
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 31866,
+        "line": 452
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 2259,
+        "line": 38
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+        "path": "dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+        "offset": 6185,
+        "line": 178
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:scripts/ci/prek/upgrade_important_versions.py",
+        "path": "scripts/ci/prek/upgrade_important_versions.py",
+        "offset": 12881,
+        "line": 341
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/serialization/definitions/dag.py",
+        "path": "airflow-core/src/airflow/serialization/definitions/dag.py",
+        "offset": 19708,
+        "line": 479
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+        "path": ".agents/skills/magpie-setup/adopt.md",
+        "offset": 48991,
+        "line": 1106
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 48456,
+        "line": 914
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+      "kind": "File",
+      "path": ".agents/skills/magpie-setup/adopt.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 48991,
+      "excerpt": "x. Adopters whose existing hooks still contain\nthe broken line should remove it; the\n[`setup-isolated-setup-update`](../setup-isolated-setup-update/SKILL.md)\ndrift check surfaces stale hook content on a routine sweep.\n\n## Step 11 — Project doc updates (FRESH only)\n\nUpdate two adopter-facing docs so contributors discover the\nframework before they hit a \"skill not found\" error:\n\n1. **`README.md` (contributor-facing summary, REQUIRED if\n   the file exists).** This is the doc most fresh-clone\n   contributors read first. Add a dedicated section. If the\n   project uses PyPI-sync markers (e.g.\n   `<!-- START Contributing ... -->` / `<!-- END Contributing ... -->`),\n   place the new section **outside** any sync block so the\n   adoption note does not leak into the published PyPI\n   description.\n\n   Suggested template — substitute the adopter's name and\n   the skill families they actually installed:\n\n   ```markdown\n   ## Agent-assisted contribution (apache-magpie)\n\n   This repo adopts the\n   [`apache/magpie`](https://github.com/apache/magpie)\n   framework via a snapshot mechanism. The framework provides\n   maintainer-facing skills (e.g. `pr-management-triage`,\n   `pr-management-code-review`, `pr-management-stats`,\n   `pr-management-mentor`, and the `security-*` family)\n   exposed as agent skills in agent harnesses such as Claude\n   Code.\n\n   The framework is **not** vendored — it lives as a\n   gitignored snapshot under `.apache-magpie/`, fetched on\n   demand from the version pinned in the committed\n   [`.apache-magpie.lock`](.apache-magpie.lock). The only\n   framework artefact committed to this repo is the\n   `setup` skill at\n   [`.agents/skills/magpie-setup/`](.agents/skills/magpie-setup/);\n   everything else is a gitignored symlink the setup skill\n   wires up.\n\n   A fresh clone needs the snapshot populated before any\n   framework skill is invocable. In your agent harness, run:\n\n       /magpie-setup\n\n   (or follow [`.agents/skills/magpie-setup/`](.agents/skills/magpie-setup/))\n   to fetch the snapshot per the committed lock, scaffold the\n   gitignored symlinks, and install the post-checkout hook\n   that re-creates them on each worktree checkout.\n\n   Adopter-specific modifications to framework workflows live\n   in [`.apache-magpie-overrides/`](.apache-magpie-overrides/)\n   (committed) — never edit the snapshot directly. Framework\n   changes go via PR to\n   [`apache/ma"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 31866,
+      "excerpt": "s own `Generated-by:`\nblock under the AI-disclosure checkbox; commit messages still follow\nthe no-self-as-co-author rule above). Do not skip the footer to\nshorten a message — attribution applies regardless of message length.\n\n#### Do not tag individuals\n\nAI agents MUST NOT mention or tag individual contributors, committers,\nPMC members, or maintainers using GitHub usernames (e.g. `@user`) unless\nexplicitly instructed by a human reviewer. When suggesting who might be\nrelevant to a discussion, refer to roles, teams, code ownership\ninformation, labels, or components instead of individuals. This keeps\nnotification noise down and avoids pulling people into threads they have\nnot chosen to join.\n\nThe only exceptions are mentions a human has explicitly authorized —\nincluding the `@<github-handle>` in the `Drafted-by: … reviewed by\n@<handle>` footer above, which names the reviewer who approved the\nmessage — and replying within a thread to people already actively\nparticipating in that same PR/issue discussion.\n\n## apache-magpie framework\n\nThis repo adopts the [`apache/magpie`](https://github.com/apache/magpie)\nframework via the snapshot mechanism. The framework provides the\n`pr-management-*` skills (triage, code-review, stats, mentor); they are\ngitignored symlinks into the `.apache-magpie/` snapshot directory.\n\nA fresh clone needs the snapshot populated before any framework skill is\ninvocable. Run `/magpie-setup` (or follow\n[`.claude/skills/magpie-setup/`](.claude/skills/magpie-setup/)) to fetch\nit per the committed [`.apache-magpie.lock`](.apache-magpie.lock). The\ncontributor-facing summary of the adoption + setup flow lives in the\n[Agent-assisted contribution section of `README.md`](README.md#agent-assisted-contribution-apache-magpie).\n\nAdopter-specific modifications to framework-skill workflows live in\n[`.apache-magpie-overrides/`](.apache-magpie-overrides/) — never edit\nthe snapshot directly. Framework changes go via PR to\n[`apache/magpie`](https://github.com/apache/magpie).\n\n### Reviewing pull requests\n\nWith apache-magpie installed locally, use the\n`magpie-pr-management-code-review` skill for PR code review. It posts\nfindings as **inline review comments** anchored to `file:line`, presented\n**individually for accept/skip** before anything is submitted — prefer it\nover an ad-hoc review pass or a generic review command. A body-only review\nis the explicit opt-out (`i"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/authoring-and-scheduling/assets.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/authoring-and-scheduling/assets.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 33267,
+      "excerpt": "10T09``, which is the format\nit encodes each expected member in — the same\nstrings the scheduler matches against the twenty-four required members of\n:class:`~airflow.sdk.DayWindow`.\n\nThe following hourly-to-daily example produces a daily summary once all twenty-four\nupstream hourly partitions for a calendar day have arrived:\n\n.. code-block:: python\n\n    from airflow.sdk import (\n        DAG,\n        Asset,\n        CronPartitionTimetable,\n        DayWindow,\n        PartitionedAssetTimetable,\n        RollupMapper,\n        StartOfHourMapper,\n        task,\n    )\n\n    hourly_sales = Asset(uri=\"file://incoming/sales/hourly.csv\", name=\"hourly_sales\")\n\n    # Producer: emits one partitioned event per hour (key looks like 2026-03-10T09:00:00).\n    with DAG(\n        dag_id=\"ingest_hourly_sales\",\n        schedule=CronPartitionTimetable(\"0 * * * *\", timezone=\"UTC\"),\n    ):\n\n        @task(outlets=[hourly_sales])\n        def ingest():\n            pass\n\n        ingest()\n\n    # Consumer: fires once a day's twenty-four hourly partitions are all in.\n    with DAG(\n        dag_id=\"daily_sales_summary\",\n        schedule=PartitionedAssetTimetable(\n            assets=hourly_sales,\n            default_partition_mapper=RollupMapper(\n                upstream_mapper=StartOfHourMapper(),\n                window=DayWindow(),\n            ),\n        ),\n        catchup=False,\n    ):\n\n        @task\n        def summarize(dag_run=None):\n            # dag_run.partition_key is the day, e.g. \"2026-03-10\".\n            print(dag_run.partition_key)\n\n        summarize()\n\nA misconfigured ``RollupMapper`` — e.g. pairing an identity-decoding upstream mapper\nwith a ``DayWindow`` — raises ``TypeError`` at Dag parse so the misconfiguration\nsurfaces immediately instead of silently holding every downstream run forever. The\nerror is a type mismatch: an identity-decoding mapper's ``expected_decoded_type`` is\n``str``, but temporal windows such as :class:`~airflow.sdk.DayWindow` require\n``datetime``; ``RollupMapper`` detects the mismatch at construction time and\nraises before the Dag is scheduled.\n\n``DayWindow`` always enumerates twenty-four hourly steps. With an upstream mapper\nconfigured for a local timezone that observes daylight-saving time, the spring-forward\nday has only twenty-three real hours (one window member never has a matching event,\nso the run is held indefinitely) and the fall-back day has twenty-f"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/serialization/definitions/dag.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/serialization/definitions/dag.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19708,
+      "excerpt": "duction backfill path is treated as the\n        timetable-local midnight — a cross-timezone daily backfill therefore\n        includes the first day rather than silently dropping it. The window\n        granularity follows the timetable's own partition cadence and is *not*\n        rounded up to whole calendar days, so a single-hour window on an hourly\n        timetable yields only the partitions inside it (08:00 and 09:00, not the\n        full day's 24).  Each yielded\n        :class:`~airflow.timetables.base.DagRunInfo` has\n        ``logical_date=None``, ``data_interval=None``, and\n        ``run_after == partition_date``; see\n        :meth:`~airflow.timetables.base.Timetable.iter_partition_dagrun_infos`\n        for details.\n        \"\"\"\n        if earliest is None:\n            earliest = self._time_restriction.earliest\n        if earliest is None:\n            raise ValueError(\"earliest was None and we had no value in time_restriction to fallback on\")\n        earliest = coerce_datetime(earliest)\n        latest = coerce_datetime(latest)\n\n        if self.timetable.partitioned:\n            yield from self.timetable.iter_partition_dagrun_infos(\n                earliest=earliest,\n                latest=latest,\n            )\n            return\n\n        restriction = TimeRestriction(earliest, latest, catchup=True)\n\n        info = None\n        try:\n            while True:\n                info = self.timetable.next_dagrun_info_v2(\n                    last_dagrun_info=info,\n                    restriction=restriction,\n                )\n                if info:\n                    yield info\n                else:\n                    break\n        except Exception:\n            log.exception(\n                \"Failed to fetch run info\",\n                last_dagrun_info=info,\n                dag_id=self.dag_id,\n            )\n\n    @provide_session\n    def get_concurrency_reached(self, *, session=NEW_SESSION) -> bool:\n        \"\"\"Return a boolean indicating whether the max_active_tasks limit for this DAG has been reached.\"\"\"\n        from airflow.models.taskinstance import TaskInstance\n\n        total_tasks = session.scalar(\n            select(func.count(TaskInstance.task_id)).where(\n                TaskInstance.dag_id == self.dag_id,\n                TaskInstance.state == TaskInstanceState.RUNNING,\n            )\n        )\n        return total_tasks >= self.max_active_tasks\n\n    def"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2259,
+      "excerpt": "ible-package-check)\n  - [SVN check](#svn-check)\n  - [Licence check](#licence-check)\n  - [Signature check](#signature-check)\n  - [SHA512 sum check](#sha512-sum-check)\n  - [Optional: Automated verification using Breeze](#optional-automated-verification-using-breeze)\n- [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n  - [Installing release candidate in your local virtual environment](#installing-release-candidate-in-your-local-virtual-environment)\n- [Publish the final Apache Airflow release](#publish-the-final-apache-airflow-release)\n  - [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Manually prepare production Docker Image](#manually-prepare-production-docker-image)\n  - [Verify production images](#verify-production-images)\n  - [Publish final documentation](#publish-final-documentation)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Update Announcements page](#update-announcements-page)\n  - [Create release on GitHub](#create-release-on-github)\n  - [Close the milestone](#close-the-milestone)\n  - [Close the testing status issue](#close-the-testing-status-issue)\n  - [Announce the release on the community slack](#announce-the-release-on-the-community-slack)\n  - [Announce about the release in social media](#announce-about-the-release-in-social-media)\n  - [Update `main` with the latest release details](#update-main-with-the-latest-release-details)\n  - [Update default Airflow version in the helm chart](#update-default-airflow-version-in-the-helm-chart)\n  - [Update airflow/config_templates/config.yml file](#update-airflowconfig_templatesconfigyml-file)\n  - [API clients](#api-clients)\n- [Additional processes](#additional-processes)\n  - [Fixing released documentation](#fixing-released-documentation)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\nYou can find the prerequisites to release Apache Airflow in [README.md](README.md).\n\n# Collect ambiguities during the release (for a follow-up doc PR)\n\nThese instructions"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 48456,
+      "excerpt": " then create the issue as below. If the issue was already created,\napply the same edit to the file and run `gh issue edit <ISSUE> --body-file ...`.\n\nthen create it from the file:\n\n```shell script\ngh issue create --repo apache/airflow \\\n    --title \"Status of testing Providers that were prepared on <MONTH DD, YYYY>\" \\\n    --body-file files/provider_issue.md --label \"testing status,kind:meta\"\n```\n\n## Prepare voting email for Providers release candidate\n\nMake sure the packages are in https://dist.apache.org/repos/dist/dev/airflow/providers/\n\n* Before sending the vote email, gate on the same completeness check the PMC verifiers run, so a\n  missing artifact (e.g. the `-source.tar.gz` tarball) fails here instead of in the vote thread.\n  `files/packages.txt` was already generated by the PyPI upload step (\"Publish the Regular\n  distributions to PyPI\" above); run the check against it:\n\n```shell script\ncd \"$AIRFLOW_REPO_ROOT\"\nbreeze release-management check-release-files providers --release-date \"${RELEASE_DATE}\" \\\n  --packages-file ./files/packages.txt \\\n  --path-to-airflow-svn \"$(cd ../asf-dist/dev/airflow && pwd -P)\"\n```\n\n  It exits non-zero and lists every missing file (including `.asc`/`.sha512` variants) if anything is\n  absent. Only proceed to the vote once it prints `All expected files are present!`.\n\nSend out a vote to the dev@airflow.apache.org mailing list. Here you can prepare text of the\nemail.\n\n> [!NOTE]\n> If you are a non-PMC Delegate running this step under the [delegated\n> process](#delegating-release-duties-to-a-non-pmc-committer), set `IS_RM_VOTE_BINDING=false` below\n> — your vote is not binding under ASF policy. Ask a PMC member to reply to the vote thread with\n> their own explicit `+1 (binding)` as soon as they've verified the release; the vote is not valid\n> until at least 3 such binding replies are posted, regardless of who sent the `[VOTE]` email.\n\n```shell script\nexport VOTE_DURATION_IN_HOURS=72\nexport IS_SHORTEN_VOTE=$([ $VOTE_DURATION_IN_HOURS -ge 72 ] && echo \"false\" || echo \"true\")\nexport SHORTEN_VOTE_TEXT=\"This is a shortened ($VOTE_DURATION_IN_HOURS hours vote) as agreed by policy set it https://lists.apache.org/thread/cv194w1fqqykrhswhmm54zy9gnnv6kgm\"\nif [[ \"${OSTYPE}\" == *darwin* ]]; then\n  export VOTE_END_TIME=$(date -u -v \"+${VOTE_DURATION_IN_HOURS}H\" -v \"+10M\" +'%Y-%m-%d %H:%M')\nelse  # Linux\n  export VOTE_END_TIME=$(date --utc -d \""
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+      "kind": "File",
+      "path": "dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6185,
+      "excerpt": "eDict[FileGroupForCi] = HashableDict(\n    {\n        FileGroupForCi.ENVIRONMENT_FILES: [\n            # Only workflows that actually run or configure the test suite force the full\n            # matrix. Non-test workflows (security scans, doc publishing, notifications,\n            # backporting, stale/calendar bots, …) cannot affect test outcomes, so they\n            # are excluded here to avoid accidental full-matrix runs.\n            r\"^\\.github/workflows/(?!(\"\n            r\"asf-allowlist-check|automatic-backport|backport-cli|ci-duration-monitor|ci-notification|\"\n            r\"codeql-analysis|e2e-flaky-tests-report|milestone-tag-assistant|notify-uv-lock-conflicts|\"\n            r\"publish-docs-to-s3|recheck-old-bug-report|scheduled-verify-release-calendar|stale\"\n            r\")\\.yml$)\",\n            r\"^dev/breeze/src\",\n            r\"^dev/breeze/pyproject\\.toml\",\n            r\"^dev/breeze/uv\\.lock\",\n            r\"^dev/(?!breeze/tests/).*\\.py$\",\n            r\"^Dockerfile\",\n            r\"^scripts/ci/docker-compose\",\n            r\"^scripts/ci/kubernetes\",\n            # NOTE: scripts/ci/prek (static-check hooks) is intentionally NOT here. prek\n            # hooks drive static checks, not the test matrix, so they must not force the\n            # full matrix. They still build the CI image via FileGroupForCi.PREK_FILES\n            # below (so mypy-scripts and all static checks still run).\n            r\"^scripts/docker\",\n            r\"^scripts/in_container\",\n        ],\n        FileGroupForCi.BREEZE_INTEGRATION_TEST_FILES: [\n            r\"^dev/breeze/src/.*\",\n            r\"^dev/breeze/tests/.*_integration\\.py\",\n            r\"^dev/breeze/pyproject\\.toml\",\n            r\"^dev/breeze/uv\\.lock\",\n        ],\n        FileGroupForCi.REMOTE_LOGGING_E2E_SHARED_FILES: [\n            r\"^airflow-core/src/airflow/config_templates/airflow_local_settings\\.py$\",\n            r\"^airflow-core/src/airflow/logging/.*\",\n            r\"^airflow-core/src/airflow/logging_config\\.py$\",\n            r\"^airflow-core/src/airflow/api_fastapi/core_api/routes/public/log\\.py$\",\n            r\"^airflow-core/src/airflow/api_fastapi/core_api/datamodels/log\\.py$\",\n            r\"^airflow-core/src/airflow/utils/log/.*\",\n            r\"^airflow-e2e-tests/.*\",\n            r\"^shared/logging/.*\",\n        ],\n        FileGroupForCi.REMOTE_LOGGING_E2E_S3_FILES: [\n            r\"^airflow-e2e-tests/tests/airflow_e2e_tests/remo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:scripts/ci/prek/upgrade_important_versions.py",
+      "kind": "File",
+      "path": "scripts/ci/prek/upgrade_important_versions.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12881,
+      "excerpt": "` would resolve the same version with or without the\n    override — so the override no longer earns its complexity and can come out.\n    Running this on every important-versions upgrade means the line, and its\n    `# REMOVE BY ...` marker, retire themselves without anyone having to\n    remember the calendar date.\n    \"\"\"\n    try:\n        text = ROOT_PYPROJECT_PATH.read_text()\n    except OSError:\n        return False\n    overrides = _parse_manual_overrides(text)\n    if not overrides:\n        return False\n\n    obsolete: list[str] = []\n    for package_name in overrides:\n        try:\n            response = requests.get(\n                f\"https://pypi.org/pypi/{package_name}/json\",\n                headers={\"User-Agent\": \"Python requests\"},\n                timeout=30,\n            )\n            response.raise_for_status()\n            releases = response.json()[\"releases\"]\n        except Exception as exc:\n            console.print(f\"[bright_yellow]Skipping {package_name} override obsolescence check ({exc})\")\n            continue\n        candidates = sorted(\n            (Version(v) for v in releases.keys() if not Version(v).is_prerelease),\n            reverse=True,\n        )\n        if not candidates:\n            continue\n        latest = str(candidates[0])\n        # If the latest stable release is OUTSIDE the global cooldown window,\n        # the per-package override is no longer changing what `uv lock` resolves.\n        if not _is_version_within_cooldown(releases, latest):\n            obsolete.append(package_name)\n\n    if not obsolete:\n        return False\n\n    new_text = text\n    for pkg in obsolete:\n        console.print(f\"[bright_green]Removing obsolete exclude-newer-package override for {pkg}\")\n        new_text = _remove_override_entry(new_text, pkg)\n    if new_text == text:\n        return False\n    ROOT_PYPROJECT_PATH.write_text(new_text)\n    return True\n\n\ndef get_all_python_versions() -> list[Version]:\n    \"\"\"\n    Fetch all released Python versions by parsing the Python FTP directory listing.\n    This provides static information about all available Python releases.\n    \"\"\"\n    if VERBOSE:\n        console.print(\"[bright_blue]Fetching all released Python versions from python.org FTP\")\n    url = \"https://www.python.org/ftp/python/\"\n    headers = {\"User-Agent\": \"Python requests\"}\n    response = requests.get(url, headers=headers)\n    response.raise_for_status()\n\n "
+    }
+  ]
+}

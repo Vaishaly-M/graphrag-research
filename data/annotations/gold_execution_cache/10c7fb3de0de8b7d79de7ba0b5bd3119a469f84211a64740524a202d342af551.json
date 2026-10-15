@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:486",
+        "path": null,
+        "offset": 6266,
+        "line": 68
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:198",
+        "path": null,
+        "offset": 5208,
+        "line": 55
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.slnx",
+        "path": "eShop.slnx",
+        "offset": 330,
+        "line": 7
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.Web.slnf",
+        "path": "eShop.Web.slnf",
+        "offset": 122,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:20",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 502,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+        "path": "src/eShop.AppHost/Program.cs",
+        "offset": 391,
+        "line": 13
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+        "path": null,
+        "offset": 7118,
+        "line": 151
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.Web.slnf",
+      "kind": "File",
+      "path": "eShop.Web.slnf",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 122,
+      "excerpt": "log.API\\\\Catalog.API.csproj\",\n      \"src\\\\EventBusRabbitMQ\\\\EventBusRabbitMQ.csproj\",\n      \"src\\\\EventBus\\\\EventBus.csproj\",\n      \"src\\\\Identity.API\\\\Identity.API.csproj\",\n      \"src\\\\IntegrationEventLogEF\\\\IntegrationEventLogEF.csproj\",\n      \"src\\\\Ordering.API\\\\Ordering.API.csproj\",\n      \"src\\\\OrderProcessor\\\\OrderProcessor.csproj\",\n      \"src\\\\Ordering.Domain\\\\Ordering.Domain.csproj\",\n      \"src\\\\Ordering.Infrastructure\\\\Ordering.Infrastructure.csproj\",\n      \"src\\\\PaymentProcessor\\\\PaymentProcessor.csproj\",\n      \"src\\\\WebAppComponents\\\\WebAppComponents.csproj\",\n      \"src\\\\WebApp\\\\WebApp.csproj\",\n      \"src\\\\WebhookClient\\\\WebhookClient.csproj\",\n      \"src\\\\Webhooks.API\\\\Webhooks.API.csproj\",\n      \"src\\\\eShop.AppHost\\\\eShop.AppHost.csproj\",\n      \"src\\\\eShop.ServiceDefaults\\\\eShop.ServiceDefaults.csproj\",\n      \"tests\\\\Basket.UnitTests\\\\Basket.UnitTests.csproj\",\n      \"tests\\\\Catalog.FunctionalTests\\\\Catalog.FunctionalTests.csproj\",\n      \"tests\\\\Ordering.FunctionalTests\\\\Ordering.FunctionalTests.csproj\",\n      \"tests\\\\Ordering.UnitTests\\\\Ordering.UnitTests.csproj\"\n    ]\n  }\n}"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:eShop.slnx",
+      "kind": "File",
+      "path": "eShop.slnx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 330,
+      "excerpt": "csproj\" />\n    <Project Path=\"src/EventBusRabbitMQ/EventBusRabbitMQ.csproj\" />\n    <Project Path=\"src/Identity.API/Identity.API.csproj\" />\n    <Project Path=\"src/IntegrationEventLogEF/IntegrationEventLogEF.csproj\" />\n    <Project Path=\"src/Ordering.API/Ordering.API.csproj\" />\n    <Project Path=\"src/OrderProcessor/OrderProcessor.csproj\" />\n    <Project Path=\"src/Ordering.Domain/Ordering.Domain.csproj\" />\n    <Project Path=\"src/Ordering.Infrastructure/Ordering.Infrastructure.csproj\" />\n    <Project Path=\"src/PaymentProcessor/PaymentProcessor.csproj\" />\n    <Project Path=\"src/WebApp/WebApp.csproj\" />\n    <Project Path=\"src/WebhookClient/WebhookClient.csproj\" />\n    <Project Path=\"src/Webhooks.API/Webhooks.API.csproj\" />\n    <Project Path=\"src/WebAppComponents/WebAppComponents.csproj\" />\n    <Project Path=\"src/HybridApp/HybridApp.csproj\" />\n    <Project Path=\"src/ClientApp/ClientApp.csproj\" />\n  </Folder>\n  <Folder Name=\"/tests/\">\n    <Project Path=\"tests/Basket.UnitTests/Basket.UnitTests.csproj\" />\n    <Project Path=\"tests/Catalog.FunctionalTests/Catalog.FunctionalTests.csproj\" />\n    <Project Path=\"tests/Ordering.FunctionalTests/Ordering.FunctionalTests.csproj\" />\n    <Project Path=\"tests/Ordering.UnitTests/Ordering.UnitTests.csproj\" />\n    <Project Path=\"tests/ClientApp.UnitTests/ClientApp.UnitTests.csproj\" />\n  </Folder>\n  <Folder Name=\"/Solution Items/\">\n    <File Path=\".editorconfig\" />\n    <File Path=\"Directory.Packages.props\" />\n    <File Path=\"NuGet.config\" />\n    <File Path=\"README.md\" />\n  </Folder>\n</Solution>"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+      "kind": "File",
+      "path": "src/eShop.AppHost/Program.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 391,
+      "excerpt": "e.Persistent);\n\nvar catalogDb = postgres.AddDatabase(\"catalogdb\");\nvar identityDb = postgres.AddDatabase(\"identitydb\");\nvar orderDb = postgres.AddDatabase(\"orderingdb\");\nvar webhooksDb = postgres.AddDatabase(\"webhooksdb\");\n\nvar launchProfileName = ShouldUseHttpForEndpoints() ? \"http\" : \"https\";\n\n// Services\nvar identityApi = builder.AddProject<Projects.Identity_API>(\"identity-api\", launchProfileName)\n    .WithExternalHttpEndpoints()\n    .WithReference(identityDb)\n    .WithHttpHealthCheck(\"/health\");\n\nvar identityEndpoint = identityApi.GetEndpoint(launchProfileName);\n\nvar basketApi = builder.AddProject<Projects.Basket_API>(\"basket-api\")\n    .WithReference(redis)\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\nredis.WithParentRelationship(basketApi);\n\nvar catalogApi = builder.AddProject<Projects.Catalog_API>(\"catalog-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(catalogDb);\n\nvar orderingApi = builder.AddProject<Projects.Ordering_API>(\"ordering-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb).WaitFor(orderDb)\n    .WithHttpHealthCheck(\"/health\")\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\nbuilder.AddProject<Projects.OrderProcessor>(\"order-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb)\n    .WaitFor(orderingApi); // wait for the orderingApi to be ready because that contains the EF migrations\n\nbuilder.AddProject<Projects.PaymentProcessor>(\"payment-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq);\n\nvar webHooksApi = builder.AddProject<Projects.Webhooks_API>(\"webhooks-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(webhooksDb)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\n// Reverse proxies\nbuilder.AddYarp(\"mobile-bff\")\n    .WithExternalHttpEndpoints()\n    .ConfigureMobileBffRoutes(catalogApi, orderingApi, identityApi);\n\n// Apps\nvar webhooksClient = builder.AddProject<Projects.WebhookClient>(\"webhooksclient\", launchProfileName)\n    .WithReference(webHooksApi)\n    .WithEnvironment(\"IdentityUrl\", identityEndpoint);\n\nvar webApp = builder.AddProject<Projects.WebApp>(\"webapp\", launchProfileName)\n    .WithExternalHttpEndpoints()\n    .WithUrls(c => c.Urls.ForEach(u => u.DisplayText = $\"Online Store ({u.Endpoint?.EndpointName})\"))\n    .WithReference(basketApi)\n    "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:198",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 198,
+      "title": "Apple ARM Processors Require Rosetta 2 to Build for gRPC Build Tools Support",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5208,
+      "excerpt": " MSB6003:    at Microsoft.Build.Utilities.ToolTask.Execute() [~/dev/github/eshop/src/WebApp/WebApp.csproj]\r\n  Identity.API -> ~/dev/github/eshop/src/Identity.API/bin/Debug/net8.0/Identity.API.dll\r\n  PaymentProcessor -> ~/dev/github/eshop/src/PaymentProcessor/bin/Debug/net8.0/PaymentProcessor.dll\r\n  OrderProcessor -> ~/dev/github/eshop/src/OrderProcessor/bin/Debug/net8.0/OrderProcessor.dll\r\n  Webhooks.API -> ~/dev/github/eshop/src/Webhooks.API/bin/Debug/net8.0/Webhooks.API.dll\r\n  Ordering.API -> ~/dev/github/eshop/src/Ordering.API/bin/Debug/net8.0/Ordering.API.dll\r\n  Catalog.API -> ~/dev/github/eshop/src/Catalog.API/bin/Debug/net8.0/Catalog.API.dll\r\n  Ordering.UnitTests -> ~/dev/github/eshop/tests/Ordering.UnitTests/bin/Debug/net8.0/Ordering.UnitTests.dll\r\n  Catalog.FunctionalTests -> ~/dev/github/eshop/tests/Catalog.FunctionalTests/bin/Debug/net8.0/Catalog.FunctionalTests.dll\r\n  Ordering.FunctionalTests -> ~/dev/github/eshop/tests/Ordering.FunctionalTests/bin/Debug/net8.0/Ordering.FunctionalTests.dll\r\n\r\nBuild FAILED.\r\n\r\n~/.nuget/packages/grpc.tools/2.59.0/build/_protobuf/Google.Protobuf.Tools.targets(291,5): error MSB6003: The specified task executable \"~/.nuget/packages/grpc.tools/2.59.0/tools/macosx_x64/protoc\" could not be run. System.ComponentModel.Win32Exception (86): An error occurred trying to start process '~/.nuget/packages/grpc.tools/2.59.0/tools/macosx_x64/protoc' with working directory '~/dev/github/eshop/src/Basket.API'. Bad CPU type in executable [~/dev/github/eshop/src/Basket.API/Basket.API.csproj]\r\n~/.nuget/packages/grpc.tools/2.59.0/build/_protobuf/Google.Protobuf.Tools.targets(291,5): error MSB6003:    at System.Diagnostics.Process.ForkAndExecProcess(ProcessStartInfo startInfo, String resolvedFilename, String[] argv, String[] envp, String cwd, Boolean setCredentials, UInt32 userId, UInt32 groupId, UInt32[] groups, Int32& stdinFd, Int32& stdoutFd, Int32& stderrFd, Boolean usesTerminal, Boolean throwOnNoExec) [~/dev/github/eshop/src/Basket.API/Basket.API.csproj]\r\n~/.nuget/packages/grpc.tools/2.59.0/build/_protobuf/Google.Protobuf.Tools.targets(291,5): error MSB6003:    at System.Diagnostics.Process.StartCore(ProcessStartInfo startInfo) [~/dev/github/eshop/src/Basket.API/Basket.API.csproj]\r\n~/.nuget/packages/grpc.tools/2.59.0/build/_protobuf/Google.Protobuf.Tools.targets(291,5): error MSB6003:    at Microsoft.Build.Utilities.ToolTask.ExecuteTo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:20",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 20,
+      "title": "Turn on nullable reference types",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "- [ ] Basket.API\r\n- [ ] Catalog.API\r\n- [ ] ClientApp\r\n- [ ] EventBus\r\n- [ ] EventBusRabbitMQ\r\n- [ ] HybridApp\r\n- [ ] Identity.API\r\n- [ ] IntegrationEventLogEF\r\n- [ ] Ordering.API\r\n- [ ] Ordering.BackgroundTasks\r\n- [ ] Ordering.Domain\r\n- [ ] Ordering.Infrastructure\r\n- [ ] Payment.API\r\n- [ ] Shared\r\n- [ ] WebApp\r\n- [ ] WebAppComponents\r\n- [ ] WebClient\r\n- [ ] Webhooks.API\r\n- [ ] eShop.AppHost\r\n- [ ] eShop.ServiceDefaults"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:486",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 486,
+      "title": "Full rebuild of eshop solution fails on ClientApp",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6266,
+      "excerpt": "bAppComponents -> D:\\GitHub\\eshop\\src\\WebAppComponents\\bin\\Debug\\net8.0\\WebAppComponents.dll\n12>------ Rebuild All started: Project: HybridApp, Configuration: Debug Any CPU ------\n6>WebhookClient -> D:\\GitHub\\eshop\\src\\WebhookClient\\bin\\Debug\\net8.0\\WebhookClient.dll\n1>D:\\GitHub\\eshop\\src\\ClientApp\\Services\\Basket\\BasketService.cs(1,23,1,39): error CS0234: The type or namespace name 'BasketGrpcClient' does not exist in the namespace 'eShop.ClientApp' (are you missing an assembly reference?)\n1>D:\\GitHub\\eshop\\src\\ClientApp\\Services\\Basket\\BasketService.cs(118,13,118,29): error CS0246: The type or namespace name 'BasketGrpcClient' could not be found (are you missing a using directive or an assembly reference?)\n1>D:\\GitHub\\eshop\\src\\ClientApp\\Services\\Basket\\BasketService.cs(18,13,18,29): error CS0246: The type or namespace name 'BasketGrpcClient' could not be found (are you missing a using directive or an assembly reference?)\n1>Done building project \"ClientApp.csproj\" -- FAILED.\n1>D:\\GitHub\\eshop\\src\\ClientApp\\Services\\Basket\\BasketService.cs(1,23,1,39): error CS0234: The type or namespace name 'BasketGrpcClient' does not exist in the namespace 'eShop.ClientApp' (are you missing an assembly reference?)\n1>D:\\GitHub\\eshop\\src\\ClientApp\\Services\\Basket\\BasketService.cs(118,13,118,29): error CS0246: The type or namespace name 'BasketGrpcClient' could not be found (are you missing a using directive or an assembly reference?)\n1>D:\\GitHub\\eshop\\src\\ClientApp\\Services\\Basket\\BasketService.cs(18,13,18,29): error CS0246: The type or namespace name 'BasketGrpcClient' could not be found (are you missing a using directive or an assembly reference?)\n10>EventBusRabbitMQ -> D:\\GitHub\\eshop\\src\\EventBusRabbitMQ\\bin\\Debug\\net8.0\\EventBusRabbitMQ.dll\n1>Done building project \"ClientApp.csproj\" -- FAILED.\n13>------ Rebuild All started: Project: Webhooks.API, Configuration: Debug Any CPU ------\n14>------ Rebuild All started: Project: WebApp, Configuration: Debug Any CPU ------\n15>------ Rebuild All started: Project: PaymentProcessor, Configuration: Debug Any CPU ------\n16>------ Rebuild All started: Project: OrderProcessor, Configuration: Debug Any CPU ------\n17>------ Rebuild All started: Project: Catalog.API, Configuration: Debug Any CPU ------\n18>------ Rebuild All started: Project: Basket.API, Configuration: Debug Any CPU ------\n11>Ordering.Infrastructure -> D:\\GitHub\\eshop\\src"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 502,
+      "excerpt": "\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontainers** | Testcontainers.PostgreSql | Real PostgreSQL in container | Fake AI, no-op event bus |\r\n| **AspireMessagingOutbox** | Aspire + Postgres | Real PostgreSQL | `CapturingEventBus` spy instead of RabbitMQ |\r\n| **AspireMessagingRabbitMq** | Aspire + Postgres + RabbitMQ | Real PostgreSQL | Real RabbitMQ + capture handlers |\r\n\r\n### Architecture (How It Works)\r\n\r\n```mermaid\r\nflowchart TB\r\n    subgraph TestLayer[\"Test class\"]\r\n        T[\"CatalogApiTests / OrderingApiTests\"]\r\n        A[\"[CatalogFunctio"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1021",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1021,
+      "title": "Bump the aspnetcore group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7118,
+      "excerpt": "ing doesn't work in Carousel View by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/30014\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [ItemSpacing on CarouselView is not applied on Windows.](https://github.com/dotnet/maui/issues/29772)\n  </details>\n\n- Fix CollectionView not scrolling to top on iOS status bar tap by @​jfversluis in https://github.com/dotnet/maui/pull/34687\n  <details>\n  <summary>🔧 Fixes</summary>\n\n  - [[iOS] UICollectionView ScrollToTop does not work](https://github.com/dotnet/maui/issues/19866)\n  </details>\n\n- [iOS] Fixed CollectionView Scroll Jitter for TextType HTML Labels by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/34383\n  <details>\n  <summary>🔧 Fixes</summary>\n ... (truncated)\n\n## 10.0.71\n\n## What's Changed\n* [release/10.0.1xx-sr7] [Windows] Fix WebView blank rendering when used with HybridWebView by @​kubaflo in https://github.com/dotnet/maui/pull/35585\n* [release/10.0.1xx-sr7] Revert PR #​30068 — Fix FontImageSource centering regression on Windows by @​kubaflo in https://github.com/dotnet/maui/pull/35689\n* [release/10.0.1xx-sr7] Fix iOS/Catalyst MapPool retention with MapElements by @​kubaflo in https://github.com/dotnet/maui/pull/35690\n* [release/10.0.1xx-sr7] [iOS] Fix Shell - opened keyboard on modal page shifts parent page/frame behind modal after update to 10.0.60 by @​kubaflo in https://github.com/dotnet/maui/pull/35691\n* [release/10.0.1xx-sr7] [Android] Fix BottomNavigationView remaining visible for TabbedPage inside modal NavigationPage after PushAsync by @​kubaflo in https://github.com/dotnet/maui/pull/35692\n* [release/10.0.1xx-sr7] Gate SafeArea inset listeners in recycler items by @​kubaflo in https://github.com/dotnet/maui/pull/35693\n* [release/10.0.1xx-sr7] Revert - Fix TalkBack not correctly narrating RadioButtons with Content by @​kubaflo in https://github.com/dotnet/maui/pull/35694\n* [release/10.0.1xx-sr7] Revert - Fix Changing Shell.NavBarIsVisible does not update the nav bar  by @​Tamilarasan-Paranthaman in https://github.com/dotnet/maui/pull/35703\n* [Revert] - [Windows] Fix WebView blank rendering when used with HybridWebView by @​SubhikshaSf4851 in https://github.com/dotnet/maui/pull/35744\n* Fix OnNavigatedTo not firing after PopModalAsync when tab is changed inside modal by @​praveenkumarkarunanithi in https://github.com/dotnet/maui/pull/35768\n* Increment patch version from 70 to 71 by @"
+    }
+  ]
+}

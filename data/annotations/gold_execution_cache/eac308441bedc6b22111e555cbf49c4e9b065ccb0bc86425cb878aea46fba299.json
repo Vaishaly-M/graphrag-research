@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 28561,
+        "line": 595
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/community-model-flavors/index.mdx",
+        "path": "docs/docs/classic-ml/community-model-flavors/index.mdx",
+        "offset": 3243,
+        "line": 121
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+        "offset": 73711,
+        "line": 956
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/demo/data.py",
+        "path": "mlflow/demo/data.py",
+        "offset": 26270,
+        "line": 641
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tensorflow/__init__.py",
+        "path": "mlflow/tensorflow/__init__.py",
+        "offset": 29752,
+        "line": 723
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llama_index/workflow/Tutorial.ipynb",
+        "path": "examples/llama_index/workflow/Tutorial.ipynb",
+        "offset": 28747,
+        "line": 629
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26042",
+        "path": null,
+        "offset": 5482,
+        "line": 110
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/sklearn/__init__.py",
+        "path": "mlflow/sklearn/__init__.py",
+        "offset": 42751,
+        "line": 1046
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/community-model-flavors/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/community-model-flavors/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3243,
+      "excerpt": "\n\nwith mlflow.start_run():\n    # Train KNN detector\n    clf = KNN()\n    clf.fit(X_train)\n\n    # Log model\n    mlflavors.pyod.log_model(\n        pyod_model=clf, artifact_path=\"anomaly_detector\", serialization_format=\"pickle\"\n    )\n\n    # Evaluate\n    scores = clf.decision_function(X_test)\n    mlflow.log_metric(\"mean_anomaly_score\", scores.mean())\n```\n\n**Serving PyOD Model:**\n\n```python\n# Load as PyFunc\nloaded_pyfunc = mlflavors.pyod.pyfunc.load_model(model_uri=\"model_uri\")\n\n# Create configuration for inference\nimport pandas as pd\n\npredict_conf = pd.DataFrame([{\"X\": X_test, \"predict_method\": \"decision_function\"}])\n\nanomaly_scores = loaded_pyfunc.predict(predict_conf)[0]\n```\n\n  </TabItem>\n  <TabItem value=\"visualization\" label=\"Visualization\">\n\n### **MLflow VizMod**\n\nTreat visualizations as models for versioning, tracking, and deployment.\n\n```bash\npip install mlflow-vizmod\n```\n\n**Create and Log Interactive Visualizations:**\n\n```python\nfrom sklearn.datasets import load_iris\nimport altair as alt\nimport mlflow_vismod\n\n# Load data\ndf_iris = load_iris(as_frame=True)\n\n# Create Altair visualization\nviz_iris = (\n    alt\n    .Chart(df_iris)\n    .mark_circle(size=60)\n    .encode(x=\"sepal_length:Q\", y=\"sepal_width:Q\", color=\"target:N\")\n    .properties(height=375, width=575)\n    .interactive()\n)\n\n# Log visualization as a model\nwith mlflow.start_run():\n    mlflow_vismod.log_model(\n        model=viz_iris,\n        artifact_path=\"iris_viz\",\n        style=\"vegalite\",\n        input_example=df_iris.head(5),\n    )\n```\n\n**Benefits:**\nVersion Control: Track visualization changes over time. Reproducibility: Recreate exact visualizations with same data. Deployment: Serve interactive visualizations as web services. Collaboration: Share visualizations with consistent metadata.\n\n  </TabItem>\n  <TabItem value=\"big-data\" label=\"Big Data & Cloud\">\n\n### **BigML Integration**\n\nDeploy and manage BigML supervised models through MLflow.\n\n```bash\npip install bigmlflow\n```\n\n```python\nimport json\nimport mlflow\nimport bigmlflow\n\n# Load BigML model from JSON\nMODEL_FILE = \"logistic_regression.json\"\nwith mlflow.start_run():\n    with open(MODEL_FILE) as handler:\n        model = json.load(handler)\n\n    # Log BigML model\n    bigmlflow.log_model(\n        model,\n        artifact_path=\"bigml_model\",\n        registered_model_name=\"production_classifier\",\n    )\n\n# Load and use for inference\nloaded_model = bigm"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 28561,
+      "excerpt": " metrics = glm_classifier.model_performance()\n    metrics_to_track = [\"MSE\", \"RMSE\", \"r2\", \"logloss\"]\n    metrics_to_log = {\n        key: value for key, value in metrics._metric_json.items() if key in metrics_to_track\n    }\n    params = glm_classifier.params\n    mlflow.log_params(params)\n    mlflow.log_metrics(metrics_to_log)\n    model_info = mlflow.h2o.log_model(glm_classifier, name=\"h2o_model_info\")\n\n# load h2o model and make a prediction\nh2o_pyfunc = mlflow.pyfunc.load_model(model_uri=model_info.model_uri)\ntest_df = test.as_data_frame()\npredictions = h2o_pyfunc.predict(test_df)\nprint(predictions)\n\n# it is also possible to load the model and predict using h2o methods on the h2o frame\n\n# h2o_model = mlflow.h2o.load_model(model_info.model_uri)\n# predictions = h2o_model.predict(test)\n```\n\n### Keras (`keras`) \\{#tf-keras-example}\n\nThe full guide for using the `keras` flavor [can be viewed here](/ml/deep-learning/keras/).\n\n### PyTorch (`pytorch`)\n\nThe full guide for using the `pytorch` flavor [can be viewed here](/ml/deep-learning/pytorch/).\n\nFor more information, see <APILink fn=\"mlflow.pytorch\">mlflow.pytorch</APILink>.\n\n### Scikit-learn (`sklearn`)\n\nThe full guide for using the `sklearn` flavor [can be viewed here](/ml/traditional-ml/sklearn/).\n\nFor API information, see <APILink fn=\"mlflow.sklearn\">mlflow.sklearn</APILink>.\n\n### Spark MLlib (`spark`)\n\nThe full guide for using the `spark` flavor [can be viewed here](/ml/traditional-ml/sparkml/).\n\nFor more information, see <APILink fn=\"mlflow.spark\">mlflow.spark</APILink>.\n\n### TensorFlow (`tensorflow`)\n\nThe full guide for the `tensorflow` integration [can be viewed here](/ml/deep-learning/tensorflow/).\n\n### ONNX (`onnx`)\n\nThe `onnx` model flavor enables logging of [ONNX models](http://onnx.ai/) in MLflow format via\nthe <APILink fn=\"mlflow.onnx.save_model\" /> and <APILink fn=\"mlflow.onnx.log_model\"/> methods. These\nmethods also add the `python_function` flavor to the MLflow Models that they produce, allowing the\nmodels to be interpreted as generic Python functions for inference via <APILink fn=\"mlflow.pyfunc.load_model\" />.\nThis loaded PyFunc model can be scored with both DataFrame input and numpy array input. The `python_function`\nrepresentation of an MLflow ONNX model uses the [ONNX Runtime execution engine](https://github.com/microsoft/onnxruntime)\nfor evaluation. Finally, you can use the <APILink fn=\"mlflo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/traditional-ml/tutorials/hyperparameter-tuning/notebooks/hyperparameter-tuning-with-child-runs.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 73711,
+      "excerpt": "error (`mse`) is calculated.\\n\",\n    \"\\n\",\n    \"##### Logging with MLflow\\n\",\n    \"\\n\",\n    \"All the selected hyperparameters and metrics (`mse` and `rmse`) are logged to MLflow for later analysis and comparison.\\n\",\n    \"\\n\",\n    \"- `mlflow.log_params`: Logs the hyperparameters.\\n\",\n    \"- `mlflow.log_metric`: Logs the metrics.\\n\",\n    \"\\n\",\n    \"##### Why This Function is Important\\n\",\n    \"\\n\",\n    \"- **Automated Tuning**: Optuna automates the process of finding the best hyperparameters.\\n\",\n    \"- **Experiment Tracking**: MLflow allows us to keep track of each run's hyperparameters and performance metrics, making it easier to analyze, compare, and reproduce experiments later.\\n\",\n    \"\\n\",\n    \"In the next step, this objective function will be used by Optuna to find the optimal set of hyperparameters for our XGBoost model.\\n\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"fdb722d7\",\n   \"metadata\": {},\n   \"source\": [\n    \"#### Housekeeping: Streamlining Logging for Optuna Trials\\n\",\n    \"\\n\",\n    \"As we embark on our hyperparameter tuning journey with Optuna, it's essential to understand that the process can generate a multitude of runs. In fact, so many that the standard output (stdout) from the default logger can quickly become inundated, producing pages upon pages of log reports. \\n\",\n    \"\\n\",\n    \"While the verbosity of the default logging configuration is undeniably valuable during the code development phase, initiating a full-scale trial can result in an overwhelming amount of information. Considering this, logging every single detail to stdout becomes less practical, especially when we have dedicated tools like MLflow to meticulously track our experiments.\\n\",\n    \"\\n\",\n    \"To strike a balance, we'll utilize callbacks to tailor our logging behavior.\\n\",\n    \"\\n\",\n    \"##### Implementing a Logging Callback:\\n\",\n    \"\\n\",\n    \"The callback we're about to introduce will modify the default reporting behavior. Instead of logging every trial, we'll only receive updates when a new hyperparameter combination yields an improvement over the best metric value recorded thus far.\\n\",\n    \"\\n\",\n    \"This approach offers two salient benefits:\\n\",\n    \"\\n\",\n    \"1. **Enhanced Readability**: By filtering out the extensive log details and focusing only on the trials that show improvement, we can gauge the efficacy of our hyperparameter search. For instance, i"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llama_index/workflow/Tutorial.ipynb",
+      "kind": "File",
+      "path": "examples/llama_index/workflow/Tutorial.ipynb",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 28747,
+      "excerpt": "rkflow_answer_comparison.png)\\n\",\n    \"\\n\",\n    \"Where did this incorrect answer come from? This seems to be a retriever issue, as we only changed the retrieval strategy. However, it's difficult to see what each retriever returned from the final result. To gain deeper insights into what's happening behind the scenes, MLflow Tracing is the perfect solution.\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"e388dd7c-5479-4d5f-838b-73cf33d073f1\",\n   \"metadata\": {},\n   \"source\": [\n    \"## 10. Inspecting Quality Issues with MLflow Trace\\n\",\n    \"\\n\",\n    \"[MLflow Tracing](https://mlflow.org/docs/latest/llms/tracing/index.html) is a new feature that brings observability to LLM applications. It integrates seamlessly with LlamaIndex, recording all inputs, outputs, and metadata about intermediate steps during workflow execution. Since we called `mlflow.llama_index.autolog()` at the start, every LlamaIndex operation has been traced and recorded in the MLflow Experiment.\\n\",\n    \"\\n\",\n    \"To inspect the trace for a specific question from the evaluation, navigate to the \\\"Traces\\\" tab on the experiment page. Look for the row with the particular question in the request column and the run name \\\"vs + bm25 + web.\\\" Clicking the request ID link opens the Trace UI, where you can view detailed information about each step in the execution, including inputs, outputs, metadata, and latency.\\n\",\n    \"\\n\",\n    \"![Trace](static/images/llama_index_workflow_trace.png)\\n\",\n    \"\\n\",\n    \"In this case, we identified the issue by examining the reranker step. The web search retriever returned irrelevant context related to model serving, and the reranker incorrectly ranked it as the most relevant. With this insight, we can determine potential improvements, such as refining the reranker to better understand MLflow topics, improving web search precision, or even removing the web search retriever altogether.\"\n   ]\n  },\n  {\n   \"cell_type\": \"markdown\",\n   \"id\": \"010ebbd4-f394-425b-97fc-a5709e70233c\",\n   \"metadata\": {},\n   \"source\": [\n    \"## Conclusion\\n\",\n    \"\\n\",\n    \"In this notebook, we explored how the combination of LlamaIndex and MLflow can elevate the development of Retrieval-Augmented Generation (RAG) workflows, bringing together powerful model management and observability capabilities. By integrating multiple retrieval strategies—such as vector search, BM25, and web search—we de"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/demo/data.py",
+      "kind": "File",
+      "path": "mlflow/demo/data.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26270,
+      "excerpt": " `pip install mlflow`\\n\"\n            \"2. Start the UI: `mlflow server --port 5000`\\n\"\n            \"3. In your code:\\n\"\n            \"```python\\n\"\n            \"import mlflow\\n\"\n            \"with mlflow.start_run():\\n\"\n            \"    mlflow.log_param('learning_rate', 0.01)\\n\"\n            \"    mlflow.log_metric('accuracy', 0.95)\\n\"\n            \"```\\n\"\n            \"Open http://localhost:5000 to see your experiments!\"\n        ),\n        expected_response=(\n            \"Install with `pip install mlflow`, run `mlflow server`, then use \"\n            \"mlflow.start_run() with log_param() and log_metric() to track experiments.\"\n        ),\n        trace_type=\"session\",\n        session_id=\"session-mlflow-setup\",\n        session_user=\"alice@example.com\",\n        turn_index=1,\n    ),\n    DemoTrace(\n        query=\"Great! How do I log a trained model so I can deploy it later?\",\n        v1_response=(\n            \"You can use mlflow.sklearn.log_model() or similar functions to log models. \"\n            \"They get saved with the run.\"\n        ),\n        v2_response=(\n            \"After training, log your model with the appropriate flavor:\\n\\n\"\n            \"```python\\n\"\n            \"# For scikit-learn\\n\"\n            \"mlflow.sklearn.log_model(model, 'model')\\n\\n\"\n            \"# For PyTorch\\n\"\n            \"mlflow.pytorch.log_model(model, 'model')\\n\"\n            \"```\\n\\n\"\n            \"The model is saved with your run and can be loaded later with:\\n\"\n            \"`mlflow.sklearn.load_model('runs:/<run_id>/model')`\\n\\n\"\n            \"Ready to register it for deployment?\"\n        ),\n        expected_response=(\n            \"Use mlflow.<flavor>.log_model() (e.g., sklearn, pytorch) to save models. \"\n            \"Load later with mlflow.<flavor>.load_model('runs:/<run_id>/model').\"\n        ),\n        trace_type=\"session\",\n        session_id=\"session-mlflow-setup\",\n        session_user=\"alice@example.com\",\n        turn_index=2,\n    ),\n    # Session 2: Debugging a RAG Application (3 turns)\n    DemoTrace(\n        query=\"My RAG application is giving inconsistent answers. How can I debug it?\",\n        v1_response=(\n            \"You should look at your prompts and retrieved documents to see what's happening. \"\n            \"MLflow has some tools for this.\"\n        ),\n        v2_response=(\n            \"Let's debug this systematically with MLflow Tracing!\\n\\n\"\n            \"1. **Enable tracing** to ca"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/sklearn/__init__.py",
+      "kind": "File",
+      "path": "mlflow/sklearn/__init__.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 42751,
+      "excerpt": " also update the metric_info artifact if needed.\n        If model_id is not None, metrics are logged into the model as well.\n        \"\"\"\n        # Note: if the case log the same metric key multiple times,\n        #  newer value will overwrite old value\n        client = MlflowClient()\n        client.log_metric(run_id=run_id, key=key, value=value, model_id=model_id)\n        if self._metric_info_artifact_need_update[run_id]:\n            call_commands_list = []\n            for v in self._metric_api_call_info[run_id].values():\n                call_commands_list.extend(v)\n\n            call_commands_list.sort(key=lambda x: x[0])\n            dict_to_log = OrderedDict(call_commands_list)\n            client.log_dict(run_id=run_id, dictionary=dict_to_log, artifact_file=\"metric_info.json\")\n            self._metric_info_artifact_need_update[run_id] = False\n\n\n# The global `_AutologgingMetricsManager` instance which holds information used in\n# post-training metric autologging. See doc of class `_AutologgingMetricsManager` for details.\n_AUTOLOGGING_METRICS_MANAGER = _AutologgingMetricsManager()\n\n\n_metric_api_excluding_list = [\"check_scoring\", \"get_scorer\", \"make_scorer\", \"get_scorer_names\"]\n\n\ndef _get_metric_name_list():\n    \"\"\"\n    Return metric function name list in `sklearn.metrics` module\n    \"\"\"\n    from sklearn import metrics\n\n    metric_list = []\n    for metric_method_name in metrics.__all__:\n        # excludes plot_* methods\n        # exclude class (e.g. metrics.ConfusionMatrixDisplay)\n        metric_method = getattr(metrics, metric_method_name)\n        if (\n            metric_method_name not in _metric_api_excluding_list\n            and not inspect.isclass(metric_method)\n            and callable(metric_method)\n            and not metric_method_name.startswith(\"plot_\")\n        ):\n            metric_list.append(metric_method_name)\n    return metric_list\n\n\ndef _patch_estimator_method_if_available(\n    flavor_name, class_def, func_name, patched_fn, manage_run, extra_tags=None\n):\n    if not hasattr(class_def, func_name):\n        return\n\n    original = gorilla.get_original_attribute(\n        class_def, func_name, bypass_descriptor_protocol=False\n    )\n    # Retrieve raw attribute while bypassing the descriptor protocol\n    raw_original_obj = gorilla.get_original_attribute(\n        class_def, func_name, bypass_descriptor_protocol=True\n    )\n    if raw_original_obj == orig"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tensorflow/__init__.py",
+      "kind": "File",
+      "path": "mlflow/tensorflow/__init__.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 29752,
+      "excerpt": "keys are: {list(loaded_sig.keys())}\"\n        )\n    return loaded_sig[tf_signature_def_key]\n\n\ndef _load_pyfunc(path):\n    \"\"\"\n    Load PyFunc implementation. Called by ``pyfunc.load_model``. This function loads an MLflow\n    model with the TensorFlow flavor into a new TensorFlow graph and exposes it behind the\n    ``pyfunc.predict`` interface.\n\n    Args:\n        path: Local filesystem path to the MLflow Model with the ``tensorflow`` flavor.\n    \"\"\"\n    import tensorflow as tf\n\n    model_meta_path1 = os.path.join(path, MLMODEL_FILE_NAME)\n    model_meta_path2 = os.path.join(os.path.dirname(path), MLMODEL_FILE_NAME)\n\n    if os.path.isfile(model_meta_path1):\n        model_meta = Model.load(model_meta_path1)\n    elif os.path.isfile(model_meta_path2):\n        model_meta = Model.load(model_meta_path2)\n    else:\n        raise MlflowException(f\"Cannot find file {MLMODEL_FILE_NAME} for the logged model.\")\n\n    model_type = _infer_model_type(model_meta)\n    if model_type == _MODEL_TYPE_KERAS:\n        if os.path.isfile(os.path.join(path, _KERAS_MODULE_SPEC_PATH)):\n            with open(os.path.join(path, _KERAS_MODULE_SPEC_PATH)) as f:\n                keras_module = importlib.import_module(f.read())\n        else:\n            from tensorflow import keras\n\n            keras_module = keras\n\n        # By default, we assume the save_format is h5 for backwards compatibility\n        save_format = \"h5\"\n        save_format_path = os.path.join(path, _KERAS_SAVE_FORMAT_PATH)\n        if os.path.isfile(save_format_path):\n            with open(save_format_path) as f:\n                save_format = f.read()\n\n        # In SavedModel format, loaded model should be compiled.\n        should_compile = save_format == \"tf\"\n        m = _load_keras_model(\n            path, keras_module=keras_module, save_format=save_format, compile=should_compile\n        )\n        return _KerasModelWrapper(m, model_meta.signature)\n    if model_type == _MODEL_TYPE_TF1_ESTIMATOR:\n        flavor_conf = _get_flavor_configuration(path, FLAVOR_NAME)\n\n        tf_saved_model_dir = os.path.join(path, flavor_conf[\"saved_model_dir\"])\n        tf_meta_graph_tags = flavor_conf[\"meta_graph_tags\"]\n        tf_signature_def_key = flavor_conf[\"signature_def_key\"]\n\n        loaded_model = tf.saved_model.load(export_dir=tf_saved_model_dir, tags=tf_meta_graph_tags)\n        return _TF2Wrapper(model=loaded_model, infer=loaded_model.sign"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26042",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26042,
+      "title": "[BUG] Issue discovery crashes on out-of-range deduplication group indices",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5482,
+      "excerpt": "d related issues and PRs and didn't find an open fix for this. #22083 introduced semantic deduplication; #22774 concerns JSON schema enforcement rather than checking references against the runtime number of issues.\n\n#### Screenshots from the recorded agent trace\n\nThese show the test-agent execution behind candidate issue 31. The later deduplication response proposed merging `[31, 43]` when only candidates 0–42 existed. The screenshots show the input evidence; the local reproduction and stack trace above demonstrate the MLflow crash.\n\n**Agent execution:** two refund-calculation attempts followed by ticket creation. The agent reports that it could not complete the refund.\n\n<img width=\"748\" height=\"874\" alt=\"Agent execution supporting candidate issue 31\" src=\"https://github.com/user-attachments/assets/0f2a8ac2-a114-4d09-bb81-bf08aeb2f8f0\" />\n\n**Tool output:** the required refund amount is missing from `calculate_refund`. This was a deliberately injected test fault using fictitious records, separate from the MLflow deduplication bug.\n\n<img width=\"748\" height=\"874\" alt=\"Refund calculation tool output missing the refund amount\" src=\"https://github.com/user-attachments/assets/a89a1797-d14f-47d5-8596-0af4d1cca269\" />\n\n### Willingness to contribute\n\nYes. I can contribute a fix for this bug independently. Happy to work on the validation and tests once the issue is triaged and the expected fallback behavior is agreed.\n\n### What component(s) does this bug affect?\n\n- [x] `area/evaluation`: MLflow model evaluation features, evaluation metrics, and evaluation workflows\n"
+    }
+  ]
+}

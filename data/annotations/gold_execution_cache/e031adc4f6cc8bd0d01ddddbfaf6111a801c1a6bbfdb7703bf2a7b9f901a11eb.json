@@ -1,0 +1,20 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_CONTAINS_FILE]->(f:DLFile) WHERE r.dataset=$dataset AND r.repo=$repo AND f.path=$path RETURN trim(split(f.content,'\\n')[$line]) AS entity,'Documentation/comment line '+toString($line+1)+' in '+f.path AS fact,[r.id,f.id] AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "path": "webapp/src/main/webapp/WEB-INF/view/scripts/jquery-ui/css/redmond/jquery-ui.custom.css",
+    "line": 6
+  },
+  "rows": [
+    {
+      "entity": "/* Layout helpers",
+      "fact": "Documentation/comment line 7 in webapp/src/main/webapp/WEB-INF/view/scripts/jquery-ui/css/redmond/jquery-ui.custom.css",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:repository:openmrs/openmrs-core",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/view/scripts/jquery-ui/css/redmond/jquery-ui.custom.css"
+      ]
+    }
+  ]
+}

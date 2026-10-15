@@ -1,0 +1,7 @@
+{
+  "source_sha256": "c45d241bca0d8308772289476360f919ac10b9c3025783f93700ad64ac30b750",
+  "confirmed_statuses": ["verified_from_repo"],
+  "confirmation": "Yes, human-checked against pinned snapshots",
+  "confirmed_by": "user",
+  "scope": "Supplied prose answers and source evidence; normalized entity sets are reviewed separately."
+}

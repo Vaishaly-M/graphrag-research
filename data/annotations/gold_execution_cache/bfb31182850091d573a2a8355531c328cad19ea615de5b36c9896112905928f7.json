@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/docstring_utils.py",
+        "path": "mlflow/utils/docstring_utils.py",
+        "offset": 11317,
+        "line": 297
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26443",
+        "path": null,
+        "offset": 4250,
+        "line": 76
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 18339,
+        "line": 430
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:dev/clint/src/clint/linter.py",
+        "path": "dev/clint/src/clint/linter.py",
+        "offset": 13465,
+        "line": 376
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 32043,
+        "line": 673
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26395",
+        "path": null,
+        "offset": 825,
+        "line": 17
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/protos/databricks.proto",
+        "path": "mlflow/protos/databricks.proto",
+        "offset": 2047,
+        "line": 49
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 70935,
+        "line": 37
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:dev/clint/src/clint/linter.py",
+      "kind": "File",
+      "path": "dev/clint/src/clint/linter.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13465,
+      "excerpt": "      disables: list[DisableComment],\n        index: SymbolIndex,\n        cell: int | None = None,\n        offset: Position | None = None,\n    ) -> None:\n        \"\"\"\n        Lints a Python file.\n\n        Args:\n            path: Path to the file being linted.\n            config: Linter configuration declared within the pyproject.toml file.\n            disables: All disable comments found in the source code.\n            index: Symbol index for resolving function signatures.\n            cell: Index of the cell being linted in a Jupyter notebook.\n            offset: Position offset to apply to the line and column numbers of the violations.\n        \"\"\"\n        self.stack: list[ast.FunctionDef | ast.AsyncFunctionDef | ast.ClassDef] = []\n        self.path = path\n        self.config = config\n        self.disables = disables\n        self.ignore: dict[str, set[int]] = {}\n        for dc in disables:\n            self.ignore.setdefault(dc.rule, set()).add(dc.line)\n        self.cell = cell\n        self.violations: list[Violation] = []\n        self.in_TYPE_CHECKING = False\n        self.is_mlflow_init_py = path == Path(\"mlflow\", \"__init__.py\")\n        self.is_test_file = path.name.startswith(\"test_\")\n        self.imported_modules: set[str] = set()\n        self.lazy_modules: dict[str, Range] = {}\n        self.offset = offset or Position(0, 0)\n        self.resolver = Resolver()\n        self.index = index\n        self.ignored_rules = get_ignored_rules_for_file(path, config.per_file_ignores)\n        self.prev_stmt: ast.stmt | None = None\n        self.used_disables: set[tuple[str, int]] = set()\n\n    def _check(self, range: Range, rule: rules.Rule) -> None:\n        # Skip rules that are not selected in the config\n        if rule.name not in self.config.select:\n            return\n        # Check line-level ignores (supports both start and end of range)\n        if (lines := self.ignore.get(rule.name)) and (\n            range.start.line in lines or range.end.line in lines\n        ):\n            if range.start.line in lines:\n                self.used_disables.add((rule.name, range.start.line))\n            if range.end.line in lines:\n                self.used_disables.add((rule.name, range.end.line))\n            return\n        # Check per-file ignores\n        if rule.name in self.ignored_rules:\n            return\n        self.violations.append(\n            Violation(\n                r"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18339,
+      "excerpt": "n pose a problem because they are not part of the standard module namespace and thus not\nstraightforward to serialize. To handle this situation, you should use `cloudpickle` to serialize your model instance. `cloudpickle` is an\nextended version of Python's `pickle` module that can serialize a wider range of Python objects, including functions and classes defined in\nthe `__main__` module.\n\n<dl>\n  <dt>\n    #### Why This Matters\n  </dt>\n  <dd>\n      - **Code Path Inference**: MLflow uses the code path to understand and log the code associated with your model. When the script is executed as **`__main__`**, the code path cannot be inferred, which complicates the tracking and reproducibility of your MLflow experiments.\n      - **Serialization**: Standard serialization methods like **`pickle`** may not work with **`__main__`** module objects, leading to issues when trying to save and load models. **`cloudpickle`** provides a workaround by enabling the serialization of these objects, ensuring that your model can be correctly saved and restored.\n\n  </dd>\n  <dt>\n    #### Best Practices\n  </dt>\n  <dd>\n      - Avoid defining critical functions and classes in the **`__main__`** module. Instead, place them in separate module files that can be imported as needed.\n      - If you must define functions and classes in the **`__main__`** module, use **`cloudpickle`** to serialize your model to ensure that all dependencies are correctly handled.\n\n  </dd>\n</dl>\n\n## Saving Extra Code with an MLflow Model - Manual Declaration\n\nMLflow also supports saving your custom Python code as dependencies to the model. This is particularly useful\nwhen you want to deploy your custom modules that are required for prediction with the model.\nTo do so, specify **code_paths** when logging the model. For example, if you have the following file structure in your project:\n\n```\nmy_project/\n├── utils.py\n└── train.py\n```\n\n```python title=\"train.py\"\nimport mlflow\n\n\nclass MyModel(mlflow.pyfunc.PythonModel):\n    def predict(self, context, model_input):\n        from utils import my_func\n\n        x = my_func(model_input)\n        # .. your prediction logic\n        return prediction\n\n\n# Log the model\nwith mlflow.start_run() as run:\n    mlflow.pyfunc.log_model(\n        python_model=MyModel(),\n        name=\"model\",\n        input_example=input_data,\n        code_paths=[\"utils.py\"],\n    )\n```\n\nThen MLflow will save "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 32043,
+      "excerpt": "m mlflow.models import infer_signature\nimport onnx\nimport torch\nfrom torch import nn\n\n# define a torch model\nnet = nn.Linear(6, 1)\nloss_function = nn.L1Loss()\noptimizer = torch.optim.Adam(net.parameters(), lr=1e-4)\n\nX = torch.randn(6)\ny = torch.randn(1)\n\n# run model training\nepochs = 5\nfor epoch in range(epochs):\n    optimizer.zero_grad()\n    outputs = net(X)\n\n    loss = loss_function(outputs, y)\n    loss.backward()\n\n    optimizer.step()\n\n# convert model to ONNX and load it\ntorch.onnx.export(net, X, \"model.onnx\")\nonnx_model = onnx.load_model(\"model.onnx\")\n\n# log the model into a mlflow run\nwith mlflow.start_run():\n    signature = infer_signature(X.numpy(), net(X).detach().numpy())\n    model_info = mlflow.onnx.log_model(onnx_model, name=\"model\", signature=signature)\n\n# load the logged model and make a prediction\nonnx_pyfunc = mlflow.pyfunc.load_model(model_info.model_uri)\n\npredictions = onnx_pyfunc.predict(X.numpy())\nprint(predictions)\n```\n\n### XGBoost (`xgboost`)\n\nThe full guide for the `xgboost` integration [can be viewed here](/ml/traditional-ml/xgboost/).\n\nFor more information, see <APILink fn=\"mlflow.xgboost\">mlflow.xgboost</APILink>.\n\n### LightGBM (`lightgbm`)\n\nThe `lightgbm` model flavor enables logging of [LightGBM models](https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.Booster.html#lightgbm-booster)\nin MLflow format via the <APILink fn=\"mlflow.lightgbm.save_model\" /> and <APILink fn=\"mlflow.lightgbm.log_model\" /> methods.\nThese methods also add the `python_function` flavor to the MLflow Models that they produce, allowing the\nmodels to be interpreted as generic Python functions for inference via <APILink fn=\"mlflow.pyfunc.load_model\" />.\nYou can also use the <APILink fn=\"mlflow.lightgbm.load_model\" /> method to load MLflow Models with the `lightgbm`\nmodel flavor in native LightGBM format.\n\nNote that the scikit-learn API for LightGBM is now supported. For more information, see <APILink fn=\"mlflow.lightgbm\">`mlflow.lightgbm`</APILink>.\n\n#### `LightGBM` pyfunc usage\n\nThe example below\n\n- Loads the IRIS dataset from `scikit-learn`\n- Trains a LightGBM `LGBMClassifier`\n- Logs the model and feature importance's using `mlflow`\n- Loads the logged model and makes predictions\n\n```python\nfrom lightgbm import LGBMClassifier\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nimport mlflow\nfrom mlflow.models impo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 70935,
+      "excerpt": " from Docker Hub if it's not present locally, and a new image is built based on it. The project is executed in a container created from this image. Command Syntax When specifying an entry point in an MLproject file, the command can be any string in Python format string syntax. All of the parameters declared in the entry point's parameters field are passed into this string for substitution. If you call the\",9,projects.html\nHow does MLflow run a Project on Kubernetes?,\"MLflow runs a Project on Kubernetes by pushing the new Project image to a specified Docker registry and starting a Kubernetes Job on a specified Kubernetes cluster. The Kubernetes Job then downloads the Project image and starts a corresponding Docker container. Finally, the container invokes the Project's entry point, logging parameters, tags, metrics, and artifacts to the MLflow tracking server.\",\"Docker environment. MLflow then pushes the new Project image to your specified Docker registry and starts a Kubernetes Job on your specified Kubernetes cluster. This Kubernetes Job downloads the Project image and starts a corresponding Docker container. Finally, the container invokes your Project's entry point, logging parameters, tags, metrics, and artifacts to your MLflow tracking server. Execution guide You can run your MLflow Project on Kubernetes by following these steps: Add a Docker environment to your MLflow Project, if one does not already exist. For reference, see Specifying an Environment. Create a backend configuration JSON file with the following entries: kube-context The Kubernetes context where MLflow will run the job. If not provided, MLflow will use the current context. If no context is available, MLflow will assume it is running in a Kubernetes cluster and it will use the Kubernetes service account running the current pod ('in-cluster' configuration). repository-uri The URI of the docker repository where the Project execution Docker image will be uploaded (pushed). Your Kubernetes cluster must have access to this repository in order to run your MLflow Project. kube-job-template-path The path to a YAML configuration file for your Kubernetes Job - a Kubernetes Job Spec. MLflow reads the Job Spec and replaces certain fields to facilitate job execution and monitoring; MLflow does not modify the original template file. For more information about writing\",14,projects.html\nWhat fields are r"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/protos/databricks.proto",
+      "kind": "File",
+      "path": "mlflow/protos/databricks.proto",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2047,
+      "excerpt": "omatically when the proto is\n  // parsed.\n  // There are as many doc blocks as visibility levels.\n  // This is not meant to be crafted by hand; this will be automatically generated when parsing\n  // the proto file.\n  repeated DocumentationMetadata field_doc = 51314;\n}\n\n// Defines the set of options declared for every service RPC which are used to\n// direct RPCs to endpoints, as well as other metadata about the RPC.\nmessage DatabricksRpcOptions {\n  repeated HttpEndpoint endpoints = 1;\n\n  // Indicates which users are allowed to initiate this RPC.\n  optional Visibility visibility = 2;\n\n  // Complete definition of all error codes (from a statically defined set) which this method\n  // may return.\n  repeated ErrorCode error_codes = 3;\n\n  // If defined, a rate limit will be applied to this RPC for all requests from the API proxy.\n  optional RateLimit rate_limit = 4;\n\n  // If defined, overrides the default title used for in the API docs. See ProtobufDocGenerator\n  // for more info.\n  optional string rpc_doc_title = 5;\n}\n\n// Defines the set of options needed for autogenerating graphql modules.\n// Will add more fields (batch loader, renaming) later.\n// Empty for now. The rpc will be visible for graphql module autogeneration if this field is set.\nmessage DatabricksGraphqlOptions {}\n\n// Note: 51310 is the beginning of the range of proto extension values for use by applications.\nextend google.protobuf.MethodOptions {\n  optional DatabricksRpcOptions rpc = 51310;\n\n  // The documentation metadata.\n  // This is not meant to be crafted by hand; this will be automatically generated when parsing\n  // the proto file.\n  repeated DocumentationMetadata method_doc = 51314; // Same id everywhere\n\n  // If this is set, this rpc will be visible for graphql module autogeneration.\n  optional DatabricksGraphqlOptions graphql = 51399;\n}\n\n// Note: 51310 is the beginning of the range of proto extension values for use by applications.\nextend google.protobuf.MessageOptions {\n  // The documentation metadata.\n  // This is not meant to be crafted by hand; this will be automatically generated when parsing\n  // the proto file.\n  repeated DocumentationMetadata message_doc = 51314; // Same id everywhere\n}\n\n// Note: 51310 is the beginning of the range of proto extension values for use by applications.\nextend google.protobuf.ServiceOptions {\n  // The documentation metadata.\n  // This is not meant to be "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/docstring_utils.py",
+      "kind": "File",
+      "path": "mlflow/utils/docstring_utils.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11317,
+      "excerpt": "ers pipeline.\n    loaded_model.predict(\"What is experiment tracking?\")\n\"\"\"\n    ),\n    \"code_paths\": (\n        \"\"\"A list of local filesystem paths to Python file dependencies (or directories\ncontaining file dependencies). These files are *prepended* to the system path when the model\nis loaded. Files declared as dependencies for a given model should have relative\nimports declared from a common root path if multiple files are defined with import dependencies\nbetween them to avoid import errors when loading the model.\n\nFor a detailed explanation of ``code_paths`` functionality, recommended usage patterns and\nlimitations, see the\n`code_paths usage guide <https://mlflow.org/docs/latest/model/dependencies.html?highlight=code_paths#saving-extra-code-with-an-mlflow-model>`_.\n\"\"\"\n    ),\n    \"extra_files\": (\n        \"\"\"A list containing the paths to corresponding extra files, if ``None``, no\nextra files are added to the model. Remote URIs are resolved to absolute filesystem\npaths. For example, consider the following ``extra_files`` list:\n\n.. code-block:: python\n\n    extra_files = [\"s3://my-bucket/path/to/my_file1\", \"/local-path/to/my_file2\"]\n\nIn this case, the ``\"my_file1\"`` extra file is downloaded from S3.\nModel paths will be [\"extra_files/my_file1\", \"extra_files/my_file2\"] in the model directory.\n\"\"\"\n    ),\n    # Only pyfunc flavor supports `infer_code_paths`.\n    \"code_paths_pyfunc\": (\n        \"\"\"A list of local filesystem paths to Python file dependencies (or directories\ncontaining file dependencies). These files are *prepended* to the system path when the model\nis loaded. Files declared as dependencies for a given model should have relative\nimports declared from a common root path if multiple files are defined with import dependencies\nbetween them to avoid import errors when loading the model.\n\nYou can leave ``code_paths`` argument unset but set ``infer_code_paths`` to ``True`` to let MLflow\ninfer the model code paths. See ``infer_code_paths`` argument doc for details.\n\nFor a detailed explanation of ``code_paths`` functionality, recommended usage patterns and\nlimitations, see the\n`code_paths usage guide <https://mlflow.org/docs/latest/model/dependencies.html?highlight=code_paths#saving-extra-code-with-an-mlflow-model>`_.\n\"\"\"\n    ),\n    \"infer_code_paths\": (\n        \"\"\"If set to ``True``, MLflow automatically infers model code paths. The inferred\n            code "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26395",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26395,
+      "title": "Rhaieng 7124 skill mlflowclient genai workflows",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 825,
+      "excerpt": "kill()` for local directories and Git, OCI, and ZIP sources. Fetch, inspect, and digest content client-side; package local content for atomic upload through an HTTP tracking server serving artifacts.\r\n- Add `mlflow.genai.import_skills()` to fetch a Git repository once, discover and select skills by declared name, validate and digest the selection, and submit one atomic batch. Preserve repository-relative subpaths, response order, and reused-version statuses.\r\n- Add `mlflow.genai.search_skills()` with filtering, ordering, and pagination. Export all three workflows with docstrings and examples.\r\n- Share `NOT_SET` across tracking stores to preserve omitted versus explicit-null updates, and share the 500-skill batch limit between the SDK and API.\r\n- Reject nested skill roots and invalid REST path identifiers. Validate names, organizations, and version path values before sending requests so encoded slashes cannot change the requested operation or organization.\r\n\r\nReuse existing content helpers, entity conversion, server conflict handling, and transactional registration. Audit identity remains server-controlled. Server permission integration is tracked separately in https://github.com/mlflow/mlflow/pull/25988; pull and packaged-plugin import remain outside this story.\r\n\r\n### How is this PR tested?\r\n\r\n- [x] Existing unit/integration tests\r\n- [x] New unit/integration tests\r\n\r\nThe broad regression selection passed **3,058 tests with 68 skipped** across Skill content helpers, entities, server routes, SQL stores, REST/client workflows, workspace behavior, and related MCP code. After the final REST path-validation fix, the Skill client/REST integration and public-export suites passed **237 tests**.\r\n\r\nCoverage includes typed-source conversion, local multipart uploads, manifest validation, cleanup, parent metadata preservation, bulk selection and batch limits, pagination, error propagation, and reused-version status. Nine additional path regressions verify malformed identifiers fail before HTTP requests and leave stored parents, versions, and tags unchanged. Existing transport tests verify credential and workspace headers for JSON and multipart requests.\r\n\r\nRuff lint/format, Clint, typo, and whitespace checks passed. Existing deprecation warnings remain. These runs use SQLite and test HTTP routing in-process; they do not establish authenticated deployment readiness or ex"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26443",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26443,
+      "title": "Add `session_level` to session-level scorers for hierarchical sessions",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4250,
+      "excerpt": "s unchanged.\n\n### Release Notes\n\n#### Is this a user-facing change?\n\n- [x] Yes. Give a description of this change to be included in the release notes for MLflow users.\n\nSession-level scorers accept `session_level=\"<level name>\"` to evaluate hierarchical sessions at a chosen level, using level names declared with `mlflow.genai.set_session_hierarchy`.\n\n#### What component(s), interfaces, languages, and integrations does this PR affect?\n\nComponents\n\n- [x] `area/evaluation`: MLflow model evaluation features, evaluation metrics, and evaluation workflows\n- [x] `area/tracing`: MLflow Tracing features, tracing APIs, and LLM tracing functionality\n\n<a name=\"release-note-category\"></a>\n\n#### How should the PR be classified in the release notes? Choose one:\n\n- [x] `rn/feature` - A new user-facing feature worth mentioning in the release notes\n\n#### Is this PR a critical bugfix or security fix that should go into the next patch release?\n\n<details>\n<summary>What is a minor/patch release?</summary>\n\n- Minor release: a release that increments the second part of the version number (e.g., 1.2.0 -> 1.3.0).\n  Minor releases are expected to contain larger changes, such as new features and improvements. Non-critical bug fixes and doc updates can be included as well. By default, your PR should target the next minor release.\n- Patch release: a release that increments the third part of the version number (e.g., 1.2.0 -> 1.2.1).\n  Patch releases are typically only performed when there has been a major regression or bug in the latest release. For the sake of stability, your PR should not be included in a patch release unless it is a critical fix, or if the risk level of your PR is exceedingly low.\n\n</details>\n\n<!-- Do not modify or remove any text inside the parentheses. Keep both checkboxes below. -->\n\n- [ ] This PR is critical and needs to be in the next patch release\n- [x] This PR can wait for the next minor release\n\nThis pull request and its description were written by Isaac.\n"
+    }
+  ]
+}

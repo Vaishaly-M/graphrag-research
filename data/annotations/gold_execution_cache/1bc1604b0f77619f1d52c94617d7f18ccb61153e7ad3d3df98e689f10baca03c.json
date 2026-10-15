@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1056",
+        "path": null,
+        "offset": 2779,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+        "path": "README.md",
+        "offset": 5583,
+        "line": 130
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:859",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Extensions.cs",
+        "path": "src/eShop.AppHost/Extensions.cs",
+        "offset": 1520,
+        "line": 45
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+        "path": "src/eShop.AppHost/Program.cs",
+        "offset": 111,
+        "line": 5
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+        "path": null,
+        "offset": 64,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5583,
+      "excerpt": "tps://learn.microsoft.com/azure/developer/azure-developer-cli/troubleshoot?tabs=Browser) for azd.\n\n## Contributing\n\nFor more information on contributing to this repo, read [the contribution documentation](./CONTRIBUTING.md) and [the Code of Conduct](CODE-OF-CONDUCT.md).\n\n### Sample data\n\nThe sample catalog data is defined in [catalog.json](https://github.com/dotnet/eShop/blob/main/src/Catalog.API/Setup/catalog.json). Those product names, descriptions, and brand names are fictional and were generated using [GPT-35-Turbo](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/chatgpt), and the corresponding [product images](https://github.com/dotnet/eShop/tree/main/src/Catalog.API/Pics) were generated using [DALL·E 3](https://openai.com/dall-e-3).\n\n## eShop on Azure\n\nFor a version of this app configured for deployment on Azure, please view [the eShop on Azure](https://github.com/Azure-Samples/eShopOnAzure) repo.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Extensions.cs",
+      "kind": "File",
+      "path": "src/eShop.AppHost/Extensions.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1520,
+      "excerpt": "rn Task.CompletedTask;\n        }\n    }\n\n    /// <summary>\n    /// Configures eShop projects to use OpenAI for text embedding and chat.\n    /// </summary>\n    public static IDistributedApplicationBuilder AddOpenAI(this IDistributedApplicationBuilder builder,\n        IResourceBuilder<ProjectResource> catalogApi,\n        IResourceBuilder<ProjectResource> webApp,\n        OpenAITarget openAITarget)\n    {\n        const string openAIName = \"openai\";\n\n        const string textEmbeddingName = \"textEmbeddingModel\";\n        const string textEmbeddingModelName = \"text-embedding-3-small\";\n\n        const string chatName = \"chatModel\";\n        const string chatModelName = \"gpt-4.1-mini\";\n\n        if (openAITarget != OpenAITarget.AzureOpenAI)\n        {\n#pragma warning disable ASPIREINTERACTION001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.\n            IResourceBuilder<ParameterResource>? endpoint = null;\n            if (openAITarget != OpenAITarget.OpenAI)\n            {\n                endpoint = builder.AddParameter(\"OpenAIEndpointParameter\")\n                    .WithDescription(\"The Azure OpenAI endpoint to use, e.g. https://<name>.openai.azure.com/\")\n                    .WithCustomInput(p => new()\n                    {\n                        Name = \"OpenAIEndpointParameter\",\n                        Label = \"Azure OpenAI Endpoint\",\n                        InputType = InputType.Text,\n                        Value = \"https://<name>.openai.azure.com/\",\n                    });\n            }\n\n            IResourceBuilder<ParameterResource>? key = null;\n            if (openAITarget is OpenAITarget.OpenAI or OpenAITarget.AzureOpenAIExistingWithKey)\n            {\n                key = builder.AddParameter(\"OpenAIKeyParameter\", secret: true)\n                    .WithDescription(\"The OpenAI API key to use.\")\n                    .WithCustomInput(p => new()\n                    {\n                        Name = \"OpenAIKeyParameter\",\n                        Label = \"API Key\",\n                        InputType = InputType.SecretText\n                    });\n            }\n\n            var chatModel = builder.AddParameter(\"ChatModelParameter\")\n                .WithDescription(\"The chat model to use.\")\n                .WithCustomInput(p => new()\n                {\n                    Name = \"ChatModelPara"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+      "kind": "File",
+      "path": "src/eShop.AppHost/Program.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 111,
+      "excerpt": "\n\nvar redis = builder.AddRedis(\"redis\");\nvar rabbitMq = builder.AddRabbitMQ(\"eventbus\")\n    .WithLifetime(ContainerLifetime.Persistent);\nvar postgres = builder.AddPostgres(\"postgres\")\n    .WithImage(\"ankane/pgvector\")\n    .WithImageTag(\"latest\")\n    .WithLifetime(ContainerLifetime.Persistent);\n\nvar catalogDb = postgres.AddDatabase(\"catalogdb\");\nvar identityDb = postgres.AddDatabase(\"identitydb\");\nvar orderDb = postgres.AddDatabase(\"orderingdb\");\nvar webhooksDb = postgres.AddDatabase(\"webhooksdb\");\n\nvar launchProfileName = ShouldUseHttpForEndpoints() ? \"http\" : \"https\";\n\n// Services\nvar identityApi = builder.AddProject<Projects.Identity_API>(\"identity-api\", launchProfileName)\n    .WithExternalHttpEndpoints()\n    .WithReference(identityDb)\n    .WithHttpHealthCheck(\"/health\");\n\nvar identityEndpoint = identityApi.GetEndpoint(launchProfileName);\n\nvar basketApi = builder.AddProject<Projects.Basket_API>(\"basket-api\")\n    .WithReference(redis)\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\nredis.WithParentRelationship(basketApi);\n\nvar catalogApi = builder.AddProject<Projects.Catalog_API>(\"catalog-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(catalogDb);\n\nvar orderingApi = builder.AddProject<Projects.Ordering_API>(\"ordering-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb).WaitFor(orderDb)\n    .WithHttpHealthCheck(\"/health\")\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\nbuilder.AddProject<Projects.OrderProcessor>(\"order-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb)\n    .WaitFor(orderingApi); // wait for the orderingApi to be ready because that contains the EF migrations\n\nbuilder.AddProject<Projects.PaymentProcessor>(\"payment-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq);\n\nvar webHooksApi = builder.AddProject<Projects.Webhooks_API>(\"webhooks-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(webhooksDb)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\n// Reverse proxies\nbuilder.AddYarp(\"mobile-bff\")\n    .WithExternalHttpEndpoints()\n    .ConfigureMobileBffRoutes(catalogApi, orderingApi, identityApi);\n\n// Apps\nvar webhooksClient = builder.AddProject<Projects.WebhookClient>(\"webhooksclient\", launchProfileName)\n    .WithReference(webHooksApi)\n    .WithEnvironment(\"I"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 920,
+      "title": "Referential integrity bugs related to catalog, basket, and order",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 64,
+      "excerpt": "grity constraints and causes inconsistencies during execution. I would like to share this to understand if the issues are valid in the context of the application, and whether these bugs could be addressed. Thank you in advance.\n\nThe issues are related to the data associations established across the catalog, basket, and order microservices, where the baskets and orders contain item IDs that reference the item IDs of the corresponding products in the catalog.\n\nBelow are the steps to reproduce the bugs and their potential impact on the system.\n\n### Scenario 1: Catalog-Basket\n\n**Steps to reproduce bugs:**\n\nConsider a client that manages its cart items via the Web App and an administrator who manages the catalog via the REST API.\n\nThe flow of requests is illustrated in a shared [figure](https://drive.google.com/file/d/1tvxXGYsScQAVJruN8ydk3aSRd-IpnS0r/view?usp=sharing). The illustrated databases contain data from the original application. For simplicity, only the catalog and basket services are represented, along with the most relevant calls and arguments.\n\n- The client adds items to the basket. _(fig. calls 1-3)_\n- The admin lists all items from the catalog to get the IDs of the items. _(fig. calls 4-5)_\n- The admin deletes an item from the catalog. _(fig. calls 6-7)_\n- The client proceeds to the checkout. _(fig. calls 8-12)_\n\n**Description of the bugs:**\n\n**1. Absence of cascading delete:** each basket item contains the ID of the corresponding catalog item, resembling a foreign key. However, when the catalog item is deleted (fig. call 7), this action is not propagated to the basket, leaving a reference that is no longer valid.\n\nDuring checkout (or even when viewing the cart), the web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117) receives data from querying the basket (fig. calls 9-10, where the returned item IDs contain the deleted item ID) that is inconsistent with the data obtained from querying the catalog (fig. calls 11-12, where the returned items do not contain the deleted item).\n\nThe web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117)  expects that every basket item is present in the returned catalog items, and during iteration, a `key not found` err"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 998,
+      "title": "Insecure file-serving pattern: `GetItemPictureById` allows path traversal / arbitrary file read via `PictureFileName'",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\n`Catalog.API`'s product-image endpoint builds a filesystem path by concatenating a **database-stored, client-controllable** `PictureFileName` directly into `Path.Combine(..., \"Pics\", pictureFileName)` and streams the result with `TypedResults.PhysicalFile`, with no containment check. Because `Path.Combine` lets a rooted or `..`-containing final segment escape the `Pics` directory, a caller can make the endpoint return **arbitrary files from the host filesystem** (e.g. `appsettings.json`, project source, `/etc/passwd`).\n\nSince this is a **reference application** that many developers copy patterns from, the file-serving idiom here teaches an insecure practice (CWE-22). The fix is small and self-contained.\n\n## Affected code\n\n`src/Catalog.API/Apis/CatalogApi.cs`\n\n```csharp\n// GetItemPictureById (~line 205) — PictureFileName comes from the stored CatalogItem\nvar path = GetFullPath(environment.ContentRootPath, item.PictureFileName);\n...\nreturn TypedResults.PhysicalFile(path, mimetype, lastModified: lastModified);\n\n// ~line 420\npublic static string GetFullPath(string contentRootPath, string pictureFileName) =>\n    Path.Combine(contentRootPath, \"Pics\", pictureFileName);   // <-- no normalization / containment\n```\n\n`PictureFileName` is bound straight from the request body in `CreateItem`/`UpdateItem` (`product.PictureFileName`), so it is fully attacker-controlled.\n\n## Steps to reproduce\n\n\n\n**Observed scope:** any real on-disk file the process can read is returned. (`/proc/*` pseudo-files are *not* returned — `PhysicalFile` reports `Content-Length: 0` for procfs and Kestrel aborts the response — so process environment variables are not exfiltrable through this particular sink.)\n\n## Impact\n\nUnrestricted local file read of the `Catalog.API` host: `appsettings*.json`, mounted secret files, K8s service-account tokens (`/var/run/secrets/...`), data-protection keys, application source, etc. In the default topology `Catalog.API` is an internal service, so realistic exposure requires it to be network-reachable (direct exposure, misconfiguration, or via SSRF/lateral movement) — but the file-read defect itself is unconditional.\n\n## Suggested fix\n\nConstrain the filename to the `Pics` directory. Either reduce it to a bare filename, or verify the resolved path stays inside the base:\n\n```csharp\npublic static string GetFullPath(string contentRootPath, string pictureFileN"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1056",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1056,
+      "title": "Reserve catalog stock when an order is validated",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2779,
+      "excerpt": "They were **not** run through the Aspire-hosted `CatalogApiFixture`: it would not start on my machine, with or without this change, so I pointed the fixture at a standalone container for the run. CI will be the first run through the real fixture.\r\n\r\n`CatalogApiTests` and `StockReservationTests` are placed in one xunit collection so their fixtures do not start in parallel; two parallel fixtures collided on a socket locally. That is also unconfirmed under the real fixture.\r\n\r\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:859",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 859,
+      "title": "Replace .WithX OpenAPI annotations with XML documentation comments in Catalog.API",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\nThis PR replaces all fluent OpenAPI annotation methods (`.WithSummary()`, `.WithDescription()`, `.WithTags()`, etc.) in `CatalogApi.cs` with equivalent XML documentation comments on the handler methods. This change enables OpenAPI documentation generation from XML doc comments rather than fluent API annotations, following the aspnet-openapi-xml approach.\n\n## Changes Made\n\n### 🗑️ Removed Fluent API Annotations\n- Removed all `.WithSummary()`, `.WithDescription()`, `.WithTags()`, and `.WithName()` calls from 19 endpoint mappings\n- Simplified endpoint registrations to clean, chainable-free syntax\n\n### 📝 Added XML Documentation\n- Added XML `<summary>` and `<remarks>` tags to all 16 handler methods\n- Extracted 2 inline lambda methods (`GetCatalogTypes`, `GetCatalogBrands`) into proper named methods with XML documentation\n- Preserved existing parameter descriptions using `[Description]` attributes\n\n### Before\n```csharp\nv1.MapGet(\"/items\", GetAllItemsV1)\n    .WithName(\"ListItems\")\n    .WithSummary(\"List catalog items\")\n    .WithDescription(\"Get a paginated list of items in the catalog.\")\n    .WithTags(\"Items\");\n```\n\n### After\n```csharp\nv1.MapGet(\"/items\", GetAllItemsV1);\n\n/// <summary>List catalog items</summary>\n/// <remarks>Get a paginated list of items in the catalog.</remarks>\n[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, \"application/problem+json\")]\npublic static async Task<Ok<PaginatedItems<CatalogItem>>> GetAllItemsV1(...)\n```\n\n## Validation\n\n✅ **0** remaining `.WithX` calls (all removed)  \n✅ **16** XML summary and remarks tags added (one for each method)  \n✅ **19** simplified endpoint mappings  \n✅ **No functional changes** - all routing, parameters, and behavior preserved\n\n## Benefits\n\n- 🎯 **Centralized Documentation**: OpenAPI docs now generated directly from method XML comments\n- 🧹 **Cleaner Code**: Simplified endpoint mappings without fluent chaining\n- 📚 **Better IntelliSense**: XML docs provide better IDE support for developers\n- 🔄 **Future-Proof**: Aligns with modern ASP.NET Core OpenAPI best practices\n\nThis change maintains full backward compatibility while improving the developer experience and documentation approach.\n\n*This pull request was created as a result of the following prompt from Copilot chat.*\n> The file src/Catalog.API/Apis/CatalogApi.cs uses several .WithX methods (such as .WithSummary, .WithDescriptio"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 940,
+      "title": "Fix KeyNotFoundException and NullReferenceException when catalog items are deleted",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "When catalog items are deleted, basket items and orders retain references to non-existent product IDs, causing the WebApp to crash with `KeyNotFoundException` during basket operations and the Catalog API to crash with `NullReferenceException` during order validation.\n\n## Changes\n\n**BasketState.cs**\n- Replace dictionary indexer with `TryGetValue()` to handle missing catalog items\n- Filter out basket items for deleted products instead of crashing\n- Add warning log when skipping items\n\n**OrderStatusChangedToAwaitingValidationIntegrationEventHandler.cs**\n- Handle null catalog items during order validation\n- Treat deleted products as out of stock to reject orders gracefully\n- Add warning log for missing products\n\n## Example\n\nBefore:\n```csharp\nvar catalogItem = catalogItems[item.ProductId]; // throws KeyNotFoundException\n```\n\nAfter:\n```csharp\nif (!catalogItems.TryGetValue(item.ProductId, out var catalogItem))\n{\n    logger.LogWarning(\"Basket item with ProductId {ProductId} not found in catalog and will be skipped\", item.ProductId);\n    continue;\n}\n```\n\nThis defensive approach allows the system to continue functioning when data inconsistencies occur across microservices, avoiding the need for distributed transaction coordination.\n\n<!-- START COPILOT ORIGINAL PROMPT -->\n\n\n\n<details>\n\n<summary>Original prompt</summary>\n\n\n----\n\n*This section details on the original issue you should resolve*\n\n<issue_title>Referential integrity bugs related to catalog, basket, and order</issue_title>\n<issue_description>Hi,\n\nThere appears to be code logic that breaks referential integrity constraints and causes inconsistencies during execution. I would like to share this to understand if the issues are valid in the context of the application, and whether these bugs could be addressed. Thank you in advance.\n\nThe issues are related to the data associations established across the catalog, basket, and order microservices, where the baskets and orders contain item IDs that reference the item IDs of the corresponding products in the catalog.\n\nBelow are the steps to reproduce the bugs and their potential impact on the system.\n\n### Scenario 1: Catalog-Basket\n\n**Steps to reproduce bugs:**\n\nConsider a client that manages its cart items via the Web App and an administrator who manages the catalog via the REST API.\n\nThe flow of requests is illustrated in a shared [figure](https://drive.google.com/fil"
+    }
+  ]
+}

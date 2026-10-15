@@ -1,0 +1,46 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (f:DLFile) WHERE f.dataset=$dataset AND f.repo=$repo AND f.path=$path UNWIND split(f.content,'\\n') AS line WITH f,trim(line) AS heading WHERE heading STARTS WITH '#' RETURN DISTINCT heading AS entity,heading AS fact,[f.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "path": "CONTRIBUTING.md",
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop"
+  },
+  "rows": [
+    {
+      "entity": "# Contributing to eShop",
+      "fact": "# Contributing to eShop",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:CONTRIBUTING.md"
+      ]
+    },
+    {
+      "entity": "## Code of Conduct",
+      "fact": "## Code of Conduct",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:CONTRIBUTING.md"
+      ]
+    },
+    {
+      "entity": "## Contribution Principles",
+      "fact": "## Contribution Principles",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:CONTRIBUTING.md"
+      ]
+    },
+    {
+      "entity": "## Getting Started",
+      "fact": "## Getting Started",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:CONTRIBUTING.md"
+      ]
+    },
+    {
+      "entity": "## Have a Suggestion?",
+      "fact": "## Have a Suggestion?",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:CONTRIBUTING.md"
+      ]
+    }
+  ]
+}

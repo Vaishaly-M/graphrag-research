@@ -1,0 +1,85 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)<-[:DL_AUTHORED_COMMIT]-(d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(other:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND c<>other AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id)+collect(DISTINCT d.id)+collect(DISTINCT other.id) AS evidence RETURN b.path AS entity,b.path+': '+split(b.content,'\\n')[0] AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "path": "api/src/test/java/org/openmrs/api/ProgramWorkflowServiceTest.java"
+  },
+  "rows": [
+    {
+      "entity": ".coderabbit.yaml",
+      "fact": ".coderabbit.yaml: language: en-US",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/java/org/openmrs/api/ProgramWorkflowServiceTest.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:b4787af730e7dd515dd5971ab62fcd0193c5ae59",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:dkayiwa@openmrs.org",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:a889bdeef0de8906f619536ae45e4349b3d8040a",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.coderabbit.yaml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/build.yaml",
+      "fact": ".github/workflows/build.yaml: # standard build with Maven and push coverage data",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/java/org/openmrs/api/ProgramWorkflowServiceTest.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:b4787af730e7dd515dd5971ab62fcd0193c5ae59",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:52504170+ibacher@users.noreply.github.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:dkayiwa@openmrs.org",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:39348a66d267e32bcad6c24f2829807e68143441",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:c7b067d412984d9153665fd7beaab3b29a4e50a7",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:2aa544c4bbacf674147ba0756f310fb0cddffea6",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:391fcf15dac5237f3e7125801738e7c718f37733",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:3fb0663789379b8e0b1356c93c0c1e9654c69d71",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/build.yaml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/codeql-analysis.yml",
+      "fact": ".github/workflows/codeql-analysis.yml: # For most projects, this workflow file will not need changing; you simply need",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/java/org/openmrs/api/ProgramWorkflowServiceTest.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:52504170+ibacher@users.noreply.github.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:cc26bbf0baa792a6fbf7e1ba5647cd55896edc9d",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/codeql-analysis.yml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/dependency-check.yml",
+      "fact": ".github/workflows/dependency-check.yml: name: \"OWASP Dependency Check\"",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/java/org/openmrs/api/ProgramWorkflowServiceTest.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:b4787af730e7dd515dd5971ab62fcd0193c5ae59",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:dkayiwa@openmrs.org",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:05a2595d36ba578726b696610504624c65addef9",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:131df07ac0db6c1a9016164e12b81206828a2b51",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:30cf1313c2dcea16d7039874e4a62f0b15999e9a",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:3f5956caff881e58f60e186e608b2c85f5f70064",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:420806e37836b3aa92215e714acff44dd9401006",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:5afe150853aa378ff2bbcd8d97530dffd74b1bea",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:68da9b8574b7670f94b04bd325af3f3731032a81",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:6cc3fe06d2236c4f0852c780f285984e8b18eca6",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:867e35e6fb8e65f9cbc6d031b0e55092dea7db2d",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9592a279f816ed8c6eca43c53df64468a37e053c",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:ba0c1ec9af860f9b4de8afe667702f49a2f59c9f",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:befa9ddd3bd29294eccc7136c50a324dc23e20c5",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:e1b09d1390408621d45ce92ef2fc9fc3ba0c5821",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:e52270764f5f2ba99633eb147c06c1fc71a46677",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/dependency-check.yml"
+      ]
+    },
+    {
+      "entity": ".github/workflows/scorecard.yml",
+      "fact": ".github/workflows/scorecard.yml: # This workflow uses actions that are not certified by GitHub. They are provided",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/test/java/org/openmrs/api/ProgramWorkflowServiceTest.java",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:9292efb64f3e1f35c3ed02619694c3444b5f2323",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:developer:email:52504170+ibacher@users.noreply.github.com",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:8e1bf8ffbf2b4790a71830fb458d4180ea11b126",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/scorecard.yml"
+      ]
+    }
+  ]
+}

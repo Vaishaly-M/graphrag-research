@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/module/ModuleUtil.java",
+        "path": "api/src/main/java/org/openmrs/module/ModuleUtil.java",
+        "offset": 5109,
+        "line": 140
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+        "path": "api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+        "offset": 11808,
+        "line": 405
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6674",
+        "path": null,
+        "offset": 5649,
+        "line": 46
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6666",
+        "path": null,
+        "offset": 4254,
+        "line": 41
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6401",
+        "path": null,
+        "offset": 2927,
+        "line": 40
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6522",
+        "path": null,
+        "offset": 301,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+        "offset": 43943,
+        "line": 1429
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 3562,
+        "line": 43
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3562,
+      "excerpt": "ub.com/fork-a-repo) on which you're working, clone your forked repo to your local computer, and set up the upstream remote:\n\n        git clone git://github.com/YourGitHubUserName/openmrs-core.git\n        git remote add upstream https://github.com/openmrs/openmrs-core.git\n\n3. Checkout to a new local branch based on your master and update it to the latest. The convention is to name the branch after the current ticket, e.g. TRUNK-123:\n\n        git checkout -b TRUNK-123 master\n        git clean -df\n        git pull --rebase upstream master\n\n > Please keep your code clean. Name your branch after the JIRA issue or other description of the work being done. If you find another bug, you want to fix while being in a new branch, please fix it in a separated branch instead.\n\n\n4. Push the branch to your fork. Treat it as a backup.\n\n        git push origin TRUNK-123\n\n5. Code\n  * Adhere to common conventions you see in the existing code\n  * Include tests, and ensure they pass\n  * Search to see if your new functionality has been discussed using our [OpenMRS global search](http://search.openmrs.org), and include updates as appropriate\n\n6. Follow the [Coding Conventions described on our wiki](https://wiki.openmrs.org/x/MxEz).\n\n  > However, please note that **pull requests consisting entirely of style changes are not welcome on this project**. Style changes in the context of pull requests that also refactor code, fix bugs, improve functionality *are* welcome.\n\n7. Commit\n\n  For every commit please write a short (max 72 characters) summary in the first line followed with a blank line and then more detailed descriptions of the change. Use markdown syntax for simple styling. Please include any JIRA issue numbers in your summary.\n  \n        git commit -m \"TRUNK-123: Put change summary here (can be a ticket title)\"\n\n  **NEVER leave the commit message blank!** Provide a detailed, clear, and complete description of your commit!\n\n8. Issue a Pull Request\n\n  Before submitting a pull request, update your branch to the latest code.\n  \n        git pull --rebase upstream master\n\n  If you have made many commits, we ask you to squash them into atomic units of work. Most of tickets should have one commit only, especially bug fixes, which makes them easier to back port.\n\n        git checkout master\n        git pull --rebase upstream master\n        git checkout TRUNK-123\n        git rebase -i mas"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11808,
+      "excerpt": "public HL7InError getHL7InError(Integer hl7InErrorId) {\n\t\treturn dao.getHL7InError(hl7InErrorId);\n\t}\n\n\t@Override\n\t@Transactional(readOnly = true)\n\tpublic HL7InError getHL7InErrorByUuid(String uuid) throws APIException {\n\t\treturn dao.getHL7InErrorByUuid(uuid);\n\t}\n\n\t/**\n\t * Gets the error message for failing to resolve a user with a certain id, family, and given name.\n\t *\n\t * @param idNum id number\n\t * @param fName family name\n\t * @param gName given name\n\t * @return error string. User can not be resolveUserId\n\t */\n\tprivate String getFindingUserErrorMessage(String idNum, String fName, String gName) {\n\t\treturn \"Error resolving user with id '\" + idNum + \"' family name '\" + fName + \"' and given name '\" + gName + \"'\";\n\t}\n\n\t/**\n\t * @param xcn HL7 component of data type XCN (extended composite ID number and name for persons)\n\t *            (see HL7 2.5 manual Ch.2A.86)\n\t * @return Internal ID # of the specified user, or null if that user can't be found or is ambiguous\n\t */\n\t@Override\n\t@Transactional(readOnly = true)\n\tpublic Integer resolveUserId(XCN xcn) throws HL7Exception {\n\t\tString idNumber = xcn.getIDNumber().getValue();\n\t\tString familyName = xcn.getFamilyName().getSurname().getValue();\n\t\tString givenName = xcn.getGivenName().getValue();\n\n\t\tif (idNumber != null && idNumber.length() > 0) {\n\t\t\ttry {\n\t\t\t\tInteger userId = Integer.valueOf(idNumber);\n\t\t\t\tUser user = Context.getUserService().getUser(userId);\n\t\t\t\treturn user.getUserId();\n\t\t\t} catch (Exception e) {\n\t\t\t\tlog.error(\"Invalid user ID '\" + idNumber + \"'\", e);\n\t\t\t\treturn null;\n\t\t\t}\n\t\t} else {\n\t\t\ttry {\n\t\t\t\tList<User> users = Context.getUserService().getUsersByName(givenName, familyName, true);\n\t\t\t\tif (users.size() == 1) {\n\t\t\t\t\treturn users.get(0).getUserId();\n\t\t\t\t} else if (users.size() > 1) {\n\t\t\t\t\t//Return null if that user ambiguous\n\t\t\t\t\tlog.error(getFindingUserErrorMessage(idNumber, familyName, givenName) + \": Found \" + users.size()\n\t\t\t\t\t        + \" ambiguous users.\");\n\t\t\t\t\treturn null;\n\t\t\t\t} else {\n\t\t\t\t\t// legacy behavior is looking up by username\n\t\t\t\t\tStringBuilder username = new StringBuilder();\n\t\t\t\t\tif (familyName != null) {\n\t\t\t\t\t\tusername.append(familyName);\n\t\t\t\t\t}\n\t\t\t\t\tif (givenName != null) {\n\t\t\t\t\t\tif (username.length() > 0) {\n\t\t\t\t\t\t\tusername.append(\" \"); // separate names with a space\n\t\t\t\t\t\t}\n\t\t\t\t\t\tusername.append(givenName);\n\t\t\t\t\t}\n\t\t\t\t\tUser user = Context.getUserService().getUserByUsername(username.t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/module/ModuleUtil.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/module/ModuleUtil.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5109,
+      "excerpt": "\t\t\t\tlog.debug(\"No modules loaded\");\n\t\t\t} else {\n\t\t\t\tlog.debug(\"Found and loaded {} module(s)\", modules.size());\n\t\t\t}\n\t\t}\n\n\t\t// make sure all mandatory modules are loaded and started\n\t\tcheckMandatoryModulesStarted();\n\t}\n\n\t/**\n\t * Stops the module system by calling stopModule for all modules that are currently started\n\t */\n\tpublic static void shutdown() {\n\n\t\tList<Module> modules = new ArrayList<>(ModuleFactory.getStartedModules());\n\n\t\tfor (Module mod : modules) {\n\t\t\tlog.debug(\"stopping module: {}\", mod.getModuleId());\n\n\t\t\tif (mod.isStarted()) {\n\t\t\t\tModuleFactory.stopModule(mod, true, true);\n\t\t\t}\n\t\t}\n\n\t\tlog.debug(\"done shutting down modules\");\n\n\t\t// clean up the static variables just in case they weren't done before\n\t\tModuleFactory.extensionMap.clear();\n\t\tModuleFactory.loadedModules.invalidateAll();\n\t\tModuleFactory.moduleClassLoaders.invalidateAll();\n\t\tModuleFactory.startedModules.invalidateAll();\n\t}\n\n\t/**\n\t * Add the <code>inputStream</code> as a file in the modules repository\n\t *\n\t * @param inputStream <code>InputStream</code> to load\n\t * @return filename String of the file's name of the stream\n\t */\n\tpublic static File insertModuleFile(InputStream inputStream, String filename) {\n\t\tFile folder = getModuleRepository();\n\n\t\t// check if module filename is already loaded\n\t\tif (OpenmrsUtil.folderContains(folder, filename)) {\n\t\t\tthrow new ModuleException(filename + \" is already associated with a loaded module.\");\n\t\t}\n\n\t\tFile file = new File(folder.getAbsolutePath(), filename);\n\n\t\ttry (FileOutputStream outputStream = new FileOutputStream(file)) {\n\t\t\tOpenmrsUtil.copyFile(inputStream, outputStream);\n\t\t} catch (IOException e) {\n\t\t\tthrow new ModuleException(\"Can't create module file for \" + filename, e);\n\t\t} finally {\n\t\t\ttry {\n\t\t\t\tinputStream.close();\n\t\t\t} catch (Exception e) { /* pass */}\n\t\t}\n\n\t\treturn file;\n\t}\n\n\t/**\n\t * Checks if the current OpenMRS version is in an array of versions.\n\t * <p>\n\t * This method calls {@link ModuleUtil#matchRequiredVersions(String, String)} internally.\n\t * </p>\n\t * <p>\n\t * <strong>Should</strong> return false when versions is null<br/>\n\t * <strong>Should</strong> return false when versions is empty<br/>\n\t * <strong>Should</strong> return true if current openmrs version matches one element in\n\t * versions<br/>\n\t * <strong>Should</strong> return false if current openmrs version does not match any element in\n\t * versions\n\t *\n\t * @param version"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 43943,
+      "excerpt": "// which could cause problems if the user changes it after\n\t\t\t\t// searching.\n\t\t\t\tCustomDateEditor ed = new CustomDateEditor(Context.getDateFormat(), true, 10);\n\t\t\t\ted.setAsText(string);\n\t\t\t\treturn ed.getValue();\n\t\t\t} else if (Object.class.equals(clazz)) {\n\t\t\t\t// TODO: Decide whether this is a hack. Currently setting Object\n\t\t\t\t// arguments with a String\n\t\t\t\treturn string;\n\t\t\t} else {\n\t\t\t\tthrow new IllegalArgumentException(\"Don't know how to handle class: \" + clazz);\n\t\t\t}\n\t\t} catch (Exception ex) {\n\t\t\tlog.error(\"error converting \\\"\" + string + \"\\\" to \" + clazz, ex);\n\t\t\tthrow new IllegalArgumentException(ex);\n\t\t}\n\t}\n\n\t/**\n\t * Loops over the collection to check to see if the given object is in that collection. This method\n\t * <i>only</i> uses the .equals() method for comparison. This should be used in the patient/person\n\t * objects on their collections. Their collections are SortedSets which use the compareTo method for\n\t * equality as well. The compareTo method is currently optimized for sorting, not for equality. A\n\t * null <code>obj</code> will return false\n\t * <p>\n\t * <strong>Should</strong> use equals method for comparison instead of compareTo given List\n\t * collection<br/>\n\t * <strong>Should</strong> use equals method for comparison instead of compareTo given SortedSet\n\t * collection\n\t *\n\t * @param objects collection to loop over\n\t * @param obj Object to look for in the <code>objects</code>\n\t * @return true/false whether the given object is found\n\t */\n\tpublic static boolean collectionContains(Collection<?> objects, Object obj) {\n\t\tif (obj == null || objects == null) {\n\t\t\treturn false;\n\t\t}\n\n\t\tfor (Object o : objects) {\n\t\t\tif (o != null && o.equals(obj)) {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\n\t\treturn false;\n\t}\n\n\t/**\n\t * Gets an out File object. If date is not provided, the current timestamp is used. If user is not\n\t * provided, the user id is not put into the filename. Assumes dir is already created\n\t *\n\t * @param dir directory to make the random filename in\n\t * @param date optional Date object used for the name\n\t * @param user optional User creating this file object\n\t * @return file new file that is able to be written to\n\t */\n\tpublic static File getOutFile(File dir, Date date, User user) {\n\t\tRandom gen = new Random();\n\t\tFile outFile;\n\t\tdo {\n\t\t\t// format to print date in filename\n\t\t\tDateFormat dateFormat = new SimpleDateFormat(\"yyyy.MM.dd-HHmm-ssSSS\");\n\n\t\t\t// use cu"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6401",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6401,
+      "title": "Stop the JVM aborting the openmrs-api test fork on Java 8 and 11",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2927,
+      "excerpt": "nd not on 17 or 21 (using the `mockito` profile as a control), and that the resolved `argLine` gains the flag on Java 11 and not on 21.\n\n## Results\n\nThree full runs of the matrix in CI, all five jobs green each time, plus repeat runs of the api suite locally on both old JDKs. The two jobs that were failing, on the same JDK builds that were crashing:\n\n| | Java 8 | Java 11 |\n| --- | --- | --- |\n| before, in CI | failed 2 of 3 runs | failed 3 of 3 runs |\n| with this change, in CI | 3 of 3 pass | 3 of 3 pass |\n| before, locally | crashed 2 of 2 runs, same test class each time | passes |\n| with this change, locally | 2 of 2 pass | passes |\n\nEvery pass ran the whole suite, `Tests run: 5116, Failures: 0, Errors: 0, Skipped: 54`, with no `Process Exit Code: 134`, no `Aborted (core dumped)` and no `hs_err` file, so none of them passed by doing less work. Runtime is unchanged, which matters given #6377.\n\n### Java 11\n\nConfident. It failed every run before, its fatal error log names the code path, and the `-verbose:class` check above shows that path is no longer entered.\n\n### Java 8\n\nThis is a **second and different bug**, which the same property also clears:\n\n```\n#  SIGSEGV (0xb) at pc=..., pid=2414\n#  Problematic frame:\n#  V  [libjvm.so+0x40468d]  ciMemberName::get_vmtarget() const+0xad\nCurrent thread: JavaThread \"C2 CompilerThread0\" daemon [_thread_in_vm]\n\nciMemberName::get_vmtarget()\nCallGenerator::for_method_handle_inline(JVMState*, ciMethod*, ciMethod*, bool&)\nCallGenerator::for_method_handle_call(...)\nCompile::call_generator(...)  ->  Parse::do_call()\n```\n\nC2 is inlining a MethodHandle call and reading a `MemberName`'s `vmtarget` off a bad pointer. In CI this only failed 2 runs in 3, which is too noisy to conclude anything from, and I initially wrote this PR saying it did **not** address Java 8. It reproduces deterministically outside CI though, aborting at the same test class each time, and there the before-and-after is clean: two crashes without the property, two full passes with it. That is what changed my mind.\n\nWhy a reflection property affects a JIT bug is **inference, not something I have proven**. Inflation defines a fresh accessor class per reflective member, so `ConstructorAccessor.newInstance` sees many receiver types and goes megamorphic; without it there is only `NativeConstructorAccessorImpl`. That changes what C2 chooses to inline around the neighb"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6522",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6522,
+      "title": "TRUNK-6793: Add optional OpenTelemetry metrics export",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 301,
+      "excerpt": ", which you must have -->\r\nOpenMRS now speaks OpenTelemetry!\r\n\r\nopenmrs-core can now export OpenTelemetry metrics. bundles the OTel Java agent and attaches it when `OMRS_OTEL_ENABLED`=true.\r\n\r\noff by default. nothing changes for anyone who doesn't opt in.\r\n\r\n### Why do we need this?\r\n\r\nImplementers currently have no standard way to see whether an openmrs server is healthy. everyone builds their own thing, in whatever shape, so nothing's shareable.\r\n\r\nOTel is a CNCF standard that basically every observability backend speaks. So instead of us picking a monitoring vendor for people, we emit a standard format and they point it wherever:\r\n\r\n_\"openmrs exports standard OTel. Grab it however you like.\"_\r\n\r\n**Why core and not the distro:** bahmni, kenyaEMR, ugandaEMR and the rest all build on core. distro-only means each of them reimplements it. also the attach logic has to live in startup.sh anyway, and that's here.\r\n\r\n**Why the java agent and not a JMX scraper**: runs in-process, exposes nothing. a scraper needs every deployment to open a JMX/RMI port, which is a rough default for a clinical system.\r\n\r\n### What changed\r\n\r\nDockerfile: downloads the agent to /openmrs/otel in the production stage, checksum-verified, same pattern as the tini and tomcat downloads. Pure java so no TARGETARCH handling needed.\r\n\r\nstartup.sh: appends -javaagent: to CATALINA_OPTS when the flag is set. mirrors the existing OMRS_DEV_DEBUG_PORT block right above it. uses ${VAR-} since the script runs under -u.\r\n\r\nthat's it. everything past the on/off flag is standard `OTEL_*` variables, so the config surface is the OTel spec rather than something we invented.\r\n\r\nSample config:\r\n```\r\n        OMRS_OTEL_ENABLED: true\r\n        OTEL_EXPORTER_OTLP_ENDPOINT: http://alloy:4317\r\n        OTEL_EXPORTER_OTLP_PROTOCOL: grpc\r\n        OTEL_SERVICE_NAME: openmrs-backend\r\n        OTEL_JMX_TARGET_SYSTEM: tomcat\r\n        OTEL_METRICS_EXPORTER: otlp\r\n        OTEL_TRACES_EXPORTER: none\r\n        OTEL_LOGS_EXPORTER: none\r\n```\r\n\r\n### The cost\r\n\r\nThe jar adds ~24MB to every openmrs-core image whether you use it or not. that's the real tradeoff.\r\n\r\nNo runtime cost when disabled, the -javaagent flag just never gets added. \r\n\r\n### Tested\r\n\r\nValidated end to end on the reference application: agent → gRPC → Alloy → Prometheus → Grafana. \r\n\r\nDistro PR: https://github.com/openmrs/openmrs-distro-referenceapplication/pull/1069\r"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6666",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6666,
+      "title": "TRUNK-6708: Map uuid as a Hibernate natural id and serve by-uuid lookups from cache",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4254,
+      "excerpt": "all formatting changes to my commit.\n\n  No? -> execute above command\n\n- [x] All new and existing **tests passed**.\n\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\n\n- [x] My pull request is **based on the latest changes** of the master branch.\n\n  No? Unsure? -> execute command `git pull --rebase upstream master`\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6674",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6674,
+      "title": "TRUNK-6823: Deny with APIAuthenticationException again, as an AuthorizationDeniedException",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5649,
+      "excerpt": "have **added tests** to cover my changes.\n- [x] I ran `./mvnw clean package` right before creating this pull request and added all formatting changes to my commit.\n- [x] All new and existing **tests passed**: `mvn clean verify` from the root, with api at 5621 tests (45 skipped) and web at 310, none failing.\n- [x] My pull request is **based on the latest changes** of the master branch.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "source": "data/benchmark/Human_Written_Question_with_Gold_Answers.csv",
+  "sha256": "e28d5f2e36cfd3163e48234dd4cde6f8e31ecc6f39bfc5d506e770067b8c7f0c",
+  "count": 100,
+  "authors": {
+    "New contributor onboarding": 20,
+    "Maintainer doing triage": 20,
+    "Code reviewer": 20,
+    "QA / release engineer": 20,
+    "Student studying the project": 20
+  },
+  "original_wording_preserved": true,
+  "development_use": false,
+  "verified_count": 0
+}

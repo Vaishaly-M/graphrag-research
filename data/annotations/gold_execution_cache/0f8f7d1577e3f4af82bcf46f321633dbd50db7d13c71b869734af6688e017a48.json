@@ -1,0 +1,10 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_HAS_ISSUE]->(n:DLIssue) WHERE r.dataset=$dataset AND r.repo=$repo AND n.number=$value RETURN n.title AS entity,n.title AS fact,[r.id,n.id] AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "value": 1026740
+  },
+  "rows": []
+}

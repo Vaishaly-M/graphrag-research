@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Apis/CatalogApi.cs",
+        "path": "src/Catalog.API/Apis/CatalogApi.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1041",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:859",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+        "path": null,
+        "offset": 64,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:997",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Apis/CatalogApi.cs",
+      "kind": "File",
+      "path": "src/Catalog.API/Apis/CatalogApi.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using System.ComponentModel;\nusing System.ComponentModel.DataAnnotations;\nusing Microsoft.AspNetCore.Http.HttpResults;\nusing Microsoft.AspNetCore.Mvc;\nusing Microsoft.AspNetCore.Mvc.Infrastructure;\nusing Pgvector.EntityFrameworkCore;\n\nnamespace eShop.Catalog.API;\n\npublic static class CatalogApi\n{\n    public static IEndpointRouteBuilder MapCatalogApi(this IEndpointRouteBuilder app)\n    {\n        // RouteGroupBuilder for catalog endpoints\n        var vApi = app.NewVersionedApi(\"Catalog\");\n        var api = vApi.MapGroup(\"api/catalog\").HasApiVersion(1, 0).HasApiVersion(2, 0);\n        var v1 = vApi.MapGroup(\"api/catalog\").HasApiVersion(1, 0);\n        var v2 = vApi.MapGroup(\"api/catalog\").HasApiVersion(2, 0);\n\n        // Routes for querying catalog items.\n        v1.MapGet(\"/items\", GetAllItemsV1)\n            .WithName(\"ListItems\")\n            .WithSummary(\"List catalog items\")\n            .WithDescription(\"Get a paginated list of items in the catalog.\")\n            .WithTags(\"Items\");\n        v2.MapGet(\"/items\", GetAllItems)\n            .WithName(\"ListItems-V2\")\n            .WithSummary(\"List catalog items\")\n            .WithDescription(\"Get a paginated list of items in the catalog.\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/by\", GetItemsByIds)\n            .WithName(\"BatchGetItems\")\n            .WithSummary(\"Batch get catalog items\")\n            .WithDescription(\"Get multiple items from the catalog\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/{id:int}\", GetItemById)\n            .WithName(\"GetItem\")\n            .WithSummary(\"Get catalog item\")\n            .WithDescription(\"Get an item from the catalog\")\n            .WithTags(\"Items\");\n        v1.MapGet(\"/items/by/{name:minlength(1)}\", GetItemsByName)\n            .WithName(\"GetItemsByName\")\n            .WithSummary(\"Get catalog items by name\")\n            .WithDescription(\"Get a paginated list of catalog items with the specified name.\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/{id:int}/pic\", GetItemPictureById)\n            .WithName(\"GetItemPicture\")\n            .WithSummary(\"Get catalog item picture\")\n            .WithDescription(\"Get the picture for a catalog item\")\n            .WithTags(\"Items\");\n\n        // Routes for resolving catalog items using AI.\n        v1.MapGet(\"/items/withsemanticrelevance/{text:minlength(1)}\", GetItemsBySemanticRelevanceV1)\n        "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:920",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 920,
+      "title": "Referential integrity bugs related to catalog, basket, and order",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 64,
+      "excerpt": "grity constraints and causes inconsistencies during execution. I would like to share this to understand if the issues are valid in the context of the application, and whether these bugs could be addressed. Thank you in advance.\n\nThe issues are related to the data associations established across the catalog, basket, and order microservices, where the baskets and orders contain item IDs that reference the item IDs of the corresponding products in the catalog.\n\nBelow are the steps to reproduce the bugs and their potential impact on the system.\n\n### Scenario 1: Catalog-Basket\n\n**Steps to reproduce bugs:**\n\nConsider a client that manages its cart items via the Web App and an administrator who manages the catalog via the REST API.\n\nThe flow of requests is illustrated in a shared [figure](https://drive.google.com/file/d/1tvxXGYsScQAVJruN8ydk3aSRd-IpnS0r/view?usp=sharing). The illustrated databases contain data from the original application. For simplicity, only the catalog and basket services are represented, along with the most relevant calls and arguments.\n\n- The client adds items to the basket. _(fig. calls 1-3)_\n- The admin lists all items from the catalog to get the IDs of the items. _(fig. calls 4-5)_\n- The admin deletes an item from the catalog. _(fig. calls 6-7)_\n- The client proceeds to the checkout. _(fig. calls 8-12)_\n\n**Description of the bugs:**\n\n**1. Absence of cascading delete:** each basket item contains the ID of the corresponding catalog item, resembling a foreign key. However, when the catalog item is deleted (fig. call 7), this action is not propagated to the basket, leaving a reference that is no longer valid.\n\nDuring checkout (or even when viewing the cart), the web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117) receives data from querying the basket (fig. calls 9-10, where the returned item IDs contain the deleted item ID) that is inconsistent with the data obtained from querying the catalog (fig. calls 11-12, where the returned items do not contain the deleted item).\n\nThe web app's [`FetchBasketItemsAsync`](https://github.com/dotnet/eShop/blob/1b2698cd83ed5c9e00a2fa954f2586c87022c431/src/WebApp/Services/BasketState.cs#L117)  expects that every basket item is present in the returned catalog items, and during iteration, a `key not found` err"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:997",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 997,
+      "title": "Catalog API admin mutation endpoints have no authentication - unauthenticated item creation, update, and deletion",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "### Summary\n\nThe Catalog API registers CreateItem, UpdateItem (v1 and v2), and DeleteItemById endpoints with no authentication or authorization requirement. Any unauthenticated network client can create, overwrite, or delete catalog items. Unlike every other microservice in the application (Ordering, Basket, Webhooks), the Catalog API does not call `builder.AddDefaultAuthentication()` in its Extensions.cs and does not apply `.RequireAuthorization()` to its mutation routes.\n\n### Details\n\nIn `src/Catalog.API/Apis/CatalogApi.cs` (lines 92-110), the mutation routes are registered as:\n\n```csharp\nv1.MapPut(\"/items\", UpdateItemV1)\nv2.MapPut(\"/items/{id:int}\", UpdateItem)\napi.MapPost(\"/items\", CreateItem)\napi.MapDelete(\"/items/{id:int}\", DeleteItemById)\n```\n\nNone of these route registrations call `.RequireAuthorization()`.\n\nIn `src/Catalog.API/Program.cs`, neither `app.UseAuthentication()` nor `app.UseAuthorization()` is called, and there is no global authorization middleware.\n\nIn `src/Catalog.API/Extensions/Extensions.cs`, the `AddApplicationServices` method does not call `builder.AddDefaultAuthentication()`, unlike the Basket API (`src/Basket.API/Extensions/Extensions.cs` line 10: `builder.AddDefaultAuthentication()`), the Ordering API (`src/Ordering.API/Extensions/Extensions.cs` line 10: `builder.AddDefaultAuthentication()`), and the Webhooks API.\n\nThis is confirmed in the AppHost configuration (`src/eShop.AppHost/Program.cs`): the `catalogApi` resource is the only service not passed `Identity__Url` as an environment variable. The basket, ordering, and webhooks services all receive `.WithEnvironment(\"Identity__Url\", identityEndpoint)`, which is what triggers the JWT bearer middleware registration. Catalog receives no such configuration.\n\nAdditionally, `src/eShop.AppHost/Extensions.cs` registers a YARP catch-all route `/api/catalog/{*any}` in `ConfigureMobileBffRoutes` that forwards all catalog API requests (including mutations) from the mobile BFF without adding any authentication layer.\n\n### PoC\n\n(available upon request)\n\n### Impact\n\nAny unauthenticated attacker with network access to the Catalog API (directly or via the YARP mobile BFF) can add fraudulent products at arbitrary prices, modify existing product prices to cause financial loss, or delete all catalog items to cause a denial of service for the storefront. In a production deployment this would allow pr"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 998,
+      "title": "Insecure file-serving pattern: `GetItemPictureById` allows path traversal / arbitrary file read via `PictureFileName'",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\n`Catalog.API`'s product-image endpoint builds a filesystem path by concatenating a **database-stored, client-controllable** `PictureFileName` directly into `Path.Combine(..., \"Pics\", pictureFileName)` and streams the result with `TypedResults.PhysicalFile`, with no containment check. Because `Path.Combine` lets a rooted or `..`-containing final segment escape the `Pics` directory, a caller can make the endpoint return **arbitrary files from the host filesystem** (e.g. `appsettings.json`, project source, `/etc/passwd`).\n\nSince this is a **reference application** that many developers copy patterns from, the file-serving idiom here teaches an insecure practice (CWE-22). The fix is small and self-contained.\n\n## Affected code\n\n`src/Catalog.API/Apis/CatalogApi.cs`\n\n```csharp\n// GetItemPictureById (~line 205) — PictureFileName comes from the stored CatalogItem\nvar path = GetFullPath(environment.ContentRootPath, item.PictureFileName);\n...\nreturn TypedResults.PhysicalFile(path, mimetype, lastModified: lastModified);\n\n// ~line 420\npublic static string GetFullPath(string contentRootPath, string pictureFileName) =>\n    Path.Combine(contentRootPath, \"Pics\", pictureFileName);   // <-- no normalization / containment\n```\n\n`PictureFileName` is bound straight from the request body in `CreateItem`/`UpdateItem` (`product.PictureFileName`), so it is fully attacker-controlled.\n\n## Steps to reproduce\n\n\n\n**Observed scope:** any real on-disk file the process can read is returned. (`/proc/*` pseudo-files are *not* returned — `PhysicalFile` reports `Content-Length: 0` for procfs and Kestrel aborts the response — so process environment variables are not exfiltrable through this particular sink.)\n\n## Impact\n\nUnrestricted local file read of the `Catalog.API` host: `appsettings*.json`, mounted secret files, K8s service-account tokens (`/var/run/secrets/...`), data-protection keys, application source, etc. In the default topology `Catalog.API` is an internal service, so realistic exposure requires it to be network-reachable (direct exposure, misconfiguration, or via SSRF/lateral movement) — but the file-read defect itself is unconditional.\n\n## Suggested fix\n\nConstrain the filename to the `Pics` directory. Either reduce it to a bare filename, or verify the resolved path stays inside the base:\n\n```csharp\npublic static string GetFullPath(string contentRootPath, string pictureFileN"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "…ging coverage\r\n\r\nIntroduce pluggable functional test modes (Aspire, RepositoryMock, EfCoreInMemory, Testcontainers, and messaging variants) for Catalog and Ordering via a shared Testing.Common library. Extract ICatalogRepository from Catalog.API to enable in-memory persistence swaps, add Serilog logging to ServiceDefaults, fix integration event type discovery under WebApplicationFactory, and add runsettings plus xUnit traits for filtering tests by mode.\r\n\r\n# eShop Multi-Mode Functional Testing\r\n\r\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontaine"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1041",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1041,
+      "title": "Use async EF Core calls in Catalog async handlers",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "# PR to dotnet/eShop\r\n\r\n**Base:** `dotnet/eShop` `main` ← **Head:** `vuglll/eShop` `use-async-ef-calls-in-catalog`\r\n\r\n**Title:**\r\n\r\nUse async EF Core calls in Catalog async handlers\r\n\r\n**Description:**\r\n\r\nThree `async` methods in Catalog.API make synchronous EF Core calls. Each call blocks a thread-pool thread for the whole database round trip, instead of yielding it while the query runs.\r\n\r\n- `OrderStatusChangedToAwaitingValidationIntegrationEventHandler` and `OrderStatusChangedToPaidIntegrationEventHandler`: `CatalogItems.Find(...)` → `await CatalogItems.FindAsync(...)`. Both run inside the `foreach` over the order's items, so the blocking happened once per item.\r\n- `CatalogApi.DeleteItemById`: `SingleOrDefault(...)` → `await SingleOrDefaultAsync(...)`. This matches the other endpoints in the same file, which already use `SingleOrDefaultAsync`, and the `SaveChangesAsync` that follows.\r\n\r\nThere's no behavior change otherwise. The existing `DeleteCatalogItem` and `GetAndDeleteMissingCatalogItemReturnNotFound` functional tests cover the endpoint. The handlers could go further and load all of an order's items in one query instead of one per item. I kept this PR to the minimal change, and I'm happy to follow up with that if you'd like it.\r\n\r\nFound with [EFDoctor](https://github.com/vuglll/EFDoctor), an open-source EF Core analyzer I'm working on."
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:859",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 859,
+      "title": "Replace .WithX OpenAPI annotations with XML documentation comments in Catalog.API",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\nThis PR replaces all fluent OpenAPI annotation methods (`.WithSummary()`, `.WithDescription()`, `.WithTags()`, etc.) in `CatalogApi.cs` with equivalent XML documentation comments on the handler methods. This change enables OpenAPI documentation generation from XML doc comments rather than fluent API annotations, following the aspnet-openapi-xml approach.\n\n## Changes Made\n\n### 🗑️ Removed Fluent API Annotations\n- Removed all `.WithSummary()`, `.WithDescription()`, `.WithTags()`, and `.WithName()` calls from 19 endpoint mappings\n- Simplified endpoint registrations to clean, chainable-free syntax\n\n### 📝 Added XML Documentation\n- Added XML `<summary>` and `<remarks>` tags to all 16 handler methods\n- Extracted 2 inline lambda methods (`GetCatalogTypes`, `GetCatalogBrands`) into proper named methods with XML documentation\n- Preserved existing parameter descriptions using `[Description]` attributes\n\n### Before\n```csharp\nv1.MapGet(\"/items\", GetAllItemsV1)\n    .WithName(\"ListItems\")\n    .WithSummary(\"List catalog items\")\n    .WithDescription(\"Get a paginated list of items in the catalog.\")\n    .WithTags(\"Items\");\n```\n\n### After\n```csharp\nv1.MapGet(\"/items\", GetAllItemsV1);\n\n/// <summary>List catalog items</summary>\n/// <remarks>Get a paginated list of items in the catalog.</remarks>\n[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, \"application/problem+json\")]\npublic static async Task<Ok<PaginatedItems<CatalogItem>>> GetAllItemsV1(...)\n```\n\n## Validation\n\n✅ **0** remaining `.WithX` calls (all removed)  \n✅ **16** XML summary and remarks tags added (one for each method)  \n✅ **19** simplified endpoint mappings  \n✅ **No functional changes** - all routing, parameters, and behavior preserved\n\n## Benefits\n\n- 🎯 **Centralized Documentation**: OpenAPI docs now generated directly from method XML comments\n- 🧹 **Cleaner Code**: Simplified endpoint mappings without fluent chaining\n- 📚 **Better IntelliSense**: XML docs provide better IDE support for developers\n- 🔄 **Future-Proof**: Aligns with modern ASP.NET Core OpenAPI best practices\n\nThis change maintains full backward compatibility while improving the developer experience and documentation approach.\n\n*This pull request was created as a result of the following prompt from Copilot chat.*\n> The file src/Catalog.API/Apis/CatalogApi.cs uses several .WithX methods (such as .WithSummary, .WithDescriptio"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:940",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 940,
+      "title": "Fix KeyNotFoundException and NullReferenceException when catalog items are deleted",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "When catalog items are deleted, basket items and orders retain references to non-existent product IDs, causing the WebApp to crash with `KeyNotFoundException` during basket operations and the Catalog API to crash with `NullReferenceException` during order validation.\n\n## Changes\n\n**BasketState.cs**\n- Replace dictionary indexer with `TryGetValue()` to handle missing catalog items\n- Filter out basket items for deleted products instead of crashing\n- Add warning log when skipping items\n\n**OrderStatusChangedToAwaitingValidationIntegrationEventHandler.cs**\n- Handle null catalog items during order validation\n- Treat deleted products as out of stock to reject orders gracefully\n- Add warning log for missing products\n\n## Example\n\nBefore:\n```csharp\nvar catalogItem = catalogItems[item.ProductId]; // throws KeyNotFoundException\n```\n\nAfter:\n```csharp\nif (!catalogItems.TryGetValue(item.ProductId, out var catalogItem))\n{\n    logger.LogWarning(\"Basket item with ProductId {ProductId} not found in catalog and will be skipped\", item.ProductId);\n    continue;\n}\n```\n\nThis defensive approach allows the system to continue functioning when data inconsistencies occur across microservices, avoiding the need for distributed transaction coordination.\n\n<!-- START COPILOT ORIGINAL PROMPT -->\n\n\n\n<details>\n\n<summary>Original prompt</summary>\n\n\n----\n\n*This section details on the original issue you should resolve*\n\n<issue_title>Referential integrity bugs related to catalog, basket, and order</issue_title>\n<issue_description>Hi,\n\nThere appears to be code logic that breaks referential integrity constraints and causes inconsistencies during execution. I would like to share this to understand if the issues are valid in the context of the application, and whether these bugs could be addressed. Thank you in advance.\n\nThe issues are related to the data associations established across the catalog, basket, and order microservices, where the baskets and orders contain item IDs that reference the item IDs of the corresponding products in the catalog.\n\nBelow are the steps to reproduce the bugs and their potential impact on the system.\n\n### Scenario 1: Catalog-Basket\n\n**Steps to reproduce bugs:**\n\nConsider a client that manages its cart items via the Web App and an administrator who manages the catalog via the REST API.\n\nThe flow of requests is illustrated in a shared [figure](https://drive.google.com/fil"
+    }
+  ]
+}

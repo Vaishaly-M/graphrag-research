@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 4414,
+        "line": 59
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+        "path": null,
+        "offset": 6807,
+        "line": 22
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+        "path": null,
+        "offset": 9959,
+        "line": 63
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/module/ModuleUtil.java",
+        "path": "api/src/main/java/org/openmrs/module/ModuleUtil.java",
+        "offset": 19297,
+        "line": 497
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6534",
+        "path": null,
+        "offset": 5323,
+        "line": 35
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "offset": 51707,
+        "line": 998
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6392",
+        "path": null,
+        "offset": 4931,
+        "line": 58
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6488",
+        "path": null,
+        "offset": 1487,
+        "line": 17
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4414,
+      "excerpt": "in TRUNK-123\n\n5. Code\n  * Adhere to common conventions you see in the existing code\n  * Include tests, and ensure they pass\n  * Search to see if your new functionality has been discussed using our [OpenMRS global search](http://search.openmrs.org), and include updates as appropriate\n\n6. Follow the [Coding Conventions described on our wiki](https://wiki.openmrs.org/x/MxEz).\n\n  > However, please note that **pull requests consisting entirely of style changes are not welcome on this project**. Style changes in the context of pull requests that also refactor code, fix bugs, improve functionality *are* welcome.\n\n7. Commit\n\n  For every commit please write a short (max 72 characters) summary in the first line followed with a blank line and then more detailed descriptions of the change. Use markdown syntax for simple styling. Please include any JIRA issue numbers in your summary.\n  \n        git commit -m \"TRUNK-123: Put change summary here (can be a ticket title)\"\n\n  **NEVER leave the commit message blank!** Provide a detailed, clear, and complete description of your commit!\n\n8. Issue a Pull Request\n\n  Before submitting a pull request, update your branch to the latest code.\n  \n        git pull --rebase upstream master\n\n  If you have made many commits, we ask you to squash them into atomic units of work. Most of tickets should have one commit only, especially bug fixes, which makes them easier to back port.\n\n        git checkout master\n        git pull --rebase upstream master\n        git checkout TRUNK-123\n        git rebase -i master\n\n  Make sure all unit tests still pass:\n\n        ./mvnw clean package\n\n  Push changes to your fork:\n\n        git push -f\n\n  In order to make a pull request,\n  * Navigate to the OpenMRS repository you just pushed to (e.g. https://github.com/your-user-name/openmrs-core)\n  * Click \"Pull Request\".\n  * Write your branch name in the branch field (this is filled with \"master\" by default)\n  * Click \"Update Commit Range\".\n  * Ensure the changesets you introduced are included in the \"Commits\" tab.\n  * Ensure that the \"Files Changed\" incorporate all of your changes.\n  * Fill in some details about your potential patch including a meaningful title.\n  * Click \"Send pull request\".\n  * In JIRA, open your issue and click the \"Request Code Review\" button to change the issue's status to \"Code Review\". Add a comment linking to the URL of the pull request.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/module/ModuleUtil.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/module/ModuleUtil.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19297,
+      "excerpt": "rmatException e) {\n\t\t\tlog.error(\"Error while converting a version/value to an integer: \" + versionA + \"/\" + versionB, e);\n\t\t}\n\n\t\t// default return value if an error occurs or elements are equal\n\t\treturn 0;\n\t}\n\n\t/**\n\t * Checks for qualifier version (i.e \"-SNAPSHOT\", \"-ALPHA\" etc. after maven version conventions)\n\t *\n\t * @param version String like 1.9.2-SNAPSHOT\n\t * @return true if version contains qualifier\n\t */\n\tpublic static boolean isVersionWithQualifier(String version) {\n\t\tMatcher matcher = Pattern.compile(\"(\\\\d+)\\\\.(\\\\d+)(\\\\.(\\\\d+))?(\\\\-([A-Za-z]+))\").matcher(version);\n\t\treturn matcher.matches();\n\t}\n\n\t/**\n\t * Gets the folder where modules are stored. ModuleExceptions are thrown on errors\n\t * <p>\n\t * <strong>Should</strong> use the runtime property as the first choice if specified<br/>\n\t * <strong>Should</strong> return the correct file if the runtime property is an absolute path\n\t *\n\t * @return folder containing modules\n\t */\n\tpublic static File getModuleRepository() {\n\n\t\tString folderName = Context.getRuntimeProperties().getProperty(ModuleConstants.REPOSITORY_FOLDER_RUNTIME_PROPERTY);\n\t\tif (StringUtils.isBlank(folderName)) {\n\t\t\tAdministrationService as = Context.getAdministrationService();\n\t\t\tfolderName = as.getGlobalProperty(ModuleConstants.REPOSITORY_FOLDER_PROPERTY,\n\t\t\t    ModuleConstants.REPOSITORY_FOLDER_PROPERTY_DEFAULT);\n\t\t}\n\t\t// try to load the repository folder straight away.\n\t\tFile folder = new File(folderName);\n\n\t\t// if the property wasn't a full path already, assume it was intended to be a folder in the\n\t\t// application directory\n\t\tif (!folder.exists()) {\n\t\t\tfolder = new File(OpenmrsUtil.getApplicationDataDirectory(), folderName);\n\t\t}\n\n\t\t// now create the modules folder if it doesn't exist\n\t\tif (!folder.exists()) {\n\t\t\tlog.warn(\"Module repository \" + folder.getAbsolutePath() + \" doesn't exist.  Creating directories now.\");\n\t\t\tfolder.mkdirs();\n\t\t}\n\n\t\tif (!folder.isDirectory()) {\n\t\t\tthrow new ModuleException(\"Module repository is not a directory at: \" + folder.getAbsolutePath());\n\t\t}\n\n\t\treturn folder;\n\t}\n\n\t/**\n\t * Utility method to convert a {@link File} object to a local URL.\n\t *\n\t * @param file a file object\n\t * @return absolute URL that points to the given file\n\t * @throws MalformedURLException if file can't be represented as URL for some reason\n\t */\n\tpublic static URL file2url(final File file) throws MalformedURLException {\n\t\tif (file == nul"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 51707,
+      "excerpt": "ching person. Valid values are 'ANYWHERE' or 'EXACT'. Defaults to exact if missing or invalid value is present.\"));\n\n\t\tprops.add(new GlobalProperty(GP_DISABLE_VALIDATION, \"false\",\n\t\t        \"Disables validation of OpenMRS Objects. Only takes affect on next restart. Warning: only do this is you know what you are doing!\"));\n\n\t\tprops.add(new GlobalProperty(\"allergy.concept.severity.mild\", \"1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n\t\t        \"UUID for the MILD severity concept\"));\n\n\t\tprops.add(new GlobalProperty(\"allergy.concept.severity.moderate\", \"1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n\t\t        \"UUID for the MODERATE severity concept\"));\n\n\t\tprops.add(new GlobalProperty(\"allergy.concept.severity.severe\", \"1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n\t\t        \"UUID for the SEVERE severity concept\"));\n\n\t\tprops.add(new GlobalProperty(\"allergy.concept.allergen.food\", \"162553AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n\t\t        \"UUID for the food allergens concept\"));\n\n\t\tprops.add(new GlobalProperty(\"allergy.concept.allergen.drug\", \"162552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n\t\t        \"UUID for the drug allergens concept\"));\n\n\t\tprops.add(new GlobalProperty(\"allergy.concept.allergen.environment\", \"162554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n\t\t        \"UUID for the environment allergens concept\"));\n\n\t\tprops.add(new GlobalProperty(\"allergy.concept.reactions\", \"162555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n\t\t        \"UUID for the allergy reactions concept\"));\n\n\t\tprops.add(new GlobalProperty(GP_ALLERGEN_OTHER_NON_CODED_UUID, \"5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n\t\t        \"UUID for the allergy other non coded concept\"));\n\n\t\tprops.add(new GlobalProperty(\"allergy.concept.unknown\", \"1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n\t\t        \"UUID for the allergy unknown concept\"));\n\n\t\tprops.add(new GlobalProperty(GP_DRUG_ORDER_DRUG_OTHER, \"\",\n\t\t        \"Specifies the uuid of the concept which represents drug other non coded\"));\n\t\tprops.add(new GlobalProperty(GP_LOGIN_URL, LOGIN_URL, \"Responsible for defining the Authentication URL \"));\n\t\tprops.addAll(ModuleFactory.getGlobalProperties());\n\n\t\treturn props;\n\t}\n\n\t// ConceptProposal proposed concept identifier keyword\n\tpublic static final String PROPOSED_CONCEPT_IDENTIFIER = \"PROPOSED\";\n\n\t// ConceptProposal states\n\tpublic static final String CONCEPT_PROPOSAL_UNMAPPED = \"UNMAPPED\";\n\n\tpublic static final String CONCEPT_PROPOSAL_CONCEPT = \"CONCEPT\";\n\n\tpublic static final S"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6392",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6392,
+      "title": "TRUNK-6727: Exclude descendant locations when the ancestor itself is retired",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4931,
+      "excerpt": " gets backported. The test code is identical across all three branches.\n\n## Issue I worked on\n\nsee https://issues.openmrs.org/browse/TRUNK-6727\n\n## Checklist: I completed these to help reviewers :)\n\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n- [x] I have **added tests** to cover my changes. (If you refactored existing code that was well tested you do not have to add tests)\n- [ ] I ran `./mvnw clean package` right before creating this pull request and added all formatting changes to my commit.\n- [x] All new and existing **tests passed**.\n- [x] My pull request is **based on the latest changes** of the master branch.\n\nI ran the full `api` module suite (`./mvnw -pl api -am test`) rather than `./mvnw clean package`, since the change is confined to that module: 5210 tests, 0 failures, 0 errors, 46 skipped.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6488",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6488,
+      "title": "TRUNK-6784: LoggingAdvice should have a fast exit path",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1487,
+      "excerpt": "g/browse/TRUNK-6784\r\n\r\n## Checklist: I completed these to help reviewers :)\r\n<!--- Put an `x` in the box if you did the task -->\r\n<!--- If you forgot a task please follow the instructions below -->\r\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\r\n\r\n  No? Unsure? -> [configure your IDE](https://wiki.openmrs.org/display/docs/How-To+Setup+And+Use+Your+IDE), format the code and add the changes with `git add . && git commit --amend`\r\n\r\n- [x] I have **added tests** to cover my changes. (If you refactored\r\n  existing code that was well tested you do not have to add tests)\r\n\r\n  No? -> write tests and add them to this commit `git add . && git commit --amend`\r\n\r\n- [x] I ran `./mvnw clean package` right before creating this pull request and\r\n  added all formatting changes to my commit.\r\n\r\n  No? -> execute above command\r\n\r\n- [x] All new and existing **tests passed**.\r\n\r\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\r\n\r\n- [x] My pull request is **based on the latest changes** of the master branch.\r\n\r\n  No? Unsure? -> execute command `git pull --rebase upstream master`\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6533,
+      "title": "TRUNK-6795: Populate obs reference ranges in a save handler so they survive validation.disable",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6807,
+      "excerpt": "442** (the validator overwriting a caller-supplied reference range).\n\n## Issue I worked on\n\nsee https://openmrs.atlassian.net/browse/TRUNK-6795\n\n## Checklist: I completed these to help reviewers :)\n\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n\n  Verified with the project&#39;s own Spotless configuration (`spotless:apply` with a cleared cache reports 0 files changed) and with `license:check` (1459 files, 0 missing headers).\n\n- [x] I have **added tests** to cover my changes.\n\n  New `ObsSaveHandlerTest` holds the population and interpretation tests that moved out of `ObsValidatorTest`, plus tests that fail on `master`: the reference range and interpretation are still populated when validation is disabled for the thread; a caller-supplied reference range survives the save; an amended observation is re-interpreted from its new value; a supplied interpretation is kept on a new observation but re-derived on an amendment; a copied observation with no range to inherit gets one derived; and resolving a range while another observation is dirty in the session does not flush it (`handle_shouldNotFlushADirtyObsWhileEvaluatingReferenceRangeCriteria`, which pins the `FlushMode.MANUAL` guard). The genuinely validation-asserting tests stay in `ObsValidatorTest`.\n\n- [ ] I ran `./mvnw clean package` right before creating this pull request and added all formatting changes to my commit.\n\n  A full `package` could not be run in this environment, since `mavenrepo.openmrs.org` is unreachable from it and the `maven-openmrs-plugin` build extension is not on Maven Central. `openmrs-api` was compiled and its tests were run directly instead.\n\n- [x] All new and existing **tests passed**.\n\n  `ObsSaveHandlerTest`, `ObsValidatorTest`, `ObsServiceTest`, `ObsTest`, `RequiredDataAdviceTest`, `ValidateUtilTest` and `EncounterServiceTest` were run with 0 failures. `ObsServiceTest.saveObsReferenceRange_shouldSaveReferenceRangeAfterSavingObs` and `saveObs_shouldVoidTheGivenObsAndSetReferenceRangeForTheNewObs` are unmodified and still pass.\n\n- [x] My pull request is **based on the latest changes** of the master branch.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01LpFQ9s15PB9Q9gbUnL6VAr"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6534",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6534,
+      "title": "TRUNK-6512: Introduce ConceptReferenceRangeContext API",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5323,
+      "excerpt": "6512\n\nThis also unblocks the 2.7.x backport of [TRUNK-6795](https://openmrs.atlassian.net/browse/TRUNK-6795) / #6533, which builds on this API.\n\n## Checklist: I completed these to help reviewers :)\n\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n- [x] I have **added tests** to cover my changes.\n- [x] I ran the build right before creating this pull request and added all formatting changes to my commit. The branch's `maven-java-formatter-plugin` (`eclipse/OpenMRSFormatter.xml`) and `license-maven-plugin:check` both run clean with no changes to report. Note that 2.7.x uses this formatter rather than Spotless.\n- [x] All new and existing **tests passed**. The full `api` module suite ran 4963 tests with a single failure, `OpenmrsConfigurationFactoryTest.getConfigurationFiles_shouldIgnoreUnreadableFiles`, which is environmental (it runs as root, so `setReadable(false)` does not actually make the file unreadable) and reproduces identically on unmodified `2.7.x`. `ConceptServiceTest`, `ConceptServiceImplTest`, `ConceptReferenceRangeUtilityTest`, `ObsValidatorTest`, `ObsServiceTest`, `ObsTest`, and `PatientServiceTest` are all green.\n- [x] My pull request is **based on the latest changes** of the `2.7.x` branch.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01LpFQ9s15PB9Q9gbUnL6VAr\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01LpFQ9s15PB9Q9gbUnL6VAr)_\n\n[TRUNK-6795]: ``https://openmrs.atlassian.net/browse/TRUNK-6795?atlOrigin=eyJpIjoiNWRkNTljNzYxNjVmNDY3MDlhMDU5Y2ZhYzA5YTRkZjUiLCJwIjoiZ2l0aHViLWNvbS1KU1cifQ``"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6648,
+      "title": "maven(deps): bump org.owasp.encoder:encoder from 1.4.1 to 1.5.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9959,
+      "excerpt": "with suppressed exceptions. Array-slice writes now use overflow-safe bounds validation, including <code>Integer.MAX_VALUE</code>-shaped ranges.</li>\n<li>build: compare all three 1.5.0 artifacts against the immutable 1.4.1 public-API baseline, and verify that every publishable effective POM inherits repository-root SCM connection, developer connection and URL values without module-name suffixes.</li>\n<li>feat: add <code>Encode.forJson</code> String/Writer methods, the <code>json</code> encoder context, and <code>forJson</code> tags and EL functions in both JSP and Jakarta tag libraries <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/145\">#145</a>. The caller supplies double quotes. Output uses RFC 8259 string escapes and also escapes HTML script delimiters. Java <code>null</code> becomes the text <code>null</code> (the JSON string <code>&quot;null&quot;</code> when quoted); unpaired surrogates use Unicode escapes and may not interoperate with every JSON consumer. Prefer a serializer for complete JSON documents.</li>\n<li>feat: add <code>forXml11</code>, <code>forXml11Content</code> and <code>forXml11Attribute</code> tags and EL functions to the advanced JSP and Jakarta taglibs, and <code>forXml11</code> to the basic taglibs <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/131\">#131</a>.</li>\n<li>deprecation: <code>Encoders.URI</code> and both <code>ForUriTag</code> classes are now deprecated like <code>Encode.forUri</code>, whose Javadoc now says what to use instead; the <code>forUri</code> TLD descriptions warn about double encoding, the adapter builds show deprecation call sites, and the README has a <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/main/README.md#migrating-from-foruri\">forUri migration section</a> <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/130\">#130</a>.</li>\n<li>fix: the JSP and Jakarta bundles now declare the core version they need (<code>[1.5,2)</code>, because the tags call <code>Encode.forJson</code>) and the JSP API ranges they support, instead of unversioned imports that could wire to an older core and fail when a tag ran. Bundle symbolic names are now declared explicitly and unchanged <a href=\"https://redirect.github.com/OWASP/owasp-java-encoder/issues/137\">#137</a>.</li>\n<li>fix: <code>forHtmlUnquotedAttribute</code> now replaces U+0085 (NEL) with a hyphen l"
+    }
+  ]
+}

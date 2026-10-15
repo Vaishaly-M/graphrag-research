@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+        "path": "README.md",
+        "offset": 7125,
+        "line": 137
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "offset": 1460,
+        "line": 35
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+        "path": null,
+        "offset": 2043,
+        "line": 40
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+        "offset": 1702,
+        "line": 40
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+        "path": null,
+        "offset": 387,
+        "line": 7
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1729",
+        "path": null,
+        "offset": 436,
+        "line": 5
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+        "path": null,
+        "offset": 332,
+        "line": 8
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7125,
+      "excerpt": "reated for you if you're using a recent Ultimate version. Otherwise, run the application by right-clicking on the `PetClinicApplication` main class and choosing `Run 'PetClinicApplication'`.\n\n1. Navigate to the Petclinic\n\n    Visit [http://localhost:8080](http://localhost:8080) in your browser.\n\n## Looking for something in particular?\n\n|Spring Boot Configuration | Class or Java property files  |\n|--------------------------|---|\n|The Main Class | [PetClinicApplication](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java) |\n|Properties Files | [application.properties](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources) |\n|Caching | [CacheConfiguration](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/java/org/springframework/samples/petclinic/system/CacheConfiguration.java) |\n\n## Interesting Spring Petclinic branches and forks\n\nThe Spring Petclinic \"main\" branch in the [spring-projects](https://github.com/spring-projects/spring-petclinic)\nGitHub org is the \"canonical\" implementation based on Spring Boot and Thymeleaf. There are\n[quite a few forks](https://spring-petclinic.github.io/docs/forks.html) in the GitHub org\n[spring-petclinic](https://github.com/spring-petclinic). If you are interested in using a different technology stack to implement the Pet Clinic, please join the community there.\n\n## Interaction with other open-source projects\n\nOne of the best parts about working on the Spring Petclinic application is that we have the opportunity to work in direct contact with many Open Source projects. We found bugs/suggested improvements on various topics such as Spring, Spring Data, Bean Validation and even Eclipse! In many cases, they've been fixed/implemented in just a few days.\nHere is a list of them:\n\n| Name | Issue |\n|------|-------|\n| Spring JDBC: simplify usage of NamedParameterJdbcTemplate | [SPR-10256](https://github.com/spring-projects/spring-framework/issues/14889) and [SPR-10257](https://github.com/spring-projects/spring-framework/issues/14890) |\n| Bean Validation / Hibernate Validator: simplify Maven dependencies and backward compatibility |[HV-790](https://hibernate.atlassian.net/browse/HV-790) and [HV-792](https://hibernate.atlassian.net/browse/HV-792) |\n| Spring Data: provide more flexibility when working wit"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1460,
+      "excerpt": "eb.bind.annotation.RequestMapping;\n\nimport jakarta.validation.Valid;\n\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Wick Dynex\n */\n@Controller\n@RequestMapping(\"/owners/{ownerId}\")\nclass PetController {\n\n\tprivate static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = \"pets/createOrUpdatePetForm\";\n\n\tprivate final OwnerRepository owners;\n\n\tprivate final PetTypeRepository types;\n\n\tpublic PetController(OwnerRepository owners, PetTypeRepository types) {\n\t\tthis.owners = owners;\n\t\tthis.types = types;\n\t}\n\n\t@ModelAttribute(\"types\")\n\tpublic Collection<PetType> populatePetTypes() {\n\t\treturn this.types.findPetTypes();\n\t}\n\n\t@ModelAttribute(\"owner\")\n\tpublic Owner findOwner(@PathVariable(\"ownerId\") int ownerId) {\n\t\tOptional<Owner> optionalOwner = this.owners.findById(ownerId);\n\t\tOwner owner = optionalOwner.orElseThrow(() -> new IllegalArgumentException(\n\t\t\t\t\"Owner not found with id: \" + ownerId + \". Please ensure the ID is correct \"));\n\t\treturn owner;\n\t}\n\n\t@ModelAttribute(\"pet\")\n\tpublic Pet findPet(@PathVariable(\"ownerId\") int ownerId,\n\t\t\t@PathVariable(name = \"petId\", required = false) Integer petId) {\n\n\t\tif (petId == null) {\n\t\t\treturn new Pet();\n\t\t}\n\n\t\tOptional<Owner> optionalOwner = this.owners.findById(ownerId);\n\t\tOwner owner = optionalOwner.orElseThrow(() -> new IllegalArgumentException(\n\t\t\t\t\"Owner not found with id: \" + ownerId + \". Please ensure the ID is correct \"));\n\t\treturn owner.getPet(petId);\n\t}\n\n\t@InitBinder(\"owner\")\n\tpublic void initOwnerBinder(WebDataBinder dataBinder) {\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t@InitBinder(\"pet\")\n\tpublic void initPetBinder(WebDataBinder dataBinder) {\n\t\tdataBinder.setValidator(new PetValidator());\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t@GetMapping(\"/pets/new\")\n\tpublic String initCreationForm(Owner owner, ModelMap model) {\n\t\tPet pet = new Pet();\n\t\towner.addPet(pet);\n\t\treturn VIEWS_PETS_CREATE_OR_UPDATE_FORM;\n\t}\n\n\t@PostMapping(\"/pets/new\")\n\tpublic String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result,\n\t\t\tRedirectAttributes redirectAttributes) {\n\n\t\tif (StringUtils.hasText(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {\n\t\t\tresult.rejectValue(\"name\", \"duplicate\", \"already exists\");\n\t\t}\n\n\t\tLocalDate currentDate = LocalDate.now();\n\t\tif (pet.getB"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1702,
+      "excerpt": "ost;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;\n\n/**\n * Test class for the {@link PetController}\n *\n * @author Colin But\n * @author Wick Dynex\n */\n@WebMvcTest(value = PetController.class,\n\t\tincludeFilters = @ComponentScan.Filter(value = PetTypeFormatter.class, type = FilterType.ASSIGNABLE_TYPE))\n@DisabledInNativeImage\n@DisabledInAotMode\nclass PetControllerTests {\n\n\tprivate static final int TEST_OWNER_ID = 1;\n\n\tprivate static final int TEST_PET_ID = 1;\n\n\t@Autowired\n\tprivate MockMvc mockMvc;\n\n\t@MockitoBean\n\tprivate OwnerRepository owners;\n\n\t@MockitoBean\n\tprivate PetTypeRepository types;\n\n\t@BeforeEach\n\tvoid setup() {\n\t\tPetType cat = new PetType();\n\t\tcat.setId(3);\n\t\tcat.setName(\"hamster\");\n\t\tgiven(this.types.findPetTypes()).willReturn(List.of(cat));\n\n\t\tOwner owner = new Owner();\n\t\tPet pet = new Pet();\n\t\tPet dog = new Pet();\n\t\towner.addPet(pet);\n\t\towner.addPet(dog);\n\t\tpet.setId(TEST_PET_ID);\n\t\tdog.setId(TEST_PET_ID + 1);\n\t\tpet.setName(\"petty\");\n\t\tdog.setName(\"doggy\");\n\t\tgiven(this.owners.findById(TEST_OWNER_ID)).willReturn(Optional.of(owner));\n\t}\n\n\t@Test\n\tvoid initCreationForm() throws Exception {\n\t\tmockMvc.perform(get(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID))\n\t\t\t.andExpect(status().isOk())\n\t\t\t.andExpect(view().name(\"pets/createOrUpdatePetForm\"))\n\t\t\t.andExpect(model().attributeExists(\"pet\"));\n\t}\n\n\t@Test\n\tvoid processCreationFormSuccess() throws Exception {\n\t\tmockMvc\n\t\t\t.perform(post(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID).param(\"name\", \"Betty\")\n\t\t\t\t.param(\"type\", \"hamster\")\n\t\t\t\t.param(\"birthDate\", \"2015-02-12\"))\n\t\t\t.andExpect(status().is3xxRedirection())\n\t\t\t.andExpect(view().name(\"redirect:/owners/{ownerId}\"));\n\t}\n\n\t@Nested\n\tclass ProcessCreationFormHasErrors {\n\n\t\t@Test\n\t\tvoid processCreationFormWithBlankName() throws Exception {\n\t\t\tmockMvc\n\t\t\t\t.perform(post(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID).param(\"name\", \"\\t \\n\")\n\t\t\t\t\t.param(\"birthDate\", \"2015-02-12\"))\n\t\t\t\t.andExpect(model().attributeHasNoErrors(\"owner\"))\n\t\t\t\t.andExpect(model().attributeHasErrors(\"pet\"))\n\t\t\t\t.andExpect(model().attributeHasFieldErrors(\"pet\", \"name\"))\n\t\t\t\t.andExpect(model().attributeHasFieldErrorCode(\"pet\", \"name\", \"required\"))\n\t\t\t\t.andExpect(status().isOk())\n\t\t\t\t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1729",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1729,
+      "title": "Refactor Owner Directory Structure for Component Separation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 436,
+      "excerpt": "ctories for each component:\r\n\r\npets: For all pet-related classes and functionality.\r\nowners: For all owner-related classes and functionality.\r\nvisits: For all visit-related classes and functionality.\r\nMove the relevant classes and files into their respective directories.\r\nExample:\r\n\r\nMove Pet.java, PetController.java, etc., to the pets directory.\r\nMove Owner.java, OwnerController.java, etc., to the owners directory.\r\nMove Visit.java, VisitController.java, etc., to the visits directory.\r\nUpdate imports throughout the project to reflect the new structure.\r\n\r\n### Benefits:\r\nImproved Readability: Each directory will contain only the files relevant to its component, making it easier for developers to find and understand code.\r\nBetter Scalability: As new features or functionality are added, the modular structure will help maintain organization.\r\nEasier Maintenance: Fixes or updates related to a specific component can be implemented and tested more efficiently.\r\n\r\nI recommend performing this refactoring as a separate commit to make the changes easier to track.\r\nLet me know if there's any feedback or additional considerations before I start working on this!"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2252,
+      "title": "[Feature] Add search pets by name screen",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 332,
+      "excerpt": "he pet name is known but the owner is not.\n- Aligns the pet entity with the same search UX pattern already established for owners.\n\n## Proposed Solution\n\n1. **New Thymeleaf template** (`templates/pets/findPets.html`) with a search form and results list/table.\n2. **New controller** endpoint(s) in a `PetController` (or extend existing controller) to handle `GET /pets/find` and `GET /pets` with a `name` query parameter.\n3. **New repository method** `findByNameContainingIgnoreCase(String name)` (or equivalent Spring Data query) in `PetRepository`.\n4. **Navigation link** added to the main layout so users can access the pet search screen.\n5. **Accessibility**: the new page must meet WCAG 2.2 Level AA (keyboard navigation, visible focus, proper labels, contrast, landmarks, etc.).\n\n## Acceptance Criteria\n\n- [ ] A \"Find Pets\" link is available in the main navigation menu\n- [ ] Users can search for pets by entering a full or partial pet name (case-insensitive)\n- [ ] An empty search returns all pets\n- [ ] Search results display pet name, birth date, type, and owner name\n- [ ] Clicking a result navigates to the pet's or owner's detail page\n- [ ] The page is accessible (landmarks, labels, keyboard support, contrast)\n- [ ] Unit and integration tests cover the new controller and repository methods\n- [ ] Works with H2 (default), MySQL, and PostgreSQL profiles\n\n## Alternatives Considered\n\n- Extending the existing owner search to also filter by pet name — rejected because it conflates two different search intents.\n\n## Additional Context\n\nThe implementation should follow the same patterns used by the existing \"Find Owners\" feature (`OwnerController`, `findOwners.html`, `ownersList.html`)."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2410,
+      "title": "Fix/add service documentation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\r\nAdds comprehensive Javadoc to `OwnerController`, `PetController`, and `VetController` — covering class descriptions, constructors, and all methods. No behavioural changes.\r\n\r\n## The code issues\r\n- **`OwnerController.java`** — Class description absent; 9 of 10 methods had no Javadoc. Only `showOwner` carried a minimal comment.\r\n- **`PetController.java`** — Class description absent; 8 of 9 methods had no Javadoc. Only `updatePetDetails` was documented.\r\n- **`VetController.java`** — Class description absent; all 4 methods and the constructor had no Javadoc.\r\n\r\n## Why these matter\r\n- **Maintainability**: undocumented method contracts force developers to read the full implementation to understand expected inputs, outputs, and error conditions, increasing the cost of every future change.\r\n- **Onboarding**: controllers are the primary entry points into the application. New contributors encounter them first, yet had no inline guidance on routing behaviour, pagination conventions, or redirect semantics.\r\n- **Tooling**: IDEs surface Javadoc as hover tooltips and in auto-generated API docs. Without it, developers lose the fastest path to understanding method contracts.\r\n\r\n## What this PR does\r\n- Adds a class-level description to each controller explaining its responsibility and base URL scope.\r\n- Documents each constructor with `@param` tags describing injected dependencies and their roles.\r\n- Documents each method with a description of its behaviour, `@param` tags for all parameters, `@return` for all non-void methods, and `@throws` where applicable.\r\n\r\n## SonarQube findings addressed\r\n| Rule  | File                   | Change                                              |\r\n|-------|------------------------|-----------------------------------------------------|\r\n| S1176 | `OwnerController.java` | Javadoc added to class, constructor, and 9 methods  |\r\n| S1176 | `PetController.java`   | Javadoc added to class, constructor, and 8 methods  |\r\n| S1176 | `VetController.java`   | Javadoc added to class, constructor, and 4 methods  |\r\n\r\n## Verification\r\n- No logic was changed; all existing tests pass unchanged.\r\n- Each Javadoc addition was committed individually to allow per-method review."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2434,
+      "title": "Refactor: remove unnecessary imports and redundant intermediate variables",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 387,
+      "excerpt": "rollerTests.java` and `VetControllerTests.java` both had a class-level import for `MockMvcRequestBuilders` despite already having static imports for the individual methods (`get`, `post`) from the same class. This made the class-level import redundant and unused. Similarly, `OwnerController.java`, `PetController.java`, and `VisitController.java` each imported `java.util.Optional` which was only needed to hold an intermediate variable that was immediately unwrapped on the next line.\r\n\r\n**Redundant intermediate variables** - In `OwnerController.java`, `PetController.java`, and `VisitController.java`, the pattern of assigning `owners.findById(...)` to an `optionalOwner` variable and then calling `.orElseThrow(...)` on the very next line served no purpose. SonarQube flags this under `java:S1488` - local variables should not be declared and then immediately returned or used.\r\n\r\n## Changes\r\n- Replaced `MockMvcRequestBuilders.post(...)` and `MockMvcRequestBuilders.get(...)` with the already-imported static equivalents in `OwnerControllerTests.java` and `VetControllerTests.java`, and removed the now-unused class-level imports\r\n- Collapsed all `optionalOwner` intermediate variable declarations into single chained expressions using `.orElseThrow(...)` directly on the repository call in `OwnerController.java`, `PetController.java`, and `VisitController.java`\r\n- Removed the `java.util.Optional` import from each controller where it was no longer referenced\r\n\r\n## Sustainability Impact\r\nRedundant code and unnecessary imports increase the noise developers must read through when understanding or modifying a file. Unused imports can mislead future contributors into thinking a type is meaningfully used, and they accumulate silently over time if not caught early.\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/VisitController.java`\r\n- `src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java`\r\n- `src/test/java/org/springframework/samples/petclinic/vet/VetControllerTests.java`"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2542,
+      "title": "Upgrade/java17 spring boot 3",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2043,
+      "excerpt": "akarta.validation.*`\r\n- `owner/PetType.java` — `jakarta.persistence.*`\r\n- `vet/Vet.java` — `jakarta.persistence.*`, `jakarta.xml.bind.*`\r\n- `vet/Specialty.java` — `jakarta.persistence.*`\r\n- `vet/Vets.java` — `jakarta.xml.bind.*`\r\n- `owner/OwnerController.java` — `jakarta.validation.Valid`\r\n- `owner/PetController.java` — `jakarta.validation.Valid`\r\n- `owner/VisitController.java` — `jakarta.validation.Valid`\r\n\r\n**Test sources**\r\n- `model/ValidatorTests.java` — `jakarta.validation.*`\r\n\r\n> **Note:** `javax.cache` (JCache/JSR-107) is intentionally unchanged — its groupId remains `javax.cache` and was not moved to the Jakarta namespace.\r\n\r\n### Code formatting\r\n\r\nRan `./mvnw spring-javaformat:apply` to satisfy the stricter import-ordering and blank-line rules enforced by spring-format 0.0.42. This touched several test files with no logic changes.\r\n\r\n---\r\n\r\n## Test results\r\n\r\n```\r\nTests run: 41, Failures: 0, Errors: 0, Skipped: 1\r\nBUILD SUCCESS\r\n```\r\n"
+    }
+  ]
+}

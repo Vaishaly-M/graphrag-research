@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1960",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+        "path": "README.md",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1961",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "offset": 358,
+        "line": 10
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2573",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:824",
+        "path": null,
+        "offset": 877,
+        "line": 17
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "offset": 637,
+        "line": 16
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "# Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)[![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml)\n\n[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)\n\n## Understanding the Spring Petclinic application with a few diagrams\n\nSee the presentation here:  \n[Spring Petclinic Sample Application (legacy slides)](https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20)\n\n> **Note:** These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.  \n> For up-to-date information, please refer to this repository and its documentation.\n\n\n## Run Petclinic locally\n\nSpring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).\nJava 17 or later is required for the build, and the application can run with Java 17 or newer.\n\nYou first need to clone the project locally:\n\n```bash\ngit clone https://github.com/spring-projects/spring-petclinic.git\ncd spring-petclinic\n```\nIf you are using Maven, you can start the application on the command-line as follows:\n\n```bash\n./mvnw spring-boot:run\n```\nWith Gradle, the command is as follows:\n\n```bash\n./gradlew bootRun\n```\n\nYou can then access the Petclinic at <http://localhost:8080/>.\n\n<img width=\"1042\" alt=\"petclinic-screenshot\" src=\"https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png\">\n\nYou can, of course, run Petclinic in your favorite IDE.\nSee below for more details.\n\n## Building a Container\n\nThere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 637,
+      "excerpt": "ingframework.samples.petclinic.owner;\n\nimport java.util.List;\nimport java.util.Objects;\nimport java.util.Optional;\n\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageRequest;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.Model;\nimport org.springframework.validation.BindingResult;\nimport org.springframework.web.bind.WebDataBinder;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.InitBinder;\nimport org.springframework.web.bind.annotation.ModelAttribute;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.servlet.ModelAndView;\n\nimport jakarta.validation.Valid;\n\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Michael Isvy\n * @author Wick Dynex\n */\n@Controller\nclass OwnerController {\n\n\tprivate static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = \"owners/createOrUpdateOwnerForm\";\n\n\tprivate final OwnerRepository owners;\n\n\tpublic OwnerController(OwnerRepository owners) {\n\t\tthis.owners = owners;\n\t}\n\n\t@InitBinder\n\tpublic void setAllowedFields(WebDataBinder dataBinder) {\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t@ModelAttribute(\"owner\")\n\tpublic Owner findOwner(@PathVariable(name = \"ownerId\", required = false) Integer ownerId) {\n\t\treturn ownerId == null ? new Owner()\n\t\t\t\t: this.owners.findById(ownerId)\n\t\t\t\t\t.orElseThrow(() -> new IllegalArgumentException(\"Owner not found with id: \" + ownerId\n\t\t\t\t\t\t\t+ \". Please ensure the ID is correct \" + \"and the owner exists in the database.\"));\n\t}\n\n\t@GetMapping(\"/owners/new\")\n\tpublic String initCreationForm() {\n\t\treturn VIEWS_OWNER_CREATE_OR_UPDATE_FORM;\n\t}\n\n\t@PostMapping(\"/owners/new\")\n\tpublic String processCreationForm(@Valid Owner owner, BindingResult result, RedirectAttributes redirectAttributes) {\n\t\tif (result.hasErrors()) {\n\t\t\tredirectAttributes.addFlashAttribute(\"error\", \"There was an error in creating the owner.\");\n\t\t\treturn VIEWS_OWNER_CREATE_OR_UPDATE_FORM;\n\t\t}\n\n\t\tthis.owners.save(owner);\n\t\tredirectAttributes.addFlashAttribute(\"message\", \"New Owner Created\");\n\t\treturn"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 358,
+      "excerpt": " software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.springframework.samples.petclinic.owner;\n\nimport java.time.LocalDate;\nimport java.util.Collection;\nimport java.util.Objects;\nimport java.util.Optional;\n\nimport org.springframework.dao.DataIntegrityViolationException;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.ModelMap;\nimport org.springframework.util.Assert;\nimport org.springframework.util.StringUtils;\nimport org.springframework.validation.BindingResult;\nimport org.springframework.web.bind.WebDataBinder;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.InitBinder;\nimport org.springframework.web.bind.annotation.ModelAttribute;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestMapping;\n\nimport jakarta.validation.Valid;\n\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Wick Dynex\n */\n@Controller\n@RequestMapping(\"/owners/{ownerId}\")\nclass PetController {\n\n\tprivate static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = \"pets/createOrUpdatePetForm\";\n\n\tprivate final OwnerRepository owners;\n\n\tprivate final PetTypeRepository types;\n\n\tpublic PetController(OwnerRepository owners, PetTypeRepository types) {\n\t\tthis.owners = owners;\n\t\tthis.types = types;\n\t}\n\n\t@ModelAttribute(\"types\")\n\tpublic Collection<PetType> populatePetTypes() {\n\t\treturn this.types.findPetTypes();\n\t}\n\n\t@ModelAttribute(\"owner\")\n\tpublic Owner findOwner(@PathVariable(\"ownerId\") int ownerId) {\n\t\tOptional<Owner> optionalOwner = this.owners.findById(ownerId);\n\t\tOwner owner = optionalOwner.orElseThrow(() -> new IllegalArgumentException(\n\t\t\t\t\"Owner not found with id: \" + ownerId + \". Please ensure the ID is correct \"));\n\t\treturn owner;\n\t}\n\n\t@ModelAttribute(\"pet\")\n\tpublic Pet findPet(@PathVariable(\"ownerId\") int ownerId,\n\t\t\t@PathVariable(name = \"petId\", required = false) Integer petId) {\n\n\t\tif (petId == null) {\n\t\t\treturn new Pet();\n\t\t}\n\n\t\tOptional<Owner> optionalOwne"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1960",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1960,
+      "title": "Fix Feature Flag Integration Test Failures and Port Conflict",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "# CloudSmith Troubleshooting Summary\n## Trigger details\n| Workflow run  | Branch  | Commit  |\n|---|---|---|\n| [#15837158459](https://github.com/spring-projects/spring-petclinic/actions/runs/15837158459) |  ```facError``` |  ```25cf7e2c3fc337b119c09b5a102f0e5b6c829e6c``` |\n----\n## Detailed Findings\n### Issue 1\n\n\n**Problem**: The application fails to start because port 8080 is already in use. This is a port conflict issue where another process is already using the default port configured in application.properties.\n\n\n**File**: ```src/main/resources/application.properties```\n\n\n**Error Log**:\n```\n2025-06-23T23:16:02.8607484Z out: Description:\\n2025-06-23T23:16:02.8608003Z out: Web server failed to start. Port 8080 was already in use.\\n2025-06-23T23:16:02.8608706Z out: Action:\\n2025-06-23T23:16:02.8608706Z out: Identify and stop the process that\\'s listening on port 8080 or configure this application to listen on another port.\n```\n\n\n**Code snippet**:\n```\nserver.address=0.0.0.0\\nserver.port=8080\\n# Prefer IPv4 stack\\nserver.tomcat.protocol-header-https-value=java.net.preferIPv4Stack=true\n```\n\n\n**Solution Plan**:\n\n\n1. Modify the application.properties file to use a different port: Using port 0 will make Spring Boot automatically select an available port.\n```\n                   server.address=0.0.0.0\n                   server.port=0\n                   # Prefer IPv4 stack\n                   server.tomcat.protocol-header-https-value=java.net.preferIPv4Stack=true\n```\n2. Alternatively, you can specify a specific unused port like 8081:\n```\n                   server.port=8081\n```\n3. For the CI/CD environment, you can also add a step to kill any process using port 8080 before starting the application:\n```\n                   lsof -ti:8080 | xargs kill -9 || true\n```\n\n\n----\n\n# CloudSmith Troubleshooting Summary\n## Trigger details\n| Workflow run  | Branch  | Commit  |\n|---|---|---|\n| [#15837158459](https://github.com/spring-projects/spring-petclinic/actions/runs/15837158459) |  ```facError``` |  ```25cf7e2c3fc337b119c09b5a102f0e5b6c829e6c``` |\n----\n## Detailed Findings\n### Issue 2\n\n\n**Problem**: The integration test is failing with NullPointerException because the vet management feature is disabled in the main application.properties but the test is trying to access the vets endpoint. The test expects the feature to be enabled.\n\n\n**File**: ```src/main/resources/application.prop"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1961",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1961,
+      "title": "Fix test failures due to feature flag configuration and port conflict",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "# CloudSmith Troubleshooting Summary\n## Trigger details\n| Workflow run  | Branch  | Commit  |\n|---|---|---|\n| [#15837158459](https://github.com/spring-projects/spring-petclinic/actions/runs/15837158459) |  ```main``` |  ```25cf7e2c3fc337b119c09b5a102f0e5b6c829e6c``` |\n----\n## Detailed Findings\n### Issue 1\n\n\n**Problem**: The application fails to start because port 8080 is already in use. This is preventing the tests from running properly as they depend on the application being available.\n\n\n**File**: ```src/main/resources/application.properties```\n\n\n**Error Log**:\n```\n***************************\nAPPLICATION FAILED TO START\n***************************\n\nDescription:\n\nWeb server failed to start. Port 8080 was already in use.\n\nAction:\n\nIdentify and stop the process that's listening on port 8080 or configure this application to listen on another port.\n```\n\n\n**Code snippet**:\n```\nserver.address=0.0.0.0\nserver.port=8080\n# Prefer IPv4 stack\nserver.tomcat.protocol-header-https-value=java.net.preferIPv4Stack=true\n```\n\n\n**Solution Plan**:\n\n\n1. Modify the application.properties file to use a dynamic port for tests instead of the fixed port 8080. \n2. Alternatively, create a separate application-test.properties file with server.port=0 to use a random available port during tests. \n3. If you need to keep port 8080 for production, ensure that no other processes are using this port before starting the application.\n\n\n----\n\n### Issue 2\n\n\n**Problem**: The integration tests are failing because feature flags for pet management and visit management are disabled in the main application.properties file, but the tests expect these features to be enabled.\n\n\n**File**: ```src/main/resources/application.properties```\n\n\n**Error Log**:\n```\n2025-06-23T23:16:59.7213403Z out: java.lang.NullPointerException: Cannot invoke \"org.springframework.http.ResponseEntity.getStatusCode()\" because \"this.lastResponse\" is null\n```\n\n\n**Code snippet**:\n```\n# Feature Flags\npetclinic.features.owner-management=true\npetclinic.features.pet-management=false\npetclinic.features.visit-management=false\npetclinic.features.vet-management=false\n```\n\n\n**Solution Plan**:\n\n\n1. Update the CucumberSpringConfiguration class to explicitly use the test properties profile. \n2. Ensure that the application-test.properties file is properly loaded during tests by moving it to the correct location if needed. \n3. Verify that the test conf"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2252,
+      "title": "[Feature] Add search pets by name screen",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\nAdd a new screen that allows users to search for pets by name, similar to the existing \"Find Owners\" functionality.\n\n## Motivation\n\n- Currently there is no way to search for a pet directly by name; users must first find the owner and then browse their pets.\n- A dedicated pet search screen would improve usability when the pet name is known but the owner is not.\n- Aligns the pet entity with the same search UX pattern already established for owners.\n\n## Proposed Solution\n\n1. **New Thymeleaf template** (`templates/pets/findPets.html`) with a search form and results list/table.\n2. **New controller** endpoint(s) in a `PetController` (or extend existing controller) to handle `GET /pets/find` and `GET /pets` with a `name` query parameter.\n3. **New repository method** `findByNameContainingIgnoreCase(String name)` (or equivalent Spring Data query) in `PetRepository`.\n4. **Navigation link** added to the main layout so users can access the pet search screen.\n5. **Accessibility**: the new page must meet WCAG 2.2 Level AA (keyboard navigation, visible focus, proper labels, contrast, landmarks, etc.).\n\n## Acceptance Criteria\n\n- [ ] A \"Find Pets\" link is available in the main navigation menu\n- [ ] Users can search for pets by entering a full or partial pet name (case-insensitive)\n- [ ] An empty search returns all pets\n- [ ] Search results display pet name, birth date, type, and owner name\n- [ ] Clicking a result navigates to the pet's or owner's detail page\n- [ ] The page is accessible (landmarks, labels, keyboard support, contrast)\n- [ ] Unit and integration tests cover the new controller and repository methods\n- [ ] Works with H2 (default), MySQL, and PostgreSQL profiles\n\n## Alternatives Considered\n\n- Extending the existing owner search to also filter by pet name — rejected because it conflates two different search intents.\n\n## Additional Context\n\nThe implementation should follow the same patterns used by the existing \"Find Owners\" feature (`OwnerController`, `findOwners.html`, `ownersList.html`)."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:824",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 824,
+      "title": "Test fail with profile MySQL",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 877,
+      "excerpt": ".service.ClinicServiceTests\r\nshouldFindVets  Time elapsed: 0.015 s  <<< ERROR!\r\njava.lang.IllegalStateException: Failed to load ApplicationContext\r\nCaused by: org.springframework.beans.factory.BeanCreationException: \r\nError creating bean with name 'scriptDataSourceInitializer' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceInitializationConfiguration$SharedCredentialsDataSourceInitializationConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.jdbc.datasource.init.ScriptStatementFailedException: Failed to execute SQL script statement #1 of URL [file:/home/lynchmaniac/dev/garbage/spring-petclinic/target/classes/db/mysql/schema.sql]: CREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB; nested exception is org.h2.jdbc.JdbcSQLNonTransientException: Type de données inconnu: \r\nUnknown data type: ; SQL statement:\r\nCREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB [50004-200]\r\nCaused by: org.springframework.jdbc.datasource.init.ScriptStatementFailedException: \r\nFailed to execute SQL script statement #1 of URL [file:/home/lynchmaniac/dev/garbage/spring-petclinic/target/classes/db/mysql/schema.sql]: CREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB; nested exception is org.h2.jdbc.JdbcSQLNonTransientException: Type de données inconnu: \r\nUnknown data type: ; SQL statement:\r\nCREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB [50004-200]\r\nCaused by: org.h2.jdbc.JdbcSQLNonTransientException: \r\nType de données inconnu: \r\nUnknown data type: ; SQL statement:\r\nCREATE TABLE IF NOT EXISTS vets ( id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), INDEX(last_name) ) engine=InnoDB [50004-200]\r\n```\r\nAs you can see the test try to use H2 driver to execute MySQL request.\r\n\r\n## Configuration \r\nMy configuration is :\r\n\r\n### application-mysql.properties\r\n```\r\n# database init, supports mysq"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2573",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2573,
+      "title": "Prevent duplicate pet creation with similar name for the same owner under concurrent requests",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\r\nThis Pull Request resolves a concurrent race condition in the Spring PetClinic application that allows users to create duplicate pets with the same name (case-insensitive) under the same owner.\r\n\r\n## Problem\r\nIn a concurrent environment, if two requests are sent simultaneously to create a pet with the same name for the same owner, both checks succeed, bypassing the in-memory validation check and inserting duplicate pet records.\r\n\r\n## Steps to Reproduce\r\n\r\n1. Start the Spring Boot application locally.\r\n2. Create an owner (or use an existing owner with no pet named `PRTESTPET`).\r\n3. Send two concurrent `POST` requests to `/owners/{ownerId}/pets/new`, both using the pet name `PRTESTPET`.\r\n4. Open the owner's details page.\r\n5. Observe that both requests succeed and duplicate pets with the same name are created for the same owner.\r\n\r\n<img width=\"728\" height=\"504\" alt=\"Screenshot 2026-07-14 at 1 47 19 AM\" src=\"https://github.com/user-attachments/assets/3c83859f-9660-4030-a583-f0e6953e273f\" />\r\n\r\n\r\n## Root Cause\r\nThe duplication validation is executed entirely in Java memory (using a check-then-act pattern: `owner.getPet(petName, false) != null`), and there is no database-level unique constraint or lock to serialize concurrent insert operations.\r\n\r\n## Solution\r\n1. **Database-Level Case-Insensitive Uniqueness Constraints**:\r\n   - **H2**: Change the `pets.name` column type to `VARCHAR_IGNORECASE(30)` and add a unique constraint on `(owner_id, name)`.\r\n   - **MySQL**: Add a unique constraint `UNIQUE (owner_id, name)`.\r\n   - **PostgreSQL**: Add a unique functional index: `CREATE UNIQUE INDEX unique_owner_pet_name ON pets (owner_id, LOWER(name));`.\r\n2. **Immediate Persistence**:\r\n   - Change `save()` to `saveAndFlush()` in [PetController.java](file:///Users/spring-petclinic/src/main/java/org/springframework/samples/petclinic/owner/PetController.java) to ensure SQL execution and trigger constraint violations within the try-catch block.\r\n3. **Graceful Exception Translation**:\r\n   - Update [PetController.java](file:///Users/spring-petclinic/src/main/java/org/springframework/samples/petclinic/owner/PetController.java) to catch `DataIntegrityViolationException`, verify if it is the specific `unique_owner_pet_name` violation, and translate it into a clean validation error on the name field.\r\n\r\nNOTE: To preserve the existing application behavior, the database const"
+    }
+  ]
+}

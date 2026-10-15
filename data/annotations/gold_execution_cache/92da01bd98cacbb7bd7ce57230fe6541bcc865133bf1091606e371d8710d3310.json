@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 2333,
+        "line": 38
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 2393,
+        "line": 38
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 1534,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 968,
+        "line": 23
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PYTHON_CLIENT.md",
+        "path": "dev/README_RELEASE_PYTHON_CLIENT.md",
+        "offset": 1160,
+        "line": 25
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/09_release_management_tasks.rst",
+        "path": "dev/breeze/doc/09_release_management_tasks.rst",
+        "offset": 3413,
+        "line": 90
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 25677,
+        "line": 307
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+        "path": "java-sdk/README.md",
+        "offset": 4494,
+        "line": 140
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 25677,
+      "excerpt": "get_branch>\n```\n\nIf there are conflicts, resolve them and continue the rebase. If the rebase is too complex,\nask the user for guidance.\n\nThen push the branch to your fork (`origin`) and open the PR creation page in the browser\nwith the body pre-filled (including the generative AI disclosure already checked):\n\n```bash\ngit push -u origin <branch-name>\ngh pr create --web --title \"Short title (under 70 chars)\" --body \"$(cat <<'EOF'\nBrief description of the changes.\n\ncloses: #ISSUE  (if applicable)\n\n---\n\n##### Was generative AI tooling used to co-author this PR?\n\n- [X] Yes — <Agent Name and Version>\n\nGenerated-by: <Agent Name and Version> following [the guidelines](https://github.com/apache/airflow/blob/main/contributing-docs/05_pull_requests.rst#gen-ai-assisted-contributions)\n\nEOF\n)\"\n```\n\nThe `--web` flag opens the browser so the user can review and submit. The `--body` flag\npre-fills the PR template with the generative AI disclosure already completed.\n\nRemind the user to:\n\n1. Review the PR title — keep it short (under 70 chars), in the imperative mood, and focused on user impact. Do not use Conventional Commits prefixes (`fix:`, `feat:`, `chore:`, …).\n2. Add a brief description of the changes at the top of the body.\n3. Reference related issues when applicable (`closes: #ISSUE` or `related: #ISSUE`).\n\n### Golden rule: when a fix is imminent, open the PR, not an issue\n\nIf you already know how to fix the problem and you (or the user) are going to\nopen the PR shortly, **do not file a GitHub issue first**. Go straight to the\nPR.\n\n- Airflow does not use issues as a changelog, as a parallel bug database, or\n  as a duplicate record of in-flight work. The PR itself is the canonical\n  record — title, description, diff, discussion, and merge all live in one\n  place. An issue that gets closed by a PR a day later is double accounting\n  that carries no information the PR does not already carry.\n- Open issues attract drive-by submissions, often from other agents, that\n  haven't seen the in-flight work. That produces duplicate fixes, low-quality\n  PRs that have to be closed, and wasted reviewer time. Not opening the\n  issue avoids creating that bait in the first place.\n- If you catch yourself drafting an issue body that reads like the PR\n  description you are about to write, that is the signal — skip the issue\n  and open the PR.\n\nThe one exception is the case covered by the ne"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1534,
+      "excerpt": "Reviewing cherry-picked PRs and assigning labels](#reviewing-cherry-picked-prs-and-assigning-labels)\n- [Prepare the Apache Airflow Package RC](#prepare-the-apache-airflow-package-rc)\n  - [Update the milestone](#update-the-milestone)\n  - [Build RC artifacts](#build-rc-artifacts)\n  - [Publish release candidate documentation (staging)](#publish-release-candidate-documentation-staging)\n  - [Prepare production Docker Image RC](#prepare-production-docker-image-rc)\n  - [Prepare Vote email on the Apache Airflow release candidate](#prepare-vote-email-on-the-apache-airflow-release-candidate)\n- [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [Reproducible package check](#reproducible-package-check)\n  - [SVN check](#svn-check)\n  - [Licence check](#licence-check)\n  - [Signature check](#signature-check)\n  - [SHA512 sum check](#sha512-sum-check)\n  - [Optional: Automated verification using Breeze](#optional-automated-verification-using-breeze)\n- [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n  - [Installing release candidate in your local virtual environment](#installing-release-candidate-in-your-local-virtual-environment)\n- [Publish the final Apache Airflow release](#publish-the-final-apache-airflow-release)\n  - [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Manually prepare production Docker Image](#manually-prepare-production-docker-image)\n  - [Verify production images](#verify-production-images)\n  - [Publish final documentation](#publish-final-documentation)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Update Announcements page](#update-announcements-page)\n  - [Create release on GitHub](#create-release-on-github)\n  - [Close the milestone](#close-the-milestone)\n  - [Close the testing status issue](#close-the-testing-status-issue)\n  - [Announce the release on the community slack](#announce-the-release-on-the-community-slack)\n  - [Announce about the release in social media](#announce-about-the-relea"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2333,
+      "excerpt": "uild and sign the source and convenience packages](#build-and-sign-the-source-and-convenience-packages)\n  - [Add tags in git](#add-tags-in-git)\n  - [Commit the source packages to Apache SVN repo](#commit-the-source-packages-to-apache-svn-repo)\n  - [Publish the Regular distributions to PyPI (release candidates)](#publish-the-regular-distributions-to-pypi-release-candidates)\n  - [Prepare documentation in Staging](#prepare-documentation-in-staging)\n  - [Prepare issue in GitHub to keep status of testing](#prepare-issue-in-github-to-keep-status-of-testing)\n  - [Prepare voting email for airflow-ctl release candidate](#prepare-voting-email-for-airflow-ctl-release-candidate)\n  - [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n- [Publish release](#publish-release)\n- [Set variables](#set-variables)\n  - [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Publish the packages to PyPI](#publish-the-packages-to-pypi)\n  - [Add the final release tag in git](#add-the-final-release-tag-in-git)\n  - [Publish documentation](#publish-documentation)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Announce about the release in social media](#announce-about-the-release-in-social-media)\n  - [Announce about the release in Apache Airflow Slack](#announce-about-the-release-in-apache-airflow-slack)\n  - [Add Blog post about the release](#add-blog-post-about-the-release)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Close the testing status issue](#close-the-testing-status-issue)\n- [Additional processes](#additional-processes)\n  - [Fixing released documentation](#fixing-released-documentation)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\n------------------------------------------------------------------------------------------------------------\n\n# What the airflow-ctl distribution is\n\nThe distribution is separate packages that implement remote CLI for Apache Airflow.\n\nThe Release M"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 968,
+      "excerpt": "ies during the release (for a follow-up doc PR)](#collect-ambiguities-during-the-release-for-a-follow-up-doc-pr)\n- [Perform review of security issues that are marked for the release](#perform-review-of-security-issues-that-are-marked-for-the-release)\n- [Prepare the Apache Airflow Helm Chart Release Candidate](#prepare-the-apache-airflow-helm-chart-release-candidate)\n  - [Pre-requisites](#pre-requisites)\n  - [Set environment variables](#set-environment-variables)\n  - [Setup k8s environment (mainly helm chart)](#setup-k8s-environment-mainly-helm-chart)\n  - [Build Release Notes](#build-release-notes)\n  - [Update minimum version of Kubernetes](#update-minimum-version-of-kubernetes)\n  - [Build RC artifacts](#build-rc-artifacts)\n  - [Publish rc documentation](#publish-rc-documentation)\n  - [Prepare issue for testing status of rc](#prepare-issue-for-testing-status-of-rc)\n  - [Prepare Vote email on the Apache Airflow release candidate](#prepare-vote-email-on-the-apache-airflow-release-candidate)\n- [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [SVN check](#svn-check)\n  - [Source tarball reproducibility check](#source-tarball-reproducibility-check)\n  - [Licence check](#licence-check)\n  - [Signature check](#signature-check)\n  - [SHA512 sum check](#sha512-sum-check)\n- [Verify the release candidates by Contributors](#verify-the-release-candidates-by-contributors)\n  - [End-to-end verification with Breeze and KinD](#end-to-end-verification-with-breeze-and-kind)\n- [Publish the final release](#publish-the-final-release)\n  - [Summarize the voting for the release](#summarize-the-voting-for-the-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Publish release tag](#publish-release-tag)\n  - [Publish final documentation](#publish-final-documentation)\n  - [Update `index.yaml` in airflow-site](#update-indexyaml-in-airflow-site)\n  - [Wait for ArtifactHUB to discover new release](#wait-for-artifacthub-to-discover-new-release)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Update Announcements page](#update-announcements-page)\n  - [Create release on GitHub]"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2393,
+      "excerpt": "tributions-for-svn-apache-upload)\n  - [Build and sign the source and convenience packages](#build-and-sign-the-source-and-convenience-packages)\n  - [Commit the source packages to Apache SVN repo](#commit-the-source-packages-to-apache-svn-repo)\n  - [Publish the Regular distributions to PyPI (release candidates)](#publish-the-regular-distributions-to-pypi-release-candidates)\n  - [Push the RC tags](#push-the-rc-tags)\n  - [Prepare documentation in Staging](#prepare-documentation-in-staging)\n  - [Prepare issue in GitHub to keep status of testing](#prepare-issue-in-github-to-keep-status-of-testing)\n  - [Prepare voting email for Providers release candidate](#prepare-voting-email-for-providers-release-candidate)\n- [Release verification](#release-verification)\n  - [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n- [Publish release](#publish-release)\n  - [Summarize the voting for the Apache Airflow release](#summarize-the-voting-for-the-apache-airflow-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Publish the packages to PyPI](#publish-the-packages-to-pypi)\n  - [Add the final release tag in git](#add-the-final-release-tag-in-git)\n  - [Publish documentation](#publish-documentation)\n  - [Update providers metadata](#update-providers-metadata)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Send announcements about security issues fixed in the release](#send-announcements-about-security-issues-fixed-in-the-release)\n  - [Announce about the release in social media](#announce-about-the-release-in-social-media)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n  - [Close the testing status issue](#close-the-testing-status-issue)\n  - [Remove Provider distributions scheduled for removal](#remove-provider-distributions-scheduled-for-removal)\n- [Misc / Post release Helpers](#misc--post-release-helpers)\n  - [Fixing released documentation](#fixing-released-documentation)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\n------------------------------------------------------------------------------------------------------------\n\n# Intro\n\n## What the provider distributions are\n\nThe Provider distributions are sep"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PYTHON_CLIENT.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PYTHON_CLIENT.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1160,
+      "excerpt": "iew of security issues that are marked for the release](#perform-review-of-security-issues-that-are-marked-for-the-release)\n- [Release package](#release-package)\n  - [Prepare PyPI convenience \"RC\" packages](#prepare-pypi-convenience-rc-packages)\n  - [Prepare Vote email on the Airflow Client release candidate](#prepare-vote-email-on-the-airflow-client-release-candidate)\n- [Verification of the release candidate](#verification-of-the-release-candidate)\n  - [Verify the release candidate by PMC members](#verify-the-release-candidate-by-pmc-members)\n  - [Verify the release candidate by Contributors](#verify-the-release-candidate-by-contributors)\n- [Publish the final Apache Airflow client release](#publish-the-final-apache-airflow-client-release)\n  - [Summarize the voting for the Apache Airflow client release](#summarize-the-voting-for-the-apache-airflow-client-release)\n  - [Publish release to SVN](#publish-release-to-svn)\n  - [Prepare PyPI \"release\" packages](#prepare-pypi-release-packages)\n  - [Create release on GitHub](#create-release-on-github)\n  - [Notify developers of release](#notify-developers-of-release)\n  - [Add release data to Apache Committee Report Helper](#add-release-data-to-apache-committee-report-helper)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\n# Collect ambiguities during the release (for a follow-up doc PR)\n\nThese instructions are imperfect. Every release uncovers at least one command\nthat has drifted, one step that is under-documented, or one automation that\nsilently did the wrong thing. As you run through this document, jot down any\nsuch observations in a scratch file kept **outside** the repo (anywhere that\nis not tracked by git — a note in your home directory, a scratchpad, a\ngist). Once the release has landed, turn those notes into a follow-up PR\nagainst this document.\n\nKeeping the scratch file out of the repo avoids accidentally committing\nrelease-manager notes along with the release-prep PR, and makes it obvious\nthat the notes are input to the next doc PR rather than something to keep\naround long-term.\n\n# Perform review of security issues that are marked for the release\n\nWe are keeping track of security issues in the [Security Issues](https://github.com/airflow-s/airflow-s/issues)\nrepository currently. As a release manager, you should have access to the repository.\nPlease review and ensure that all "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/09_release_management_tasks.rst",
+      "kind": "File",
+      "path": "dev/breeze/doc/09_release_management_tasks.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3413,
+      "excerpt": "h when the tag\n\n.. image:: ./images/output_release-management_prepare-tarball.svg\n  :target: https://raw.githubusercontent.com/apache/airflow/main/dev/breeze/doc/images/output_release-management_prepare-tarball.svg\n  :width: 100%\n  :alt: Breeze release-management prepare-tarball\n\nValidating Release Candidate for PMC\n\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\n\nPMC members can use Breeze to run an automated verification of release candidates as an optional\ncross-check to the manual verification steps.\n\nSee the full manual process in ``dev/README_RELEASE_AIRFLOW.md`` under \"Verify the release candidate by PMC members\".\n\nIf the automation output disagrees with the manual verification, treat the manual verification as\nauthoritative and report the discrepancy.\n\nThis command validates SVN files, GPG signatures, SHA512 checksums, Apache RAT licenses, and\nreproducible builds.\n\n.. warning::\n\n      **Deprecation notice:** All checks except ``reproducible-build`` will be deprecated upon full\n      migration to Apache Trusted Releases (ATR). After migration, only the reproducible build check\n      will remain as the primary automated verification.\n\nImplementation notes\n^^^^^^^^^^^^^^^^^^^^\n\n* Reproducible build verification checks out the release tag, builds packages using the same\n  breeze commands as documented in README_RELEASE_AIRFLOW.md, and compares with SVN artifacts.\n* The validator performs a fast check for **SVN working copy locks** and fails early rather than\n  hanging on an ``svn`` command.\n\nSupported distributions\n^^^^^^^^^^^^^^^^^^^^^^^\n\nCurrently supported:\n\n* ``--distribution airflow``\n\nOther values (``providers``, ``airflowctl``, ``python-client``) exist for future expansion but are not yet implemented.\n\n.. code-block:: bash\n\n          breeze release-management verify-rc-by-pmc \\\n               --distribution airflow \\\n               --version 3.1.3rc1 \\\n               --task-sdk-version 1.1.3rc1 \\\n               --path-to-airflow-svn ~/asf-dist/dev/airflow\n\nYou can run individual checks by specifying the ``--checks`` flag:\n\n.. code-block:: bash\n\n    breeze release-management verify-rc-by-pmc \\\n      --distribution airflow \\\n      --version 3.1.3rc1 \\\n     --task-sdk-version 1.1.3rc1 \\\n      --path-to-airflow-svn ~/asf-dist/dev/airflow \\\n      --checks reproducible-build,svn,licenses,signatures,checksums\n\n.. note::\n\n   This command is covered by Breeze integr"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+      "kind": "File",
+      "path": "java-sdk/README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4494,
+      "excerpt": "ssing `-PprojectVersion=<VERSION>` to any Gradle invocation. This\nis handy for one-off or pre-release builds. Either way, `main` should stay on a\n`-SNAPSHOT` version between releases: a snapshot sorts after `<VERSION>` and\nbefore the GA, so no extra bump is needed after a beta.\n\n### Tag the release candidate\n\nTag the release commit, keeping the RC number in the tag name so a failed vote\nsimply bumps to the next RC (the artifact version itself does not carry the RC\nsuffix). Push the tag before sending the vote so reviewers can check out the\nexact source being voted on.\n\n```bash\ngit tag -s java-sdk/<VERSION>-rc<N> -m \"Java SDK <VERSION> RC <N>\"\ngit push upstream java-sdk/<VERSION>-rc<N>\n```\n\n### Verify the POM locally\n\nBefore touching any remote repository, publish to your local Maven cache and\ninspect the generated POM:\n\n```bash\nrm -rf ~/.m2/repository/org/apache/airflow/  # Start clean.\n\n./gradlew publishToMavenLocal -PskipSigning=true\n\n# The airflow-sdk runtime.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk/*/airflow-sdk-*.pom\n\n# The bill of materials of airflow-sdk\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-bom/*/*.pom\n\n# The annotation processor for the builder pattern.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-processor/*/airflow-sdk-*.pom\n\n# The Gradle plugin for bundling.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-gradle-plugin/*/airflow-sdk-*.pom\n\n# The Gradle plugin's registration.\nless ~/.m2/repository/org/apache/airflow/sdk/org.apache.airflow.sdk.gradle.plugin/*/*.pom\n```\n\nCheck that the coordinates, description, license, SCM, and organization fields\nlook correct.\n\n### Dry-run against a local repository\n\nTo test the full publish flow without touching ASF infrastructure, override the\nrepository URL to a local directory\n\n```bash\nrm -rf /tmp/local-maven-repo  # Start clean.\n./gradlew publish -PmavenUrl=file:///tmp/local-maven-repo -PskipSigning=true\nls /tmp/local-maven-repo/org/apache/airflow/\n# This should contain the same components in ~/.m2 as inspected in the previous step.\n```\n\n*NOTE:* Signing is not required since nothing goes to Maven Central. If you want\nto test signing, set the GPG private key and passphrase as described in the next\nsection, and remove `-PskipSigning=true` from the above command.\n\n### Publish to ASF Nexus staging\n\nStore the credentials in `~/.gradle/gradle.properties` so they are not expo"
+    }
+  ]
+}

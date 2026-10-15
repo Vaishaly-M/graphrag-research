@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 46981,
+        "line": 883
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 18091,
+        "line": 454
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 36769,
+        "line": 814
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 27281,
+        "line": 350
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:ISSUE_TRIAGE_PROCESS.rst",
+        "path": "ISSUE_TRIAGE_PROCESS.rst",
+        "offset": 7268,
+        "line": 119
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/security/security_model.rst",
+        "path": "airflow-core/docs/security/security_model.rst",
+        "offset": 11155,
+        "line": 219
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+        "path": "airflow-core/docs/best-practices.rst",
+        "offset": 4018,
+        "line": 86
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/25_maintainer_pr_triage.md",
+        "path": "contributing-docs/25_maintainer_pr_triage.md",
+        "offset": 11523,
+        "line": 191
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27281,
+      "excerpt": "lel bug database, or\n  as a duplicate record of in-flight work. The PR itself is the canonical\n  record — title, description, diff, discussion, and merge all live in one\n  place. An issue that gets closed by a PR a day later is double accounting\n  that carries no information the PR does not already carry.\n- Open issues attract drive-by submissions, often from other agents, that\n  haven't seen the in-flight work. That produces duplicate fixes, low-quality\n  PRs that have to be closed, and wasted reviewer time. Not opening the\n  issue avoids creating that bait in the first place.\n- If you catch yourself drafting an issue body that reads like the PR\n  description you are about to write, that is the signal — skip the issue\n  and open the PR.\n\nThe one exception is the case covered by the next section: the PR ships a\n**workaround, mitigation, or partial fix** and the real follow-up work is\ngenuinely deferred to a later PR. There, the issue captures work that will\noutlive the PR, so the issue is load-bearing rather than duplicate.\n\n### Tracking issues for deferred work\n\nWhen a PR applies a **workaround, version cap, mitigation, or partial fix**\nrather than solving the underlying problem (for example: upper-binding a\ndependency to avoid a breaking upstream release, disabling a feature\nbehind a flag, reverting a change that needs a better replacement, or\npapering over a bug so a release can ship), the deferred work must be\ncaptured in a GitHub tracking issue **and** the tracking issue URL must\nappear as a comment at the workaround site in the code.\n\n1. **Open the tracking issue first**, before finalising the PR body.\n2. **Reference it in the PR body by number** — e.g. \"full migration is\n   tracked in #65609\" — so anyone reviewing the PR can see what was\n   deferred and why.\n3. **Add a link to the tracking issue as a comment at the workaround\n   itself**, so the reference survives after the PR merges and anyone\n   reading the source later can click straight through to the follow-up\n   work. Use the **full issue URL**, not bare `#NNNNN` — bare references\n   do not auto-link outside GitHub's web UI (e.g. when grepping in an\n   editor, browsing a checkout, or reading the file in a terminal).\n   For example:\n\n   ```toml\n   # pyproject.toml\n   # Remove the <1.0 cap after migrating to httpx 1.x;\n   # tracked at https://github.com/apache/airflow/issues/65609\n   \"httpx>=0.27."
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:ISSUE_TRIAGE_PROCESS.rst",
+      "kind": "File",
+      "path": "ISSUE_TRIAGE_PROCESS.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7268,
+      "excerpt": "uring the release preparation.\n  This is usually followed by one of the actions below.\n\n* Fixing the issue in a PR if you see it is easy to fix. This is a great way also to learn and\n  contribute to parts that you usually are not contributing to, and sometimes it is surprisingly easy.\n\n* Assigning \"good first issue\" label if an issue is clear but not important to be fixed immediately, This\n  often lead to contributors picking up the issues when they are interested. This can be followed by assigning\n  the user who comments \"I want to work on this\" in the issue (which is most welcome).\n\n* Asking the user for additional information if it is needed to perform further investigations. This should\n  be accompanied by assigning ``pending response`` label so that we can clearly see the issues that need\n  extra information.\n\n* Calling other people who might be knowledgeable in the area by @-mentioning them in a comment.\n\n* Assigning other labels to the issue as described below.\n\n\nLabels\n''''''\n\nSince Apache Airflow uses \"GitHub Issues\" and \"GitHub Discussions\" as the\nissue tracking systems, the use of labels is extensive. Though issue\nlabels tend to change over time based on components within the project,\nthe majority of the ones listed below should stand the test of time.\n\nThe intention with the use of labels with the Apache Airflow project is\nthat they should ideally be non-temporal in nature and primarily used\nto indicate the following elements:\n\n**Kind**\n\nThe \"kind\" labels indicate \"what kind of issue it is\". The most\ncommonly used \"kind\" labels are: bug, feature, documentation, or task.\n\nTherefore, when reporting an issue, the label of ``kind:bug`` is to\nindicate a problem with the functionality, whereas the label of\n``kind:feature`` is a desire to extend the functionality.\n\nThere has been discussion within the project about whether to separate\nthe desire for \"new features\" from \"enhancements to existing features\",\nbut in practice most \"feature requests\" are actually enhancement requests,\nso we decided to combine them both into ``kind:feature``.\n\nThe ``kind:task`` is used to categorize issues which are\nidentified elements of work to be done, primarily as part of a larger\nchange to be done as part of an AIP or something which needs to be cleaned\nup in the project.\n\nIssues of ``kind:documentation`` are for changes which need to be\nmade to the documentation within t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/best-practices.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/best-practices.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4018,
+      "excerpt": "cesses.\nIn the case of :class:`Local executor <airflow.executors.local_executor.LocalExecutor>`,\nstoring a file on disk can make retries harder e.g., your task requires a config file that is deleted by another task in Dag.\n\nIf possible, use ``XCom`` to communicate small messages between tasks and a good way of passing larger data between tasks is to use a remote storage such as S3/HDFS.\nFor example, if we have a task that stores processed data in S3 that task can push the S3 path for the output data in ``Xcom``,\nand the downstream tasks can pull the path from XCom and use it to read the data.\n\nThe tasks should also not store any authentication parameters such as passwords or token inside them.\nWhere at all possible, use :doc:`Connections </authoring-and-scheduling/connections>` to store data securely in Airflow backend and retrieve them using a unique connection id.\n\n.. _best_practices/top_level_code:\n\nTop level Python Code\n---------------------\n\nYou should avoid writing the top level code which is not necessary to create Operators\nand build Dag relations between them. This is because of the design decision for the scheduler of Airflow\nand the impact the top-level code parsing speed on both performance and scalability of Airflow.\n\nAirflow scheduler executes the code outside the Operator's ``execute`` methods with the minimum interval of\n:ref:`min_file_process_interval<config:dag_processor__min_file_process_interval>` seconds. This is done in order\nto allow dynamic scheduling of the Dags - where scheduling and dependencies might change over time and\nimpact the next schedule of the Dag. Airflow scheduler tries to continuously make sure that what you have\nin Dags is correctly reflected in scheduled tasks.\n\nSpecifically you should not run any database access, heavy computations and networking operations.\n\nOne of the important factors impacting Dag loading time, that might be overlooked by Python developers is\nthat top-level imports might take surprisingly a lot of time and they can generate a lot of overhead\nand this can be easily avoided by converting them to local imports inside Python callables for example.\n\nConsider the two examples below. In the first example, Dag will take an additional 1000 seconds to parse\nthan the functionally equivalent Dag in the second example where the ``expensive_api_call`` is executed from the context of its task.\n\nNot avoiding to"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/security/security_model.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/security/security_model.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11155,
+      "excerpt": "fy state of any task instance of any Dag, and there are no finer-grained access controls to limit that access.\n\nThis applies to every interface a Dag author's code can reach — including the Task Execution API\nthat workers use via the Task SDK. The Execution JWT issued to a running task does **not** carry\nper-Dag authorization: a task holding a valid token can call state-mutating Execution API endpoints\n(triggering Dag runs, clearing Dag runs, reading or writing variables, connections and XComs, etc.)\nfor **any** Dag in the installation. The ``ti:self`` token scope restricts cross-task-instance state\nmutation only; it is not a per-Dag access control.\n\nThere is an **experimental** multi-team feature in Airflow (``[core] multi_team``) that provides UI-level and\nREST API-level RBAC isolation between teams. In multi-team mode, the team-scoped resources reachable through\nthe Task Execution API are also isolated by team: a task may only access **Variables** and **Connections**\nbelonging to its own team (falling back to global values), and may only access **XComs** of Dags in its own\nteam (reads may additionally reach global Dags, but writes and deletes may not).\n\nHowever, this feature **does not yet guarantee task-level isolation**.\nAt the task execution level, workloads from different teams still share the same Execution API, signing keys,\nconnections, and variables. A task from one team can access the same shared resources as a task from another team.\nThe multi-team feature is a work in progress — task-level isolation and Execution API enforcement of team\nboundaries will be improved in future versions of Airflow. Until then, you should assume that all Dag authors\nhave access to all Dags and shared resources, and can modify their state regardless of team assignment.\n\n\nPer-Dag read access and source-code retrieval\n---------------------------------------------\n\nThe dag-source retrieval endpoint (``GET /api/v2/dagSources/{dag_id}``) honors\nper-Dag read scoping for the **current** Dag-to-file mapping: if the file\nbacking the requested Dag also defines other Dags the caller is not authorized\nto read, the endpoint returns a redacted placeholder instead of the source.\n\nThe endpoint also supports retrieving historical source via the optional\n``version_number`` query parameter. For historical versions, the per-Dag scope\nis enforced using the **current** file membership, wh"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/25_maintainer_pr_triage.md",
+      "kind": "File",
+      "path": "contributing-docs/25_maintainer_pr_triage.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11523,
+      "excerpt": "stage process.\n\nThis is non-negotiable per Golden rule 8 in\n[`SKILL.md`](https://github.com/apache/magpie/blob/main/.claude/skills/pr-management-triage/SKILL.md#golden-rules) — only the\nintentionally-terse `suspicious-changes` template is exempt.\n\n## Stage 2: human review\n\nPRs that survive Stage 1 (carry the `ready for maintainer review` label) are read by\na maintainer. There is no automation behind this stage by design — the read,\ncritique, suggest, and approve loop is exactly the part of the work that needs full\nhuman attention.\n\nA separate `pr-review` skill that handles structured walk-throughs of long diffs may\nappear alongside `pr-management-triage` in the future, but it is out of scope here. Anything\nabout line-level review comments, approve / request-changes submissions, or merge\ndecisions belongs in that future skill, not in `pr-management-triage`.\n\n## Backlog statistics — the `pr-management-stats` skill\n\nThe [`pr-management-stats`](https://github.com/apache/magpie/blob/main/.claude/skills/pr-management-stats/SKILL.md) skill is the read-only,\nno-mutations counterpart of `pr-management-triage`. It is the successor to the now-removed\n`breeze pr stats` command and produces two summary tables grouped by `area:*` label:\n\n- **Triaged PRs — Final State** — for PRs that were triaged and have since been\n  closed or merged: closed-vs-merged ratios per area, plus the share of authors who\n  responded before close.\n- **Triaged PRs — Still Open** — for currently-open PRs: per-area triage coverage,\n  draft / non-draft split, response rates, ready-for-review counts, plus age-bucket\n  histograms (`<1d`, `1-7d`, `1-4w`, `>4w`) on both the time-since-drafting and\n  time-since-author-response axes.\n\nInvoke it the same way as `pr-management-triage` — open Claude Code in your local clone and ask\nfor stats. Phrasings the skill recognises include `run PR stats`, `show the area\nbreakdown`, `how is the PR queue doing`, or any variation on \"give me numbers about\nthe open PR backlog\". A typical workflow is `pr-management-stats` → spot the area with the worst\ntriage coverage → `pr-management-triage label:area:<that-area>` to act on it.\n\nThe skill detects triaged PRs by scanning comment bodies for the canonical\n`Pull Request quality criteria` marker that `pr-management-triage` posts on every triage comment.\nThat same detector also catches the legacy HTML-comment markers left by t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 36769,
+      "excerpt": "he Airflow CTL ${VERSION_RC}\" \\\n    --body-file /tmp/issue_airflowctl_${VERSION_RC}.md \\\n    --label \"testing status\"\n```\n\nKeep the URL returned by the command — you will reference it in the voting\nemail (next section) and in the `Close the testing status issue` step at\nthe end of the release.\n\n### Carry over checked boxes from the previous RC\n\nWhen cutting a follow-up RC (e.g. `rc3` after `rc2` was voted down), the\nitems that testers already verified on the previous RC should be\npre-checked in the new issue — otherwise testers waste time retesting\nunchanged fixes, and cross-RC progress is harder to see. Carry the\nstate over like this:\n\n```shell script\n# PREVIOUS_RC_ISSUE is the previous-RC testing-status issue number\n# NEW_RC_ISSUE is the issue you just opened above\nPREVIOUS_RC_ISSUE=65497\nNEW_RC_ISSUE=65643\n\npython3 <<PY\nimport json, re, subprocess\n\ndef body(n):\n    return json.loads(subprocess.check_output(\n        [\"gh\", \"issue\", \"view\", str(n), \"--repo\", \"apache/airflow\", \"--json\", \"body\"]\n    ))[\"body\"]\n\nprev = body(${PREVIOUS_RC_ISSUE})\nnew = body(${NEW_RC_ISSUE})\n\n# PR numbers checked in the previous RC\nprev_checked = set()\nfor line in prev.splitlines():\n    if re.match(r'^- \\[[xX]\\] ', line):\n        prev_checked.update(re.findall(r'#(\\d+)', line))\n\n# For each unchecked line in the new RC, pre-check it if any PR number on\n# that line was already verified in the previous RC. Backport lines like\n# \"[v3-2-test] X (#orig) (#backport)\" match on either number.\npre_checked = []\nout = []\nfor line in new.splitlines():\n    m = re.match(r'^- \\[ \\] (.*)', line)\n    if m and set(re.findall(r'#(\\d+)', m.group(1))) & prev_checked:\n        out.append(f\"- [x] {m.group(1)}\")\n        pre_checked.append(m.group(1).split('](')[0].lstrip('['))\n    else:\n        out.append(line)\n\nwith open(\"/tmp/rc-body-carried-over.md\", \"w\") as f:\n    f.write(\"\\n\".join(out))\nprint(f\"Pre-checked {len(pre_checked)} items carried over from #${PREVIOUS_RC_ISSUE}:\")\nfor t in pre_checked:\n    print(f\"  ✓ {t[:100]}\")\nPY\n\ngh issue edit ${NEW_RC_ISSUE} --repo apache/airflow \\\n    --body-file /tmp/rc-body-carried-over.md\n\n# Post a comment explaining what was carried over, so contributors who\n# signed the items off last time are not pinged to retest.\ngh issue comment ${NEW_RC_ISSUE} --repo apache/airflow --body \\\n\"Pre-checked N items that were already verified on the previous RC \\\n(#${PREVIOUS_RC_I"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 18091,
+      "excerpt": "is also uploaded for verifying Chart Integrity, though not strictly required for releasing the artifact based on ASF Guidelines.\n\n$ helm gpg verify airflow-${VERSION}.tgz\ngpg: Signature made Thu Jan  6 21:33:35 2022 MST\ngpg:                using RSA key E1A1E984F55B8F280BD9CBA20BB7163892A2E48E\ngpg: Good signature from \"Jed Cunningham <jedcunningham@apache.org>\" [ultimate]\nplugin: Chart SHA verified. sha256:b33eac716e0416a18af89fb4fa1043fcfcf24f9f903cda3912729815213525df\n\nThe documentation is available at https://airflow.staged.apache.org/docs/helm-chart/${VERSION}/index.html.\n\nThe vote will be open for at least 72 hours ($VOTE_END_TIME UTC) or until the necessary number of votes is reached.\n\nhttps://www.timeanddate.com/countdown/$TIME_DATE_URL\n\nPlease vote accordingly:\n\n[ ] +1 approve\n[ ] +0 no opinion\n[ ] -1 disapprove with the reason\n\nOnly votes from PMC members are binding, but members of the community are\nencouraged to test the release and vote with \"(non-binding)\".\n\nThe test procedure for PMC members is described in:\nhttps://github.com/apache/airflow/blob/main/dev/README_RELEASE_HELM_CHART.md#verify-the-release-candidate-by-pmc-members\n\nThe test procedure for contributors and members of the community who would like to test this RC is described in:\nhttps://github.com/apache/airflow/blob/main/dev/README_RELEASE_HELM_CHART.md#verify-the-release-candidates-by-contributors\n\nConsider this my (binding) +1.\n\nFor license checks, the .rat-excludes files are included, so you can run the following to verify licenses (just update your path to rat):\n\ntar -xvf airflow-chart-${VERSION}-source.tar.gz\ncd airflow-chart-${VERSION}\njava -jar apache-rat-0.18.jar chart -E .rat-excludes\n\nPlease note that the version number excludes the \\`rcX\\` string, so it's now\nsimply ${VERSION}. This will allow us to rename the artifact without modifying\nthe artifact checksums when we actually release it.\n\nThe status of testing the Helm Chart by the community is kept here:\n\n<TODO COPY LINK TO THE ISSUE CREATED>\n\nThanks,\n<your name>\nEOF\n```\n\nNote, you need to update the `helm gpg verify` output and verify the end of the voting period in the body.\n\nNote, For RC2/3 you may refer to shorten vote period as agreed in mailing list [thread](https://lists.apache.org/thread/cv194w1fqqykrhswhmm54zy9gnnv6kgm).\n\n# Verify the release candidate by PMC members\n\nThe PMC members should verify the releases in"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 46981,
+      "excerpt": "s` (create the\nissue) or `--answer no` (only generate the file). For example, to generate the body without\ncreating the issue:\n\n```shell script\nbreeze release-management generate-issue-content-providers --only-available-in-dist \\\n    --output-file files/provider_issue.md --answer no\n```\n\n### Always carry over checkmarks from the previous wave's testing issue\n\nWhenever a provider in this wave is a **re-cut** of one that already appeared in\nan earlier wave's testing issue — providers held back from the previous wave and\nreleased again at `rc2`/`rc3`, or any provider whose previous RC was cancelled —\nthe PRs that were already ticked `[x]` (verified) in that earlier issue must stay\nticked in the new one. Testers should not be asked to re-verify unchanged code;\nonly the genuinely new commits in the re-cut are left unchecked. **Do this every\ntime** before creating the issue.\n\nExtract the checked PRs from the previous issue and carry them over to the\ngenerated body:\n\n```shell script\n# PREV_ISSUE = the previous wave's testing-status issue number\ngh issue view PREV_ISSUE --repo apache/airflow --json body -q .body > /tmp/prev_issue.md\nchecked=$(grep -E '^\\s*- \\[x\\]' /tmp/prev_issue.md | grep -oE '#[0-9]+' | tr -d '#' | sort -u | paste -sd '|' -)\n# macOS sed: `sed -i ''`; GNU/Linux sed: `sed -i`\nsed -i '' -E \"s/- \\[ \\] (.*\\(#(${checked})\\))/- [x] \\1/\" files/provider_issue.md\n```\n\nReview the resulting `[x]` lines (PRs only present in the new wave stay\nunchecked), then create the issue as below. If the issue was already created,\napply the same edit to the file and run `gh issue edit <ISSUE> --body-file ...`.\n\nthen create it from the file:\n\n```shell script\ngh issue create --repo apache/airflow \\\n    --title \"Status of testing Providers that were prepared on <MONTH DD, YYYY>\" \\\n    --body-file files/provider_issue.md --label \"testing status,kind:meta\"\n```\n\n## Prepare voting email for Providers release candidate\n\nMake sure the packages are in https://dist.apache.org/repos/dist/dev/airflow/providers/\n\n* Before sending the vote email, gate on the same completeness check the PMC verifiers run, so a\n  missing artifact (e.g. the `-source.tar.gz` tarball) fails here instead of in the vote thread.\n  `files/packages.txt` was already generated by the PyPI upload step (\"Publish the Regular\n  distributions to PyPI\" above); run the check against it:\n\n```shell script\ncd \"$AIRFLOW_REPO_R"
+    }
+  ]
+}

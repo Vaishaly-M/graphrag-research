@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "offset": 1182,
+        "line": 29
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+        "offset": 1406,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+        "path": null,
+        "offset": 2102,
+        "line": 41
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2337",
+        "path": null,
+        "offset": 90,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2338",
+        "path": null,
+        "offset": 147,
+        "line": 3
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:gradlew",
+        "path": "gradlew",
+        "offset": 6414,
+        "line": 187
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+        "path": "README.md",
+        "offset": 2190,
+        "line": 45
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+        "path": null,
+        "offset": 413,
+        "line": 7
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2190,
+      "excerpt": "ere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\ndocker images | grep petclinic\ndocker run -p 8080:8080 docker.io/library/spring-petclinic:latest\n```\n\n## In case you find a bug/suggested improvement for Spring Petclinic\n\nOur issue tracker is available [here](https://github.com/spring-projects/spring-petclinic/issues).\n\n## Database configuration\n\nIn its default configuration, Petclinic uses an in-memory database (H2) which\ngets populated at startup with data. The h2 console is exposed at `http://localhost:8080/h2-console`,\nand it is possible to inspect the content of the database using the `jdbc:h2:mem:<uuid>` URL. The UUID is printed at startup to the console.\n\nA similar setup is provided for MySQL and PostgreSQL if a persistent database configuration is needed. Note that whenever the database type changes, the app needs to run with a different profile: `spring.profiles.active=mysql` for MySQL or `spring.profiles.active=postgres` for PostgreSQL. See the [Spring Boot documentation](https://docs.spring.io/spring-boot/how-to/properties-and-configuration.html#howto.properties-and-configuration.set-active-spring-profiles) for more detail on how to set the active profile.\n\nYou can start MySQL or PostgreSQL locally with whatever installer works for your OS or use docker:\n\n```bash\ndocker run -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:9.7\n```\n\nor\n\n```bash\ndocker run -e POSTGRES_USER=petclinic -e POSTGRES_PASSWORD=petclinic -e POSTGRES_DB=petclinic -p 5432:5432 postgres:18.4\n```\n\nFurther documentation is provided for [MySQL](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/mysql/petclinic_db_setup_mysql.txt)\nand [PostgreSQL](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/postgres/petclinic_db_setup_postgres.txt).\n\nInstead of vanilla `docker` you can also use the provided `docker-compose.yml` file to start the database containers. Each one has a service named after the Spring profile:\n\n```bash\ndocker compose up mysql\n```\n\nor\n\n```bash\ndocker compose up postgres\n```\n\n## Test Applications\n\nAt development time we recommend you use the test applications set up as"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:gradlew",
+      "kind": "File",
+      "path": "gradlew",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6414,
+      "excerpt": "\"$arg\" )\n        fi\n        # Roll the args list around exactly as many times as the number of\n        # args, so each arg winds up back in the position where it started, but\n        # possibly modified.\n        #\n        # NB: a `for` loop captures its iteration list before it begins, so\n        # changing the positional parameters here affects neither the number of\n        # iterations, nor the values presented in `arg`.\n        shift                   # remove old arg\n        set -- \"$@\" \"$arg\"      # push replacement arg\n    done\nfi\n\n\n# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.\nDEFAULT_JVM_OPTS='\"-Xmx64m\" \"-Xms64m\"'\n\n# Collect all arguments for the java command:\n#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,\n#     and any embedded shellness will be escaped.\n#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be\n#     treated as '${Hostname}' itself on the command line.\n\nset -- \\\n        \"-Dorg.gradle.appname=$APP_BASE_NAME\" \\\n        -jar \"$APP_HOME/gradle/wrapper/gradle-wrapper.jar\" \\\n        \"$@\"\n\n# Stop when \"xargs\" is not available.\nif ! command -v xargs >/dev/null 2>&1\nthen\n    die \"xargs is not available\"\nfi\n\n# Use \"xargs\" to parse quoted args.\n#\n# With -n1 it outputs one arg per line, with the quotes and backslashes removed.\n#\n# In Bash we could simply go:\n#\n#   readarray ARGS < <( xargs -n1 <<<\"$var\" ) &&\n#   set -- \"${ARGS[@]}\" \"$@\"\n#\n# but POSIX shell has neither arrays nor command substitution, so instead we\n# post-process each arg (as a line of input to sed) to backslash-escape any\n# character that might be a shell metacharacter, then use eval to reverse\n# that process (while maintaining the separation between arguments), and wrap\n# the whole thing up as a single \"set\" statement.\n#\n# This will of course break if any of these variables contains a newline or\n# an unmatched quote.\n#\n\neval \"set -- $(\n        printf '%s\\n' \"$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS\" |\n        xargs -n1 |\n        sed ' s~[^-[:alnum:]+,./:=@_]~\\\\&~g; ' |\n        tr '\\n' ' '\n    )\" '\"$@\"'\n\nexec \"$JAVACMD\" \"$@\"\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1182,
+      "excerpt": "ind.annotation.PostMapping;\n\nimport jakarta.validation.Valid;\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Michael Isvy\n * @author Dave Syer\n * @author Wick Dynex\n */\n@Controller\nclass VisitController {\n\n\tprivate final OwnerRepository owners;\n\n\tpublic VisitController(OwnerRepository owners) {\n\t\tthis.owners = owners;\n\t}\n\n\t@InitBinder\n\tpublic void setAllowedFields(WebDataBinder dataBinder) {\n\t\tdataBinder.setDisallowedFields(\"id\", \"*.id\");\n\t}\n\n\t/**\n\t * Called before each and every @RequestMapping annotated method. 2 goals: - Make sure\n\t * we always have fresh data - Since we do not use the session scope, make sure that\n\t * Pet object always has an id (Even though id is not part of the form fields)\n\t * @param petId\n\t * @return Pet\n\t */\n\t@ModelAttribute(\"visit\")\n\tpublic Visit loadPetWithVisit(@PathVariable(\"ownerId\") int ownerId, @PathVariable(\"petId\") int petId,\n\t\t\tMap<String, Object> model) {\n\t\tOptional<Owner> optionalOwner = owners.findById(ownerId);\n\t\tOwner owner = optionalOwner.orElseThrow(() -> new IllegalArgumentException(\n\t\t\t\t\"Owner not found with id: \" + ownerId + \". Please ensure the ID is correct \"));\n\n\t\tPet pet = owner.getPet(petId);\n\t\tif (pet == null) {\n\t\t\tthrow new IllegalArgumentException(\n\t\t\t\t\t\"Pet with id \" + petId + \" not found for owner with id \" + ownerId + \".\");\n\t\t}\n\t\tmodel.put(\"pet\", pet);\n\t\tmodel.put(\"owner\", owner);\n\n\t\tVisit visit = new Visit();\n\t\tpet.addVisit(visit);\n\t\treturn visit;\n\t}\n\n\t@ModelAttribute(\"minVisitDate\")\n\tpublic LocalDate minVisitDate() {\n\t\treturn LocalDate.now().plusDays(1);\n\t}\n\n\t// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is\n\t// called\n\t@GetMapping(\"/owners/{ownerId}/pets/{petId}/visits/new\")\n\tpublic String initNewVisitForm() {\n\t\treturn \"pets/createOrUpdateVisitForm\";\n\t}\n\n\t// Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is\n\t// called\n\t@PostMapping(\"/owners/{ownerId}/pets/{petId}/visits/new\")\n\tpublic String processNewVisitForm(@ModelAttribute Owner owner, @PathVariable int petId, @Valid Visit visit,\n\t\t\tBindingResult result, RedirectAttributes redirectAttributes) {\n\t\tif (visit.getDate() != null && !visit.getDate().isAfter(LocalDate.now())) {\n\t\t\tresult.rejectValue(\"date\", \"typeMismatch.visitDate\");\n\t\t}\n\n\t\tif (result.hasErrors()) {\n\t\t\treturn \"pets/createOrU"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1406,
+      "excerpt": "oconfigure.WebMvcTest;\nimport org.springframework.test.context.aot.DisabledInAotMode;\nimport org.springframework.test.context.bean.override.mockito.MockitoBean;\nimport org.springframework.test.web.servlet.MockMvc;\n\nimport java.time.LocalDate;\nimport java.util.Optional;\n\n/**\n * Test class for {@link VisitController}\n *\n * @author Colin But\n * @author Wick Dynex\n */\n@WebMvcTest(VisitController.class)\n@DisabledInNativeImage\n@DisabledInAotMode\nclass VisitControllerTests {\n\n\tprivate static final int TEST_OWNER_ID = 1;\n\n\tprivate static final int TEST_PET_ID = 1;\n\n\t@Autowired\n\tprivate MockMvc mockMvc;\n\n\t@MockitoBean\n\tprivate OwnerRepository owners;\n\n\t@BeforeEach\n\tvoid init() {\n\t\tOwner owner = new Owner();\n\t\tPet pet = new Pet();\n\t\towner.addPet(pet);\n\t\tpet.setId(TEST_PET_ID);\n\t\tgiven(this.owners.findById(TEST_OWNER_ID)).willReturn(Optional.of(owner));\n\t}\n\n\t@Test\n\tvoid initNewVisitForm() throws Exception {\n\t\tmockMvc.perform(get(\"/owners/{ownerId}/pets/{petId}/visits/new\", TEST_OWNER_ID, TEST_PET_ID))\n\t\t\t.andExpect(status().isOk())\n\t\t\t.andExpect(view().name(\"pets/createOrUpdateVisitForm\"));\n\t}\n\n\t@Test\n\tvoid processNewVisitFormSuccess() throws Exception {\n\t\tmockMvc\n\t\t\t.perform(post(\"/owners/{ownerId}/pets/{petId}/visits/new\", TEST_OWNER_ID, TEST_PET_ID)\n\t\t\t\t.param(\"name\", \"George\")\n\t\t\t\t.param(\"date\", LocalDate.now().plusDays(1).toString())\n\t\t\t\t.param(\"description\", \"Visit Description\"))\n\t\t\t.andExpect(status().is3xxRedirection())\n\t\t\t.andExpect(view().name(\"redirect:/owners/{ownerId}\"));\n\t}\n\n\t@Test\n\tvoid processNewVisitFormHasErrors() throws Exception {\n\t\tmockMvc\n\t\t\t.perform(post(\"/owners/{ownerId}/pets/{petId}/visits/new\", TEST_OWNER_ID, TEST_PET_ID).param(\"name\",\n\t\t\t\t\t\"George\"))\n\t\t\t.andExpect(model().attributeHasErrors(\"visit\"))\n\t\t\t.andExpect(status().isOk())\n\t\t\t.andExpect(view().name(\"pets/createOrUpdateVisitForm\"));\n\t}\n\n\t@Test\n\tvoid processNewVisitFormHasErrorsWhenVisitDateIsNotInFuture() throws Exception {\n\t\tmockMvc\n\t\t\t.perform(post(\"/owners/{ownerId}/pets/{petId}/visits/new\", TEST_OWNER_ID, TEST_PET_ID)\n\t\t\t\t.param(\"name\", \"George\")\n\t\t\t\t.param(\"date\", LocalDate.now().toString())\n\t\t\t\t.param(\"description\", \"Visit Description\"))\n\t\t\t.andExpect(model().attributeHasFieldErrors(\"visit\", \"date\"))\n\t\t\t.andExpect(model().attributeHasFieldErrorCode(\"visit\", \"date\", \"typeMismatch.visitDate\"))\n\t\t\t.andExpect(status().isOk())\n\t\t\t.andExpect(view().name(\"pets/createOrUpdateVisitForm\")"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2337",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2337,
+      "title": "Future Visit Booking Validation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 90,
+      "excerpt": "There is no validation to prevent booking visits in the past.\n\n## ✅ Expected Behavior\n- New visits should only be allowed **from tomorrow onwards**.\n- Past dates should trigger validation errors.\n- Validation should be applied in both:\n  - Frontend (`<input type=\"date\" min=\"...\">`)\n  - Backend (in `VisitController.processNewVisitForm`).\n\n## 📍 Affected Areas\n- `pets/createOrUpdateVisitForm.html`: add `min` attribute to date input.\n- `VisitController.java`: add check\n```java\nif (visit.getDate() != null && !visit.getDate().isAfter(LocalDate.now())) {\n    result.rejectValue(\"date\", \"invalid\", \"Visit date must be in the future\");\n} \n```\n## 🧪 Testing\n- ❌ Past date → error\n- ✅ Future date → allowed"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2338",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2338,
+      "title": "Veterinarian Editable Visit Description",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 147,
+      "excerpt": "visit**.\n\n## ✅ Expected Behavior\n- Allow veterinarians to **edit the description** of existing visits.\n- Optionally, only allow editing after the visit date.\n- Provide a separate edit form for visits.\n\n## 📍 Affected Areas\n- `pets/createOrUpdateVisitForm.html`: add optional Edit button per visit.\n- `VisitController.java`: add\n```java\n@GetMapping(\"/owners/{ownerId}/pets/{petId}/visits/{visitId}/edit\")\n@PostMapping(\"/owners/{ownerId}/pets/{petId}/visits/{visitId}/edit\")\n```\nPersist updated description in the database.\n## 🧪 Testing\n- Edit description → value updated correctly.\n- Validation rules applied (if restricting future visits)."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2434,
+      "title": "Refactor: remove unnecessary imports and redundant intermediate variables",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 413,
+      "excerpt": "ControllerTests.java` both had a class-level import for `MockMvcRequestBuilders` despite already having static imports for the individual methods (`get`, `post`) from the same class. This made the class-level import redundant and unused. Similarly, `OwnerController.java`, `PetController.java`, and `VisitController.java` each imported `java.util.Optional` which was only needed to hold an intermediate variable that was immediately unwrapped on the next line.\r\n\r\n**Redundant intermediate variables** - In `OwnerController.java`, `PetController.java`, and `VisitController.java`, the pattern of assigning `owners.findById(...)` to an `optionalOwner` variable and then calling `.orElseThrow(...)` on the very next line served no purpose. SonarQube flags this under `java:S1488` - local variables should not be declared and then immediately returned or used.\r\n\r\n## Changes\r\n- Replaced `MockMvcRequestBuilders.post(...)` and `MockMvcRequestBuilders.get(...)` with the already-imported static equivalents in `OwnerControllerTests.java` and `VetControllerTests.java`, and removed the now-unused class-level imports\r\n- Collapsed all `optionalOwner` intermediate variable declarations into single chained expressions using `.orElseThrow(...)` directly on the repository call in `OwnerController.java`, `PetController.java`, and `VisitController.java`\r\n- Removed the `java.util.Optional` import from each controller where it was no longer referenced\r\n\r\n## Sustainability Impact\r\nRedundant code and unnecessary imports increase the noise developers must read through when understanding or modifying a file. Unused imports can mislead future contributors into thinking a type is meaningfully used, and they accumulate silently over time if not caught early.\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/VisitController.java`\r\n- `src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java`\r\n- `src/test/java/org/springframework/samples/petclinic/vet/VetControllerTests.java`"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2542",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2542,
+      "title": "Upgrade/java17 spring boot 3",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2102,
+      "excerpt": "sistence.*`\r\n- `vet/Vet.java` — `jakarta.persistence.*`, `jakarta.xml.bind.*`\r\n- `vet/Specialty.java` — `jakarta.persistence.*`\r\n- `vet/Vets.java` — `jakarta.xml.bind.*`\r\n- `owner/OwnerController.java` — `jakarta.validation.Valid`\r\n- `owner/PetController.java` — `jakarta.validation.Valid`\r\n- `owner/VisitController.java` — `jakarta.validation.Valid`\r\n\r\n**Test sources**\r\n- `model/ValidatorTests.java` — `jakarta.validation.*`\r\n\r\n> **Note:** `javax.cache` (JCache/JSR-107) is intentionally unchanged — its groupId remains `javax.cache` and was not moved to the Jakarta namespace.\r\n\r\n### Code formatting\r\n\r\nRan `./mvnw spring-javaformat:apply` to satisfy the stricter import-ordering and blank-line rules enforced by spring-format 0.0.42. This touched several test files with no logic changes.\r\n\r\n---\r\n\r\n## Test results\r\n\r\n```\r\nTests run: 41, Failures: 0, Errors: 0, Skipped: 1\r\nBUILD SUCCESS\r\n```\r\n"
+    }
+  ]
+}

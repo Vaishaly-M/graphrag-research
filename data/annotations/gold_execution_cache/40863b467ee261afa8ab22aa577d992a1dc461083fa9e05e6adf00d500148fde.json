@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/environment.py",
+        "path": "mlflow/utils/environment.py",
+        "offset": 14150,
+        "line": 415
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 6786,
+        "line": 167
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/pyfunc/model.py",
+        "path": "mlflow/pyfunc/model.py",
+        "offset": 53805,
+        "line": 1251
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+        "path": "mlflow/environment_variables.py",
+        "offset": 73399,
+        "line": 1582
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/uv_utils.py",
+        "path": "mlflow/utils/uv_utils.py",
+        "offset": 389,
+        "line": 18
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25641",
+        "path": null,
+        "offset": 2320,
+        "line": 60
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:tests/resources/mlflow-test-plugin/pyproject.toml",
+        "path": "tests/resources/mlflow-test-plugin/pyproject.toml",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/uv-dependency-management/pyproject.toml",
+        "path": "examples/uv-dependency-management/pyproject.toml",
+        "offset": 64,
+        "line": 3
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6786,
+      "excerpt": "ce](https://docs.astral.sh/uv/concepts/projects/workspaces/), MLflow will not correctly handle workspace members. Each workspace member must be treated as a standalone uv project for MLflow uv integration to work.\n\n### How It Works\n\nWhen you log a model, MLflow checks for a `uv.lock` and `pyproject.toml` in the current working directory. If both files exist and uv (version 0.6.10 or later) is installed, MLflow runs `uv export` to produce a pinned requirements list from the lockfile. This list replaces the standard import-based dependency inference.\n\nMLflow also copies the uv project files (`uv.lock` and `pyproject.toml`) and, if present, the `.python-version` file into the model artifact directory. These files enable exact environment restoration with `uv sync` when the model is loaded later.\n\nThis works with all MLflow model flavors. For example, logging a scikit-learn model in a uv-managed project:\n\n```python\nimport mlflow\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.datasets import make_regression\n\nX, y = make_regression(n_samples=100, n_features=4)\nmodel = LinearRegression().fit(X, y)\n\n# uv.lock is auto-detected in the current directory\nmlflow.sklearn.log_model(model, name=\"model\")\n# Requirements are exported from uv.lock, not inferred from imports\n```\n\n### Auto-Detection\n\nBy default, uv project detection is enabled. MLflow looks for `uv.lock` and `pyproject.toml` in the current working directory when you log a model with any flavor, including <APILink fn=\"mlflow.sklearn.log_model\" />, <APILink fn=\"mlflow.pytorch.log_model\" />, <APILink fn=\"mlflow.transformers.log_model\" />, <APILink fn=\"mlflow.pyfunc.log_model\" />, and others. All flavors that call `infer_pip_requirements` benefit from uv auto-detection.\n\nTo disable auto-detection, set the `MLFLOW_UV_AUTO_DETECT` environment variable:\n\n```bash\nexport MLFLOW_UV_AUTO_DETECT=false\n```\n\nYou can also control whether uv project files (`uv.lock`, `pyproject.toml`, and `.python-version`) are saved as model artifacts with `MLFLOW_LOG_UV_FILES`:\n\n```bash\n# Disable copying uv.lock, pyproject.toml, and .python-version into model artifacts\nexport MLFLOW_LOG_UV_FILES=false\n```\n\n### Specifying a uv Project Path\n\nIf your uv project is not in the current working directory (common in monorepos or non-standard layouts), use the `uv_project_path` parameter to point to the correct directory:\n\n```python\nimp"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/uv-dependency-management/pyproject.toml",
+      "kind": "File",
+      "path": "examples/uv-dependency-management/pyproject.toml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 64,
+      "excerpt": ".1.0\"\ndescription = \"Example showing MLflow uv dependency management\"\nrequires-python = \">=3.10\"\ndependencies = [\"mlflow\", \"scikit-learn\", \"numpy\"]\n\n[project.optional-dependencies]\nserving = [\"flask\"]\n\n[dependency-groups]\nml = [\"xgboost\"]\n\n[build-system]\nrequires = [\"setuptools>=61,<=82.0.1\"]\nbuild-backend = \"setuptools.build_meta\"\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+      "kind": "File",
+      "path": "mlflow/environment_variables.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 73399,
+      "excerpt": "o disable caching.\n#: (default: ``86400`` — 24 hours)\nMLFLOW_MODEL_CATALOG_CACHE_TTL = _EnvironmentVariable(\"MLFLOW_MODEL_CATALOG_CACHE_TTL\", int, 86400)\n\n\n#: Specifies whether to enable automatic UV project detection during model logging.\n#: When enabled, MLflow will look for uv.lock and pyproject.toml in the current working\n#: directory and use ``uv export`` for dependency inference instead of capturing imported packages.\n#: (default: ``True``)\nMLFLOW_UV_AUTO_DETECT = _BooleanEnvironmentVariable(\"MLFLOW_UV_AUTO_DETECT\", True)\n\n\n#: Specifies whether to log uv project files (uv.lock, pyproject.toml, .python-version)\n#: as model artifacts. Set to ``False`` to disable for large projects where uv.lock\n#: file size is a concern.\n#: (default: ``True``)\nMLFLOW_LOG_UV_FILES = _BooleanEnvironmentVariable(\"MLFLOW_LOG_UV_FILES\", True)\n\n\n#: Specifies whether to allow using the filesystem backend for tracking and model\n#: registry, which is in maintenance mode (no further updates).\n#: Set to ``True`` to opt out of the error raised when instantiating the file-based\n#: stores and continue using the filesystem backend.\n#: (default: ``False``)\nMLFLOW_ALLOW_FILE_STORE = _BooleanEnvironmentVariable(\"MLFLOW_ALLOW_FILE_STORE\", False)\n\n\n#: Specifies whether to skip the pip requirements compatibility check when saving or logging\n#: a model. When set to ``True``, MLflow will not run ``pip install --dry-run`` to validate\n#: that the provided pip requirements are mutually compatible. This is useful in air-gapped\n#: environments where pip cannot reach external package indexes.\n#: (default: ``False``)\nMLFLOW_SKIP_PIP_REQUIREMENTS_CHECK = _BooleanEnvironmentVariable(\n    \"MLFLOW_SKIP_PIP_REQUIREMENTS_CHECK\", False\n)\n\n#: Specifies a read-only backend store URI for reader/writer instance routing.\n#: When set, the MLflow tracking server will route read operations (e.g. search_runs,\n#: get_experiment) to this URI and write operations to the primary ``--backend-store-uri``.\n#: This enables horizontal scaling via database read replicas.\n#: If not set, all operations use the primary backend store URI.\n#: (default: ``None``)\nMLFLOW_READ_REPLICA_BACKEND_STORE_URI = _EnvironmentVariable(\n    \"MLFLOW_READ_REPLICA_BACKEND_STORE_URI\", str, None\n)\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/pyfunc/model.py",
+      "kind": "File",
+      "path": "mlflow/pyfunc/model.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 53805,
+      "excerpt": "xt` if necessary\n    if pip_constraints:\n        write_to(os.path.join(path, _CONSTRAINTS_FILE_NAME), \"\\n\".join(pip_constraints))\n\n    # Save `requirements.txt`\n    write_to(os.path.join(path, _REQUIREMENTS_FILE_NAME), \"\\n\".join(pip_requirements))\n\n    # Copy uv project files (uv.lock and pyproject.toml) if detected\n    if uv_source_dir is not None:\n        copy_uv_project_files(dest_dir=path, source_dir=uv_source_dir)\n\n    _PythonEnv.current().to_yaml(os.path.join(path, _PYTHON_ENV_FILE_NAME))\n\n\ndef _load_context_model_and_signature(model_path: str, model_config: dict[str, Any] | None = None):\n    pyfunc_config = _get_flavor_configuration(\n        model_path=model_path, flavor_name=mlflow.pyfunc.FLAVOR_NAME\n    )\n    signature = mlflow.models.Model.load(model_path).signature\n\n    if MODEL_CODE_PATH in pyfunc_config:\n        conf_model_code_path = pyfunc_config.get(MODEL_CODE_PATH)\n        model_code_path = os.path.join(model_path, os.path.basename(conf_model_code_path))\n        python_model = _load_model_code_path(model_code_path, model_config)\n\n        if callable(python_model):\n            python_model = _FunctionPythonModel(python_model, signature=signature)\n    else:\n        if (\n            not MLFLOW_ALLOW_PICKLE_DESERIALIZATION.get()\n            and not is_in_databricks_runtime()\n            and not is_in_databricks_model_serving_environment()\n        ):\n            raise MlflowException(\n                \"Deserializing model using pickle is disallowed, but this model is saved \"\n                \"in cloudpickle format. The recommended way is to save the model as \"\n                \"models-from-code artifacts, see \"\n                \"https://mlflow.org/docs/latest/ml/model/models-from-code/ for details. \"\n                \"Another workaround is to set environment \"\n                \"variable 'MLFLOW_ALLOW_PICKLE_DESERIALIZATION' to 'true' to allow \"\n                \"deserializing model using pickle.\"\n            )\n        python_model_cloudpickle_version = pyfunc_config.get(CONFIG_KEY_CLOUDPICKLE_VERSION, None)\n        if python_model_cloudpickle_version is None:\n            mlflow.pyfunc._logger.warning(\n                \"The version of CloudPickle used to save the model could not be found in the \"\n                \"MLmodel configuration\"\n            )\n        elif python_model_cloudpickle_version != cloudpickle.__version__:\n            # CloudPickle does no"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/environment.py",
+      "kind": "File",
+      "path": "mlflow/utils/environment.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14150,
+      "excerpt": "one,\n    uv_project_dir=None,\n    uv_groups=None,\n    uv_extras=None,\n):\n    \"\"\"Infers the pip requirements of the specified model by creating a subprocess and loading\n    the model in it to determine which packages are imported.\n\n    If a uv project is detected (contains both uv.lock and pyproject.toml), this function\n    will first attempt to export dependencies via ``uv export``. If that succeeds, those\n    requirements are returned. Otherwise, falls back to inferring dependencies by capturing\n    imported packages during model inference.\n\n    Args:\n        model_uri: The URI of the model.\n        flavor: The flavor name of the model.\n        fallback: If provided, an unexpected error during the inference procedure is swallowed\n            and the value of ``fallback`` is returned. Otherwise, the error is raised.\n        timeout: If specified, the inference operation is bound by the timeout (in seconds).\n        extra_env_vars: A dictionary of extra environment variables to pass to the subprocess.\n            Default to None.\n        uv_project_dir: Explicit path to a uv project directory. When provided, overrides\n            the ``MLFLOW_UV_AUTO_DETECT`` environment variable and searches the specified\n            directory instead of cwd. Default to None (auto-detect from cwd).\n        uv_groups: Optional list of uv dependency groups to include when exporting\n            requirements. Maps to ``uv export --group <name>``.\n        uv_extras: Optional list of uv extras (optional dependency sets) to include\n            when exporting requirements. Maps to ``uv export --extra <name>``.\n\n    Returns:\n        A list of inferred pip requirements (e.g. ``[\"scikit-learn==0.24.2\", ...]``).\n\n    \"\"\"\n    # Check for uv project first - if detected, use uv export instead of\n    # inferring model dependencies by capturing imported packages during model inference.\n    # An explicit uv_project_dir overrides the MLFLOW_UV_AUTO_DETECT env var.\n    if uv_project_dir is not None or MLFLOW_UV_AUTO_DETECT.get():\n        if uv_project := detect_uv_project(uv_project_dir):\n            _logger.info(\n                f\"Detected uv project at {uv_project.uv_lock.parent}. \"\n                \"Attempting to export requirements via 'uv export'.\"\n            )\n            if uv_requirements := export_uv_requirements(\n                uv_project.uv_lock.parent,\n                groups=uv_gro"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/utils/uv_utils.py",
+      "kind": "File",
+      "path": "mlflow/utils/uv_utils.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 389,
+      "excerpt": "environment_variables import MLFLOW_LOG_UV_FILES\n\n_logger = logging.getLogger(__name__)\n\n# Minimum uv version required for ``uv export`` functionality\n_MIN_UV_VERSION = Version(\"0.6.10\")\n\n# File names used for uv project detection and artifacts\n_UV_LOCK_FILE = \"uv.lock\"\n_PYPROJECT_FILE = \"pyproject.toml\"\n_PYTHON_VERSION_FILE = \".python-version\"\n\n\ndef get_uv_version() -> Version | None:\n    \"\"\"\n    Get the installed uv version.\n\n    Returns:\n        The uv version as a packaging.version.Version object, or None if uv is not installed\n        or version cannot be determined.\n    \"\"\"\n    uv_bin = shutil.which(\"uv\")\n    if uv_bin is None:\n        return None\n\n    try:\n        result = subprocess.run(\n            [uv_bin, \"--version\"],\n            capture_output=True,\n            text=True,\n            check=True,\n        )\n        # Output format: \"uv 0.5.0 (abc123 2024-01-01)\"\n        version_str = result.stdout.strip().split()[1]\n        return Version(version_str)\n    except (subprocess.CalledProcessError, IndexError, ValueError) as e:\n        _logger.debug(f\"Failed to determine uv version: {e}\")\n        return None\n\n\ndef _get_uv_binary() -> str | None:\n    \"\"\"Return the uv binary path if installed and meeting version requirements, else None.\"\"\"\n    uv_bin = shutil.which(\"uv\")\n    if uv_bin is None:\n        return None\n\n    version = get_uv_version()\n    if version is None:\n        return None\n\n    if version < _MIN_UV_VERSION:\n        _logger.debug(f\"uv version {version} is below minimum required version {_MIN_UV_VERSION}\")\n        return None\n\n    return uv_bin\n\n\ndef is_uv_available() -> bool:\n    \"\"\"\n    Check if uv is installed and meets the minimum version requirement.\n\n    Returns:\n        True if uv is installed and version >= 0.6.10, False otherwise.\n    \"\"\"\n    return _get_uv_binary() is not None\n\n\nclass UVProjectInfo(NamedTuple):\n    \"\"\"Paths for a detected uv project.\"\"\"\n\n    uv_lock: Path\n    pyproject: Path\n\n\ndef detect_uv_project(directory: str | Path | None = None) -> UVProjectInfo | None:\n    \"\"\"\n    Detect if the given directory is a uv project.\n\n    A uv project is identified by the presence of BOTH ``uv.lock`` and ``pyproject.toml``\n    in the specified directory.\n\n    Args:\n        directory: The directory to check. Defaults to the current working directory.\n\n    Returns:\n        A UVProjectInfo with paths to uv.lock and pyproject.toml,\n   "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:tests/resources/mlflow-test-plugin/pyproject.toml",
+      "kind": "File",
+      "path": "tests/resources/mlflow-test-plugin/pyproject.toml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "[build-system]\nrequires = [\"setuptools<=82.0.1\"]\nbuild-backend = \"setuptools.build_meta\"\n\n[project]\nname = \"mlflow-test-plugin\"\nversion = \"0.0.1\"\ndescription = \"Test plugin for MLflow\"\nrequires-python = \">=3.10\"\n# `dependencies` is commented out to avoid overriding editable installs during development.\n# Uncomment it if you need MLflow to be automatically installed with this plugin.\n# dependencies = [\"mlflow\"]\n\n[tool.setuptools.packages.find]\nwhere = [\".\"]\ninclude = [\"mlflow_test_plugin\", \"mlflow_test_plugin.*\"]\n\n# Define a Tracking Store plugin for tracking URIs with scheme 'file-plugin'\n[project.entry-points.\"mlflow.tracking_store\"]\nfile-plugin = \"mlflow_test_plugin.file_store:PluginFileStore\"\n\n# Define a ArtifactRepository plugin for artifact URIs with scheme 'file-plugin'\n[project.entry-points.\"mlflow.artifact_repository\"]\nfile-plugin = \"mlflow_test_plugin.local_artifact:PluginLocalArtifactRepository\"\n\n# Define a RunContextProvider plugin. The entry point name for run context providers\n# is not used, and so is set to the string \"unused\" here\n[project.entry-points.\"mlflow.run_context_provider\"]\nunused = \"mlflow_test_plugin.run_context_provider:PluginRunContextProvider\"\n\n# Define a DefaultExperimentProvider plugin. The entry point name for\n# default experiment providers is not used, and so is set to the string \"unused\" here\n[project.entry-points.\"mlflow.default_experiment_provider\"]\nunused = \"mlflow_test_plugin.default_experiment_provider:PluginDefaultExperimentProvider\"\n\n# Define a RequestHeaderProvider plugin. The entry point name for request header providers\n# is not used, and so is set to the string \"unused\" here\n[project.entry-points.\"mlflow.request_header_provider\"]\nunused = \"mlflow_test_plugin.request_header_provider:PluginRequestHeaderProvider\"\n\n# Define a RequestAuthProvider plugin. The entry point name for request auth providers\n# is not used, and so is set to the string \"unused\" here\n[project.entry-points.\"mlflow.request_auth_provider\"]\nunused = \"mlflow_test_plugin.request_auth_provider:PluginRequestAuthProvider\"\n\n# Define a Model Registry Store plugin for tracking URIs with scheme 'file-plugin'\n[project.entry-points.\"mlflow.model_registry_store\"]\nfile-plugin = \"mlflow_test_plugin.sqlalchemy_store:PluginRegistrySqlAlchemyStore\"\n\n# Define a MLflow Project Backend plugin called 'dummy-backend'\n[project.entry-points.\"mlflow.project_backend\"]\ndummy-"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25641",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 25641,
+      "title": "[BUG] mlflow-skinny builds an empty wheel on Windows checkouts without symlink privilege",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2320,
+      "excerpt": " resolve normally. No job builds either variant on Windows, so this is invisible to CI by construction — it is not a gap that a green Windows job would close, because the wheel build never runs there at all.\n\nNote on a recent migration\nThese two packages moved from setup.py to a generated pyproject.toml, and the behaviour carried straight through the migration: [tool.setuptools.packages.find] with where = [\".\"] fails exactly the way the previous build did.\n\n### Tracking information\n\nNot applicable — this is a build/packaging defect, not a tracking one.\n\n### Code to reproduce issue\n\nOn Windows, as a normal (non-elevated) user with Developer Mode off:\n\ngit clone https://github.com/mlflow/mlflow\ncd mlflow\\libs\\skinny\npython -c \"from setuptools import build_meta; print(build_meta.build_wheel('dist'))\"\npython -c \"import zipfile,glob; w=glob.glob('dist/*.whl')[0]; n=zipfile.ZipFile(w).namelist(); print(len([x for x in n if x.endswith('.py')]), 'py files')\"\nPrints 0 py files. pip install ./libs/skinny reproduces the same way, as does libs/tracing.\n\n### Stack trace\n\nThere is no stack trace, and that is the defect being reported: the build does not raise, it exits 0 and silently produces an empty wheel. The closest thing to a traceback is the build output and the resulting wheel contents:\n\nbuilt: mlflow_skinny-3.16.1.dev0-py3-none-any.whl\n  entries: 6 | .py files: 0\n    mlflow_skinny-3.16.1.dev0.dist-info/licenses/LICENSE.txt\n    mlflow_skinny-3.16.1.dev0.dist-info/METADATA\n    mlflow_skinny-3.16.1.dev0.dist-info/WHEEL\n    mlflow_skinny-3.16.1.dev0.dist-info/entry_points.txt\n    mlflow_skinny-3.16.1.dev0.dist-info/top_level.txt\n    mlflow_skinny-3.16.1.dev0.dist-info/RECORD\nA failing import after installing that wheel:\n\n>>> import mlflow\nModuleNotFoundError: No module named 'mlflow'\n\n### Other info / logs\n\nSuggested fixes\nA — fail loudly instead of silently. The empty wheel is the real defect; a build that reports success while producing nothing is worse than one that stops. A small setup.py beside each pyproject.toml asserting the linked source is present:\n\nfrom pathlib import Path\n\nfrom setuptools import setup\n\nif not (Path(__file__).parent / \"mlflow\").is_dir():\n    raise SystemExit(\n        \"libs/skinny/mlflow is not a directory, so this build would produce a wheel \"\n        \"with no code in it.\\n\"\n        \"On Windows, git materialises symlinks as text files unles"
+    }
+  ]
+}

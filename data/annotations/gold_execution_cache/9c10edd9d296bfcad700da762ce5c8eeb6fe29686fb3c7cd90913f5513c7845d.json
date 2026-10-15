@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+        "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+        "offset": 36769,
+        "line": 814
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 27281,
+        "line": 350
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+        "path": "dev/README_RELEASE_PROVIDERS.md",
+        "offset": 46981,
+        "line": 883
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+        "path": ".agents/skills/magpie-setup/adopt.md",
+        "offset": 21633,
+        "line": 534
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/25_maintainer_pr_triage.md",
+        "path": "contributing-docs/25_maintainer_pr_triage.md",
+        "offset": 11523,
+        "line": 191
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/security/security_model.rst",
+        "path": "airflow-core/docs/security/security_model.rst",
+        "offset": 11155,
+        "line": 219
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/src/airflow/providers/cncf/kubernetes/executors/kubernetes_executor.py",
+        "path": "providers/cncf/kubernetes/src/airflow/providers/cncf/kubernetes/executors/kubernetes_executor.py",
+        "offset": 12999,
+        "line": 279
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/execution_time/task_runner.py",
+        "path": "task-sdk/src/airflow/sdk/execution_time/task_runner.py",
+        "offset": 56871,
+        "line": 1423
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:.agents/skills/magpie-setup/adopt.md",
+      "kind": "File",
+      "path": ".agents/skills/magpie-setup/adopt.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 21633,
+      "excerpt": "he__/` and `*.pyc` lines (non-anchored — they match at\nany depth) keep the byte-compiled artefacts that framework skill\nscripts emit when run from the adopter checkout (e.g.\n[`setup-status/scripts/collect_status.py`](../setup-status/scripts/collect_status.py))\nout of the tree. Most adopters already carry these from a stock\nPython `.gitignore`; the adopt flow adds them if missing.\n\nThe `/.claude/hooks/agent-guard.py` and `/.claude/hooks/guards.d/`\nlines keep the deterministic `PreToolUse` guard **gitignored** —\nit is framework code synced from the snapshot\n([Step 12 pass 1](#step-12--post-install-sync--worktree-propagation--sandbox-allowlist--sanity-check)),\nnot an adopter artefact, so it is regenerated on `/magpie-setup`\nrather than committed (the same rule that keeps the snapshot and\nthe framework-skill symlinks out of git — the only committed\nframework artefact is `magpie-setup`). The committed\n`.claude/settings.json` still references it; the **wiring** is\ncommitted, the **script** is not. Because the script is gitignored,\n**no** worktree inherits it via git — every worktree is seeded from\nthe main checkout by the post-checkout hook\n([Step 10](#step-10--worktree-aware-post-checkout-hook-fresh-only))\nor by [`worktree-init` Step 1d](worktree-init.md#step-1d--seed-the-worktrees-agent-guard-pretooluse-hook).\nAn adopter who keeps their own non-framework guards under\n`.claude/hooks/guards.d/` and wants them tracked should commit them\nwith `git add -f` (the directory is ignored by default).\n\n**Symlink entries — one uniform block per active target\n([`agents.md`](agents.md)), no per-layout variation.** Every\nframework skill is symlinked under the `magpie-` prefix (see\n[`SKILL.md` Golden rule 6](SKILL.md#golden-rules)), so a single\n`magpie-*` glob covers them all in each target dir — no per-family\nlines. The canonical target (`.agents/skills/`) and every relay\ntarget (`.claude/skills/`, `.github/skills/`, any present holdout)\nget the **same** two-line block, keyed on the target's own dir:\n\n```text\n/.agents/skills/magpie-*\n!/.agents/skills/magpie-setup\n/.claude/skills/magpie-*\n!/.claude/skills/magpie-setup\n/.github/skills/magpie-*\n!/.github/skills/magpie-setup\n```\n\nAdd the analogous two lines for any present holdout\n(`.windsurf/skills/`, `.goose/skills/`, …). The relay symlinks are\ngitignored exactly like the canonical ones: a relay points at\n`../../.agents/skills/ma"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 27281,
+      "excerpt": "lel bug database, or\n  as a duplicate record of in-flight work. The PR itself is the canonical\n  record — title, description, diff, discussion, and merge all live in one\n  place. An issue that gets closed by a PR a day later is double accounting\n  that carries no information the PR does not already carry.\n- Open issues attract drive-by submissions, often from other agents, that\n  haven't seen the in-flight work. That produces duplicate fixes, low-quality\n  PRs that have to be closed, and wasted reviewer time. Not opening the\n  issue avoids creating that bait in the first place.\n- If you catch yourself drafting an issue body that reads like the PR\n  description you are about to write, that is the signal — skip the issue\n  and open the PR.\n\nThe one exception is the case covered by the next section: the PR ships a\n**workaround, mitigation, or partial fix** and the real follow-up work is\ngenuinely deferred to a later PR. There, the issue captures work that will\noutlive the PR, so the issue is load-bearing rather than duplicate.\n\n### Tracking issues for deferred work\n\nWhen a PR applies a **workaround, version cap, mitigation, or partial fix**\nrather than solving the underlying problem (for example: upper-binding a\ndependency to avoid a breaking upstream release, disabling a feature\nbehind a flag, reverting a change that needs a better replacement, or\npapering over a bug so a release can ship), the deferred work must be\ncaptured in a GitHub tracking issue **and** the tracking issue URL must\nappear as a comment at the workaround site in the code.\n\n1. **Open the tracking issue first**, before finalising the PR body.\n2. **Reference it in the PR body by number** — e.g. \"full migration is\n   tracked in #65609\" — so anyone reviewing the PR can see what was\n   deferred and why.\n3. **Add a link to the tracking issue as a comment at the workaround\n   itself**, so the reference survives after the PR merges and anyone\n   reading the source later can click straight through to the follow-up\n   work. Use the **full issue URL**, not bare `#NNNNN` — bare references\n   do not auto-link outside GitHub's web UI (e.g. when grepping in an\n   editor, browsing a checkout, or reading the file in a terminal).\n   For example:\n\n   ```toml\n   # pyproject.toml\n   # Remove the <1.0 cap after migrating to httpx 1.x;\n   # tracked at https://github.com/apache/airflow/issues/65609\n   \"httpx>=0.27."
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/security/security_model.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/security/security_model.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11155,
+      "excerpt": "fy state of any task instance of any Dag, and there are no finer-grained access controls to limit that access.\n\nThis applies to every interface a Dag author's code can reach — including the Task Execution API\nthat workers use via the Task SDK. The Execution JWT issued to a running task does **not** carry\nper-Dag authorization: a task holding a valid token can call state-mutating Execution API endpoints\n(triggering Dag runs, clearing Dag runs, reading or writing variables, connections and XComs, etc.)\nfor **any** Dag in the installation. The ``ti:self`` token scope restricts cross-task-instance state\nmutation only; it is not a per-Dag access control.\n\nThere is an **experimental** multi-team feature in Airflow (``[core] multi_team``) that provides UI-level and\nREST API-level RBAC isolation between teams. In multi-team mode, the team-scoped resources reachable through\nthe Task Execution API are also isolated by team: a task may only access **Variables** and **Connections**\nbelonging to its own team (falling back to global values), and may only access **XComs** of Dags in its own\nteam (reads may additionally reach global Dags, but writes and deletes may not).\n\nHowever, this feature **does not yet guarantee task-level isolation**.\nAt the task execution level, workloads from different teams still share the same Execution API, signing keys,\nconnections, and variables. A task from one team can access the same shared resources as a task from another team.\nThe multi-team feature is a work in progress — task-level isolation and Execution API enforcement of team\nboundaries will be improved in future versions of Airflow. Until then, you should assume that all Dag authors\nhave access to all Dags and shared resources, and can modify their state regardless of team assignment.\n\n\nPer-Dag read access and source-code retrieval\n---------------------------------------------\n\nThe dag-source retrieval endpoint (``GET /api/v2/dagSources/{dag_id}``) honors\nper-Dag read scoping for the **current** Dag-to-file mapping: if the file\nbacking the requested Dag also defines other Dags the caller is not authorized\nto read, the endpoint returns a redacted placeholder instead of the source.\n\nThe endpoint also supports retrieving historical source via the optional\n``version_number`` query parameter. For historical versions, the per-Dag scope\nis enforced using the **current** file membership, wh"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/25_maintainer_pr_triage.md",
+      "kind": "File",
+      "path": "contributing-docs/25_maintainer_pr_triage.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11523,
+      "excerpt": "stage process.\n\nThis is non-negotiable per Golden rule 8 in\n[`SKILL.md`](https://github.com/apache/magpie/blob/main/.claude/skills/pr-management-triage/SKILL.md#golden-rules) — only the\nintentionally-terse `suspicious-changes` template is exempt.\n\n## Stage 2: human review\n\nPRs that survive Stage 1 (carry the `ready for maintainer review` label) are read by\na maintainer. There is no automation behind this stage by design — the read,\ncritique, suggest, and approve loop is exactly the part of the work that needs full\nhuman attention.\n\nA separate `pr-review` skill that handles structured walk-throughs of long diffs may\nappear alongside `pr-management-triage` in the future, but it is out of scope here. Anything\nabout line-level review comments, approve / request-changes submissions, or merge\ndecisions belongs in that future skill, not in `pr-management-triage`.\n\n## Backlog statistics — the `pr-management-stats` skill\n\nThe [`pr-management-stats`](https://github.com/apache/magpie/blob/main/.claude/skills/pr-management-stats/SKILL.md) skill is the read-only,\nno-mutations counterpart of `pr-management-triage`. It is the successor to the now-removed\n`breeze pr stats` command and produces two summary tables grouped by `area:*` label:\n\n- **Triaged PRs — Final State** — for PRs that were triaged and have since been\n  closed or merged: closed-vs-merged ratios per area, plus the share of authors who\n  responded before close.\n- **Triaged PRs — Still Open** — for currently-open PRs: per-area triage coverage,\n  draft / non-draft split, response rates, ready-for-review counts, plus age-bucket\n  histograms (`<1d`, `1-7d`, `1-4w`, `>4w`) on both the time-since-drafting and\n  time-since-author-response axes.\n\nInvoke it the same way as `pr-management-triage` — open Claude Code in your local clone and ask\nfor stats. Phrasings the skill recognises include `run PR stats`, `show the area\nbreakdown`, `how is the PR queue doing`, or any variation on \"give me numbers about\nthe open PR backlog\". A typical workflow is `pr-management-stats` → spot the area with the worst\ntriage coverage → `pr-management-triage label:area:<that-area>` to act on it.\n\nThe skill detects triaged PRs by scanning comment bodies for the canonical\n`Pull Request quality criteria` marker that `pr-management-triage` posts on every triage comment.\nThat same detector also catches the legacy HTML-comment markers left by t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOWCTL.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOWCTL.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 36769,
+      "excerpt": "he Airflow CTL ${VERSION_RC}\" \\\n    --body-file /tmp/issue_airflowctl_${VERSION_RC}.md \\\n    --label \"testing status\"\n```\n\nKeep the URL returned by the command — you will reference it in the voting\nemail (next section) and in the `Close the testing status issue` step at\nthe end of the release.\n\n### Carry over checked boxes from the previous RC\n\nWhen cutting a follow-up RC (e.g. `rc3` after `rc2` was voted down), the\nitems that testers already verified on the previous RC should be\npre-checked in the new issue — otherwise testers waste time retesting\nunchanged fixes, and cross-RC progress is harder to see. Carry the\nstate over like this:\n\n```shell script\n# PREVIOUS_RC_ISSUE is the previous-RC testing-status issue number\n# NEW_RC_ISSUE is the issue you just opened above\nPREVIOUS_RC_ISSUE=65497\nNEW_RC_ISSUE=65643\n\npython3 <<PY\nimport json, re, subprocess\n\ndef body(n):\n    return json.loads(subprocess.check_output(\n        [\"gh\", \"issue\", \"view\", str(n), \"--repo\", \"apache/airflow\", \"--json\", \"body\"]\n    ))[\"body\"]\n\nprev = body(${PREVIOUS_RC_ISSUE})\nnew = body(${NEW_RC_ISSUE})\n\n# PR numbers checked in the previous RC\nprev_checked = set()\nfor line in prev.splitlines():\n    if re.match(r'^- \\[[xX]\\] ', line):\n        prev_checked.update(re.findall(r'#(\\d+)', line))\n\n# For each unchecked line in the new RC, pre-check it if any PR number on\n# that line was already verified in the previous RC. Backport lines like\n# \"[v3-2-test] X (#orig) (#backport)\" match on either number.\npre_checked = []\nout = []\nfor line in new.splitlines():\n    m = re.match(r'^- \\[ \\] (.*)', line)\n    if m and set(re.findall(r'#(\\d+)', m.group(1))) & prev_checked:\n        out.append(f\"- [x] {m.group(1)}\")\n        pre_checked.append(m.group(1).split('](')[0].lstrip('['))\n    else:\n        out.append(line)\n\nwith open(\"/tmp/rc-body-carried-over.md\", \"w\") as f:\n    f.write(\"\\n\".join(out))\nprint(f\"Pre-checked {len(pre_checked)} items carried over from #${PREVIOUS_RC_ISSUE}:\")\nfor t in pre_checked:\n    print(f\"  ✓ {t[:100]}\")\nPY\n\ngh issue edit ${NEW_RC_ISSUE} --repo apache/airflow \\\n    --body-file /tmp/rc-body-carried-over.md\n\n# Post a comment explaining what was carried over, so contributors who\n# signed the items off last time are not pinged to retest.\ngh issue comment ${NEW_RC_ISSUE} --repo apache/airflow --body \\\n\"Pre-checked N items that were already verified on the previous RC \\\n(#${PREVIOUS_RC_I"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_PROVIDERS.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_PROVIDERS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 46981,
+      "excerpt": "s` (create the\nissue) or `--answer no` (only generate the file). For example, to generate the body without\ncreating the issue:\n\n```shell script\nbreeze release-management generate-issue-content-providers --only-available-in-dist \\\n    --output-file files/provider_issue.md --answer no\n```\n\n### Always carry over checkmarks from the previous wave's testing issue\n\nWhenever a provider in this wave is a **re-cut** of one that already appeared in\nan earlier wave's testing issue — providers held back from the previous wave and\nreleased again at `rc2`/`rc3`, or any provider whose previous RC was cancelled —\nthe PRs that were already ticked `[x]` (verified) in that earlier issue must stay\nticked in the new one. Testers should not be asked to re-verify unchanged code;\nonly the genuinely new commits in the re-cut are left unchecked. **Do this every\ntime** before creating the issue.\n\nExtract the checked PRs from the previous issue and carry them over to the\ngenerated body:\n\n```shell script\n# PREV_ISSUE = the previous wave's testing-status issue number\ngh issue view PREV_ISSUE --repo apache/airflow --json body -q .body > /tmp/prev_issue.md\nchecked=$(grep -E '^\\s*- \\[x\\]' /tmp/prev_issue.md | grep -oE '#[0-9]+' | tr -d '#' | sort -u | paste -sd '|' -)\n# macOS sed: `sed -i ''`; GNU/Linux sed: `sed -i`\nsed -i '' -E \"s/- \\[ \\] (.*\\(#(${checked})\\))/- [x] \\1/\" files/provider_issue.md\n```\n\nReview the resulting `[x]` lines (PRs only present in the new wave stay\nunchecked), then create the issue as below. If the issue was already created,\napply the same edit to the file and run `gh issue edit <ISSUE> --body-file ...`.\n\nthen create it from the file:\n\n```shell script\ngh issue create --repo apache/airflow \\\n    --title \"Status of testing Providers that were prepared on <MONTH DD, YYYY>\" \\\n    --body-file files/provider_issue.md --label \"testing status,kind:meta\"\n```\n\n## Prepare voting email for Providers release candidate\n\nMake sure the packages are in https://dist.apache.org/repos/dist/dev/airflow/providers/\n\n* Before sending the vote email, gate on the same completeness check the PMC verifiers run, so a\n  missing artifact (e.g. the `-source.tar.gz` tarball) fails here instead of in the vote thread.\n  `files/packages.txt` was already generated by the PyPI upload step (\"Publish the Regular\n  distributions to PyPI\" above); run the check against it:\n\n```shell script\ncd \"$AIRFLOW_REPO_R"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/cncf/kubernetes/src/airflow/providers/cncf/kubernetes/executors/kubernetes_executor.py",
+      "kind": "File",
+      "path": "providers/cncf/kubernetes/src/airflow/providers/cncf/kubernetes/executors/kubernetes_executor.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12999,
+      "excerpt": "tr | None:\n        \"\"\"\n        Return the pod template declared in a coordinator's *extra* mapping, if any.\n\n        Lets a queue routed to a non-Python coordinator (via ``[sdk]\n        queue_to_coordinator``) launch its worker pod from a coordinator-specific\n        template — for example an image carrying the JVM for a Java coordinator.\n        \"\"\"\n        return extra.get(\"pod_template_file\")\n\n    def _coordinator_kube_image(self, extra: dict[str, Any]) -> str | None:\n        \"\"\"\n        Return the worker base image declared in a coordinator's *extra* mapping, if any.\n\n        The base container image is never taken from a pod template; it comes\n        from ``kube_image`` (``worker_container_repository:worker_container_tag``)\n        or a per-task ``pod_override``. A coordinator may declare its own\n        ``worker_container_repository`` and ``worker_container_tag`` in ``extra``\n        (e.g. a JRE-bearing image for a Java coordinator); both are required to\n        compose an override, otherwise the executor default applies.\n        \"\"\"\n        if (repo := extra.get(\"worker_container_repository\")) and (tag := extra.get(\"worker_container_tag\")):\n            return f\"{repo}:{tag}\"\n        return None\n\n    def execute_async(\n        self,\n        key: TaskInstanceKey,\n        command: Any,\n        queue: str | None = None,\n        executor_config: Any | None = None,\n    ) -> None:\n        \"\"\"Execute task asynchronously.\"\"\"\n        if TYPE_CHECKING:\n            assert self.task_queue\n\n        if self.log.isEnabledFor(logging.DEBUG):\n            self.log.debug(\"Add task %s with command %s, executor_config %s\", key, command, executor_config)\n        else:\n            self.log.info(\"Add task %s with command %s\", key, command)\n\n        try:\n            kube_executor_config = PodGenerator.from_obj(executor_config)\n        except Exception:\n            self.log.error(\"Invalid executor_config for %s. Executor_config: %s\", key, executor_config)\n            self.fail(key=key, info=\"Invalid executor_config passed\")\n            return\n\n        if executor_config:\n            pod_template_file = executor_config.get(\"pod_template_file\", None)\n        else:\n            pod_template_file = None\n\n        coordinator_kube_image: str | None = None\n        if (coordinator_extra := self._coordinator_extra(queue)) is not None:\n            # A coordinator-level pod_template wins "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/execution_time/task_runner.py",
+      "kind": "File",
+      "path": "task-sdk/src/airflow/sdk/execution_time/task_runner.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 56871,
+      "excerpt": "utlets(ti=ti, log=log)\n\n    try:\n        # TODO: Call pre execute etc.\n        get_listener_manager().hook.on_task_instance_running(\n            previous_state=TaskInstanceState.QUEUED, task_instance=ti\n        )\n    except Exception:\n        log.exception(\"error calling listener\")\n\n    # No error, carry on and execute the task\n    return None\n\n\n@detail_span(\"_validate_task_inlets_and_outlets\")\ndef _validate_task_inlets_and_outlets(*, ti: RuntimeTaskInstance, log: Logger) -> None:\n    if not ti.task.inlets and not ti.task.outlets:\n        return\n\n    inactive_assets_resp = SUPERVISOR_COMMS.send(msg=ValidateInletsAndOutlets(ti_id=ti.id))\n    if TYPE_CHECKING:\n        assert isinstance(inactive_assets_resp, InactiveAssetsResult)\n    if inactive_assets := inactive_assets_resp.inactive_assets:\n        raise AirflowInactiveAssetInInletOrOutletException(\n            inactive_asset_keys=[\n                AssetUniqueKey.from_profile(asset_profile) for asset_profile in inactive_assets\n            ]\n        )\n\n\ndef _defer_task(\n    defer: TaskDeferred, ti: RuntimeTaskInstance, log: Logger\n) -> tuple[ToSupervisor, TaskInstanceState]:\n    log.info(\"Pausing task as DEFERRED. \", dag_id=ti.dag_id, task_id=ti.task_id, run_id=ti.run_id)\n    classpath, trigger_kwargs = defer.trigger.serialize()\n    queue: str | None = None\n    # Currently, only task-associated BaseTrigger instances may have a non-None queue,\n    # and only when triggerer.queues_enabled conf is True.\n    if conf.getboolean(\"triggerer\", \"queues_enabled\", fallback=False) and getattr(\n        defer.trigger, \"supports_triggerer_queue\", True\n    ):\n        queue = ti.task.queue\n\n    from airflow.sdk.serde import serialize as serde_serialize\n\n    trigger_kwargs = serde_serialize(trigger_kwargs)\n    next_kwargs = serde_serialize(defer.kwargs or {})\n\n    if TYPE_CHECKING:\n        assert isinstance(next_kwargs, dict)\n        assert isinstance(trigger_kwargs, dict)\n\n    msg = DeferTask(\n        classpath=classpath,\n        trigger_kwargs=trigger_kwargs,\n        trigger_timeout=defer.timeout,\n        queue=queue,\n        next_method=defer.method_name,\n        next_kwargs=next_kwargs,\n    )\n    state = TaskInstanceState.DEFERRED\n\n    return msg, state\n\n\ndef _await_input_task(\n    awaiting: TaskAwaitingInput, ti: RuntimeTaskInstance, log: Logger\n) -> tuple[ToSupervisor, TaskInstanceState]:\n    \"\"\"Build the message that par"
+    }
+  ]
+}

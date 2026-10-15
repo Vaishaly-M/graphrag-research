@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+        "path": null,
+        "offset": 470,
+        "line": 7
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:667",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1898",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2458",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+        "path": "README.md",
+        "offset": 9469,
+        "line": 167
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2641",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2672",
+        "path": null,
+        "offset": 214,
+        "line": 5
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9469,
+      "excerpt": "| Spring Data: provide more flexibility when working with JPQL queries | [DATAJPA-292](https://github.com/spring-projects/spring-data-jpa/issues/704) |\n\n## Contributing\n\nThe [issue tracker](https://github.com/spring-projects/spring-petclinic/issues) is the preferred channel for bug reports, feature requests and submitting pull requests.\n\nFor pull requests, editor preferences are available in the [editor config](.editorconfig) for easy use in common text editors. Read more and download plugins at <https://editorconfig.org>. All commits must include a __Signed-off-by__ trailer at the end of each commit message to indicate that the contributor agrees to the Developer Certificate of Origin.\nFor additional details, please refer to the blog post [Hello DCO, Goodbye CLA: Simplifying Contributions to Spring](https://spring.io/blog/2025/01/06/hello-dco-goodbye-cla-simplifying-contributions-to-spring).\n\n## License\n\nThe Spring PetClinic sample application is released under version 2.0 of the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:1898",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 1898,
+      "title": "Feature: Add Medical History Tracking for Pets",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## User Story\n\n**As a** pet owner,  \n**I want to** view and manage the medical history of my pet (such as diagnoses, treatments, and vaccines),  \n**So that** I can track its health status and vaccination history over time.\n\n---\n\n## Acceptance Criteria \n\n### Viewing Medical History\n\n**Given** a pet with existing medical records  \n**When** I navigate to the pet's profile page  \n**Then** I should see a list of all diagnoses, treatments, and vaccinations recorded\n\n---\n\n### Adding a New Medical Record\n\n**Given** I am on the medical record creation form for a pet  \n**When** I fill in the diagnosis, treatment, vaccine, and date fields and submit  \n**Then** a new medical record should be saved and associated with the selected pet\n\n---\n\n### Validation\n\n**Given** I leave required fields empty  \n**When** I try to submit the form  \n**Then** I should see validation messages and the record should not be saved\n\n---\n\n## Notes\n- This feature will require extending the data model by introducing a new `MedicalRecord` entity.\n- UI support may include listing medical records on the pet detail page and a form to add a new record.\n- Spring Data JPA will be used to handle the entity relationships.\n\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:667",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 667,
+      "title": "Replace persistence entities with simple DTO objects.",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "If we using a persistence object (@Entity) as an argument of a method annotated with @RequestMapping, it is possible that the end-user can change the content of unexpected fields in the database, which eventually lead to a critical bug. \r\n\r\nFor example on the below controllers, we need to replace entities with a simple Dto:\r\n1. OwnerController\r\n2. PetController\r\n3. VisitController"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2410,
+      "title": "Fix/add service documentation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\r\nAdds comprehensive Javadoc to `OwnerController`, `PetController`, and `VetController` — covering class descriptions, constructors, and all methods. No behavioural changes.\r\n\r\n## The code issues\r\n- **`OwnerController.java`** — Class description absent; 9 of 10 methods had no Javadoc. Only `showOwner` carried a minimal comment.\r\n- **`PetController.java`** — Class description absent; 8 of 9 methods had no Javadoc. Only `updatePetDetails` was documented.\r\n- **`VetController.java`** — Class description absent; all 4 methods and the constructor had no Javadoc.\r\n\r\n## Why these matter\r\n- **Maintainability**: undocumented method contracts force developers to read the full implementation to understand expected inputs, outputs, and error conditions, increasing the cost of every future change.\r\n- **Onboarding**: controllers are the primary entry points into the application. New contributors encounter them first, yet had no inline guidance on routing behaviour, pagination conventions, or redirect semantics.\r\n- **Tooling**: IDEs surface Javadoc as hover tooltips and in auto-generated API docs. Without it, developers lose the fastest path to understanding method contracts.\r\n\r\n## What this PR does\r\n- Adds a class-level description to each controller explaining its responsibility and base URL scope.\r\n- Documents each constructor with `@param` tags describing injected dependencies and their roles.\r\n- Documents each method with a description of its behaviour, `@param` tags for all parameters, `@return` for all non-void methods, and `@throws` where applicable.\r\n\r\n## SonarQube findings addressed\r\n| Rule  | File                   | Change                                              |\r\n|-------|------------------------|-----------------------------------------------------|\r\n| S1176 | `OwnerController.java` | Javadoc added to class, constructor, and 9 methods  |\r\n| S1176 | `PetController.java`   | Javadoc added to class, constructor, and 8 methods  |\r\n| S1176 | `VetController.java`   | Javadoc added to class, constructor, and 4 methods  |\r\n\r\n## Verification\r\n- No logic was changed; all existing tests pass unchanged.\r\n- Each Javadoc addition was committed individually to allow per-method review."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2434",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2434,
+      "title": "Refactor: remove unnecessary imports and redundant intermediate variables",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 470,
+      "excerpt": "MockMvcRequestBuilders` despite already having static imports for the individual methods (`get`, `post`) from the same class. This made the class-level import redundant and unused. Similarly, `OwnerController.java`, `PetController.java`, and `VisitController.java` each imported `java.util.Optional` which was only needed to hold an intermediate variable that was immediately unwrapped on the next line.\r\n\r\n**Redundant intermediate variables** - In `OwnerController.java`, `PetController.java`, and `VisitController.java`, the pattern of assigning `owners.findById(...)` to an `optionalOwner` variable and then calling `.orElseThrow(...)` on the very next line served no purpose. SonarQube flags this under `java:S1488` - local variables should not be declared and then immediately returned or used.\r\n\r\n## Changes\r\n- Replaced `MockMvcRequestBuilders.post(...)` and `MockMvcRequestBuilders.get(...)` with the already-imported static equivalents in `OwnerControllerTests.java` and `VetControllerTests.java`, and removed the now-unused class-level imports\r\n- Collapsed all `optionalOwner` intermediate variable declarations into single chained expressions using `.orElseThrow(...)` directly on the repository call in `OwnerController.java`, `PetController.java`, and `VisitController.java`\r\n- Removed the `java.util.Optional` import from each controller where it was no longer referenced\r\n\r\n## Sustainability Impact\r\nRedundant code and unnecessary imports increase the noise developers must read through when understanding or modifying a file. Unused imports can mislead future contributors into thinking a type is meaningfully used, and they accumulate silently over time if not caught early.\r\n\r\n## Files Changed\r\n- `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/PetController.java`\r\n- `src/main/java/org/springframework/samples/petclinic/owner/VisitController.java`\r\n- `src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java`\r\n- `src/test/java/org/springframework/samples/petclinic/vet/VetControllerTests.java`"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2458",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2458,
+      "title": "Fix invalid page parameter handling in VetController and OwnerController",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Summary\r\nFixes invalid pagination handling when `page=0` or negative values are passed to:\r\n- `/vets.html`\r\n- `/owners`\r\n\r\nThe controllers now redirect invalid page values to page 1 instead of causing server errors.\r\n\r\nChanges\r\n- Added validation for invalid page parameters\r\n- Redirect invalid page requests to the first page\r\n- Added controller tests for both VetController and OwnerController\r\n\r\nFixes #2379"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2641",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2641,
+      "title": "Add vaccination management",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Add vaccination management"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2672",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2672,
+      "title": "Fix/integer overflow mitigation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 214,
+      "excerpt": "hen used CodeQL to investigate the finding further. CodeQL identified the arithmetic expressions in the following controllers as the source of the issue:\r\n\r\n* `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`\r\n* `src/main/java/org/springframework/samples/petclinic/vet/VetController.java`\r\n\r\nBoth controllers previously derived the zero-based page index directly from the HTTP request parameter:\r\n\r\n```java\r\nPageRequest.of(page - 1, pageSize)\r\n```\r\n\r\nBecause `page` is user-controlled input, values outside the expected range could be used in this calculation. For example, a value of `0` would result in a negative page index, while extreme integer values could cause problematic arithmetic.\r\n\r\nThe controllers were updated to validate and normalize the page value before performing the calculation. Valid page numbers continue to behave as before, while values below `1` are normalized to the first page.\r\n\r\n## Security findings\r\n\r\nThe issue was identified through the following workflow:\r\n\r\n1. **OWASP ZAP** reported a possible integer-overflow condition involving user-controlled pagination input.\r\n2. **CodeQL** was used to trace the input to the specific arithmetic expressions responsible for the finding.\r\n3. The affected controllers were updated to validate the input before passing the resulting page index to `PageRequest`.\r\n\r\n## GitHub Actions\r\n\r\nI also created GitHub Actions workflow changes to run OWASP ZAP and CodeQL as part of the DevSecOps exploration.\r\n\r\nThose workflow changes are **not included in this pull request**. I left them out intentionally because I was unsure whether the maintainers wanted CI/security-scanning changes included alongside this focused application-code fix.\r\n\r\nThis PR therefore only contains the application changes necessary to address the identified pagination issue.\r\n\r\n## Validation\r\n\r\nExisting behavior is preserved for valid page numbers.\r\n\r\nValues below page `1` are normalized before being passed to `PageRequest`, preventing a negative page index from being generated.\r\n\r\nThe OWASP ZAP report that initially identified the issue is shown below:\r\n\r\n![OWASP ZAP report](https://github.com/user-attachments/assets/54dd7ca0-4465-4816-9623-401d7c8b9716)"
+    }
+  ]
+}

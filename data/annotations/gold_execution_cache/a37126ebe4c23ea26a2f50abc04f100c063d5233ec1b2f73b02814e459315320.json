@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Model/CatalogItem.cs",
+        "path": "src/Catalog.API/Model/CatalogItem.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Catalog.API.json",
+        "path": "src/Catalog.API/Catalog.API.json",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Apis/CatalogApi.cs",
+        "path": "src/Catalog.API/Apis/CatalogApi.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Catalog.API_v2.json",
+        "path": "src/Catalog.API/Catalog.API_v2.json",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Infrastructure/Migrations/20231009153249_Initial.cs",
+        "path": "src/Catalog.API/Infrastructure/Migrations/20231009153249_Initial.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Infrastructure/CatalogContextSeed.cs",
+        "path": "src/Catalog.API/Infrastructure/CatalogContextSeed.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:tests/Catalog.FunctionalTests/CatalogApiTests.cs",
+        "path": "tests/Catalog.FunctionalTests/CatalogApiTests.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:173",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Apis/CatalogApi.cs",
+      "kind": "File",
+      "path": "src/Catalog.API/Apis/CatalogApi.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using System.ComponentModel;\nusing System.ComponentModel.DataAnnotations;\nusing Microsoft.AspNetCore.Http.HttpResults;\nusing Microsoft.AspNetCore.Mvc;\nusing Microsoft.AspNetCore.Mvc.Infrastructure;\nusing Pgvector.EntityFrameworkCore;\n\nnamespace eShop.Catalog.API;\n\npublic static class CatalogApi\n{\n    public static IEndpointRouteBuilder MapCatalogApi(this IEndpointRouteBuilder app)\n    {\n        // RouteGroupBuilder for catalog endpoints\n        var vApi = app.NewVersionedApi(\"Catalog\");\n        var api = vApi.MapGroup(\"api/catalog\").HasApiVersion(1, 0).HasApiVersion(2, 0);\n        var v1 = vApi.MapGroup(\"api/catalog\").HasApiVersion(1, 0);\n        var v2 = vApi.MapGroup(\"api/catalog\").HasApiVersion(2, 0);\n\n        // Routes for querying catalog items.\n        v1.MapGet(\"/items\", GetAllItemsV1)\n            .WithName(\"ListItems\")\n            .WithSummary(\"List catalog items\")\n            .WithDescription(\"Get a paginated list of items in the catalog.\")\n            .WithTags(\"Items\");\n        v2.MapGet(\"/items\", GetAllItems)\n            .WithName(\"ListItems-V2\")\n            .WithSummary(\"List catalog items\")\n            .WithDescription(\"Get a paginated list of items in the catalog.\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/by\", GetItemsByIds)\n            .WithName(\"BatchGetItems\")\n            .WithSummary(\"Batch get catalog items\")\n            .WithDescription(\"Get multiple items from the catalog\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/{id:int}\", GetItemById)\n            .WithName(\"GetItem\")\n            .WithSummary(\"Get catalog item\")\n            .WithDescription(\"Get an item from the catalog\")\n            .WithTags(\"Items\");\n        v1.MapGet(\"/items/by/{name:minlength(1)}\", GetItemsByName)\n            .WithName(\"GetItemsByName\")\n            .WithSummary(\"Get catalog items by name\")\n            .WithDescription(\"Get a paginated list of catalog items with the specified name.\")\n            .WithTags(\"Items\");\n        api.MapGet(\"/items/{id:int}/pic\", GetItemPictureById)\n            .WithName(\"GetItemPicture\")\n            .WithSummary(\"Get catalog item picture\")\n            .WithDescription(\"Get the picture for a catalog item\")\n            .WithTags(\"Items\");\n\n        // Routes for resolving catalog items using AI.\n        v1.MapGet(\"/items/withsemanticrelevance/{text:minlength(1)}\", GetItemsBySemanticRelevanceV1)\n        "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Catalog.API.json",
+      "kind": "File",
+      "path": "src/Catalog.API/Catalog.API.json",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "{\n  \"openapi\": \"3.1.1\",\n  \"info\": {\n    \"title\": \"eShop - Catalog HTTP API\",\n    \"description\": \"The Catalog Microservice HTTP API. This is a Data-Driven/CRUD microservice sample\",\n    \"version\": \"1.0\"\n  },\n  \"paths\": {\n    \"/api/catalog/items/by\": {\n      \"get\": {\n        \"tags\": [\n          \"Items\"\n        ],\n        \"summary\": \"Batch get catalog items\",\n        \"description\": \"Get multiple items from the catalog\",\n        \"operationId\": \"BatchGetItems\",\n        \"parameters\": [\n          {\n            \"name\": \"ids\",\n            \"in\": \"query\",\n            \"description\": \"List of ids for catalog items to return\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"pattern\": \"^-?(?:0|[1-9]\\\\d*)$\",\n                \"type\": [\n                  \"integer\",\n                  \"string\"\n                ],\n                \"format\": \"int32\"\n              }\n            }\n          },\n          {\n            \"name\": \"api-version\",\n            \"in\": \"query\",\n            \"description\": \"The API version, in the format 'major.minor'.\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\",\n              \"example\": \"1.0\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\",\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"type\": \"array\",\n                  \"items\": {\n                    \"$ref\": \"#/components/schemas/CatalogItem\"\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"Bad Request\",\n            \"content\": {\n              \"application/problem+json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/ProblemDetails\"\n                }\n              }\n            }\n          }\n        }\n      }\n    },\n    \"/api/catalog/items/{id}\": {\n      \"get\": {\n        \"tags\": [\n          \"Items\"\n        ],\n        \"summary\": \"Get catalog item\",\n        \"description\": \"Get an item from the catalog\",\n        \"operationId\": \"GetItem\",\n        \"parameters\": [\n          {\n            \"name\": \"id\",\n            \"in\": \"path\",\n            \"description\": \"The catalog item id\",\n            \"required\": true,\n            \"schema\": {\n              \"pattern\": \"^-?(?:0|[1-9]\\\\d*"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Catalog.API_v2.json",
+      "kind": "File",
+      "path": "src/Catalog.API/Catalog.API_v2.json",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "{\n  \"openapi\": \"3.1.1\",\n  \"info\": {\n    \"title\": \"eShop - Catalog HTTP API\",\n    \"description\": \"The Catalog Microservice HTTP API. This is a Data-Driven/CRUD microservice sample\",\n    \"version\": \"2.0\"\n  },\n  \"paths\": {\n    \"/api/catalog/items/by\": {\n      \"get\": {\n        \"tags\": [\n          \"Items\"\n        ],\n        \"summary\": \"Batch get catalog items\",\n        \"description\": \"Get multiple items from the catalog\",\n        \"operationId\": \"BatchGetItems\",\n        \"parameters\": [\n          {\n            \"name\": \"ids\",\n            \"in\": \"query\",\n            \"description\": \"List of ids for catalog items to return\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"pattern\": \"^-?(?:0|[1-9]\\\\d*)$\",\n                \"type\": [\n                  \"integer\",\n                  \"string\"\n                ],\n                \"format\": \"int32\"\n              }\n            }\n          },\n          {\n            \"name\": \"api-version\",\n            \"in\": \"query\",\n            \"description\": \"The API version, in the format 'major.minor'.\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\",\n              \"example\": \"2.0\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\",\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"type\": \"array\",\n                  \"items\": {\n                    \"$ref\": \"#/components/schemas/CatalogItem\"\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"Bad Request\",\n            \"content\": {\n              \"application/problem+json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/ProblemDetails\"\n                }\n              }\n            }\n          }\n        }\n      }\n    },\n    \"/api/catalog/items/{id}\": {\n      \"get\": {\n        \"tags\": [\n          \"Items\"\n        ],\n        \"summary\": \"Get catalog item\",\n        \"description\": \"Get an item from the catalog\",\n        \"operationId\": \"GetItem\",\n        \"parameters\": [\n          {\n            \"name\": \"id\",\n            \"in\": \"path\",\n            \"description\": \"The catalog item id\",\n            \"required\": true,\n            \"schema\": {\n              \"pattern\": \"^-?(?:0|[1-9]\\\\d*"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Infrastructure/CatalogContextSeed.cs",
+      "kind": "File",
+      "path": "src/Catalog.API/Infrastructure/CatalogContextSeed.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using System.Text.Json;\nusing eShop.Catalog.API.Services;\nusing Pgvector;\n\nnamespace eShop.Catalog.API.Infrastructure;\n\npublic partial class CatalogContextSeed(\n    IWebHostEnvironment env,\n    IOptions<CatalogOptions> settings,\n    ICatalogAI catalogAI,\n    ILogger<CatalogContextSeed> logger) : IDbSeeder<CatalogContext>\n{\n    public async Task SeedAsync(CatalogContext context)\n    {\n        var useCustomizationData = settings.Value.UseCustomizationData;\n        var contentRootPath = env.ContentRootPath;\n        var picturePath = env.WebRootPath;\n\n        // Workaround from https://github.com/npgsql/efcore.pg/issues/292#issuecomment-388608426\n        context.Database.OpenConnection();\n        ((NpgsqlConnection)context.Database.GetDbConnection()).ReloadTypes();\n\n        if (!context.CatalogItems.Any())\n        {\n            var sourcePath = Path.Combine(contentRootPath, \"Setup\", \"catalog.json\");\n            var sourceJson = File.ReadAllText(sourcePath);\n            var sourceItems = JsonSerializer.Deserialize<CatalogSourceEntry[]>(sourceJson) ?? Array.Empty<CatalogSourceEntry>();\n\n            context.CatalogBrands.RemoveRange(context.CatalogBrands);\n            await context.CatalogBrands.AddRangeAsync(sourceItems.Select(x => x.Brand).Distinct()\n                .Where(brandName => brandName != null)\n                .Select(brandName => new CatalogBrand(brandName!)));\n            logger.LogInformation(\"Seeded catalog with {NumBrands} brands\", context.CatalogBrands.Count());\n\n            context.CatalogTypes.RemoveRange(context.CatalogTypes);\n            await context.CatalogTypes.AddRangeAsync(sourceItems.Select(x => x.Type).Distinct()\n                .Where(typeName => typeName != null)\n                .Select(typeName => new CatalogType(typeName!)));\n            logger.LogInformation(\"Seeded catalog with {NumTypes} types\", context.CatalogTypes.Count());\n\n            await context.SaveChangesAsync();\n\n            var brandIdsByName = await context.CatalogBrands.ToDictionaryAsync(x => x.Brand, x => x.Id);\n            var typeIdsByName = await context.CatalogTypes.ToDictionaryAsync(x => x.Type, x => x.Id);\n\n            var catalogItems = sourceItems\n                .Where(source => source.Name != null && source.Brand != null && source.Type != null)\n                .Select(source => new CatalogItem(source.Name!)\n            {\n                Id = source.Id,\n   "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Infrastructure/Migrations/20231009153249_Initial.cs",
+      "kind": "File",
+      "path": "src/Catalog.API/Infrastructure/Migrations/20231009153249_Initial.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using Microsoft.EntityFrameworkCore.Migrations;\nusing Pgvector;\n\n#nullable disable\n\nnamespace eShop.Catalog.API.Infrastructure.Migrations\n{\n    /// <inheritdoc />\n    public partial class Initial : Migration\n    {\n        /// <inheritdoc />\n        protected override void Up(MigrationBuilder migrationBuilder)\n        {\n            migrationBuilder.AlterDatabase()\n                .Annotation(\"Npgsql:PostgresExtension:vector\", \",,\");\n\n            migrationBuilder.CreateSequence(\n                name: \"catalog_brand_hilo\",\n                incrementBy: 10);\n\n            migrationBuilder.CreateSequence(\n                name: \"catalog_hilo\",\n                incrementBy: 10);\n\n            migrationBuilder.CreateSequence(\n                name: \"catalog_type_hilo\",\n                incrementBy: 10);\n\n            migrationBuilder.CreateTable(\n                name: \"CatalogBrand\",\n                columns: table => new\n                {\n                    Id = table.Column<int>(type: \"integer\", nullable: false),\n                    Brand = table.Column<string>(type: \"character varying(100)\", maxLength: 100, nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"PK_CatalogBrand\", x => x.Id);\n                });\n\n            migrationBuilder.CreateTable(\n                name: \"CatalogType\",\n                columns: table => new\n                {\n                    Id = table.Column<int>(type: \"integer\", nullable: false),\n                    Type = table.Column<string>(type: \"character varying(100)\", maxLength: 100, nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"PK_CatalogType\", x => x.Id);\n                });\n\n            migrationBuilder.CreateTable(\n                name: \"Catalog\",\n                columns: table => new\n                {\n                    Id = table.Column<int>(type: \"integer\", nullable: false),\n                    Name = table.Column<string>(type: \"character varying(50)\", maxLength: 50, nullable: false),\n                    Description = table.Column<string>(type: \"text\", nullable: true),\n                    Price = table.Column<decimal>(type: \"numeric\", nullable: false),\n                    PictureFileName = table.Column<string>(type: \"text\", nullable: true),\n                    CatalogTypeId ="
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/Catalog.API/Model/CatalogItem.cs",
+      "kind": "File",
+      "path": "src/Catalog.API/Model/CatalogItem.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using System.ComponentModel.DataAnnotations;\nusing System.Text.Json.Serialization;\nusing Pgvector;\n\nnamespace eShop.Catalog.API.Model;\n\npublic class CatalogItem\n{\n    public int Id { get; set; }\n\n    [Required]\n    public string Name { get; set; }\n\n    public string? Description { get; set; }\n\n    public decimal Price { get; set; }\n\n    public string? PictureFileName { get; set; }\n\n    public int CatalogTypeId { get; set; }\n\n    public CatalogType? CatalogType { get; set; }\n\n    public int CatalogBrandId { get; set; }\n\n    public CatalogBrand? CatalogBrand { get; set; }\n\n    // Quantity in stock\n    public int AvailableStock { get; set; }\n\n    // Available stock at which we should reorder\n    public int RestockThreshold { get; set; }\n\n\n    // Maximum number of units that can be in-stock at any time (due to physicial/logistical constraints in warehouses)\n    public int MaxStockThreshold { get; set; }\n\n    /// <summary>Optional embedding for the catalog item's description.</summary>\n    [JsonIgnore]\n    public Vector? Embedding { get; set; }\n\n    /// <summary>\n    /// True if item is on reorder\n    /// </summary>\n    public bool OnReorder { get; set; }\n\n    public CatalogItem(string name) { Name = name; }\n\n\n    /// <summary>\n    /// Decrements the quantity of a particular item in inventory and ensures the restockThreshold hasn't\n    /// been breached. If so, a RestockRequest is generated in CheckThreshold. \n    /// \n    /// If there is sufficient stock of an item, then the integer returned at the end of this call should be the same as quantityDesired. \n    /// In the event that there is not sufficient stock available, the method will remove whatever stock is available and return that quantity to the client.\n    /// In this case, it is the responsibility of the client to determine if the amount that is returned is the same as quantityDesired.\n    /// It is invalid to pass in a negative number. \n    /// </summary>\n    /// <param name=\"quantityDesired\"></param>\n    /// <returns>int: Returns the number actually removed from stock. </returns>\n    /// \n    public int RemoveStock(int quantityDesired)\n    {\n        if (AvailableStock == 0)\n        {\n            throw new CatalogDomainException($\"Empty stock, product item {Name} is sold out\");\n        }\n\n        if (quantityDesired <= 0)\n        {\n            throw new CatalogDomainException($\"Item units desired should"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:tests/Catalog.FunctionalTests/CatalogApiTests.cs",
+      "kind": "File",
+      "path": "tests/Catalog.FunctionalTests/CatalogApiTests.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using System.Net.Http.Json;\nusing System.Text.Json;\nusing Asp.Versioning;\nusing Asp.Versioning.Http;\nusing eShop.Catalog.API.Model;\nusing Microsoft.AspNetCore.Mvc.Testing;\n\nnamespace eShop.Catalog.FunctionalTests;\n\npublic sealed class CatalogApiTests : IClassFixture<CatalogApiFixture>\n{\n    private readonly WebApplicationFactory<Program> _webApplicationFactory;\n    private readonly JsonSerializerOptions _jsonSerializerOptions = new(JsonSerializerDefaults.Web);\n\n    public CatalogApiTests(CatalogApiFixture fixture)\n    {\n        _webApplicationFactory = fixture;\n    }\n\n    private HttpClient CreateHttpClient(ApiVersion apiVersion)\n    {\n        var handler = new ApiVersionHandler(new QueryStringApiVersionWriter(), apiVersion);\n        return _webApplicationFactory.CreateDefaultClient(handler);\n    }\n\n    [Theory]\n    [InlineData(1.0)]\n    [InlineData(2.0)]\n    public async Task GetCatalogItemsRespectsPageSize(double version)\n    {\n        var _httpClient = CreateHttpClient(new ApiVersion(version));\n\n        // Act\n        var response = await _httpClient.GetAsync(\"/api/catalog/items?pageIndex=0&pageSize=5\", TestContext.Current.CancellationToken);\n\n        // Assert\n        response.EnsureSuccessStatusCode();\n        var body = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);\n        var result = JsonSerializer.Deserialize<PaginatedItems<CatalogItem>>(body, _jsonSerializerOptions);\n\n        // Assert 103 total items (101 seeded + 2 added by AddCatalogItem tests) with 5 retrieved from index 0\n        Assert.Equal(103, result.Count);\n        Assert.Equal(0, result.PageIndex);\n        Assert.Equal(5, result.PageSize);\n    }\n\n    [Theory]\n    [InlineData(1.0)]\n    [InlineData(2.0)]\n    public async Task UpdateCatalogItemWorksWithoutPriceUpdate(double version)\n    {\n        var _httpClient = CreateHttpClient(new ApiVersion(version));\n\n        // Act - 1\n        var response = await _httpClient.GetAsync(\"/api/catalog/items/1\", TestContext.Current.CancellationToken);\n        response.EnsureSuccessStatusCode();\n        var body = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);\n        var itemToUpdate = JsonSerializer.Deserialize<CatalogItem>(body, _jsonSerializerOptions);\n\n        // Act - 2\n        var priorAvailableStock = itemToUpdate.AvailableStock;\n        itemToUpdate.AvailableStock -= 1;\n        "
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:173",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 173,
+      "title": "catalog-api crashing after receiving request from webapp",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "After deploying eshop to Azure, the catalog-api crashes when it gets the first request from webapp, the logstream is:\r\n\r\n```\r\n2024-02-05T23:58:21.041277739Z       SELECT c.\"Id\", c.\"AvailableStock\", c.\"CatalogBrandId\", c.\"CatalogTypeId\", c.\"Description\", c.\"Embedding\", c.\"MaxStockThreshold\", c.\"Name\", c.\"OnReorder\", c.\"PictureFileName\", c.\"Price\", c.\"RestockThreshold\"\r\n2024-02-05T23:58:21.041285032Z       FROM \"Catalog\" AS c\r\n2024-02-05T23:58:21.041290372Z       ORDER BY c.\"Name\"\r\n2024-02-05T23:58:21.041305490Z       LIMIT @__p_1 OFFSET @__p_0\r\n2024-02-05T23:58:21.042802853Z fail: Microsoft.AspNetCore.Server.Kestrel[13]\r\n2024-02-05T23:58:21.042817751Z       Connection id \"0HN16KMJOLU5V\", Request id \"0HN16KMJOLU5V:00000004\": An unhandled exception was thrown by the application.\r\n2024-02-05T23:58:21.042825235Z       System.NullReferenceException: Object reference not set to an instance of an object.\r\n2024-02-05T23:58:21.042833059Z          at eShop.Catalog.API.CatalogApi.ChangeUriPlaceholder(CatalogOptions options, List`1 items) in /home/vivazqu/workspace/eshop/eShop/src/Catalog.API/Apis/CatalogApi.cs:line 312\r\n2024-02-05T23:58:21.042839532Z          at eShop.Catalog.API.CatalogApi.GetAllItems(PaginationRequest paginationRequest, CatalogServices services) in /home/vivazqu/workspace/eshop/eShop/src/Catalog.API/Apis/CatalogApi.cs:line 50\r\n2024-02-05T23:58:21.042845252Z          at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)\r\n2024-02-05T23:58:21.042850562Z          at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)\r\n2024-02-05T23:58:21.042865460Z          at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)\r\n2024-02-05T23:58:21.042870740Z          at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)\r\n```\r\n\r\n\r\n\r\nHere is the full log from getting the request to the last error in the stack\r\n\r\n```\r\n2024-02-06T00:12:12.841127766Z info: Microsoft.EntityFrameworkCore.Database.Command[20101]\r\n2024-02-06T00:12:12.841188229Z       Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']\r\n2024-02-06T00:12:12.841197717Z       SELECT count(*)\r\n2024-02-06T00:12:12.841204239Z       FROM \"Catalog\" AS c\r\n2024-02-06T00:"
+    }
+  ]
+}

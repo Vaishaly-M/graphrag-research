@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+        "path": "src/eShop.AppHost/Program.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:997",
+        "path": null,
+        "offset": 1091,
+        "line": 20
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Extensions.cs",
+        "path": "src/eShop.AppHost/Extensions.cs",
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+        "path": "README.md",
+        "offset": 2957,
+        "line": 61
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:397",
+        "path": null,
+        "offset": 1000,
+        "line": 16
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:430",
+        "path": null,
+        "offset": 425,
+        "line": 5
+      },
+      {
+        "id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:486",
+        "path": null,
+        "offset": 2728,
+        "line": 25
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2957,
+      "excerpt": "n running on Mac with Apple Silicon (M series processor), Rosetta 2 for grpc-tools. \n\n### Running the solution\n\n> [!WARNING]\n> Remember to ensure that Docker is started\n\n* (Windows only) Run the application from Visual Studio:\n - Open the `eShop.Web.slnf` file in Visual Studio\n - Ensure that `eShop.AppHost.csproj` is your startup project\n - Hit Ctrl-F5 to launch Aspire\n\n* Or run the application from your terminal:\n```powershell\ndotnet run --project src/eShop.AppHost/eShop.AppHost.csproj\n```\nthen look for lines like this in the console output in order to find the URL to open the Aspire dashboard:\n```sh\nLogin to the dashboard at: http://localhost:19888/login?t=uniquelogincodeforyou\n```\n\n> You may need to install ASP.NET Core HTTPS development certificates first, and then close all browser tabs. Learn more at https://aka.ms/aspnet/https-trust-dev-cert\n\n### Azure Open AI\n\nWhen using Azure OpenAI, inside *eShop.AppHost/appsettings.json*, add the following section:\n\n```json\n  \"ConnectionStrings\": {\n    \"OpenAi\": \"Endpoint=xxx;Key=xxx;\"\n  }\n```\n\nReplace the values with your own. Then, in the eShop.AppHost *Program.cs*, set this value to **true**\n\n```csharp\nbool useOpenAI = false;\n```\n\nHere's additional guidance on the [.NET Aspire OpenAI component](https://learn.microsoft.com/dotnet/aspire/azureai/azureai-openai-component?tabs=dotnet-cli). \n\n### Use Azure Developer CLI\n\nYou can use the [Azure Developer CLI](https://aka.ms/azd) to run this project on Azure with only a few commands. Follow the next instructions:\n\n- Install the latest or update to the latest [Azure Developer CLI (azd)](https://aka.ms/azure-dev/install).\n- Log in `azd` (if you haven't done it before) to your Azure account:\n```sh\nazd auth login\n```\n- Initialize `azd` from the root of the repo.\n```sh\nazd init\n```\n- During init:\n  - Select `Use code in the current directory`. Azd will automatically detect the .NET Aspire project.\n  - Confirm `.NET (Aspire)` and continue.\n  - Select which services to expose to the Internet (exposing `webapp` is enough to test the sample).\n  - Finalize the initialization by giving a name to your environment.\n\n- Create Azure resources and deploy the sample by running:\n```sh\nazd up\n```\nNotes:\n  - The operation takes a few minutes the first time it is ever run for an environment.\n  - At the end of the process, `azd` will display the `url` for the webapp. Follow that link to te"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Extensions.cs",
+      "kind": "File",
+      "path": "src/eShop.AppHost/Extensions.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using Aspire.Hosting.Eventing;\nusing Aspire.Hosting.Lifecycle;\nusing Aspire.Hosting.Yarp;\nusing Aspire.Hosting.Yarp.Transforms;\nusing Yarp.ReverseProxy.Configuration;\n\nnamespace eShop.AppHost;\n\ninternal enum OpenAITarget\n{\n    OpenAI,\n    AzureOpenAI,\n    AzureOpenAIExisting,\n    AzureOpenAIExistingWithKey\n}\n\ninternal static class Extensions\n{\n    /// <summary>\n    /// Adds a hook to set the ASPNETCORE_FORWARDEDHEADERS_ENABLED environment variable to true for all projects in the application.\n    /// </summary>\n    public static IDistributedApplicationBuilder AddForwardedHeaders(this IDistributedApplicationBuilder builder)\n    {\n        builder.Services.TryAddEventingSubscriber<AddForwardHeadersSubscriber>();\n        return builder;\n    }\n\n    private class AddForwardHeadersSubscriber : IDistributedApplicationEventingSubscriber\n    {\n        public Task SubscribeAsync(IDistributedApplicationEventing eventing, DistributedApplicationExecutionContext executionContext, CancellationToken cancellationToken)\n        {\n            eventing.Subscribe<BeforeStartEvent>((@event, ct) =>\n            {\n                foreach (var p in @event.Model.GetProjectResources())\n                {\n                    p.Annotations.Add(new EnvironmentCallbackAnnotation(context =>\n                    {\n                        context.EnvironmentVariables[\"ASPNETCORE_FORWARDEDHEADERS_ENABLED\"] = \"true\";\n                    }));\n                }\n\n                return Task.CompletedTask;\n            });\n\n            return Task.CompletedTask;\n        }\n    }\n\n    /// <summary>\n    /// Configures eShop projects to use OpenAI for text embedding and chat.\n    /// </summary>\n    public static IDistributedApplicationBuilder AddOpenAI(this IDistributedApplicationBuilder builder,\n        IResourceBuilder<ProjectResource> catalogApi,\n        IResourceBuilder<ProjectResource> webApp,\n        OpenAITarget openAITarget)\n    {\n        const string openAIName = \"openai\";\n\n        const string textEmbeddingName = \"textEmbeddingModel\";\n        const string textEmbeddingModelName = \"text-embedding-3-small\";\n\n        const string chatName = \"chatModel\";\n        const string chatModelName = \"gpt-4.1-mini\";\n\n        if (openAITarget != OpenAITarget.AzureOpenAI)\n        {\n#pragma warning disable ASPIREINTERACTION001 // Type is for evaluation purposes only and is subject to change or removal in future up"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:file:src/eShop.AppHost/Program.cs",
+      "kind": "File",
+      "path": "src/eShop.AppHost/Program.cs",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "using eShop.AppHost;\n\nvar builder = DistributedApplication.CreateBuilder(args);\n\nbuilder.AddForwardedHeaders();\n\nvar redis = builder.AddRedis(\"redis\");\nvar rabbitMq = builder.AddRabbitMQ(\"eventbus\")\n    .WithLifetime(ContainerLifetime.Persistent);\nvar postgres = builder.AddPostgres(\"postgres\")\n    .WithImage(\"ankane/pgvector\")\n    .WithImageTag(\"latest\")\n    .WithLifetime(ContainerLifetime.Persistent);\n\nvar catalogDb = postgres.AddDatabase(\"catalogdb\");\nvar identityDb = postgres.AddDatabase(\"identitydb\");\nvar orderDb = postgres.AddDatabase(\"orderingdb\");\nvar webhooksDb = postgres.AddDatabase(\"webhooksdb\");\n\nvar launchProfileName = ShouldUseHttpForEndpoints() ? \"http\" : \"https\";\n\n// Services\nvar identityApi = builder.AddProject<Projects.Identity_API>(\"identity-api\", launchProfileName)\n    .WithExternalHttpEndpoints()\n    .WithReference(identityDb)\n    .WithHttpHealthCheck(\"/health\");\n\nvar identityEndpoint = identityApi.GetEndpoint(launchProfileName);\n\nvar basketApi = builder.AddProject<Projects.Basket_API>(\"basket-api\")\n    .WithReference(redis)\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\nredis.WithParentRelationship(basketApi);\n\nvar catalogApi = builder.AddProject<Projects.Catalog_API>(\"catalog-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(catalogDb);\n\nvar orderingApi = builder.AddProject<Projects.Ordering_API>(\"ordering-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb).WaitFor(orderDb)\n    .WithHttpHealthCheck(\"/health\")\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\nbuilder.AddProject<Projects.OrderProcessor>(\"order-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(orderDb)\n    .WaitFor(orderingApi); // wait for the orderingApi to be ready because that contains the EF migrations\n\nbuilder.AddProject<Projects.PaymentProcessor>(\"payment-processor\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq);\n\nvar webHooksApi = builder.AddProject<Projects.Webhooks_API>(\"webhooks-api\")\n    .WithReference(rabbitMq).WaitFor(rabbitMq)\n    .WithReference(webhooksDb)\n    .WithEnvironment(\"Identity__Url\", identityEndpoint);\n\n// Reverse proxies\nbuilder.AddYarp(\"mobile-bff\")\n    .WithExternalHttpEndpoints()\n    .ConfigureMobileBffRoutes(catalogApi, orderingApi, identityApi);\n\n// Apps\nvar webhooksClient = builder.AddProject<Proje"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:397",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 397,
+      "title": "Incorrect URL Redirection with \".internal\" in Azure Container App Service",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1000,
+      "excerpt": "double-checked my configuration files and performed several redeployments using azd up without success.\r\n\r\nAlso I have this on frontend:\r\n\r\n```\r\nvar identityUrl = configuration.GetRequiredValue(\"IdentityUrl\");\r\n...\r\n.AddOpenIdConnect(options => { options.Authority = identityUrl;\r\n```\r\n\r\nthis on the AppHost:\r\n\r\n```\r\nvar identityApi = builder.AddProject<Identity_Api>(\"identity-api\") .WithReference(identityDb);\r\nvar identityEndpoint = identityApi.GetEndpoint(launchProfileName);\r\nvar blazorApp = builder.AddProject<Front_Blazor>(\"blazor-app\") .WithEnvironment(\"IdentityUrl\", identityEndpoint)\r\n```\r\n\r\nHas anyone encountered this issue or knows why the URL is being set with \".internal\"? Any guidance on how to resolve this URL redirection problem would be greatly appreciated.\r\n\r\nThank you!"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:430",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 430,
+      "title": " Aspire deployment - An unhandled error has occurred. Reload",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 425,
+      "excerpt": "45-4701-a045-1edf4e8ef5f2)\r\n\r\nInitializing an app to run on Azure (azd init)\r\n\r\n? How do you want to initialize your app? Use code in the current directory\r\n\r\n  (✓) Done: Scanning app code in current directory\r\n\r\nDetected services:\r\n\r\n  .NET (Aspire)\r\n  Detected in: C:\\dotnet\\sample\\eShop\\src\\eShop.AppHost\\eShop.AppHost.csproj\r\n\r\nazd will generate the files necessary to host your app on Azure using Azure Container Apps.\r\n\r\n? Select an option Confirm and continue initializing my app\r\n? Enter a new environment name: [? for help] eshopdev\r\n\r\n? Enter a new environment name: eshopdev\r\n\r\nGenerating files to run your app on Azure:\r\n\r\n  (✓) Done: Generating ./azure.yaml\r\n  (✓) Done: Generating ./next-steps.md\r\n\r\nSUCCESS: Your app is ready for the cloud!\r\nYou can provision and deploy your app to Azure by running the azd up command in this directory. For more information on configuring your app, see ./next-steps.md\r\nPS C:\\dotnet\\sample\\eShop\\src\\eShop.AppHost> azd up\r\n? Select an Azure Subscription to use:  1. Visual Studio Professional Subscription\r\n? Select an Azure location to use: 16. (Asia Pacific) Southeast Asia (southeastasia)\r\n\r\nPackaging services (azd package)\r\n\r\n\r\nProvisioning Azure resources (azd provision)\r\nProvisioning Azure resources can take some time.\r\n\r\nSubscription: Visual Studio Professional Subscription\r\nLocation: Southeast Asia\r\n\r\n  You can view detailed progress in the Azure Portal:\r\n  https://portal.azure.com/#view/HubsExtension/DeploymentDetailsBlade/~/overview/id\r\n\r\n  (✓) Done: Resource group: rg-eshopdev\r\n  (✓) Done: Log Analytics workspace: law-mn6lmqyu7hkig\r\n  (✓) Done: Container Registry: acrmn6lmqyu7hkig\r\n  (✓) Done: Container Apps Environment: cae-mn6lmqyu7hkig\r\n\r\nDeploying services (azd deploy)\r\n\r\n  (✓) Done: Deploying service basket-api\r\n  - Endpoint: https://basket-api.internal.proudcliff-xxx.southeastasia.azurecontainerapps.io/\r\n\r\n  (✓) Done: Deploying service catalog-api\r\n  - Endpoint: https://catalog-api.internal.proudcliff-xxx.southeastasia.azurecontainerapps.io/\r\n\r\n  (✓) Done: Deploying service eventbus\r\n  - Endpoint: https://eventbus.internal.proudcliff-xxx.southeastasia.azurecontainerapps.io/\r\n\r\n  (✓) Done: Deploying service identity-api\r\n  - Endpoint: https://identity-api.proudcliff-xxx.southeastasia.azurecontainerapps.io/\r\n\r\n  (✓) Done: Deploying service mobile-bff\r\n  - Endpoint: https://mobile-bff.internal.proudcliff-xxx.sou"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:486",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 486,
+      "title": "Full rebuild of eshop solution fails on ClientApp",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2728,
+      "excerpt": "sec).\nRestored D:\\GitHub\\eshop\\src\\eShop.ServiceDefaults\\eShop.ServiceDefaults.csproj (in 1.38 sec).\nRestored D:\\GitHub\\eshop\\tests\\Basket.UnitTests\\Basket.UnitTests.csproj (in 1.43 sec).\nRestored D:\\GitHub\\eshop\\src\\Ordering.API\\Ordering.API.csproj (in 1.45 sec).\nRestored D:\\GitHub\\eshop\\src\\eShop.AppHost\\eShop.AppHost.csproj (in 1.48 sec).\nRestored D:\\GitHub\\eshop\\src\\Ordering.Domain\\Ordering.Domain.csproj (in 1.5 sec).\nRestored D:\\GitHub\\eshop\\src\\Webhooks.API\\Webhooks.API.csproj (in 1.51 sec).\nRestored D:\\GitHub\\eshop\\tests\\Ordering.FunctionalTests\\Ordering.FunctionalTests.csproj (in 1.56 sec).\nRestored D:\\GitHub\\eshop\\src\\WebApp\\WebApp.csproj (in 1.59 sec).\nRestored D:\\GitHub\\eshop\\src\\EventBus\\EventBus.csproj (in 1.6 sec).\nRestored D:\\GitHub\\eshop\\src\\Ordering.Infrastructure\\Ordering.Infrastructure.csproj (in 1.61 sec).\nRestored D:\\GitHub\\eshop\\tests\\Ordering.UnitTests\\Ordering.UnitTests.csproj (in 1.71 sec).\nRestored D:\\GitHub\\eshop\\src\\Basket.API\\Basket.API.csproj (in 1.72 sec).\nRestored D:\\GitHub\\eshop\\src\\Identity.API\\Identity.API.csproj (in 1.77 sec).\nRestored D:\\GitHub\\eshop\\src\\OrderProcessor\\OrderProcessor.csproj (in 1.78 sec).\nRestored D:\\GitHub\\eshop\\src\\WebhookClient\\WebhookClient.csproj (in 1.8 sec).\nRestored D:\\GitHub\\eshop\\tests\\Catalog.FunctionalTests\\Catalog.FunctionalTests.csproj (in 1.82 sec).\nRestored D:\\GitHub\\eshop\\src\\EventBusRabbitMQ\\EventBusRabbitMQ.csproj (in 1.84 sec).\nRestored D:\\GitHub\\eshop\\src\\IntegrationEventLogEF\\IntegrationEventLogEF.csproj (in 1.85 sec).\nRestored D:\\GitHub\\eshop\\src\\Mobile.Bff.Shopping\\Mobile.Bff.Shopping.csproj (in 1.86 sec).\nRestored D:\\GitHub\\eshop\\src\\ClientApp\\ClientApp.csproj (in 555 ms).\nRestored D:\\GitHub\\eshop\\src\\HybridApp\\HybridApp.csproj (in 2.28 sec).\n1>------ Rebuild All started: Project: ClientApp, Configuration: Debug Any CPU ------\n2>------ Rebuild All started: Project: WebAppComponents, Configuration: Debug Any CPU ------\n3>------ Rebuild All started: Project: Ordering.Domain, Configuration: Debug Any CPU ------\n4>------ Rebuild All started: Project: EventBus, Configuration: Debug Any CPU ------\n5>------ Rebuild All started: Project: eShop.ServiceDefaults, Configuration: Debug Any CPU ------\nRestored D:\\GitHub\\eshop\\tests\\ClientApp.UnitTests\\ClientApp.UnitTests.csproj (in 2.3 sec).\n3>Ordering.Domain -> D:\\GitHub\\eshop\\src\\Ordering.Domain\\bin\\Debug\\net8.0\\Ordering.Domain.dll\n5>eShop.Se"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:997",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 997,
+      "title": "Catalog API admin mutation endpoints have no authentication - unauthenticated item creation, update, and deletion",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1091,
+      "excerpt": "AddDefaultAuthentication()`, unlike the Basket API (`src/Basket.API/Extensions/Extensions.cs` line 10: `builder.AddDefaultAuthentication()`), the Ordering API (`src/Ordering.API/Extensions/Extensions.cs` line 10: `builder.AddDefaultAuthentication()`), and the Webhooks API.\n\nThis is confirmed in the AppHost configuration (`src/eShop.AppHost/Program.cs`): the `catalogApi` resource is the only service not passed `Identity__Url` as an environment variable. The basket, ordering, and webhooks services all receive `.WithEnvironment(\"Identity__Url\", identityEndpoint)`, which is what triggers the JWT bearer middleware registration. Catalog receives no such configuration.\n\nAdditionally, `src/eShop.AppHost/Extensions.cs` registers a YARP catch-all route `/api/catalog/{*any}` in `ConfigureMobileBffRoutes` that forwards all catalog API requests (including mutations) from the mobile BFF without adding any authentication layer.\n\n### PoC\n\n(available upon request)\n\n### Impact\n\nAny unauthenticated attacker with network access to the Catalog API (directly or via the YARP mobile BFF) can add fraudulent products at arbitrary prices, modify existing product prices to cause financial loss, or delete all catalog items to cause a denial of service for the storefront. In a production deployment this would allow price manipulation attacks (creating $0.01 items), catalog defacement, and complete inventory destruction.\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "…ging coverage\r\n\r\nIntroduce pluggable functional test modes (Aspire, RepositoryMock, EfCoreInMemory, Testcontainers, and messaging variants) for Catalog and Ordering via a shared Testing.Common library. Extract ICatalogRepository from Catalog.API to enable in-memory persistence swaps, add Serilog logging to ServiceDefaults, fix integration event type discovery under WebApplicationFactory, and add runsettings plus xUnit traits for filtering tests by mode.\r\n\r\n# eShop Multi-Mode Functional Testing\r\n\r\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontaine"
+    }
+  ]
+}

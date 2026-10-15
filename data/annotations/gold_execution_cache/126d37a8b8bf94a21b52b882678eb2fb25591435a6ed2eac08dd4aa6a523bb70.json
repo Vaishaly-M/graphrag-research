@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "path": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "offset": 358,
+        "line": 10
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2573",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2600",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+        "offset": 359,
+        "line": 10
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+        "offset": 359,
+        "line": 10
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2536",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2560",
+        "path": null,
+        "offset": 0,
+        "line": 1
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+      "kind": "File",
+      "path": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 358,
+      "excerpt": " software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\npackage org.springframework.samples.petclinic.owner;\n\nimport java.time.LocalDate;\nimport java.util.Collection;\nimport java.util.Objects;\nimport java.util.Optional;\n\nimport org.springframework.dao.DataIntegrityViolationException;\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.ModelMap;\nimport org.springframework.util.Assert;\nimport org.springframework.util.StringUtils;\nimport org.springframework.validation.BindingResult;\nimport org.springframework.web.bind.WebDataBinder;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.InitBinder;\nimport org.springframework.web.bind.annotation.ModelAttribute;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestMapping;\n\nimport jakarta.validation.Valid;\n\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\n\n/**\n * @author Juergen Hoeller\n * @author Ken Krebs\n * @author Arjen Poutsma\n * @author Wick Dynex\n */\n@Controller\n@RequestMapping(\"/owners/{ownerId}\")\nclass PetController {\n\n\tprivate static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = \"pets/createOrUpdatePetForm\";\n\n\tprivate final OwnerRepository owners;\n\n\tprivate final PetTypeRepository types;\n\n\tpublic PetController(OwnerRepository owners, PetTypeRepository types) {\n\t\tthis.owners = owners;\n\t\tthis.types = types;\n\t}\n\n\t@ModelAttribute(\"types\")\n\tpublic Collection<PetType> populatePetTypes() {\n\t\treturn this.types.findPetTypes();\n\t}\n\n\t@ModelAttribute(\"owner\")\n\tpublic Owner findOwner(@PathVariable(\"ownerId\") int ownerId) {\n\t\tOptional<Owner> optionalOwner = this.owners.findById(ownerId);\n\t\tOwner owner = optionalOwner.orElseThrow(() -> new IllegalArgumentException(\n\t\t\t\t\"Owner not found with id: \" + ownerId + \". Please ensure the ID is correct \"));\n\t\treturn owner;\n\t}\n\n\t@ModelAttribute(\"pet\")\n\tpublic Pet findPet(@PathVariable(\"ownerId\") int ownerId,\n\t\t\t@PathVariable(name = \"petId\", required = false) Integer petId) {\n\n\t\tif (petId == null) {\n\t\t\treturn new Pet();\n\t\t}\n\n\t\tOptional<Owner> optionalOwne"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 359,
+      "excerpt": "software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\npackage org.springframework.samples.petclinic.owner;\n\nimport org.junit.jupiter.api.BeforeEach;\nimport org.junit.jupiter.api.Nested;\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.api.condition.DisabledInNativeImage;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;\nimport org.springframework.context.annotation.ComponentScan;\nimport org.springframework.context.annotation.FilterType;\nimport org.springframework.test.context.aot.DisabledInAotMode;\nimport org.springframework.test.context.bean.override.mockito.MockitoBean;\nimport org.springframework.test.web.servlet.MockMvc;\n\nimport java.time.LocalDate;\nimport java.util.List;\nimport java.util.Optional;\n\nimport org.springframework.dao.DataIntegrityViolationException;\n\nimport static org.mockito.ArgumentMatchers.any;\nimport static org.mockito.BDDMockito.given;\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;\n\n/**\n * Test class for the {@link PetController}\n *\n * @author Colin But\n * @author Wick Dynex\n */\n@WebMvcTest(value = PetController.class,\n\t\tincludeFilters = @ComponentScan.Filter(value = PetTypeFormatter.class, type = FilterType.ASSIGNABLE_TYPE))\n@DisabledInNativeImage\n@DisabledInAotMode\nclass PetControllerTests {\n\n\tprivate static final int TEST_OWNER_ID = 1;\n\n\tprivate static final int TEST_PET_ID = 1;\n\n\t@Autowired\n\tprivate MockMvc mockMvc;\n\n\t@MockitoBean\n\tprivate OwnerRepository owners;\n\n\t@MockitoBean\n\tprivate PetTypeRepository types;\n\n\t@BeforeEach\n\tvoid setup() {\n\t\tPetType cat = new PetType();\n\t\tcat.setId(3);\n\t\tcat.setName(\"hamster\");\n\t\tgiven(this.types.findPetTypes()).willReturn(List.of(cat));\n\n\t\tOwner owner = new Owner();\n\t\tPet pet = new Pet();\n\t\tPet dog = new Pet();\n\t\towner"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 359,
+      "excerpt": "software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\npackage org.springframework.samples.petclinic.service;\n\nimport static org.assertj.core.api.Assertions.assertThat;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\n\nimport org.springframework.dao.DataIntegrityViolationException;\nimport java.time.LocalDate;\nimport java.util.Collection;\nimport java.util.Optional;\n\nimport org.junit.jupiter.api.Test;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;\nimport org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;\nimport org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase.Replace;\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.Pageable;\nimport org.springframework.samples.petclinic.owner.Owner;\nimport org.springframework.samples.petclinic.owner.OwnerRepository;\nimport org.springframework.samples.petclinic.owner.Pet;\nimport org.springframework.samples.petclinic.owner.PetType;\nimport org.springframework.samples.petclinic.owner.PetTypeRepository;\nimport org.springframework.samples.petclinic.owner.Visit;\nimport org.springframework.samples.petclinic.vet.Vet;\nimport org.springframework.samples.petclinic.vet.VetRepository;\nimport org.springframework.transaction.annotation.Transactional;\n\n/**\n * Integration test of the Service and the Repository layer.\n * <p>\n * ClinicServiceSpringDataJpaTests subclasses benefit from the following services provided\n * by the Spring TestContext Framework:\n * </p>\n * <ul>\n * <li><strong>Spring IoC container caching</strong> which spares us unnecessary set up\n * time between test execution.</li>\n * <li><strong>Dependency Injection</strong> of test fixture instances, meaning that we\n * don't need to perform application context lookups. See the use of\n * {@link Autowired @Autowired} on the <code> </code> instance variable, which uses\n * autowiring <em>by type</em>.\n * <li><strong>Transaction management</strong>, meaning each test method is executed in\n * its own transaction, which is automatically rolled back by default. Thus, even if tests\n * insert or otherwise"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2252",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2252,
+      "title": "[Feature] Add search pets by name screen",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\n\nAdd a new screen that allows users to search for pets by name, similar to the existing \"Find Owners\" functionality.\n\n## Motivation\n\n- Currently there is no way to search for a pet directly by name; users must first find the owner and then browse their pets.\n- A dedicated pet search screen would improve usability when the pet name is known but the owner is not.\n- Aligns the pet entity with the same search UX pattern already established for owners.\n\n## Proposed Solution\n\n1. **New Thymeleaf template** (`templates/pets/findPets.html`) with a search form and results list/table.\n2. **New controller** endpoint(s) in a `PetController` (or extend existing controller) to handle `GET /pets/find` and `GET /pets` with a `name` query parameter.\n3. **New repository method** `findByNameContainingIgnoreCase(String name)` (or equivalent Spring Data query) in `PetRepository`.\n4. **Navigation link** added to the main layout so users can access the pet search screen.\n5. **Accessibility**: the new page must meet WCAG 2.2 Level AA (keyboard navigation, visible focus, proper labels, contrast, landmarks, etc.).\n\n## Acceptance Criteria\n\n- [ ] A \"Find Pets\" link is available in the main navigation menu\n- [ ] Users can search for pets by entering a full or partial pet name (case-insensitive)\n- [ ] An empty search returns all pets\n- [ ] Search results display pet name, birth date, type, and owner name\n- [ ] Clicking a result navigates to the pet's or owner's detail page\n- [ ] The page is accessible (landmarks, labels, keyboard support, contrast)\n- [ ] Unit and integration tests cover the new controller and repository methods\n- [ ] Works with H2 (default), MySQL, and PostgreSQL profiles\n\n## Alternatives Considered\n\n- Extending the existing owner search to also filter by pet name — rejected because it conflates two different search intents.\n\n## Additional Context\n\nThe implementation should follow the same patterns used by the existing \"Find Owners\" feature (`OwnerController`, `findOwners.html`, `ownersList.html`)."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:2600",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 2600,
+      "title": "Owner.addPet silently ignores persisted pets and PetValidator lacks name length check",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "The Owner.addPet(Pet pet) method in Owner.java contains a logic bug where it only adds a pet to the owner's pet list if pet.isNew() returns true (i.e., the pet has no ID). This means that any persisted pet (one that already has a database ID assigned) is silently ignored when added to an owner.\n\nThis bug manifests in PetController.updatePetDetails() where the else branch calls owner.addPet(pet) for a pet with an existing ID. Since the pet is not new, the call silently does nothing, and the pet is never associated with the owner.\n\nExpected behavior: The addPet method should add any pet that is not already present in the owner's pet list, regardless of whether the pet is new or persisted.\n\nActual behavior: Only pets with a null ID are added. Pets with a valid ID are silently dropped.\n\nAdditionally, the PetValidator class lacks a name length validation check. The Pet entity inherits from NamedEntity which has a @Column(length=30) constraint, but the validator does not enforce this at the form validation level. This means names exceeding 30 characters pass validation but fail at the database level with a hard-to-debug constraint violation.\n\nSteps to reproduce:\n\nCreate an Owner instance\nCreate a Pet instance and assign it an ID (e.g., pet.setId(5))\nCall owner.addPet(pet)\nObserve that owner.getPets() returns an empty list\nAcceptance criteria:\n\nOwner.addPet adds persisted pets that are not already in the list\nOwner.addPet does not add duplicate pets\nPetValidator rejects pet names longer than 30 characters\nAll existing tests continue to pass\nNew unit tests cover the fixed behavior\nWord count: ~240 RULE 7 status: PASS"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2536",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2536,
+      "title": "Add test coverage for duplicate pet name validation on update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Adds a test for the duplicate pet name validation path in\r\nPetController#processUpdateForm.\r\n\r\nThe test verifies that updating a pet with a name already used by\r\nanother pet owned by the same owner results in a validation error\r\nwith the \"duplicate\" error code."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2560",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2560,
+      "title": "Add owner pet name fields validations",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "Fixes #2554\r\n\r\n## Issue\r\n\r\nOwner and Pet name validation was incomplete, allowing numeric-only values (for example: `12345`) to be submitted and persisted.\r\n\r\n## Analysis\r\n\r\n* `PetValidator.java` existed, but its validation logic only checked for empty values and did not enforce meaningful name constraints.\r\n* There was no dedicated `OwnerValidator.java`, which meant owner names relied only on basic persistence constraints.\r\n* Name fields were effectively unrestricted in length beyond the database column definition. A 30-character maximum is more practical and aligned with expected usage.\r\n\r\n## Changes Made\r\n\r\n* Updated `PetValidator.java` to enforce:\r\n\r\n  * Non-empty values\r\n  * At least one alphabetic character\r\n  * Maximum length of 30 characters\r\n\r\n* Added `OwnerValidator.java` following the existing validator pattern used in the project to validate:\r\n\r\n  * `firstName`\r\n  * `lastName`\r\n\r\n* Ensured custom validation integrates with existing Bean Validation (`@Valid`) without overriding entity-level constraints.\r\n\r\n## Validation Rules\r\n\r\nBoth Owner and Pet names now:\r\n\r\n* Must not be blank\r\n* Must contain at least one letter\r\n* Must be 30 characters or fewer\r\n\r\nThis prevents invalid numeric-only entries while keeping valid alphanumeric names supported.\r\n\r\n## Testing\r\n\r\nTested locally across all affected flows:\r\n\r\n* Creating a new Owner\r\n* Updating an existing Owner\r\n* Creating a new Pet\r\n* Updating an existing Pet\r\n\r\nVerified:\r\n\r\n* Valid names are accepted\r\n* Blank values are rejected\r\n* Numeric-only values are rejected\r\n* Overlength names are rejected\r\n\r\nEvidence attached.\r\n[#2554.docx](https://github.com/user-attachments/files/29611774/2554.docx)\r\n\r\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2573",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2573,
+      "title": "Prevent duplicate pet creation with similar name for the same owner under concurrent requests",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 0,
+      "excerpt": "## Summary\r\nThis Pull Request resolves a concurrent race condition in the Spring PetClinic application that allows users to create duplicate pets with the same name (case-insensitive) under the same owner.\r\n\r\n## Problem\r\nIn a concurrent environment, if two requests are sent simultaneously to create a pet with the same name for the same owner, both checks succeed, bypassing the in-memory validation check and inserting duplicate pet records.\r\n\r\n## Steps to Reproduce\r\n\r\n1. Start the Spring Boot application locally.\r\n2. Create an owner (or use an existing owner with no pet named `PRTESTPET`).\r\n3. Send two concurrent `POST` requests to `/owners/{ownerId}/pets/new`, both using the pet name `PRTESTPET`.\r\n4. Open the owner's details page.\r\n5. Observe that both requests succeed and duplicate pets with the same name are created for the same owner.\r\n\r\n<img width=\"728\" height=\"504\" alt=\"Screenshot 2026-07-14 at 1 47 19 AM\" src=\"https://github.com/user-attachments/assets/3c83859f-9660-4030-a583-f0e6953e273f\" />\r\n\r\n\r\n## Root Cause\r\nThe duplication validation is executed entirely in Java memory (using a check-then-act pattern: `owner.getPet(petName, false) != null`), and there is no database-level unique constraint or lock to serialize concurrent insert operations.\r\n\r\n## Solution\r\n1. **Database-Level Case-Insensitive Uniqueness Constraints**:\r\n   - **H2**: Change the `pets.name` column type to `VARCHAR_IGNORECASE(30)` and add a unique constraint on `(owner_id, name)`.\r\n   - **MySQL**: Add a unique constraint `UNIQUE (owner_id, name)`.\r\n   - **PostgreSQL**: Add a unique functional index: `CREATE UNIQUE INDEX unique_owner_pet_name ON pets (owner_id, LOWER(name));`.\r\n2. **Immediate Persistence**:\r\n   - Change `save()` to `saveAndFlush()` in [PetController.java](file:///Users/spring-petclinic/src/main/java/org/springframework/samples/petclinic/owner/PetController.java) to ensure SQL execution and trigger constraint violations within the try-catch block.\r\n3. **Graceful Exception Translation**:\r\n   - Update [PetController.java](file:///Users/spring-petclinic/src/main/java/org/springframework/samples/petclinic/owner/PetController.java) to catch `DataIntegrityViolationException`, verify if it is the specific `unique_owner_pet_name` violation, and translate it into a clean validation error on the name field.\r\n\r\nNOTE: To preserve the existing application behavior, the database const"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)<-[:DL_AUTHORED_COMMIT]-(d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(other:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND c<>other AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id)+collect(DISTINCT d.id)+collect(DISTINCT other.id) AS evidence RETURN b.path AS entity,b.path+': '+split(b.content,'\\n')[0] AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 5",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "synthetic-org/platform",
+    "path": "src/module_2/component_24.py"
+  },
+  "rows": [
+    {
+      "entity": "src/module_0/component_4.py",
+      "fact": "src/module_0/component_4.py: \"\"\"Controlled component 4 for reproducible repository question answering.\"\"\"",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_2/component_24.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:24fff7f1cab0a9b647be186313535a27f7e8055a",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:developer:email:developer4@example.invalid",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:959071fde54dff7cd63938429ff1d56c61835793",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_4.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_5.py",
+      "fact": "src/module_0/component_5.py: \"\"\"Controlled component 5 for reproducible repository question answering.\"\"\"",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_2/component_24.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:developer:email:developer0@example.invalid",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:60559f15197135efee2b0f7e24c17c413cefb6bc",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_5.py"
+      ]
+    },
+    {
+      "entity": "src/module_0/component_9.py",
+      "fact": "src/module_0/component_9.py: \"\"\"Controlled component 9 for reproducible repository question answering.\"\"\"",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_2/component_24.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:24fff7f1cab0a9b647be186313535a27f7e8055a",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:developer:email:developer4@example.invalid",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:925157d1a6ae4a17521ac2029b54fda536018f94",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_0/component_9.py"
+      ]
+    },
+    {
+      "entity": "src/module_1/component_10.py",
+      "fact": "src/module_1/component_10.py: \"\"\"Controlled component 10 for reproducible repository question answering.\"\"\"",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_2/component_24.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:fd3d01581d7a271cc9347c9d4141cfb403b81e6e",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:developer:email:developer0@example.invalid",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:3bf3c5d92cbade73090153c6a107e850ebedfae2",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_1/component_10.py"
+      ]
+    },
+    {
+      "entity": "src/module_1/component_14.py",
+      "fact": "src/module_1/component_14.py: \"\"\"Controlled component 14 for reproducible repository question answering.\"\"\"",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_2/component_24.py",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:24fff7f1cab0a9b647be186313535a27f7e8055a",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:developer:email:developer4@example.invalid",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:commit:75afc2828c8b2be3136b9e4d1a6474b6127d32c6",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_1/component_14.py"
+      ]
+    }
+  ]
+}

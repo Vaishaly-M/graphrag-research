@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 1142,
+        "line": 15
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+        "path": "README.md",
+        "offset": 3117,
+        "line": 25
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6399",
+        "path": null,
+        "offset": 4280,
+        "line": 69
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/release.yaml",
+        "path": ".github/workflows/release.yaml",
+        "offset": 14401,
+        "line": 237
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6685",
+        "path": null,
+        "offset": 1616,
+        "line": 15
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:bamboo-specs/bamboo.yml",
+        "path": "bamboo-specs/bamboo.yml",
+        "offset": 11057,
+        "line": 262
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6401",
+        "path": null,
+        "offset": 5962,
+        "line": 87
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6546",
+        "path": null,
+        "offset": 3701,
+        "line": 47
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:.github/workflows/release.yaml",
+      "kind": "File",
+      "path": ".github/workflows/release.yaml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14401,
+      "excerpt": "een build on this commit\n        # Bamboo only offers the Release stage on a green build; enforce the same here\n        env:\n          GH_TOKEN: ${{ github.token }}\n        run: |\n          SUCCESSFUL_RUNS=$(gh api \"repos/${GITHUB_REPOSITORY}/actions/workflows/build.yaml/runs?head_sha=${GITHUB_SHA}&status=success&exclude_pull_requests=true\" --jq '.total_count')\n          if [[ \"${SUCCESSFUL_RUNS}\" -lt 1 ]]; then\n            echo \"::error::No successful 'Build with Maven' run for ${GITHUB_SHA}; wait for CI to pass on ${GITHUB_REF_NAME} before releasing\"\n            exit 1\n          fi\n\n      - name: Set the release version\n        run: |\n          mvn versions:set -DnewVersion=\"${OMRS_VERSION}\" -DgenerateBackupPoms=false --batch-mode\n          git config user.name openmrs-bot\n          git config user.email infrastructure@openmrs.org\n          git commit -am \"[skip-ci] [skip actions] Releasing ${OMRS_VERSION}\"\n\n      - uses: docker/setup-qemu-action@96fe6ef7f33517b61c61be40b68a1882f3264fb8 # v4.2.0\n\n      - uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0\n\n      - uses: docker/login-action@af1e73f918a031802d376d3c8bbc3fe56130a9b0 # v4.4.0\n        with:\n          username: ${{ secrets.DOCKER_HUB_USERNAME }}\n          password: ${{ secrets.DOCKER_HUB_TOKEN }}\n\n      - name: Build and push the dev image\n        run: |\n          docker buildx build --pull --push --platform \"${DOCKER_IMAGE_PLATFORMS}\" \\\n            --cache-from \"${DOCKER_IMAGE_NAME}:${GITHUB_REF_NAME}-dev-cache\" \\\n            --target dev \\\n            --build-arg MVN_ARGS=\"${MVN_ARGS}\" \\\n            -t \"${DOCKER_IMAGE_NAME}:${OMRS_VERSION}-dev\" .\n\n      - name: Build and push the production image\n        # the compile/dev stages are reused from the previous step via the local\n        # buildx cache; the registry cache only helps when that is unavailable\n        run: |\n          docker buildx build --pull --push --platform \"${DOCKER_IMAGE_PLATFORMS}\" \\\n            --cache-from \"${DOCKER_IMAGE_NAME}:${GITHUB_REF_NAME}-dev-cache\" \\\n            --build-arg MVN_ARGS=\"${MVN_ARGS}\" \\\n            -t \"${DOCKER_IMAGE_NAME}:${OMRS_VERSION}\" .\n\n      - name: Release to maven\n        env:\n          MAVEN_REPO_USERNAME: ${{ secrets.MAVEN_REPO_USERNAME }}\n          MAVEN_REPO_API_KEY: ${{ secrets.MAVEN_REPO_API_KEY }}\n        # run mvn deploy inside the dev image just pushed, a"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1142,
+      "excerpt": "Module Repository](http://modules.openmrs.org) and that module's documentation about how to get support.\n\n5. If you believe the problem is with OpenMRS itself, or if you're honestly not sure, you can [file the bug report in the OpenMRS Trunk project in JIRA](https://tickets.openmrs.org/secure/CreateIssue.jspa?pid=10000&issuetype=1&Create=Create). You'll need to have an [OpenMRS ID](http://id.openmrs.org) to do so. You'll receive e-mail updates as the bug is investigated and resolved.\n\n### Bug report contents\n\nRegardless of whether you're reporting the bug to the OpenMRS core team or to a module developer, to help those developers understand the problem, please include as much information as possible:\n\n1. A clear description of how to recreate the error, including any error messages shown.\n2. The version of OpenMRS you are using.\n3. The type and version of the database you are using, if known.\n4. If you are using any additional modules, custom templates, stylesheets, or messages, please list them.\n5. If applicable, please copy and paste the full Java stack trace.\n6. If you have already communicated with a developer about this issue, please provide their name.\n\n\n## Requesting New Features\n\n1. We encourage you to discuss your feature ideas with our community before creating a New Feature issue in our issue tracker. Use our [global OpenMRS search](http://search.openmrs.org) to see if someone has already proposed similar features. If not, use our [mailing lists](http://go.openmrs.org/lists) or [OpenMRS Talk](http://talk.openmrs.org) to discuss your ideas with us.\n\n2. Provide a clear and detailed explanation of the feature you want and why it's important to add. The feature must apply to a wide array of users of OpenMRS; for smaller, more targeted \"one-off\" features, you might consider writing an add-on module for OpenMRS. You may also want to provide us with some advance documentation on the feature, which will help the community to better understand where it will fit.\n\n3. If you're an advanced programmer, build the feature yourself (refer to the \"Contributing (Step-by-step)\" section below).\n\n## Contributing (Step-by-step)\n\n1. After finding a JIRA issue for the \"Ready for Work\" bug or feature on which you'd like to work, claim the issue by clicking the \"Claim Issue\" button. This will assign the issue to you and change its status to \"In Progress\".\n\n2. [Fork the re"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3117,
+      "excerpt": " with Modules](#extending-openmrs-with-modules)\n6. [Documentation](#documentation)\n   1. [Developer guides](#developer-guides)\n   2. [Wiki](#wiki)\n   3. [Website](#website)\n7. [Contributing](#contributing)\n   1. [Code](#code)\n   2. [Code Reviews](#code-reviews)\n   3. [Translation](#translation)\n8. [Issues](#issues)\n9. [Community](#community)\n10. [Support](#support)\n11. [License](#license)\n\n## Build\n\n### Prerequisites\n\n#### Java\n\nOpenMRS is a Java application which is why you need to install a Java JDK.\n\nIf you want to build the master branch you will need a Java JDK of minimum version 8.\n\n#### Maven\n\nInstall the build tool [Maven](https://maven.apache.org/).\n\nYou need to ensure that Maven uses the Java JDK needed for the branch you want to build.\n\nTo do so execute\n\n```bash\nmvn -version\n```\n\nwhich will tell you what version Maven is using. Refer to the [Maven docs](https://maven.apache.org/configure.html) if you need to configure Maven.\n\n#### Git\n\nInstall the version control tool [git](https://git-scm.com/) and clone this repository with\n\n```bash\ngit clone https://github.com/openmrs/openmrs-core.git\n```\n\n### Build Command\n\nAfter you have taken care of the [Prerequisites](#prerequisites)\n\nExecute the following\n\n```bash\ncd openmrs-core\n./mvnw clean package\n```\n\nThis will generate the OpenMRS application in `webapp/target/openmrs.war`, which you will have to deploy to an application server such as [Tomcat](https://tomcat.apache.org/) or [Jetty](https://jetty.org/).\n\n### Deploy\n\nFor development purposes you can simply deploy the `openmrs.war` into the application server jetty via\n\n```bash\ncd openmrs-core/webapp\n../mvnw jetty:run\n```\n\nTo run Jetty on a custom port, use the `jetty.http.port` property:\n\n```bash\n../mvnw -Djetty.http.port=8081 jetty:run\n```\n\nTo run on Cargo, use the `cargo:run` command:\n\n```bash\n../mvnw cargo:run\n```\n\nTo run Cargo on a custom port, use the `cargo.servlet.port` property:\n\n```bash\n../mvnw -Dcargo.servlet.port=8081 cargo:run\n```\n\nIf all goes well (check the console output) you can access the OpenMRS application at `localhost:8080/openmrs`.\n\nRefer to [Getting Started as a Developer](https://wiki.openmrs.org/display/docs/Getting+Started+as+a+Developer) for some more information\non useful Maven commands and build options.\n\n## Docker build\n\nDocker builds are still a work in progress. We appreciate any feedback and improvements to the process"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:bamboo-specs/bamboo.yml",
+      "kind": "File",
+      "path": "bamboo-specs/bamboo.yml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11057,
+      "excerpt": "'180'\n          repositories:\n              - openmrs-core\nbranches:\n    create: manually\n    delete: never\n    link-to-jira: true\nnotifications:\n    - events:\n          - plan-failed\n      recipients:\n          - committers\n          - emails:\n                - dev@openmrs.org\n          - watchers\nlabels:\n    - platform\n    - test\ndependencies:\n    require-all-stages-passing: false\n    enabled-for-branches: true\n    block-strategy: block_if_parent_has_changes\n    plans: []\nother:\n    concurrent-build-plugin: system-default\n---\nversion: 2\nplan:\n    key: TRUNK-MASTER\nplan-permissions:\n    - roles:\n          - anonymous\n      permissions:\n          - view\n...\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6399",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6399,
+      "title": "Make the openmrs-api surefire crash on 2.8.x explain itself",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4280,
+      "excerpt": "up, and `api` forces `mock-maker-inline`, whose class generation is where the Java 11 crash lands. That correlation is not the whole story, since `windows-latest, 8` uses the old toolchain and passes, so I would rather test a toolchain bump against this now-reliable reproduction than assume it.\n\n## Issue I worked on\n\nNo Jira issue yet; happy to file one if we would rather track it there.\n\n## Checklist: I completed these to help reviewers :)\n\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n- [x] I have **added tests** to cover my changes. CI-only change, so verified by extracting the step's script straight out of the workflow and running it under GitHub's exact shell (`bash --noprofile --norc -e -o pipefail`) against the real `hs_err` and `.dumpstream` files this PR captured, with a deliberately unreadable directory in the tree. It exits 0, still surfaces `find`'s own errors, and prints the Mockito frame that identifies the crash in 487 lines with no memory-map bloat; the first version of the script exits 1 and prints no fatal error log at all.\n- [x] I ran `mvn clean package` right before creating this pull request and added all formatting changes to my commit.\n- [x] All new and existing **tests passed**.\n- [x] My pull request is **based on the latest changes** of the 2.8.x branch.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6401",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6401,
+      "title": "Stop the JVM aborting the openmrs-api test fork on Java 8 and 11",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5962,
+      "excerpt": "MemberAccessor` | `ReflectionMemberAccessor` |\n\nUnchanged, and Java 8 still crashes at the same place with the newer toolchain, so the exposure is not a function of the Mockito version. 4.11.0 is also the ceiling while 2.8.x supports Java 8, since Mockito 5 is compiled to class file version 55.\n\n## Issue I worked on\n\nNo Jira issue yet; happy to file one if we would rather track it there. Related: #6399, which is what produced the diagnosis.\n\n## Checklist: I completed these to help reviewers :)\n\n- [x] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n- [x] I have **added tests** to cover my changes. This changes a JVM flag for the test fork rather than product code, so the verification is the `-verbose:class` check above (the generated accessor is defined by default and never defined with the flag), plus the profile-activation and `argLine` checks, plus a full `openmrs-api` run on Temurin 11.\n- [x] I ran `mvn clean package` right before creating this pull request and added all formatting changes to my commit.\n- [x] All new and existing **tests passed**.\n- [x] My pull request is **based on the latest changes** of the 2.8.x branch.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6546",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6546,
+      "title": "TRUNK-6768: Remove unused BOM entries and ban SNAPSHOT dependencies in release builds",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3701,
+      "excerpt": "removal from the BOM.\r\n\r\n### Scope change: commons-fileupload2-jakarta-servlet6\r\n\r\nPer review discussion, this dependency's removal is deferred entirely to #6451, since it's relied on at runtime by the legacyui module (not visible from inside openmrs-core alone). This PR no longer touches it.\r\n\r\n## Issue\r\n\r\nhttps://openmrs.atlassian.net/browse/TRUNK-6768\r\n\r\n## Testing\r\n\r\n```bash\r\n# Verify normal build works\r\nmvn clean install -pl bom,api,web,webapp,liquibase,test -am -DskipTests\r\n# → BUILD SUCCESS ✅\r\n\r\n# Verify validate passes without release profile\r\nmvn validate -pl api\r\n# → BUILD SUCCESS ✅\r\n\r\n# Verify validate fails with release profile\r\nmvn validate -Prelease -pl api\r\n# → BUILD FAILURE ❌ (correctly identifying SNAPSHOT dependency)\r\n\r\n# Verify the deploy phase itself is no longer unconditionally blocked\r\nmvn deploy -Dmaven.deploy.skip=true -DskipTests -pl api\r\n# → BUILD SUCCESS ✅ (confirms normal snapshot publishing is unaffected)"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6685",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6685,
+      "title": "TRUNK-6809: Run the Liquibase status check inside the update scope (2.8.x)",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1616,
+      "excerpt": " changesets match their stored checksums and aren't re-run. The only new changeset is the core `TRUNK-6549-2026-06-07`, already on `2.8.x`.\n  - **Second start:** starts cleanly. Only `runAlways` changesets re-run. The changelog row count and checksum mix are unchanged, and the lock is released.\n\n## Issue I worked on\n\nsee https://openmrs.atlassian.net/browse/TRUNK-6809\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n"
+    }
+  ]
+}

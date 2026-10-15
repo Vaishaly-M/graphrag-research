@@ -1,0 +1,116 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id IN $evidence_ids\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nsubstring(coalesce(n.content,n.body,n.message,''),0,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "evidence_ids": [
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1058",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+      "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1041"
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:issue:998",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 998,
+      "title": "Insecure file-serving pattern: `GetItemPictureById` allows path traversal / arbitrary file read via `PictureFileName'",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "## Summary\n\n`Catalog.API`'s product-image endpoint builds a filesystem path by concatenating a **database-stored, client-controllable** `PictureFileName` directly into `Path.Combine(..., \"Pics\", pictureFileName)` and streams the result with `TypedResults.PhysicalFile`, with no containment check. Because `Path.Combine` lets a rooted or `..`-containing final segment escape the `Pics` directory, a caller can make the endpoint return **arbitrary files from the host filesystem** (e.g. `appsettings.json`, project source, `/etc/passwd`).\n\nSince this is a **reference application** that many developers copy patterns from, the file-serving idiom here teaches an insecure practice (CWE-22). The fix is small and self-contained.\n\n## Affected code\n\n`src/Catalog.API/Apis/CatalogApi.cs`\n\n```csharp\n// GetItemPictureById (~line 205) — PictureFileName comes from the stored CatalogItem\nvar path = GetFullPath(environment.ContentRootPath, item.PictureFileName);\n...\nreturn TypedResults.PhysicalFile(path, mimetype, lastModified: lastModified);\n\n// ~line 420\npublic static string GetFullPath(string contentRootPath, string pictureFileName) =>\n    Path.Combine(contentRootPath, \"Pics\", pictureFileName);   // <-- no normalization / containment\n```\n\n`PictureFileName` is bound straight from the request body in `CreateItem`/`UpdateItem` (`product.PictureFileName`), so it is fully attacker-controlled.\n\n## Steps to reproduce\n\n\n\n**Observed scope:** any real on-disk file the process can read is returned. (`/proc/*` pseudo-files are *not* returned — `PhysicalFile` reports `Content-Length: 0` for procfs and Kestrel aborts the response — so process environment variables are not exfiltrable through this particular sink.)\n\n## Impact\n\nUnrestricted local file read of the `Catalog.API` host: `appsettings*.json`, mounted secret files, K8s service-account tokens (`/var/run/secrets/...`), data-protection keys, application source, etc. In the default topology `Catalog.API` is an internal service, so realistic exposure requires it to be network-reachable (direct exposure, misconfiguration, or via SSRF/lateral movement) — but the file-read defect itself is unconditional.\n\n## Suggested fix\n\nConstrain the filename to the `Pics` directory. Either reduce it to a bare filename, or verify the resolved path stays inside the base:\n\n```csharp\npublic static string GetFullPath(string contentRootPath, string pictureFileN"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1002",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1002,
+      "title": "Add multi-mode functional tests with repository abstraction and messa…",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "…ging coverage\r\n\r\nIntroduce pluggable functional test modes (Aspire, RepositoryMock, EfCoreInMemory, Testcontainers, and messaging variants) for Catalog and Ordering via a shared Testing.Common library. Extract ICatalogRepository from Catalog.API to enable in-memory persistence swaps, add Serilog logging to ServiceDefaults, fix integration event type discovery under WebApplicationFactory, and add runsettings plus xUnit traits for filtering tests by mode.\r\n\r\n# eShop Multi-Mode Functional Testing\r\n\r\n> Architecture and design reference for eShop's pluggable functional test infrastructure,\r\n> covering test modes, messaging validation, and related production changes.\r\n\r\n---\r\n\r\n## Overview\r\n\r\neShop functional tests use a **pluggable test-mode architecture** shared across Catalog and Ordering microservices. The main themes are:\r\n\r\n1. **Multi-mode test infrastructure** (Aspire, mocks, in-memory EF, Testcontainers)\r\n2. **Messaging/outbox integration tests** (RabbitMQ + transactional outbox)\r\n3. **Catalog API repository extraction** (to enable swappable persistence in tests)\r\n4. **Structured logging** (Serilog in production + rich test logging)\r\n5. **Integration event discovery fix** (works under test host)\r\n\r\n---\r\n\r\n## Feature 1: Multi-Mode Functional Test Framework\r\n\r\n### What Changed\r\n\r\nThe old pattern — one `WebApplicationFactory` fixture hard-wired to Aspire + PostgreSQL — was replaced with a **pluggable test-mode architecture** shared across Catalog and Ordering.\r\n\r\n| Before | After |\r\n|--------|-------|\r\n| Single `CatalogApiFixture` / `OrderingApiFixture` at project root | Mode-aware fixtures under `Fixture/` |\r\n| Always Aspire + Docker | 4–6 modes per service |\r\n| `IClassFixture<...>` per test class | `CatalogApiTestSession` / `OrderingApiTestSession` as assembly fixture |\r\n| Hard-coded DB assertions | Persistence helpers that work per mode |\r\n\r\n### Test Modes\r\n\r\n| Mode | Infrastructure | Persistence | External Deps |\r\n|------|----------------|-------------|---------------|\r\n| **Aspire** (default) | Aspire DistributedApplication + pgvector Postgres | Real PostgreSQL | Fake AI, no-op event bus |\r\n| **RepositoryMock** | `WebApplicationFactory` only | In-memory store via `ICatalogRepository` / Ordering repos | All mocked |\r\n| **EfCoreInMemory** | `WebApplicationFactory` | EF Core InMemory + production repository impl | Fake AI, no-op event bus |\r\n| **Testcontaine"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1020",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1020,
+      "title": "Bump the aspire group with 1 update",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Updated [Microsoft.Extensions.ServiceDiscovery.Yarp](https://github.com/dotnet/extensions) from 10.4.0 to 10.9.0.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [Microsoft.Extensions.ServiceDiscovery.Yarp's releases](https://github.com/dotnet/extensions/releases)._\n\n## 10.9.0\n\nVersion 10.9.0 is headlined by changes in these areas:\n\n* **AI:** New experimental routing APIs center on the abstract `RoutingChatClient` base class, with `SemanticRoutingChatClient` as a concrete semantic-routing implementation. Separately, the abstract `FailoverChatClient` specialization and its concrete `OrderedFailoverChatClient` implementation add failover routing.\n* **AI Evaluation:** The generated report gains redesigned Overview, Cases, History, and Comparison views.\n* **ASP.NET Core and HTTP diagnostics:** The release adds HTTP request latency log enrichment and fixes configuration binding, response-body logging, request-path redaction, and resilience package version handling.\n* **Source-generated logging and service discovery:** Fixes cover classification type qualification, thread-local state cleanup, and DNS query suffix handling.\n\n## Experimental API Changes\n\n### New Experimental APIs\n\n* New experimental API: HTTP request latency log enrichment (`EXTEXP0013`) #​7602\n* New experimental API: Chat client routing and failover (`MEAI001`) #​7662\n\n## What's Changed\n\n### AI (`Microsoft.Extensions.AI`, `Microsoft.Extensions.AI.Abstractions`, and `Microsoft.Extensions.AI.OpenAI`)\n\n* Add extensible chat client routing #​7662 by @​joshuajyue (co-authored by @​Copilot)\n* Pass the request's options to the selected client #​7685 by @​joshuajyue (co-authored by @​jozkee @​Copilot)\n* AI.Abstractions: fix ExcludeFromSchema dropped under concurrent AIFunction creation #​7677 by @​jozkee (co-authored by @​Copilot)\n* Cap OpenAI dependency version ([b10f9c0](https://github.com/dotnet/extensions/commit/b10f9c0a081b5dbb7755b8f5592e1d3c3f550a3a)) by @​jeffhandley (co-authored by @​Copilot)\n\n**Note: Microsoft.Extensions.AI.OpenAI constrains its dependency for OpenAI to 2.12.x, preventing OpenAI updates to 2.13.0+ due to an incompatibility. We expect to release Microsoft.Extensions.AI.OpenAI version 10.9.1 during the week of August 17 to address this issue.**\n\n### HTTP Resilience and Diagnostics (`Microsoft.Extensions.Http.Resilience` and `Microsoft.Extensions.Http.Diagnostics`)\n\n* Fix"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1022",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1022,
+      "title": "Bump the microsoftextensions group with 3 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Updated [Microsoft.Extensions.Http](https://github.com/dotnet/dotnet) from 9.0.0 to 10.0.11.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [Microsoft.Extensions.Http's releases](https://github.com/dotnet/dotnet/releases)._\n\n## 10.0.0-preview.6.25358.103\n\nYou can build .NET 10.0 Preview 6 from the repository by cloning the release tag `v10.0.0-preview.6.25358.103` and following the build instructions in the [main README.md](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.6.25358.103/README.md#building).\n\nAlternatively, you can build from the sources attached to this release directly.\nMore information on this process can be found in the [dotnet/dotnet repository](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.6.25358.103/README.md#building-from-released-sources).\n\nAttached are PGP signatures for the GitHub generated tarball and zipball. You can find the public key at https://dot.net/release-key-2023\n\n## 10.0.0-preview.5.25277.114\n\nYou can build .NET 10.0 Preview 5 from the repository by cloning the release tag `v10.0.0-preview.5.25277.114` and following the build instructions in the [main README.md](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.5.25277.114/README.md#building).\n\nAlternatively, you can build from the sources attached to this release directly.\nMore information on this process can be found in the [dotnet/dotnet repository](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.5.25277.114/README.md#building-from-released-sources).\n\nAttached are PGP signatures for the GitHub generated tarball and zipball. You can find the public key at https://dot.net/release-key-2023\n\n## 10.0.0-preview.4.25258.110\n\nYou can build .NET 10.0 Preview 4 from the repository by cloning the release tag `v10.0.0-preview.4.25258.110` and following the build instructions in the [main README.md](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.4.25258.110/README.md#building).\n\nAlternatively, you can build from the sources attached to this release directly.\nMore information on this process can be found in the [dotnet/dotnet repository](https://github.com/dotnet/dotnet/blob/v10.0.0-preview.4.25258.110/README.md#building-from-released-sources).\n\nAttached are PGP signatures for the GitHub generated tarball and zipball. You can find the public key at https://dot.net/release-key-2023\n\n## 10.0.0-preview.3.25171.5\n\nYou can build .NET 10.0 Preview"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1034",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1034,
+      "title": "Bump the aspire group with 2 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Updated [Aspire.Hosting.Azure.AppContainers](https://github.com/microsoft/aspire) from 13.5.3 to 13.5.4.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [Aspire.Hosting.Azure.AppContainers's releases](https://github.com/microsoft/aspire/releases)._\n\n## 13.5.4\n\n## What's New in Aspire 13.5.4\n\nPatch release for Aspire 13.5 that fixes Kafka health-check resource leaks, DevTunnel errors with automatically selected regions, misleading Azure emulator dashboard entries, and unintended changes to generated starter apps, plus Homebrew compatibility and Radius API diagnostic updates.\n\n### 🐛 Fixes\n\n- 📨 **Kafka health checks leaked producers and polling threads** — Each AppHost health-check execution created a new Kafka producer without disposing it, accumulating background threads over time. Health checks now reuse a producer per Kafka resource and dispose it with the AppHost, while keeping multiple Kafka resources independently configured. Fixes [#​20091](https://github.com/microsoft/aspire/issues/20091). ([#​20094](https://github.com/microsoft/aspire/pull/20094), backport of [#​20092](https://github.com/microsoft/aspire/pull/20092), @​davidfowl)\n\n- 🌐 **DevTunnels could fail when the region was selected automatically** — Tunnel setup and health checks now use the cluster-qualified tunnel ID returned by the DevTunnel CLI for port operations and access queries. This fixes failures when a bare tunnel ID cannot be resolved for those operations. Regression introduced in 13.3. Fixes [#​18790](https://github.com/microsoft/aspire/issues/18790). ([#​19853](https://github.com/microsoft/aspire/pull/19853), backport of [#​19230](https://github.com/microsoft/aspire/pull/19230), @​Vladipz)\n\n- ☁️ **Emulator-only AppHosts showed an unused Azure environment** — The dashboard now hides the `azure-environment` resource when no Azure resources require cloud provisioning, instead of leaving it visible in **Not started**. It remains visible for apps that combine local emulators with resources requiring Azure provisioning. No AppHost changes are needed. Fixes [#​19617](https://github.com/microsoft/aspire/issues/19617). ([#​19998](https://github.com/microsoft/aspire/pull/19998), backport of [#​19843](https://github.com/microsoft/aspire/pull/19843), @​eerhardt)\n\n- 🧩 **Starter app generation could alter unrelated JavaScript values** — Dynamic port replacement could also replace matc"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1041",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1041,
+      "title": "Use async EF Core calls in Catalog async handlers",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "# PR to dotnet/eShop\r\n\r\n**Base:** `dotnet/eShop` `main` ← **Head:** `vuglll/eShop` `use-async-ef-calls-in-catalog`\r\n\r\n**Title:**\r\n\r\nUse async EF Core calls in Catalog async handlers\r\n\r\n**Description:**\r\n\r\nThree `async` methods in Catalog.API make synchronous EF Core calls. Each call blocks a thread-pool thread for the whole database round trip, instead of yielding it while the query runs.\r\n\r\n- `OrderStatusChangedToAwaitingValidationIntegrationEventHandler` and `OrderStatusChangedToPaidIntegrationEventHandler`: `CatalogItems.Find(...)` → `await CatalogItems.FindAsync(...)`. Both run inside the `foreach` over the order's items, so the blocking happened once per item.\r\n- `CatalogApi.DeleteItemById`: `SingleOrDefault(...)` → `await SingleOrDefaultAsync(...)`. This matches the other endpoints in the same file, which already use `SingleOrDefaultAsync`, and the `SaveChangesAsync` that follows.\r\n\r\nThere's no behavior change otherwise. The existing `DeleteCatalogItem` and `GetAndDeleteMissingCatalogItemReturnNotFound` functional tests cover the endpoint. The handlers could go further and load all of an order's items in one query instead of one per item. I kept this PR to the minimal change, and I'm happy to follow up with that if you'd like it.\r\n\r\nFound with [EFDoctor](https://github.com/vuglll/EFDoctor), an open-source EF Core analyzer I'm working on."
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1047",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1047,
+      "title": "Bump CommunityToolkit.Maui and Microsoft.Maui.Controls",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Updated [CommunityToolkit.Maui](https://github.com/CommunityToolkit/Maui) from 9.1.1 to 15.0.1.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [CommunityToolkit.Maui's releases](https://github.com/CommunityToolkit/Maui/releases)._\n\n## 15.0.1\n\n## v15.0.1 Fix Crashes on Windows\n\nThis release removes the `WindowsAppSDK v2.2.0` dependency that was causing apps to crash on Windows. Long story short, [.NET 10 MAUI currently expects Windows App SDK 1.8.x, while .NET 11 expects 2.3.1](https://github.com/CommunityToolkit/Maui/issues/3271#issuecomment-5244819936).\n\nWe also found a few more internal .NET MAUI APIs that we missed in the [`CommunityToolkti.Maui v15.0.0` Release](https://github.com/CommunityToolkit/Maui/releases/tag/15.0.0) used by `FileSaver`, `FolderPicker`, `Snackbar`, `Toast`, `Expander` and `TouchBehavior` that we have now removed. In .NET 11. [`CommunityToolkit.Maui` will no longer have access to internal .NET MAUI APIs](https://github.com/dotnet/maui/pull/34070). We have updated our .NET 11 Migration guidance to use `CommunityToolkit.Maui v15.0.1` or later to ensure compatibility with .NET 11. Specifically, \n\n> [!IMPORTANT]\n> We recommend every .NET MAUI app preparing for .NET 11 install this release, v15.0.1 (or later), before .NET 11 is released in November. Apps running `CommunityToolkit.Maui` v14.2.2 and earlier will not be compatible with .NET 11.\n\n## What's Changed\n* Align Windows App SDK version with .NET MAUI by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/3282\n* Remove all usage of .NET MAUI internal APIs by @​jfversluis in https://github.com/CommunityToolkit/Maui/pull/3273\n\n## Housekeeping\n* [housekeeping] Automated PR to fix formatting errors by @​github-actions[bot] in https://github.com/CommunityToolkit/Maui/pull/3286\n* Bump Microsoft.Testing.Extensions.CodeCoverage from 18.9.0 to 18.10.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3285\n* Bump actions/checkout from 7.0.0 to 7.0.1 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3275\n* Bump Microsoft.Testing.Extensions.CodeCoverage from 18.8.0 to 18.9.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3262\n* Bump actions/setup-java from 5.6.0 to 5.7.0 by @​dependabot[bot] in https://github.com/CommunityToolkit/Maui/pull/3278\n\n\n**Full Changelog**: https://github.com/CommunityToolkit/Maui/comp"
+    },
+    {
+      "evidence_id": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:pullrequest:1058",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 1058,
+      "title": "Bump the aspire group with 9 updates",
+      "email": null,
+      "login": null,
+      "name": null,
+      "excerpt": "Updated [Aspire.Hosting.Azure.AppContainers](https://github.com/microsoft/aspire) from 13.6.0 to 13.6.1.\n\n<details>\n<summary>Release notes</summary>\n\n_Sourced from [Aspire.Hosting.Azure.AppContainers's releases](https://github.com/microsoft/aspire/releases)._\n\n## 13.6.1\n\n## What's New in Aspire 13.6.1\n\nPatch release for Aspire 13.6 that reduces dashboard CPU usage during sustained metric ingestion, restores scrolling in the Metrics tree, improves dashboard navigation, fixes container exec watch failures, and ensures session-scoped containers are cleaned up when stopping .NET AppHosts on Windows.\n\n### 🐛 Fixes\n\n- 📊 **Dashboard CPU usage could increase during long-running metric ingestion** — Metric retention repeatedly scanned retained history on every insertion, causing steadily increasing CPU usage even with a fixed workload. Cleanup now skips dimensions below capacity and removes only the oldest surplus points when needed. Existing retention limits and exemplar behavior are unchanged, and no configuration changes are required. Regression introduced in 13.6. Fixes [#​20725](https://github.com/microsoft/aspire/issues/20725). ([#​20747](https://github.com/microsoft/aspire/pull/20747), backport of [#​20736](https://github.com/microsoft/aspire/pull/20736), @​JamesNK)\n\n- 📈 **The Metrics tree could not be scrolled** — The meter and instrument tree now scrolls when it exceeds the viewport, allowing you to reach and select instruments below the fold. Regression introduced in 13.6. Fixes [#​20728](https://github.com/microsoft/aspire/issues/20728). ([#​20762](https://github.com/microsoft/aspire/pull/20762), backport of [#​20758](https://github.com/microsoft/aspire/pull/20758), @​heyysiri)\n\n- 🧭 **Dashboard navigation could fail after a browser disconnect** — Pending page-state updates now persist session state before navigating and skip navigation when the browser has disconnected, avoiding an unhandled navigation failure. The navigation rail's overflow button also has consistent sizing, icon alignment, and hover styling in expanded and collapsed layouts and both light and dark themes. ([#​20545](https://github.com/microsoft/aspire/pull/20545), backport of [#​20527](https://github.com/microsoft/aspire/pull/20527), @​JamesNK)\n\n- 🖥️ **Container exec watches could terminate shortly after AppHost startup** — A stalled DCP watch connection could produce a critical `Watch ta"
+    }
+  ]
+}

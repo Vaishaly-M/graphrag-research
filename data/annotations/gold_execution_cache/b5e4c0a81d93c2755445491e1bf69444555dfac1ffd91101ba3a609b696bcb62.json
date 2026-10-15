@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/utils/db_cleanup.py",
+        "path": "airflow-core/src/airflow/utils/db_cleanup.py",
+        "offset": 28544,
+        "line": 687
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/core-concepts/tasks.rst",
+        "path": "airflow-core/docs/core-concepts/tasks.rst",
+        "offset": 3410,
+        "line": 66
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/fab/src/airflow/providers/fab/auth_manager/security_manager/override.py",
+        "path": "providers/fab/src/airflow/providers/fab/auth_manager/security_manager/override.py",
+        "offset": 70851,
+        "line": 1740
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+        "path": "contributing-docs/testing/unit_tests.rst",
+        "offset": 41769,
+        "line": 996
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/taskinstance.py",
+        "path": "airflow-core/src/airflow/models/taskinstance.py",
+        "offset": 60411,
+        "line": 1481
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/k8s_tests.rst",
+        "path": "contributing-docs/testing/k8s_tests.rst",
+        "offset": 3309,
+        "line": 67
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+        "path": "java-sdk/README.md",
+        "offset": 4998,
+        "line": 149
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/tests/unit/utils/test_db_cleanup.py",
+        "path": "airflow-core/tests/unit/utils/test_db_cleanup.py",
+        "offset": 846,
+        "line": 21
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/core-concepts/tasks.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/core-concepts/tasks.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3410,
+      "excerpt": "antiated into a :ref:`Dag Run <concepts-dag-run>` each time it runs, the tasks under a Dag are instantiated into *Task Instances*.\n\nAn instance of a Task is a specific run of that task for a given Dag (and thus for a given data interval). They are also the representation of a Task that has *state*, representing what stage of the lifecycle it is in.\n\n.. _concepts:task-states:\n\nThe possible states for a Task Instance are:\n\n* ``none``: The Task has not yet been queued for execution (its dependencies are not yet met)\n* ``scheduled``: The scheduler has determined the Task's dependencies are met and it should run\n* ``queued``: The task has been assigned to an Executor and is awaiting a worker\n* ``running``: The task is running on a worker (or on a local/synchronous executor)\n* ``success``: The task finished running without errors\n* ``restarting``: The task was externally requested to restart when it was running\n* ``failed``: The task had an error during execution and failed to run\n* ``skipped``: The task was skipped due to branching, LatestOnly, or similar.\n* ``upstream_failed``: An upstream task failed and the :ref:`Trigger Rule <concepts:trigger-rules>` says we needed it\n* ``up_for_retry``: The task failed, but has retry attempts left and will be rescheduled.\n* ``up_for_reschedule``: The task is a :doc:`Sensor <sensors>` that is in ``reschedule`` mode\n* ``deferred``: The task has been :doc:`deferred to a trigger <../authoring-and-scheduling/deferring>`\n* ``awaiting_input``: The task is a :doc:`Human-in-the-loop <../tutorial/hitl>` task waiting for a human response. It is managed by the scheduler and uses neither a worker slot nor the triggerer.\n* ``removed``: The task has vanished from the Dag since the run started\n\n.. image:: /img/diagram_task_lifecycle.png\n\nIdeally, a task should flow from ``none``, to ``scheduled``, to ``queued``, to ``running``, and finally to ``success``.\n\nWhen any custom Task (Operator) is running, it will get a copy of the task instance passed to it; as well as being able to inspect task metadata, it also contains methods for things like :doc:`xcoms`.\n\n\nRelationship Terminology\n~~~~~~~~~~~~~~~~~~~~~~~~\n\nFor any given Task Instance, there are two types of relationships it has with other instances.\n\nFirstly, it can have *upstream* and *downstream* tasks::\n\n    task1 >> task2 >> task3\n\nWhen a Dag runs, it will create instances for each of th"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/models/taskinstance.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/models/taskinstance.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 60411,
+      "excerpt": "       test_mode=test_mode,\n            hostname=get_hostname(),\n            pool=pool,\n            external_executor_id=external_executor_id,\n            session=session,\n        )\n\n    def emit_state_change_metric(self, new_state: TaskInstanceState) -> None:\n        \"\"\"\n        Send a time metric representing how much time a given state transition took.\n\n        The previous state and metric name is deduced from the state the task was put in.\n\n        :param new_state: The state that has just been set for this task.\n            We do not use `self.state`, because sometimes the state is updated directly in the DB and not in\n            the local TaskInstance object.\n            Supported states: QUEUED and RUNNING\n        \"\"\"\n        if self.end_date:\n            # if the task has an end date, it means that this is not its first round.\n            # we send the state transition time metric only on the first try, otherwise it gets more complex.\n            return\n\n        # switch on state and deduce which metric to send\n        if new_state == TaskInstanceState.RUNNING:\n            metric_name = \"queued_duration\"\n            if self.queued_dttm is None:\n                # this should not really happen except in tests or rare cases,\n                # but we don't want to create errors just for a metric, so we just skip it\n                self.log.warning(\n                    \"cannot record %s for task %s because previous state change time has not been saved\",\n                    metric_name,\n                    self.task_id,\n                )\n                return\n            timing = timezone.utcnow() - self.queued_dttm\n        elif new_state == TaskInstanceState.QUEUED:\n            metric_name = \"scheduled_duration\"\n            if self.scheduled_dttm is None:\n                self.log.warning(\n                    \"cannot record %s for task %s because previous state change time has not been saved\",\n                    metric_name,\n                    self.task_id,\n                )\n                return\n            timing = timezone.utcnow() - self.scheduled_dttm\n        else:\n            raise NotImplementedError(\"no metric emission setup for state %s\", new_state)\n\n        stats.timing(\n            f\"task.{metric_name}\",\n            timing,\n            tags={**self.stats_tags, \"queue\": self.queue},\n        )\n\n    def clear_next_method_args(self) -> None:\n "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/utils/db_cleanup.py",
+      "kind": "File",
+      "path": "airflow-core/src/airflow/utils/db_cleanup.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 28544,
+      "excerpt": "s meeting deletion criteria\n    :param verbose: If true, may provide more detailed output.\n    :param confirm: Require user input to confirm before processing deletions.\n    :param skip_archive: Set to True if you don't want the purged rows preserved in an archive table.\n    :param session: Session representing connection to the metadata database.\n    :param batch_size: Maximum number of rows to delete or archive in a single transaction.\n    :param error_on_cleanup_failure: If True, raise a RuntimeError after processing all tables\n        if any per-table cleanup encountered an error. By default errors are suppressed, a warning\n        summary is logged, and the command exits 0 even if some tables were not cleaned.\n    \"\"\"\n    clean_before_timestamp = timezone.coerce_datetime(clean_before_timestamp)\n\n    # Get all tables to clean (root + dependents)\n    effective_table_names, effective_config_dict = _effective_table_names(table_names=table_names)\n    if dry_run:\n        print(\"Performing dry run for db cleanup.\")\n        print(\n            f\"Data prior to {clean_before_timestamp} would be purged \"\n            f\"from tables {effective_table_names} with the following config:\\n\"\n        )\n        _print_config(configs=effective_config_dict)\n    if not dry_run and confirm:\n        _confirm_delete(\n            date=clean_before_timestamp,\n            tables=sorted(effective_table_names),\n            dag_ids=dag_ids,\n            exclude_dag_ids=exclude_dag_ids,\n        )\n    existing_tables = reflect_tables(tables=None, session=session).tables\n    failed_tables: list[str] = []\n\n    for table_name, table_config in effective_config_dict.items():\n        if table_name in existing_tables:\n            with _suppress_with_logging(table_name, session) as ctx:\n                _cleanup_table(\n                    clean_before_timestamp=clean_before_timestamp,\n                    dag_ids=dag_ids,\n                    exclude_dag_ids=exclude_dag_ids,\n                    dry_run=dry_run,\n                    verbose=verbose,\n                    **table_config.__dict__,\n                    skip_archive=skip_archive,\n                    session=session,\n                    batch_size=batch_size,\n                )\n            if ctx.failed:\n                failed_tables.append(table_name)\n        else:\n            logger.warning(\"Table %s not found.  Skipping.\", table_name)\n\n    if"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/tests/unit/utils/test_db_cleanup.py",
+      "kind": "File",
+      "path": "airflow-core/tests/unit/utils/test_db_cleanup.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 846,
+      "excerpt": " time\nfrom contextlib import suppress\nfrom importlib import import_module\nfrom io import StringIO\nfrom pathlib import Path\nfrom unittest.mock import MagicMock, call, mock_open, patch\nfrom uuid import uuid4\n\nimport pendulum\nimport pytest\nfrom sqlalchemy import Column, Integer, MetaData, Table, func, inspect, literal, select, text\nfrom sqlalchemy.exc import IntegrityError, OperationalError, SQLAlchemyError\nfrom sqlalchemy.ext.declarative import DeclarativeMeta\nfrom sqlalchemy.orm import Session\n\nfrom airflow import DAG\nfrom airflow._shared.timezones import timezone\nfrom airflow.exceptions import AirflowException\nfrom airflow.models import DagModel, DagRun, TaskInstance\nfrom airflow.models.dag_version import DagVersion\nfrom airflow.models.dagbundle import DagBundleModel\nfrom airflow.models.serialized_dag import SerializedDagModel\nfrom airflow.models.task_state_store import TaskStateStoreModel\nfrom airflow.providers.standard.operators.python import PythonOperator\nfrom airflow.serialization.serialized_objects import LazyDeserializedDAG\nfrom airflow.utils.db_cleanup import (\n    ARCHIVE_TABLE_PREFIX,\n    CreateTableAs,\n    _build_query,\n    _cleanup_table,\n    _confirm_drop_archives,\n    _do_delete,\n    _dump_table_to_file,\n    _get_archived_table_names,\n    _TableConfig,\n    config_dict,\n    drop_archived_tables,\n    export_archived_records,\n    run_cleanup,\n)\nfrom airflow.utils.session import create_session\nfrom airflow.utils.types import DagRunType\n\nfrom tests_common.test_utils.db import (\n    clear_db_assets,\n    clear_db_dag_bundles,\n    clear_db_dags,\n    clear_db_runs,\n    drop_tables_with_prefix,\n)\nfrom tests_common.test_utils.taskinstance import create_task_instance\n\npytestmark = pytest.mark.db_test\n\n\n@pytest.fixture(autouse=True)\ndef clean_database():\n    \"\"\"Fixture that cleans the database before and after every test.\"\"\"\n    clear_db_runs()\n    clear_db_assets()\n    clear_db_dags()\n    clear_db_dag_bundles()\n    yield  # Test runs here\n    clear_db_dags()\n    clear_db_assets()\n    clear_db_runs()\n    clear_db_dag_bundles()\n\n\nclass TestDBCleanup:\n    @pytest.fixture(autouse=True)\n    def clear_airflow_tables(self):\n        drop_tables_with_prefix(\"_airflow_\")\n\n    @pytest.mark.parametrize(\n        (\"kwargs\", \"called\"),\n        [\n            pytest.param(dict(confirm=True), True, id=\"true\"),\n            pytest.param(dict(), True, id=\"not supplied\"),\n     "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/k8s_tests.rst",
+      "kind": "File",
+      "path": "contributing-docs/testing/k8s_tests.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3309,
+      "excerpt": "ripts set the ``KINDCONFIG`` variable to it\n\nThe ``KUBECONFIG`` file is automatically used when you enter any of the ``breeze k8s`` commands that use\n``kubectl`` or when you run ``kubectl`` in the k8s shell. The ``KINDCONFIG`` file is used when cluster is\nstarted but You and the ``k8s`` command can inspect it to know for example what port is forwarded to the\nwebserver running in the cluster.\n\nThe files are deleted by ``breeze k8s delete-cluster`` command.\n\nManaging Kubernetes Cluster\n---------------------------\n\nFor your testing, you manage Kind cluster with ``k8s`` breeze command group. Those commands allow to\ncreated:\n\n.. image:: ../../dev/breeze/doc/images/output_k8s.svg\n  :width: 100%\n  :alt: Breeze k8s\n\nThe command group allows you to setup environment, start/stop/recreate/status Kind Kubernetes cluster,\nconfigure cluster (via ``create-cluster``, ``configure-cluster`` command). Those commands can be run with\n``--run-in-parallel`` flag for all/selected clusters and they can be executed in parallel.\n\nIn order to deploy Airflow, the PROD image of Airflow need to be extended and example dags and POD\ntemplate files should be added to the image. This is done via ``build-k8s-image``, ``upload-k8s-image``.\nThis can also be done for all/selected images/clusters in parallel via ``--run-in-parallel`` flag.\n\n.. note::\n\n   Before running ``breeze k8s build-k8s-image`` command, make sure that all UI assets are compiled by checking\n   if ``airflow-core/src/airflow/ui/dist`` is not empty. If the mentioned directory is empty, run following\n   command:\n\n   .. code-block:: shell\n\n      breeze ui compile-assets\n\n   for making sure that all assets are up-to-date, run the above command with ``--force-clean`` flag.\n\nDeploy Airflow to Kubernetes Cluster\n------------------------------------\n\nThen Airflow (by using Helm Chart) can be deployed to the cluster via ``deploy-airflow`` command.\nThis can also be done for all/selected images/clusters in parallel via ``--run-in-parallel`` flag. You can\npass extra options when deploying Airflow to configure your deployment.\n\nYou can check the status, dump logs and finally delete cluster via ``status``, ``logs``, ``delete-cluster``\ncommands. This can also be done for all created clusters in parallel via ``--all`` flag.\n\nYou can interact with the cluster (via ``shell`` and ``k9s`` commands).\n\nYou can run set of k8s tests via ``tests`` comma"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/testing/unit_tests.rst",
+      "kind": "File",
+      "path": "contributing-docs/testing/unit_tests.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 41769,
+      "excerpt": "like to run tests for:\n\n.. code-block:: bash\n\n    breeze testing providers-tests --test-type \"Providers[airbyte,http]\"\n\nYou can also run all providers but exclude specific ones:\n\n.. code-block:: bash\n\n    breeze testing providers-tests --test-type \"Providers[-amazon,google]\"\n\n\nSometimes you need to inspect docker-compose after the tests command completes,\nfor example, when the test environment could not be properly set due to\nfailed health checks. This can be achieved with the ``--skip-docker-compose-down``\nflag:\n\n.. code-block:: bash\n\n    breeze testing core-tests --skip-docker-compose-down\n\n\nRunning full Airflow unit test suite in parallel\n................................................\n\nIf you run ``breeze testing core-tests --run-in-parallel`` or\n``breeze testing providers-tests --run-in-parallel``, tests are executed in parallel\non your development machine, using as many cores as are available to the Docker engine.\n\nIf your Docker environment has limited memory (less than 8 GB), then ``Integration``, ``Provider``,\nand ``Core`` tests are run sequentially, with the Docker setup cleaned between test runs\nto minimize memory usage.\n\nThis approach allows for a massive speedup in full test execution. On a machine with 8 CPUs\n(16 cores), 64 GB of RAM, and a fast SSD, the full suite of tests can complete in about\n5 minutes (!) — compared to more than 30 minutes when run sequentially.\n\n.. note::\n\n  On MacOS, you might have fewer CPUs and less memory available to run tests than you have on the host,\n  simply because your Docker engine runs in a Linux Virtual Machine under the hood. If you want to make\n  use of parallelism and memory usage for CI tests, you might want to increase the resources available\n  to your docker engine. See the `Resources <https://docs.docker.com/docker-for-mac/#resources>`_ chapter\n  in the ``Docker for Mac`` documentation on how to do it.\n\nYou can also limit the parallelism by specifying the maximum number of parallel jobs via the\n``MAX_PARALLEL_TEST_JOBS`` variable. If you set it to \"1\", all test types will be run sequentially.\n\n.. code-block:: bash\n\n    MAX_PARALLEL_TEST_JOBS=\"1\" ./scripts/ci/testing/ci_run_airflow_testing.sh\n\n.. note::\n\n  In case you would like to cleanup after execution of such tests, you might have to cleanup\n  some of the docker containers running if you use ctrl-c to stop execution. You can easily do it by\n  runni"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+      "kind": "File",
+      "path": "java-sdk/README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4998,
+      "excerpt": "g the vote so reviewers can check out the\nexact source being voted on.\n\n```bash\ngit tag -s java-sdk/<VERSION>-rc<N> -m \"Java SDK <VERSION> RC <N>\"\ngit push upstream java-sdk/<VERSION>-rc<N>\n```\n\n### Verify the POM locally\n\nBefore touching any remote repository, publish to your local Maven cache and\ninspect the generated POM:\n\n```bash\nrm -rf ~/.m2/repository/org/apache/airflow/  # Start clean.\n\n./gradlew publishToMavenLocal -PskipSigning=true\n\n# The airflow-sdk runtime.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk/*/airflow-sdk-*.pom\n\n# The bill of materials of airflow-sdk\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-bom/*/*.pom\n\n# The annotation processor for the builder pattern.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-processor/*/airflow-sdk-*.pom\n\n# The Gradle plugin for bundling.\nless ~/.m2/repository/org/apache/airflow/airflow-sdk-gradle-plugin/*/airflow-sdk-*.pom\n\n# The Gradle plugin's registration.\nless ~/.m2/repository/org/apache/airflow/sdk/org.apache.airflow.sdk.gradle.plugin/*/*.pom\n```\n\nCheck that the coordinates, description, license, SCM, and organization fields\nlook correct.\n\n### Dry-run against a local repository\n\nTo test the full publish flow without touching ASF infrastructure, override the\nrepository URL to a local directory\n\n```bash\nrm -rf /tmp/local-maven-repo  # Start clean.\n./gradlew publish -PmavenUrl=file:///tmp/local-maven-repo -PskipSigning=true\nls /tmp/local-maven-repo/org/apache/airflow/\n# This should contain the same components in ~/.m2 as inspected in the previous step.\n```\n\n*NOTE:* Signing is not required since nothing goes to Maven Central. If you want\nto test signing, set the GPG private key and passphrase as described in the next\nsection, and remove `-PskipSigning=true` from the above command.\n\n### Publish to ASF Nexus staging\n\nStore the credentials in `~/.gradle/gradle.properties` so they are not exposed\nin your shell history:\n\n```properties\nmavenUsername=your-asf-nexus-token-username\nmavenPassword=your-asf-nexus-token-password\nsigning.password=your-gpg-key-passphrase\n```\n\nThen stage and close the release. The\n[Gradle Nexus Publish Plugin](https://github.com/gradle-nexus/publish-plugin)\n(applied in the root `build.gradle.kts`) gathers every module into one staging\nrepository, so there is no per-module fan-out to reconcile.\n\n```bash\n./gradlew publishToApache closeApacheStagingRepository \\\n  --no-"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/fab/src/airflow/providers/fab/auth_manager/security_manager/override.py",
+      "kind": "File",
+      "path": "providers/fab/src/airflow/providers/fab/auth_manager/security_manager/override.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 70851,
+      "excerpt": "        )\n                .unique()\n                .one_or_none()\n            )\n\n        return None\n\n    def get_resource_permissions(self, resource: Resource) -> Permission:\n        \"\"\"\n        Retrieve permission pairs associated with a specific resource object.\n\n        :param resource: Object representing a single resource.\n        \"\"\"\n        return self.session.scalars(select(self.permission_model).filter_by(resource_id=resource.id)).all()\n\n    def create_permission(self, action_name, resource_name) -> Permission | None:\n        \"\"\"\n        Add a permission on a resource to the backend.\n\n        :param action_name:\n            name of the action to add: 'can_add','can_edit' etc...\n        :param resource_name:\n            name of the resource to add\n        \"\"\"\n        if not (action_name and resource_name):\n            return None\n        perm = self.get_permission(action_name, resource_name)\n        if perm:\n            return perm\n        resource = self.create_resource(resource_name)\n        if resource is None:\n            log.error(const.LOGMSG_ERR_SEC_ADD_PERMVIEW, \"Resource creation failed %s\", resource_name)\n            return None\n        action = self.create_action(action_name)\n        perm = self.permission_model()\n        perm.resource_id, perm.action_id = resource.id, action.id\n        try:\n            self.session.add(perm)\n            self.session.commit()\n            log.info(const.LOGMSG_INF_SEC_ADD_PERMVIEW, perm)\n            return perm\n        except IntegrityError:\n            self.session.rollback()\n            existing = self.get_permission(action_name, resource_name)\n            if existing is not None:\n                log.info(\n                    \"Permission '%s'->'%s' was created by a concurrent worker, using existing record\",\n                    action_name,\n                    resource_name,\n                )\n                return existing\n            raise\n        except Exception as e:\n            log.error(const.LOGMSG_ERR_SEC_ADD_PERMVIEW, e)\n            self.session.rollback()\n            return None\n\n    def delete_permission(self, action_name: str, resource_name: str) -> None:\n        \"\"\"\n        Delete the permission linking an action->resource pair.\n\n        Doesn't delete the underlying action or resource.\n\n        :param action_name: Name of existing action\n        :param resource_name: Name of existing resou"
+    }
+  ]
+}

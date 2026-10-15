@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+        "path": "dev/README_RELEASE_AIRFLOW.md",
+        "offset": 54877,
+        "line": 1198
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/project.rst",
+        "path": "airflow-core/docs/project.rst",
+        "offset": 3595,
+        "line": 117
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+        "path": "dev/README_RELEASE_HELM_CHART.md",
+        "offset": 6233,
+        "line": 114
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:README.md",
+        "path": "README.md",
+        "offset": 7945,
+        "line": 77
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/25_maintainer_pr_triage.md",
+        "path": "contributing-docs/25_maintainer_pr_triage.md",
+        "offset": 12619,
+        "line": 212
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/authoring-and-scheduling/event-scheduling.rst",
+        "path": "airflow-core/docs/authoring-and-scheduling/event-scheduling.rst",
+        "offset": 19254,
+        "line": 377
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/installation/upgrading_to_airflow3.rst",
+        "path": "airflow-core/docs/installation/upgrading_to_airflow3.rst",
+        "offset": 2731,
+        "line": 49
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/03_developer_tasks.rst",
+        "path": "dev/breeze/doc/03_developer_tasks.rst",
+        "offset": 2584,
+        "line": 63
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 7945,
+      "excerpt": " Airflow logo in my presentation?](#can-i-use-the-apache-airflow-logo-in-my-presentation)\n- [Links](#links)\n- [Sponsors](#sponsors)\n\n<!-- END doctoc generated TOC please keep comment here to allow auto update -->\n\n## Project Focus\n\nAirflow works best with workflows that are mostly static and slowly changing. When the Dag structure is similar from one run to the next, it clarifies the unit of work and continuity. Other similar projects include [Luigi](https://github.com/spotify/luigi), [Oozie](https://oozie.apache.org/) and [Azkaban](https://azkaban.github.io/).\n\nAirflow is commonly used to process data, but has the opinion that tasks should ideally be idempotent (i.e., results of the task will be the same, and will not create duplicated data in a destination system), and should not pass large quantities of data from one task to the next (though tasks can pass metadata using Airflow's [XCom feature](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html)). For high-volume, data-intensive tasks, a best practice is to delegate to external services specializing in that type of work.\n\nAirflow is not a streaming solution, but it is often used to process real-time data, pulling data off streams in batches.\n\n## Principles\n\n- **Dynamic**: Pipelines are defined in code, enabling dynamic dag generation and parameterization.\n- **Extensible**: The Airflow framework includes a wide range of built-in operators and can be extended to fit your needs.\n- **Flexible**: Airflow leverages the [**Jinja**](https://jinja.palletsprojects.com) templating engine, allowing rich customizations.\n\n<!-- START Requirements, please keep comment here to allow auto update of PyPI readme.md -->\n## Requirements\n\nApache Airflow is tested with:\n\n|            | Main version (dev)                 | Stable version (3.3.0)              | Deprecate version (2.11.2)   |\n|------------|------------------------------------|-------------------------------------|------------------------------|\n| Python     | 3.10, 3.11, 3.12, 3.13, 3.14       | 3.10, 3.11, 3.12, 3.13, 3.14        | 3.10, 3.11, 3.12             |\n| Platform   | AMD64/ARM64                        | AMD64/ARM64                         | AMD64/ARM64(\\*)              |\n| Kubernetes | 1.30, 1.31, 1.32, 1.33, 1.34, 1.35 | 1.30, 1.31, 1.32, 1.33, 1.34, 1.35  | 1.26, 1.27, 1.28, 1.29, 1.30 |\n| PostgreSQL | 14, 15, 16, 17, 18        "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/authoring-and-scheduling/event-scheduling.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/authoring-and-scheduling/event-scheduling.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19254,
+      "excerpt": "handle_dlq(to_dlq)\n            topic, partition, offset = batch[-1].broker_payload\n            await self.consumer.commit(topic, partition, offset + 1)\n\n        async def aclose(self):\n            if self.consumer is not None:\n                await self.consumer.stop()\n\nThe one constraint on filter authors is the binding between raw events and\nthe trigger events derived from them: yield every ``TriggerEvent`` derived\nfrom a raw event before pulling the next raw event from the shared\nstream — which is what a straightforward filter loop does anyway.\n\n**Snapshot-at-fan-out**: the set of subscribers that must resolve a given\nevent is frozen at the moment the event is broadcast. A subscriber that\njoins after the event was dispatched is not added to that event's pending\nset.\n\n**Per-event ack timeout**: if a subscriber has not finished processing an\nevent within the ack timeout (default 5 minutes, configurable via the\n``[triggerer] shared_stream_ack_timeout`` config option) — it is still on\nthe event, or some of its derived trigger events were never confirmed\npersisted — the manager force-fails that subscriber's trigger. Other\nsubscribers are not affected; once they resolve, the producer advances\nnormally. The ack timeout is a manager-level safety net and does not\nreplace any native broker session or visibility timeout.\nFrom the subscriber's perspective the force-fail surfaces as an ``AckTimeout``\n(importable from ``airflow.triggers.shared_stream``) raised by the\n``shared_stream`` iterator inside ``filter_shared_stream``. Letting it propagate\nis fine — the trigger fails through the standard trigger-failure path; catch it\nonly if the subscriber needs to run cleanup before failing.\n\n**Triggerer restart**: resolution state lives in memory only. After a\ntriggerer restart, the broker redelivers messages that were never\nadvanced. Subscribers must therefore be idempotent.\n\nWhen multiple triggers sharing the same key restart together, the first\nto re-subscribe creates a fresh group and polling starts immediately.\nTriggers that re-subscribe later join as late subscribers (outside the\nsnapshot of any already-broadcast event), so they may miss events\ncommitted in the window between the first subscription and their own.\nSet ``[triggerer] shared_stream_cohort_grace_period`` to a positive\nnumber of seconds (e.g. ``2.0``) to delay the start of polling after a\nnew group is created"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/installation/upgrading_to_airflow3.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/installation/upgrading_to_airflow3.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2731,
+      "excerpt": "tion mechanism for their tasks, especially when they require variables or connections.\n\nDatabase Access Restrictions\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nIn Airflow 3, direct metadata database access from task code is now restricted. This is a key security and architectural improvement that affects how Dag authors interact with Airflow resources:\n\n- **No Direct Database Access**: Task code can no longer directly import and use Airflow database sessions or models.\n- **API-Based Resource Access**: All runtime interactions (state transitions, heartbeats, XComs, and resource fetching) are handled through a dedicated Task Execution API.\n- **Enhanced Security**: This improves isolation and security by preventing worker task code from directly accessing or modifying the Airflow metadata database. Note that Dag author code potentially still executes with direct database access in the Dag File Processor and Triggerer — see :doc:`/security/security_model` for details.\n- **Stable Interface**: The Task SDK provides a stable, forward-compatible interface for accessing Airflow resources without direct database dependencies.\n\nStep 1: Take care of prerequisites\n----------------------------------\n\n- Make sure that you are on Airflow 2.7 or later. It is recommended to upgrade to latest 2.x and then to Airflow 3.\n- Make sure that your Python version is in the supported list.\n- Ensure that you are not using any features or functionality that have been :ref:`removed in Airflow 3<breaking-changes>`.\n\n\nStep 2: Clean and back up your existing Airflow Instance\n---------------------------------------------------------\n\n- It is highly recommended that you make a backup of your Airflow instance, specifically your Airflow metadata database before starting the migration process.\n\n    - If you do not have a \"hot backup\" capability for your database, you should do it after shutting down your Airflow instances, so that the backup of your database will be consistent. For example, if you don't turn off your Airflow instance, the backup of the database will not include all TaskInstances or DagRuns.\n\n    - If you did not make a backup and your migration fails, you might end up in a half-migrated state. This can be caused by, for example, a broken network connection between your Airflow CLI and the database during the migration. Having a backup is an important precaution to avoid problems like this.\n\n- "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/project.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/project.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3595,
+      "excerpt": "k at `Airflow's GitHub\nContributor page:\n<https://github.com/apache/airflow/graphs/contributors>`_\n\n\nResources & links\n-----------------\n\n* `Airflow's official documentation <https://airflow.apache.org/docs/>`_\n* Mailing lists:\n\n  * Developer's mailing list: dev-subscribe@airflow.apache.org\n  * All commits mailing list: commits-subscribe@airflow.apache.org\n  * Airflow users mailing list: users-subscribe@airflow.apache.org\n\n* `Issues on GitHub <https://github.com/apache/airflow/issues>`_\n* `Slack (chat) Channel <https://s.apache.org/airflow-slack>`_\n* `Airflow Improvement Proposals <https://cwiki.apache.org/confluence/display/AIRFLOW/Airflow+Improvement+Proposals>`_\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/25_maintainer_pr_triage.md",
+      "kind": "File",
+      "path": "contributing-docs/25_maintainer_pr_triage.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12619,
+      "excerpt": "pr-management-triage`. It is the successor to the now-removed\n`breeze pr stats` command and produces two summary tables grouped by `area:*` label:\n\n- **Triaged PRs — Final State** — for PRs that were triaged and have since been\n  closed or merged: closed-vs-merged ratios per area, plus the share of authors who\n  responded before close.\n- **Triaged PRs — Still Open** — for currently-open PRs: per-area triage coverage,\n  draft / non-draft split, response rates, ready-for-review counts, plus age-bucket\n  histograms (`<1d`, `1-7d`, `1-4w`, `>4w`) on both the time-since-drafting and\n  time-since-author-response axes.\n\nInvoke it the same way as `pr-management-triage` — open Claude Code in your local clone and ask\nfor stats. Phrasings the skill recognises include `run PR stats`, `show the area\nbreakdown`, `how is the PR queue doing`, or any variation on \"give me numbers about\nthe open PR backlog\". A typical workflow is `pr-management-stats` → spot the area with the worst\ntriage coverage → `pr-management-triage label:area:<that-area>` to act on it.\n\nThe skill detects triaged PRs by scanning comment bodies for the canonical\n`Pull Request quality criteria` marker that `pr-management-triage` posts on every triage comment.\nThat same detector also catches the legacy HTML-comment markers left by the removed\nbreeze command, so historical triaged PRs are still counted correctly.\n\n## Labels and PR states\n\nThe triage workflow uses the following labels and states:\n\n| Label / State | Meaning |\n|---|---|\n| `ready for maintainer review` | PR has passed Stage 1 and is queued for human review. Applied only after the skill has verified that no workflow runs are awaiting approval. |\n| `closed because of multiple quality violations` | PR was closed because the author has multiple open PRs with quality issues. |\n| `suspicious changes detected` | PR (and all open PRs by the same author) was closed because the diff contained suspicious patterns (secret exfiltration, malicious CI modifications, etc.). |\n| **Draft status** | PR was converted to draft because it does not meet quality criteria. The contributor is asked to fix the listed issues and mark the PR as \"Ready for review\" once done. |\n\n## For contributors\n\nYou don't need to use the triage skill — it is a maintainer-facing workflow. But\nunderstanding how it works helps you get your PRs reviewed faster.\n\n**There is no rush.** The skil"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_AIRFLOW.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_AIRFLOW.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 54877,
+      "excerpt": "heck, use `breeze release-management verify-rc-by-pmc`.\n\nWhat the automation does (high level):\n\n* Validates expected SVN files, signatures, checksums, Apache RAT licenses, and reproducible builds.\n* Uses a detached git worktree for reproducible builds so it can build from the release tag without\n  changing your current checkout (and still use the latest Breeze code).\n* Fails early if the SVN working copy is locked (to avoid hanging on `svn` commands).\n\nIf the automation output disagrees with your manual verification, treat the manual results as authoritative and\nreport the discrepancy.\n\nFor the full command documentation see\n[Breeze Command to verify RC](breeze/doc/09_release_management_tasks.rst).\n\nExample (run all checks):\n\n```shell script\nbreeze release-management verify-rc-by-pmc \\\n  --distribution airflow \\\n  --version ${VERSION_RC} \\\n  --task-sdk-version ${TASK_SDK_VERSION_RC} \\\n  --path-to-airflow-svn ~/asf-dist/dev/airflow \\\n  --verbose\n```\n\nExample (only signatures + checksums):\n\n```shell script\nbreeze release-management verify-rc-by-pmc \\\n  --distribution airflow \\\n  --version ${VERSION_RC} \\\n  --task-sdk-version ${TASK_SDK_VERSION_RC} \\\n  --path-to-airflow-svn ~/asf-dist/dev/airflow \\\n  --checks signatures,checksums\n```\n\n\n# Verify the release candidate by Contributors\n\nThis can be done (and we encourage to) by any of the Contributors. In fact, it's best if the\nactual users of Apache Airflow test it in their own staging/test installations. Each release candidate\nis available on PyPI apart from SVN packages, so everyone should be able to install\nthe release candidate version.\n\nBut you can use any of the installation methods you prefer (you can even install it via the binary wheels\ndownloaded from the SVN).\n\n## Installing release candidate in your local virtual environment\n\n```shell script\npip install apache-airflow==<VERSION>rc<X>\n```\n\nOptionally it can be followed with constraints\n\n```shell script\npip install apache-airflow==<VERSION>rc<X> \\\n  --constraint \"https://raw.githubusercontent.com/apache/airflow/constraints-<VERSION>rc<X>/constraints-3.10.txt\"\n```\n\nNote that the constraints contain python version that you are installing it with.\n\nYou can use any of the installation methods you prefer (you can even install it via the binary wheel\ndownloaded from the SVN).\n\nThere is also an easy way of installation with Breeze if you have the latest source"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/README_RELEASE_HELM_CHART.md",
+      "kind": "File",
+      "path": "dev/README_RELEASE_HELM_CHART.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6233,
+      "excerpt": "c1\n\n# Set AIRFLOW_REPO_ROOT to the path of your git repo\nexport AIRFLOW_REPO_ROOT=$(pwd -P)\n\n# Example after cloning\ngit clone https://github.com/apache/airflow.git airflow\ncd airflow\nexport AIRFLOW_REPO_ROOT=$(pwd -P)\n```\n\n## Setup k8s environment (mainly helm chart)\n\nThis will install Helm in the recent version and enter the environment where you can run `helm` commands\nand installs the necessary python dependencies (including `towncrier` in the k8s virtual environment).\n\n```shell\nbreeze k8s setup-env\nbreeze k8s shell\n```\n\nInstall the helm-gpg plugin, if you have not installed it already. This command will install the plugin\nusing commit sha of version of the plugin that is known to work with latest openssl and reviewed by us.\n\n```shell\nhelm plugin install https://github.com/technosophos/helm-gpg --version 6303407eb63deaeb1b2f24de611e3468a27ec05b\n```\n\nYou can also update/uninstall/list the plugin with other `helm plugin` commands. For more information, run:\n\n```shell\nhelm plugin --help\n```\n\n## Build Release Notes\n\nBefore creating the RC, you need to build and commit the release notes for the release:\n\nPreview with:\n\n```shell script\ntowncrier build --draft --version=${VERSION} --date=2021-12-15 --dir chart --config chart/newsfragments/config.toml\n```\n\nThen remove the `--draft` flag to have towncrier build the release notes for real.\n\nThe significant changes section does require some reformatting - look at prior releases as an example.\n\nIf no significant changes where added in this release, add the header and put \"No significant changes.\".\n\nThen, get the rest of the entries, categorize them into the appropriate sections, and add it to the release notes.\n\n``` shell script\ngit log --oneline helm-chart/1.1.0..main --pretty='format:- %s' -- chart/ docs/helm-chart/\n```\n\n### Add changelog annotations to `Chart.yaml`\n\nOnce the release notes have been built, run the script to generate the changelog annotations.\n\n```shell\n./dev/chart/build_changelog_annotations.py\n```\n\nVerify the output looks right (only entries from this release), then put them below `artifacthub.io/changes` in `Chart.yaml`,\nreplace previous change logs if a new release, append if another RC. Should look like for example:\n\n```yaml\nannotations:\n  artifacthub.io/changes: |\n    - kind: added\n      description: Add resources for `cleanup` and `createuser` jobs\n      links:\n        - name: \"#19263\"\n     "
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:dev/breeze/doc/03_developer_tasks.rst",
+      "kind": "File",
+      "path": "dev/breeze/doc/03_developer_tasks.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2584,
+      "excerpt": "s.\n\nYou can also run breeze with ``SKIP_SAVING_CHOICES`` to non-empty value and breeze invocation will not save\nused cache value to cache - this is useful when you run non-interactive scripts with ``breeze shell`` and\nwant to - for example - force Python version used only for that execution without changing the Python version\nthat user used last time.\n\nYou can see which value of the parameters that can be stored persistently in cache marked with >VALUE<\nin the help of the commands (for example in output of ``breeze config --help``).\n\nSelecting Backend\n-----------------\n\nWhen you run breeze commands, you can additionally select which backend you want to use. Currently Airflow\nsupports Sqlite, MySQL and Postgres as backends - MySQL and Postgres are supported in various versions.\n\nYou can choose which backend to use by adding ``--backend`` flag and additionally you can select version\nof the backend, if you want to start a different version of backend (for example for ``--backend postgres``\nyou can specify ``--postgres-version 13`` to start Postgres 13). The ``--help`` command in breeze commands\nwill show you which backends are supported and which versions are available for each backend.\n\nThe choice you made for backend and version are ``sticky`` - the last used selection is cached in the\n``.build`` folder. Next time you run any of the ``breeze`` commands that use backend, it will use the\nlast selected backend and version.\n\n.. note::\n\n  You can also (temporarily for the time of running a single command) override the backend version\n  used via ``BACKEND_VERSION`` environment variable. This is used mostly in CI where we have common way of\n  running tests for all backends and we want to specify different parameters. In order to override the\n  backend version, it has to be a valid version for the backend you are using. For example if you set\n  ``BACKEND_VERSION`` to ``13`` and you are using ``--backend postgres``, Postgres 13 will be used, but\n  if you set ``BACKEND_VERSION`` to ``8.0`` and you are using ``--backend postgres``, the last used Postgres\n  version will be used.\n\nBreeze will inform you at startup which backend and version it is using:\n\n.. raw:: html\n\n    <div align=\"center\">\n        <img src=\"images/version_information.png\" width=\"640\" alt=\"Version information printed by Breeze\">\n    </div>\n\n\nPort Forwarding\n---------------\n\nWhen you run Airflow Breeze, "
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_CONTAINS_FILE]->(f:DLFile) WHERE r.dataset=$dataset AND r.repo=$repo AND f.path=$path RETURN trim(split(f.content,'\\n')[$line]) AS entity,f.path+': '+trim(split(f.content,'\\n')[$line]) AS fact,[r.id,f.id] AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "path": "src/main/resources/application.properties",
+    "line": 0
+  },
+  "rows": [
+    {
+      "entity": "# database init, supports mysql too",
+      "fact": "src/main/resources/application.properties: # database init, supports mysql too",
+      "evidence_ids": [
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:repository:spring-projects/spring-petclinic",
+        "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/main/resources/application.properties"
+      ]
+    }
+  ]
+}

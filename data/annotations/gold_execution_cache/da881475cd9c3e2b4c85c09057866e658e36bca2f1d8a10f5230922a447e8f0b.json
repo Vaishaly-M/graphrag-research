@@ -1,0 +1,38 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id) AS evidence RETURN b.path AS entity,b.path AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "path": "mlflow/R/mlflow/.install-deps.R"
+  },
+  "rows": [
+    {
+      "entity": "mlflow/R/mlflow/.Rprofile",
+      "fact": "mlflow/R/mlflow/.Rprofile",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/R/mlflow/.install-deps.R",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:851595a5bed6c3c034fbe9e30dc1d0bd7d327853",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/R/mlflow/.Rprofile"
+      ]
+    },
+    {
+      "entity": "mlflow/R/mlflow/DESCRIPTION",
+      "fact": "mlflow/R/mlflow/DESCRIPTION",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/R/mlflow/.install-deps.R",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:851595a5bed6c3c034fbe9e30dc1d0bd7d327853",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/R/mlflow/DESCRIPTION"
+      ]
+    },
+    {
+      "entity": "mlflow/R/mlflow/Dockerfile.dev",
+      "fact": "mlflow/R/mlflow/Dockerfile.dev",
+      "evidence_ids": [
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/R/mlflow/.install-deps.R",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:commit:851595a5bed6c3c034fbe9e30dc1d0bd7d327853",
+        "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/R/mlflow/Dockerfile.dev"
+      ]
+    }
+  ]
+}

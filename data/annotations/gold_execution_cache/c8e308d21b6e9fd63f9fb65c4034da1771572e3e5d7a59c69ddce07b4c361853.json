@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/plugins/index.mdx",
+        "path": "docs/docs/classic-ml/plugins/index.mdx",
+        "offset": 593,
+        "line": 17
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 95307,
+        "line": 50
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/tracking/index.mdx",
+        "path": "docs/docs/classic-ml/tracking/index.mdx",
+        "offset": 797,
+        "line": 20
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracking/_tracking_service/client.py",
+        "path": "mlflow/tracking/_tracking_service/client.py",
+        "offset": 718,
+        "line": 32
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+        "path": "mlflow/environment_variables.py",
+        "offset": 21629,
+        "line": 486
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+        "path": "docs/docs/classic-ml/model/index.mdx",
+        "offset": 2074,
+        "line": 38
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+        "path": "changelogs/v0.x.md",
+        "offset": 3692,
+        "line": 38
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+        "path": "examples/llms/RAG/_cache.json",
+        "offset": 62111,
+        "line": 330
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+      "kind": "File",
+      "path": "changelogs/v0.x.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3692,
+      "excerpt": "l document](https://gist.github.com/zblz/9e337a55a7ba73314890be68370fa69a) gives the full detail of the three main changes:\n\n  - You can register additional providers of tracking stores using the `mlflow.tracking_store` entrypoint. (#881, @zblz)\n  - You can register additional providers of artifact repositories using the `mlflow.artifact_repository` entrypoint. (#882, @mociarain)\n  - The logic generating run metadata from the run context (e.g. `source_name`, `source_version`) has been refactored into an extendable system of run context providers. Plugins can register additional providers using the `mlflow.run_context_provider` entrypoint, which add to or overwrite tags set by the base library. (#913, #926, #930, #978, @acroz)\n\n- Support for HTTP authentication to the Tracking Server in the R client. Now you can connect to secure Tracking Servers using credentials set in environment variables, or provide custom plugins for setting the credentials. As an example, this release contains a Databricks plugin that can detect existing Databricks credentials to allow you to connect to the Databricks Tracking Server. (#938, #959, #992, @tomasatdatabricks)\n\nBreaking changes:\n\n- [Scoring] The `pyfunc` scoring server now expects requests with the `application/json` content type to contain json-serialized pandas dataframes in the split format, rather than the records format. See the [documentation on deployment](https://mlflow.org/docs/latest/models.html#deploy-a-python-function-model-as-a-local-rest-api-endpoint) for more detail. (#960, @dbczumar) Also, when reading the pandas dataframes from JSON, the scoring server no longer automatically infers data types as it can result in unintentional conversion of data types (#916, @mparkhe).\n- [API] Remove `GetMetric` & `GetParam` from the REST API as they are subsumed by `GetRun`. (#879, @aarondav)\n\nMore features and improvements:\n\n- [UI] Add a button for downloading artifacts (#967, @mateiz)\n- [CLI] Add CLI commands for runs: now you can `list`, `delete`, `restore`, and `describe` runs through the CLI (#720, @DorIndivo)\n- [CLI] The `run` command now can take `--experiment-name` as an argument, as an alternative to the `--experiment-id` argument. You can also choose to set the `_EXPERIMENT_NAME_ENV_VAR` environment variable instead of passing in the value explicitly. (#889, #894, @mparkhe)\n- [Examples] Add Image classification "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2074,
+      "excerpt": "tool with the option `-t sagemaker` for deploying models\nto Amazon SageMaker).\n\n### MLmodel file\n\nAll of the flavors that a particular model supports are defined in its `MLmodel` file in YAML\nformat. For example, running `python examples/sklearn_logistic_regression/train.py` from within the\n[MLflow repo](https://github.com/mlflow/mlflow/blob/master/examples/sklearn_logistic_regression/train.py)\nwill create the following files under the `model` directory:\n\n```\n# Directory written by mlflow.sklearn.save_model(model, \"model\", input_example=...)\nmodel/\n├── MLmodel\n├── model.pkl\n├── conda.yaml\n├── python_env.yaml\n├── requirements.txt\n├── input_example.json (optional, only logged when input example is provided and valid during model logging)\n├── serving_input_example.json (optional, only logged when input example is provided and valid during model logging)\n└── environment_variables.txt (optional, only logged when environment variables are used during model inference)\n```\n\nAnd its `MLmodel` file describes two flavors:\n\n```yaml\ntime_created: 2018-05-25T17:28:53.35\n\nflavors:\n  sklearn:\n    sklearn_version: 0.19.1\n    pickled_model: model.pkl\n  python_function:\n    loader_module: mlflow.sklearn\n```\n\nApart from a **flavors** field listing the model flavors, the MLmodel YAML format can contain\nthe following fields:\n\n- `time_created`: Date and time when the model was created, in UTC ISO 8601 format.\n- `run_id`: ID of the run that created the model, if the model was saved using [tracking](/ml/tracking).\n- `signature`: [model signature](/ml/model/signatures) in JSON format.\n- `input_example`: reference to an artifact with [input example](/ml/model/signatures).\n- `databricks_runtime`: Databricks runtime version and type, if the model was trained in a Databricks notebook or job.\n- `mlflow_version`: The version of MLflow that was used to log the model.\n\n### Additional Logged Files\n\nFor environment recreation, we automatically log `conda.yaml`, `python_env.yaml`, and `requirements.txt` files whenever a model is logged.\nThese files can then be used to reinstall dependencies using `conda` or `virtualenv` with `pip`. Please see\n[How MLflow Model Records Dependencies](/ml/model/dependencies#how-mlflow-records-dependencies) for more details about these files.\n\nIf a model input example is provided when logging the model, two additional files `input_example.json` and `serving_input_e"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/plugins/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/plugins/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 593,
+      "excerpt": "e how plugins work:\n\n```bash\n# Clone MLflow and install example plugin\ngit clone https://github.com/mlflow/mlflow\ncd mlflow\npip install -e . tests/resources/mlflow-test-plugin\n```\n\n```bash\n# Use the plugin with custom tracking URI scheme\nMLFLOW_TRACKING_URI=file-plugin:$(PWD)/mlruns python examples/quickstart/mlflow_tracking.py\n\n# Launch MLflow UI to view results\nmlflow server --backend-store-uri ./mlruns\n```\n\nOpen http://localhost:5000 to see your tracked experiment:\n\n![Quickstart UI](/images/quickstart/quickstart_ui_screenshot.png)\n\n:::tip[Plugin Benefits]\nPlugins let you integrate MLflow with your existing infrastructure without modifying core MLflow code, ensuring smooth upgrades and maintenance.\n:::\n\n## Plugin Types & Use Cases\n\nMLflow supports several types of plugins, each addressing different integration needs:\n\n### **Storage & Persistence**\n\n| Plugin Type              | Purpose                           | Example Use Cases                                  |\n| ------------------------ | --------------------------------- | -------------------------------------------------- |\n| **Tracking Store**       | Custom experiment data storage    | Enterprise databases, cloud data warehouses        |\n| **Artifact Repository**  | Custom artifact storage           | In-house blob storage, specialized file systems    |\n| **Model Registry Store** | Custom model registry backend     | Enterprise model catalogs, version control systems |\n| **Workspace Provider**   | Custom workspace metadata backend | Kubernetes namespaces                              |\n\n### **Authentication & Headers**\n\n| Plugin Type                 | Purpose                | Example Use Cases                              |\n| --------------------------- | ---------------------- | ---------------------------------------------- |\n| **Request Auth Provider**   | Custom authentication  | OAuth, API keys, certificate-based auth        |\n| **Request Header Provider** | Custom HTTP headers    | Environment identification, compliance headers |\n| **Run Context Provider**    | Automatic run metadata | Git info, environment details, custom tags     |\n\n### **Execution & Evaluation**\n\n| Plugin Type         | Purpose                       | Example Use Cases                                  |\n| ------------------- | ----------------------------- | -------------------------------------------------- |\n| **Project B"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/tracking/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/tracking/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 797,
+      "excerpt": "\"mlflow.r\" hash=\"\">R</APILink>,\nand <APILink fn=\"mlflow.java\" hash=\"\">Java</APILink> APIs.\n\n<figure>\n  ![](/images/tracking/tracking-metrics-ui-temp.png)\n  <figcaption>A screenshot of the MLflow Tracking UI, showing a plot of validation loss metrics during model training.</figcaption>\n</figure>\n\n## Quickstart\n\nIf you haven't used MLflow Tracking before, we strongly recommend going through the following quickstart tutorial.\n\n<CardGroup>\n  <PageCard\n    headerText=\"MLflow Tracking Quickstart\"\n    link=\"/ml/tracking/quickstart\"\n    text=\"A great place to start to learn the fundamentals of MLflow Tracking! Learn in 5 minutes how to log, register, and load a model for inference.\"\n  />\n</CardGroup>\n\n## Concepts\n\n### Runs\n\nMLflow Tracking is organized around the concept of **runs**, which are executions of some piece of\ndata science code, for example, a single `python train.py` execution. Each run records metadata\n(various information about your run such as metrics, parameters, start and end times) and artifacts\n(output files from the run such as model weights, images, etc).\n\n### Models\n\nModels represent the trained machine learning artifacts that are produced during your runs. Logged Models contain their own metadata and artifacts similar to runs.\n\n### Experiments\n\nAn experiment groups together runs and models for a specific task. You can create an experiment using the CLI, API, or UI.\nThe MLflow API and UI also let you create and search for experiments. See [Organizing Runs into Experiments](/ml/tracking/tracking-api#experiment-organization)\nfor more details on how to organize your runs into experiments.\n\n## Tracking Runs \\{#start-logging}\n\n[MLflow Tracking APIs](/ml/tracking/tracking-api) provide a set of functions to track your runs. For example, you can call <APILink fn=\"mlflow.start_run\" /> to start a new run,\nthen call [Logging Functions](/ml/tracking/tracking-api) such as <APILink fn=\"mlflow.log_param\" /> and <APILink fn=\"mlflow.log_metric\" /> to log parameters and metrics respectively.\nPlease visit the [Tracking API documentation](/ml/tracking/tracking-api) for more details about using these APIs.\n\n```python\nimport mlflow\n\nwith mlflow.start_run():\n    mlflow.log_param(\"lr\", 0.001)\n    # Your ml code\n    ...\n    mlflow.log_metric(\"val_loss\", val_loss)\n```\n\nAlternatively, [Auto-logging](/ml/tracking/autolog) offers an ultra-quick setup for starting MLflow tr"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+      "kind": "File",
+      "path": "examples/llms/RAG/_cache.json",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 62111,
+      "excerpt": " HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\\\\n    \\\\n    Please call the submit_function function to submit the generated question and answer.\\\\n    \\\"}], \\\"model\\\": \\\"gpt-3.5-turbo\\\", \\\"functions\\\": [{\\\"name\\\": \\\"submit_function\\\", \\\"description\\\": \\\"Call this function to submit the generated question and answer.\\\", \\\"parameters\\\": {\\\"type\\\": \\\"object\\\", \\\"properties\\\": {\\\"question\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The question asking for the key information in the given paragraph.\\\"}, \\\"answer\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The answer to the question using the information in the given paragraph.\\\"}}, \\\"required\\\": [\\\"question\\\", \\\"answer\\\"]}}], \\\"function_call\\\": \\\"auto\\\", \\\"temperature\\\": 0.0, \\\"seed\\\": 2023}\": {\n    \"id\": \"chatcmpl-8NQ05ACacakGcfO01w48OAU3VRsY9\",\n    \"object\": \"chat.completion\",\n    \"created\": 1700592181,\n    \"model\": \"gpt-3.5-turbo-0613\",\n    \"choices\": [\n      {\n        \"index\": 0,\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": null,\n          \"function_call\": {\n            \"name\": \"submit_function\",\n            \"arguments\": \"{\\n  \\\"question\\\": \\\"How can you create an experiment in MLflow?\\\",\\n  \\\"answer\\\": \\\"You can create an experiment in MLflow using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters.\\\"\\n}\"\n          }\n        },\n        \"finish_reason\": \"function_call\"\n      }\n    ],\n    \"usage\": { \"prompt_tokens\": 528, \"completion_tokens\": 56, \"total_tokens\": 584 }\n  }\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 95307,
+      "excerpt": " HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nHow can you create an experiment using MLflow?,\"You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters.\",\"runs into experiments, which group together runs for a specific task. You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters. The MLflow API and UI let you create and search for experiments. Once your runs have been recorded, you can query them using the Tracking UI or the MLflow API. Where Runs Are Recorded MLflow runs can be recorded to local files, to a SQLAlchemy-compatible database, or remotely to a tracking server. By default, the MLflow Python API logs runs locally to files in an mlruns directory wherever you ran your program. You can then run mlflow ui to see the logged runs. To log runs remotely, set the MLFLOW_TRACKING_URI environment variable to a tracking server's URI or call mlflow.set_tracking_uri(). There are different kinds of remote tracking URIs: Local file path (specified as file:/my/local/dir), where data is just directly stored locally. Database encoded as <dialect>+<driver>://<username>:<password>@<host>:<port>/<database>. MLflow supports the dialects mysql, mssql, sqlite, and postgresql. For more details, see SQLAlchemy database uri. HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nWhat are the two components used by MLflow for storage?,\"MLflow uses two components for storage: backend store and artifact store. The backend store persists MLflow entities such as runs, parameters, metrics, tags, notes, and metadata. On the other hand, the artifact store persists artifacts such as files, models, images, in-mem"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+      "kind": "File",
+      "path": "mlflow/environment_variables.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 21629,
+      "excerpt": "ments in.\n#: (default: ``~/.mlflow/envs``)\nMLFLOW_ENV_ROOT = _EnvironmentVariable(\n    \"MLFLOW_ENV_ROOT\", str, str(Path.home().joinpath(\".mlflow\", \"envs\"))\n)\n\n#: Specifies whether or not to use DBFS FUSE mount to store artifacts on Databricks\n#: (default: ``False``)\nMLFLOW_ENABLE_DBFS_FUSE_ARTIFACT_REPO = _BooleanEnvironmentVariable(\n    \"MLFLOW_ENABLE_DBFS_FUSE_ARTIFACT_REPO\", True\n)\n\n#: Specifies whether or not to use UC Volume FUSE mount to store artifacts on Databricks\n#: (default: ``True``)\nMLFLOW_ENABLE_UC_VOLUME_FUSE_ARTIFACT_REPO = _BooleanEnvironmentVariable(\n    \"MLFLOW_ENABLE_UC_VOLUME_FUSE_ARTIFACT_REPO\", True\n)\n\n#: Private environment variable that should be set to ``True`` when running autologging tests.\n#: (default: ``False``)\n_MLFLOW_AUTOLOGGING_TESTING = _BooleanEnvironmentVariable(\"MLFLOW_AUTOLOGGING_TESTING\", False)\n\n#: (Experimental, may be changed or removed)\n#: Specifies the uri of a MLflow Gateway Server instance to be used with the Gateway Client APIs\n#: (default: ``None``)\nMLFLOW_GATEWAY_URI = _EnvironmentVariable(\"MLFLOW_GATEWAY_URI\", str, None)\n\n#: (Experimental, may be changed or removed)\n#: Specifies the uri of an MLflow AI Gateway instance to be used with the Deployments\n#: Client APIs\n#: (default: ``None``)\nMLFLOW_DEPLOYMENTS_TARGET = _EnvironmentVariable(\"MLFLOW_DEPLOYMENTS_TARGET\", str, None)\n\n#: Specifies the path of the config file for MLflow AI Gateway.\n#: (default: ``None``)\nMLFLOW_GATEWAY_CONFIG = _EnvironmentVariable(\"MLFLOW_GATEWAY_CONFIG\", str, None)\n\n#: Specifies the path of the config file for MLflow AI Gateway.\n#: (default: ``None``)\nMLFLOW_DEPLOYMENTS_CONFIG = _EnvironmentVariable(\"MLFLOW_DEPLOYMENTS_CONFIG\", str, None)\n\n#: Specifies whether to display the progress bar when uploading/downloading artifacts.\n#: (default: ``True``)\nMLFLOW_ENABLE_ARTIFACTS_PROGRESS_BAR = _BooleanEnvironmentVariable(\n    \"MLFLOW_ENABLE_ARTIFACTS_PROGRESS_BAR\", True\n)\n\n#: Specifies the conda home directory to use.\n#: (default: ``conda``)\nMLFLOW_CONDA_HOME = _EnvironmentVariable(\"MLFLOW_CONDA_HOME\", str, None)\n\n#: Specifies the name of the command to use when creating the environments.\n#: For example, let's say we want to use mamba (https://github.com/mamba-org/mamba)\n#: instead of conda to create environments.\n#: Then: > conda install mamba -n base -c conda-forge\n#: If not set, use the same as conda_path\n#: (default: ``conda``)\nMLFLOW_C"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracking/_tracking_service/client.py",
+      "kind": "File",
+      "path": "mlflow/tracking/_tracking_service/client.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 718,
+      "excerpt": "lflow.entities.dataset_input import DatasetInput\nfrom mlflow.environment_variables import MLFLOW_SUPPRESS_PRINTING_URL_TO_STDOUT\nfrom mlflow.exceptions import MlflowException\nfrom mlflow.protos.databricks_pb2 import (\n    INVALID_PARAMETER_VALUE,\n    ErrorCode,\n)\nfrom mlflow.store.artifact.artifact_repo import ArtifactRepository\nfrom mlflow.store.artifact.artifact_repository_registry import get_artifact_repository\nfrom mlflow.store.entities.paged_list import PagedList\nfrom mlflow.store.tracking import (\n    GET_METRIC_HISTORY_MAX_RESULTS,\n    SEARCH_MAX_RESULTS_DEFAULT,\n)\nfrom mlflow.store.tracking.rest_store import RestStore\nfrom mlflow.telemetry.events import (\n    CreateDatasetEvent,\n    CreateExperimentEvent,\n    CreateLoggedModelEvent,\n    CreateRunEvent,\n    GetLoggedModelEvent,\n    LogBatchEvent,\n    LogDatasetEvent,\n    LogMetricEvent,\n    LogParamEvent,\n)\nfrom mlflow.telemetry.track import record_usage_event\nfrom mlflow.tracking._tracking_service import utils\nfrom mlflow.tracking.context import registry as context_registry\nfrom mlflow.tracking.metric_value_conversion_utils import convert_metric_value_to_float_if_possible\nfrom mlflow.utils import chunk_list\nfrom mlflow.utils.async_logging.run_operations import RunOperations, get_combined_run_operations\nfrom mlflow.utils.databricks_utils import get_workspace_url, is_in_databricks_notebook\nfrom mlflow.utils.mlflow_tags import MLFLOW_RUN_TYPE, MLFLOW_RUN_TYPE_GENAI_EVALUATE, MLFLOW_USER\nfrom mlflow.utils.string_utils import is_string_type\nfrom mlflow.utils.time import get_current_time_millis\nfrom mlflow.utils.uri import add_databricks_profile_info_to_artifact_uri, is_databricks_uri\nfrom mlflow.utils.validation import (\n    MAX_ENTITIES_PER_BATCH,\n    MAX_METRICS_PER_BATCH,\n    MAX_PARAMS_TAGS_PER_BATCH,\n    PARAM_VALIDATION_MSG,\n    _validate_experiment_artifact_location,\n    _validate_run_id,\n)\nfrom mlflow.utils.workspace_context import get_request_workspace\nfrom mlflow.utils.workspace_utils import DEFAULT_WORKSPACE_NAME\n\n_logger = logging.getLogger(__name__)\n\n\nclass TrackingServiceClient:\n    \"\"\"\n    Client of an MLflow Tracking Server that creates and manages experiments and runs.\n    \"\"\"\n\n    def __init__(self, tracking_uri):\n        \"\"\"\n        Args:\n            tracking_uri: Address of local or remote tracking server.\n        \"\"\"\n        self.tracking_uri = tracking_uri\n        # NB: Fetch the tra"
+    }
+  ]
+}

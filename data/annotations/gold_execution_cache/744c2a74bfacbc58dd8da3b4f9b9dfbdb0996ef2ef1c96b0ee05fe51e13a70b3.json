@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+        "path": null,
+        "offset": 59,
+        "line": 1
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:pom.xml",
+        "path": "pom.xml",
+        "offset": 224,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6546",
+        "path": null,
+        "offset": 684,
+        "line": 14
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:test-suite/module/pom.xml",
+        "path": "test-suite/module/pom.xml",
+        "offset": 224,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:bom/pom.xml",
+        "path": "bom/pom.xml",
+        "offset": 185,
+        "line": 5
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:test-suite/module/omod/pom.xml",
+        "path": "test-suite/module/omod/pom.xml",
+        "offset": 185,
+        "line": 5
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "offset": 31079,
+        "line": 465
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/pom.xml",
+        "path": "api/pom.xml",
+        "offset": 185,
+        "line": 5
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/pom.xml",
+      "kind": "File",
+      "path": "api/pom.xml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 185,
+      "excerpt": "p://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n\n    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n    graphic logo is a trademark of OpenMRS Inc.\n\n-->\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\t\t xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd\">\n\t<parent>\n\t\t<groupId>org.openmrs</groupId>\n\t\t<artifactId>openmrs</artifactId>\n\t\t<version>3.0.0-SNAPSHOT</version>\n\t\t<relativePath>../pom.xml</relativePath>\n\t</parent>\n\t<modelVersion>4.0.0</modelVersion>\n\t<groupId>org.openmrs.api</groupId>\n\t<artifactId>openmrs-api</artifactId>\n\t<name>openmrs-api</name>\n\t<description>The api that is re-used across web and modules</description>\n\t<dependencies>\n\t\t<dependency>\n\t\t\t<groupId>org.openmrs.test</groupId>\n\t\t\t<artifactId>openmrs-test</artifactId>\n\t\t\t<type>pom</type>\n\t\t\t<scope>test</scope>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>commons-collections</groupId>\n\t\t\t<artifactId>commons-collections</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.apache.commons</groupId>\n\t\t\t<artifactId>commons-lang3</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>commons-beanutils</groupId>\n\t\t\t<artifactId>commons-beanutils</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>commons-validator</groupId>\n\t\t\t<artifactId>commons-validator</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>commons-io</groupId>\n\t\t\t<artifactId>commons-io</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.apache.velocity</groupId>\n\t\t\t<artifactId>velocity-engine-core</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework</groupId>\n\t\t\t<artifactId>spring-core</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework</groupId>\n\t\t\t<artifactId>spring-beans</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework</groupId>\n\t\t\t<artifactId>spring-context</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework</groupId>\n\t\t\t<artifactId>spring-aop</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework</groupId>\n\t\t\t<artifactId>spring-orm</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework</groupId>\n\t\t\t<artifactId>spring-tx</artifactId>\n\t\t</dependency"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:bom/pom.xml",
+      "kind": "File",
+      "path": "bom/pom.xml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 185,
+      "excerpt": "p://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n\n    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n    graphic logo is a trademark of OpenMRS Inc.\n\n-->\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd\">\n\t<modelVersion>4.0.0</modelVersion>\n\n\t<!--\n\t\tThis BOM is intentionally standalone (no parent) to avoid a circular\n\t\tdependency: the parent POM imports this BOM, so this POM cannot\n\t\treference the parent without creating an import cycle.\n\t-->\n\n\t<groupId>org.openmrs</groupId>\n\t<artifactId>openmrs-bom</artifactId>\n\t<version>3.0.0-SNAPSHOT</version>\n\t<packaging>pom</packaging>\n\t<name>OpenMRS BOM</name>\n\t<description>Bill of Materials for OpenMRS dependency version management. Import this\n\t\tPOM in your dependencyManagement section to align dependency versions with this\n\t\tversion of the OpenMRS platform.</description>\n\t<url>https://openmrs.org</url>\n\n\t<licenses>\n\t\t<license>\n\t\t\t<name>Mozilla Public License 2.0 with Healthcare Disclaimer</name>\n\t\t\t<url>https://openmrs.org/license</url>\n\t\t</license>\n\t</licenses>\n\n\t<organization>\n\t\t<name>OpenMRS Inc.</name>\n\t\t<url>https://openmrs.org</url>\n\t</organization>\n\n\t<properties>\n\t\t<!-- The versions of these dependencies can be limited by support for other\n\t\t     libraries. For instance, our version of Lucene is tied to the version\n\t\t     of Hibernate Search. Similarly, our version of Hibernate Search must be\n\t\t     compatible with the version of Hibernate and Hibernate must be compatible\n\t\t     with our version of Spring. -->\n\t\t<springVersion>7.0.8</springVersion>\n\t\t<springTestVersion>7.0.8</springTestVersion>\n\t\t<hibernateVersion>7.3.6.Final</hibernateVersion>\n\t\t<!-- hibernateSearchVersion needs to be adjusted if hibernateVersion changes -->\n\t\t<hibernateSearchVersion>8.3.2.Final</hibernateSearchVersion>\n\t\t<hibernateValidatorVersion>9.1.2.Final</hibernateValidatorVersion>\n\t\t<luceneVersion>10.5.0</luceneVersion>\n\t\t<!-- infinispanVersion needs to be adjusted if hibernateVersion changes -->\n\t\t<infinispanVersion>15.2.6.Final</infinispanVersion>\n\t\t<aspectjVersion>1.9.25.1</aspectjVersion>\n\t\t<jacksonVersion>2.22.1</jacksonVersion>\n\t\t<slf4jVersion>1.7.36</slf4jVer"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:pom.xml",
+      "kind": "File",
+      "path": "pom.xml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 224,
+      "excerpt": "p://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n\n    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n    graphic logo is a trademark of OpenMRS Inc.\n\n-->\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd\">\n\n\t<modelVersion>4.0.0</modelVersion>\n\t<groupId>org.openmrs</groupId>\n\t<artifactId>openmrs</artifactId>\n\t<version>3.0.0-SNAPSHOT</version>\n\t<packaging>pom</packaging>\n\t<name>OpenMRS</name>\n\t<description>Master project for the modules of OpenMRS</description>\n\t<url>https://openmrs.org</url>\n\n\t<issueManagement>\n\t\t<system>JIRA</system>\n\t\t<url>https://tickets.openmrs.org/</url>\n\t</issueManagement>\n\n\t<licenses>\n\t\t<license>\n\t\t\t<name>Mozilla Public License 2.0 with Healthcare Disclaimer</name>\n\t\t\t<url>https://openmrs.org/license</url>\n\t\t</license>\n\t</licenses>\n\n\t<organization>\n\t\t<name>OpenMRS Inc.</name>\n\t\t<url>https://openmrs.org</url>\n\t</organization>\n\n\t<scm>\n\t\t<connection>scm:git:git@github.com:openmrs/openmrs-core</connection>\n\t\t<developerConnection>scm:git:git@github.com:openmrs/openmrs-core</developerConnection>\n\t\t<url>https://github.com/openmrs/openmrs-core</url>\n\t  <tag>HEAD</tag>\n  </scm>\n\n\t<ciManagement>\n\t\t<system>Bamboo</system>\n\t\t<url>https://ci.openmrs.org/browse/TRUNK-MASTER</url>\n\t</ciManagement>\n\n\t<modules>\n\t\t<module>bom</module>\n\t\t<module>tools</module>\n\t\t<module>test</module>\n\t\t<module>api</module>\n\t\t<module>web</module>\n\t\t<module>webapp</module>\n\t\t<module>liquibase</module>\n\t\t<module>test-suite</module>\n\t</modules>\n\n\t<dependencyManagement>\n\t\t<dependencies>\n\t\t\t<dependency>\n\t\t\t\t<groupId>org.openmrs</groupId>\n\t\t\t\t<artifactId>openmrs-bom</artifactId>\n\t\t\t\t<version>${project.version}</version>\n\t\t\t\t<type>pom</type>\n\t\t\t\t<scope>import</scope>\n\t\t\t</dependency>\n\t\t\t<!-- Scope overrides: direct entries take precedence over BOM imports\n\t\t\t     in Maven, so consumers who import only the BOM get scope-free\n\t\t\t     version management while internal modules get correct default scopes. -->\n\t\t\t<dependency>\n\t\t\t\t<groupId>jakarta.servlet</groupId>\n\t\t\t\t<artifactId>jakarta.servlet-api</artifactId>\n\t\t\t\t<version>6.1.0</version>\n\t\t\t\t<scope>provided</scope>\n\t\t\t</dependency>\n\t\t\t<dependency>\n\t\t\t\t<groupId>org"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:test-suite/module/omod/pom.xml",
+      "kind": "File",
+      "path": "test-suite/module/omod/pom.xml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 185,
+      "excerpt": "p://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n\n    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n    graphic logo is a trademark of OpenMRS Inc.\n\n-->\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd\">\n\t<modelVersion>4.0.0</modelVersion>\n\n\t<parent>\n\t\t<groupId>org.openmrs.module</groupId>\n\t\t<artifactId>openmrs-test-suite-module</artifactId>\n\t\t<version>3.0.0-SNAPSHOT</version>\n\t</parent>\n\n\t<artifactId>openmrs-test-suite-module-omod</artifactId>\n\t<packaging>jar</packaging>\n\t<name>openmrs-test-suite-module-omod</name>\n\t<description>OMOD project for Test Module</description>\n\n\t<dependencies>\n\n\t\t<!-- \n\t\tAdd other dependencies from parent's pom: \n\t\t<dependency> \n\t\t\t<groupId>org.other.library</groupId> \n\t\t\t<artifactId>library-name</artifactId> \n\t\t</dependency> \n\t\t-->\n\t\t\n\t\t<!-- Begin OpenMRS modules -->\n\t\t\n\t\t<dependency>\n\t\t\t<groupId>${project.parent.groupId}</groupId>\n\t\t\t<artifactId>${project.parent.artifactId}-api</artifactId>\n\t\t\t<version>${project.parent.version}</version>\n\t\t</dependency>\n\t\t\n\t\t\t\t\n\t\t<!-- End OpenMRS modules -->\n\t\t\n\n\t\t<!-- Begin OpenMRS core -->\n\n\t\t<dependency>\n\t\t\t<groupId>org.openmrs.api</groupId>\n\t\t\t<artifactId>openmrs-api</artifactId>\n\t\t\t<type>jar</type>\n\t\t</dependency>\n\n\t\t<dependency>\n\t\t\t<groupId>org.openmrs.web</groupId>\n\t\t\t<artifactId>openmrs-web</artifactId>\n\t\t\t<type>jar</type>\n\t\t</dependency>\n\t\t\n\t\t<dependency>\n\t\t\t<groupId>org.openmrs.api</groupId>\n\t\t\t<artifactId>openmrs-api</artifactId>\n\t\t\t<type>test-jar</type>\n\t\t\t<scope>test</scope>\n\t\t</dependency>\n\n\t\t<dependency>\n\t\t\t<groupId>org.openmrs.web</groupId>\n\t\t\t<artifactId>openmrs-web</artifactId>\n\t\t\t<type>test-jar</type>\n\t\t\t<scope>test</scope>\n\t\t</dependency>\n\n\t\t<dependency>\n\t\t\t<groupId>org.openmrs.test</groupId>\n\t\t\t<artifactId>openmrs-test</artifactId>\n\t\t\t<type>pom</type>\n\t\t\t<scope>test</scope>\n\t\t</dependency>\n\n\t\t<dependency>\n\t\t\t<groupId>jakarta.servlet</groupId>\n\t\t\t<artifactId>jakarta.servlet-api</artifactId>\n\t\t\t<scope>provided</scope>\n\t\t</dependency>   \n\t\t\n\t\t<!-- End OpenMRS core -->\n\t</dependencies>\n\n\t<build>\n\t\t<finalName>${project.parent.artifactId}-${project.parent.version}</finalName>\n\t\t\n\t\t<resources>\n\t\t\t<resource>\n\t\t\t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:test-suite/module/pom.xml",
+      "kind": "File",
+      "path": "test-suite/module/pom.xml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 224,
+      "excerpt": "p://mozilla.org/MPL/2.0/. OpenMRS is also distributed under\n    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.\n\n    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS\n    graphic logo is a trademark of OpenMRS Inc.\n\n-->\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd\">\n\t<modelVersion>4.0.0</modelVersion>\n\n\t<parent>\n\t\t<groupId>org.openmrs.test-suite</groupId>\n\t\t<artifactId>openmrs-test-suite</artifactId>\n\t\t<version>3.0.0-SNAPSHOT</version>\n\t</parent>\n\n\t<groupId>org.openmrs.module</groupId>\n\t<artifactId>openmrs-test-suite-module</artifactId>\n\t<packaging>pom</packaging>\n\t<name>openmrs-test-suite-module</name>\n\t<description>\n\t\tTest Module is used to verify the OpenMRS testing framework for modules against the current version of openmrs-core. \n\t\tIt is not intended to be used as a generic module archetype as it runs in the maven context of openmrs-core.\n\t</description>\n\t<url>https://wiki.openmrs.org/</url>\n\t\n\t<organization>\n\t\t<name>OpenMRS</name>\n\t\t<url>http://openmrs.org</url>\n\t</organization>\n\n\t<modules>\n\t\t<module>api</module>\n\t\t<module>omod</module>\n\t</modules>\n\t\n\t<properties>\n\t\t<openmrsPlatformVersion>${project.version}</openmrsPlatformVersion>\n\t\t<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n        <javaCompilerVersion>1.8</javaCompilerVersion>\n\t</properties>\n\n\t<dependencyManagement>\n\t\t<dependencies>\n\t\t\t<!-- Scope overrides for the module development pattern: openmrs-api and\n\t\t\t     openmrs-web are provided by the platform at runtime, so modules\n\t\t\t     compile against them but do not bundle them. Version management for\n\t\t\t     all other dependencies is inherited from the parent (via the BOM). -->\n\t\t\t<dependency>\n\t\t\t\t<groupId>org.openmrs.api</groupId>\n\t\t\t\t<artifactId>openmrs-api</artifactId>\n\t\t\t\t<version>${openmrsPlatformVersion}</version>\n\t\t\t\t<type>jar</type>\n\t\t\t\t<scope>provided</scope>\n\t\t\t</dependency>\n\n\t\t\t<dependency>\n\t\t\t\t<groupId>org.openmrs.web</groupId>\n\t\t\t\t<artifactId>openmrs-web</artifactId>\n\t\t\t\t<version>${openmrsPlatformVersion}</version>\n\t\t\t\t<type>jar</type>\n\t\t\t\t<scope>provided</scope>\n\t\t\t</dependency>\n\n\t\t\t<dependency>\n\t\t\t\t<groupId>org.openmrs.api</groupId>\n\t\t\t\t<artifactId>openmrs-api</artifactId>\n\t\t\t\t<version>${openmrsPlat"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "kind": "File",
+      "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 31079,
+      "excerpt": "ractor. The logic must implement the 'org.owasp.csrfguard.token.storage.LogicalSessionExtractor' interface.\n# TODO\n# Defaults to 'org.owasp.csrfguard.session.ContainerSession', which uses the container's HttpSession in the background. The extensions module containing this logic has to be added as a Maven dependency to the project.\n# If a custom implementation is required (e.g. stateless sessions with JWTs), the integration code should invoke the 'org.owasp.csrfguard.CsrfGuard.onSessionCreated' and 'org.owasp.csrfguard.CsrfGuard.onSessionDestroyed'\n# The 'org.owasp.csrfguard.token.storage.LogicalSessionExtractor#getKey' method should return a unique identifier for a specific request (e.g. username from JWT token)\norg.owasp.csrfguard.LogicalSessionExtractor = org.owasp.csrfguard.session.SessionTokenKeyExtractor\n\n#################\n## Concurrency ##\n#################\n# Defines for how many milliseconds the application should accept the master token instead of a newly generated page token.\n#\n# This parameter is aimed to solve the race condition when the 'org.owasp.csrfguard.TokenPerPage' option is enabled without 'org.owasp.csrfguard.TokenPerPagePrecreate'\n# when multiple simultaneous AJAX ('org.owasp.csrfguard.Ajax') requests are fired by a Single Page Applications (SPA)\n# before the initialization of the desired endpoint URIs. The first request against a specific endpoint URI is validated using the master token,\n# then a new page token is generated for future calls, but in case of multiple simultaneously requests, the logic might not have time to assign\n# the newly generated page token to the resource on the client side causing false positive intrusion exceptions.\n#\n# Note: This configuration does not (yet) enable the AJAX and Token Rotation combination. See the documentation for 'org.owasp.csrfguard.Rotate'\n#\n# Defaults to 2000 milliseconds (= 2 seconds).\norg.owasp.csrfguard.PageTokenSynchronizationTolerance = 2000\n\n# The current approach of the OWASP CSRFGuard relies on JavaScript logic for injecting CSRF tokens into HTML elements or XHR requests.\n# Forcing synchronous loading of the AJAX requests has been disabled by default, since they were deprecated\n# (see https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests#synchronous_request)\n# due to their negative impact on the user experience. For this reason, protect"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6546",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6546,
+      "title": "TRUNK-6768: Remove unused BOM entries and ban SNAPSHOT dependencies in release builds",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 684,
+      "excerpt": "on):\r\n- `jaxen` — required transitively by the `liquibase` module for XML changelog XPath support; not declared by `api`/`web`/`webapp`\r\n- `netty-bom` — pins the Netty version pulled in transitively via the AWS SDK S3 client\r\n- `sonar-jacoco-listeners` — used as a listener dependency for the jacoco-maven-plugin / Sonar coverage integration in the root pom.xml, not a direct project dependency\r\n\r\n### 2. Release-build check for SNAPSHOT dependencies (`pom.xml`)\r\n\r\nAdded a `release` Maven profile using the built-in `banDynamicVersions` Enforcer rule, bound to the `validate` phase, which fails the build if any resolved dependency has a SNAPSHOT version, a version range, or a LATEST/RELEASE placeholder.\r\n\r\nTested:\r\n- `mvn validate -pl api` → passes (normal dev builds unaffected)\r\n- `mvn validate -Prelease -pl api` → fails with a precise message naming the offending SNAPSHOT dependency\r\n\r\n### 3. What's NOT included, and why\r\n\r\nThe ticket also asks for milestone (`-M`), alpha, beta, and RC qualifiers to be banned in release builds. I was unable to implement this with `bannedDependencies` (the rule the ticket suggests) or any other built-in Enforcer rule:\r\n\r\n- `banDynamicVersions` only covers SNAPSHOT, version ranges, and LATEST/RELEASE — milestone/alpha/beta/RC versions are not \"dynamic\" by Maven's definition and are explicitly out of scope for this rule.\r\n- `bannedDependencies`' wildcard support only replaces a *whole* segment (groupId, artifactId, or version) or accepts a real Maven version range. It does not support partial substring matching within the version field (e.g. `*-M*`). I verified this directly: testing both a `regex:`-prefixed pattern and a plain wildcard pattern against this version position either matched nothing, or — more concerningly — matched every dependency in the project regardless of actual version. Full test output available on request.\r\n- I found one precedent within the OpenMRS ecosystem (openmrs-module-camel's JMS-spec ban) using `bannedDependencies` successfully, but only to ban specific named libraries outright (with a bare `*` for \"any version\") — not to pattern-match version content across arbitrary dependencies. This confirms the same limitation.\r\n\r\nI'd appreciate guidance on how to handle the other pre-release qualifiers\r\n\r\n### 4. Activating the SNAPSHOT check on the real release path (.github/workflows/release.yaml)\r\n\r\nPer @jwnas"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6648",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6648,
+      "title": "maven(deps): bump org.owasp.encoder:encoder from 1.4.1 to 1.5.0",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 59,
+      "excerpt": "owasp-java-encoder) from 1.4.1 to 1.5.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/OWASP/owasp-java-encoder/releases\">org.owasp.encoder:encoder's releases</a>.</em></p>\n<blockquote>\n<h1>OWASP Java Encoder 1.5.0</h1>\n<p>Version 1.5.0 is available from Maven Central. All nine binary/source/Javadoc JARs, four POMs, and their thirteen signatures were downloaded from Central and verified against the retained signed release files. There is no <code>encoder-esapi:1.5.0</code> release.</p>\n<h2>Security and correctness</h2>\n<ul>\n<li>Fixes encoded fragments completing outer HTML or XML parser delimiters across trusted-text boundaries in JavaScript HTML/block, CDATA, and XML-comment contexts. Versions through 1.4.1 are affected. See <a href=\"https://github.com/OWASP/owasp-java-encoder/security/advisories/GHSA-g8p6-7r8f-qrpv\">GHSA-g8p6-7r8f-qrpv</a>.</li>\n<li>Fixes <code>EncodedWriter</code> close/finalization behavior, exception handling, and overflow-safe array-slice validation.</li>\n<li>Adds JSON encoding APIs and matching JSP/Jakarta tags and EL functions, plus XML 1.1 bindings.</li>\n</ul>\n<h2>Compatibility and migration</h2>\n<p>Public Java APIs remain binary and source compatible with 1.4.1 for the three supported libraries. Java 8 remains the minimum runtime; packaged consumers passed on Java 8, 11, 17, 21, and 25.</p>\n<p>The security fixes deliberately change some encoded output:</p>\n<ul>\n<li>JavaScript HTML/block modes emit additional hexadecimal escapes while preserving the string value. Review byte snapshots, cache keys, signatures, and output-size budgets.</li>\n<li>CDATA preserves parsed text but can expand to 13 output characters per input character and can change parser event boundaries.</li>\n<li>XML-comment hyphens become <code>~</code> under the documented lossy policy.</li>\n</ul>\n<p>The optional ESAPI adapter is retired. Version 1.4.1 is its final published release and is unsupported; migrate to direct Java Encoder APIs. Mixing the 1.4.1 adapter with the 1.5 core is not a supported migration.</p>\n<p>See the <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/v1.5.0/docs/compatibility-decisions.md#15-parser-boundary-output-migration\">migration notes</a>, <a href=\"https://github.com/OWASP/owasp-java-encoder/blob/v1.5.0/docs/encoder-esapi-retirement.md\">ESAPI retirement guide</a>, and <a href=\"https://g"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "human_verified": 0,
+  "human_excluded": 100,
+  "counts": {
+    "T": 136,
+    "P": 96,
+    "H": 100,
+    "U": 40,
+    "N": 40
+  },
+  "airflow_in_development_validation": 0,
+  "human_used_for_development": false,
+  "human_source_sha256": "c45d241bca0d8308772289476360f919ac10b9c3025783f93700ad64ac30b750"
+}

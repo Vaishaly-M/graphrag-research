@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+        "path": "java-sdk/README.md",
+        "offset": 302,
+        "line": 7
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:go-sdk/adr/0004-self-contained-executable-bundle.md",
+        "path": "go-sdk/adr/0004-self-contained-executable-bundle.md",
+        "offset": 4267,
+        "line": 97
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/core-concepts/dags.rst",
+        "path": "airflow-core/docs/core-concepts/dags.rst",
+        "offset": 23375,
+        "line": 533
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/12_provider_distributions.rst",
+        "path": "contributing-docs/12_provider_distributions.rst",
+        "offset": 330,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+        "path": "AGENTS.md",
+        "offset": 407,
+        "line": 13
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/definitions/dag.py",
+        "path": "task-sdk/src/airflow/sdk/definitions/dag.py",
+        "offset": 1030,
+        "line": 31
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/edge3/docs/changelog.rst",
+        "path": "providers/edge3/docs/changelog.rst",
+        "offset": 26153,
+        "line": 747
+      },
+      {
+        "id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/celery/docs/changelog.rst",
+        "path": "providers/celery/docs/changelog.rst",
+        "offset": 14743,
+        "line": 487
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:AGENTS.md",
+      "kind": "File",
+      "path": "AGENTS.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 407,
+      "excerpt": "ntifiers like `dag_id`, `dag`, `my_dag`.\n- CLI: `airflow dags list`, `airflow dags test`, etc.\n- Paths and config keys: `dag_processing/`, `dagprocessor`, `get_dag`, etc.\n- Anti-pattern quotes that show the wrong form to teach the rule itself\n  (e.g., `Use \"DAG\" — always write \"Dag\"`).\n\nDon't spell out **Directed Acyclic Graph** except for historical context.\n\n## Environment Setup\n\n- Install prek: `uv tool install prek`\n- Enable commit hooks: `prek install`\n- Install breeze shim (one-time, per machine): `scripts/tools/setup_breeze` — installs `~/.local/bin/breeze` that runs breeze via `uvx` from the current git worktree's `dev/breeze` (so each worktree, including ephemeral agent worktrees, gets its own breeze tied to its sources). See [ADR 0017](dev/breeze/doc/adr/0017-use-uvx-to-run-breeze-from-local-sources.md).\n- **Never run pytest, python, or airflow commands directly on the host** — always use `breeze`.\n- Place temporary scripts in `dev/` (mounted as `/opt/airflow/dev/` inside Breeze).\n\n## Commands\n\n`<PROJECT>` is folder where pyproject.toml of the package you want to test is located. For example, `airflow-core` or `providers/amazon`.\n`<target_branch>` is the branch the PR will be merged into — usually `main`, but could be `v3-1-test` when creating a PR for the 3.1 branch.\n\n<!-- START generated-commands, please keep comment here to allow auto update -->\n- **Run a single test:** `uv run --project <PROJECT> pytest path/to/test.py::TestClass::test_method -xvs`\n- **Run a test file:** `uv run --project <PROJECT> pytest path/to/test.py -xvs`\n- **Run all tests in package:** `uv run --project <PROJECT> pytest path/to/package -xvs`\n- **If uv tests fail with missing system dependencies, run the tests with breeze**: `breeze run pytest <tests> -xvs`\n- **Run a Python script:** `uv run --project <PROJECT> python dev/my_script.py`\n- **Run core or provider tests suite in parallel:** `breeze testing <test_group> --run-in-parallel` (test groups: `core-tests`, `providers-tests`)\n- **Run core or provider db tests suite in parallel:** `breeze testing <test_group> --run-db-tests-only --run-in-parallel` (test groups: `core-tests`, `providers-tests`)\n- **Run core or provider non-db tests suite in parallel:** `breeze testing <test_group> --skip-db-tests --use-xdist` (test groups: `core-tests`, `providers-tests`)\n- **Run single provider complete test suite:** `breeze testing pro"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/docs/core-concepts/dags.rst",
+      "kind": "File",
+      "path": "airflow-core/docs/core-concepts/dags.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23375,
+      "excerpt": "st = EmptyOperator(task_id=\"last\")\n\n        options = [\"branch_a\", \"branch_b\", \"branch_c\", \"branch_d\"]\n        for option in options:\n            t = EmptyOperator(task_id=option)\n            first >> t >> last\n\nIn general, we advise you to try and keep the *topology* (the layout) of your Dag tasks relatively stable; dynamic Dags are usually better used for dynamically loading configuration options or changing operator options.\n\n\nDag Visualization\n-----------------\n\nIf you want to see a visual representation of a Dag, you have two options:\n\n* You can load up the Airflow UI, navigate to your Dag, and select \"Graph\"\n* You can run ``airflow dags show``, which renders it out as an image file\n\nWe generally recommend you use the Graph view, as it will also show you the state of all the :ref:`Task Instances <concepts:task-instances>` within any Dag Run you select.\n\nOf course, as you develop out your Dags they are going to get increasingly complex, so we provide a few ways to modify these Dag views to make them easier to understand.\n\n\n.. _concepts:taskgroups:\n\nTaskGroups\n~~~~~~~~~~\n\nA TaskGroup can be used to organize tasks into hierarchical groups in Graph view. It is useful for creating repeating patterns and cutting down visual clutter.\n\nTasks in TaskGroups live on the same original Dag, and honor all the Dag settings and pool configurations.\n\n.. seealso::\n   API reference for :class:`~airflow.sdk.TaskGroup` and :class:`~airflow.sdk.task_group`\n\n.. image:: ../img/ui-light/task_group.gif\n\nDependency relationships can be applied across all tasks in a TaskGroup with the ``>>`` and ``<<`` operators. For example, the following code puts ``task1`` and ``task2`` in TaskGroup ``group1`` and then puts both tasks upstream of ``task3``:\n\n.. code-block:: python\n   :emphasize-lines: 4,12\n\n    from airflow.sdk import task_group\n\n\n    @task_group()\n    def group1():\n        task1 = EmptyOperator(task_id=\"task1\")\n        task2 = EmptyOperator(task_id=\"task2\")\n\n\n    task3 = EmptyOperator(task_id=\"task3\")\n\n    group1() >> task3\n\nTaskGroup also supports ``default_args`` like Dag, it will overwrite the ``default_args`` in Dag level:\n\n.. code-block:: python\n    :emphasize-lines: 15\n\n    import datetime\n\n    from airflow.sdk import DAG\n    from airflow.sdk import task_group\n    from airflow.providers.standard.operators.bash import BashOperator\n    from airflow.providers.standard.opera"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:contributing-docs/12_provider_distributions.rst",
+      "kind": "File",
+      "path": "contributing-docs/12_provider_distributions.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 330,
+      "excerpt": " use this file except in compliance\n    with the License.  You may obtain a copy of the License at\n\n ..   http://www.apache.org/licenses/LICENSE-2.0\n\n .. Unless required by applicable law or agreed to in writing,\n    software distributed under the License is distributed on an\n    \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n    KIND, either express or implied.  See the License for the\n    specific language governing permissions and limitations\n    under the License.\n\nProvider distributions\n======================\n\nAirflow is split into core and providers. They are delivered as separate distributions:\n\n* ``apache-airflow`` - meta distributions of Apache Airflow installing airflow, task_sdk, providers and airflow-core together\n* ``apache-airflow-core`` - core of Apache Airflow (there are few more s separated)\n* ``apache-airflow-task-sdk`` - task-sdk distribution that are imported by the providers\n* ``apache-airflow-providers-*`` - More than 90 providers to communicate with external services\n\n.. contents:: Table of Contents\n   :depth: 2\n   :local:\n\nWhere providers are kept in our repository\n------------------------------------------\n\nAirflow Providers are stored in a separate tree other than the Airflow Core (under ``providers`` directory).\nAirflow's repository is a monorepo, that keeps multiple distributions in a single repository. This has a number\nof advantages, because code and CI infrastructure and tests can be shared. Also contributions are happening to a\nsingle repository - so no matter if you contribute to Airflow or Providers, you are contributing to the same\nrepository and project.\n\nThe tool ``uv`` is recommended to help manage this through it's ``workspace`` feature. While developing,\ndependencies and extras for a provider can be installed using ``uv``'s ``sync`` command. Here is an example\nfor the amazon provider:\n\n.. code:: bash\n\n    uv sync --package apache-airflow-providers-amazon\n\nThis will synchronize all extras that you need for development and testing of Airflow and the Amazon provider\ndependencies including runtime dependencies and all providers it depends on and its dependencies.\n\nSee `local virtualenv <../07_local_virtualenv.rst>`_ or the uv project for more information.\n\nEach provider is a separate python project, with its own ``pyproject.toml`` file and similar structure:\n\n.. code-block:: text\n\n  PROVIDER\n         |- pyproject.t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:go-sdk/adr/0004-self-contained-executable-bundle.md",
+      "kind": "File",
+      "path": "go-sdk/adr/0004-self-contained-executable-bundle.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4267,
+      "excerpt": "ame.)\n\n## Decision\n\nReplace the bundle's ZIP container with a footer appended to the\ncompiled executable. The executable's normal byte content is unchanged\nand it remains directly runnable; the footer is data that follows the\nlast byte the OS loader cares about.\n\n### Footer layout\n\nA bundle file is laid out as:\n\n```text\n+---------------------------------+\n| <native executable: ELF/Mach-O/PE,                                |\n|  including any code-signing structures>                           |\n+---------------------------------+   <- end of \"binary\" region\n| source bytes (variable length)  |   raw root source file, UTF-8,\n|                                 |   length = source_len; MAY be 0\n+---------------------------------+\n| metadata bytes (variable length)|   airflow-metadata.yaml content,\n|                                 |   UTF-8, length = metadata_len\n+---------------------------------+\n| trailer (64 bytes, little-endian fixed layout):                   |\n|   bytes  0..3  source_len    u32                                  |\n|   bytes  4..7  metadata_len  u32                                  |\n|   bytes  8..11 footer_ver    u32  (= 1)                           |\n|   bytes 12..43 binary_sha256 32 bytes (SHA-256 of binary region)  |\n|   bytes 44..55 reserved      12 bytes, zero                       |\n|   bytes 56..63 magic         8 bytes ASCII \"AFBNDL01\"             |\n+---------------------------------+   <- EOF\n```\n\n`AFBNDL01` is `0x41 0x46 0x42 0x4E 0x44 0x4C 0x30 0x31`. The two\ntrailing ASCII digits are the footer-format version, repeated for human\ninspection (`tail -c 8 ./mybundle | xxd`); the binary `footer_ver`\nfield is the source of truth for parsing.\n\n`binary_sha256` is computed over the binary region only — bytes\n`[0, source_start)` — because the hash field is itself in the trailer\nand cannot cover the bytes it occupies. It provides integrity (the\nbinary region has not been truncated, corrupted, or naively edited\nbetween packing and exec), not authenticity (see \"Out of scope\" for\nhow authenticity layers on top).\n\nReader algorithm:\n\n1. Open the file. Seek to `EOF - 64`. Read 64 bytes.\n2. Compare bytes 56..63 against `AFBNDL01`. If different, the file is\n   not a bundle; the scanner ignores it.\n3. Parse `footer_ver`. If unknown, fail with a versioning error.\n4. Compute `metadata_start = filesize - 64 - metadata_len` and\n   `source_start  = metadat"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:java-sdk/README.md",
+      "kind": "File",
+      "path": "java-sdk/README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 302,
+      "excerpt": "\"); you may not use this file except in compliance\n with the License.  You may obtain a copy of the License at\n\n   http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing,\n software distributed under the License is distributed on an\n \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n KIND, either express or implied.  See the License for the\n specific language governing permissions and limitations\n under the License.\n -->\n\n# Airflow Java SDK\n\nA **JVM** SDK for Apache Airflow. You can use any JVM-compatible language to\nwrite workflow bundles, and have Airflow consume the result.\n\nThe SDK and execution-time logic is implemented in Kotlin.\nAn example is bundled showing how the SDK can be used in Java.\n\nSee also Airflow documentation on Java SDK under *Authoring and Scheduling* for\nmore details on using the Java SDK.\n\nThe SDK requires Java 11 or later at runtime. Optional components and\ndevelopment tools may have further requirements (see the toolchain in\n`buildSrc/src/main/kotlin/airflow-jvm-conventions.gradle.kts`).\n\n## Building the SDK\n\n```bash\n./gradlew build\n```\n\n## Building documentation\n\n```bash\n./gradlew dokkaGenerate\n```\n\nThis uses [Dokka](https://kotl.in/dokka) to build documentation of the Java SDK.\nThis generates both an HTML representation and Javadoc.\n\n\n## Running the example\n\nThe SDK projects must first built and published:\n\n```bash\n./gradlew publishToMavenLocal -PskipSigning=true\n```\n\nAfter the build is successful, you should be able to see directories in `~/.m2/repository/org/apache/airflow/`.\n\nNow `cd example` into the example project, and\n\n* Package the example to `./example/build/bundle`\n\n  ```bash\n  # We're now in the 'example' directory, so gradlew is in parent.\n  ../gradlew bundle\n  ```\n\n* Put the [DAG with stub tasks](./example/src/resources/dags) to somewhere Airflow can find.\n\n* Ensure the `java` command is available in the same environment the Airflow\n  task worker is in.\n\n* Configure Airflow to route tasks in the *java* queue to be run with Java:\n\n  ```bash\n  export AIRFLOW__SDK__COORDINATORS='{\n    \"java\": {\n      \"classpath\": \"airflow.sdk.coordinators.java.JavaCoordinator\",\n      \"kwargs\": {\"jars_root\": [\"/opt/airflow/java-sdk/example/build/bundle\"]}\n    }\n  }'\n  export AIRFLOW__SDK__QUEUE_TO_COORDINATOR='{\"java\": \"java\"}'\n  ```\n\n* Ensure the Connection and Variable needed by the ex"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/celery/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/celery/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 14743,
+      "excerpt": " is only available for Airflow 2.10+ as explained in the\n    Apache Airflow providers support policy <https://github.com/apache/airflow/blob/main/PROVIDERS.rst#minimum-supported-version-of-airflow-for-community-managed-providers>_.\n\nBug Fixes\n~~~~~~~~~\n\n* ``Fix execution API server URL handling for relative paths (#49782)``\n\nMisc\n~~~~\n\n* ``Min provider version=2.10; use running_state freely (#49924)``\n* ``Remove AIRFLOW_2_10_PLUS conditions (#49877)``\n* ``Bump min Airflow version in providers to 2.10 (#49843)``\n* ``Make default execution server URL be relative to API Base URL (#49747)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Update description of provider.yaml dependencies (#50231)``\n   * ``Revert \"Limit Celery to not include 5.5.2 (#49940)\" (#49951)``\n   * ``Limit Celery to not include 5.5.2 (#49940)``\n   * ``Avoid committing history for providers (#49907)``\n   * ``capitalize the term airflow (#49450)``\n   * ``Prepare docs for Apr 3rd wave of providers (#49338)``\n   * ``Move celery integration tests to celery provider. (#49178)``\n\n3.10.6\n......\n\nBug Fixes\n~~~~~~~~~\n\n* ``Bring back serve_logs to be in the core (#49031)``\n\nMisc\n~~~~\n\n* ``Remove fab from preinstalled providers (#48457)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Remove unnecessary entries in get_provider_info and update the schema (#48849)``\n   * ``Improve documentation building iteration (#48760)``\n\n3.10.5\n......\n\nBug Fixes\n~~~~~~~~~\n\n* ``Fix Celery Executor on Airflow 2.x again. (#48806)``\n\nMisc\n~~~~\n\n* ``Remove change_sensor_mode_to_reschedule from base executor (#48649)``\n* ``Update min version of Celery library to 5.5.0 (#43777)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Simplify tooling by switching completely to uv (#48223)``\n\n3.10.4\n......\n\nBug Fixes\n~~~~~~~~~\n\n* ``Scheduler shouldn't crash when 'executor_config' is passed for executors using task SDK (#47548)``\n\nMisc\n~~~~\n\n * ``AIP-81: Flatten core CLI commands (#48224)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Upgrade providers flit build requirem"
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:providers/edge3/docs/changelog.rst",
+      "kind": "File",
+      "path": "providers/edge3/docs/changelog.rst",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 26153,
+      "excerpt": "Daemon Mode (#50425)``\n* ``Trigger remote shutdown of edge worker (#50278)``\n* ``Extend Edge Worker CLI commands operate on remote edge workers (#49915)``\n\nBug Fixes\n~~~~~~~~~\n\n* ``Edge worker maintenance state is remembered if worker crashes (#50338)``\n* ``Fix execution API server URL handling for relative paths (#49782)``\n* ``Make default execution server URL be relative to API Base URL (#49747)``\n* ``Make Edge3 Integration Test DAG working in 2.10 (#49474)``\n* ``Ensure fab provider is installed when running EdgeExecutor (#49473)``\n\nMisc\n~~~~\n\n* ``Remove AIRFLOW_2_10_PLUS conditions (#49877)``\n* ``Update some missing config settings in edge executor (#49758)``\n\nDoc-only\n~~~~~~~~\n\n* ``Enhance Edge3 Provider docs (#49859)``\n* ``Minor doc fix in edge_executor (#49755)``\n\n.. Below changes are excluded from the changelog. Move them to\n   appropriate section above if needed. Do not delete the lines(!):\n   * ``Update description of provider.yaml dependencies (#50231)``\n   * ``Cleanup Edge3 provider changelog (#49960)``\n   * ``Avoid committing history for providers (#49907)``\n   * ``Bump min Airflow version in providers to 2.10 (#49843)``\n\n1.0.0\n.....\n\nInitial stable version of the provider.\n\n* ``Cleanup redundant hostname lookup and migrate to core hostname function.``\n* ``Fix hostname reporting - worker will consistently report defined hostname as task runner.``\n* ``Fix JWT token auth in Airflow 3 beta as JWT mechanism changed.``\n* ``Edge worker exports not ti.start and ti.finished metrics.``\n* ``Edge worker can be set to maintenance via CLI and also return to normal operation.``\n* ``Edge worker will not jump to maintenance request from offline maintenance during shut down.``\n* ``CLI allows to retrieve status of worker.``\n* ``CLI allows to wait until edge worker is completed when stopping.``\n* ``User who entered the maintenance mode is moved to the start of the comment.``\n* ``User and time information added to maintenance comment.``\n* ``Wrap the sql query in text() to make it executable.``\n* ``Add maintenance comment field, to make maintenance reason transparent.``\n* ``EdgeWorkerVersionException is raised if http 400 is responded on set_state.``\n* ``Allow removing an Edge worker that is offline.``\n* ``Implement proper CSRF protection on plugin form.``\n* ``An Edge worker can remember maintenance mode in case of shut down. It picks up maintenance state at startup."
+    },
+    {
+      "evidence_id": "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:task-sdk/src/airflow/sdk/definitions/dag.py",
+      "kind": "File",
+      "path": "task-sdk/src/airflow/sdk/definitions/dag.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1030,
+      "excerpt": "mport Callable, Collection, Iterable, MutableSet\nfrom datetime import datetime, timedelta\nfrom inspect import signature\nfrom typing import TYPE_CHECKING, Any, ClassVar, TypeGuard, Union, cast, overload\nfrom urllib.parse import urlsplit\nfrom uuid import UUID\n\nimport attrs\nimport jinja2\nfrom dateutil.relativedelta import relativedelta\n\nfrom airflow import settings\nfrom airflow.sdk import TaskInstanceState, TriggerRule, XComArg\nfrom airflow.sdk.bases.operator import BaseOperator\nfrom airflow.sdk.bases.timetable import BaseTimetable\nfrom airflow.sdk.definitions._internal.node import DAGNode, validate_key\nfrom airflow.sdk.definitions._internal.types import NOTSET, ArgNotSet, is_arg_set\nfrom airflow.sdk.definitions.asset import AssetAll, BaseAsset\nfrom airflow.sdk.definitions.context import Context\nfrom airflow.sdk.definitions.deadline import DeadlineAlert\nfrom airflow.sdk.definitions.param import DagParam, ParamsDict\nfrom airflow.sdk.definitions.timetables.assets import AssetTriggeredTimetable\nfrom airflow.sdk.definitions.timetables.simple import ContinuousTimetable, NullTimetable, OnceTimetable\nfrom airflow.sdk.exceptions import (\n    AirflowDagCycleException,\n    DuplicateTaskIdFound,\n    FailFastDagInvalidTriggerRule,\n    NodeNotFound,\n    ParamValidationError,\n    RemovedInAirflow4Warning,\n    TaskNotFound,\n)\n\nif TYPE_CHECKING:\n    from re import Pattern\n    from typing import TypeAlias, TypeVar\n\n    from pendulum.tz.timezone import FixedTimezone, Timezone\n    from typing_extensions import Self, TypeIs\n\n    from airflow.models.taskinstance import TaskInstance as SchedulerTaskInstance\n    from airflow.sdk.api.datamodels._generated import DagRunType\n    from airflow.sdk.definitions.decorators import TaskDecoratorCollection\n    from airflow.sdk.definitions.edges import EdgeInfoType\n    from airflow.sdk.definitions.mappedoperator import MappedOperator\n    from airflow.sdk.definitions.taskgroup import TaskGroup\n    from airflow.sdk.definitions.xcom_arg import PlainXComArg\n    from airflow.sdk.execution_time.supervisor import TaskRunResult\n    from airflow.timetables.base import DataInterval, Timetable as CoreTimetable\n\n    Operator: TypeAlias = BaseOperator | MappedOperator\n\n    X = TypeVar(\"X\", bound=XComArg)\n\nlog = logging.getLogger(__name__)\n\nTAG_MAX_LEN = 100\n\n__all__ = [\n    \"DAG\",\n    \"dag\",\n]\n\nFINISHED_STATES = frozenset(\n    [\n        TaskInstanceState.SUC"
+    }
+  ]
+}

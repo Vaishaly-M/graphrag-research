@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "spring-projects/spring-petclinic",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2573",
+        "path": null,
+        "offset": 2289,
+        "line": 29
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2422",
+        "path": null,
+        "offset": 155,
+        "line": 2
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+        "path": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+        "offset": 1965,
+        "line": 43
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:89d0e24488af04f0c0a0d2172186d0ce2a3c3cdd",
+        "path": null,
+        "offset": 165,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2427",
+        "path": null,
+        "offset": 379,
+        "line": 10
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+        "path": null,
+        "offset": 1872,
+        "line": 22
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+        "path": "README.md",
+        "offset": 2190,
+        "line": 45
+      },
+      {
+        "id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:339",
+        "path": null,
+        "offset": 647,
+        "line": 7
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:commit:89d0e24488af04f0c0a0d2172186d0ce2a3c3cdd",
+      "kind": "Commit",
+      "path": null,
+      "commit": "89d0e24488af04f0c0a0d2172186d0ce2a3c3cdd",
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 165,
+      "excerpt": "\n\tsrc/main/java/org/springframework/samples/petclinic/web/VetController.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/CrashControllerTests.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/OwnerControllerTests.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/PetControllerTests.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/VetControllerTests.java\n\tsrc/test/java/org/springframework/samples/petclinic/web/VisitControllerTests.java"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2190,
+      "excerpt": "ere is no `Dockerfile` in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:\n\n## Running the Container Image\n\n```bash\n./mvnw spring-boot:build-image\ndocker images | grep petclinic\ndocker run -p 8080:8080 docker.io/library/spring-petclinic:latest\n```\n\n## In case you find a bug/suggested improvement for Spring Petclinic\n\nOur issue tracker is available [here](https://github.com/spring-projects/spring-petclinic/issues).\n\n## Database configuration\n\nIn its default configuration, Petclinic uses an in-memory database (H2) which\ngets populated at startup with data. The h2 console is exposed at `http://localhost:8080/h2-console`,\nand it is possible to inspect the content of the database using the `jdbc:h2:mem:<uuid>` URL. The UUID is printed at startup to the console.\n\nA similar setup is provided for MySQL and PostgreSQL if a persistent database configuration is needed. Note that whenever the database type changes, the app needs to run with a different profile: `spring.profiles.active=mysql` for MySQL or `spring.profiles.active=postgres` for PostgreSQL. See the [Spring Boot documentation](https://docs.spring.io/spring-boot/how-to/properties-and-configuration.html#howto.properties-and-configuration.set-active-spring-profiles) for more detail on how to set the active profile.\n\nYou can start MySQL or PostgreSQL locally with whatever installer works for your OS or use docker:\n\n```bash\ndocker run -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:9.7\n```\n\nor\n\n```bash\ndocker run -e POSTGRES_USER=petclinic -e POSTGRES_PASSWORD=petclinic -e POSTGRES_DB=petclinic -p 5432:5432 postgres:18.4\n```\n\nFurther documentation is provided for [MySQL](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/mysql/petclinic_db_setup_mysql.txt)\nand [PostgreSQL](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/postgres/petclinic_db_setup_postgres.txt).\n\nInstead of vanilla `docker` you can also use the provided `docker-compose.yml` file to start the database containers. Each one has a service named after the Spring profile:\n\n```bash\ndocker compose up mysql\n```\n\nor\n\n```bash\ndocker compose up postgres\n```\n\n## Test Applications\n\nAt development time we recommend you use the test applications set up as"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:file:src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "kind": "File",
+      "path": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1965,
+      "excerpt": "w;\n\n/**\n * Test class for the {@link PetController}\n *\n * @author Colin But\n * @author Wick Dynex\n */\n@WebMvcTest(value = PetController.class,\n\t\tincludeFilters = @ComponentScan.Filter(value = PetTypeFormatter.class, type = FilterType.ASSIGNABLE_TYPE))\n@DisabledInNativeImage\n@DisabledInAotMode\nclass PetControllerTests {\n\n\tprivate static final int TEST_OWNER_ID = 1;\n\n\tprivate static final int TEST_PET_ID = 1;\n\n\t@Autowired\n\tprivate MockMvc mockMvc;\n\n\t@MockitoBean\n\tprivate OwnerRepository owners;\n\n\t@MockitoBean\n\tprivate PetTypeRepository types;\n\n\t@BeforeEach\n\tvoid setup() {\n\t\tPetType cat = new PetType();\n\t\tcat.setId(3);\n\t\tcat.setName(\"hamster\");\n\t\tgiven(this.types.findPetTypes()).willReturn(List.of(cat));\n\n\t\tOwner owner = new Owner();\n\t\tPet pet = new Pet();\n\t\tPet dog = new Pet();\n\t\towner.addPet(pet);\n\t\towner.addPet(dog);\n\t\tpet.setId(TEST_PET_ID);\n\t\tdog.setId(TEST_PET_ID + 1);\n\t\tpet.setName(\"petty\");\n\t\tdog.setName(\"doggy\");\n\t\tgiven(this.owners.findById(TEST_OWNER_ID)).willReturn(Optional.of(owner));\n\t}\n\n\t@Test\n\tvoid initCreationForm() throws Exception {\n\t\tmockMvc.perform(get(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID))\n\t\t\t.andExpect(status().isOk())\n\t\t\t.andExpect(view().name(\"pets/createOrUpdatePetForm\"))\n\t\t\t.andExpect(model().attributeExists(\"pet\"));\n\t}\n\n\t@Test\n\tvoid processCreationFormSuccess() throws Exception {\n\t\tmockMvc\n\t\t\t.perform(post(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID).param(\"name\", \"Betty\")\n\t\t\t\t.param(\"type\", \"hamster\")\n\t\t\t\t.param(\"birthDate\", \"2015-02-12\"))\n\t\t\t.andExpect(status().is3xxRedirection())\n\t\t\t.andExpect(view().name(\"redirect:/owners/{ownerId}\"));\n\t}\n\n\t@Nested\n\tclass ProcessCreationFormHasErrors {\n\n\t\t@Test\n\t\tvoid processCreationFormWithBlankName() throws Exception {\n\t\t\tmockMvc\n\t\t\t\t.perform(post(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID).param(\"name\", \"\\t \\n\")\n\t\t\t\t\t.param(\"birthDate\", \"2015-02-12\"))\n\t\t\t\t.andExpect(model().attributeHasNoErrors(\"owner\"))\n\t\t\t\t.andExpect(model().attributeHasErrors(\"pet\"))\n\t\t\t\t.andExpect(model().attributeHasFieldErrors(\"pet\", \"name\"))\n\t\t\t\t.andExpect(model().attributeHasFieldErrorCode(\"pet\", \"name\", \"required\"))\n\t\t\t\t.andExpect(status().isOk())\n\t\t\t\t.andExpect(view().name(\"pets/createOrUpdatePetForm\"));\n\t\t}\n\n\t\t@Test\n\t\tvoid processCreationFormWithDuplicateName() throws Exception {\n\t\t\tmockMvc\n\t\t\t\t.perform(post(\"/owners/{ownerId}/pets/new\", TEST_OWNER_ID).param(\"name\", \"petty\")\n\t\t\t\t\t.param(\"birthDate\", \"2015-02"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:issue:339",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 339,
+      "title": "Dockerfile and instructions for building/running with Docker",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 647,
+      "excerpt": "feel its important to showcase Spring applications in my demonstrations, but at minimum to do this I need a Dockerfile in the repository (yes I could fork it and use my own version of the repo, but I'd rather people be able to replicate what I do using the original repos).\r\n\r\nThat aside as somebody who is not a Java developer let alone spring, I had no idea where to even start building this application into a `.jar`,  let alone running it on a container platform like Kubernetes.  I had to guess my way through compatible versions of `openjdk` and `maven` in order to be able to build it into a .jar and then run it. This is not the best experience for a new user or somebody interested in seeing what this whole Spring thing is all about.\r\n\r\nAt this stage most people have a familiarity with Docker and can run Docker images fairly simply in their development environments (Even Windows Laptops!) and having a Docker option means they don't need to install a JDK, Maven, Eclipse, etc on their machine just to start kicking the tires.\r\n\r\nHopefully I've made my case successfully and we can look at merging in my Dockerfile and instructions, or at least have a fruitful code review of it so that I can help in some way to make Spring a more approachable language to run on various cloud native platforms."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2410",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2410,
+      "title": "Fix/add service documentation",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1872,
+      "excerpt": " methods  |\r\n| S1176 | `PetController.java`   | Javadoc added to class, constructor, and 8 methods  |\r\n| S1176 | `VetController.java`   | Javadoc added to class, constructor, and 4 methods  |\r\n\r\n## Verification\r\n- No logic was changed; all existing tests pass unchanged.\r\n- Each Javadoc addition was committed individually to allow per-method review."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2422",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2422,
+      "title": "fix: Replace wildcard MockMvcResultMatcher imports with explicit imports in test folder",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 155,
+      "excerpt": " explicit static imports of only the matchers each test actually uses\r\nEliminates the ~10 unused symbols each wildcard pulls into scope; declares the test's true dependency on the Spring MockMvc API\r\nBrings both files into line with the explicit-import style already used by VisitControllerTests and PetControllerTests\r\n**Sustainability rationale**\r\nIndividual: Explicit imports reduce cognitive load — a reviewer sees the test's true MockMvc surface area without scanning the body, supporting manageable workloads / stress-free work culture.\r\nSocial: Aligns all four MockMvc test files on one convention (two currently differ), reducing reviewer friction and supporting transparency/collaboration.\r\nEconomic: Cheaper to maintain — a renamed/removed Spring matcher surfaces as a single missing import, not a confusing wildcard error; reduces upgrade risk and debugging cost.\r\nTechnical: Supports longevity/adaptability — makes the dependency graph statically analysable, prevents silent symbol shadowing, removes a piece of technical debt.\r\nEnvironmental: Stops IDE/CI tools re-resolving the whole MockMvcResultMatchers class on every edit/build; small per-build saving compounding across the project's lifetime (ICT carbon-footprint effect).\r\n**Files changed**\r\nOwnerControllerTests.java — wildcard → 5 explicit imports (flash, model, redirectedUrl, status, view)\r\nVetControllerTests.java — wildcard → 5 explicit imports (content, jsonPath, model, status, view)\r\n**Testing**\r\nAll existing tests pass; identical bytecode after the change. Verified with ./mvnw clean test-compile (BUILD SUCCESS, 17 test sources compiled).\r\n\r\n**SonarQube note**\r\nSonarQube did not flag these out of the box — rule java:S2208 is deactivated in the default Sonar Way profile, and java:S1128 (unused imports) does not fire because the wildcard is technically \"used\". Identified by manual inspection against the assignment criterion; rule java:S2208 was enabled in a custom profile to generate before/after evidence screenshots for the appendix."
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2427",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2427,
+      "title": "[FIX] Reduce complexity by merging nested IF statements",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 379,
+      "excerpt": "ed branching\r\n- Resolves SonarQube maintainability issue java:S1066\r\n- Preserves existing behavior for pet lookup by name\r\n\r\n### Testing Instructions\r\n```\r\n# Compile the project\r\n`./mvnw compile`\r\n\r\n# Compile tests\r\n./mvnw test-compile\r\n\r\n# Run affected tests\r\n./mvnw test \"-Dtest=ClinicServiceTests,PetControllerTests,OwnerControllerTests\"\r\n\r\n# Run full test suite\r\n./mvnw test\r\n```"
+    },
+    {
+      "evidence_id": "rebuild-20261014:f182358d02e4a68e52bdbabf55ca7800288511e7:spring-projects/spring-petclinic:pullrequest:2573",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 2573,
+      "title": "Prevent duplicate pet creation with similar name for the same owner under concurrent requests",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2289,
+      "excerpt": " validation error on the name field.\r\n\r\nNOTE: To preserve the existing application behavior, the database constraints are implemented in a case-insensitive manner, matching the current Java validation (`equalsIgnoreCase()`).\r\n\r\n\r\n## Testing\r\n- **Unit Tests**: Added mock exception handling tests in [PetControllerTests.java](file:///Users/spring-petclinic/src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java) for both create and edit flows.\r\n- **Service Integration Tests**: Added test cases in [ClinicServiceTests.java](file:///Users/spring-petclinic/src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java) to verify that duplicate pet name insertions fail with a `DataIntegrityViolationException` and that same pet names under different owners succeed.\r\n- **Automated Concurrency Test**: Created [PetClinicConcurrencyTests.java](file:///Users/spring-petclinic/src/test/java/org/springframework/samples/petclinic/PetClinicConcurrencyTests.java) executing concurrent requests in parallel. The test verifies that only one request succeeds and the other is rejected with a validation error.\r\n\r\n## Scope\r\nThis change is tightly scoped to the `Pet` uniqueness invariant, leaving all other entities and system configurations untouched."
+    }
+  ]
+}

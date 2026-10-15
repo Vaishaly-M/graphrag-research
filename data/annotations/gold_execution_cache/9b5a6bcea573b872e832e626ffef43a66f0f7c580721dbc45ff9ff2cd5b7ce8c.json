@@ -1,0 +1,91 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (d:DLDeveloper)-[:DL_AUTHORED_COMMIT]->(c:DLCommit) WHERE d.dataset=$dataset AND d.repo=$repo AND d.id=$developer RETURN c.sha AS entity,c.sha AS fact,[d.id,c.id] AS evidence_ids ORDER BY c.sha LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "dotnet/eShop",
+    "developer": "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com"
+  },
+  "rows": [
+    {
+      "entity": "002e3479f8c4cd99d12a54006645af44545a4536",
+      "fact": "002e3479f8c4cd99d12a54006645af44545a4536",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:002e3479f8c4cd99d12a54006645af44545a4536"
+      ]
+    },
+    {
+      "entity": "00ca243164936b587f33338860c0f40fa213293d",
+      "fact": "00ca243164936b587f33338860c0f40fa213293d",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:00ca243164936b587f33338860c0f40fa213293d"
+      ]
+    },
+    {
+      "entity": "046b301d2bc6182651714c1176e393f9f967dea3",
+      "fact": "046b301d2bc6182651714c1176e393f9f967dea3",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:046b301d2bc6182651714c1176e393f9f967dea3"
+      ]
+    },
+    {
+      "entity": "05849c95f040570f34ff9b3d2b5e105ab55cb086",
+      "fact": "05849c95f040570f34ff9b3d2b5e105ab55cb086",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:05849c95f040570f34ff9b3d2b5e105ab55cb086"
+      ]
+    },
+    {
+      "entity": "0916a18018778ec4b671d8b620a6d183c9a04336",
+      "fact": "0916a18018778ec4b671d8b620a6d183c9a04336",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:0916a18018778ec4b671d8b620a6d183c9a04336"
+      ]
+    },
+    {
+      "entity": "0a355d66b45759af558dae850d9387e26c29c6b6",
+      "fact": "0a355d66b45759af558dae850d9387e26c29c6b6",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:0a355d66b45759af558dae850d9387e26c29c6b6"
+      ]
+    },
+    {
+      "entity": "0a3e5014f6dc249365c03b2cb53fd47eede53770",
+      "fact": "0a3e5014f6dc249365c03b2cb53fd47eede53770",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:0a3e5014f6dc249365c03b2cb53fd47eede53770"
+      ]
+    },
+    {
+      "entity": "0c33479e01c671e8c937d87736972b56a5587aa5",
+      "fact": "0c33479e01c671e8c937d87736972b56a5587aa5",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:0c33479e01c671e8c937d87736972b56a5587aa5"
+      ]
+    },
+    {
+      "entity": "1086d1cecddf9341006f46c1d3d03febae0d562c",
+      "fact": "1086d1cecddf9341006f46c1d3d03febae0d562c",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:1086d1cecddf9341006f46c1d3d03febae0d562c"
+      ]
+    },
+    {
+      "entity": "15be262292411a423e882f76c7c274fd7e3c7cb4",
+      "fact": "15be262292411a423e882f76c7c274fd7e3c7cb4",
+      "evidence_ids": [
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:developer:email:49699333+dependabot[bot]@users.noreply.github.com",
+        "rebuild-20261014:9b4f9434f46fdc5c1a6e9e936af2868340cdbc48:dotnet/eShop:commit:15be262292411a423e882f76c7c274fd7e3c7cb4"
+      ]
+    }
+  ]
+}

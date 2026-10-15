@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (c:DLCommit)-[:DL_MODIFIED_FILE]->(f:DLFile) WHERE c.dataset=$dataset AND c.repo=$repo AND c.sha=$sha AND trim(f.content)<>'' WITH c,f,[line IN split(f.content,'\\n') WHERE trim(line)<>''] AS lines RETURN f.path+': '+trim(last(lines)) AS entity,f.path+': '+trim(last(lines)) AS fact,[c.id,f.id] AS evidence_ids ORDER BY f.path LIMIT 5",
+  "parameters": {
+    "sha": "b87ad4cd2e482b90deda28a848bc5e781f67405e",
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core"
+  },
+  "rows": [
+    {
+      "entity": "pom.xml: </project>",
+      "fact": "pom.xml: </project>",
+      "evidence_ids": [
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:commit:b87ad4cd2e482b90deda28a848bc5e781f67405e",
+        "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:pom.xml"
+      ]
+    }
+  ]
+}

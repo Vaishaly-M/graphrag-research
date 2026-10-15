@@ -1,0 +1,30 @@
+[
+  {
+    "question_set": "T",
+    "split": "development",
+    "count": 24,
+    "path": "data\\benchmark\\template\\development.jsonl",
+    "sha256": "5b603d4c97a3b6605529e89e09e4ce1008800a3c312172555cfa42b7698275e0"
+  },
+  {
+    "question_set": "T",
+    "split": "validation",
+    "count": 16,
+    "path": "data\\benchmark\\template\\validation.jsonl",
+    "sha256": "c342d21935212f7ae2efe96070231f49a2735d634135514b613eaaff39d3a8b2"
+  },
+  {
+    "question_set": "P",
+    "split": "development",
+    "count": 0,
+    "path": "data\\benchmark\\paraphrase\\development.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "question_set": "P",
+    "split": "validation",
+    "count": 0,
+    "path": "data\\benchmark\\paraphrase\\validation.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

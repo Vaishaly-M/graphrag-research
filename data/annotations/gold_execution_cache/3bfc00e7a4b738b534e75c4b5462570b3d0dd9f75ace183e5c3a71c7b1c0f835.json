@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/impl/PatientServiceImpl.java",
+        "path": "api/src/main/java/org/openmrs/api/impl/PatientServiceImpl.java",
+        "offset": 1743,
+        "line": 52
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/resources/messages_fa.properties",
+        "path": "api/src/main/resources/messages_fa.properties",
+        "offset": 48295,
+        "line": 1174
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+        "offset": 13175,
+        "line": 196
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+        "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+        "offset": 1542,
+        "line": 46
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+        "path": null,
+        "offset": 273,
+        "line": 6
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 6186,
+        "line": 100
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6666",
+        "path": null,
+        "offset": 2460,
+        "line": 12
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/impl/EncounterServiceImpl.java",
+        "path": "api/src/main/java/org/openmrs/api/impl/EncounterServiceImpl.java",
+        "offset": 4454,
+        "line": 127
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 6186,
+      "excerpt": " https://github.com/your-user-name/openmrs-core)\n  * Click \"Pull Request\".\n  * Write your branch name in the branch field (this is filled with \"master\" by default)\n  * Click \"Update Commit Range\".\n  * Ensure the changesets you introduced are included in the \"Commits\" tab.\n  * Ensure that the \"Files Changed\" incorporate all of your changes.\n  * Fill in some details about your potential patch including a meaningful title.\n  * Click \"Send pull request\".\n  * In JIRA, open your issue and click the \"Request Code Review\" button to change the issue's status to \"Code Review\". Add a comment linking to the URL of the pull request.\n\n\n  Thanks for that -- we'll get to your pull request ASAP. We love pull requests!\n\n## Responding to Feedback\n\n  The OpenMRS team may recommend adjustments to your code. Part of interacting with a healthy open source community requires you to be open to learning new techniques and strategies; *don't get discouraged!* Remember: if the OpenMRS team suggests changes to your code, **they care enough about your work that they want to include it**, and hope that you can assist by implementing those revisions on your own.\n\n  > Though we ask you to clean your history and squash commit before submitting a pull-request, please do not change any commits you've submitted already (as other work might be build on top).\n\n## Other Resources\n\n* If you haven't already, get an [OpenMRS ID](https://id.openmrs.org)\n* Make sure you have a [GitHub account](https://github.com/signup/free)\n* Submit or select a [JIRA issue](https://issues.openmrs.org) or choose from the introductory issues on our [Getting Started as a Developer](https://wiki.openmrs.org/x/MQAJ) page.\n* Fork [openmrs-core](https://github.com/openmrs/openmrs-core/) or the repository for the module you are working on\n\n### Interact with the community\n\n* Chat live with developers on [IRC](http://irc.openmrs.org) within #openmrs on freenode\n* Join our [developers mailing list](https://wiki.openmrs.org/x/lwLn)\n* Hang out with other community members at [OpenMRS Talk](http://talk.openmrs.org)\n\n### Additional Resources\n\n* [Issue tracker (JIRA)](https://issues.openmrs.org)\n* [General GitHub documentation](http://help.github.com/)\n* [GitHub pull request documentation](http://help.github.com/send-pull-requests/)\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1542,
+      "excerpt": "import org.openmrs.api.FormService;\nimport org.openmrs.api.LocationService;\nimport org.openmrs.api.MedicationDispenseService;\nimport org.openmrs.api.ObsService;\nimport org.openmrs.api.OpenmrsService;\nimport org.openmrs.api.OrderService;\nimport org.openmrs.api.OrderSetService;\nimport org.openmrs.api.PatientService;\nimport org.openmrs.api.PersonService;\nimport org.openmrs.api.ProgramWorkflowService;\nimport org.openmrs.api.ProviderService;\nimport org.openmrs.api.SerializationService;\nimport org.openmrs.api.UserService;\nimport org.openmrs.api.VisitService;\nimport org.openmrs.api.db.ContextDAO;\nimport org.openmrs.event.outbox.tasks.OutboxTaskSchedulerInitializer;\nimport org.openmrs.hl7.HL7Service;\nimport org.openmrs.logic.LogicService;\nimport org.openmrs.messagesource.MessageSourceService;\nimport org.openmrs.module.ModuleMustStartException;\nimport org.openmrs.module.ModuleUtil;\nimport org.openmrs.notification.AlertService;\nimport org.openmrs.notification.MessageException;\nimport org.openmrs.notification.MessagePreparator;\nimport org.openmrs.notification.MessageSender;\nimport org.openmrs.notification.MessageService;\nimport org.openmrs.notification.mail.MailMessageSender;\nimport org.openmrs.notification.mail.velocity.VelocityMessagePreparator;\nimport org.openmrs.scheduler.SchedulerService;\nimport org.openmrs.util.ConfigUtil;\nimport org.openmrs.util.DatabaseUpdateException;\nimport org.openmrs.util.DatabaseUpdater;\nimport org.openmrs.util.InputRequiredException;\nimport org.openmrs.util.LocaleUtility;\nimport org.openmrs.util.OpenmrsClassLoader;\nimport org.openmrs.util.OpenmrsConstants;\nimport org.openmrs.util.OpenmrsUtil;\nimport org.openmrs.util.PrivilegeConstants;\nimport org.openmrs.validator.ValidateUtil;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.aop.Advisor;\nimport org.springframework.beans.BeansException;\nimport org.springframework.beans.factory.NoSuchBeanDefinitionException;\nimport org.springframework.beans.factory.NoUniqueBeanDefinitionException;\n\n/**\n * Represents an OpenMRS <code>Context</code>, which may be used to authenticate to the database and\n * obtain services in order to interact with the system.<br>\n * <br>\n * The Context is split into a {@link UserContext} and {@link ServiceContext}. The UserContext is\n * lightweight and there is an instance for every user logged into the system. The ServiceContext is\n * heav"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/impl/EncounterServiceImpl.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/impl/EncounterServiceImpl.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4454,
+      "excerpt": "EncounterLocation(encounter);\n\t\t\t}\n\t\t\t// Our data model duplicates the patient column to allow for\n\t\t\t// observations to\n\t\t\t// not have to look up the parent Encounter to find the patient\n\t\t\t// Therefore, encounter.patient must always equal\n\t\t\t// encounter.observations[0-n].patient\n\n\t\t\t// If we are changing encounter.encounterDatetime, then we need to\n\t\t\t// also apply that\n\t\t\t// to Obs that inherited their obsDatetime from the encounter in the\n\t\t\t// first place\n\n\t\t\tDate newDate = encounter.getEncounterDatetime();\n\t\t\tLocation newLocation = encounter.getLocation();\n\t\t\tfor (Obs obs : encounter.getAllFlattenedObs(true)) {\n\t\t\t\t// if the date was changed\n\t\t\t\tif (OpenmrsUtil.compare(originalDate, newDate) != 0\n\t\t\t\t        && OpenmrsUtil.compare(obs.getObsDatetime(), originalDate) == 0) {\n\n\t\t\t\t\t// if the obs datetime is the same as the\n\t\t\t\t\t// original encounter datetime, fix it\n\t\t\t\t\tobs.setObsDatetime(newDate);\n\n\t\t\t\t}\n\n\t\t\t\tif (!OpenmrsUtil.nullSafeEquals(newLocation, originalLocation)\n\t\t\t\t        && obs.getLocation().equals(originalLocation)) {\n\t\t\t\t\tobs.setLocation(newLocation);\n\t\t\t\t}\n\n\t\t\t\t// if the Person in the obs doesn't match the Patient in the\n\t\t\t\t// encounter, fix it\n\t\t\t\tif (!obs.getPerson().getPersonId().equals(p.getPatientId())) {\n\t\t\t\t\tobs.setPerson(p);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t// same goes for Orders\n\t\tfor (Order o : encounter.getOrders()) {\n\t\t\tif (!p.equals(o.getPatient())) {\n\t\t\t\to.setPatient(p);\n\t\t\t}\n\t\t}\n\n\t\t// do the actual saving to the database\n\t\tdao.saveEncounter(encounter);\n\n\t\t// save the new orderGroups\n\t\tfor (OrderGroup orderGroup : encounter.getOrderGroups()) {\n\t\t\tContext.getOrderService().saveOrderGroup(orderGroup);\n\t\t}\n\t\t//save the new orders which do not have order groups\n\t\tfor (Order o : encounter.getOrdersWithoutOrderGroups()) {\n\t\t\tif (o.getOrderId() == null) {\n\t\t\t\tContext.getOrderService().saveOrder(o, null);\n\t\t\t} else {\n\t\t\t\t// Since orders are only saved via the OrderService if they are new,\n\t\t\t\t// we need to explicitly re-validate any existing orders\n\t\t\t\tValidateUtil.validate(o);\n\t\t\t}\n\t\t}\n\n\t\t// save the Obs\n\t\tString changeMessage = Context.getMessageSourceService().getMessage(\"Obs.void.reason.default\");\n\t\tObsService os = Context.getObsService();\n\t\tList<Obs> obsToRemove = new ArrayList<>();\n\t\tList<Obs> obsToAdd = new ArrayList<>();\n\t\tfor (Obs o : encounter.getObsAtTopLevel(true)) {\n\t\t\tif (o.getId() == null) {\n\t\t\t\tos.saveObs(o, null);\n\t\t\t} else {\n\t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/impl/PatientServiceImpl.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/impl/PatientServiceImpl.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1743,
+      "excerpt": "dentifiersException;\nimport org.openmrs.api.MedicationDispenseService;\nimport org.openmrs.api.MissingRequiredIdentifierException;\nimport org.openmrs.api.ObsService;\nimport org.openmrs.api.PatientIdentifierException;\nimport org.openmrs.api.PatientIdentifierTypeLockedException;\nimport org.openmrs.api.PatientService;\nimport org.openmrs.api.PersonService;\nimport org.openmrs.api.ProgramWorkflowService;\nimport org.openmrs.api.RefByUuid;\nimport org.openmrs.api.UserService;\nimport org.openmrs.api.VisitService;\nimport org.openmrs.api.context.Context;\nimport org.openmrs.api.db.PatientDAO;\nimport org.openmrs.api.db.hibernate.HibernateUtil;\nimport org.openmrs.parameter.EncounterSearchCriteria;\nimport org.openmrs.parameter.EncounterSearchCriteriaBuilder;\nimport org.openmrs.parameter.MedicationDispenseCriteria;\nimport org.openmrs.parameter.MedicationDispenseCriteriaBuilder;\nimport org.openmrs.patient.IdentifierValidator;\nimport org.openmrs.patient.impl.LuhnIdentifierValidator;\nimport org.openmrs.person.PersonMergeLog;\nimport org.openmrs.person.PersonMergeLogData;\nimport org.openmrs.serialization.SerializationException;\nimport org.openmrs.util.OpenmrsConstants;\nimport org.openmrs.util.OpenmrsUtil;\nimport org.openmrs.util.PrivilegeConstants;\nimport org.openmrs.validator.PatientIdentifierValidator;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.beans.factory.annotation.Qualifier;\nimport org.springframework.stereotype.Service;\nimport org.springframework.transaction.annotation.Transactional;\n\n/**\n * Default implementation of the patient service. This class should not be used on its own. The\n * current OpenMRS implementation should be fetched from the Context via\n * <code>Context.getPatientService()</code>\n *\n * @see org.openmrs.api.context.Context\n * @see org.openmrs.api.PatientService\n * @see org.openmrs.api.PersonService\n */\n@Service(\"patientService\")\n@Transactional\npublic class PatientServiceImpl extends BaseOpenmrsService implements PatientService, RefByUuid {\n\n\tprivate static final Logger log = LoggerFactory.getLogger(PatientServiceImpl.class);\n\n\t@Autowired\n\tprivate PatientDAO dao;\n\n\t/**\n\t * PatientIdentifierValidators registered through spring's applicationContext-service.xml\n\t */\n\t@Autowired\n\t@Qualifier(\"identifierValidators\")\n\tprivate Map<Class<? extends IdentifierValida"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/resources/messages_fa.properties",
+      "kind": "File",
+      "path": "api/src/main/resources/messages_fa.properties",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 48295,
+      "excerpt": "اقل دو خصوصیت را انتخاب کنید\nPatient.merge.title=ادغام بیماران\nPatient.merge.select=یک جفت بیمار را برای ادغام انتخاب کنید\nPatient.merge.warning=ادغام بیماران کاری غیر قابل بازگشت است، مراقب باشید\nPatient.merge.preferred=ترجیح داده شده\nPatient.merge.includeVoided=غیر فعال ها را نیز شامل شود\nPatient.merged=بیماران با موفقیت ادغام شدند\nPatient.id=شناسه بیمار\nPatient.voidedMessage=این بیمار حذف شده است.\nPatient.delete.warningMessage=کاری که شما می کنید، به طور معمول نادرست است، آیا مطمئن هستید؟\nPatient.delete.finalWarning=آیا مطمئن هستید که این بیمار را کلا حذف کنید؟؟؟\nPatient.warning.minimalSearchResults=حداقل بیماران نشان داده شده اند <b>{0}</b>\nPatient.warning.inValidIdentifier=اخطار: شناسه درست وارد نشده است، دوباره تلاش کنید\nPatient.message.validIdentifier=شناسه درست وارد شده است، اما همچنان بیماری یافت نشد\n\nPatientIdentifier.title.endUser=شناسه\nPatientIdentifier.identifier=شناسه\nPatientIdentifier.location=مکان\nPatientIdentifier.location.identifier=شناسه مکان\nPatientIdentifier.location.null=شناسه مکان نمی تواند خالی باشد، زیرا {0}\nPatientIdentifier.identifierType=نوع شناسه\nPatientIdentifier.identifierType.null=شناسه نوع نمی تواند خالی باشد {0}\nPatientIdentifier.add=افزودن شناسه\nPatientIdentifier.identifier.invalid=شناسه نامعتبر{0,string} \nPatientIdentifier.error.null=شناسه بیمار نمی تواند خالی باشد\nPatientIdentifier.error.nullOrBlank=شناسه نمی تواند خالی باشد\nPatientIdentifier.validCheckDigit=رقم چک معتبر\nPatientIdentifier.error.formatInvalid=فرمت شناسه نامعتبر است\nPatientIdentifier.error.checkDigit=رقم چک برای شناسه بیمار نامعتبر است\nPatientIdentifier.error.checkDigitWithParameter=رقم چک نامعتبر برای شناسه {0}\nPatientIdentifier.error.notUnique=شناسه بیمار مورد استفاده بیمار دیگری است\nPatientIdentifier.error.notUniqueWithParameter=شناسه{0} توسط بیمار دیگری در حال استفاده است\nPatientIdentifier.error.duplicate=بیمار در حال حاضر این شناسه را دارد\nPatientIdentifier.error.general=خطای به خصوصی در شناسه بیمار نیست\nPatientIdentifier.error.insufficientIdentifiers=برای هر بیمار حداقل یک شناسه مورد نیاز است\nPatientIdentifier.error.invalidFormat=شناسه {0} ساختار درست{1} را ندارد\nPatientIdentifier.error.unallowedIdentifier=شناسه {0} برای اعتبار سنجی {1} مناسب نیست\nPatientIdentifier.type=نوع شناسه بیمار\n\n\nPatientIdentifierType.manage=مدیریت انواع شناسه ها\nPatientIdentifierType.manage.title=مدیریت نوع شناسه بیمار\nPatientIdentifierType.title=فرم نوع شناسه بیمار\nPatientId"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "kind": "File",
+      "path": "webapp/src/main/webapp/WEB-INF/csrfguard.properties",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 13175,
+      "excerpt": "ty name is org.owasp.csrfguard.unprotected.[PageName],\n# where PageName is some arbitrary identifier that can be used to reference a resource. The syntax of\n# defining the uri of unprotected pages is the same as the syntax used by the JavaEE container for uri mapping.\n# Specifically, CSRFGuard will identify the first match (if any) between the requested uri and an unprotected\n# page in order of declaration. Match criteria is as follows:\n#\n# Case 1: exact match between request uri and unprotected page\n# Case 2: longest path prefix match, beginning / and ending /*\n# Case 3: extension match, beginning *.\n# Case 4: if the value starts with ^ and ends with $, it will be evaluated as a regex.\n#   Note that before the regex is compiled, any common variables will be substituted (e.g. %servletContext%)\n# Default: requested resource must be validated by CSRFGuard\n#\n# The following code snippet illustrates the four use cases over four examples. The first two examples\n# (Tag and JavaScriptServlet) look for direct URI matches. The third example (Html) looks for all resources\n# ending in a .html extension. The next example (Public) looks for all resources prefixed with the URI path /MySite/Public/*.\n# The last example looks for resources that end in Public.do\n#\n# org.owasp.csrfguard.unprotected.Tag = %servletContext%/tag.jsp\n# org.owasp.csrfguard.unprotected.JavaScriptServlet = %servletContext%/JavaScriptServlet\n# org.owasp.csrfguard.unprotected.Html = %servletContext%/login.htm\n# org.owasp.csrfguard.unprotected.Public = %servletContext%/Public/*\norg.owasp.csrfguard.unprotected.csrfguard = %servletContext%/csrfguard\norg.owasp.csrfguard.unprotected.Initialsetup = %servletContext%/initialsetup\n# /ws/ is the prefix used by the REST API and FHIR2\norg.owasp.csrfguard.unprotected.WS = %servletContext%/ws/*\n\n#\n# Regex example starts with ^ and ends with $, and the %servletContext% is evaluated before the regex:\n# org.owasp.csrfguard.unprotected.PublicServlet = ^%servletContext%/.*Public\\.do$\n\n# org.owasp.csrfguard.unprotected.Default = %servletContext%/\n# org.owasp.csrfguard.unprotected.Upload = %servletContext%/upload.html\n# org.owasp.csrfguard.unprotected.JavaScriptServlet = %servletContext%/JavaScriptServlet\n# org.owasp.csrfguard.unprotected.Ajax = %servletContext%/ajax.html\n# org.owasp.csrfguard.unprotected.Error = %servletContext%/error.html\n# org.owasp.csrfguard.unprotecte"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6533",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6533,
+      "title": "TRUNK-6795: Populate obs reference ranges in a save handler so they survive validation.disable",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 273,
+      "excerpt": "te range, it was the only thing in core that worked out an observation&#39;s reference range and interpretation and wrote them onto the `Obs`. Validators are only ever reached through `ValidateUtil.validate`, which returns immediately when the `validation.disable` global property is switched on. An implementation running with that property therefore saved every observation with no reference range and no interpretation at all — no error, no warning, just missing data that cannot be reconstructed afterwards, because the range criteria are evaluated against the patient&#39;s state at the time of the observation. The validator also overwrote any reference range a caller had already set on the observation.\n\n**After:** deriving the reference range and the interpretation is a save-time concern, handled by a new `ObsSaveHandler`. Save handlers are dispatched by `RequiredDataAdvice` before, and independently of, validation, so an observation now gets its reference range whether validation is on or off. A reference range supplied by the caller is left alone rather than being replaced with a freshly derived one. `ObsValidator` keeps `validateAbsoluteRanges` and every `error.value.outOfRange.*` rejection; its remaining job is validation, and nothing else.\n\n**How:** `setObsReferenceRange(Obs, ConceptReferenceRange)`, `setObsReferenceRange(Obs)` and `setObsInterpretation(Obs)` moved out of `ObsValidator` into `ObsSaveHandler`, which is registered as `@Handler(supports = Obs.class, order = 50)` and implements `SaveHandler`. The handler reproduces the guards that used to gate the population inside the validator: it skips voided observations, obs groups, non-numeric datatypes, numeric observations with no value, and observations with a null concept. Group members are covered because `RequiredDataAdvice.recursivelyHandle` already walks the `Obs.groupMembers` collection — the field carries neither `@Independent` nor `@DisableHandlers` — so the handler does not recurse itself. `ObsValidator` still looks the `ConceptReferenceRange` up for itself; reusing the one the handler derived is not safe, because `Obs.getReferenceRange()` is an `ObsReferenceRange` rather than a `ConceptReferenceRange`, because validating against a caller-supplied range would let a caller widen their own bounds, and because the validator must keep working when it is called directly rather than through a sav"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6666",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6666,
+      "title": "TRUNK-6708: Map uuid as a Hibernate natural id and serve by-uuid lookups from cache",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2460,
+      "excerpt": "xisting concept. They now keep the uuid of the existing concept.\n\nBackport: 2.9.x is on Hibernate 5.6, which has no `KeyType.NATURAL` and a different metamodel API, so the backport needs its own change (`session.bySimpleNaturalId(entityClass).load(uuid)`). I'm happy to open that PR once this one is merged.\n\nTests:\n- `HibernateUtilTest` (new):\n  - cached lookups run no SQL statement, for an annotated entity (Location) and an hbm.xml one (Concept)\n  - a cached entity that changes is returned with its new state\n  - null after a delete, for an unknown uuid, for a null uuid, and for the uuid of another subclass\n  - a uuid assigned before the first save is found, for an annotated and an hbm.xml entity\n  - an enabled filter hides the entity, whether it comes from the database or the cache. No entity in core declares a filter, so the test maps a read-only `FilteredLocation` onto the `location` table with a `@FilterDef`, the way `LoginCredential` shares the `users` table.\n- `ContextTest`: `evictAllEntities` clears the natural id cache.\n\n## Issue I worked on\n\nsee https://issues.openmrs.org/browse/TRUNK-6708\n\n## Checklist: I completed these to help reviewers :)\n\n- [ ] My IDE is configured to follow the [**code style**](https://wiki.openmrs.org/display/docs/Java+Conventions) of this project.\n\n  No? Unsure? -> [configure your IDE](https://wiki.openmrs.org/display/docs/How-To+Setup+And+Use+Your+IDE), format the code and add the changes with `git add . && git commit --amend`\n\n- [x] I have **added tests** to cover my changes. (If you refactored\n  existing code that was well tested you do not have to add tests)\n\n  No? -> write tests and add them to this commit `git add . && git commit --amend`\n\n- [x] I ran `./mvnw clean package` right before creating this pull request and\n  added all formatting changes to my commit.\n\n  No? -> execute above command\n\n- [x] All new and existing **tests passed**.\n\n  No? -> figure out why and add the fix to your commit. It is your responsibility to make sure your code works.\n\n- [x] My pull request is **based on the latest changes** of the master branch.\n\n  No? Unsure? -> execute command `git pull --rebase upstream master`\n"
+    }
+  ]
+}

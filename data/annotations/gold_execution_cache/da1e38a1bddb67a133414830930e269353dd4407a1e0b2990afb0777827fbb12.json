@@ -1,0 +1,101 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (a:DLFile)<-[:DL_MODIFIED_FILE]-(c:DLCommit)-[:DL_MODIFIED_FILE]->(b:DLFile) WHERE a.dataset=$dataset AND a.repo=$repo AND a.path=$path AND a<>b WITH b,collect(DISTINCT a.id)+collect(DISTINCT c.id) AS evidence RETURN b.path AS entity,b.path AS fact,evidence+[b.id] AS evidence_ids ORDER BY entity LIMIT 10",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "apache/airflow",
+    "path": "airflow-core/newsfragments/67184.feature.rst"
+  },
+  "rows": [
+    {
+      "entity": "airflow-core/src/airflow/assets/manager.py",
+      "fact": "airflow-core/src/airflow/assets/manager.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/assets/manager.py"
+      ]
+    },
+    {
+      "entity": "airflow-core/src/airflow/partition_mappers/allowed_key.py",
+      "fact": "airflow-core/src/airflow/partition_mappers/allowed_key.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/partition_mappers/allowed_key.py"
+      ]
+    },
+    {
+      "entity": "airflow-core/src/airflow/partition_mappers/base.py",
+      "fact": "airflow-core/src/airflow/partition_mappers/base.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/partition_mappers/base.py"
+      ]
+    },
+    {
+      "entity": "airflow-core/src/airflow/partition_mappers/chain.py",
+      "fact": "airflow-core/src/airflow/partition_mappers/chain.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/partition_mappers/chain.py"
+      ]
+    },
+    {
+      "entity": "airflow-core/src/airflow/partition_mappers/product.py",
+      "fact": "airflow-core/src/airflow/partition_mappers/product.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/partition_mappers/product.py"
+      ]
+    },
+    {
+      "entity": "airflow-core/src/airflow/partition_mappers/temporal.py",
+      "fact": "airflow-core/src/airflow/partition_mappers/temporal.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/partition_mappers/temporal.py"
+      ]
+    },
+    {
+      "entity": "airflow-core/src/airflow/serialization/encoders.py",
+      "fact": "airflow-core/src/airflow/serialization/encoders.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/src/airflow/serialization/encoders.py"
+      ]
+    },
+    {
+      "entity": "airflow-core/tests/unit/assets/test_manager.py",
+      "fact": "airflow-core/tests/unit/assets/test_manager.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/tests/unit/assets/test_manager.py"
+      ]
+    },
+    {
+      "entity": "airflow-core/tests/unit/partition_mappers/test_allowed_key.py",
+      "fact": "airflow-core/tests/unit/partition_mappers/test_allowed_key.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/tests/unit/partition_mappers/test_allowed_key.py"
+      ]
+    },
+    {
+      "entity": "airflow-core/tests/unit/partition_mappers/test_base.py",
+      "fact": "airflow-core/tests/unit/partition_mappers/test_base.py",
+      "evidence_ids": [
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/newsfragments/67184.feature.rst",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:commit:b7247b132190afd4d21a3221414ed49a6030d175",
+        "rebuild-20261014:df2272c562a7cbf407e405df9c6c82b356a533b9:apache/airflow:file:airflow-core/tests/unit/partition_mappers/test_base.py"
+      ]
+    }
+  ]
+}

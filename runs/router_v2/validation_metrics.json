@@ -1,0 +1,48 @@
+{
+  "count": 32,
+  "accuracy": 0.71875,
+  "confusion_matrix": {
+    "graph": {
+      "graph": 16,
+      "vector": 0,
+      "hybrid": 0
+    },
+    "vector": {
+      "graph": 4,
+      "vector": 1,
+      "hybrid": 3
+    },
+    "hybrid": {
+      "graph": 2,
+      "vector": 0,
+      "hybrid": 6
+    }
+  },
+  "per_category": {
+    "issue_pr": {
+      "correct": 4,
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "developer_activity": {
+      "correct": 8,
+      "count": 8,
+      "accuracy": 1.0
+    },
+    "multi_hop": {
+      "correct": 10,
+      "count": 12,
+      "accuracy": 0.8333333333333334
+    },
+    "documentation": {
+      "correct": 1,
+      "count": 8,
+      "accuracy": 0.125
+    }
+  },
+  "class_support": {
+    "graph": 16,
+    "vector": 8,
+    "hybrid": 8
+  }
+}

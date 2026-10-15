@@ -1,0 +1,20 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "MATCH (r:DLRepository)-[:DL_CONTAINS_FILE]->(f:DLFile) WHERE r.dataset=$dataset AND r.repo=$repo AND f.path=$path RETURN trim(split(f.content,'\\n')[$line]) AS entity,'Documentation/comment line '+toString($line+1)+' in '+f.path AS fact,[r.id,f.id] AS evidence_ids",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "synthetic-org/platform",
+    "path": "src/module_5/component_58.py",
+    "line": 0
+  },
+  "rows": [
+    {
+      "entity": "\"\"\"Controlled component 58 for reproducible repository question answering.\"\"\"",
+      "fact": "Documentation/comment line 1 in src/module_5/component_58.py",
+      "evidence_ids": [
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:repository:synthetic-org/platform",
+        "rebuild-20261014:7fcc2d61700076789de72af76d78025b0adb10ba:synthetic-org/platform:file:src/module_5/component_58.py"
+      ]
+    }
+  ]
+}

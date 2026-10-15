@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+        "path": "CONTRIBUTING.md",
+        "offset": 11714,
+        "line": 253
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 95307,
+        "line": 50
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+        "path": "examples/llms/RAG/_cache.json",
+        "offset": 62111,
+        "line": 330
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/autologging.mdx",
+        "path": "docs/docs/genai/flavors/langchain/autologging.mdx",
+        "offset": 526,
+        "line": 10
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25646",
+        "path": null,
+        "offset": 4592,
+        "line": 56
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/legacy-llm-evaluation.mdx",
+        "path": "docs/docs/genai/eval-monitor/legacy-llm-evaluation.mdx",
+        "offset": 3627,
+        "line": 76
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracing/fluent.py",
+        "path": "mlflow/tracing/fluent.py",
+        "offset": 4599,
+        "line": 133
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+        "path": "mlflow/store/tracking/abstract_store.py",
+        "offset": 19651,
+        "line": 518
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:CONTRIBUTING.md",
+      "kind": "File",
+      "path": "CONTRIBUTING.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 11714,
+      "excerpt": " and reduce\nerrors in creating the environment.\n\n#### GitHub Codespaces\n\n<img src=\"./assets/create-codespace.png\" width=\"60%\"/>\n\n1. Navigate to https://github.com/mlflow/mlflow.git.\n2. Above the file list, click `Code`, then select `Create codespace` and wait for your codespace to be created.\n\nSee [Quickstart for GitHub Codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart) for more information.\n\n#### Automated Python development environment configuration\n\nThe automated development environment setup script\n([dev-env-setup.sh](https://github.com/mlflow/mlflow/tree/master/dev/dev-env-setup.sh))\ncan be used to setup a development environment that is configured with\nall of the dependencies required and the environment configuration\nneeded to develop and locally test the Python code portions of MLflow.\nThis CLI tool's readme can be accessed via the root of the mlflow\nrepository as follows:\n\n```bash\ndev/dev-env-setup.sh -h\n```\n\nAn example usage of this script that will build a development\nenvironment using `virtualenv` and the minimum supported Python version\n(to ensure compatibility) is:\n\n```bash\ndev/dev-env-setup.sh -d .venvs/mlflow-dev -q\n```\n\nThe `-q` parameter is to \"quiet\" the pip install processes preventing\nstdout printing during installation.\n\nIt is advised to follow all of the prompts to ensure that the\nconfiguration of the environment, as well as git, are completed so that\nyour PR process is as effortless as possible.\n\n**Note**\n\nFrequently, a specific version of a library is required in order to\nvalidate a feature's compatibility with older versions. Modifying your\nprimary development environment to test one-off compatibility can be\nvery error-prone and result in an environment that is significantly\ndifferent from that of the CI test environment. To support this use\ncase, the automated script can be used to create an environment that can\nbe easily modified to support testing a particular version of a model\nflavor in an isolated environment. Simply run the `dev-env-setup.sh`\nscript, activate the new environment, and install the required version\nfor testing.\n\n</div>\n\nExample of installing an older version of `scikit-learn` to perform\nisolated testing:\n\n```bash\ndev/dev-env-setup.sh -d ~/.venvs/sklearn-test -q\nsource ~/.venvs/sklearn-test/bin/activate\npip freeze | grep \"scikit-learn\"\n>> scikit-learn==1.0.2\npip install scikit-learn==1."
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/eval-monitor/legacy-llm-evaluation.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/eval-monitor/legacy-llm-evaluation.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 3627,
+      "excerpt": " evaluation\",\n      description: \"Execute the evaluation and make sure the results are as expected.\"\n    }\n  ]}\n/>\n\n:::tip[Before you start the migration]\n\nBefore starting the migration, we highly recommend you to visit the <ins>[Evaluation Guide](/genai/eval-monitor)</ins> and go through the <ins>[Quickstart](/genai/eval-monitor/quickstart)</ins> to get a sense of the new evaluation suite. Basic understanding of the concepts will help you to migrate your existing workload smoothly.\n\n:::\n\n### 1. Wrap Your Model in a Function\n\nThe old evaluation API accepts MLflow model URI as an evaluation target. The new evaluation API accepts a callable function as `predict_fn` argument instead, to provide more flexibility and control. This also eliminates the need of logging the model in MLflow before evaluation.\n\n<table style={{ tableLayout: 'fixed', width: '100%' }}>\n  <tr>\n    <th>Old Format</th>\n    <th>New Format</th>\n  </tr>\n  <tr>\n    <td style={{ maxWidth: '50%', verticalAlign: 'top' }}>\n      <pre style={{ whiteSpace: 'pre', overflowX: 'auto', margin: 0 }}>\n        <code className=\"language-python\">{`# Log the model first before evaluation\nwith mlflow.start_run() as run:\n      logged_model_info = mlflow.openai.log_model(\n          model=\"gpt-5-mini\",\n          task=openai.chat.completions,\n          artifact_path=\"model\",\n          messages=[\n              {\"role\": \"system\", \"content\": \"Answer the following question in two sentences\"},\n              {\"role\": \"user\", \"content\": \"{question}\"},\n          ],\n      )\n\n# Pass the model URI to the evaluation API.\nmlflow.evaluate(model=logged_model_info.model_uri, ...)\n`}</code>\n      </pre>\n    </td>\n    <td style={{ maxWidth: '50%', verticalAlign: 'top' }}>\n      <pre style={{ whiteSpace: 'pre', overflowX: 'auto', margin: 0 }}>\n        <code className=\"language-python\">{`# Define a function that runs predictions.\ndef predict_fn(question: str) -> str:\n    response = openai.OpenAI().chat.completions.create(\n        model=\"gpt-5-mini\",\n        messages=[\n            {\"role\": \"system\", \"content\": \"Answer the following question in two sentences\"},\n            {\"role\": \"user\", \"content\": question},\n        ],\n    )\n    return response.choices[0].message.content\n\nmlflow.genai.evaluate(predict_fn=predict_fn, ...)\n`}</code>\n\n</pre>\n</td>\n\n  </tr>\n</table>\n\nIf you want to evaluate a pre-logged model with the new evaluation API, "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/genai/flavors/langchain/autologging.mdx",
+      "kind": "File",
+      "path": "docs/docs/genai/flavors/langchain/autologging.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 526,
+      "excerpt": "n Autologging is verified to be compatible with LangChain versions between 0.1.0 and 0.2.3. Outside of this range, the feature may not work as expected. To install the compatible version of LangChain, please run the following command:\n:::\n\n```\npip install 'mlflow[genai,langchain]' --upgrade\n```\n\n## Quickstart\n\nTo enable autologging for LangChain models, call <APILink fn=\"mlflow.langchain.autolog\" /> at the beginning of your script or notebook. This will automatically log the traces by default as well as other artifacts such as models, input examples, and model signatures if you explicitly enable them. For more information about the configuration, please refer to the [Configure Autologging](#configure-autologging) section.\n\n```python\nimport mlflow\n\nmlflow.langchain.autolog()\n\n# Enable other optional logging\n# mlflow.langchain.autolog(log_models=True, log_input_examples=True)\n\n# Your LangChain model code here\n...\n```\n\nOnce you have invoked the chain, you can view the logged traces and artifacts in the MLflow UI.\n\n<ImageBox src=\"/images/llms/tracing/langgraph-agent-trace.png\" alt=\"LangChain Tracing with MLflow\" />\n\n## Configure Autologging\n\nMLflow LangChain autologging can log various information about the model and its inference. **By default, only trace logging is enabled**, but you can enable autologging of other information by setting the corresponding parameters when calling <APILink fn=\"mlflow.langchain.autolog\" />. For other configurations, please refer to the API documentation.\n\n<Table>\n    <thead>\n        <tr>\n            <th>Target</th>\n            <th>Default</th>\n            <th>Parameter</th>\n            <th>Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr>\n            <td>Traces</td>\n            <td>`true`</td>\n            <td>`log_traces`</td>\n            <td>Whether to generate and log traces for the model. See [MLflow Tracing](/genai/tracing/) for more details about tracing feature.</td>\n        </tr>\n        <tr>\n            <td>Model Artifacts</td>\n            <td>`false`</td>\n            <td>`log_models`</td>\n            <td>If set to `True`, the LangChain model will be logged when it is invoked. Supported models are `Chain`, `AgentExecutor`, `BaseRetriever`, `SimpleChatModel`, `ChatPromptTemplate`, and subset of `Runnable` types. Please refer to the [MLflow repository](https://github.com/mlflow/mlflow/blob/d2955cc90b6c5d7"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/_cache.json",
+      "kind": "File",
+      "path": "examples/llms/RAG/_cache.json",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 62111,
+      "excerpt": " HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\\\\n    \\\\n    Please call the submit_function function to submit the generated question and answer.\\\\n    \\\"}], \\\"model\\\": \\\"gpt-3.5-turbo\\\", \\\"functions\\\": [{\\\"name\\\": \\\"submit_function\\\", \\\"description\\\": \\\"Call this function to submit the generated question and answer.\\\", \\\"parameters\\\": {\\\"type\\\": \\\"object\\\", \\\"properties\\\": {\\\"question\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The question asking for the key information in the given paragraph.\\\"}, \\\"answer\\\": {\\\"type\\\": \\\"string\\\", \\\"description\\\": \\\"The answer to the question using the information in the given paragraph.\\\"}}, \\\"required\\\": [\\\"question\\\", \\\"answer\\\"]}}], \\\"function_call\\\": \\\"auto\\\", \\\"temperature\\\": 0.0, \\\"seed\\\": 2023}\": {\n    \"id\": \"chatcmpl-8NQ05ACacakGcfO01w48OAU3VRsY9\",\n    \"object\": \"chat.completion\",\n    \"created\": 1700592181,\n    \"model\": \"gpt-3.5-turbo-0613\",\n    \"choices\": [\n      {\n        \"index\": 0,\n        \"message\": {\n          \"role\": \"assistant\",\n          \"content\": null,\n          \"function_call\": {\n            \"name\": \"submit_function\",\n            \"arguments\": \"{\\n  \\\"question\\\": \\\"How can you create an experiment in MLflow?\\\",\\n  \\\"answer\\\": \\\"You can create an experiment in MLflow using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters.\\\"\\n}\"\n          }\n        },\n        \"finish_reason\": \"function_call\"\n      }\n    ],\n    \"usage\": { \"prompt_tokens\": 528, \"completion_tokens\": 56, \"total_tokens\": 584 }\n  }\n}\n"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 95307,
+      "excerpt": " HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nHow can you create an experiment using MLflow?,\"You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters.\",\"runs into experiments, which group together runs for a specific task. You can create an experiment using the mlflow experiments CLI, with mlflow.create_experiment(), or using the corresponding REST parameters. The MLflow API and UI let you create and search for experiments. Once your runs have been recorded, you can query them using the Tracking UI or the MLflow API. Where Runs Are Recorded MLflow runs can be recorded to local files, to a SQLAlchemy-compatible database, or remotely to a tracking server. By default, the MLflow Python API logs runs locally to files in an mlruns directory wherever you ran your program. You can then run mlflow ui to see the logged runs. To log runs remotely, set the MLFLOW_TRACKING_URI environment variable to a tracking server's URI or call mlflow.set_tracking_uri(). There are different kinds of remote tracking URIs: Local file path (specified as file:/my/local/dir), where data is just directly stored locally. Database encoded as <dialect>+<driver>://<username>:<password>@<host>:<port>/<database>. MLflow supports the dialects mysql, mssql, sqlite, and postgresql. For more details, see SQLAlchemy database uri. HTTP server (specified as https://my-server:5000), which is a server hosting an MLflow tracking server. Databricks workspace (specified as databricks or as databricks://<profileName>, a Databricks CLI profile. Refer to Access the MLflow tracking server from outside Databricks [AWS] [Azure], or the quickstart to easily get started with hosted\",2,tracking.html\nWhat are the two components used by MLflow for storage?,\"MLflow uses two components for storage: backend store and artifact store. The backend store persists MLflow entities such as runs, parameters, metrics, tags, notes, and metadata. On the other hand, the artifact store persists artifacts such as files, models, images, in-mem"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/store/tracking/abstract_store.py",
+      "kind": "File",
+      "path": "mlflow/store/tracking/abstract_store.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 19651,
+      "excerpt": "race_timestamp_ms: int,\n        max_last_trace_timestamp_ms: int,\n        max_results: int | None = None,\n        filter_string: str | None = None,\n    ) -> list[\"CompletedSession\"]:\n        \"\"\"\n        Find completed sessions based on their last trace timestamp.\n\n        A completed session is one whose last trace timestamp falls within the specified\n        time window [min_last_trace_timestamp_ms, max_last_trace_timestamp_ms] and has\n        no traces after max_last_trace_timestamp_ms (i.e., the session is not ongoing).\n\n        Sessions are ordered by (last_trace_timestamp_ms ASC, session_id ASC) to ensure\n        deterministic and stable ordering, especially when timestamp ties occur. This is\n        useful when repeatedly calling this method with a ``max_results`` limit.\n\n        Args:\n            experiment_id: The experiment to search.\n            min_last_trace_timestamp_ms: Lower bound for session's last trace timestamp (inclusive).\n                Sessions with last trace before this time are excluded.\n            max_last_trace_timestamp_ms: Upper bound for session's last trace timestamp (inclusive).\n                Sessions with any traces after this time are excluded.\n            max_results: Maximum number of sessions to return. If None, returns all\n                matching sessions.\n            filter_string: Optional filter string to apply to the first trace in each session.\n                Uses the same syntax as search_traces. If provided, only sessions whose\n                first trace matches this filter will be included.\n\n        Returns:\n            List of CompletedSession objects sorted by (last_trace_timestamp_ms ASC,\n            session_id ASC).\n        \"\"\"\n        raise NotImplementedError(self.__class__.__name__)\n\n    def query_trace_metrics(\n        self,\n        experiment_ids: list[str],\n        view_type: MetricViewType,\n        metric_name: str,\n        aggregations: list[MetricAggregation],\n        dimensions: list[str] | None = None,\n        filters: list[str] | None = None,\n        time_interval_seconds: int | None = None,\n        start_time_ms: int | None = None,\n        end_time_ms: int | None = None,\n        max_results: int = MAX_RESULTS_QUERY_TRACE_METRICS,\n        page_token: str | None = None,\n    ) -> PagedList[list[MetricDataPoint]]:\n        \"\"\"\n        Query trace metrics for the given experiment ids.\n\n        A"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracing/fluent.py",
+      "kind": "File",
+      "path": "mlflow/tracing/fluent.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4599,
+      "excerpt": "utomatically\n    capture the input and output of the function. When it is applied to a method, it doesn't\n    capture the `self` argument. Any exception raised within the function will set the span\n    status to ``ERROR`` and detailed information such as exception message and stacktrace\n    will be recorded to the ``attributes`` field of the span.\n\n    For example, the following code will yield a span with the name ``\"my_function\"``,\n    capturing the input arguments ``x`` and ``y``, and the output of the function.\n\n    .. code-block:: python\n        :test:\n\n        import mlflow\n\n\n        @mlflow.trace\n        def my_function(x, y):\n            return x + y\n\n    This is equivalent to doing the following using the :py:func:`mlflow.start_span` context\n    manager, but requires less boilerplate code.\n\n    .. code-block:: python\n        :test:\n\n        import mlflow\n\n\n        def my_function(x, y):\n            return x + y\n\n\n        with mlflow.start_span(\"my_function\") as span:\n            x = 1\n            y = 2\n            span.set_inputs({\"x\": x, \"y\": y})\n            result = my_function(x, y)\n            span.set_outputs({\"output\": result})\n\n\n    The @mlflow.trace decorator currently support the following types of functions:\n\n    .. list-table:: Supported Function Types\n        :widths: 20 30\n        :header-rows: 1\n\n        * - Function Type\n          - Supported\n        * - Sync\n          - ✅\n        * - Async\n          - ✅ (>= 2.16.0)\n        * - Generator\n          - ✅ (>= 2.20.2)\n        * - Async Generator\n          - ✅ (>= 2.20.2)\n        * - ClassMethod\n          - ✅ (>= 3.0.0)\n        * - StaticMethod\n          - ✅ (>= 3.0.0)\n\n    For more examples of using the @mlflow.trace decorator, including streaming/async\n    handling, see the `MLflow Tracing documentation <https://www.mlflow.org/docs/latest/tracing/api/manual-instrumentation#decorator>`_.\n\n    .. tip::\n\n        The @mlflow.trace decorator is useful when you want to trace a function defined by\n        yourself. However, you may also want to trace a function in external libraries. In\n        such case, you can use this ``mlflow.trace()`` function to directly wrap the function,\n        instead of using as the decorator. This will create the exact same span as the\n        one created by the decorator i.e. captures information from the function call.\n\n        .. code-block:: python\n            :"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:25646",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 25646,
+      "title": "[FR] Allow backend-resolved `UnityCatalog` locations in `mlflow.tracing.set_destination`",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 4592,
+      "excerpt": " merged 2026-03-06) added `UnityCatalog` handling to the registry, span processor, `get_active_spans_table_name` and, per its description, `set_destination`. The rejection was added during that PR's review in commit a76ce1de (\"Disallow UnityCatalog in set_destination and env destination\") without a recorded rationale in the PR thread, and #21385 (\"Add trace location param to set_experiment\", merged 2026-03-12) kept it while introducing the `set_experiment(trace_location=...)` flow. If either of you remembers the reasoning behind the rejection, I would be glad to hear it, since the rest of this section is my reconstruction from the code.\n\nReading the code, I believe the guard protects against a real failure mode, and this proposal keeps protecting against it: `UnityCatalog.full_otel_spans_table_name` simply returns `_otel_spans_table_name`, which is only populated by the backend (`TracingClient._create_or_get_trace_location`, `Experiment.trace_location` from experiment tags, `from_proto` / `from_dict`). A hand-built `UnityCatalog(\"catalog\", \"schema\", \"prefix\")` therefore has no spans table name. If `set_destination` accepted it blindly, `_get_span_processors` would select the UC exporter and every export would then be silently skipped in `DatabricksUCTableSpanExporter._export_spans_incrementally` (\"No active spans table name found. Skipping span export.\"). Pointing users at `set_experiment`, which provisions and links the tables, avoids that. The proposal below narrows the guard to exactly that case instead of rejecting the whole type.\n\n**Proposed implementation** (all in `mlflow/tracing/provider.py` and `tests/tracing/test_provider.py`):\n\n1. In `set_destination`, replace the blanket `isinstance(destination, UnityCatalog)` rejection with a rejection of *unresolved* locations only:\n\n   ```python\n   if isinstance(destination, UnityCatalog) and not destination.full_otel_spans_table_name:\n       raise MlflowException.invalid_parameter_value(\n           \"The `UnityCatalog` destination does not carry the table names assigned by the \"\n           \"Databricks backend, so traces cannot be exported to it. Pass a location resolved \"\n           \"by the backend, e.g. `mlflow.set_experiment(..., \"\n           \"trace_location=UnityCatalog(...)).trace_location` or \"\n           \"`mlflow.get_experiment(experiment_id).trace_location`.\"\n       )\n   ```\n\n2. Update the `set_destinat"
+    }
+  ]
+}

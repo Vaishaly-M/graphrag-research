@@ -1,0 +1,13 @@
+candidate_k: 40
+chunk_sizes:
+- 400
+- 800
+- 1200
+k: 10
+ks:
+- 5
+- 10
+- 20
+overlap_fraction: 0.15
+reranker: cross-encoder/ms-marco-TinyBERT-L-2-v2
+reranker_revision: 81d1926f67cb8eee2c2be17ca9f793c7c3bd20cc

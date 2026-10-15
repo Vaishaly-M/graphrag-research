@@ -1,0 +1,36 @@
+config:
+  backoff: 1.0
+  dry_run: true
+  freeze_revision: null
+  precision_threshold: 0.8
+  question_hash: eeec2f137451f92206a5b6c71f4822d77e4f9b4a67e589518b23af0064148616
+  retries: 2
+  seed: 42
+  source_hash: 288022018057aff70a3067922ab9badd2ca8d3a0573aafb54ffc28046b43befd
+  system_config:
+    answer_prompt_sha256: 32cde9da779aea02248e051bf15396a1b015d9b32d6fbc1588b5c853a2752c31
+    dataset: rebuild-20261014
+    dry_run: true
+    fallback: none
+    fusion: stable_evidence_union_no_branch_truncation
+    graph:
+      cypher_subset: single bounded MATCH, explicit DL labels; no subqueries/procedures
+      row_limit: 20
+      scope: dataset+repository
+      template_policy: generic_identifier_lookup_then_llm
+    max_output_tokens: 1024
+    model: gemini-2.5-flash
+    oracle_policy: null
+    router: null
+    system: plain_llm
+    temperature: 0.2
+    vector:
+      selection_status: pending_development_grid
+    version: phase5-rebuild-1
+  throttle: 0
+config_hash: c813bddfbe2b60a7a4e1ab7c1c92e4dc891627ecdc8d47ea4643f7a705eb7384
+model: offline-fixture
+question_set: T
+run_id: phase5-dry-1
+split: development
+system: plain_llm

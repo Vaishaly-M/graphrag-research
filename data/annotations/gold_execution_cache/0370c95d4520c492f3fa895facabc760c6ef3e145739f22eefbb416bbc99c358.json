@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "openmrs/openmrs-core",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+        "offset": 12520,
+        "line": 403
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+        "offset": 854,
+        "line": 25
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+        "path": "README.md",
+        "offset": 2157,
+        "line": 10
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+        "path": "web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+        "offset": 74325,
+        "line": 1909
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6391",
+        "path": null,
+        "offset": 2653,
+        "line": 45
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/resources/org/openmrs/liquibase/snapshots/core-data/liquibase-core-data-1.9.x.xml",
+        "path": "api/src/main/resources/org/openmrs/liquibase/snapshots/core-data/liquibase-core-data-1.9.x.xml",
+        "offset": 9679,
+        "line": 194
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+        "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+        "offset": 1542,
+        "line": 46
+      },
+      {
+        "id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+        "path": "api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+        "offset": 857,
+        "line": 24
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:README.md",
+      "kind": "File",
+      "path": "README.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2157,
+      "excerpt": "uODU2MDEgMjkuMTA2TDExLjc4MjEgMjYuOTkyM0wxNS4zMzE0IDMyLjE3OUwxOC44ODEgMjYuOTkyM0wyNC44MDcxIDI5LjEwNkwyNC42MjQxIDIyLjgyNzdMMzAuNjYzMSAyMS4wNjEyTDI2LjgxNzYgMTYuMDg5NUwzMC42NjMxIDExLjExNzdMMjQuNjI0MSA5LjM1MTI3WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==)](https://digitalpublicgoods.net/r/openmrs)\n\nOpenMRS is a patient-based medical record system focusing on giving providers a free customizable electronic medical record system (EMR).\n\nThe mission of OpenMRS is to improve health care delivery in resource-constrained environments by coordinating a global community that creates a robust, scalable, user-driven, open source medical record system platform.\n\n#### Table of Contents\n\n1. [Build](#build)\n   1. [Prerequisites](#prerequisites)\n   2. [Build Command](#build-command)\n   3. [Deploy](#deploy)\n2. [Docker build](#docker-build)\n3. [Navigating the repository](#navigating-the-repository)\n4. [Software Development Kit](#software-development-kit)\n5. [Extending OpenMRS with Modules](#extending-openmrs-with-modules)\n6. [Documentation](#documentation)\n   1. [Developer guides](#developer-guides)\n   2. [Wiki](#wiki)\n   3. [Website](#website)\n7. [Contributing](#contributing)\n   1. [Code](#code)\n   2. [Code Reviews](#code-reviews)\n   3. [Translation](#translation)\n8. [Issues](#issues)\n9. [Community](#community)\n10. [Support](#support)\n11. [License](#license)\n\n## Build\n\n### Prerequisites\n\n#### Java\n\nOpenMRS is a Java application which is why you need to install a Java JDK.\n\nIf you want to build the master branch you will need a Java JDK of minimum version 8.\n\n#### Maven\n\nInstall the build tool [Maven](https://maven.apache.org/).\n\nYou need to ensure that Maven uses the Java JDK needed for the branch you want to build.\n\nTo do so execute\n\n```bash\nmvn -version\n```\n\nwhich will tell you what version Maven is using. Refer to the [Maven docs](https://maven.apache.org/configure.html) if you need to configure Maven.\n\n#### Git\n\nInstall the version control tool [git](https://git-scm.com/) and clone this repository with\n\n```bash\ngit clone https://github.com/openmrs/openmrs-core.git\n```\n\n### Build Command\n\nAfter you have taken care of the [Prerequisites](#prerequisites)\n\nExecute the following\n\n```bash\ncd openmrs-core\n./mvnw clean package\n```\n\nThis will generate the OpenMRS application in `webapp/target/openmrs.war`, which you will have to deploy to an application server such as [Tomcat](https://tomcat"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/api/context/Context.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/api/context/Context.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 1542,
+      "excerpt": "import org.openmrs.api.FormService;\nimport org.openmrs.api.LocationService;\nimport org.openmrs.api.MedicationDispenseService;\nimport org.openmrs.api.ObsService;\nimport org.openmrs.api.OpenmrsService;\nimport org.openmrs.api.OrderService;\nimport org.openmrs.api.OrderSetService;\nimport org.openmrs.api.PatientService;\nimport org.openmrs.api.PersonService;\nimport org.openmrs.api.ProgramWorkflowService;\nimport org.openmrs.api.ProviderService;\nimport org.openmrs.api.SerializationService;\nimport org.openmrs.api.UserService;\nimport org.openmrs.api.VisitService;\nimport org.openmrs.api.db.ContextDAO;\nimport org.openmrs.event.outbox.tasks.OutboxTaskSchedulerInitializer;\nimport org.openmrs.hl7.HL7Service;\nimport org.openmrs.logic.LogicService;\nimport org.openmrs.messagesource.MessageSourceService;\nimport org.openmrs.module.ModuleMustStartException;\nimport org.openmrs.module.ModuleUtil;\nimport org.openmrs.notification.AlertService;\nimport org.openmrs.notification.MessageException;\nimport org.openmrs.notification.MessagePreparator;\nimport org.openmrs.notification.MessageSender;\nimport org.openmrs.notification.MessageService;\nimport org.openmrs.notification.mail.MailMessageSender;\nimport org.openmrs.notification.mail.velocity.VelocityMessagePreparator;\nimport org.openmrs.scheduler.SchedulerService;\nimport org.openmrs.util.ConfigUtil;\nimport org.openmrs.util.DatabaseUpdateException;\nimport org.openmrs.util.DatabaseUpdater;\nimport org.openmrs.util.InputRequiredException;\nimport org.openmrs.util.LocaleUtility;\nimport org.openmrs.util.OpenmrsClassLoader;\nimport org.openmrs.util.OpenmrsConstants;\nimport org.openmrs.util.OpenmrsUtil;\nimport org.openmrs.util.PrivilegeConstants;\nimport org.openmrs.validator.ValidateUtil;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.aop.Advisor;\nimport org.springframework.beans.BeansException;\nimport org.springframework.beans.factory.NoSuchBeanDefinitionException;\nimport org.springframework.beans.factory.NoUniqueBeanDefinitionException;\n\n/**\n * Represents an OpenMRS <code>Context</code>, which may be used to authenticate to the database and\n * obtain services in order to interact with the system.<br>\n * <br>\n * The Context is split into a {@link UserContext} and {@link ServiceContext}. The UserContext is\n * lightweight and there is an instance for every user logged into the system. The ServiceContext is\n * heav"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/hl7/impl/HL7ServiceImpl.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 857,
+      "excerpt": "rt java.util.Calendar;\nimport java.util.Collections;\nimport java.util.Date;\nimport java.util.Iterator;\nimport java.util.List;\nimport java.util.Map;\n\nimport org.apache.commons.lang3.StringUtils;\nimport org.apache.commons.lang3.exception.ExceptionUtils;\nimport org.openmrs.Location;\nimport org.openmrs.Patient;\nimport org.openmrs.PatientIdentifier;\nimport org.openmrs.PatientIdentifierType;\nimport org.openmrs.Person;\nimport org.openmrs.PersonName;\nimport org.openmrs.User;\nimport org.openmrs.api.APIException;\nimport org.openmrs.api.PatientIdentifierException;\nimport org.openmrs.api.RefByUuid;\nimport org.openmrs.api.context.Context;\nimport org.openmrs.api.db.DAOException;\nimport org.openmrs.api.impl.BaseOpenmrsService;\nimport org.openmrs.hl7.HL7Constants;\nimport org.openmrs.hl7.HL7InArchive;\nimport org.openmrs.hl7.HL7InError;\nimport org.openmrs.hl7.HL7InQueue;\nimport org.openmrs.hl7.HL7QueueItem;\nimport org.openmrs.hl7.HL7Service;\nimport org.openmrs.hl7.HL7Source;\nimport org.openmrs.hl7.HL7Util;\nimport org.openmrs.hl7.Hl7InArchivesMigrateThread;\nimport org.openmrs.hl7.Hl7InArchivesMigrateThread.Status;\nimport org.openmrs.hl7.db.HL7DAO;\nimport org.openmrs.util.OpenmrsConstants;\nimport org.openmrs.util.OpenmrsUtil;\nimport org.openmrs.util.PrivilegeConstants;\nimport org.openmrs.validator.PatientIdentifierValidator;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.beans.factory.annotation.Qualifier;\nimport org.springframework.stereotype.Service;\nimport org.springframework.transaction.annotation.Transactional;\n\nimport ca.uhn.hl7v2.HL7Exception;\nimport ca.uhn.hl7v2.app.Application;\nimport ca.uhn.hl7v2.app.ApplicationException;\nimport ca.uhn.hl7v2.app.MessageTypeRouter;\nimport ca.uhn.hl7v2.model.Message;\nimport ca.uhn.hl7v2.model.v25.datatype.CX;\nimport ca.uhn.hl7v2.model.v25.datatype.ID;\nimport ca.uhn.hl7v2.model.v25.datatype.PL;\nimport ca.uhn.hl7v2.model.v25.datatype.TS;\nimport ca.uhn.hl7v2.model.v25.datatype.XCN;\nimport ca.uhn.hl7v2.model.v25.datatype.XPN;\nimport ca.uhn.hl7v2.model.v25.segment.NK1;\nimport ca.uhn.hl7v2.model.v25.segment.PID;\nimport ca.uhn.hl7v2.parser.EncodingNotSupportedException;\nimport ca.uhn.hl7v2.parser.Parser;\n\n/**\n * OpenMRS HL7 API default methods This class shouldn't be instantiated by itself. Use the\n * {@link org.openmrs.api.context.Context}\n *\n "
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsConstants.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 854,
+      "excerpt": "andler.ExistingVisitAssignmentHandler;\nimport org.openmrs.customdatatype.datatype.BooleanDatatype;\nimport org.openmrs.customdatatype.datatype.FreeTextDatatype;\nimport org.openmrs.hl7.HL7Constants;\nimport org.openmrs.module.ModuleConstants;\nimport org.openmrs.module.ModuleFactory;\nimport org.openmrs.patient.impl.LuhnIdentifierValidator;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\nimport liquibase.GlobalConfiguration;\n\nimport static java.util.Arrays.asList;\n\n/**\n * Constants used in OpenMRS. Contents built from build properties (version, version_short, and\n * expected_database). Some are set at runtime (database, database version). This file should\n * contain all privilege names and global property names. Those strings added to the static CORE_*\n * methods will be written to the database at startup if they don't exist yet.\n */\npublic final class OpenmrsConstants {\n\n\tprivate static final Logger log = LoggerFactory.getLogger(OpenmrsConstants.class);\n\n\tpublic static String KEY_OPENMRS_APPLICATION_DATA_DIRECTORY = \"OPENMRS_APPLICATION_DATA_DIRECTORY\";\n\n\t/**\n\t * This is the hard coded primary key of the concept class for DRUG. This has to be done because\n\t * some logic in the API acts on this concept class\n\t */\n\tpublic static final int CONCEPT_CLASS_DRUG = 3;\n\n\t/**\n\t * hack alert: During an ant build, the openmrs api jar manifest file is loaded with these values.\n\t * When constructing the OpenmrsConstants class file, the api jar is read and the values are copied\n\t * in as constants\n\t */\n\tprivate static final Package THIS_PACKAGE = OpenmrsConstants.class.getPackage();\n\n\t/**\n\t * This holds the current openmrs code version. This version is a string containing spaces and\n\t * words.<br>\n\t * The format is:<br>\n\t * <i>major</i>.<i>minor</i>.<i>maintenance</i> <i>suffix</i> Build <i>buildNumber</i>\n\t */\n\tpublic static final String OPENMRS_VERSION = THIS_PACKAGE.getSpecificationVendor() != null\n\t        ? THIS_PACKAGE.getSpecificationVendor()\n\t        : (getBuildVersion() != null ? getBuildVersion() : getVersion());\n\n\t/**\n\t * This holds the current openmrs code version in a short space-less string.<br>\n\t * The format is:<br>\n\t * <i>major</i>.<i>minor</i>.<i>maintenance</i>.<i>revision</i>-<i>suffix</i>\n\t */\n\tpublic static final String OPENMRS_VERSION_SHORT = THIS_PACKAGE.getSpecificationVersion() != null\n\t        ? THIS_PACKAGE.getSpecificationVersion()\n\t     "
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+      "kind": "File",
+      "path": "api/src/main/java/org/openmrs/util/OpenmrsUtil.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 12520,
+      "excerpt": "scription());\n\t\t}\n\n\t\treturn roles;\n\t}\n\n\t/**\n\t * Initialize global settings Find and load modules\n\t *\n\t * @param p properties from runtime configuration\n\t */\n\tpublic static void startup(Properties p) {\n\n\t\t// Override global OpenMRS constants if specified by the user\n\n\t\t// Allow for \"demo\" mode where patient data is obscured\n\t\tString val = p.getProperty(\"obscure_patients\", null);\n\t\tif (val != null && \"true\".equalsIgnoreCase(val)) {\n\t\t\tOpenmrsConstants.OBSCURE_PATIENTS = true;\n\t\t}\n\n\t\tval = p.getProperty(\"obscure_patients.family_name\", null);\n\t\tif (val != null) {\n\t\t\tOpenmrsConstants.OBSCURE_PATIENTS_FAMILY_NAME = val;\n\t\t}\n\n\t\tval = p.getProperty(\"obscure_patients.given_name\", null);\n\t\tif (val != null) {\n\t\t\tOpenmrsConstants.OBSCURE_PATIENTS_GIVEN_NAME = val;\n\t\t}\n\n\t\tval = p.getProperty(\"obscure_patients.middle_name\", null);\n\t\tif (val != null) {\n\t\t\tOpenmrsConstants.OBSCURE_PATIENTS_MIDDLE_NAME = val;\n\t\t}\n\n\t\t// Override the default \"openmrs\" database name\n\t\tval = p.getProperty(\"connection.database_name\", null);\n\t\tif (val == null) {\n\t\t\t// the database name wasn't supplied explicitly, guess it\n\t\t\t// from the connection string\n\t\t\tval = p.getProperty(\"connection.url\", null);\n\n\t\t\tif (val != null) {\n\t\t\t\ttry {\n\t\t\t\t\tint endIndex = val.lastIndexOf(\"?\");\n\t\t\t\t\tif (endIndex == -1) {\n\t\t\t\t\t\tendIndex = val.length();\n\t\t\t\t\t}\n\t\t\t\t\tint startIndex = val.lastIndexOf(\"/\", endIndex);\n\t\t\t\t\tval = val.substring(startIndex + 1, endIndex);\n\t\t\t\t\tOpenmrsConstants.DATABASE_NAME = val;\n\t\t\t\t} catch (Exception e) {\n\t\t\t\t\tlog.error(MarkerFactory.getMarker(\"FATAL\"), \"Database name cannot be configured from 'connection.url' .\"\n\t\t\t\t\t        + \"Either supply 'connection.database_name' or correct the url\",\n\t\t\t\t\t    e);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\t// set the business database name\n\t\tval = p.getProperty(\"connection.database_business_name\", null);\n\t\tif (val == null) {\n\t\t\tval = OpenmrsConstants.DATABASE_NAME;\n\t\t}\n\t\tOpenmrsConstants.DATABASE_BUSINESS_NAME = val;\n\t}\n\n\t/**\n\t * Gets the in-memory log appender. This method needed to be added as it is much more difficult to\n\t * get a specific appender in the Log4J2 architecture. This method is called in places where we need\n\t * to display logging message.\n\t *\n\t * @since 2.4.0\n\t * @deprecated As of 2.4.4, 2.5.1, and 2.6.0; replaced by\n\t *             {@link OpenmrsLoggingUtil#getMemoryAppender()} instead\n\t */\n\t@Deprecated\n\tpublic static MemoryAppender getMemoryAppender() {\n\t\tre"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:api/src/main/resources/org/openmrs/liquibase/snapshots/core-data/liquibase-core-data-1.9.x.xml",
+      "kind": "File",
+      "path": "api/src/main/resources/org/openmrs/liquibase/snapshots/core-data/liquibase-core-data-1.9.x.xml",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9679,
+      "excerpt": "mn name=\"retire_reason\"/>\n        </insert>\n        <insert tableName=\"person_attribute_type\">\n            <column name=\"person_attribute_type_id\" valueNumeric=\"6\"/>\n            <column name=\"name\" value=\"Health District\"/>\n            <column name=\"description\" value=\"District/region in which this patient' home health center resides\"/>\n            <column name=\"format\" value=\"java.lang.String\"/>\n            <column name=\"foreign_key\" valueNumeric=\"0\"/>\n            <column name=\"searchable\" valueBoolean=\"false\"/>\n            <column name=\"creator\" valueNumeric=\"1\"/>\n            <column name=\"date_created\" valueDate=\"2007-05-04\"/>\n            <column name=\"changed_by\" />\n            <column name=\"date_changed\"/>\n            <column name=\"retired\" valueBoolean=\"false\"/>\n            <column name=\"retired_by\" />\n            <column name=\"date_retired\"/>\n            <column name=\"retire_reason\"/>\n        </insert>\n        <insert tableName=\"person_attribute_type\">\n            <column name=\"person_attribute_type_id\" valueNumeric=\"7\"/>\n            <column name=\"name\" value=\"Health Center\"/>\n            <column name=\"description\" value=\"Specific Location of this person's home health center.\"/>\n            <column name=\"format\" value=\"org.openmrs.Location\"/>\n            <column name=\"foreign_key\" valueNumeric=\"0\"/>\n            <column name=\"searchable\" valueBoolean=\"false\"/>\n            <column name=\"creator\" valueNumeric=\"1\"/>\n            <column name=\"date_created\" valueDate=\"2007-05-04\"/>\n            <column name=\"changed_by\" />\n            <column name=\"date_changed\"/>\n            <column name=\"retired\" valueBoolean=\"false\"/>\n            <column name=\"retired_by\" />\n            <column name=\"date_retired\"/>\n            <column name=\"retire_reason\"/>\n        </insert>\n    </changeSet>\n    <changeSet author=\"ben (generated)\" id=\"1226348923233-12\">\n        <insert tableName=\"concept_datatype\">\n            <column name=\"concept_datatype_id\" valueNumeric=\"1\"/>\n            <column name=\"name\" value=\"Numeric\"/>\n            <column name=\"hl7_abbreviation\" value=\"NM\"/>\n            <column name=\"description\" value=\"Numeric value, including integer or float (e.g., creatinine, weight)\"/>\n            <column name=\"creator\" valueNumeric=\"1\"/>\n            <column name=\"date_created\" valueDate=\"2004-02-02\"/>\n            <column name=\"retired\" valueBoolean=\"false\"/>\n            <"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:file:web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+      "kind": "File",
+      "path": "web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 74325,
+      "excerpt": "aseDriver);\n\t\t\tlog.info(\"using database driver :\" + loadedDriverString);\n\t\t} catch (ClassNotFoundException e) {\n\t\t\tlog.error(\"The given database driver class was not found. \"\n\t\t\t        + \"Please ensure that the database driver jar file is on the class path \"\n\t\t\t        + \"(like in the webapp's lib folder)\");\n\t\t}\n\n\t\treturn loadedDriverString;\n\t}\n\n\t/**\n\t * Utility method that checks if there is a runtime properties file containing database connection\n\t * credentials\n\t *\n\t * @return\n\t */\n\tprivate static boolean skipDatabaseSetupPage() {\n\t\tProperties props = OpenmrsUtil.getRuntimeProperties(WebConstants.WEBAPP_NAME);\n\t\treturn (props != null && StringUtils.hasText(props.getProperty(\"connection.url\"))\n\t\t        && StringUtils.hasText(props.getProperty(\"connection.username\"))\n\t\t        && StringUtils.hasText(props.getProperty(\"connection.password\")));\n\t}\n\n\t/**\n\t * Utility methods that checks if the user clicked the back image\n\t *\n\t * @param httpRequest\n\t * @return\n\t */\n\tprivate static boolean goBack(HttpServletRequest httpRequest) {\n\t\treturn \"Back\".equals(httpRequest.getParameter(\"back\"))\n\t\t        || (httpRequest.getParameter(\"back.x\") != null && httpRequest.getParameter(\"back.y\") != null);\n\t}\n\n\tprivate String normalizeEnvVariableKey(String envVarKey) {\n\t\tif (NON_NORMALIZED_KEYS.contains(envVarKey)) {\n\t\t\treturn envVarKey.toLowerCase();\n\t\t}\n\t\treturn envVarKey.toLowerCase().replace('_', '.');\n\t}\n\n\tprotected Map<String, String> getEnvironmentVariables() {\n\t\treturn System.getenv();\n\t}\n\n\t/**\n\t * Convenience method to get custom installation script\n\t *\n\t * @return Properties from custom installation script or empty if none specified\n\t * @throws RuntimeException if path to installation script is invalid\n\t */\n\tprotected Properties getInstallationScript() {\n\t\tProperties prop = new Properties();\n\n\t\tString fileName = System.getProperty(\"OPENMRS_INSTALLATION_SCRIPT\");\n\t\tif (fileName == null) {\n\t\t\treturn prop;\n\t\t}\n\t\tif (fileName.startsWith(\"classpath:\")) {\n\t\t\tfileName = fileName.substring(10);\n\t\t\tInputStream input = null;\n\t\t\ttry {\n\t\t\t\tinput = getClass().getClassLoader().getResourceAsStream(fileName);\n\t\t\t\tif (input == null) {\n\t\t\t\t\treturn null;\n\t\t\t\t}\n\t\t\t\tprop.load(input);\n\t\t\t\tlog.info(\"Using installation script from classpath: {}\", fileName);\n\n\t\t\t\tinput.close();\n\t\t\t} catch (IOException ex) {\n\t\t\t\tlog.error(\"Failed to load installation script from classpath: {}\", fileName, ex);\n\t"
+    },
+    {
+      "evidence_id": "rebuild-20261014:90309a7359a4912d84fa7df6c8463b24e0ce5051:openmrs/openmrs-core:pullrequest:6391",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 6391,
+      "title": "TRUNK-6733: Use java-uuid-generator for entity UUIDs instead of UUID.randomUUID()",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2653,
+      "excerpt": "). Version 4 also keeps\nuuids from revealing when a record was created, which matters when they appear in URLs. `UuidUtil`\ndocuments the single place to change should v7 be wanted later.\n\n### Compatibility\n\nGenerated values are unchanged in form: canonical, 36 character, version 4 uuid strings that fit\nthe existing 38 character `uuid` column. Existing rows and their uuids are unaffected and there are\nno liquibase changes in this PR, so no migration is required.\n\n### Results\n\nMeasured over 96 million uuids generated on 32 threads, with a JFR recording using\n`settings=profile` (10 ms monitor threshold, the same floor the ticket quotes):\n\n| | before | after |\n| --- | --- | --- |\n| `jdk.JavaMonitorEnter` events | 49, all on `sun.security.provider.HashDrbg` | 0 |\n| wall clock | 56.7 s | 0.6 s |\n| uuid generation on the entity path | 539.8 ns/uuid | 5.9 ns/uuid |\n\nA complete `new Location()` now costs 21.9 ns at 32 threads, less than 5% of what the uuid alone\nused to cost.\n\n### What the speed-up rests on, and how it is pinned\n\nSupplying a generator only helps if java-uuid-generator actually draws every uuid from it, without\ntaking its monitor. Both hold in `RandomBasedGenerator` as of 5.2.0 — `generate()` contains no\n`synchronized` block, and since `_secureRandom` is `(rnd instanceof SecureRandom)`, the supplied\ngenerator takes the `_random.nextLong()` path rather than the `nextBytes(byte[])` one.\n\nNeither property was pinned by anything, though, and both belong to a third-party class. A future\nbump that reintroduced the lock, or changed the `_secureRandom` heuristic, would quietly serialise\ngeneration on one monitor again with no test failing — the win would be gone and nothing would say\nso. Two guards now cover it:\n\n- `randomBasedGenerator_shouldDrawEveryUuidFromTheSuppliedGenerator` passes a counting `Random` and\n  asserts generation made exactly two `nextLong()` calls and zero `nextBytes()` calls.\n- `randomBasedGenerator_shouldNotSynchroniseOnTheSuppliedGenerator` holds the monitor of the\n  supplied generator on one thread and asserts a second thread can still generate.\n\nThe second guard was checked against a deliberately synchronizing generator to confirm generation\nblocks under it, so it discriminates rather than passing vacuously.\n\n### Tests\n\n`UuidUtilTest` covers canonical format and that values fit the uuid column, version 4 and IETF\nvariant, uniqueness a"
+    }
+  ]
+}

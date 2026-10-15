@@ -1,0 +1,164 @@
+{
+  "source_sha256": "e0a31d8d3d2ae5bf060b5b9d159a4f71c11ffbc54ebd38b008471d331c1ca5fc",
+  "cypher": "UNWIND $evidence_specs AS spec MATCH (n) WHERE n.dataset=$dataset AND n.repo=$repo AND n.id=spec.id\nRETURN n.id AS evidence_id,n.label AS kind,n.path AS path,n.sha AS commit,n.number AS number,\nn.title AS title,n.email AS email,n.login AS login,n.name AS name,\nspec.offset AS character_offset,substring(coalesce(n.content,n.body,n.message,''),spec.offset,2400) AS excerpt ORDER BY evidence_id",
+  "parameters": {
+    "dataset": "rebuild-20261014",
+    "repo": "mlflow/mlflow",
+    "evidence_specs": [
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+        "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+        "offset": 23513,
+        "line": 577
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+        "path": "changelogs/v0.x.md",
+        "offset": 23023,
+        "line": 253
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/experiment-tracking/pages/experiment-evaluation-datasets-v2/components/DatasetRecordCell.tsx",
+        "path": "mlflow/server/js/src/experiment-tracking/pages/experiment-evaluation-datasets-v2/components/DatasetRecordCell.tsx",
+        "offset": 9662,
+        "line": 228
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+        "path": "examples/llms/RAG/question_answer_source.csv",
+        "offset": 56769,
+        "line": 30
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26611",
+        "path": null,
+        "offset": 5241,
+        "line": 65
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+        "path": "mlflow/environment_variables.py",
+        "offset": 38642,
+        "line": 838
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26395",
+        "path": null,
+        "offset": 2212,
+        "line": 28
+      },
+      {
+        "id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracing/fluent.py",
+        "path": "mlflow/tracing/fluent.py",
+        "offset": 5978,
+        "line": 180
+      }
+    ]
+  },
+  "rows": [
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:changelogs/v0.x.md",
+      "kind": "File",
+      "path": "changelogs/v0.x.md",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23023,
+      "excerpt": "R snapshots are now available and linked from https://github.com/mlflow/mlflow (#352, @aarondav)\n\nBug fixes and documentation updates:\n\n- [Python] `mlflow run` now logs default parameters, in addition to explicitly provided ones (#392, @mparkhe)\n- [Python] `log_artifact` in FileStore now requires a relative path as the artifact path (#439, @mparkhe)\n- [Python] Fixed string representation of Python entities, so they now display both their type and serialized fields (#371, @smurching)\n- [UI] Entry point name is now shown in MLflow UI (#345, @aarondav)\n- [Models] Keras model export now includes TensorFlow graph explicitly to ensure the model can always be loaded at deployment time (#440, @tomasatdatabricks)\n- [Python] Fixed issue where FileStore ignored provided Run Name (#358, @adrian555)\n- [Python] Fixed an issue where any `mlflow run` failing printed an extraneous exception (#365, @smurching)\n- [Python] uuid dependency removed (#351, @antonpaquin)\n- [Python] Fixed issues with remote execution on Databricks (#357, #361, @smurching; #383, #387, @aarondav)\n- [Docs] Added [comprehensive example](https://github.com/mlflow/mlflow/tree/master/examples/multistep_workflow) of doing a multistep workflow, chaining MLflow runs together and reusing results (#338, @aarondav)\n- [Docs] Added [comprehensive example](https://github.com/mlflow/mlflow/tree/master/examples/hyperparam) of doing hyperparameter tuning (#368, @tomasatdatabricks)\n- [Docs] Added code examples to `mlflow.keras` API (#341, @dmatrix)\n- [Docs] Significant improvements to Python API documentation (#454, @stbof)\n- [Docs] Examples folder refactored to improve readability. The examples now reside in `examples/` instead of `example/`, too (#399, @mparkhe)\n- Small bug fixes and doc updates (#328, #363, @ToonKBC; #336, #411, @aarondav; #284, @smurching; #377, @mparkhe; #389, gioa; #408, @aadamson; #397, @vfdev-5; #420, @adrian555; #459, #463, @stbof)\n\n## 0.5.2 (2018-08-24)\n\nMLflow 0.5.2 is a patch release on top of 0.5.1 containing only bug fixes and no breaking changes or features.\n\nBug fixes:\n\n- Fix a bug with ECR client creation that caused `mlflow.sagemaker.deploy()` to fail when searching for a deployment Docker image (#366, @dbczumar)\n\n## 0.5.1 (2018-08-23)\n\nMLflow 0.5.1 is a patch release on top of 0.5.0 containing only bug fixes and no breaking changes or features.\n\nBug fixes:\n\n- Fix `with mlflow.start_r"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:docs/docs/classic-ml/model/dependencies/index.mdx",
+      "kind": "File",
+      "path": "docs/docs/classic-ml/model/dependencies/index.mdx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 23513,
+      "excerpt": " not code/src/utils.py\n    )\n\n# => Model serving will fail with ModuleNotFoundError: No module named 'src'\n```\n\nThis limitation is due to how MLflow saves and loads the specified files and directories. When it copies the specified files or directories in `code/` target,\nit does **not** preserve the relative paths that they were originally residing within. For instance, in the above example, MLflow will copy `utils.py` to `code/utils.py`, not\n`code/src/utils.py`. As a result, it has to be imported as `from utils import my_func`, instead of `from src.utils import my_func`.\nHowever, this may not be pleasant, as the import path is different from the original training script.\n\nTo workaround this issue, the `code_paths` should specify the parent directory, which is `code_paths=[\"src\"]` in this example.\nThis way, MLflow will copy the entire `src/` directory under `code/` and your model code will be able to import `src.utils`.\n\n```python\nclass MyModel(mlflow.pyfunc.PythonModel):\n    def predict(self, context, model_input):\n        from src.utils import my_func\n\n        # .. your prediction logic\n        return prediction\n\n\nwith mlflow.start_run() as run:\n    mlflow.pyfunc.log_model(\n        python_model=model,\n        name=\"model\",\n        input_example=input_data,\n        code_paths=[\"src\"],  # the whole /src directory will be saved at code/src\n    )\n```\n\n:::warning\nBy the same reason, the `code_paths` option doesn't handle the relative import of `code_paths=[\"../src\"]`.\n:::\n\n### Limitation of `code_paths` in loading multiple models with the same module name but different implementations\n\nThe current implementation of the `code_paths` option has a limitation that it doesn't support loading multiple models that depend on modules with the same name but different implementations within the same Python process, as illustrated in the following example:\n\n```python\nimport importlib\nimport sys\nimport tempfile\nfrom pathlib import Path\n\nimport mlflow\n\nwith tempfile.TemporaryDirectory() as tmpdir:\n    tmpdir = Path(tmpdir)\n    my_model_path = tmpdir / \"my_model.py\"\n    code_template = \"\"\"\nimport mlflow\n\nclass MyModel(mlflow.pyfunc.PythonModel):\n    def predict(self, context, model_input):\n        return [{n}] * len(model_input)\n\"\"\"\n\n    my_model_path.write_text(code_template.format(n=1))\n\n    sys.path.insert(0, str(tmpdir))\n    import my_model\n\n    # model 1\n    model1 = my_m"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:examples/llms/RAG/question_answer_source.csv",
+      "kind": "File",
+      "path": "examples/llms/RAG/question_answer_source.csv",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 56769,
+      "excerpt": "run() Python API. These APIs also allow submitting the project for remote execution on Databricks and Kubernetes. Important By default, MLflow uses a new, temporary working directory for Git projects. This means that you should generally pass any file arguments to MLflow project using absolute, not relative, paths. If your project declares its parameters, MLflow automatically makes paths absolute for parameters of type path. Specifying Projects By default, any Git repository or local directory can be treated as an MLflow project; you can invoke any bash or Python script contained in the directory as a project entry point. The Project Directories section describes how MLflow interprets directories as projects. To provide\",1,projects.html\nWhat are the project environments supported by MLflow?,\"MLflow currently supports the following project environments: Virtualenv environment, conda environment, Docker container environment, and system environment. Virtualenv environments support Python packages available on PyPI. Docker containers allow you to capture non-Python dependencies such as Java libraries.\",\"you can invoke any bash or Python script contained in the directory as a project entry point. The Project Directories section describes how MLflow interprets directories as projects. To provide additional control over a project's attributes, you can also include an MLproject file in your project's repository or directory. Finally, MLflow projects allow you to specify the software environment that is used to execute project entry points. Project Environments MLflow currently supports the following project environments: Virtualenv environment, conda environment, Docker container environment, and system environment. Virtualenv environment (preferred)Virtualenv environments support Python packages available on PyPI. When an MLflow Project specifies a Virtualenv environment, MLflow will download the specified version of Python by using pyenv and create an isolated environment that contains the project dependencies using virtualenv, activating it as the execution environment prior to running the project code. You can specify a Virtualenv environment for your MLflow Project by including a python_env entry in your MLproject file. For details, see the Project Directories and Specifying an Environment sections. Docker container environmentDocker containers allow you to ca"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/environment_variables.py",
+      "kind": "File",
+      "path": "mlflow/environment_variables.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 38642,
+      "excerpt": "FLOW_ONLINE_SCORING_MAX_WORKER_THREADS = _EnvironmentVariable(\n    \"MLFLOW_ONLINE_SCORING_MAX_WORKER_THREADS\", int, 10\n)\n\n#: Maximum number of parallel threads to use for LLM calls during optimization (e.g., MemAlign).\n#: Increasing this value can speed up alignment when processing\n#: many feedback examples, but may increase API rate limit errors. (default: ``8``)\nMLFLOW_GENAI_OPTIMIZE_MAX_WORKERS = _EnvironmentVariable(\n    \"MLFLOW_GENAI_OPTIMIZE_MAX_WORKERS\", int, 8\n)\n\n#: Default LLM judge model URI used by built-in judges and scorers (e.g.\n#: ``Guidelines``, ``Safety``) when no ``model`` is passed explicitly. When unset,\n#: MLflow falls back to the Databricks managed judge on Databricks tracking URIs\n#: and ``openai:/gpt-4.1-mini`` otherwise. Set this to point every default judge\n#: at a single model URI, e.g. ``openai:/gpt-5-mini``. (default: unset)\nMLFLOW_GENAI_JUDGE_DEFAULT_MODEL = _EnvironmentVariable(\n    \"MLFLOW_GENAI_JUDGE_DEFAULT_MODEL\", str, None\n)\n\n\n#: Skip trace validation during GenAI evaluation. By default (False), MLflow will validate if\n#: the given predict function generates a valid trace, and otherwise wraps it with @mlflow.trace\n#: decorator to make sure a trace is generated. This validation requires running a single\n#: prediction. When you are sure that the predict function generates a trace, set this to True\n#: to skip the validation and save the time of running a single prediction.\nMLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION = _BooleanEnvironmentVariable(\n    \"MLFLOW_GENAI_EVAL_SKIP_TRACE_VALIDATION\", False\n)\n\n#: Enable tracing for evaluation scorers. By default (False), MLflow will not trace the scorer\n#: function calls. To trace the scorer functions for debugging purpose, set this to True.\nMLFLOW_GENAI_EVAL_ENABLE_SCORER_TRACING = _BooleanEnvironmentVariable(\n    \"MLFLOW_GENAI_EVAL_ENABLE_SCORER_TRACING\", False\n)\n\n#: Timeout in seconds for async predict functions in mlflow.genai.evaluate. When an async\n#: function is passed as predict_fn, it will be wrapped with asyncio.run() with this timeout.\n#: (default: ``300``)\nMLFLOW_GENAI_EVAL_ASYNC_TIMEOUT = _EnvironmentVariable(\"MLFLOW_GENAI_EVAL_ASYNC_TIMEOUT\", int, 300)\n\n#: Timeout in seconds for LLM calls during mlflow.genai.evaluate. When an LLM is used as a scorer.\n#: This controls how long to wait for an LLM response before timing out.\n#: (default: ``60``)\nMLFLOW_GENAI_EVAL_LLM_TIMEOUT = "
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/server/js/src/experiment-tracking/pages/experiment-evaluation-datasets-v2/components/DatasetRecordCell.tsx",
+      "kind": "File",
+      "path": "mlflow/server/js/src/experiment-tracking/pages/experiment-evaluation-datasets-v2/components/DatasetRecordCell.tsx",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 9662,
+      "excerpt": " asChild>`, which uses Radix `Slot` to clone\n * this child and inject `onMouseEnter`/`onMouseLeave`/`onPointerEnter`/`onPointerLeave`/\n * `onFocus`/`onBlur` + a composed ref. Dropping any of those silently breaks the tooltip:\n * with no hover handlers it never opens, and without a ref Radix can't position it. The\n * inner `onClick`/`onKeyDown` compose Radix's injected handler with our drawer-open action.\n */\nconst CellActivator = forwardRef<HTMLSpanElement, CellActivatorProps>(function CellActivator(\n  { onActivate, accessibleLabel, componentId, children, css: extraCss, ...rest },\n  ref,\n) {\n  return (\n    <span\n      {...rest}\n      ref={ref}\n      role=\"button\"\n      tabIndex={0}\n      aria-label={accessibleLabel}\n      data-component-id={componentId}\n      onClick={(event) => {\n        rest.onClick?.(event);\n        onActivate();\n      }}\n      onKeyDown={(event) => {\n        rest.onKeyDown?.(event);\n        if (event.key === 'Enter' || event.key === ' ') {\n          event.preventDefault();\n          onActivate();\n        }\n      }}\n      css={extraCss ? [ACTIVATOR_BASE_CSS, extraCss] : ACTIVATOR_BASE_CSS}\n    >\n      {children}\n    </span>\n  );\n});\n\ninterface JsonPreviewCellProps {\n  value: RecordJsonValue | undefined;\n  emptyLabel: React.ReactNode;\n  /** Open the drawer for this row. */\n  onActivate: () => void;\n  /** Localized spoken label, e.g. \"Open record rec-123 — inputs\". */\n  accessibleLabel: string;\n}\n\n/**\n * Compact one-line JSON preview for inputs/expectations cells. Tooltip shows the\n * structurally-truncated JSON on hover or keyboard focus.\n */\nexport const JsonPreviewCell = ({ value, emptyLabel, onActivate, accessibleLabel }: JsonPreviewCellProps) => {\n  const { theme } = useDesignSystemTheme();\n  // `truncateJsonForTooltip` and `renderJsonNode` recursively walk the JSON, and\n  // `getJsonColors` returns a new object identity per call. Memoizing all three keeps a\n  // 100-row × 2-JSON-column table from rebuilding the tooltip subtree on every parent\n  // re-render. Memos run unconditionally — they sit above the empty-value early-return so\n  // the hook call order is stable across renders where `value` flips between empty and not.\n  const truncated = useMemo(() => (value === undefined ? undefined : truncateJsonForTooltip(value)), [value]);\n  const colors = useMemo(\n    () => getJsonColors(theme.isDarkMode, theme.colors.textPrimary, theme.colo"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:file:mlflow/tracing/fluent.py",
+      "kind": "File",
+      "path": "mlflow/tracing/fluent.py",
+      "commit": null,
+      "number": null,
+      "title": null,
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5978,
+      "excerpt": "Supported\n        * - Sync\n          - ✅\n        * - Async\n          - ✅ (>= 2.16.0)\n        * - Generator\n          - ✅ (>= 2.20.2)\n        * - Async Generator\n          - ✅ (>= 2.20.2)\n        * - ClassMethod\n          - ✅ (>= 3.0.0)\n        * - StaticMethod\n          - ✅ (>= 3.0.0)\n\n    For more examples of using the @mlflow.trace decorator, including streaming/async\n    handling, see the `MLflow Tracing documentation <https://www.mlflow.org/docs/latest/tracing/api/manual-instrumentation#decorator>`_.\n\n    .. tip::\n\n        The @mlflow.trace decorator is useful when you want to trace a function defined by\n        yourself. However, you may also want to trace a function in external libraries. In\n        such case, you can use this ``mlflow.trace()`` function to directly wrap the function,\n        instead of using as the decorator. This will create the exact same span as the\n        one created by the decorator i.e. captures information from the function call.\n\n        .. code-block:: python\n            :test:\n\n            import math\n\n            import mlflow\n\n            mlflow.trace(math.factorial)(5)\n\n    Args:\n        func: The function to be decorated. Must **not** be provided when using as a decorator.\n        name: The name of the span. If not provided, the name of the function will be used.\n        span_type: The type of the span. Can be either a string or a\n            :py:class:`SpanType <mlflow.entities.SpanType>` enum value.\n        attributes: A dictionary of attributes to set on the span.\n        output_reducer: A function that reduces the outputs of the generator function into a\n            single value to be set as the span output.\n        trace_destination: The destination to log the trace to, such as MLflow Experiment. If\n            not provided, the destination will be an active MLflow experiment or an destination\n            set by the :py:func:`mlflow.tracing.set_destination` function. This parameter\n            should only be used for root span and setting this for non-root spans will be\n            ignored with a warning.\n        sampling_ratio_override: The sampling ratio override for this specific function. Must be\n            between 0.0 and 1.0. If provided, this overrides the global\n            ``MLFLOW_TRACE_SAMPLING_RATIO`` setting. A value of 1.0 means all traces are sampled,\n            0.5 means 50% are sampled, and 0.0 m"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:issue:26611",
+      "kind": "Issue",
+      "path": null,
+      "commit": null,
+      "number": 26611,
+      "title": "[BUG] `strands`, `semantic_kernel` and `haystack` autolog export every span twice when `MLFLOW_USE_DEFAULT_TRACER_PROVIDER=false`",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 5241,
+      "excerpt": "served.\n\n- **On `master` the new tests fail:** Strands `8 == 4` (`6 == 4` with tracing initialized first), Semantic Kernel `8 == 4` (`7 == 4`), Haystack `4 == 2` (`3 == 2`).\n- **With the fix they pass**, along with the existing shared-provider recursion tests. The only other failures in those three suites are cost-attribute tests that fail identically on `master` in my environment (semantic-kernel 1.36.0 is below the supported 1.37.1).\n- Calling `autolog()` before `set_experiment()` still records enriched traces, each span exported once.\n\nThe fix is on my fork, ready to open as a PR once this issue is triaged: [compare with `master`](https://github.com/mlflow/mlflow/compare/master...LeviLong01:mlflow:ll/fix-autolog-shared-provider-double-export) (branch `ll/fix-autolog-shared-provider-double-export`).\n\n\n### Tracking information\n\n<!-- PLEASE KEEP BACKTICKS AND CHECK PREVIEW -->\n```shell\nSystem information: Darwin Darwin Kernel Version 25.6.0; RELEASE_ARM64\nPython version: 3.12.13\nMLflow version: 3.17.0\nMLflow module location: <venv>/lib/python3.12/site-packages/mlflow/__init__.py\nTracking URI: sqlite:////tmp/example/mlflow.db\nRegistry URI: sqlite:////tmp/example/mlflow.db\nMLflow environment variables:\n  MLFLOW_TRACKING_URI: sqlite:////tmp/example/mlflow.db\nMLflow dependencies:\n  Flask: 3.1.3\n  alembic: 1.20.0\n  fastapi: 0.143.0\n  mlflow-skinny: 3.17.0\n  mlflow-tracing: 3.17.0\n  numpy: 2.5.3\n  pandas: 3.0.6\n  sqlalchemy: 2.1.4\n  uvicorn: 0.54.0\n```\n\nNo tracking server (`mlflow server`) is used. The reproduction logs to a local `sqlite:///` tracking URI in a temporary directory.\n\n\n### Code to reproduce issue\n\nThe script below reproduces the bug with Strands. The equivalent reproduction for Semantic Kernel and Haystack is in \"Other info\", section 4.\n\n**Install**\n\n```shell\npip install \"mlflow==3.17.0\" \"strands-agents==1.59.0\"\n```\n\n**Script** (`repro_strands_double_export.py`)\n\n```python\n\"\"\"Reproduce: mlflow.strands.autolog() exports every span twice with a shared tracer provider.\n\nUsage:\n    python repro_strands_double_export.py shared     # MLFLOW_USE_DEFAULT_TRACER_PROVIDER=false\n    python repro_strands_double_export.py isolated   # MLFLOW_USE_DEFAULT_TRACER_PROVIDER=true (default)\n\"\"\"\n\nimport os\nimport sys\nimport tempfile\nfrom collections import Counter\nfrom collections.abc import AsyncIterator, Sequence\nfrom typing import Any\n\nmode = sys.argv[1] if len(sys.a"
+    },
+    {
+      "evidence_id": "rebuild-20261014:c557df01e3b7f1ec351df281f40d4c88d736ffdc:mlflow/mlflow:pullrequest:26395",
+      "kind": "PullRequest",
+      "path": null,
+      "commit": null,
+      "number": 26395,
+      "title": "Rhaieng 7124 skill mlflowclient genai workflows",
+      "email": null,
+      "login": null,
+      "name": null,
+      "character_offset": 2212,
+      "excerpt": "\r\n\r\nThe broad regression selection passed **3,058 tests with 68 skipped** across Skill content helpers, entities, server routes, SQL stores, REST/client workflows, workspace behavior, and related MCP code. After the final REST path-validation fix, the Skill client/REST integration and public-export suites passed **237 tests**.\r\n\r\nCoverage includes typed-source conversion, local multipart uploads, manifest validation, cleanup, parent metadata preservation, bulk selection and batch limits, pagination, error propagation, and reused-version status. Nine additional path regressions verify malformed identifiers fail before HTTP requests and leave stored parents, versions, and tags unchanged. Existing transport tests verify credential and workspace headers for JSON and multipart requests.\r\n\r\nRuff lint/format, Clint, typo, and whitespace checks passed. Existing deprecation warnings remain. These runs use SQLite and test HTTP routing in-process; they do not establish authenticated deployment readiness or exercise real authenticated Git/OCI services.\r\n\r\n### Does this PR require documentation update?\r\n\r\n- [x] Yes. I've updated:\r\n  - [x] API references\r\n\r\nAPI reference updates come from the new workflow docstrings and examples, consumed by the existing `mlflow.genai` automodule. No files under `docs/` were changed. A rendered Sphinx build was not run.\r\n\r\n### Does this PR require updating the [MLflow Skills](https://github.com/mlflow/skills) repository?\r\n\r\n- [x] No.\r\n\r\n### Release Notes\r\n\r\n#### Is this a user-facing change?\r\n\r\n- [x] Yes. Add Skill Registry management through `MlflowClient` and high-level registration, Git import, and search workflows through `mlflow.genai`.\r\n\r\n#### What component(s), interfaces, languages, and integrations does this PR affect?\r\n\r\nComponents\r\n\r\n- [x] `area/tracking`: Tracking Service, tracking client APIs, autologging\r\n\r\n<!--\r\nInsert an empty named anchor here to allow jumping to this section with a fragment URL\r\n(e.g. https://github.com/mlflow/mlflow/pull/123#user-content-release-note-category).\r\nNote that GitHub prefixes anchor names in markdown with \"user-content-\".\r\n-->\r\n\r\n<a name=\"release-note-category\"></a>\r\n\r\n#### How should the PR be classified in the release notes? Choose one:\r\n\r\n- [x] `rn/feature` - A new user-facing feature worth mentioning in the release notes\r\n\r\n#### Is this PR a critical bugfix or security fix that should go"
+    }
+  ]
+}
